@@ -15,6 +15,7 @@
 		95AE25B51F9531E20067F5F5 /* CineasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE25B41F9531E20067F5F5 /* CineasteTests.swift */; };
 		95D32F5F1F9A9E3000497ED2 /* MovieClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D32F5E1F9A9E3000497ED2 /* MovieClient.swift */; };
 		95D32F611F9AA20100497ED2 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D32F601F9AA20100497ED2 /* apikey.plist */; };
+		95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */; };
 		95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95DC32031F97E1300014E3EA /* Movie.xcdatamodeld */; };
 		95DC320D1F97E5150014E3EA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
 		95DC320F1F97E9530014E3EA /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320E1F97E9530014E3EA /* Managed.swift */; };
@@ -43,6 +44,7 @@
 		95AE25B61F9531E20067F5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95D32F5E1F9A9E3000497ED2 /* MovieClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClient.swift; sourceTree = "<group>"; };
 		95D32F601F9AA20100497ED2 /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apikey.plist; sourceTree = "<group>"; };
+		95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyStore.swift; sourceTree = "<group>"; };
 		95DC32041F97E1300014E3EA /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
 		95DC320C1F97E5150014E3EA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		95DC320E1F97E9530014E3EA /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		95AE259E1F9531E20067F5F5 /* Cineaste */ = {
 			isa = PBXGroup;
 			children = (
+				95D32F621F9AA2D100497ED2 /* Utils */,
 				95DC32021F97E0FB0014E3EA /* Networking */,
 				95DC32011F97E0EF0014E3EA /* Models */,
 				95DC32001F97E0E20014E3EA /* Storyboards */,
@@ -107,6 +110,14 @@
 				95AE25B61F9531E20067F5F5 /* Info.plist */,
 			);
 			path = CineasteTests;
+			sourceTree = "<group>";
+		};
+		95D32F621F9AA2D100497ED2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		95DC31FF1F97E0D80014E3EA /* ViewController */ = {
@@ -249,6 +260,7 @@
 			files = (
 				95AE25A21F9531E20067F5F5 /* ViewController.swift in Sources */,
 				95D32F5F1F9A9E3000497ED2 /* MovieClient.swift in Sources */,
+				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */,
 				95DC320D1F97E5150014E3EA /* Movie.swift in Sources */,
 				95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */,
