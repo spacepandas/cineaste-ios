@@ -3,7 +3,7 @@
 //  Cineaste
 //
 //  Created by Christian Braun on 18.10.17.
-//  Copyright © 2017 KURZ Digital Solutions GmbH & Co. KG. All rights reserved.
+//  Copyright notimeforthat.org. All rights reserved.
 //
 
 import UIKit
