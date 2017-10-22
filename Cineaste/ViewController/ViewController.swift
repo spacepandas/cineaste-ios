@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(ApiKeyStore.theMovieDbKey())
+        let movieClient = MovieClient()
+        movieClient.search(query: "Herr"){results, error in
+            print(error)
+            print(results)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,13 +28,13 @@ class ViewController: UIViewController {
     }
 
     fileprivate func setupData() {
-        guard let managedContext = managedContext else {
-            fatalError("ManagedContext not set")
-        }
-        let request = Movie.sortedFetchRequest
-        request.fetchBatchSize = 20
-        request.returnsObjectsAsFaults = false
-        let frc = NSFetchedResultsController(fetchRequest:request, managedObjectContext:managedContext, sectionNameKeyPath:nil, cacheName:nil)
+//        guard let managedContext = managedContext else {
+//            fatalError("ManagedContext not set")
+//        }
+//        let request = Movie.sortedFetchRequest
+//        request.fetchBatchSize = 20
+//        request.returnsObjectsAsFaults = false
+//        let frc = NSFetchedResultsController(fetchRequest:request, managedObjectContext:managedContext, sectionNameKeyPath:nil, cacheName:nil)
     }
 
 }

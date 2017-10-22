@@ -19,6 +19,7 @@
 		95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95DC32031F97E1300014E3EA /* Movie.xcdatamodeld */; };
 		95DC320D1F97E5150014E3EA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
 		95DC320F1F97E9530014E3EA /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320E1F97E9530014E3EA /* Managed.swift */; };
+		95F0DBC91F9D2CF9004681C7 /* PagedMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		95DC32041F97E1300014E3EA /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
 		95DC320C1F97E5150014E3EA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		95DC320E1F97E9530014E3EA /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
+		95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedMovieResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				95DC320C1F97E5150014E3EA /* Movie.swift */,
 				95DC320E1F97E9530014E3EA /* Managed.swift */,
+				95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95AE25A21F9531E20067F5F5 /* ViewController.swift in Sources */,
+				95F0DBC91F9D2CF9004681C7 /* PagedMovieResult.swift in Sources */,
 				95D32F5F1F9A9E3000497ED2 /* MovieClient.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */,
