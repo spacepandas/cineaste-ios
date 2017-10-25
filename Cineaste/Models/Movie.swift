@@ -12,8 +12,7 @@ import CoreData
 class Movie: Codable {
     fileprivate(set) var id:Int64
     fileprivate(set) var title:String
-//    @NSManaged fileprivate(set) var posterPath:String
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -30,9 +29,19 @@ class Movie: Codable {
     }
 }
 
-//extension Movie:Managed {
-//    static var defaultSortDescriptors:[NSSortDescriptor] {
-//        return [NSSortDescriptor(key:#keyPath(title), ascending:false)]
-//    }
-//}
-
+extension Movie {
+    static fileprivate let baseUrl = "https://api.themoviedb.org/3"
+    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
+    
+    static func search(withQuery query:String) -> Resource<[Movie]>? {
+        guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            return nil
+        }
+        let urlAsString = "\(Movie.baseUrl)/search/movie?language=de&api_key=\(apiKey)&query=\(escapedQuery)";
+        
+        return Resource(url:urlAsString, method:.get){data in
+            let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
+            return paginatedMovies?.results
+        }
+    }
+}

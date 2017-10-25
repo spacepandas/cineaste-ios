@@ -15,10 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(ApiKeyStore.theMovieDbKey())
-        let movieClient = MovieClient()
-        movieClient.search(query: "Herr"){results, error in
+        Webservice.load(resource:Movie.search(withQuery: "Herr der")){result, error in
             print(error)
-            print(results)
+            print(result?.count)
         }
     }
 
