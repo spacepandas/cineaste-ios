@@ -14,27 +14,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(ApiKeyStore.theMovieDbKey())
-        Webservice.load(resource:Movie.search(withQuery: "Herr der")){result, error in
-            print(error)
-            print(result?.count)
-        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    fileprivate func setupData() {
-//        guard let managedContext = managedContext else {
-//            fatalError("ManagedContext not set")
-//        }
-//        let request = Movie.sortedFetchRequest
-//        request.fetchBatchSize = 20
-//        request.returnsObjectsAsFaults = false
-//        let frc = NSFetchedResultsController(fetchRequest:request, managedObjectContext:managedContext, sectionNameKeyPath:nil, cacheName:nil)
-    }
-
 }
 
