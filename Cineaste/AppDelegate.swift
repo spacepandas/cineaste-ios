@@ -16,13 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        createMovieContainer {container in
-            self.persistentContainer = container
-            guard let vc = self.window?.rootViewController as? ViewController else {
-                fatalError("Wrong initial ViewController")
-            }
-            vc.managedContext = container.viewContext
-        }
         return true
     }
 
