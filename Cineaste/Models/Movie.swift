@@ -13,8 +13,8 @@ class Movie: Codable {
     fileprivate(set) var id:Int64
     fileprivate(set) var title:String
     fileprivate(set) var voteAverage:Float
-    fileprivate(set) var posterPath:String
-    fileprivate(set) var shortDescription:String
+    fileprivate(set) var posterPath:String?
+    fileprivate(set) var overview:String
     var poster:UIImage?
 
     enum CodingKeys: String, CodingKey {
@@ -22,7 +22,7 @@ class Movie: Codable {
         case title
         case voteAverage = "vote_average"
         case posterPath = "poster_path"
-        case shortDescription = "overview"
+        case overview
     }
     
     required init(from decoder: Decoder) throws {
@@ -30,8 +30,8 @@ class Movie: Codable {
         id = try container.decode(Int64.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         voteAverage = try container.decode(Float.self, forKey: .voteAverage)
-        posterPath = try container.decode(String.self, forKey: .posterPath)
-        shortDescription = try container.decode(String.self, forKey: .shortDescription)
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
+        overview = try container.decode(String.self, forKey: .overview)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -70,6 +70,7 @@ extension Movie {
     }
     
     func loadPoster() -> Resource<UIImage>? {
+        guard let posterPath = posterPath else { return nil }
         let urlAsString = "\(Movie.posterBaseUrl)\(posterPath)?api_key=\(Movie.apiKey)"
         return Resource(url:urlAsString, method:.get){data in
             let image = UIImage(data: data)

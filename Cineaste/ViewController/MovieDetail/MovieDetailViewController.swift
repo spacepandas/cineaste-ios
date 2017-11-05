@@ -18,11 +18,23 @@ class MovieDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.posterImageView.image = self.movie?.poster
                 self.titleLabel.text = self.movie?.title
-                self.descriptionTextView.text = self.movie?.shortDescription
+                self.descriptionTextView.text = self.movie?.overview
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let storedMovie = StoredMovie(context: AppDelegate.viewContext)
+        storedMovie.id = movie?.id ?? 1
+        storedMovie.title = movie?.title
+        storedMovie.overview = movie?.overview
+        storedMovie.posterPath = movie?.posterPath
+        storedMovie.voteAverage = movie?.voteAverage ?? 0
+        
+        try? AppDelegate.viewContext.save()
     }
 }
