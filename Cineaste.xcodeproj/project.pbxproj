@@ -15,9 +15,10 @@
 		95AE25A71F9531E20067F5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A61F9531E20067F5F5 /* Assets.xcassets */; };
 		95AE25AA1F9531E20067F5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */; };
 		95AE25B51F9531E20067F5F5 /* CineasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE25B41F9531E20067F5F5 /* CineasteTests.swift */; };
+		95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B24EF41FADDB260070912A /* MovieDetailViewController.swift */; };
 		95D32F611F9AA20100497ED2 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D32F601F9AA20100497ED2 /* apikey.plist */; };
 		95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */; };
-		95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95DC32031F97E1300014E3EA /* Movie.xcdatamodeld */; };
+		95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95DC32031F97E1300014E3EA /* Model.xcdatamodeld */; };
 		95DC320D1F97E5150014E3EA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
 		95DC320F1F97E9530014E3EA /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320E1F97E9530014E3EA /* Managed.swift */; };
 		95EFA4AE1FA13878004F1F94 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EFA4AD1FA13878004F1F94 /* Webservice.swift */; };
@@ -49,6 +50,7 @@
 		95AE25B01F9531E20067F5F5 /* CineasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CineasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AE25B41F9531E20067F5F5 /* CineasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineasteTests.swift; sourceTree = "<group>"; };
 		95AE25B61F9531E20067F5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95B24EF41FADDB260070912A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		95D32F601F9AA20100497ED2 /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apikey.plist; sourceTree = "<group>"; };
 		95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyStore.swift; sourceTree = "<group>"; };
 		95DC32041F97E1300014E3EA /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 				95AE259F1F9531E20067F5F5 /* AppDelegate.swift */,
 				95AE25A61F9531E20067F5F5 /* Assets.xcassets */,
 				95AE25AB1F9531E20067F5F5 /* Info.plist */,
-				95DC32031F97E1300014E3EA /* Movie.xcdatamodeld */,
+				95DC32031F97E1300014E3EA /* Model.xcdatamodeld */,
 				95D32F601F9AA20100497ED2 /* apikey.plist */,
 			);
 			path = Cineaste;
@@ -138,6 +140,14 @@
 			path = CineasteTests;
 			sourceTree = "<group>";
 		};
+		95B24EF31FADDB070070912A /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				95B24EF41FADDB260070912A /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
 		95D32F621F9AA2D100497ED2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		95DC31FF1F97E0D80014E3EA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				95B24EF31FADDB070070912A /* MovieDetail */,
 				959E8B751FABC6DB0004E8C3 /* SearchMovies */,
 				959E8B741FABC6CD0004E8C3 /* MyMovies */,
 			);
@@ -290,7 +301,8 @@
 				95F0DBC91F9D2CF9004681C7 /* PagedMovieResult.swift in Sources */,
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
-				95DC32051F97E1300014E3EA /* Movie.xcdatamodeld in Sources */,
+				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
+				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				959E8B731FABC6AB0004E8C3 /* MyMoviesViewController.swift in Sources */,
 				95DC320D1F97E5150014E3EA /* Movie.swift in Sources */,
 				959E8B791FABC99D0004E8C3 /* SearchMoviesTableViewCell.swift in Sources */,
@@ -544,13 +556,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		95DC32031F97E1300014E3EA /* Movie.xcdatamodeld */ = {
+		95DC32031F97E1300014E3EA /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				95DC32041F97E1300014E3EA /* Movie.xcdatamodel */,
 			);
 			currentVersion = 95DC32041F97E1300014E3EA /* Movie.xcdatamodel */;
-			path = Movie.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

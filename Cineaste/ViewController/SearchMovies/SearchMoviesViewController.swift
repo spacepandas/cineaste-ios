@@ -7,14 +7,17 @@
 //
 
 import UIKit
+let SHOW_DETAIL_SEGUE = "ShowMovieDetailSegue"
 
-class SearchMoviesViewController: UIViewController, UITableViewDataSource {
+class SearchMoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var moviesTableView: UITableView!
     var movies:[Movie]?
+    var selectedMovie:Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.dataSource = self
+        moviesTableView.delegate = self
         loadRecentMovies()
     }
     
@@ -36,6 +39,24 @@ class SearchMoviesViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movies = movies else { return }
+        selectedMovie = movies[indexPath.row]
+        performSegue(withIdentifier: SHOW_DETAIL_SEGUE, sender: self)
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch(segue.identifier!) {
+        case SHOW_DETAIL_SEGUE:
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.movie = selectedMovie
+            break
+        default:
+            // Fallthrough
+            break
+        }
+    }
     // MARK: - Actions
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {

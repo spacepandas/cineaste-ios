@@ -25,6 +25,7 @@ class SearchMoviesTableViewCell: UITableViewCell {
         Webservice.load(resource: movie.loadPoster()) {image, error in
             DispatchQueue.main.async {
                 self.posterImageView.image = image
+                self.movie?.poster = image
             }
         }
     }

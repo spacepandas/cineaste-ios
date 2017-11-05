@@ -14,14 +14,15 @@ class Movie: Codable {
     fileprivate(set) var title:String
     fileprivate(set) var voteAverage:Float
     fileprivate(set) var posterPath:String
-    fileprivate(set) var description:String
+    fileprivate(set) var shortDescription:String
+    var poster:UIImage?
 
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case voteAverage = "vote_average"
         case posterPath = "poster_path"
-        case description = "overview"
+        case shortDescription = "overview"
     }
     
     required init(from decoder: Decoder) throws {
@@ -30,7 +31,7 @@ class Movie: Codable {
         title = try container.decode(String.self, forKey: .title)
         voteAverage = try container.decode(Float.self, forKey: .voteAverage)
         posterPath = try container.decode(String.self, forKey: .posterPath)
-        description = try container.decode(String.self, forKey: .description)
+        shortDescription = try container.decode(String.self, forKey: .shortDescription)
     }
     
     func encode(to encoder: Encoder) throws {
