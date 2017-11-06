@@ -9,6 +9,8 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+    @IBOutlet weak fileprivate var seenButton: UIButton!
+    @IBOutlet weak fileprivate var mustSeeButton: UIButton!
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
     @IBOutlet weak fileprivate var titleLabel: UILabel!
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
@@ -25,19 +27,36 @@ class MovieDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        descriptionTextView.isEditable = false
+        styleButton(button: mustSeeButton)
+        styleButton(button: seenButton)
+    }
+
+    func styleButton(button: UIButton) {
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = button.tintColor.cgColor
+        button.layer.cornerRadius = 8
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AppDelegate.persistentContainer.performBackgroundTask { context in
-            let storedMovie = StoredMovie(context: context)
-            storedMovie.id = self.movie?.id ?? 1
-            storedMovie.title = self.movie?.title
-            storedMovie.overview = self.movie?.overview
-            storedMovie.posterPath = self.movie?.posterPath
-            storedMovie.voteAverage = self.movie?.voteAverage ?? 0
-            try? context.save()
-        }
-
     }
+
+    // MARK: - Actions
+
+    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+
+        AppDelegate.persistentContainer.performBackgroundTask { context in
+            _ = StoredMovie(withMovie: movie, context: context)
+            try? context.save()
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
+    @IBAction func seenButtonTouched(_ sender: UIButton) {
+    }
+
 }

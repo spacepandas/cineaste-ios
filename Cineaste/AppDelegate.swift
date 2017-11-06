@@ -15,10 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(contextDidSave(notification:)),
+                         name: NSNotification.Name.NSManagedObjectContextDidSave,
+                         object: nil)
         return true
     }
 
     // MARK: - Core Data
+
+    @objc
+    func contextDidSave(notification: Notification) {
+        AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
+    }
 
     static var persistentContainer: NSPersistentContainer = {
         /*
