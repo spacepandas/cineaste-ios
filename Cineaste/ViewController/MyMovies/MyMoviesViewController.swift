@@ -13,16 +13,16 @@ class MyMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let request:NSFetchRequest = StoredMovie.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key:"title", ascending:true)]
+        let request: NSFetchRequest = StoredMovie.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         let movies = try? AppDelegate.viewContext.fetch(request)
-        
+
         movies?.forEach {movie in
             print(movie.title)
         }
-        
+
     }
 }

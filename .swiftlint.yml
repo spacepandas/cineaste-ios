@@ -1,0 +1,67 @@
+---
+# Enable more optional rules
+opt_in_rules:
+  - implicit_return
+  - let_var_whitespace
+  - unneeded_parentheses_in_closure_argument
+  - closure_spacing
+  - explicit_init
+  - overridden_super_call
+  - closure_end_indentation
+  - empty_count
+  - fatal_error_message
+  - force_unwrapping
+  - switch_case_on_newline
+  - redundant_nil_coalescing
+  - prohibited_super_call
+  - private_outlet
+  - operator_usage_whitespace
+  - object_literal
+  - number_separator
+  - nimble_operator
+  - implicitly_unwrapped_optional
+  - attributes
+  - first_where
+  - multiline_parameters
+
+# Exclude tests, pods and vendor sources
+excluded:
+  - unitTests
+  - uiTests
+  - uiTestsLite
+  - Pods
+
+# Configure warning/error levels
+file_length:
+  - 450
+  - 500
+function_body_length:
+  - 100
+  - 150
+function_parameter_count:
+  - 8
+  - 10
+line_length:
+  - 220
+  - 250
+identifier_name:
+  max_length:
+    warning: 45
+    error: 60
+  min_length:
+    warning: 1
+type_name:
+  max_length:
+    error: 70
+    warning: 50
+# Configure rules violation to be traited as an error
+explicit_init:
+  severity: error
+prohibited_super_call:
+  severity: error
+overridden_super_call:
+  severity: error
+force_unwrapping:
+  severity: error
+weak_delegate:
+  severity: error

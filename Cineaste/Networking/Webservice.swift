@@ -8,24 +8,24 @@
 
 import Foundation
 
-enum NetworkError:Error {
+enum NetworkError: Error {
     case parseUrl
     case parseJson
 }
 
 final class Webservice {
-    static func load<A>(resource:Resource<A>?, completion: @escaping (A?, Error?) -> ()) {
+    static func load<A>(resource: Resource<A>?, completion: @escaping (A?, Error?) -> Void) {
         guard let resource = resource else {
             completion(nil, nil)
             return
         }
-        guard let url = URL(string:resource.url) else {
+        guard let url = URL(string: resource.url) else {
             completion(nil, NetworkError.parseUrl)
-            return;
+            return
         }
-        var request = URLRequest(url:url)
+        var request = URLRequest(url: url)
         request.httpMethod = resource.method.rawValue
-        URLSession.shared.dataTask(with: request){data, response, error in
+        URLSession.shared.dataTask(with: request) {data, _, error in
             guard error == nil, let data = data else {
                 completion(nil, error)
                 return

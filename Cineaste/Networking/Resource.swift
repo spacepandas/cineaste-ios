@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum HTTPMethod:String {
+enum HTTPMethod: String {
     case get = "GET"
     case put = "PUT"
     case post = "POST"
@@ -16,7 +16,7 @@ enum HTTPMethod:String {
 }
 
 struct Resource<A> {
-    let url:String
-    let method:HTTPMethod
-    let parseData:(Data) -> A?
+    let url: String
+    let method: HTTPMethod
+    let parseData: (Data) -> A?
 }

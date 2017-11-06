@@ -9,11 +9,11 @@
 import UIKit
 
 class SearchMoviesTableViewCell: UITableViewCell {
-    static let CELL_IDENTIFIER = "SearchMoviesTableViewCell"
+    static let IDENTIFIER = "SearchMoviesTableViewCell"
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
     @IBOutlet weak fileprivate var movieTitleLabel: UILabel!
-    
-    var movie:Movie? {
+
+    var movie: Movie? {
         didSet {
             movieTitleLabel.text = movie?.title
             loadAndSetPoster()
@@ -22,7 +22,7 @@ class SearchMoviesTableViewCell: UITableViewCell {
 
     fileprivate func loadAndSetPoster() {
         guard let movie = movie else { return }
-        Webservice.load(resource: movie.loadPoster()) {image, error in
+        Webservice.load(resource: movie.loadPoster()) {image, _ in
             DispatchQueue.main.async {
                 self.posterImageView.image = image
                 self.movie?.poster = image

@@ -9,11 +9,11 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    
-    var movie:Movie? {
+    @IBOutlet weak fileprivate var posterImageView: UIImageView!
+    @IBOutlet weak fileprivate var titleLabel: UILabel!
+    @IBOutlet weak fileprivate var descriptionTextView: UITextView!
+
+    var movie: Movie? {
         didSet {
             DispatchQueue.main.async {
                 self.posterImageView.image = self.movie?.poster
@@ -22,19 +22,22 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let storedMovie = StoredMovie(context: AppDelegate.viewContext)
-        storedMovie.id = movie?.id ?? 1
-        storedMovie.title = movie?.title
-        storedMovie.overview = movie?.overview
-        storedMovie.posterPath = movie?.posterPath
-        storedMovie.voteAverage = movie?.voteAverage ?? 0
-        
-        try? AppDelegate.viewContext.save()
+        AppDelegate.persistentContainer.performBackgroundTask { context in
+            let storedMovie = StoredMovie(context: context)
+            storedMovie.id = self.movie?.id ?? 1
+            storedMovie.title = self.movie?.title
+            storedMovie.overview = self.movie?.overview
+            storedMovie.posterPath = self.movie?.posterPath
+            storedMovie.voteAverage = self.movie?.voteAverage ?? 0
+            try? context.save()
+        }
+
     }
 }
