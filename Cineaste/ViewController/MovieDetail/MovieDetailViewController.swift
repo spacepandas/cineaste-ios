@@ -46,7 +46,6 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
-
         AppDelegate.persistentContainer.performBackgroundTask { context in
             _ = StoredMovie(withMovie: movie, context: context)
             try? context.save()
@@ -57,6 +56,15 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+        AppDelegate.persistentContainer.performBackgroundTask { context in
+            let storedMovie = StoredMovie(withMovie: movie, context: context)
+            storedMovie.watched = true
+            try? context.save()
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
 }

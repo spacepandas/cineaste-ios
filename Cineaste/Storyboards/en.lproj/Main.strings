@@ -11,5 +11,14 @@
 /* Class = "UIButton"; normalTitle = "detail.mustsee"; ObjectID = "QHg-56-i4l"; */
 "QHg-56-i4l.normalTitle" = "Want to see";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "RzD-jT-o9X"; */
+"RzD-jT-o9X.text" = "Title";
+
 /* Class = "UILabel"; text = "search.cell.title"; ObjectID = "iOL-c1-Rs8"; */
 "iOL-c1-Rs8.text" = "search.cell.title";
+
+/* Class = "UISegmentedControl"; jKt-Oh-Rie.segmentTitles[0] = "mymovies.segmented.wanttosee"; ObjectID = "jKt-Oh-Rie"; */
+"jKt-Oh-Rie.segmentTitles[0]" = "Want to see";
+
+/* Class = "UISegmentedControl"; jKt-Oh-Rie.segmentTitles[1] = "mymovies.segmented.seen"; ObjectID = "jKt-Oh-Rie"; */
+"jKt-Oh-Rie.segmentTitles[1]" = "Seen";

@@ -18,5 +18,6 @@ class StoredMovie: NSManagedObject {
         overview = movie.overview
         posterPath = movie.posterPath
         voteAverage = movie.voteAverage
+        watched = false
     }
 }

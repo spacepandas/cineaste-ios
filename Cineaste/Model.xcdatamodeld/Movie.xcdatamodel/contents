@@ -6,13 +6,15 @@
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="voteAverage" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="watched" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <fetchRequest name="fetchWatchedMovies" entity="StoredMovie" predicateString="watched == 1"/>
     <elements>
-        <element name="StoredMovie" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="StoredMovie" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
