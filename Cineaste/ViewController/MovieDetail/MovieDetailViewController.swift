@@ -30,6 +30,7 @@ class MovieDetailViewController: UIViewController {
         descriptionTextView.isEditable = false
         styleButton(button: mustSeeButton)
         styleButton(button: seenButton)
+        loadMovie()
     }
 
     func styleButton(button: UIButton) {
@@ -38,10 +39,17 @@ class MovieDetailViewController: UIViewController {
         button.layer.cornerRadius = 8
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
+    // MARK: - Private
 
+    fileprivate func loadMovie() {
+        guard let movie = movie else {
+            return
+        }
+        Webservice.load(resource: movie.get) {[weak self] movie, _ in
+            movie?.poster = self?.movie?.poster
+            self?.movie = movie
+        }
+    }
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {

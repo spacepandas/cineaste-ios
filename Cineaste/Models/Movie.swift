@@ -15,6 +15,7 @@ class Movie: Codable {
     fileprivate(set) var voteAverage: Float
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
+    fileprivate(set) var runtime: Int
     var poster: UIImage?
 
     enum CodingKeys: String, CodingKey {
@@ -23,6 +24,7 @@ class Movie: Codable {
         case voteAverage = "vote_average"
         case posterPath = "poster_path"
         case overview
+        case runtime
     }
 
     required init(from decoder: Decoder) throws {
@@ -32,6 +34,7 @@ class Movie: Codable {
         voteAverage = try container.decode(Float.self, forKey: .voteAverage)
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         overview = try container.decode(String.self, forKey: .overview)
+        runtime = try container.decodeIfPresent(Int.self, forKey: .runtime) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -43,12 +46,13 @@ extension Movie {
     static fileprivate let baseUrl = "https://api.themoviedb.org/3"
     static fileprivate let posterBaseUrl = "https://image.tmdb.org/t/p/w342"
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
+    fileprivate static let locale = Locale.current.identifier
 
     static func search(withQuery query: String) -> Resource<[Movie]>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return nil
         }
-        let urlAsString = "\(Movie.baseUrl)/search/movie?language=de&api_key=\(apiKey)&query=\(escapedQuery)"
+        let urlAsString = "\(Movie.baseUrl)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
 
         return Resource(url: urlAsString, method: .get) {data in
             let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
@@ -65,6 +69,7 @@ extension Movie {
         "\(Movie.baseUrl)/discover/movie?" +
         "primary_release_date.gte=\(dateFormatter.string(from: oneMonthInPast))&" +
             "primary_release_date.lte=\(dateFormatter.string(from: oneMonthInFuture))&" +
+            "language=\(Movie.locale)&" +
             "api_key=\(apiKey)"
 
         return Resource(url: urlAsString, method: .get) {data in
@@ -79,6 +84,14 @@ extension Movie {
         return Resource(url: urlAsString, method: .get) {data in
             let image = UIImage(data: data)
             return image
+        }
+    }
+
+    var get: Resource<Movie>? {
+        let urlAsString = "\(Movie.baseUrl)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
+        return Resource(url: urlAsString, method: .get) {data in
+            let movie = try? JSONDecoder().decode(Movie.self, from: data)
+            return movie
         }
     }
 }
