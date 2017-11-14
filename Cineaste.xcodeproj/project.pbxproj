@@ -15,7 +15,6 @@
 		959E8B791FABC99D0004E8C3 /* SearchMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E8B781FABC99D0004E8C3 /* SearchMoviesTableViewCell.swift */; };
 		95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE259F1F9531E20067F5F5 /* AppDelegate.swift */; };
 		95AE25A51F9531E20067F5F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A31F9531E20067F5F5 /* Main.storyboard */; };
-		95AE25A71F9531E20067F5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A61F9531E20067F5F5 /* Assets.xcassets */; };
 		95AE25AA1F9531E20067F5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */; };
 		95AE25B51F9531E20067F5F5 /* CineasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE25B41F9531E20067F5F5 /* CineasteTests.swift */; };
 		95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B24EF41FADDB260070912A /* MovieDetailViewController.swift */; };
@@ -49,7 +48,6 @@
 		95AE259C1F9531E20067F5F5 /* Cineaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cineaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AE259F1F9531E20067F5F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95AE25A41F9531E20067F5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		95AE25A61F9531E20067F5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95AE25A91F9531E20067F5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95AE25AB1F9531E20067F5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95AE25B01F9531E20067F5F5 /* CineasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CineasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +153,6 @@
 				95DC32001F97E0E20014E3EA /* Storyboards */,
 				95DC31FF1F97E0D80014E3EA /* ViewController */,
 				95AE259F1F9531E20067F5F5 /* AppDelegate.swift */,
-				95AE25A61F9531E20067F5F5 /* Assets.xcassets */,
 				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				95DC32031F97E1300014E3EA /* Model.xcdatamodeld */,
 				95D32F601F9AA20100497ED2 /* apikey.plist */,
@@ -318,7 +315,6 @@
 			files = (
 				95AE25AA1F9531E20067F5F5 /* LaunchScreen.storyboard in Resources */,
 				95D32F611F9AA20100497ED2 /* apikey.plist in Resources */,
-				95AE25A71F9531E20067F5F5 /* Assets.xcassets in Resources */,
 				95AE25A51F9531E20067F5F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
