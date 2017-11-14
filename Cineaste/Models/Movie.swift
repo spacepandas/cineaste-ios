@@ -69,7 +69,7 @@ extension Movie {
         "\(Movie.baseUrl)/discover/movie?" +
         "primary_release_date.gte=\(dateFormatter.string(from: oneMonthInPast))&" +
             "primary_release_date.lte=\(dateFormatter.string(from: oneMonthInFuture))&" +
-            "language=\(Movie.locale)&" +
+            "language=\(Movie.l)&" +
             "api_key=\(apiKey)"
 
         return Resource(url: urlAsString, method: .get) {data in
