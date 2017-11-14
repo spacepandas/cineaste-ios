@@ -9,6 +9,8 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+    @IBOutlet weak fileprivate var runtimeLabel: UILabel!
+    @IBOutlet weak fileprivate var votingLabel: UILabel!
     @IBOutlet weak fileprivate var seenButton: UIButton!
     @IBOutlet weak fileprivate var mustSeeButton: UIButton!
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
@@ -21,6 +23,10 @@ class MovieDetailViewController: UIViewController {
                 self.posterImageView.image = self.movie?.poster
                 self.titleLabel.text = self.movie?.title
                 self.descriptionTextView.text = self.movie?.overview
+                if let movie = self.movie {
+                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.votingLabel.text = "\(movie.voteAverage)"
+                }
             }
         }
     }

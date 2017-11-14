@@ -233,7 +233,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star" translatesAutoresizingMaskIntoConstraints="NO" id="ZTk-uc-D6k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="ZTk-uc-D6k">
                                 <rect key="frame" x="150" y="130" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="VVi-Ki-NT8"/>
@@ -283,8 +283,10 @@
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
                         <outlet property="mustSeeButton" destination="QHg-56-i4l" id="TCz-dt-pJt"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
+                        <outlet property="runtimeLabel" destination="1zQ-XQ-nQL" id="whh-FP-kap"/>
                         <outlet property="seenButton" destination="3eD-PU-cbA" id="oI6-L2-rxs"/>
                         <outlet property="titleLabel" destination="Lmk-gE-aZp" id="s24-GH-7rS"/>
+                        <outlet property="votingLabel" destination="XjD-On-47L" id="HFR-sT-od6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBb-XY-tXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -329,7 +331,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Star" width="9" height="9"/>
-        <image name="time" width="9" height="8"/>
+        <image name="like" width="106" height="100"/>
+        <image name="time" width="120" height="120"/>
     </resources>
 </document>
