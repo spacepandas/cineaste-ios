@@ -24,10 +24,6 @@ class MyMoviesViewController: UIViewController, UITableViewDataSource, NSFetched
         fetchedResultsController?.delegate = self
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     fileprivate func setupFetchedResultsController() {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]

@@ -29,7 +29,8 @@ class StoredMovie: NSManagedObject {
         return results?.first
     }
 
-    static func insertOrUpdate(_ movie: Movie, watched: Bool,
+    static func insertOrUpdate(_ movie: Movie,
+                               watched: Bool,
                                withContext context: NSManagedObjectContext) {
         context.mergePolicy = NSOverwriteMergePolicy
         let storedMovie = StoredMovie(withMovie: movie, context: context)

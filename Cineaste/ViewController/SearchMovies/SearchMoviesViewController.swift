@@ -10,16 +10,35 @@ import UIKit
 
 let SHOWDETAILSEGUE = "ShowMovieDetailSegue"
 
-class SearchMoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchMoviesViewController: UIViewController,
+    UITableViewDataSource,
+    UITableViewDelegate,
+UISearchResultsUpdating {
     @IBOutlet weak fileprivate var moviesTableView: UITableView!
     var movies: [Movie]?
     var selectedMovie: Movie?
+    var searchDelayTimer: Timer?
+    lazy var resultSearchController: UISearchController  = {
+        let resultSearchController = UISearchController(searchResultsController: nil)
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        resultSearchController.isActive = true
+        resultSearchController.searchBar.sizeToFit()
+        resultSearchController.searchResultsUpdater = self
+        return resultSearchController
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.dataSource = self
         moviesTableView.delegate = self
         loadRecentMovies()
+        navigationItem.searchController = resultSearchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 
     // MARK: - TableViewDataSource
@@ -57,11 +76,20 @@ class SearchMoviesViewController: UIViewController, UITableViewDataSource, UITab
             break
         }
     }
-    
+
     // MARK: - Actions
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+
+    // MARK: - UISearchResultUpdating
+
+    internal func updateSearchResults(for searchController: UISearchController) {
+        searchDelayTimer?.invalidate()
+        searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {[weak self]_ in
+            self?.loadMovies(forQuery: searchController.searchBar.text)
+        }
     }
 
     // MARK: - Load data
@@ -72,6 +100,19 @@ class SearchMoviesViewController: UIViewController, UITableViewDataSource, UITab
             DispatchQueue.main.async {
                 self?.moviesTableView.reloadData()
             }
+        }
+    }
+
+    fileprivate func loadMovies(forQuery query: String?) {
+        if let query = query, !query.isEmpty {
+            Webservice.load(resource: Movie.search(withQuery: query)) {[weak self] movies, _ in
+                self?.movies = movies
+                DispatchQueue.main.async {
+                    self?.moviesTableView.reloadData()
+                }
+            }
+        } else {
+            loadRecentMovies()
         }
     }
 }
