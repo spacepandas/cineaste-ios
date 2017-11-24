@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var runtimeLabel: UILabel!
@@ -61,8 +62,7 @@ class MovieDetailViewController: UIViewController {
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
         AppDelegate.persistentContainer.performBackgroundTask { context in
-            _ = StoredMovie(withMovie: movie, context: context)
-            try? context.save()
+            StoredMovie.insertOrUpdate(movie, watched: false, withContext: context)
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -72,9 +72,7 @@ class MovieDetailViewController: UIViewController {
     @IBAction func seenButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
         AppDelegate.persistentContainer.performBackgroundTask { context in
-            let storedMovie = StoredMovie(withMovie: movie, context: context)
-            storedMovie.watched = true
-            try? context.save()
+            StoredMovie.insertOrUpdate(movie, watched: true, withContext: context)
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }

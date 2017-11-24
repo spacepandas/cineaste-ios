@@ -57,6 +57,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDataSource, UITab
             break
         }
     }
+    
     // MARK: - Actions
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {

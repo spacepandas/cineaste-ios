@@ -70,8 +70,13 @@ class MyMoviesViewController: UIViewController, UITableViewDataSource, NSFetched
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let indexPath = newIndexPath else { return }
-        myMoviesTableView.insertRows(at: [indexPath], with: .fade)
+        if type == .insert {
+            guard let indexPath = newIndexPath else { return }
+            myMoviesTableView.insertRows(at: [indexPath], with: .fade)
+        } else if type == .delete {
+            guard let indexPath = indexPath else { return }
+            myMoviesTableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
