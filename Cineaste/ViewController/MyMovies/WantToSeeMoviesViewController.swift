@@ -12,7 +12,7 @@ import CoreData
 class WantToSeeMoviesViewController: UIViewController {
 
     @IBOutlet weak fileprivate var myMoviesTableView: UITableView!
-    lazy var fetchedResultsManager = FetchedResultsManager()
+    var fetchedResultsManager = FetchedResultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()

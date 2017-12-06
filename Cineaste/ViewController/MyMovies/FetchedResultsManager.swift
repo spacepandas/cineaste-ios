@@ -11,7 +11,7 @@ import CoreData
 let wantToSeeMoviesPredicate = NSPredicate(format: "watched == %@", NSNumber(value: false))
 let seenMoviesPredicate = NSPredicate(format: "watched == %@", NSNumber(value: true))
 
-class FetchedResultsManager: NSObject {
+final class FetchedResultsManager: NSObject {
     var controller: NSFetchedResultsController<StoredMovie>?
     weak var delegate: MoviesViewControllerDelegate?
 
