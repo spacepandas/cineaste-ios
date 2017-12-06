@@ -62,19 +62,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var viewContext: NSManagedObjectContext {
         return AppDelegate.persistentContainer.viewContext
     }
-
-    // MARK: - Core Data Saving support
-
-    static func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-
 }

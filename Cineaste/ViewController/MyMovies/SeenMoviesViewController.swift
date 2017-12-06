@@ -16,7 +16,7 @@ class SeenMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myMoviesTableView.dataSource = self
-        title = "Seen"
+        title = NSLocalizedString("Seen", comment: "Title for seen view controller")
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: seenMoviesPredicate) {
