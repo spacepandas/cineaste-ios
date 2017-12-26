@@ -62,6 +62,11 @@ UISearchResultsUpdating {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movies = movies else { return }
         selectedMovie = movies[indexPath.row]
+
+        DispatchQueue.main.async {
+            self.resultSearchController.isActive = false
+        }
+        
         performSegue(withIdentifier: SHOWDETAILSEGUE, sender: self)
     }
 
