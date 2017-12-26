@@ -16,6 +16,7 @@ class SeenMoviesViewController: UIViewController {
             myMoviesTableView.estimatedRowHeight = 120
             myMoviesTableView.rowHeight = UITableViewAutomaticDimension
             myMoviesTableView.tableFooterView = UIView()
+            myMoviesTableView.backgroundColor = UIColor.basicBackground
         }
     }
 

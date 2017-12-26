@@ -21,7 +21,7 @@
         <!--Seen Movies View Controller-->
         <scene sceneID="bBN-rD-ncb">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5fY-5M-Xq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
         <!--Want To See Movies View Controller-->
         <scene sceneID="E7H-6G-Ruq">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="28i-hX-IFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,6 +214,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qz0-eS-gIO"/>
+        <segue reference="aEZ-Ja-1wi"/>
     </inferredMetricsTieBreakers>
 </document>

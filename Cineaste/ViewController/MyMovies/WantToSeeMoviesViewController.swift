@@ -15,6 +15,7 @@ class WantToSeeMoviesViewController: UIViewController {
         didSet {
             myMoviesTableView.dataSource = self
             myMoviesTableView.tableFooterView = UIView()
+            myMoviesTableView.backgroundColor = UIColor.basicBackground
         }
     }
     var fetchedResultsManager = FetchedResultsManager()

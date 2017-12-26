@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                          selector: #selector(contextDidSave(notification:)),
                          name: NSNotification.Name.NSManagedObjectContextDidSave,
                          object: nil)
+
+        Appearance.setup()
+
         return true
     }
 
