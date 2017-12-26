@@ -10,12 +10,18 @@ import UIKit
 import CoreData
 
 class SeenMoviesViewController: UIViewController {
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView!
+    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+        didSet {
+            myMoviesTableView.dataSource = self
+            myMoviesTableView.estimatedRowHeight = 120
+            myMoviesTableView.rowHeight = UITableViewAutomaticDimension
+        }
+    }
+
     var fetchedResultsManager = FetchedResultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        myMoviesTableView.dataSource = self
         title = NSLocalizedString("Seen", comment: "Title for seen view controller")
 
         fetchedResultsManager.delegate = self
