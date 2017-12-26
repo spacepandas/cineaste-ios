@@ -33,10 +33,18 @@ enum Appearance {
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
         tabBar.tintColor = .basicWhite
-        tabBar.barTintColor = .primaryOrange
+        tabBar.barTintColor = .primaryDarkOrange
 
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes(whiteTextAttributes, for: .selected)
         tabBarItem.setTitleTextAttributes(darkTextAttributes, for: .normal)
+
+        let searchBar = UISearchBar.appearance()
+        searchBar.tintColor = .basicWhite
+        searchBar.barTintColor = .primaryOrange
+
+        //change color of cursor
+        let searchField = UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+        searchField.tintColor = .basicBackground
     }
 }

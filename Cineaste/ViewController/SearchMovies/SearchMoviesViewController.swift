@@ -38,6 +38,13 @@ UISearchResultsUpdating {
             navigationItem.searchController = resultSearchController
             navigationItem.hidesSearchBarWhenScrolling = false
             searchBarView.removeFromSuperview()
+
+            //add style for searchField - only in iOS 11
+            guard let textfield = resultSearchController.searchBar.value(forKey: "searchField") as? UITextField,
+                let backgroundview = textfield.subviews.first else { return }
+            backgroundview.backgroundColor = .basicWhite
+            backgroundview.layer.cornerRadius = 10
+            backgroundview.clipsToBounds = true
         } else {
             searchBarView.addSubview(resultSearchController.searchBar)
         }
