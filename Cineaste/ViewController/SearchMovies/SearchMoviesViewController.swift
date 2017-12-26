@@ -14,7 +14,6 @@ class SearchMoviesViewController: UIViewController,
     UITableViewDataSource,
     UITableViewDelegate,
 UISearchResultsUpdating {
-    @IBOutlet weak fileprivate var searchBarView: UIView!
     @IBOutlet weak fileprivate var moviesTableView: UITableView!
     var movies: [Movie]?
     var selectedMovie: Movie?
@@ -37,7 +36,6 @@ UISearchResultsUpdating {
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultSearchController
             navigationItem.hidesSearchBarWhenScrolling = false
-            searchBarView.removeFromSuperview()
 
             //add style for searchField - only in iOS 11
             guard let textfield = resultSearchController.searchBar.value(forKey: "searchField") as? UITextField,
@@ -46,8 +44,10 @@ UISearchResultsUpdating {
             backgroundview.layer.cornerRadius = 10
             backgroundview.clipsToBounds = true
         } else {
-            searchBarView.addSubview(resultSearchController.searchBar)
+            moviesTableView.tableHeaderView = resultSearchController.searchBar
+            self.definesPresentationContext = true
         }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -55,8 +55,6 @@ UISearchResultsUpdating {
 
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = true
-        } else {
-            // Fallback on earlier versions
         }
     }
 
