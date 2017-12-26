@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,8 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBr-pW-Zdh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mao-0G-NBf"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ghd-3W-lPW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesTableViewCell" id="sc1-ua-Gyn" customClass="SearchMoviesTableViewCell" customModule="Cineaste" customModuleProvider="target">
@@ -62,9 +70,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aBr-pW-Zdh" firstAttribute="leading" secondItem="SfP-XK-Fda" secondAttribute="leading" id="ATJ-sZ-VE9"/>
                             <constraint firstItem="SfP-XK-Fda" firstAttribute="trailing" secondItem="Ghd-3W-lPW" secondAttribute="trailing" id="BId-BW-WR2"/>
-                            <constraint firstItem="Ghd-3W-lPW" firstAttribute="top" secondItem="SfP-XK-Fda" secondAttribute="top" id="Spd-48-qjd"/>
+                            <constraint firstItem="Ghd-3W-lPW" firstAttribute="top" secondItem="aBr-pW-Zdh" secondAttribute="bottom" id="Owm-y0-RTm"/>
+                            <constraint firstItem="SfP-XK-Fda" firstAttribute="trailing" secondItem="aBr-pW-Zdh" secondAttribute="trailing" id="a8a-jL-Vaz"/>
                             <constraint firstAttribute="bottom" secondItem="Ghd-3W-lPW" secondAttribute="bottom" id="e35-j7-Lq6"/>
+                            <constraint firstItem="aBr-pW-Zdh" firstAttribute="top" secondItem="SfP-XK-Fda" secondAttribute="top" id="kNz-VN-EX0"/>
                             <constraint firstItem="Ghd-3W-lPW" firstAttribute="leading" secondItem="SfP-XK-Fda" secondAttribute="leading" id="rnH-5D-96R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SfP-XK-Fda"/>
@@ -78,6 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="moviesTableView" destination="Ghd-3W-lPW" id="qW8-zi-GQg"/>
+                        <outlet property="searchBarView" destination="aBr-pW-Zdh" id="m6Y-3f-N2Y"/>
                         <segue destination="6zu-rR-wRt" kind="show" identifier="ShowMovieDetailSegue" id="raw-AZ-Z26"/>
                     </connections>
                 </viewController>

@@ -14,6 +14,7 @@ class SearchMoviesViewController: UIViewController,
     UITableViewDataSource,
     UITableViewDelegate,
 UISearchResultsUpdating {
+    @IBOutlet weak fileprivate var searchBarView: UIView!
     @IBOutlet weak fileprivate var moviesTableView: UITableView!
     var movies: [Movie]?
     var selectedMovie: Movie?
@@ -32,13 +33,34 @@ UISearchResultsUpdating {
         moviesTableView.dataSource = self
         moviesTableView.delegate = self
         loadRecentMovies()
-        navigationItem.searchController = resultSearchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = resultSearchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+            searchBarView.removeFromSuperview()
+        } else {
+            searchBarView.addSubview(resultSearchController.searchBar)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationItem.hidesSearchBarWhenScrolling = true
+
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = true
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if #available(iOS 11.0, *) {
+            return
+        } else {
+            resultSearchController.searchBar.sizeToFit()
+        }
     }
 
     // MARK: - TableViewDataSource
