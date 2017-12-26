@@ -46,8 +46,10 @@ extension SeenMoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SeenListCell", for: indexPath) as? SeenListCell
-            else { fatalError("cell could not be dequeued") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SeenListCell.identifier, for: indexPath) as? SeenListCell
+            else {
+                fatalError("Unable to dequeue cell for identifier: \(SeenListCell.identifier)")
+        }
         guard let movie = fetchedResultsManager.controller?.object(at: indexPath)
             else { fatalError("no data for cell found") }
 
