@@ -15,6 +15,7 @@ class SeenMoviesViewController: UIViewController {
             myMoviesTableView.dataSource = self
             myMoviesTableView.estimatedRowHeight = 120
             myMoviesTableView.rowHeight = UITableViewAutomaticDimension
+            myMoviesTableView.tableFooterView = UIView()
         }
     }
 

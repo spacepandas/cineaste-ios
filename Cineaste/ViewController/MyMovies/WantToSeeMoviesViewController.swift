@@ -11,12 +11,16 @@ import CoreData
 
 class WantToSeeMoviesViewController: UIViewController {
 
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView!
+    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+        didSet {
+            myMoviesTableView.dataSource = self
+            myMoviesTableView.tableFooterView = UIView()
+        }
+    }
     var fetchedResultsManager = FetchedResultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        myMoviesTableView.dataSource = self
         title = NSLocalizedString("Want to see", comment: "Title for want to see view controller")
 
         fetchedResultsManager.delegate = self

@@ -21,7 +21,7 @@
         <!--Seen Movies View Controller-->
         <scene sceneID="bBN-rD-ncb">
             <objects>
-                <viewController id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5fY-5M-Xq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,13 +85,13 @@
         <!--Want To See Movies View Controller-->
         <scene sceneID="E7H-6G-Ruq">
             <objects>
-                <viewController id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="28i-hX-IFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PG1-cb-Op9">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WantToSeeListCell" rowHeight="100" id="Mdj-uD-oEw" customClass="WantToSeeListCell" customModule="Cineaste" customModuleProvider="target">
@@ -135,8 +135,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PG1-cb-Op9" firstAttribute="trailing" secondItem="YnF-cM-7WC" secondAttribute="trailing" id="DLs-nl-6lu"/>
-                            <constraint firstItem="PG1-cb-Op9" firstAttribute="top" secondItem="YnF-cM-7WC" secondAttribute="top" id="iaz-Pm-Nmk"/>
-                            <constraint firstAttribute="bottom" secondItem="PG1-cb-Op9" secondAttribute="bottom" id="qdL-Lf-tkk"/>
+                            <constraint firstItem="PG1-cb-Op9" firstAttribute="bottom" secondItem="YnF-cM-7WC" secondAttribute="bottom" id="vvx-uR-n7x"/>
+                            <constraint firstItem="PG1-cb-Op9" firstAttribute="top" secondItem="YnF-cM-7WC" secondAttribute="top" id="woL-Xx-t2S"/>
                             <constraint firstItem="PG1-cb-Op9" firstAttribute="leading" secondItem="YnF-cM-7WC" secondAttribute="leading" id="xCl-3J-Xoh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YnF-cM-7WC"/>
