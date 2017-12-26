@@ -178,7 +178,7 @@
         <scene sceneID="NCS-vg-S05">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RUa-tW-M2W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="WantToSee" id="yrv-8h-sBw"/>
+                    <tabBarItem key="tabBarItem" title="WantToSee" image="add_to_watchlist" id="yrv-8h-sBw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M1s-oS-Fxc">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -197,7 +197,7 @@
         <scene sceneID="E50-bo-IMu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36Q-H9-3Km" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Seen" id="RMM-3d-17Y"/>
+                    <tabBarItem key="tabBarItem" title="Seen" image="add_to_watchedlist" id="RMM-3d-17Y"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GwR-eV-GF0">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -213,6 +213,10 @@
             <point key="canvasLocation" x="1849" y="372"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add_to_watchedlist" width="30" height="30"/>
+        <image name="add_to_watchlist" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qz0-eS-gIO"/>
     </inferredMetricsTieBreakers>

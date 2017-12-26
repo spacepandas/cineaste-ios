@@ -33,7 +33,8 @@ enum Appearance {
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
         tabBar.tintColor = .basicWhite
-        tabBar.barTintColor = .primaryDarkOrange
+        tabBar.barTintColor = .primaryOrange
+        tabBar.unselectedItemTintColor = .basicBackground
 
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes(whiteTextAttributes, for: .selected)
