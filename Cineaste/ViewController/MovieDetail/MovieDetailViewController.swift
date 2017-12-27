@@ -25,7 +25,7 @@ class MovieDetailViewController: UIViewController {
                 self.titleLabel.text = self.movie?.title
                 self.descriptionTextView.text = self.movie?.overview
                 if let movie = self.movie {
-                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.runtimeLabel.text = "\(movie.runtime) min"
                     self.votingLabel.text = "\(movie.voteAverage)"
                 }
             }
@@ -39,7 +39,7 @@ class MovieDetailViewController: UIViewController {
                 self.titleLabel.text = self.storedMovie?.title
                 self.descriptionTextView.text = self.storedMovie?.overview
                 if let movie = self.storedMovie {
-//                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.runtimeLabel.text = "\(movie.runtime) min"
                     self.votingLabel.text = "\(movie.voteAverage)"
                 }
             }

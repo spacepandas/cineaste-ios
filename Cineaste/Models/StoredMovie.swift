@@ -18,6 +18,8 @@ class StoredMovie: NSManagedObject {
         overview = movie.overview
         posterPath = movie.posterPath
         voteAverage = movie.voteAverage
+        runtime = movie.runtime
+        releaseDate = movie.releaseDate
         watched = false
     }
 
