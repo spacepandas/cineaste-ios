@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MoviesViewControllerDelegate: class {
+protocol FetchedResultsManagerDelegate: class {
     func beginUpdate()
     func insertRows(at index: [IndexPath])
     func deleteRows(at index: [IndexPath])

@@ -33,7 +33,7 @@ class SeenMoviesViewController: UIViewController {
     }
 }
 
-extension SeenMoviesViewController: MoviesViewControllerDelegate {
+extension SeenMoviesViewController: FetchedResultsManagerDelegate {
     func beginUpdate() {
         myMoviesTableView.beginUpdates()
     }

@@ -31,7 +31,7 @@ class WantToSeeMoviesViewController: UIViewController {
     }
 }
 
-extension WantToSeeMoviesViewController: MoviesViewControllerDelegate {
+extension WantToSeeMoviesViewController: FetchedResultsManagerDelegate {
     func beginUpdate() {
         myMoviesTableView.beginUpdates()
     }

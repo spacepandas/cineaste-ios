@@ -16,7 +16,7 @@
 		3FCC712F1FD742AC00A47ADF /* SeenMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */; };
 		3FCC71311FD742B900A47ADF /* WantToSeeMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */; };
 		3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */; };
-		3FCC71371FD7536B00A47ADF /* MoviesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71361FD7536B00A47ADF /* MoviesViewControllerDelegate.swift */; };
+		3FCC71371FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */; };
 		3FD886461FF2C46400A86ACF /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD886451FF2C46400A86ACF /* Appearance.swift */; };
 		45E30914AA64816E9D8F1F02 /* Pods_Cineaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83ED5B07D59B9D83B9F446 /* Pods_Cineaste.framework */; };
 		634BFA4AFCFA1EDED2BA139C /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */; };
@@ -62,7 +62,7 @@
 		3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMoviesViewController.swift; sourceTree = "<group>"; };
 		3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToSeeMoviesViewController.swift; sourceTree = "<group>"; };
 		3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
-		3FCC71361FD7536B00A47ADF /* MoviesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManagerDelegate.swift; sourceTree = "<group>"; };
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93847470A61BB0CE79904886 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */,
 				3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */,
 				3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */,
-				3FCC71361FD7536B00A47ADF /* MoviesViewControllerDelegate.swift */,
+				3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */,
 			);
 			path = MyMovies;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				3FCC71311FD742B900A47ADF /* WantToSeeMoviesViewController.swift in Sources */,
 				3FD886461FF2C46400A86ACF /* Appearance.swift in Sources */,
 				95F0DBC91F9D2CF9004681C7 /* PagedMovieResult.swift in Sources */,
-				3FCC71371FD7536B00A47ADF /* MoviesViewControllerDelegate.swift in Sources */,
+				3FCC71371FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift in Sources */,
 				9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */,
 				3FCC712F1FD742AC00A47ADF /* SeenMoviesViewController.swift in Sources */,
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
