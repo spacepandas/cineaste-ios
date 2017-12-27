@@ -11,8 +11,8 @@ import UIKit
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    @IBOutlet weak fileprivate var posterImageView: UIImageView!
-    @IBOutlet weak fileprivate var movieTitleLabel: UILabel!
+    @IBOutlet var posterImageView: UIImageView!
+    @IBOutlet var movieTitleLabel: UILabel!
 
     func configure(with movie: Movie) {
         movieTitleLabel.text = movie.title
