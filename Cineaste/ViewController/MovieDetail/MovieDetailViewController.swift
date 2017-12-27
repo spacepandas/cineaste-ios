@@ -32,6 +32,20 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    var storedMovie: StoredMovie? {
+        didSet {
+            DispatchQueue.main.async {
+//                self.posterImageView.image = self.storedMovie?.poster
+                self.titleLabel.text = self.storedMovie?.title
+                self.descriptionTextView.text = self.storedMovie?.overview
+                if let movie = self.storedMovie {
+//                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.votingLabel.text = "\(movie.voteAverage)"
+                }
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false

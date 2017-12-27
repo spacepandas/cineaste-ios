@@ -13,6 +13,7 @@ class WantToSeeMoviesViewController: UIViewController {
     @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
             myMoviesTableView.dataSource = dataSource
+            myMoviesTableView.delegate = self
             myMoviesTableView.tableFooterView = UIView()
             myMoviesTableView.backgroundColor = UIColor.basicBackground
         }
@@ -20,6 +21,7 @@ class WantToSeeMoviesViewController: UIViewController {
 
     var fetchedResultsManager = FetchedResultsManager()
     private let dataSource = WantToSeeMoviesSource()
+    private var selectedMovie: StoredMovie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,17 @@ class WantToSeeMoviesViewController: UIViewController {
         if let objects = fetchedResultsManager.controller?.fetchedObjects {
             dataSource.fetchedObjects = objects
         }
+    }
+}
+
+extension WantToSeeMoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedMovie = dataSource.fetchedObjects[indexPath.row]
+
+        let movieDetailVC = MovieDetailViewController.instantiate()
+        movieDetailVC.storedMovie = selectedMovie
+        self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 

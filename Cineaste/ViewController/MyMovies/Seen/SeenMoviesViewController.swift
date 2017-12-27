@@ -13,6 +13,7 @@ class SeenMoviesViewController: UIViewController {
     @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
             myMoviesTableView.dataSource = dataSource
+            myMoviesTableView.delegate = self
             myMoviesTableView.estimatedRowHeight = 120
             myMoviesTableView.rowHeight = UITableViewAutomaticDimension
             myMoviesTableView.tableFooterView = UIView()
@@ -22,6 +23,7 @@ class SeenMoviesViewController: UIViewController {
 
     var fetchedResultsManager = FetchedResultsManager()
     private let dataSource = SeenMoviesSource()
+    private var selectedMovie: StoredMovie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,17 @@ class SeenMoviesViewController: UIViewController {
         if let objects = fetchedResultsManager.controller?.fetchedObjects {
             dataSource.fetchedObjects = objects
         }
+    }
+}
+
+extension SeenMoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedMovie = dataSource.fetchedObjects[indexPath.row]
+
+        let movieDetailVC = MovieDetailViewController.instantiate()
+        movieDetailVC.storedMovie = selectedMovie
+        self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 
