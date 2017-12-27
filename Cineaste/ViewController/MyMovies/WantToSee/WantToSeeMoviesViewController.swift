@@ -20,7 +20,7 @@ class WantToSeeMoviesViewController: UIViewController {
     }
 
     var fetchedResultsManager = FetchedResultsManager()
-    private let dataSource = WantToSeeMoviesSource()
+    let dataSource = WantToSeeMoviesSource()
     private var selectedMovie: StoredMovie?
 
     override func viewDidLoad() {
