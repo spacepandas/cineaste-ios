@@ -8,6 +8,8 @@
 
 import UIKit
 
+// swiftlint:disable force_cast
+
 protocol Instantiable: class {
     static var storyboard: Storyboard { get }
     static var storyboardID: String? { get }
@@ -38,4 +40,3 @@ extension Instantiable {
         return navi
     }
 }
-
