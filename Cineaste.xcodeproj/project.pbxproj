@@ -18,6 +18,7 @@
 		3F83BE7E1FF3A84500E584E9 /* WantToSeeMoviesSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE7D1FF3A84500E584E9 /* WantToSeeMoviesSourceTests.swift */; };
 		3F83BE801FF3AC3B00E584E9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE7F1FF3AC3B00E584E9 /* CoreDataHelper.swift */; };
 		3F83BE821FF3AE3700E584E9 /* WantToSeeListCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE811FF3AE3700E584E9 /* WantToSeeListCellTests.swift */; };
+		3F83BE861FF3B03000E584E9 /* SeenMoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE851FF3B03000E584E9 /* SeenMoviesSource.swift */; };
 		3FCC712F1FD742AC00A47ADF /* SeenMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */; };
 		3FCC71311FD742B900A47ADF /* WantToSeeMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */; };
 		3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */; };
@@ -68,6 +69,7 @@
 		3F83BE7D1FF3A84500E584E9 /* WantToSeeMoviesSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToSeeMoviesSourceTests.swift; sourceTree = "<group>"; };
 		3F83BE7F1FF3AC3B00E584E9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		3F83BE811FF3AE3700E584E9 /* WantToSeeListCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToSeeListCellTests.swift; sourceTree = "<group>"; };
+		3F83BE851FF3B03000E584E9 /* SeenMoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMoviesSource.swift; sourceTree = "<group>"; };
 		3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMoviesViewController.swift; sourceTree = "<group>"; };
 		3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToSeeMoviesViewController.swift; sourceTree = "<group>"; };
 		3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -119,6 +121,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F83BE831FF3AFFF00E584E9 /* WantToSee */ = {
+			isa = PBXGroup;
+			children = (
+				3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */,
+				3F83BE7B1FF3A2B900E584E9 /* WantToSeeMoviesSource.swift */,
+				3F1292F91FD7CC1100ED5593 /* WantToSeeListCell.swift */,
+			);
+			path = WantToSee;
+			sourceTree = "<group>";
+		};
+		3F83BE841FF3B00800E584E9 /* Seen */ = {
+			isa = PBXGroup;
+			children = (
+				3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */,
+				3F83BE851FF3B03000E584E9 /* SeenMoviesSource.swift */,
+				3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */,
+			);
+			path = Seen;
+			sourceTree = "<group>";
+		};
 		40E9C8A5BD12D3133ED86DD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,11 +164,8 @@
 		959E8B741FABC6CD0004E8C3 /* MyMovies */ = {
 			isa = PBXGroup;
 			children = (
-				3FCC71301FD742B900A47ADF /* WantToSeeMoviesViewController.swift */,
-				3F83BE7B1FF3A2B900E584E9 /* WantToSeeMoviesSource.swift */,
-				3F1292F91FD7CC1100ED5593 /* WantToSeeListCell.swift */,
-				3FCC712E1FD742AC00A47ADF /* SeenMoviesViewController.swift */,
-				3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */,
+				3F83BE831FF3AFFF00E584E9 /* WantToSee */,
+				3F83BE841FF3B00800E584E9 /* Seen */,
 				3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */,
 				3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */,
 			);
@@ -512,6 +531,7 @@
 				95DC320D1F97E5150014E3EA /* Movie.swift in Sources */,
 				3F1292FA1FD7CC1100ED5593 /* WantToSeeListCell.swift in Sources */,
 				959E8B791FABC99D0004E8C3 /* SearchMoviesTableViewCell.swift in Sources */,
+				3F83BE861FF3B03000E584E9 /* SeenMoviesSource.swift in Sources */,
 				959E8B771FABC6F50004E8C3 /* SearchMoviesViewController.swift in Sources */,
 				3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */,
 				95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */,
