@@ -235,10 +235,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="line" destination="1zb-gr-YVr" id="2zA-DC-Hk3"/>
                                             <outlet property="poster" destination="fk9-nV-vLs" id="r3P-gE-kgy"/>
                                             <outlet property="releaseDate" destination="B6i-Uw-yA8" id="01K-51-V40"/>
                                             <outlet property="runtime" destination="fQw-29-8S4" id="9Dd-Bg-Spe"/>
+                                            <outlet property="separatorView" destination="1zb-gr-YVr" id="4Oz-KU-puD"/>
                                             <outlet property="title" destination="ScM-QG-caU" id="OVt-Eh-e5M"/>
                                             <outlet property="votes" destination="wW2-91-TKm" id="zqp-WD-9xO"/>
                                         </connections>

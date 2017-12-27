@@ -13,9 +13,9 @@ class WantToSeeListCell: UITableViewCell {
 
     @IBOutlet var poster: UIImageView!
     @IBOutlet var title: UILabel!
-    @IBOutlet var line: UIView! {
+    @IBOutlet var separatorView: UIView! {
         didSet {
-            line.backgroundColor = .primaryOrange
+            separatorView.backgroundColor = .primaryOrange
         }
     }
 
