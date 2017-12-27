@@ -79,8 +79,8 @@ UISearchResultsUpdating {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesTableViewCell.identifier, for: indexPath) as? SearchMoviesTableViewCell else {
-            fatalError("Unable to dequeue cell for identifier: \(SearchMoviesTableViewCell.identifier)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesCell.identifier, for: indexPath) as? SearchMoviesCell else {
+            fatalError("Unable to dequeue cell for identifier: \(SearchMoviesCell.identifier)")
         }
         guard let movies = movies else { fatalError("no data for cell found") }
 

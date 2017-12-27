@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SearchMoviesTableViewCell: UITableViewCell {
-    static let identifier = "SearchMoviesTableViewCell"
+class SearchMoviesCell: UITableViewCell {
+    static let identifier = "SearchMoviesCell"
 
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
     @IBOutlet weak fileprivate var movieTitleLabel: UILabel!
