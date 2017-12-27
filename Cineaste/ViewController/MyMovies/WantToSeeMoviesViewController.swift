@@ -10,15 +10,16 @@ import UIKit
 import CoreData
 
 class WantToSeeMoviesViewController: UIViewController {
-
     @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
         didSet {
-            myMoviesTableView.dataSource = self
+            myMoviesTableView.dataSource = dataSource
             myMoviesTableView.tableFooterView = UIView()
             myMoviesTableView.backgroundColor = UIColor.basicBackground
         }
     }
+    
     var fetchedResultsManager = FetchedResultsManager()
+    private let dataSource = WantToSeeMoviesSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,14 @@ class WantToSeeMoviesViewController: UIViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: wantToSeeMoviesPredicate) {
+            update(dataSource)
             myMoviesTableView.reloadData()
+        }
+    }
+
+    func update(_ dataSource: WantToSeeMoviesSource) {
+        if let objects = fetchedResultsManager.controller?.fetchedObjects {
+            dataSource.fetchedObjects = objects
         }
     }
 }
@@ -36,32 +44,15 @@ extension WantToSeeMoviesViewController: FetchedResultsManagerDelegate {
         myMoviesTableView.beginUpdates()
     }
     func insertRows(at index: [IndexPath]) {
+        update(dataSource)
         myMoviesTableView.insertRows(at: index, with: .fade)
     }
     func deleteRows(at index: [IndexPath]) {
+        update(dataSource)
         myMoviesTableView.deleteRows(at: index, with: .fade)
     }
     func endUpdate() {
         myMoviesTableView.endUpdates()
-    }
-}
-
-extension WantToSeeMoviesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: WantToSeeListCell.identifier, for: indexPath) as? WantToSeeListCell
-            else {
-                fatalError("Unable to dequeue cell for identifier: \(WantToSeeListCell.identifier)")
-        }
-        guard let movie = fetchedResultsManager.controller?.object(at: indexPath)
-            else { fatalError("no data for cell found") }
-
-        cell.configure(with: movie)
-
-        return cell
     }
 }
 
