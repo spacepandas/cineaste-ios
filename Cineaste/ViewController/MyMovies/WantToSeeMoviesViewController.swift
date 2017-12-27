@@ -10,14 +10,14 @@ import UIKit
 import CoreData
 
 class WantToSeeMoviesViewController: UIViewController {
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+    @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
             myMoviesTableView.dataSource = dataSource
             myMoviesTableView.tableFooterView = UIView()
             myMoviesTableView.backgroundColor = UIColor.basicBackground
         }
     }
-    
+
     var fetchedResultsManager = FetchedResultsManager()
     private let dataSource = WantToSeeMoviesSource()
 
