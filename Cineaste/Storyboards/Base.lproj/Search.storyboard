@@ -14,7 +14,7 @@
         <!--Search Movies View Controller-->
         <scene sceneID="EBj-aR-Nva">
             <objects>
-                <viewController id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchMoviesViewController" id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnV-3h-HdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

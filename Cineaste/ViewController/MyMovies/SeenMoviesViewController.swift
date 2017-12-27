@@ -66,3 +66,8 @@ extension SeenMoviesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension SeenMoviesViewController: Instantiable {
+    static var storyboard: Storyboard { return .main }
+    static var storyboardID: String? { return "SeenMoviesViewController" }
+}

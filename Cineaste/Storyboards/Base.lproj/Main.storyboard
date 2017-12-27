@@ -21,7 +21,7 @@
         <!--Seen Movies View Controller-->
         <scene sceneID="bBN-rD-ncb">
             <objects>
-                <viewController id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SeenMoviesViewController" id="S1z-hx-OZA" customClass="SeenMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5fY-5M-Xq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
         <!--Want To See Movies View Controller-->
         <scene sceneID="E7H-6G-Ruq">
             <objects>
-                <viewController id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WantToSeeMoviesViewController" id="Fqv-VW-ri3" customClass="WantToSeeMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="28i-hX-IFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,10 +214,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_to_watchedlist" width="30" height="30"/>
+        <image name="add_to_watchedlist" width="32" height="32"/>
         <image name="add_to_watchlist" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qz0-eS-gIO"/>
+        <segue reference="aEZ-Ja-1wi"/>
     </inferredMetricsTieBreakers>
 </document>

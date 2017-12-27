@@ -64,3 +64,8 @@ extension WantToSeeMoviesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension WantToSeeMoviesViewController: Instantiable {
+    static var storyboard: Storyboard { return .main }
+    static var storyboardID: String? { return "WantToSeeMoviesViewController" }
+}

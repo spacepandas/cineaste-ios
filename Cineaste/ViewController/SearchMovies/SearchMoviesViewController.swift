@@ -150,3 +150,8 @@ UISearchResultsUpdating {
         }
     }
 }
+
+extension SearchMoviesViewController: Instantiable {
+    static var storyboard: Storyboard { return .search }
+    static var storyboardID: String? { return "SearchMoviesViewController" }
+}
