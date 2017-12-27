@@ -101,13 +101,14 @@ UISearchResultsUpdating {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case SHOWDETAILSEGUE?:
+        guard let identifier = Segue(initWith: segue) else {
+            fatalError("unable to use Segue enum")
+        }
+
+        switch identifier {
+        case .showMovieDetail:
             let vc = segue.destination as? MovieDetailViewController
             vc?.movie = selectedMovie
-        default:
-            // Fallthrough
-            break
         }
     }
 
