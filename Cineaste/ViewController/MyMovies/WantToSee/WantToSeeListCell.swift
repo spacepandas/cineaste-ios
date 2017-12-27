@@ -11,11 +11,22 @@ import UIKit
 class WantToSeeListCell: UITableViewCell {
     static let identifier = "WantToSeeListCell"
 
+    @IBOutlet var poster: UIImageView!
     @IBOutlet var title: UILabel!
-    @IBOutlet var votes: UILabel!
+    @IBOutlet var line: UIView! {
+        didSet {
+            line.backgroundColor = .primaryOrange
+        }
+    }
+
+    @IBOutlet var votes: DescriptionLabel!
+    @IBOutlet var runtime: DescriptionLabel!
+    @IBOutlet var releaseDate: DescriptionLabel!
 
     func configure(with movie: StoredMovie) {
         title.text = movie.title
-        votes.text = "Votes: \(movie.voteAverage)"
+        votes.text = "\(movie.voteAverage)"
+        runtime.text = "\(movie.runtime) min"
+        releaseDate.text = "\(movie.releaseDate?.formatted ?? Date().formatted)"
     }
 }
