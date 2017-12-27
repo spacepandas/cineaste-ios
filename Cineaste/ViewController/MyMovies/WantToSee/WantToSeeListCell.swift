@@ -24,6 +24,9 @@ class WantToSeeListCell: UITableViewCell {
     @IBOutlet var releaseDate: DescriptionLabel!
 
     func configure(with movie: StoredMovie) {
+        if let moviePoster = movie.poster {
+            poster.image = UIImage(data: moviePoster)
+        }
         title.text = movie.title
         votes.text = "\(movie.voteAverage)"
         runtime.text = "\(movie.runtime) min"

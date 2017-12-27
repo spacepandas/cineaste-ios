@@ -34,14 +34,15 @@ class MovieDetailViewController: UIViewController {
 
     var storedMovie: StoredMovie? {
         didSet {
+            guard let movie = self.storedMovie else { return }
             DispatchQueue.main.async {
-//                self.posterImageView.image = self.storedMovie?.poster
-                self.titleLabel.text = self.storedMovie?.title
-                self.descriptionTextView.text = self.storedMovie?.overview
-                if let movie = self.storedMovie {
-                    self.runtimeLabel.text = "\(movie.runtime) min"
-                    self.votingLabel.text = "\(movie.voteAverage)"
+                if let moviePoster = movie.poster {
+                    self.posterImageView.image = UIImage(data: moviePoster)
                 }
+                self.titleLabel.text = movie.title
+                self.descriptionTextView.text = movie.overview
+                self.runtimeLabel.text = "\(movie.runtime) min"
+                self.votingLabel.text = "\(movie.voteAverage)"
             }
         }
     }
