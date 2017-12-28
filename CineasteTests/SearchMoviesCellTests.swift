@@ -31,7 +31,7 @@ class SearchMoviesCellTests: XCTestCase {
     }
 
     private let movie: Movie = {
-        guard let path = Bundle.main.path(forResource: "Movie", ofType: "json") else {
+        guard let path = Bundle(for: SearchMoviesCellTests.self).path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
         }
 

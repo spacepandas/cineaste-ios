@@ -1,5 +1,5 @@
 //
-//  SearchMoviesSource.swift
+//  SearchMoviesSourceTests.swift
 //  CineasteTests
 //
 //  Created by Felizia Bernutz on 27.12.17.
@@ -41,7 +41,7 @@ class SearchMoviesSourceTests: XCTestCase {
     }
 
     private let movies: [Movie] = {
-        guard let path = Bundle.main.path(forResource: "Movie", ofType: "json") else {
+        guard let path = Bundle(for: SearchMoviesSourceTests.self).path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
         }
 

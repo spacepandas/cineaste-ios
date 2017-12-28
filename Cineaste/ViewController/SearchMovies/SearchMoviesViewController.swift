@@ -146,7 +146,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
             self.resultSearchController.isActive = false
         }
 
-        performSegue(withIdentifier: Segue.showMovieDetail, sender: self)
+        perform(segue: .showMovieDetail, sender: self)
     }
 }
 
