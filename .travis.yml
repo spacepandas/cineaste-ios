@@ -1,0 +1,5 @@
+language: swift
+xcode_project: Cineaste/Cineaste.xcodeproj
+xcode_scheme: Cineaste
+script:
+- ./fastlane/travis.sh

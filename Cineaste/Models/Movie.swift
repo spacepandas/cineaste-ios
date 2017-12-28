@@ -15,7 +15,8 @@ class Movie: Codable {
     fileprivate(set) var voteAverage: Float
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
-    fileprivate(set) var runtime: Int
+    fileprivate(set) var runtime: Int16
+    fileprivate(set) var releaseDate: Date
     var poster: UIImage?
 
     enum CodingKeys: String, CodingKey {
@@ -25,6 +26,7 @@ class Movie: Codable {
         case posterPath = "poster_path"
         case overview
         case runtime
+        case releaseDate = "release_date"
     }
 
     required init(from decoder: Decoder) throws {
@@ -34,7 +36,10 @@ class Movie: Codable {
         voteAverage = try container.decode(Float.self, forKey: .voteAverage)
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         overview = try container.decode(String.self, forKey: .overview)
-        runtime = try container.decodeIfPresent(Int.self, forKey: .runtime) ?? 0
+        runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime) ?? 0
+
+        let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        releaseDate = dateString?.dateFromString ?? Date()
     }
 
     func encode(to encoder: Encoder) throws {
@@ -63,12 +68,10 @@ extension Movie {
     static func latestReleases() -> Resource<[Movie]>? {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         let urlAsString =
         "\(Movie.baseUrl)/discover/movie?" +
-        "primary_release_date.gte=\(dateFormatter.string(from: oneMonthInPast))&" +
-            "primary_release_date.lte=\(dateFormatter.string(from: oneMonthInFuture))&" +
+        "primary_release_date.gte=\(oneMonthInPast.formattedForRequest)&" +
+            "primary_release_date.lte=\(oneMonthInFuture.formattedForRequest)&" +
             "language=\(Movie.locale)&" +
             "api_key=\(apiKey)"
 

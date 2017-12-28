@@ -1,5 +1,5 @@
 //
-//  MovieListCell.swift
+//  SeenListCell.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 06.12.17.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class WantToSeeListCell: UITableViewCell {
+class SeenListCell: UITableViewCell {
+    static let identifier = "SeenListCell"
 
-    @IBOutlet weak fileprivate var title: UILabel!
-    @IBOutlet weak fileprivate var votes: UILabel!
+    @IBOutlet var title: UILabel!
 
     func configure(with movie: StoredMovie) {
         title.text = movie.title
-        votes.text = "Votes: \(movie.voteAverage)"
     }
 }

@@ -25,9 +25,24 @@ class MovieDetailViewController: UIViewController {
                 self.titleLabel.text = self.movie?.title
                 self.descriptionTextView.text = self.movie?.overview
                 if let movie = self.movie {
-                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.runtimeLabel.text = "\(movie.runtime) min"
                     self.votingLabel.text = "\(movie.voteAverage)"
                 }
+            }
+        }
+    }
+
+    var storedMovie: StoredMovie? {
+        didSet {
+            guard let movie = self.storedMovie else { return }
+            DispatchQueue.main.async {
+                if let moviePoster = movie.poster {
+                    self.posterImageView.image = UIImage(data: moviePoster)
+                }
+                self.titleLabel.text = movie.title
+                self.descriptionTextView.text = movie.overview
+                self.runtimeLabel.text = "\(movie.runtime) min"
+                self.votingLabel.text = "\(movie.voteAverage)"
             }
         }
     }
@@ -79,4 +94,9 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+}
+
+extension MovieDetailViewController: Instantiable {
+    static var storyboard: Storyboard { return .movieDetail }
+    static var storyboardID: String? { return "MovieDetailViewController" }
 }

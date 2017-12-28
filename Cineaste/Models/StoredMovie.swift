@@ -17,7 +17,12 @@ class StoredMovie: NSManagedObject {
         title = movie.title
         overview = movie.overview
         posterPath = movie.posterPath
+        if let moviePoster = movie.poster {
+            poster = UIImageJPEGRepresentation(moviePoster, 1)
+        }
         voteAverage = movie.voteAverage
+        runtime = movie.runtime
+        releaseDate = movie.releaseDate
         watched = false
     }
 
