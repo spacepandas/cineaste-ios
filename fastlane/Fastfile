@@ -1,0 +1,17 @@
+fastlane_version "2.0.0"
+default_platform :ios
+
+platform :ios do
+  before_all do
+    ensure_git_status_clean
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan(
+      device: "iPhone 7",
+      scheme: "Cineaste",
+      code_coverage: true
+    )
+  end
+end
