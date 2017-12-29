@@ -21,7 +21,7 @@ class SeenListCellTests: XCTestCase {
         cell.title = title
     }
 
-    func testConfigure() {
+    func testConfigureShouldSetCellTitleCorrectly() {
         cell.configure(with: storedMovie)
 
         XCTAssertEqual(cell.title.text, storedMovie.title)

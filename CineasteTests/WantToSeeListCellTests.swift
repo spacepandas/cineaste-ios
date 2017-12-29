@@ -25,7 +25,7 @@ class WantToSeeListCellTests: XCTestCase {
         cell.votes = votes
     }
     
-    func testConfigure() {
+    func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
         XCTAssertEqual(cell.title.text, storedMovie.title)

@@ -12,7 +12,7 @@ import XCTest
 class WantToSeeMoviesViewControllerTests: XCTestCase {
     let wantToSeeMoviesVC = WantToSeeMoviesViewController.instantiate()
 
-    func testViewDidLoad() {
+    func testFetchedResultsManagerDelegateShouldNotBeNil() {
         wantToSeeMoviesVC.viewDidLoad()
 
         XCTAssertNotNil(wantToSeeMoviesVC.fetchedResultsManager.delegate)

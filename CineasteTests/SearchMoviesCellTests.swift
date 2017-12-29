@@ -24,7 +24,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.movieTitleLabel = title
     }
     
-    func testConfigure() {
+    func testConfigureShouldSetCellTitleCorrectly() {
         cell.configure(with: movie)
 
         XCTAssertEqual(cell.movieTitleLabel.text, movie.title)
