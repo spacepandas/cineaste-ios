@@ -10,12 +10,20 @@ import UIKit
 import CoreData
 
 class SeenMoviesViewController: UIViewController {
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView!
+    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+        didSet {
+            myMoviesTableView.dataSource = self
+            myMoviesTableView.estimatedRowHeight = 120
+            myMoviesTableView.rowHeight = UITableViewAutomaticDimension
+            myMoviesTableView.tableFooterView = UIView()
+            myMoviesTableView.backgroundColor = UIColor.basicBackground
+        }
+    }
+
     var fetchedResultsManager = FetchedResultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        myMoviesTableView.dataSource = self
         title = NSLocalizedString("Seen", comment: "Title for seen view controller")
 
         fetchedResultsManager.delegate = self
@@ -46,8 +54,10 @@ extension SeenMoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SeenListCell", for: indexPath) as? SeenListCell
-            else { fatalError("cell could not be dequeued") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SeenListCell.identifier, for: indexPath) as? SeenListCell
+            else {
+                fatalError("Unable to dequeue cell for identifier: \(SeenListCell.identifier)")
+        }
         guard let movie = fetchedResultsManager.controller?.object(at: indexPath)
             else { fatalError("no data for cell found") }
 

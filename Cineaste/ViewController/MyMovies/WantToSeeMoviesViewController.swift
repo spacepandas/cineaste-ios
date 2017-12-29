@@ -11,12 +11,17 @@ import CoreData
 
 class WantToSeeMoviesViewController: UIViewController {
 
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView!
+    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+        didSet {
+            myMoviesTableView.dataSource = self
+            myMoviesTableView.tableFooterView = UIView()
+            myMoviesTableView.backgroundColor = UIColor.basicBackground
+        }
+    }
     var fetchedResultsManager = FetchedResultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        myMoviesTableView.dataSource = self
         title = NSLocalizedString("Want to see", comment: "Title for want to see view controller")
 
         fetchedResultsManager.delegate = self
@@ -47,8 +52,10 @@ extension WantToSeeMoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WantToSeeListCell", for: indexPath) as? WantToSeeListCell
-            else { fatalError("cell could not be dequeued") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WantToSeeListCell.identifier, for: indexPath) as? WantToSeeListCell
+            else {
+                fatalError("Unable to dequeue cell for identifier: \(WantToSeeListCell.identifier)")
+        }
         guard let movie = fetchedResultsManager.controller?.object(at: indexPath)
             else { fatalError("no data for cell found") }
 

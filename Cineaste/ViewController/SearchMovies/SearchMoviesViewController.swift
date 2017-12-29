@@ -32,13 +32,40 @@ UISearchResultsUpdating {
         moviesTableView.dataSource = self
         moviesTableView.delegate = self
         loadRecentMovies()
-        navigationItem.searchController = resultSearchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = resultSearchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+
+            //add style for searchField - only in iOS 11
+            guard let textfield = resultSearchController.searchBar.value(forKey: "searchField") as? UITextField,
+                let backgroundview = textfield.subviews.first else { return }
+            backgroundview.backgroundColor = .basicWhite
+            backgroundview.layer.cornerRadius = 10
+            backgroundview.clipsToBounds = true
+        } else {
+            moviesTableView.tableHeaderView = resultSearchController.searchBar
+            self.definesPresentationContext = true
+        }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationItem.hidesSearchBarWhenScrolling = true
+
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if #available(iOS 11.0, *) {
+            return
+        } else {
+            resultSearchController.searchBar.sizeToFit()
+        }
     }
 
     // MARK: - TableViewDataSource
@@ -52,10 +79,12 @@ UISearchResultsUpdating {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesTableViewCell.IDENTIFIER, for: indexPath) as? SearchMoviesTableViewCell else {
-            fatalError("Unable to dequeue cell for identifier: \(SearchMoviesTableViewCell.IDENTIFIER)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesTableViewCell.identifier, for: indexPath) as? SearchMoviesTableViewCell else {
+            fatalError("Unable to dequeue cell for identifier: \(SearchMoviesTableViewCell.identifier)")
         }
-        cell.movie = movies?[indexPath.row]
+        guard let movies = movies else { fatalError("no data for cell found") }
+
+        cell.configure(with: movies[indexPath.row])
         return cell
     }
 
@@ -66,7 +95,7 @@ UISearchResultsUpdating {
         DispatchQueue.main.async {
             self.resultSearchController.isActive = false
         }
-        
+
         performSegue(withIdentifier: SHOWDETAILSEGUE, sender: self)
     }
 

@@ -9,6 +9,7 @@
 import UIKit
 
 class SeenListCell: UITableViewCell {
+    static let identifier = "SeenListCell"
 
     @IBOutlet weak fileprivate var title: UILabel!
 
