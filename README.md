@@ -12,7 +12,7 @@ No need for registration! No need for adding friends!
 
 ## Open tasks
 The list of open tasks is not sorted by priority.
-- functionality to start a movie night with **Searby** from Google [(documentation)](https://developers.google.com/nearby/messages/ios/get-started)
+- functionality to start a movie night with **Nearby** from Google [(documentation)](https://developers.google.com/nearby/messages/ios/get-started)
 - improved design for wantToSee and seen views
 - import and export options
 - 3D-Touch to peek and pop the detail view of a movie [(3D Touch -  Developer)](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/3d-touch/)
