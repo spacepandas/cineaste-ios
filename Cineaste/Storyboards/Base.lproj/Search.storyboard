@@ -14,7 +14,7 @@
         <!--Search Movies View Controller-->
         <scene sceneID="EBj-aR-Nva">
             <objects>
-                <viewController id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchMoviesViewController" id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnV-3h-HdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesTableViewCell" id="sc1-ua-Gyn" customClass="SearchMoviesTableViewCell" customModule="Cineaste" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesCell" id="sc1-ua-Gyn" customClass="SearchMoviesCell" customModule="Cineaste" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sc1-ua-Gyn" id="LFp-MV-Jkl">

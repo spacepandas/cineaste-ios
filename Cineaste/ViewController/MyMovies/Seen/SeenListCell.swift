@@ -11,7 +11,7 @@ import UIKit
 class SeenListCell: UITableViewCell {
     static let identifier = "SeenListCell"
 
-    @IBOutlet weak fileprivate var title: UILabel!
+    @IBOutlet var title: UILabel!
 
     func configure(with movie: StoredMovie) {
         title.text = movie.title

@@ -80,3 +80,8 @@ class MovieDetailViewController: UIViewController {
     }
 
 }
+
+extension MovieDetailViewController: Instantiable {
+    static var storyboard: Storyboard { return .movieDetail }
+    static var storyboardID: String? { return "MovieDetailViewController" }
+}

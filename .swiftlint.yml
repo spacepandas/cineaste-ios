@@ -14,7 +14,7 @@ opt_in_rules:
   - switch_case_on_newline
   - redundant_nil_coalescing
   - prohibited_super_call
-  - private_outlet
+  # - private_outlet
   - operator_usage_whitespace
   - object_literal
   - number_separator
@@ -26,9 +26,7 @@ opt_in_rules:
 
 # Exclude tests, pods and vendor sources
 excluded:
-  - unitTests
-  - uiTests
-  - uiTestsLite
+  - CineasteTests
   - Pods
 
 # Configure warning/error levels
