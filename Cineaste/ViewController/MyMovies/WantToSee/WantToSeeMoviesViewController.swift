@@ -50,6 +50,14 @@ extension WantToSeeMoviesViewController: UITableViewDelegate {
         movieDetailVC.storedMovie = selectedMovie
         self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if dataSource.fetchedObjects.isEmpty {
+            return tableView.frame.size.height
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
 }
 
 extension WantToSeeMoviesViewController: FetchedResultsManagerDelegate {
