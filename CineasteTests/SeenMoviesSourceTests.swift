@@ -22,7 +22,7 @@ class SeenMoviesSourceTests: XCTestCase {
         tableView.dataSource = source
     }
 
-    func testNumberOfRows() {
+    func testNumberOfRowsShouldEqualNumberOfStoredMovies() {
         XCTAssertEqual(source.tableView(tableView, numberOfRowsInSection: 0), 0)
 
         source.fetchedObjects = storedMovies
@@ -30,7 +30,7 @@ class SeenMoviesSourceTests: XCTestCase {
         XCTAssertEqual(source.tableView(tableView, numberOfRowsInSection: 0), 2)
     }
 
-    func testCellForRow() {
+    func testCellForRowShouldBeOfTypeSeenListCell() {
         source.fetchedObjects = storedMovies
         tableView.dataSource = source
         for row in 0..<storedMovies.count {

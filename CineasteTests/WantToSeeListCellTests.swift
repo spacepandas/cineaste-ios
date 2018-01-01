@@ -41,7 +41,7 @@ class WantToSeeListCellTests: XCTestCase {
         cell.releaseDate = releaseDate
     }
     
-    func testConfigure() {
+    func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
         XCTAssertEqual(cell.poster.image, nil)

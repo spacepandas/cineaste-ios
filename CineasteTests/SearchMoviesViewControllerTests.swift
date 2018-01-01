@@ -12,7 +12,7 @@ import XCTest
 class SearchMoviesViewControllerTests: XCTestCase {
     let searchMoviesVC = SearchMoviesViewController.instantiate()
 
-    func testViewDidLoad() {
+    func testTableViewDelegateAndDataSourceShouldNotBeNil() {
         searchMoviesVC.viewDidLoad()
 
         XCTAssertNotNil(searchMoviesVC.moviesTableView.delegate)

@@ -1,5 +1,5 @@
 //
-//  SearchMoviesSource.swift
+//  SearchMoviesSourceTests.swift
 //  CineasteTests
 //
 //  Created by Felizia Bernutz on 27.12.17.
@@ -21,7 +21,7 @@ class SearchMoviesSourceTests: XCTestCase {
         tableView.dataSource = source
     }
 
-    func testNumberOfRows() {
+    func testNumberOfRowsShouldEqualNumberOfMovies() {
         XCTAssertEqual(source.tableView(tableView, numberOfRowsInSection: 0), 0)
 
         source.movies = movies
@@ -29,7 +29,7 @@ class SearchMoviesSourceTests: XCTestCase {
         XCTAssertEqual(source.tableView(tableView, numberOfRowsInSection: 0), 2)
     }
 
-    func testCellForRow() {
+    func testCellForRowShouldBeOfTypeSearchMoviesCell() {
         source.movies = movies
         tableView.dataSource = source
         for row in 0..<movies.count {
@@ -41,7 +41,7 @@ class SearchMoviesSourceTests: XCTestCase {
     }
 
     private let movies: [Movie] = {
-        guard let path = Bundle.main.path(forResource: "Movie", ofType: "json") else {
+        guard let path = Bundle(for: SearchMoviesSourceTests.self).path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
         }
 

@@ -8,17 +8,17 @@
 
 import UIKit
 
-extension UIViewController {
-    func performSegue<T: RawRepresentable>(withIdentifier identifier: T, sender: AnyObject?) where T.RawValue == String {
-        self.performSegue(withIdentifier: identifier.rawValue, sender: sender)
-    }
-}
-
 enum Segue: String {
     case showMovieDetail = "ShowMovieDetailSegue"
 
     init?(initWith segue: UIStoryboardSegue) {
         guard let identifier = segue.identifier else { fatalError("Segue identifier not found.") }
         self.init(rawValue: identifier)
+    }
+}
+
+extension UIViewController {
+    func perform(segue: Segue, sender: AnyObject?) {
+        self.performSegue(withIdentifier: segue.rawValue, sender: sender)
     }
 }

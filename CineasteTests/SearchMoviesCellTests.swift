@@ -24,14 +24,14 @@ class SearchMoviesCellTests: XCTestCase {
         cell.movieTitleLabel = title
     }
     
-    func testConfigure() {
+    func testConfigureShouldSetCellTitleCorrectly() {
         cell.configure(with: movie)
 
         XCTAssertEqual(cell.movieTitleLabel.text, movie.title)
     }
 
     private let movie: Movie = {
-        guard let path = Bundle.main.path(forResource: "Movie", ofType: "json") else {
+        guard let path = Bundle(for: SearchMoviesCellTests.self).path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
         }
 
