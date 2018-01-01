@@ -8,6 +8,9 @@
 
 import CoreData
 
+//see tutorial:
+//https://www.andrewcbancroft.com/2015/01/13/unit-testing-model-layer-core-data-swift/
+
 func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
     let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
 
@@ -24,3 +27,4 @@ func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
 
     return managedObjectContext
 }
+

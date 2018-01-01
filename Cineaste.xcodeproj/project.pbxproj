@@ -216,10 +216,8 @@
 		959E8B741FABC6CD0004E8C3 /* MyMovies */ = {
 			isa = PBXGroup;
 			children = (
-				3F8644AA1FFA72EE0046114A /* MoviesTabBarController.swift */,
 				3F8644A81FFA69E70046114A /* MoviesViewController.swift */,
 				3F8644AD1FFA8F690046114A /* Cells */,
-				3F8644AC1FFA8F590046114A /* CoreDataHelper */,
 			);
 			path = MyMovies;
 			sourceTree = "<group>";
@@ -262,6 +260,7 @@
 				95DC32021F97E0FB0014E3EA /* Networking */,
 				3FBD8F931FF3FC6400AD5F02 /* Extension */,
 				3F059D481FF3FA9C00D5576B /* Custom */,
+				3F8644AC1FFA8F590046114A /* CoreDataHelper */,
 				95DC32011F97E0EF0014E3EA /* Models */,
 				95DC32001F97E0E20014E3EA /* Storyboards */,
 				95DC31FF1F97E0D80014E3EA /* ViewController */,
@@ -313,9 +312,10 @@
 		95DC31FF1F97E0D80014E3EA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				95B24EF31FADDB070070912A /* MovieDetail */,
-				959E8B751FABC6DB0004E8C3 /* SearchMovies */,
+				3F8644AA1FFA72EE0046114A /* MoviesTabBarController.swift */,
 				959E8B741FABC6CD0004E8C3 /* MyMovies */,
+				959E8B751FABC6DB0004E8C3 /* SearchMovies */,
+				95B24EF31FADDB070070912A /* MovieDetail */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
