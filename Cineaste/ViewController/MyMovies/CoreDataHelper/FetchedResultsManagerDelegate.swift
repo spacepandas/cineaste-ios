@@ -13,5 +13,6 @@ protocol FetchedResultsManagerDelegate: class {
     func insertRows(at index: [IndexPath])
     func updateRows(at index: [IndexPath])
     func deleteRows(at index: [IndexPath])
+    func moveRow(at index: IndexPath, to newIndex: IndexPath)
     func endUpdate()
 }

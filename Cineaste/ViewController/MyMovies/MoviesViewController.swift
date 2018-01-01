@@ -122,6 +122,9 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     func updateRows(at index: [IndexPath]) {
         myMoviesTableView.reloadRows(at: index, with: .fade)
     }
+    func moveRow(at index: IndexPath, to newIndex: IndexPath) {
+        myMoviesTableView.moveRow(at: index, to: newIndex)
+    }
     func endUpdate() {
         myMoviesTableView.endUpdates()
     }
