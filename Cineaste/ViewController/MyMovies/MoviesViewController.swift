@@ -147,6 +147,6 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
 // MARK: - Instantiable
 
 extension MoviesViewController: Instantiable {
-    static var storyboard: Storyboard { return .main }
+    static var storyboard: Storyboard { return .movieList }
     static var storyboardID: String? { return "MoviesViewController" }
 }
