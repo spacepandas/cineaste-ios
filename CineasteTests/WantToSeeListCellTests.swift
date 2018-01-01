@@ -51,6 +51,10 @@ class WantToSeeListCellTests: XCTestCase {
         XCTAssertEqual(cell.releaseDate.text, "\(storedMovie.releaseDate?.formatted ?? Date().formatted)")
     }
 
+    func testCellIdentifier() {
+        XCTAssertEqual(WantToSeeListCell.identifier, "WantToSeeListCell")
+    }
+
     private let storedMovie: StoredMovie = {
         let managedObjectContext = setUpInMemoryManagedObjectContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: managedObjectContext) as! StoredMovie

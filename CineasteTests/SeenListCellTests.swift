@@ -27,6 +27,10 @@ class SeenListCellTests: XCTestCase {
         XCTAssertEqual(cell.title.text, storedMovie.title)
     }
 
+    func testCellIdentifier() {
+        XCTAssertEqual(SeenListCell.identifier, "SeenListCell")
+    }
+
     private let storedMovie: StoredMovie = {
         let managedObjectContext = setUpInMemoryManagedObjectContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: managedObjectContext) as! StoredMovie
