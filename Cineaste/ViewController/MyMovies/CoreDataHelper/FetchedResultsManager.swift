@@ -30,6 +30,17 @@ final class FetchedResultsManager: NSObject {
         controller?.delegate = self
         handler()
     }
+
+    func update(for predicate: NSPredicate, completionHandler handler: () -> Void) {
+        controller?.fetchRequest.predicate = predicate
+        do {
+            try controller?.performFetch()
+        } catch {
+            print(error)
+            return
+        }
+        handler()
+    }
 }
 
 extension FetchedResultsManager: NSFetchedResultsControllerDelegate {

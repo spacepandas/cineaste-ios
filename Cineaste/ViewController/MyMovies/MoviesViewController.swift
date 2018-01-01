@@ -12,12 +12,17 @@ import CoreData
 class MoviesViewController: UIViewController {
     var category: MyMovieListCategory = .wantToSee {
         didSet {
-            title = category.title
+            if oldValue != category {
+                title = category.title
 
-            if fetchedResultsManager.controller == nil {
-                fetchedResultsManager.delegate = self
-                fetchedResultsManager.setup(with: category.predicate) {
-                    myMoviesTableView.reloadData()
+                if fetchedResultsManager.controller == nil {
+                    fetchedResultsManager.setup(with: category.predicate) {
+                        myMoviesTableView.reloadData()
+                    }
+                } else {
+                    fetchedResultsManager.update(for: category.predicate) {
+                        myMoviesTableView.reloadData()
+                    }
                 }
             }
         }
@@ -34,6 +39,15 @@ class MoviesViewController: UIViewController {
 
     var fetchedResultsManager = FetchedResultsManager()
     private var selectedMovie: StoredMovie?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        fetchedResultsManager.delegate = self
+        fetchedResultsManager.setup(with: category.predicate) {
+            myMoviesTableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
