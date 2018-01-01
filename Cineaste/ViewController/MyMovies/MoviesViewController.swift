@@ -12,17 +12,17 @@ import CoreData
 class MoviesViewController: UIViewController {
     var category: MyMovieListCategory = .wantToSee {
         didSet {
-            if oldValue != category {
-                title = category.title
+            title = category.title
 
-                if fetchedResultsManager.controller == nil {
-                    fetchedResultsManager.setup(with: category.predicate) {
-                        myMoviesTableView.reloadData()
-                    }
-                } else {
-                    fetchedResultsManager.update(for: category.predicate) {
-                        myMoviesTableView.reloadData()
-                    }
+            //only update if category changed
+            guard oldValue != category else { return }
+            if fetchedResultsManager.controller == nil {
+                fetchedResultsManager.setup(with: category.predicate) {
+                    myMoviesTableView.reloadData()
+                }
+            } else {
+                fetchedResultsManager.update(for: category.predicate) {
+                    myMoviesTableView.reloadData()
                 }
             }
         }

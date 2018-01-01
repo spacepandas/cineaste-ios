@@ -18,6 +18,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var titleLabel: UILabel!
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
+    let storageManager = MovieStorageManager()
+
     var movie: Movie? {
         didSet {
             DispatchQueue.main.async {
@@ -76,22 +78,22 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
-        AppDelegate.persistentContainer.performBackgroundTask { context in
-            StoredMovie.insertOrUpdate(movie, watched: false, withContext: context)
+        storageManager.insertMovieItem(with: movie, watched: false)
+        storageManager.save(handler: { _, _ in
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
-        }
+        })
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
-        AppDelegate.persistentContainer.performBackgroundTask { context in
-            StoredMovie.insertOrUpdate(movie, watched: true, withContext: context)
+        storageManager.insertMovieItem(with: movie, watched: true)
+        storageManager.save(handler: { _, _ in
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
-        }
+        })
     }
 
 }

@@ -37,7 +37,7 @@ function_body_length:
   - 100
   - 150
 function_parameter_count:
-  - 8
+  - 9
   - 10
 line_length:
   - 220
