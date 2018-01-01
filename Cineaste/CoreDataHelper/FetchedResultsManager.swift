@@ -52,10 +52,22 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            delegate?.insertRows(at: [indexPath])
+            if controller.fetchedObjects?.count == 1 {
+                // First object inserted, "empty cell" is replaced by "object cell"
+                delegate?.updateRows(at: [indexPath])
+            } else {
+                delegate?.insertRows(at: [indexPath])
+            }
         case .delete:
-            guard let indexPath = indexPath else { return }
-            delegate?.deleteRows(at: [indexPath])
+            guard let indexPath = indexPath,
+                let fetchedObjects = controller.fetchedObjects
+                else { return }
+            if fetchedObjects.isEmpty {
+                // Last object removed, "object cell" is replaced by "empty cell"
+                delegate?.updateRows(at: [indexPath])
+            } else {
+                delegate?.deleteRows(at: [indexPath])
+            }
         case .update:
             guard let indexPath = indexPath else { return }
             delegate?.updateRows(at: [indexPath])
