@@ -11,6 +11,7 @@ import UIKit
 protocol FetchedResultsManagerDelegate: class {
     func beginUpdate()
     func insertRows(at index: [IndexPath])
+    func updateRows(at index: [IndexPath])
     func deleteRows(at index: [IndexPath])
     func endUpdate()
 }
