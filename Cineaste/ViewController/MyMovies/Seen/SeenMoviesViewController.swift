@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class SeenMoviesViewController: UIViewController {
-    @IBOutlet weak fileprivate var myMoviesTableView: UITableView! {
+    @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
-            myMoviesTableView.dataSource = self
+            myMoviesTableView.dataSource = dataSource
             myMoviesTableView.estimatedRowHeight = 120
             myMoviesTableView.rowHeight = UITableViewAutomaticDimension
             myMoviesTableView.tableFooterView = UIView()
@@ -21,6 +21,7 @@ class SeenMoviesViewController: UIViewController {
     }
 
     var fetchedResultsManager = FetchedResultsManager()
+    private let dataSource = SeenMoviesSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +29,28 @@ class SeenMoviesViewController: UIViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: seenMoviesPredicate) {
+            update(dataSource)
             myMoviesTableView.reloadData()
+        }
+    }
+
+    func update(_ dataSource: SeenMoviesSource) {
+        if let objects = fetchedResultsManager.controller?.fetchedObjects {
+            dataSource.fetchedObjects = objects
         }
     }
 }
 
-extension SeenMoviesViewController: MoviesViewControllerDelegate {
+extension SeenMoviesViewController: FetchedResultsManagerDelegate {
     func beginUpdate() {
         myMoviesTableView.beginUpdates()
     }
     func insertRows(at index: [IndexPath]) {
+        update(dataSource)
         myMoviesTableView.insertRows(at: index, with: .fade)
     }
     func deleteRows(at index: [IndexPath]) {
+        update(dataSource)
         myMoviesTableView.deleteRows(at: index, with: .fade)
     }
     func endUpdate() {
@@ -48,21 +58,7 @@ extension SeenMoviesViewController: MoviesViewControllerDelegate {
     }
 }
 
-extension SeenMoviesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SeenListCell.identifier, for: indexPath) as? SeenListCell
-            else {
-                fatalError("Unable to dequeue cell for identifier: \(SeenListCell.identifier)")
-        }
-        guard let movie = fetchedResultsManager.controller?.object(at: indexPath)
-            else { fatalError("no data for cell found") }
-
-        cell.configure(with: movie)
-
-        return cell
-    }
+extension SeenMoviesViewController: Instantiable {
+    static var storyboard: Storyboard { return .main }
+    static var storyboardID: String? { return "SeenMoviesViewController" }
 }

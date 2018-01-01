@@ -13,7 +13,7 @@ let seenMoviesPredicate = NSPredicate(format: "watched == %@", NSNumber(value: t
 
 final class FetchedResultsManager: NSObject {
     var controller: NSFetchedResultsController<StoredMovie>?
-    weak var delegate: MoviesViewControllerDelegate?
+    weak var delegate: FetchedResultsManagerDelegate?
 
     func setup(with predicate: NSPredicate, completionHandler handler: () -> Void) {
 
