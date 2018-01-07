@@ -14,24 +14,27 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
 
-    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+    @IBOutlet var descriptionLabels: [DescriptionLabel]! {
         didSet {
-            votingLabel.textColor = .black
+            for label in descriptionLabels {
+                label.textColor = UIColor.basicBackground
+            }
         }
     }
+    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel!
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
             let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
-            self.seenButton.setTitle(title.uppercased(), for: .normal)
+            self.seenButton.setTitle(title, for: .normal)
         }
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
             let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
-            self.mustSeeButton.setTitle(title.uppercased(), for: .normal)
+            self.mustSeeButton.setTitle(title, for: .normal)
         }
     }
 

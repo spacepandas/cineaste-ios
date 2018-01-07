@@ -19,6 +19,10 @@ public class ActionButton: UIButton {
         setup()
     }
 
+    public override func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title?.uppercased(), for: state)
+    }
+
     func setup() {
         self.setTitleColor(UIColor.primaryDarkOrange, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)

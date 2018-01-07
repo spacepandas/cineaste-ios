@@ -14,6 +14,7 @@
 		3F1292FC1FD7CE4F00ED5593 /* SeenListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */; };
 		3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */; };
 		3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
+		3F71F685200292B700496E05 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F71F684200292B700496E05 /* TextView.swift */; };
 		3F83BE781FF39DFC00E584E9 /* Instantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE771FF39DFC00E584E9 /* Instantiable.swift */; };
 		3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE791FF39E1B00E584E9 /* Storyboard.swift */; };
 		3F83BE801FF3AC3B00E584E9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE7F1FF3AC3B00E584E9 /* CoreDataHelper.swift */; };
@@ -82,6 +83,7 @@
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
 		3F61B2FC1FFAD680007A0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MoviesList.storyboard; sourceTree = "<group>"; };
 		3F61B2FF1FFAD683007A0557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoviesList.strings; sourceTree = "<group>"; };
+		3F71F684200292B700496E05 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		3F83BE771FF39DFC00E584E9 /* Instantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiable.swift; sourceTree = "<group>"; };
 		3F83BE791FF39E1B00E584E9 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		3F83BE7F1FF3AC3B00E584E9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				3F059D461FF3FA8B00D5576B /* Label.swift */,
 				3FA808CE20027AF60036357B /* Button.swift */,
 				3FA808D0200285590036357B /* View.swift */,
+				3F71F684200292B700496E05 /* TextView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */,
 				3FA808CF20027AF60036357B /* Button.swift in Sources */,
 				3F83BE981FF3BF7000E584E9 /* Segue.swift in Sources */,
+				3F71F685200292B700496E05 /* TextView.swift in Sources */,
 				3F059D471FF3FA8B00D5576B /* Label.swift in Sources */,
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
