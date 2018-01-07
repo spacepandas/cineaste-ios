@@ -16,6 +16,8 @@
 		3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* ImprintViewController.swift */; };
 		3F6C887C2002B2FC0052BF24 /* Imprint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887A2002B2FC0052BF24 /* Imprint.storyboard */; };
+		3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */; };
+		3F6C88812002B5400052BF24 /* MovieNight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887F2002B5400052BF24 /* MovieNight.storyboard */; };
 		3F71F685200292B700496E05 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F71F684200292B700496E05 /* TextView.swift */; };
 		3F83BE781FF39DFC00E584E9 /* Instantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE771FF39DFC00E584E9 /* Instantiable.swift */; };
 		3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE791FF39E1B00E584E9 /* Storyboard.swift */; };
@@ -87,6 +89,8 @@
 		3F61B2FF1FFAD683007A0557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoviesList.strings; sourceTree = "<group>"; };
 		3F6C88782002B2C50052BF24 /* ImprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprintViewController.swift; sourceTree = "<group>"; };
 		3F6C887B2002B2FC0052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Imprint.storyboard; sourceTree = "<group>"; };
+		3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightViewController.swift; sourceTree = "<group>"; };
+		3F6C88802002B5400052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieNight.storyboard; sourceTree = "<group>"; };
 		3F71F684200292B700496E05 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		3F83BE771FF39DFC00E584E9 /* Instantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiable.swift; sourceTree = "<group>"; };
 		3F83BE791FF39E1B00E584E9 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 				959E8B751FABC6DB0004E8C3 /* SearchMovies */,
 				95B24EF31FADDB070070912A /* MovieDetail */,
 				3F6C88782002B2C50052BF24 /* ImprintViewController.swift */,
+				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				3F1292ED1FD7C90C00ED5593 /* MovieDetail.storyboard */,
 				95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */,
 				3F6C887A2002B2FC0052BF24 /* Imprint.storyboard */,
+				3F6C887F2002B5400052BF24 /* MovieNight.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				95AE25A51F9531E20067F5F5 /* Main.storyboard in Resources */,
 				3F6C887C2002B2FC0052BF24 /* Imprint.storyboard in Resources */,
 				3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */,
+				3F6C88812002B5400052BF24 /* MovieNight.storyboard in Resources */,
 				3F1292F11FD7C90D00ED5593 /* MovieDetail.storyboard in Resources */,
 				3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */,
 			);
@@ -619,6 +626,7 @@
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				3F1292FC1FD7CE4F00ED5593 /* SeenListCell.swift in Sources */,
+				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,
 				95DC320D1F97E5150014E3EA /* Movie.swift in Sources */,
 				3F1292FA1FD7CC1100ED5593 /* WantToSeeListCell.swift in Sources */,
 				959E8B791FABC99D0004E8C3 /* SearchMoviesCell.swift in Sources */,
@@ -696,6 +704,14 @@
 				3F6C887B2002B2FC0052BF24 /* Base */,
 			);
 			name = Imprint.storyboard;
+			sourceTree = "<group>";
+		};
+		3F6C887F2002B5400052BF24 /* MovieNight.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F6C88802002B5400052BF24 /* Base */,
+			);
+			name = MovieNight.storyboard;
 			sourceTree = "<group>";
 		};
 		95AE25A31F9531E20067F5F5 /* Main.storyboard */ = {
