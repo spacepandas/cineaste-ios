@@ -10,12 +10,29 @@ import UIKit
 import CoreData
 
 class MovieDetailViewController: UIViewController {
-    @IBOutlet weak fileprivate var runtimeLabel: UILabel!
-    @IBOutlet weak fileprivate var votingLabel: UILabel!
-    @IBOutlet weak fileprivate var seenButton: UIButton!
-    @IBOutlet weak fileprivate var mustSeeButton: UIButton!
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
-    @IBOutlet weak fileprivate var titleLabel: UILabel!
+
+    @IBOutlet weak fileprivate var titleLabel: TitleLabel!
+
+    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+        didSet {
+            votingLabel.textColor = .black
+        }
+    }
+
+    @IBOutlet weak fileprivate var seenButton: ActionButton! {
+        didSet {
+            self.seenButton.setTitle(MyMovieListCategory.seen.title.uppercased(), for: .normal)
+        }
+    }
+    @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
+        didSet {
+            self.mustSeeButton.setTitle(MyMovieListCategory.wantToSee.title.uppercased(), for: .normal)
+        }
+    }
+
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
     let storageManager = MovieStorageManager()
@@ -29,6 +46,7 @@ class MovieDetailViewController: UIViewController {
                 if let movie = self.movie {
                     self.runtimeLabel.text = "\(movie.runtime) min"
                     self.votingLabel.text = "\(movie.voteAverage)"
+                    self.releaseDateLabel.text = movie.releaseDate.formatted
                 }
             }
         }
@@ -45,6 +63,7 @@ class MovieDetailViewController: UIViewController {
                 self.descriptionTextView.text = movie.overview
                 self.runtimeLabel.text = "\(movie.runtime) min"
                 self.votingLabel.text = "\(movie.voteAverage)"
+                self.releaseDateLabel.text = movie.releaseDate?.formatted
             }
         }
     }
@@ -52,15 +71,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
-        styleButton(button: mustSeeButton)
-        styleButton(button: seenButton)
         loadMovie()
-    }
-
-    func styleButton(button: UIButton) {
-        button.layer.borderWidth = 1.0
-        button.layer.borderColor = button.tintColor.cgColor
-        button.layer.cornerRadius = 8
     }
 
     // MARK: - Private

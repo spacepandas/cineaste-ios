@@ -24,3 +24,20 @@ public class DescriptionLabel: UILabel {
         self.textColor = UIColor.accentText
     }
 }
+
+public class TitleLabel: UILabel {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    func setup() {
+        self.font = UIFont.systemFont(ofSize: 18.0)
+        self.textColor = UIColor.black
+    }
+}
