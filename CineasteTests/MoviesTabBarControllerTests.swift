@@ -23,7 +23,7 @@ class MoviesTabBarControllerTests: XCTestCase {
 
     func testTabBarViewControllerCount() {
         tabBarController.viewDidLoad()
-        XCTAssertEqual(tabBarController.viewControllers?.count, 2)
+        XCTAssertEqual(tabBarController.viewControllers?.count, 4)
     }
 
     func testTabBarViewControllerHierarchy() {
@@ -31,7 +31,6 @@ class MoviesTabBarControllerTests: XCTestCase {
 
         for viewController in tabBarController.viewControllers! {
             XCTAssert(viewController is UINavigationController)
-            XCTAssert(viewController.childViewControllers.first is MoviesViewController)
         }
     }
     
