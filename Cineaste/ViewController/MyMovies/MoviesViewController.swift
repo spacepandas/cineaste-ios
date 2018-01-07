@@ -89,6 +89,7 @@ extension MoviesViewController: UITableViewDataSource {
             }
 
             cell.category = category
+            cell.selectionStyle = .none
             cell.layer.backgroundColor = UIColor.clear.cgColor
 
             return cell
@@ -99,6 +100,12 @@ extension MoviesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension MoviesViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        guard let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects, !fetchedObjects.isEmpty else { return nil }
+        return indexPath
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
