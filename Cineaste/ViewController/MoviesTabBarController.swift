@@ -24,7 +24,11 @@ class MoviesTabBarController: UITabBarController {
         seenVC.tabBarItem = UITabBarItem(title: MyMovieListCategory.seen.tabBarTitle, image: #imageLiteral(resourceName: "add_to_watchedlist"), tag: 1)
         let seenVCWithNavi = UINavigationController(rootViewController: seenVC)
 
-        viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi]
+        let imprintVC = ImprintViewController.instantiate()
+        imprintVC.tabBarItem = UITabBarItem(title: "About", image: nil, tag: 2)
+        let imprintVCWithNavi = UINavigationController(rootViewController: imprintVC)
+
+        viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, imprintVCWithNavi]
     }
 
 }
