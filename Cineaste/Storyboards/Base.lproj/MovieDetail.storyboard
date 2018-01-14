@@ -9,7 +9,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="614.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="621.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-SV-Cq1">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
@@ -37,7 +36,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="267" width="375" height="347.5"/>
+                                                <rect key="frame" x="0.0" y="267" width="375" height="354.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT7-RW-EIo" customClass="TitleLabel" customModule="Cineaste" customModuleProvider="target">
                                                         <rect key="frame" x="150" y="10" width="75" height="20.5"/>
@@ -45,10 +44,10 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gW3-0b-BAF">
-                                                        <rect key="frame" x="155" y="40.5" width="65" height="15"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gW3-0b-BAF">
+                                                        <rect key="frame" x="156.5" y="40.5" width="62" height="15"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="Gub-ez-KDv">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_release" translatesAutoresizingMaskIntoConstraints="NO" id="Gub-ez-KDv">
                                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="15" id="gfs-AE-kh5"/>
@@ -56,17 +55,17 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-pl-gqc" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
-                                                                <rect key="frame" x="23" y="0.0" width="42" height="15"/>
+                                                                <rect key="frame" x="20" y="0.0" width="42" height="15"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="K6O-D1-kay">
-                                                        <rect key="frame" x="155" y="59.5" width="65" height="15"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="K6O-D1-kay">
+                                                        <rect key="frame" x="156.5" y="59.5" width="62" height="15"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-Dd-MJR">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_runtime" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-Dd-MJR">
                                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="8Fg-Dd-MJR" secondAttribute="height" id="eNG-mt-XIB"/>
@@ -74,7 +73,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-90-udk" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
-                                                                <rect key="frame" x="23" y="0.0" width="42" height="15"/>
+                                                                <rect key="frame" x="20" y="0.0" width="42" height="15"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -82,7 +81,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xav-KJ-l14">
-                                                        <rect key="frame" x="76" y="82.5" width="222" height="30"/>
+                                                        <rect key="frame" x="76" y="89.5" width="222" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sct-hl-B1B" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
@@ -101,7 +100,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="127.5" width="335" height="200"/>
+                                                        <rect key="frame" x="20" y="134.5" width="335" height="200"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -121,7 +120,7 @@
                                                     <constraint firstItem="xav-KJ-l14" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Vmt-OM-DJL"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qT7-RW-EIo" secondAttribute="trailing" constant="10" id="etb-nY-JU6"/>
                                                     <constraint firstAttribute="trailing" secondItem="I2y-N4-pSw" secondAttribute="trailing" constant="20" symbolic="YES" id="fxG-nO-8Rw"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="top" secondItem="K6O-D1-kay" secondAttribute="bottom" constant="8" symbolic="YES" id="hpQ-8B-9mp"/>
+                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="top" secondItem="K6O-D1-kay" secondAttribute="bottom" constant="15" id="hpQ-8B-9mp"/>
                                                     <constraint firstItem="qT7-RW-EIo" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="10" id="xXE-9p-2Bx"/>
                                                 </constraints>
                                             </view>
@@ -131,8 +130,14 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBZ-3T-p4o" customClass="VoteView" customModule="Cineaste" customModuleProvider="target">
                                                         <rect key="frame" x="2" y="2" width="46" height="46"/>
                                                         <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cinema" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-fA-ZQh">
+                                                                <rect key="frame" x="12.5" y="6" width="21" height="9"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="WI4-fA-ZQh" secondAttribute="height" multiplier="64:28" id="VSH-hd-461"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-B3-KML" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
-                                                                <rect key="frame" x="3" y="3" width="40" height="40"/>
+                                                                <rect key="frame" x="3" y="16" width="40" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -140,10 +145,12 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="DgD-B3-KML" secondAttribute="bottom" constant="3" id="514-Lw-v7r"/>
                                                             <constraint firstAttribute="trailing" secondItem="DgD-B3-KML" secondAttribute="trailing" constant="3" id="5u6-2B-5eJ"/>
-                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="top" secondItem="IBZ-3T-p4o" secondAttribute="top" constant="3" id="7do-1g-1gj"/>
-                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="leading" secondItem="IBZ-3T-p4o" secondAttribute="leading" constant="3" id="ZwC-Ol-LYV"/>
+                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="7JQ-0e-da5"/>
+                                                            <constraint firstItem="WI4-fA-ZQh" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="UyD-z8-dip"/>
+                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="centerY" secondItem="IBZ-3T-p4o" secondAttribute="centerY" constant="3" id="YxN-jE-gjS"/>
+                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="top" secondItem="WI4-fA-ZQh" secondAttribute="bottom" constant="1" id="r62-hQ-SWK"/>
+                                                            <constraint firstItem="WI4-fA-ZQh" firstAttribute="width" secondItem="IBZ-3T-p4o" secondAttribute="width" multiplier="0.45" id="sXg-pc-6d2"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -204,7 +211,6 @@
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
                         <outletCollection property="descriptionLabels" destination="BDx-pl-gqc" collectionClass="NSMutableArray" id="aJG-ve-0PW"/>
                         <outletCollection property="descriptionLabels" destination="OTM-90-udk" collectionClass="NSMutableArray" id="qw0-gW-UWp"/>
-                        <outletCollection property="descriptionLabels" destination="DgD-B3-KML" collectionClass="NSMutableArray" id="0sI-tk-OKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBb-XY-tXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,7 +219,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cineaste_detail_flaeche" width="512" height="100"/>
-        <image name="time" width="120" height="120"/>
+        <image name="cineaste_detail_flaeche" width="150" height="50"/>
+        <image name="cinema" width="32" height="14"/>
+        <image name="ic_release" width="16" height="17"/>
+        <image name="ic_runtime" width="16" height="16"/>
     </resources>
 </document>

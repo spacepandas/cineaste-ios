@@ -23,7 +23,11 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
     @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+        didSet {
+            votingLabel.textColor = UIColor.black
+        }
+    }
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
