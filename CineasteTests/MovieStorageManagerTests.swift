@@ -125,9 +125,9 @@ class MovieStorageManagerTests: XCTestCase {
 
         //add 4 movies
         insertMovieItem(id: 1, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-//        insertMovieItem(id: 2, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-//        insertMovieItem(id: 3, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-//        insertMovieItem(id: 4, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+        insertMovieItem(id: 2, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+        insertMovieItem(id: 3, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+        insertMovieItem(id: 4, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
 
         do {
             try mockPersistantContainer.viewContext.save()
