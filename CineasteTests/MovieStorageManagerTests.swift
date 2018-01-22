@@ -101,23 +101,33 @@ class MovieStorageManagerTests: XCTestCase {
 
     func initStubs() {
         func insertMovieItem(id: Int64, overview: String, poster: Data?, posterPath: String, releaseDate: Date, runtime: Int16, title: String, voteAverage: Float, watched: Bool){
-            let object = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: mockPersistantContainer.viewContext)
-            object.setValue(id, forKey: "id")
-            object.setValue(overview, forKey: "overview")
-            object.setValue(poster, forKey: "poster")
-            object.setValue(posterPath, forKey: "posterPath")
-            object.setValue(releaseDate, forKey: "releaseDate")
-            object.setValue(runtime, forKey: "runtime")
-            object.setValue(title, forKey: "title")
-            object.setValue(voteAverage, forKey: "voteAverage")
-            object.setValue(watched, forKey: "watched")
+            let object = StoredMovie(context: mockPersistantContainer.viewContext)
+//            let object = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: mockPersistantContainer.viewContext)
+            object.id = id
+            object.overview = overview
+            object.poster = poster
+            object.posterPath = posterPath
+            object.releaseDate = releaseDate
+            object.runtime = runtime
+            object.title = title
+            object.voteAverage = voteAverage
+            object.watched = watched
+//            object.setValue(id, forKey: "id")
+//            object.setValue(overview, forKey: "overview")
+//            object.setValue(poster, forKey: "poster")
+//            object.setValue(posterPath, forKey: "posterPath")
+//            object.setValue(releaseDate, forKey: "releaseDate")
+//            object.setValue(runtime, forKey: "runtime")
+//            object.setValue(title, forKey: "title")
+//            object.setValue(voteAverage, forKey: "voteAverage")
+//            object.setValue(watched, forKey: "watched")
         }
 
         //add 4 movies
         insertMovieItem(id: 1, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-        insertMovieItem(id: 2, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-        insertMovieItem(id: 3, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
-        insertMovieItem(id: 4, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+//        insertMovieItem(id: 2, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+//        insertMovieItem(id: 3, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
+//        insertMovieItem(id: 4, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true)
 
         do {
             try mockPersistantContainer.viewContext.save()

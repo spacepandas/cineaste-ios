@@ -41,9 +41,10 @@ class MovieStorageManager {
                          title: String,
                          voteAverage: Float,
                          watched: Bool) {
-        guard let storedMovie = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: backgroundContext) as? StoredMovie else { return }
+        let storedMovie = StoredMovie(context: backgroundContext)
+//        guard let storedMovie = NSEntityDescription
+//            .insertNewObject(forEntityName: "StoredMovie",
+//                             into: backgroundContext) as? StoredMovie else { return }
         storedMovie.id = id
         storedMovie.title = title
         storedMovie.overview = overview
@@ -60,9 +61,10 @@ class MovieStorageManager {
 
     func insertMovieItem(with movie: Movie,
                          watched: Bool) {
-        guard let storedMovie = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: backgroundContext) as? StoredMovie else { return }
+        let storedMovie = StoredMovie(context: backgroundContext)
+//        guard let storedMovie = NSEntityDescription
+//            .insertNewObject(forEntityName: "StoredMovie",
+//                             into: backgroundContext) as? StoredMovie else { return }
         storedMovie.id = movie.id
         storedMovie.title = movie.title
         storedMovie.overview = movie.overview
@@ -81,6 +83,7 @@ class MovieStorageManager {
 
     func updateMovieItem(movie: StoredMovie,
                          watched: Bool) {
+//        let storedMovie = StoredMovie(context: backgroundContext)
         guard let storedMovie = NSEntityDescription
             .insertNewObject(forEntityName: "StoredMovie",
                              into: backgroundContext) as? StoredMovie else { return }
