@@ -12,7 +12,6 @@ class MoviesTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
 
         let wantToSeeVC = MoviesViewController.instantiate()
         wantToSeeVC.category = .wantToSee
@@ -33,15 +32,6 @@ class MoviesTabBarController: UITabBarController {
         let imprintVCWithNavi = UINavigationController(rootViewController: imprintVC)
 
         viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, movieNightVCWithNavi, imprintVCWithNavi]
-    }
-
-}
-
-extension MoviesTabBarController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let moviesVC = viewController.childViewControllers.first as? MoviesViewController {
-            moviesVC.category = tabBarController.selectedIndex == 0 ? .wantToSee : .seen
-        }
     }
 }
 

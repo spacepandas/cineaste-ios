@@ -8,8 +8,8 @@
 
 import UIKit
 
-class WantToSeeListCell: UITableViewCell {
-    static let identifier = "WantToSeeListCell"
+class MyMovieListCell: UITableViewCell {
+    static let identifier = "MyMovieListCell"
 
     @IBOutlet var poster: UIImageView!
     @IBOutlet var title: UILabel!

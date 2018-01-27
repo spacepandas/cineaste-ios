@@ -57,7 +57,7 @@
                                             <outlet property="emptyListDescription" destination="VCB-fo-kxy" id="1lc-XR-Yce"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WantToSeeListCell" rowHeight="100" id="hAp-6w-ts1" customClass="WantToSeeListCell" customModule="Cineaste" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMovieListCell" rowHeight="100" id="hAp-6w-ts1" userLabel="MyMovieListCell" customClass="MyMovieListCell" customModule="Cineaste" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hAp-6w-ts1" id="dde-eg-AiL">
@@ -182,31 +182,6 @@
                                             <outlet property="separatorView" destination="wxd-ND-OdM" id="7fQ-SK-0cP"/>
                                             <outlet property="title" destination="yp2-e5-kUz" id="bdf-Wi-Sai"/>
                                             <outlet property="votes" destination="60o-nb-3nP" id="dKl-8s-T0s"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeenListCell" rowHeight="60" id="PFL-wI-4Mc" customClass="SeenListCell" customModule="Cineaste" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PFL-wI-4Mc" id="G5V-dn-xre">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpX-lZ-eZJ">
-                                                    <rect key="frame" x="20" y="20" width="335" height="19.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="SpX-lZ-eZJ" firstAttribute="leading" secondItem="G5V-dn-xre" secondAttribute="leading" constant="20" symbolic="YES" id="XIy-8d-nq8"/>
-                                                <constraint firstAttribute="trailing" secondItem="SpX-lZ-eZJ" secondAttribute="trailing" constant="20" symbolic="YES" id="Xwr-fW-h5N"/>
-                                                <constraint firstItem="SpX-lZ-eZJ" firstAttribute="top" secondItem="G5V-dn-xre" secondAttribute="top" constant="20" symbolic="YES" id="cE5-QT-6GT"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SpX-lZ-eZJ" secondAttribute="bottom" constant="20" symbolic="YES" id="cxq-tN-2TJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="title" destination="SpX-lZ-eZJ" id="nhp-04-VfK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

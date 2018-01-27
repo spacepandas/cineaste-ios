@@ -62,26 +62,14 @@ extension MoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects, !fetchedObjects.isEmpty {
-            switch category {
-            case .wantToSee:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: WantToSeeListCell.identifier, for: indexPath) as? WantToSeeListCell
-                    else {
-                        fatalError("Unable to dequeue cell for identifier: \(WantToSeeListCell.identifier)")
-                }
-
-                cell.configure(with: fetchedObjects[indexPath.row])
-
-                return cell
-            case .seen:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SeenListCell.identifier, for: indexPath) as? SeenListCell
-                    else {
-                        fatalError("Unable to dequeue cell for identifier: \(SeenListCell.identifier)")
-                }
-
-                cell.configure(with: fetchedObjects[indexPath.row])
-
-                return cell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMovieListCell.identifier, for: indexPath) as? MyMovieListCell
+                else {
+                    fatalError("Unable to dequeue cell for identifier: \(MyMovieListCell.identifier)")
             }
+
+            cell.configure(with: fetchedObjects[indexPath.row])
+
+            return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyMoviesCell.identifier, for: indexPath) as? EmptyMoviesCell
                 else {

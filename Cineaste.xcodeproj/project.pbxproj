@@ -10,8 +10,7 @@
 		3F059D471FF3FA8B00D5576B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F059D461FF3FA8B00D5576B /* Label.swift */; };
 		3F1292F11FD7C90D00ED5593 /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292ED1FD7C90C00ED5593 /* MovieDetail.storyboard */; };
 		3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292EF1FD7C90C00ED5593 /* Search.storyboard */; };
-		3F1292FA1FD7CC1100ED5593 /* WantToSeeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* WantToSeeListCell.swift */; };
-		3F1292FC1FD7CE4F00ED5593 /* SeenListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */; };
+		3F1292FA1FD7CC1100ED5593 /* MyMovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* MyMovieListCell.swift */; };
 		3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */; };
 		3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* ImprintViewController.swift */; };
@@ -84,8 +83,7 @@
 		3F1292F41FD7C98400ED5593 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
 		3F1292F61FD7C98800ED5593 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MovieDetail.strings; sourceTree = "<group>"; };
 		3F1292F81FD7C9AA00ED5593 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		3F1292F91FD7CC1100ED5593 /* WantToSeeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToSeeListCell.swift; sourceTree = "<group>"; };
-		3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenListCell.swift; sourceTree = "<group>"; };
+		3F1292F91FD7CC1100ED5593 /* MyMovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMovieListCell.swift; sourceTree = "<group>"; };
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
 		3F61B2FC1FFAD680007A0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MoviesList.storyboard; sourceTree = "<group>"; };
 		3F61B2FF1FFAD683007A0557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoviesList.strings; sourceTree = "<group>"; };
@@ -193,8 +191,7 @@
 		3F8644AD1FFA8F690046114A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3F1292F91FD7CC1100ED5593 /* WantToSeeListCell.swift */,
-				3F1292FB1FD7CE4F00ED5593 /* SeenListCell.swift */,
+				3F1292F91FD7CC1100ED5593 /* MyMovieListCell.swift */,
 				3F8644A61FFA621D0046114A /* EmptyMoviesCell.swift */,
 			);
 			path = Cells;
@@ -648,10 +645,9 @@
 				3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
-				3F1292FC1FD7CE4F00ED5593 /* SeenListCell.swift in Sources */,
 				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,
 				95DC320D1F97E5150014E3EA /* Movie.swift in Sources */,
-				3F1292FA1FD7CC1100ED5593 /* WantToSeeListCell.swift in Sources */,
+				3F1292FA1FD7CC1100ED5593 /* MyMovieListCell.swift in Sources */,
 				959E8B791FABC99D0004E8C3 /* SearchMoviesCell.swift in Sources */,
 				3F83BE961FF3BA7600E584E9 /* SearchMoviesSource.swift in Sources */,
 				959E8B771FABC6F50004E8C3 /* SearchMoviesViewController.swift in Sources */,
