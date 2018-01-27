@@ -10,13 +10,13 @@ import XCTest
 import CoreData
 @testable import Cineaste
 
-class MovieStorageManagerTests: XCTestCase {
-    var sut: MovieStorageManager!
+class MovieStorageTests: XCTestCase {
+    var sut: MovieStorage!
 
     override func setUp() {
         super.setUp()
         initStubs() // Create stubs
-        sut = MovieStorageManager(container: mockPersistantContainer)
+        sut = MovieStorage(container: mockPersistantContainer)
     }
 
     override func tearDown() {

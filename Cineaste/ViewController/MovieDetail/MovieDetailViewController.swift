@@ -44,7 +44,7 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
-    let storageManager = MovieStorageManager()
+    let storageManager = MovieStorage()
 
     var movie: Movie? {
         didSet {
