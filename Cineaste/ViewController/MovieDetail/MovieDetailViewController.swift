@@ -97,23 +97,23 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        storageManager.insertMovieItem(with: movie, watched: false)
-        storageManager.save(handler: { _, _ in
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-            }
-        })
+        saveMovie(withWatched: false)
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
+        saveMovie(withWatched: true)
+    }
+
+    // MARK: - Private
+
+    fileprivate func saveMovie(withWatched watched: Bool) {
         guard let movie = movie else { return }
-        storageManager.insertMovieItem(with: movie, watched: true)
-        storageManager.save(handler: { _, _ in
+        storageManager.insertMovieItem(with: movie, watched: watched) { _ in
+            // TODO: We should definitely show an error when insertion failed
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
-        })
+        }
     }
 
 }

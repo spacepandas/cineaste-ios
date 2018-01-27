@@ -25,9 +25,17 @@ class MovieStorageManagerTests: XCTestCase {
     }
 
     func testCreateStoredMovie() {
+        let expc = expectation(description: "StoredMovie should be created")
         let id: Int64 = 100
-        sut.insertMovieItem(id: id, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: false)
-        sut.save()
+        sut.insertMovieItem(id: id, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: false) { result in
+            switch result {
+            case .success:
+                expc.fulfill()
+            case .error:
+                break
+            }
+        }
+        wait(for: [expc], timeout: 1)
 
         let storedMovies = sut.fetchAll()
         let storedMovie = storedMovies.filter({ $0.id == id }).first
@@ -36,24 +44,40 @@ class MovieStorageManagerTests: XCTestCase {
     }
 
     func testCreateStoredMovieWithMovie() {
-        sut.insertMovieItem(with: movie, watched: true)
-        sut.save()
-
+        let expc = expectation(description: "StoredMovie should be created from movie")
+        sut.insertMovieItem(with: movie, watched: true) { result in
+            switch result {
+            case .success:
+                expc.fulfill()
+            case .error:
+                break
+            }
+        }
+        wait(for: [expc], timeout: 1.0)
         let storedMovies = sut.fetchAll()
         let storedMovie = storedMovies.filter({ $0.id == movie.id }).first
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, movie.id)
+
     }
 
     func testUpdateStoredMovie() {
+        let expc = expectation(description: "Update status of movie should be set")
         let newWatchedValue = false
 
         let movies = sut.fetchAll()
         let movie = movies.first!
         XCTAssertEqual(movie.watched, true)
 
-        sut.updateMovieItem(movie: movie, watched: newWatchedValue)
-        sut.save()
+        sut.updateMovieItem(movie: movie, watched: newWatchedValue) { result in
+            switch result {
+            case .success:
+                expc.fulfill()
+            case .error:
+                break
+            }
+        }
+        wait(for: [expc], timeout: 1.0)
 
         let updatedMovies = sut.fetchAll()
         let updatedMovie = updatedMovies.first!
@@ -67,14 +91,23 @@ class MovieStorageManagerTests: XCTestCase {
     }
 
     func testRemoveMovie() {
+        let expc = expectation(description: "Movie should be removed")
         let movies = sut.fetchAll()
         let movie = movies.first!
 
         let numberOfMovies = movies.count
 
-        sut.remove(movie)
-        sut.save()
+        sut.remove(movie) { result in
 
+            switch result {
+            case .success:
+                expc.fulfill()
+            case .error:
+                break
+            }
+        }
+
+        wait(for: [expc], timeout: 1.0)
         XCTAssertEqual(numberOfItemsInPersistentStore(), numberOfMovies-1)
     }
 

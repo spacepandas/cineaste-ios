@@ -1,4 +1,6 @@
 ---
+disabled_rules:
+    - todo
 # Enable more optional rules
 opt_in_rules:
   - implicit_return
