@@ -16,11 +16,6 @@ class MoviesTabBarControllerTests: XCTestCase {
         super.setUp()
     }
 
-    func testTabBarControllerDelegateIsNotNil() {
-        tabBarController.viewDidLoad()
-        XCTAssertNotNil(tabBarController.delegate)
-    }
-
     func testTabBarViewControllerCount() {
         tabBarController.viewDidLoad()
         XCTAssertEqual(tabBarController.viewControllers?.count, 4)
