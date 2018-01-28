@@ -45,7 +45,7 @@
 		3FD886461FF2C46400A86ACF /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD886451FF2C46400A86ACF /* Appearance.swift */; };
 		45E30914AA64816E9D8F1F02 /* Pods_Cineaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83ED5B07D59B9D83B9F446 /* Pods_Cineaste.framework */; };
 		634BFA4AFCFA1EDED2BA139C /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */; };
-		9528112E201D05AD00F3EC76 /* SuccessOrError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* SuccessOrError.swift */; };
+		9528112E201D05AD00F3EC76 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
 		95281130201D087800F3EC76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
 		9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552262C1FAFB5D300323982 /* StoredMovie.swift */; };
 		9583289A1FBB81340084CF80 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
@@ -118,7 +118,7 @@
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93847470A61BB0CE79904886 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
-		9528112D201D05AD00F3EC76 /* SuccessOrError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessOrError.swift; sourceTree = "<group>"; };
+		9528112D201D05AD00F3EC76 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		9552262C1FAFB5D300323982 /* StoredMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredMovie.swift; sourceTree = "<group>"; };
 		958328991FBB81340084CF80 /* cineaste.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = cineaste.xcassets; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				3F83BE771FF39DFC00E584E9 /* Instantiable.swift */,
 				3F83BE791FF39E1B00E584E9 /* Storyboard.swift */,
 				3F83BE971FF3BF7000E584E9 /* Segue.swift */,
-				9528112D201D05AD00F3EC76 /* SuccessOrError.swift */,
+				9528112D201D05AD00F3EC76 /* Result.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -631,7 +631,7 @@
 				3FCC71371FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift in Sources */,
 				3F8644AB1FFA72EE0046114A /* MoviesTabBarController.swift in Sources */,
 				9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */,
-				9528112E201D05AD00F3EC76 /* SuccessOrError.swift in Sources */,
+				9528112E201D05AD00F3EC76 /* Result.swift in Sources */,
 				3FA808CF20027AF60036357B /* Button.swift in Sources */,
 				3F83BE981FF3BF7000E584E9 /* Segue.swift in Sources */,
 				3F71F685200292B700496E05 /* TextView.swift in Sources */,

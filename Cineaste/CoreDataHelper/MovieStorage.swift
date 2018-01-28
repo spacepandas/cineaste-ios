@@ -40,7 +40,7 @@ class MovieStorage {
                          title: String,
                          voteAverage: Float,
                          watched: Bool,
-                         handler: ((_ result: SuccessOrError<Bool>) -> Void)? = nil) {
+                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = id
@@ -61,7 +61,7 @@ class MovieStorage {
 
     func insertMovieItem(with movie: Movie,
                          watched: Bool,
-                         handler: ((_ result: SuccessOrError<Bool>) -> Void)? = nil) {
+                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = movie.id
@@ -85,7 +85,7 @@ class MovieStorage {
 
     func updateMovieItem(movie: StoredMovie,
                          watched: Bool,
-                         handler: ((_ result: SuccessOrError<Bool>) -> Void)? = nil) {
+                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = movie.id
@@ -112,7 +112,7 @@ class MovieStorage {
     }
 
     func remove(_ storedMovie: StoredMovie,
-                handler: ((_ result: SuccessOrError<Bool>) -> Void)? = nil) {
+                handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let object = self.backgroundContext.object(with: storedMovie.objectID)
             self.backgroundContext.delete(object)
@@ -120,14 +120,14 @@ class MovieStorage {
         }
     }
 
-    fileprivate func save(handler: ((_ result: SuccessOrError<Bool>) -> Void)? = nil) {
+    fileprivate func save(handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         if backgroundContext.hasChanges {
             do {
                 try backgroundContext.save()
-                handler?(SuccessOrError.success(true))
+                handler?(Result.success(true))
             } catch {
                 print("Save error \(error)")
-                handler?(SuccessOrError.error(error))
+                handler?(Result.error(error))
             }
         }
     }

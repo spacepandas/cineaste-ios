@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SuccessOrError<SuccessType> {
+enum Result<SuccessType> {
     case success(SuccessType)
     case error(Error)
 }
