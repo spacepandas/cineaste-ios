@@ -69,7 +69,7 @@ class MovieStorageTests: XCTestCase {
         let movie = movies.first!
         XCTAssertEqual(movie.watched, true)
 
-        sut.updateMovieItem(movie: movie, watched: newWatchedValue) { result in
+        sut.updateMovieItem(with: movie, watched: newWatchedValue) { result in
             switch result {
             case .success:
                 expc.fulfill()
