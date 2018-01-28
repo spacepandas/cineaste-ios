@@ -37,6 +37,15 @@ enum MyMovieListCategory: String {
         }
     }
 
+    var image: UIImage {
+        switch self {
+        case .wantToSee:
+            return #imageLiteral(resourceName: "add_to_watchlist")
+        case .seen:
+            return #imageLiteral(resourceName: "add_to_watchedlist")
+        }
+    }
+
     var tabBarTitle: String {
         switch self {
         case .wantToSee:

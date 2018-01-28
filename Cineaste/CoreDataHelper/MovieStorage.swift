@@ -83,7 +83,7 @@ class MovieStorage {
         }
     }
 
-    func updateMovieItem(movie: StoredMovie,
+    func updateMovieItem(with movie: StoredMovie,
                          watched: Bool,
                          handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {

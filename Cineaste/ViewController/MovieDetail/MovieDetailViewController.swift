@@ -115,7 +115,7 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         } else if let storedMovie = storedMovie {
-            storageManager.updateMovieItem(movie: storedMovie, watched: watched) {_ in
+            storageManager.updateMovieItem(with: storedMovie, watched: watched) {_ in
                 // TODO: We should definitely show an error when insertion failed
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
