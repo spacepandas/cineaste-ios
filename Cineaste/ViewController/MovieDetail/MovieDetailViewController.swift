@@ -10,13 +10,41 @@ import UIKit
 import CoreData
 
 class MovieDetailViewController: UIViewController {
-    @IBOutlet weak fileprivate var runtimeLabel: UILabel!
-    @IBOutlet weak fileprivate var votingLabel: UILabel!
-    @IBOutlet weak fileprivate var seenButton: UIButton!
-    @IBOutlet weak fileprivate var mustSeeButton: UIButton!
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
-    @IBOutlet weak fileprivate var titleLabel: UILabel!
+
+    @IBOutlet weak fileprivate var titleLabel: TitleLabel!
+
+    @IBOutlet var descriptionLabels: [DescriptionLabel]! {
+        didSet {
+            for label in descriptionLabels {
+                label.textColor = UIColor.basicBackground
+            }
+        }
+    }
+    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
+    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+        didSet {
+            votingLabel.textColor = UIColor.black
+        }
+    }
+
+    @IBOutlet weak fileprivate var seenButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
+            self.seenButton.setTitle(title, for: .normal)
+        }
+    }
+    @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
+            self.mustSeeButton.setTitle(title, for: .normal)
+        }
+    }
+
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
+
+    let storageManager = MovieStorage()
 
     var movie: Movie? {
         didSet {
@@ -25,9 +53,26 @@ class MovieDetailViewController: UIViewController {
                 self.titleLabel.text = self.movie?.title
                 self.descriptionTextView.text = self.movie?.overview
                 if let movie = self.movie {
-                    self.runtimeLabel.text = "\(movie.runtime) m"
+                    self.runtimeLabel.text = "\(movie.runtime) min"
                     self.votingLabel.text = "\(movie.voteAverage)"
+                    self.releaseDateLabel.text = movie.releaseDate.formatted
                 }
+            }
+        }
+    }
+
+    var storedMovie: StoredMovie? {
+        didSet {
+            guard let movie = self.storedMovie else { return }
+            DispatchQueue.main.async {
+                if let moviePoster = movie.poster {
+                    self.posterImageView.image = UIImage(data: moviePoster)
+                }
+                self.titleLabel.text = movie.title
+                self.descriptionTextView.text = movie.overview
+                self.runtimeLabel.text = "\(movie.runtime) min"
+                self.votingLabel.text = "\(movie.voteAverage)"
+                self.releaseDateLabel.text = movie.releaseDate?.formatted
             }
         }
     }
@@ -35,15 +80,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
-        styleButton(button: mustSeeButton)
-        styleButton(button: seenButton)
         loadMovie()
-    }
-
-    func styleButton(button: UIButton) {
-        button.layer.borderWidth = 1.0
-        button.layer.borderColor = button.tintColor.cgColor
-        button.layer.cornerRadius = 8
     }
 
     // MARK: - Private
@@ -60,23 +97,32 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        AppDelegate.persistentContainer.performBackgroundTask { context in
-            StoredMovie.insertOrUpdate(movie, watched: false, withContext: context)
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
+        saveMovie(withWatched: false)
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        AppDelegate.persistentContainer.performBackgroundTask { context in
-            StoredMovie.insertOrUpdate(movie, watched: true, withContext: context)
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
+        saveMovie(withWatched: true)
+    }
+
+    // MARK: - Private
+
+    fileprivate func saveMovie(withWatched watched: Bool) {
+        if let movie = movie {
+            storageManager.insertMovieItem(with: movie, watched: watched) { _ in
+                // TODO: We should definitely show an error when insertion failed
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        } else if let storedMovie = storedMovie {
+            storageManager.updateMovieItem(with: storedMovie, watched: watched) {_ in
+                // TODO: We should definitely show an error when insertion failed
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
+
     }
 
 }

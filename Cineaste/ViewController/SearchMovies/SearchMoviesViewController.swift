@@ -139,6 +139,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
 
 extension SearchMoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         selectedMovie = dataSource.movies[indexPath.row]
 
         DispatchQueue.main.async {

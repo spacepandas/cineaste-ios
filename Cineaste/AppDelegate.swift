@@ -31,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc
     func contextDidSave(notification: Notification) {
-        AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
+        AppDelegate.viewContext.perform {
+            AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
+        }
     }
 
     static var persistentContainer: NSPersistentContainer = {

@@ -10,8 +10,11 @@ import UIKit
 
 enum Storyboard: String {
     case main = "Main"
+    case movieList = "MoviesList"
     case search = "Search"
     case movieDetail = "MovieDetail"
+    case imprint = "Imprint"
+    case movieNight = "MovieNight"
 }
 
 extension Storyboard {
