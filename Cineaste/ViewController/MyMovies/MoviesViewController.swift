@@ -37,8 +37,11 @@ class MoviesViewController: UIViewController {
         }
     }
 
-    var fetchedResultsManager = FetchedResultsManager()
+    let fetchedResultsManager = FetchedResultsManager()
+    let storageManager = MovieStorage()
     private var selectedMovie: StoredMovie?
+
+    let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
     override func viewDidLoad() {
         super.viewDidLoad()
