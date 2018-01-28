@@ -14,6 +14,9 @@ class MoviesViewController: UIViewController {
         didSet {
             title = category.title
 
+            emptyListLabel.text =
+                NSLocalizedString("Du hast noch keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
+                    comment: "Description for empty movie list")
             //only update if category changed
             guard oldValue != category else { return }
             if fetchedResultsManager.controller == nil {
@@ -28,6 +31,7 @@ class MoviesViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var emptyListLabel: UILabel!
     @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
             myMoviesTableView.dataSource = self
@@ -45,10 +49,29 @@ class MoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.basicBackground
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
             myMoviesTableView.reloadData()
+            hideTableViewIfEmpty()
+        }
+    }
+
+    // MARK: - Private
+    fileprivate func hideTableViewIfEmpty() {
+        let hideTableView =
+            self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty
+            ?? true
+
+        DispatchQueue.main.async {
+            UIView.animate(
+                withDuration: 0.2,
+                animations: {
+                    self.myMoviesTableView.alpha = hideTableView ? 0 : 1
+            },
+                completion: { _ in
+                    self.myMoviesTableView.isHidden = hideTableView
+            })
         }
     }
 }
@@ -57,34 +80,20 @@ class MoviesViewController: UIViewController {
 
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects else {
-            return 1
-        }
-        return fetchedObjects.isEmpty ? 1 : fetchedObjects.count
+        return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects, !fetchedObjects.isEmpty {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMovieListCell.identifier, for: indexPath) as? MyMovieListCell
-                else {
-                    fatalError("Unable to dequeue cell for identifier: \(MyMovieListCell.identifier)")
-            }
-
-            cell.configure(with: fetchedObjects[indexPath.row])
-
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyMoviesCell.identifier, for: indexPath) as? EmptyMoviesCell
-                else {
-                    fatalError("Unable to dequeue cell for identifier: \(EmptyMoviesCell.identifier)")
-            }
-
-            cell.category = category
-            cell.selectionStyle = .none
-            cell.layer.backgroundColor = UIColor.clear.cgColor
-
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMovieListCell.identifier, for: indexPath) as? MyMovieListCell
+            else {
+                fatalError("Unable to dequeue cell for identifier: \(MyMovieListCell.identifier)")
         }
+
+        if let controller = fetchedResultsManager.controller {
+            cell.configure(with: controller.object(at: indexPath))
+        }
+
+        return cell
     }
 }
 
@@ -139,6 +148,7 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         myMoviesTableView.endUpdates()
+        hideTableViewIfEmpty()
     }
 }
 

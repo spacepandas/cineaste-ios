@@ -28,37 +28,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-kG-Gg1">
+                                <rect key="frame" x="166" y="355" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt5-ya-K37">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyMoviesCell" rowHeight="100" id="o7J-dQ-y7G" customClass="EmptyMoviesCell" customModule="Cineaste" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o7J-dQ-y7G" id="CNP-AA-ZOE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCB-fo-kxy">
-                                                    <rect key="frame" x="20" y="20" width="335" height="59.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="VCB-fo-kxy" secondAttribute="bottom" constant="20" symbolic="YES" id="Deq-K8-fXS"/>
-                                                <constraint firstItem="VCB-fo-kxy" firstAttribute="leading" secondItem="CNP-AA-ZOE" secondAttribute="leading" constant="20" symbolic="YES" id="FK9-RM-aBu"/>
-                                                <constraint firstItem="VCB-fo-kxy" firstAttribute="top" secondItem="CNP-AA-ZOE" secondAttribute="top" constant="20" symbolic="YES" id="PeR-e1-Sld"/>
-                                                <constraint firstAttribute="trailing" secondItem="VCB-fo-kxy" secondAttribute="trailing" constant="20" symbolic="YES" id="oxb-Di-snz"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="emptyListDescription" destination="VCB-fo-kxy" id="1lc-XR-Yce"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMovieListCell" rowHeight="100" id="hAp-6w-ts1" userLabel="MyMovieListCell" customClass="MyMovieListCell" customModule="Cineaste" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hAp-6w-ts1" id="dde-eg-AiL">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
@@ -191,7 +172,11 @@
                         <constraints>
                             <constraint firstItem="xt5-ya-K37" firstAttribute="trailing" secondItem="u7c-Dj-4pb" secondAttribute="trailing" id="3CD-8A-XsK"/>
                             <constraint firstItem="xt5-ya-K37" firstAttribute="leading" secondItem="u7c-Dj-4pb" secondAttribute="leading" id="ApK-1B-XmR"/>
+                            <constraint firstItem="bGK-kG-Gg1" firstAttribute="left" relation="greaterThanOrEqual" secondItem="u7c-Dj-4pb" secondAttribute="left" constant="20" id="K8h-T8-S9V"/>
+                            <constraint firstItem="bGK-kG-Gg1" firstAttribute="centerY" secondItem="u7c-Dj-4pb" secondAttribute="centerY" id="NGb-k8-cmj"/>
                             <constraint firstItem="xt5-ya-K37" firstAttribute="bottom" secondItem="u7c-Dj-4pb" secondAttribute="bottom" id="eb0-ZW-YKE"/>
+                            <constraint firstItem="u7c-Dj-4pb" firstAttribute="right" relation="greaterThanOrEqual" secondItem="bGK-kG-Gg1" secondAttribute="right" constant="20" id="huk-jb-eEN"/>
+                            <constraint firstItem="bGK-kG-Gg1" firstAttribute="centerX" secondItem="u7c-Dj-4pb" secondAttribute="centerX" id="jo5-3I-Wfe"/>
                             <constraint firstItem="xt5-ya-K37" firstAttribute="top" secondItem="u7c-Dj-4pb" secondAttribute="top" id="wmt-d4-aGf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u7c-Dj-4pb"/>
@@ -204,6 +189,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="KTZ-QA-PXo"/>
                         <outlet property="myMoviesTableView" destination="xt5-ya-K37" id="XQ7-My-Mne"/>
                     </connections>
                 </viewController>
