@@ -44,19 +44,20 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
-    let storageManager = MovieStorage()
+    var storageManager: MovieStorage?
 
     var movie: Movie? {
         didSet {
+            guard let movie = movie else { return }
             DispatchQueue.main.async {
-                self.posterImageView.image = self.movie?.poster
-                self.titleLabel.text = self.movie?.title
-                self.descriptionTextView.text = self.movie?.overview
-                if let movie = self.movie {
-                    self.runtimeLabel.text = "\(movie.runtime) min"
-                    self.votingLabel.text = "\(movie.voteAverage)"
-                    self.releaseDateLabel.text = movie.releaseDate.formatted
+                if let moviePoster = movie.poster {
+                    self.posterImageView.image = moviePoster
                 }
+                self.titleLabel.text = movie.title
+                self.descriptionTextView.text = movie.overview
+                self.runtimeLabel.text = "\(movie.runtime) min"
+                self.votingLabel.text = "\(movie.voteAverage)"
+                self.releaseDateLabel.text = movie.releaseDate.formatted
             }
         }
     }
@@ -80,26 +81,8 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
-        loadMovie()
     }
 
-    // MARK: - Private
-
-    fileprivate func loadMovie() {
-        guard let movie = movie else {
-            return
-        }
-        Webservice.load(resource: movie.get) { [weak self] result in
-            guard case let .success(detailedMovie) = result else {
-                // TODO: We should handle the error
-                return
-            }
-
-            detailedMovie.poster = movie.poster
-            self?.movie = detailedMovie
-        }
-
-    }
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
@@ -113,6 +96,7 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private
 
     fileprivate func saveMovie(withWatched watched: Bool) {
+        guard let storageManager = storageManager else { return }
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { _ in
                 // TODO: We should definitely show an error when insertion failed

@@ -9,17 +9,11 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
-    @IBOutlet var moviesTableView: UITableView! {
-        didSet {
-            moviesTableView.dataSource = dataSource
-            moviesTableView.delegate = self
-        }
-    }
+    var movies: [Movie] = []
+    var selectedMovie: Movie?
+    var storageManager: MovieStorage?
 
-    private var selectedMovie: Movie?
     private var searchDelayTimer: Timer?
-
-    private let dataSource = SearchMoviesSource()
 
     lazy var resultSearchController: UISearchController  = {
         let resultSearchController = UISearchController(searchResultsController: nil)
@@ -30,11 +24,25 @@ class SearchMoviesViewController: UIViewController {
         return resultSearchController
     }()
 
+    @IBOutlet var moviesTableView: UITableView! {
+        didSet {
+            moviesTableView.dataSource = self
+            moviesTableView.delegate = self
+
+            moviesTableView.estimatedRowHeight = 100
+            moviesTableView.rowHeight = UITableViewAutomaticDimension
+
+            moviesTableView.backgroundColor = UIColor.clear
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.basicBackground
+
         loadRecent { [weak self] movies in
-            self?.dataSource.movies = movies
+            self?.movies = movies
             DispatchQueue.main.async {
                 self?.moviesTableView.reloadData()
             }
@@ -70,7 +78,14 @@ class SearchMoviesViewController: UIViewController {
         switch identifier {
         case .showMovieDetail:
             let vc = segue.destination as? MovieDetailViewController
-            vc?.movie = selectedMovie
+            vc?.storageManager = storageManager
+
+            guard let selectedMovie = selectedMovie else { return }
+            loadDetails(for: selectedMovie) { detailedMovie in
+                vc?.movie = detailedMovie
+            }
+        default:
+            return
         }
     }
 
@@ -99,38 +114,6 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
-    // MARK: - Load data
-
-    fileprivate func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
-        Webservice.load(resource: Movie.latestReleases()) { result in
-            guard case let .success(movies) = result else {
-                // TODO: We should handle the error
-                handler([])
-                return
-            }
-            handler(movies)
-        }
-    }
-
-    fileprivate func loadMovies(forQuery query: String?, handler: @escaping ([Movie]) -> Void) {
-        if let query = query, !query.isEmpty {
-            Webservice.load(resource: Movie.search(withQuery: query)) { result in
-                guard case let .success(movies) = result else {
-                    // TODO: We should handle the error
-                    handler([])
-                    return
-                }
-                handler(movies)
-            }
-        } else {
-            loadRecent { [weak self] movies in
-                self?.dataSource.movies = movies
-                DispatchQueue.main.async {
-                    self?.moviesTableView.reloadData()
-                }
-            }
-        }
-    }
 }
 
 extension SearchMoviesViewController: UISearchResultsUpdating {
@@ -138,7 +121,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.dataSource.movies = movies
+                self?.movies = movies
                 DispatchQueue.main.async {
                     self?.moviesTableView.reloadData()
                 }
@@ -147,16 +130,21 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
     }
 }
 
-extension SearchMoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        selectedMovie = dataSource.movies[indexPath.row]
+extension SearchMoviesViewController: SearchMoviesCellDelegate {
+    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
+        guard let storageManager = storageManager else { return }
+        loadDetails(for: movie) { detailedMovie in
+            storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
+                guard case .success = result else {
+                    // TODO: We should definitely show an error when updating failed
+                    return
+                }
 
-        DispatchQueue.main.async {
-            self.resultSearchController.isActive = false
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
-
-        perform(segue: .showMovieDetail, sender: self)
     }
 }
 

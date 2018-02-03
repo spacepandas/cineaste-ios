@@ -184,13 +184,14 @@
                     <navigationItem key="navigationItem" id="SCx-6I-lgO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Ti-Ek-6CL">
                             <connections>
-                                <segue destination="mxJ-DZ-Bxk" kind="presentation" id="ApT-SP-eUs"/>
+                                <action selector="triggerSearchMovieAction:" destination="B9b-Vg-V1Y" id="6FJ-bW-hrp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="KTZ-QA-PXo"/>
                         <outlet property="myMoviesTableView" destination="xt5-ya-K37" id="XQ7-My-Mne"/>
+                        <segue destination="mxJ-DZ-Bxk" kind="presentation" identifier="ShowSearchFromMovieList" id="Mf1-Xj-P5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Np-YM-7eb" userLabel="First Responder" sceneMemberID="firstResponder"/>
