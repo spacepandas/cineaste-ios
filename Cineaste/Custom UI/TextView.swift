@@ -27,9 +27,10 @@ public class DescriptionTextView: UITextView {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7
 
+        let attributes = [NSAttributedStringKey.paragraphStyle: style,
+                          NSAttributedStringKey.font: font,
+                          NSAttributedStringKey.foregroundColor: color]
         self.attributedText = NSAttributedString(string: self.text,
-                                                 attributes: [NSAttributedStringKey.paragraphStyle: style,
-                                                              NSAttributedStringKey.font: font,
-                                                              NSAttributedStringKey.foregroundColor: color])
+                                                 attributes: attributes)
     }
 }

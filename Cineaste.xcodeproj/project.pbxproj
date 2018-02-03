@@ -164,7 +164,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F059D481FF3FA9C00D5576B /* Custom */ = {
+		3F059D481FF3FA9C00D5576B /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
 				3FD886451FF2C46400A86ACF /* Appearance.swift */,
@@ -173,7 +173,7 @@
 				3FA808D0200285590036357B /* View.swift */,
 				3F71F684200292B700496E05 /* TextView.swift */,
 			);
-			path = Custom;
+			path = "Custom UI";
 			sourceTree = "<group>";
 		};
 		3F8644AC1FFA8F590046114A /* CoreDataHelper */ = {
@@ -271,7 +271,7 @@
 				95D32F621F9AA2D100497ED2 /* Utils */,
 				95DC32021F97E0FB0014E3EA /* Networking */,
 				3FBD8F931FF3FC6400AD5F02 /* Extension */,
-				3F059D481FF3FA9C00D5576B /* Custom */,
+				3F059D481FF3FA9C00D5576B /* Custom UI */,
 				3F8644AC1FFA8F590046114A /* CoreDataHelper */,
 				95DC32011F97E0EF0014E3EA /* Models */,
 				95DC32001F97E0E20014E3EA /* Storyboards */,
