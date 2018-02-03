@@ -9,7 +9,12 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
-    var movies: [Movie] = []
+    var movies: [Movie] = [] {
+        didSet {
+            moviesTableView.reloadData()
+        }
+    }
+
     var selectedMovie: Movie?
     var storageManager: MovieStorage?
 
