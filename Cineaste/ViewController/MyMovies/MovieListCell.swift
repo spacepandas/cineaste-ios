@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieListCell: UITableViewCell {
-    static let identifier = "MyMovieListCell"
+    static let identifier = "MovieListCell"
 
     @IBOutlet var poster: UIImageView!
     @IBOutlet var title: UILabel!

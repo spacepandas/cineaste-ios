@@ -52,7 +52,7 @@ class MovieListCellTests: XCTestCase {
     }
 
     func testCellIdentifier() {
-        XCTAssertEqual(MovieListCell.identifier, "MyMovieListCell")
+        XCTAssertEqual(MovieListCell.identifier, "MovieListCell")
     }
 
     private let storedMovie: StoredMovie = {
