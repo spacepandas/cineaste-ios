@@ -11,7 +11,9 @@ import UIKit
 class SearchMoviesViewController: UIViewController {
     var movies: [Movie] = [] {
         didSet {
-            moviesTableView.reloadData()
+            DispatchQueue.main.async {
+                self.moviesTableView.reloadData()
+            }
         }
     }
 
