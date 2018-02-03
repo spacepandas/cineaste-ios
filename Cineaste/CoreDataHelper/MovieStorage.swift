@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class MovieStorage {
-// swiftlint:disable implicitly_unwrapped_optional
+    // swiftlint:disable:next implicitly_unwrapped_optional
     let persistentContainer: NSPersistentContainer!
 
     // MARK: Init with dependency
@@ -78,7 +78,6 @@ class MovieStorage {
             storedMovie.voteAverage = movie.voteAverage
 
             storedMovie.watched = watched
-
             self.save(handler: handler)
         }
     }
@@ -104,7 +103,7 @@ class MovieStorage {
         }
     }
 
-    /// Must be called on main thread because of core data view contexh
+    /// Must be called on main thread because of core data view context
     func fetchAll() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         let results = try? persistentContainer.viewContext.fetch(request)

@@ -8,8 +8,6 @@
 
 import UIKit
 
-// swiftlint:disable force_cast
-
 protocol Instantiable: class {
     static var storyboard: Storyboard { get }
     static var storyboardID: String? { get }
@@ -22,8 +20,10 @@ extension Instantiable {
         let sb = storyboard.load()
         let instance: Self
         if let id = storyboardID {
+            // swiftlint:disable:next force_cast
             instance = sb.instantiateViewController(withIdentifier: id) as! Self
         } else {
+            // swiftlint:disable:next force_cast
             instance = sb.instantiateInitialViewController() as! Self
         }
 
@@ -35,6 +35,7 @@ extension Instantiable {
     }
 
     static func instantiateInNavigationController() -> UINavigationController {
+        // swiftlint:disable:next force_cast
         let instance = instantiate() as! UIViewController
         let navi = UINavigationController(rootViewController: instance)
         return navi

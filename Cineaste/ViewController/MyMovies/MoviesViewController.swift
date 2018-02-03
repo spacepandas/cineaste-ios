@@ -13,10 +13,10 @@ class MoviesViewController: UIViewController {
     var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
-
             emptyListLabel.text =
                 NSLocalizedString("Du hast keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
                     comment: "Description for empty movie list")
+
             //only update if category changed
             guard oldValue != category else { return }
             if fetchedResultsManager.controller == nil {
@@ -61,7 +61,7 @@ class MoviesViewController: UIViewController {
     fileprivate func hideTableViewIfEmpty() {
         let hideTableView =
             self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty
-            ?? true
+                ?? true
 
         DispatchQueue.main.async {
             UIView.animate(
