@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class MoviesViewController: UIViewController {
-    var category: MyMovieListCategory = .wantToSee {
+    var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
 

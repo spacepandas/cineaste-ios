@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum MyMovieListCategory: String {
+enum MovieListCategory: String {
     case wantToSee
     case seen
 

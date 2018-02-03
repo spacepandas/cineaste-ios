@@ -12,8 +12,8 @@ extension MoviesViewController {
 
     // MARK: - iOS 10 functions
 
-    func action(for category: MyMovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
-        let newCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
+    func action(for category: MovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
+        let newCategory: MovieListCategory = category == .seen ? .wantToSee : .seen
         let newWatchedValue = newCategory == .seen ? true : false
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.title) { _, _ in
@@ -54,8 +54,8 @@ extension MoviesViewController {
     // MARK: - iOS 11 functions
 
     @available(iOS 11.0, *)
-    func action(for category: MyMovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
-        let newCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
+    func action(for category: MovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
+        let newCategory: MovieListCategory = category == .seen ? .wantToSee : .seen
         let newWatchedValue = newCategory == .seen ? true : false
 
         let action = UIContextualAction(style: .normal, title: newCategory.title, handler: { (_, _, success: @escaping (Bool) -> Void) in

@@ -15,12 +15,12 @@ class MoviesTabBarController: UITabBarController {
 
         let wantToSeeVC = MoviesViewController.instantiate()
         wantToSeeVC.category = .wantToSee
-        wantToSeeVC.tabBarItem = UITabBarItem(title: MyMovieListCategory.wantToSee.tabBarTitle, image: MyMovieListCategory.wantToSee.image, tag: 0)
+        wantToSeeVC.tabBarItem = UITabBarItem(title: MovieListCategory.wantToSee.tabBarTitle, image: MovieListCategory.wantToSee.image, tag: 0)
         let wantToSeeVCWithNavi = UINavigationController(rootViewController: wantToSeeVC)
 
         let seenVC = MoviesViewController.instantiate()
         seenVC.category = .seen
-        seenVC.tabBarItem = UITabBarItem(title: MyMovieListCategory.seen.tabBarTitle, image: MyMovieListCategory.seen.image, tag: 1)
+        seenVC.tabBarItem = UITabBarItem(title: MovieListCategory.seen.tabBarTitle, image: MovieListCategory.seen.image, tag: 1)
         let seenVCWithNavi = UINavigationController(rootViewController: seenVC)
 
         let movieNightVC = MovieNightViewController.instantiate()
