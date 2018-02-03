@@ -114,21 +114,28 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func saveMovie(withWatched watched: Bool) {
         if let movie = movie {
-            storageManager.insertMovieItem(with: movie, watched: watched) { _ in
-                // TODO: We should definitely show an error when insertion failed
+            storageManager.insertMovieItem(with: movie, watched: watched) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.insertMovieError)
+                    return
+                }
+
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
         } else if let storedMovie = storedMovie {
-            storageManager.updateMovieItem(with: storedMovie, watched: watched) {_ in
-                // TODO: We should definitely show an error when insertion failed
+            storageManager.updateMovieItem(with: storedMovie, watched: watched) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.updateMovieError)
+                    return
+                }
+
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
         }
-
     }
 
 }
