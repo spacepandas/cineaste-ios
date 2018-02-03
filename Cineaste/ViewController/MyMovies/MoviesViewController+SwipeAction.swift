@@ -13,11 +13,11 @@ extension MoviesViewController {
     // MARK: - iOS 10 functions
 
     func action(for category: MyMovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
-        let changeToCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
-        let changedWatchedValue = changeToCategory == .seen ? true : false
+        let newCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
+        let newWatchedValue = newCategory == .seen ? true : false
 
-        let action = UITableViewRowAction(style: .normal, title: changeToCategory.title) { _, _ in
-            self.storageManager.updateMovieItem(with: movie, watched: changedWatchedValue, handler: { result in
+        let action = UITableViewRowAction(style: .normal, title: newCategory.title) { _, _ in
+            self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
                     // TODO: We should definitely show an error when updating failed
                     return
@@ -55,11 +55,11 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     func action(for category: MyMovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
-        let changeToCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
-        let changedWatchedValue = changeToCategory == .seen ? true : false
+        let newCategory: MyMovieListCategory = category == .seen ? .wantToSee : .seen
+        let newWatchedValue = newCategory == .seen ? true : false
 
-        let action = UIContextualAction(style: .normal, title: changeToCategory.title, handler: { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager.updateMovieItem(with: movie, watched: changedWatchedValue, handler: { result in
+        let action = UIContextualAction(style: .normal, title: newCategory.title, handler: { (_, _, success: @escaping (Bool) -> Void) in
+            self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
                     // TODO: We should definitely show an error when updating failed
                     return
@@ -70,7 +70,7 @@ extension MoviesViewController {
                 }
             })
         })
-        action.image = changeToCategory.image
+        action.image = newCategory.image
         action.backgroundColor = UIColor.basicYellow
 
         return UISwipeActionsConfiguration(actions: [action])
