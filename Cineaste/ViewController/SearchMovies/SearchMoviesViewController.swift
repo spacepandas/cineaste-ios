@@ -102,15 +102,25 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Load data
 
     fileprivate func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
-        Webservice.load(resource: Movie.latestReleases()) { movies, _ in
-            handler(movies ?? [])
+        Webservice.load(resource: Movie.latestReleases()) { result in
+            guard case let .success(movies) = result else {
+                // TODO: We should handle the error
+                handler([])
+                return
+            }
+            handler(movies)
         }
     }
 
     fileprivate func loadMovies(forQuery query: String?, handler: @escaping ([Movie]) -> Void) {
         if let query = query, !query.isEmpty {
-            Webservice.load(resource: Movie.search(withQuery: query)) { movies, _ in
-                handler(movies ?? [])
+            Webservice.load(resource: Movie.search(withQuery: query)) { result in
+                guard case let .success(movies) = result else {
+                    // TODO: We should handle the error
+                    handler([])
+                    return
+                }
+                handler(movies)
             }
         } else {
             loadRecent { [weak self] movies in

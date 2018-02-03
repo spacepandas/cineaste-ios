@@ -89,10 +89,16 @@ class MovieDetailViewController: UIViewController {
         guard let movie = movie else {
             return
         }
-        Webservice.load(resource: movie.get) {[weak self] movie, _ in
-            movie?.poster = self?.movie?.poster
-            self?.movie = movie
+        Webservice.load(resource: movie.get) { [weak self] result in
+            guard case let .success(detailedMovie) = result else {
+                // TODO: We should handle the error
+                return
+            }
+
+            detailedMovie.poster = movie.poster
+            self?.movie = detailedMovie
         }
+
     }
     // MARK: - Actions
 
