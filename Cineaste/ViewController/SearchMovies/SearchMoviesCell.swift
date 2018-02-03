@@ -34,14 +34,14 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBOutlet var releaseDate: DescriptionLabel!
 
-    @IBOutlet weak fileprivate var seenButton: ActionButton! {
+    @IBOutlet weak var seenButton: ActionButton! {
         didSet {
             let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
             self.seenButton.setTitle(title, for: .normal)
         }
     }
 
-    @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
+    @IBOutlet weak var mustSeeButton: ActionButton! {
         didSet {
             let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
             self.mustSeeButton.setTitle(title, for: .normal)
