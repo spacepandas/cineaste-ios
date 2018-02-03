@@ -104,7 +104,7 @@ class SearchMoviesViewController: UIViewController {
     fileprivate func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
         Webservice.load(resource: Movie.latestReleases()) { result in
             guard case let .success(movies) = result else {
-                // TODO: We should handle the error
+                self.showAlert(withMessage: Alert.loadingDataError)
                 handler([])
                 return
             }
@@ -116,7 +116,7 @@ class SearchMoviesViewController: UIViewController {
         if let query = query, !query.isEmpty {
             Webservice.load(resource: Movie.search(withQuery: query)) { result in
                 guard case let .success(movies) = result else {
-                    // TODO: We should handle the error
+                    self.showAlert(withMessage: Alert.loadingDataError)
                     handler([])
                     return
                 }

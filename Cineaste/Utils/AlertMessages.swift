@@ -31,6 +31,7 @@ private let errorTitle = NSLocalizedString("Fehler", comment: "Title for error a
 
 // connection error
 private let connectionErrorMessage = NSLocalizedString("There was a problem connection to the server.", comment: "Message for connection error alert")
+private let loadingDataErrorMessage = NSLocalizedString("Die Daten konnten nicht geladen werden.", comment: "Message for loading data error alert")
 
 // core data error
 private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht gelöscht werden.", comment: "Message for delete movie error alert")
@@ -39,6 +40,7 @@ private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht e
 
 open class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
+    static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
 
     static let deleteMovieError = AlertMessage(title: errorTitle, message: deleteMovieErrorMessage, action: okAction)
     static let updateMovieError = AlertMessage(title: errorTitle, message: updateMovieErrorMessage, action: okAction)

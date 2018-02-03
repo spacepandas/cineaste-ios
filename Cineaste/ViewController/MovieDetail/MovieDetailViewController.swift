@@ -91,7 +91,7 @@ class MovieDetailViewController: UIViewController {
         }
         Webservice.load(resource: movie.get) { [weak self] result in
             guard case let .success(detailedMovie) = result else {
-                // TODO: We should handle the error
+                self?.showAlert(withMessage: Alert.loadingDataError)
                 return
             }
 
