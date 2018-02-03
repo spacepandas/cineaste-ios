@@ -174,7 +174,6 @@
 				3FA808CE20027AF60036357B /* Button.swift */,
 				3FA808D0200285590036357B /* View.swift */,
 				3F71F684200292B700496E05 /* TextView.swift */,
-				3FDB14532025B80F0063E980 /* AlertMessages.swift */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -321,6 +320,7 @@
 				3F83BE791FF39E1B00E584E9 /* Storyboard.swift */,
 				3F83BE971FF3BF7000E584E9 /* Segue.swift */,
 				9528112D201D05AD00F3EC76 /* Result.swift */,
+				3FDB14532025B80F0063E980 /* AlertMessages.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
