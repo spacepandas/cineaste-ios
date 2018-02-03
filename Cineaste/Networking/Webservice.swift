@@ -11,27 +11,33 @@ import Foundation
 enum NetworkError: Error {
     case parseUrl
     case parseJson
+    case parseData
+    case emptyResource
 }
 
 final class Webservice {
-    static func load<A>(resource: Resource<A>?, completion: @escaping (A?, Error?) -> Void) {
+    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A>) -> Void) {
         guard let resource = resource else {
-            completion(nil, nil)
+            completion(Result.error(NetworkError.emptyResource))
             return
         }
         guard let url = URL(string: resource.url) else {
-            completion(nil, NetworkError.parseUrl)
+            completion(Result.error(NetworkError.parseUrl))
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = resource.method.rawValue
-        URLSession.shared.dataTask(with: request) {data, _, error in
+        URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil, let data = data else {
-                completion(nil, error)
+                // swiftlint:disable:next force_unwrapping
+                completion(Result.error(error!))
                 return
             }
-            let result = resource.parseData(data)
-            completion(result, nil)
+            guard let result = resource.parseData(data) else {
+                completion(Result.error(NetworkError.parseData))
+                return
+            }
+            completion(Result.success(result))
         }.resume()
     }
 }
