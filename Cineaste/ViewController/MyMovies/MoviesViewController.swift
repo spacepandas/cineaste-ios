@@ -15,7 +15,7 @@ class MoviesViewController: UIViewController {
             title = category.title
 
             emptyListLabel.text =
-                NSLocalizedString("Du hast noch keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
+                NSLocalizedString("Du hast keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
                     comment: "Description for empty movie list")
             //only update if category changed
             guard oldValue != category else { return }
