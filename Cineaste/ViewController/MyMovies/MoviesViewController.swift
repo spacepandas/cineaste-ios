@@ -84,9 +84,9 @@ extension MoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMovieListCell.identifier, for: indexPath) as? MyMovieListCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListCell.identifier, for: indexPath) as? MovieListCell
             else {
-                fatalError("Unable to dequeue cell for identifier: \(MyMovieListCell.identifier)")
+                fatalError("Unable to dequeue cell for identifier: \(MovieListCell.identifier)")
         }
 
         if let controller = fetchedResultsManager.controller {

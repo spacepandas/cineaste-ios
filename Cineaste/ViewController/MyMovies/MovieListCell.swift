@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyMovieListCell: UITableViewCell {
+class MovieListCell: UITableViewCell {
     static let identifier = "MyMovieListCell"
 
     @IBOutlet var poster: UIImageView!

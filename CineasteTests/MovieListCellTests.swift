@@ -10,8 +10,8 @@ import XCTest
 import CoreData
 @testable import Cineaste
 
-class WantToSeeListCellTests: XCTestCase {
-    let cell = MyMovieListCell()
+class MovieListCellTests: XCTestCase {
+    let cell = MovieListCell()
     
     override func setUp() {
         super.setUp()
@@ -52,7 +52,7 @@ class WantToSeeListCellTests: XCTestCase {
     }
 
     func testCellIdentifier() {
-        XCTAssertEqual(MyMovieListCell.identifier, "MyMovieListCell")
+        XCTAssertEqual(MovieListCell.identifier, "MyMovieListCell")
     }
 
     private let storedMovie: StoredMovie = {
