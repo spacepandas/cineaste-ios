@@ -38,7 +38,7 @@ class MovieStorageTests: XCTestCase {
         wait(for: [expc], timeout: 1)
 
         let storedMovies = sut.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == id }).first
+        let storedMovie = storedMovies.first(where: { $0.id == id })
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, id)
     }
@@ -55,7 +55,7 @@ class MovieStorageTests: XCTestCase {
         }
         wait(for: [expc], timeout: 1.0)
         let storedMovies = sut.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == movie.id }).first
+        let storedMovie = storedMovies.first(where: { $0.id == movie.id })
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, movie.id)
 
@@ -108,7 +108,7 @@ class MovieStorageTests: XCTestCase {
         }
 
         wait(for: [expc], timeout: 1.0)
-        XCTAssertEqual(numberOfItemsInPersistentStore(), numberOfMovies-1)
+        XCTAssertEqual(numberOfItemsInPersistentStore(), numberOfMovies - 1)
     }
 
     private let movie: Movie = {
@@ -133,7 +133,7 @@ class MovieStorageTests: XCTestCase {
     }
 
     func initStubs() {
-        func insertMovieItem(id: Int64, overview: String, poster: Data?, posterPath: String, releaseDate: Date, runtime: Int16, title: String, voteAverage: Float, watched: Bool){
+        func insertMovieItem(id: Int64, overview: String, poster: Data?, posterPath: String, releaseDate: Date, runtime: Int16, title: String, voteAverage: Float, watched: Bool) {
             let object = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: mockPersistantContainer.viewContext)
             object.setValue(id, forKey: "id")
             object.setValue(overview, forKey: "overview")
@@ -154,7 +154,7 @@ class MovieStorageTests: XCTestCase {
 
         do {
             try mockPersistantContainer.viewContext.save()
-        }  catch {
+        } catch {
             print("create fakes error \(error)")
         }
     }
@@ -176,7 +176,7 @@ class MovieStorageTests: XCTestCase {
         description.shouldAddStoreAsynchronously = false // Make it simpler in test env
 
         container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
+        container.loadPersistentStores { description, error in
             // Check if the data store is in memory
             precondition(description.type == NSInMemoryStoreType)
 
@@ -188,4 +188,3 @@ class MovieStorageTests: XCTestCase {
         return container
     }()
 }
-
