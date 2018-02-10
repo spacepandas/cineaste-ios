@@ -10,7 +10,7 @@ platform :ios do
   lane :test do
     scan(
       device: "iPhone 7",
-      scheme: "Cineaste",
+      scheme: "Testing",
       code_coverage: true
     )
   end
