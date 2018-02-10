@@ -11,9 +11,7 @@ import UIKit
 class SearchMoviesViewController: UIViewController {
     var movies: [Movie] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.moviesTableView.reloadData()
-            }
+            self.moviesTableView.reloadData()
         }
     }
 
@@ -49,9 +47,8 @@ class SearchMoviesViewController: UIViewController {
         self.view.backgroundColor = UIColor.basicBackground
 
         loadRecent { [weak self] movies in
-            self?.movies = movies
             DispatchQueue.main.async {
-                self?.moviesTableView.reloadData()
+                self?.movies = movies
             }
         }
 
@@ -128,9 +125,8 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.movies = movies
                 DispatchQueue.main.async {
-                    self?.moviesTableView.reloadData()
+                    self?.movies = movies
                 }
             }
         }
