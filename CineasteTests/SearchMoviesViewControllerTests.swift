@@ -12,6 +12,14 @@ import XCTest
 class SearchMoviesViewControllerTests: XCTestCase {
     let searchMoviesVC = SearchMoviesViewController.instantiate()
 
+    override func setUp() {
+        super.setUp()
+
+        DispatchQueue.main.async {
+            self.searchMoviesVC.movies = []
+        }
+    }
+
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
         searchMoviesVC.viewDidLoad()
 
@@ -28,13 +36,26 @@ class SearchMoviesViewControllerTests: XCTestCase {
     
     func testNumberOfRowsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 0)
+        let expc = expectation(description: "Setting movies should trigger updating tableView")
 
-        searchMoviesVC.movies = movies
-        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 2)
+        DispatchQueue.main.async {
+            self.searchMoviesVC.movies = self.movies
+            expc.fulfill()
+        }
+
+        wait(for: [expc], timeout: 1)
+        XCTAssertEqual(self.searchMoviesVC.moviesTableView.numberOfSections, 2)
     }
 
     func testCellForRowShouldBeOfTypeSearchMoviesCell() {
-        searchMoviesVC.movies = movies
+        let expc = expectation(description: "Setting movies should trigger updating tableView")
+
+        DispatchQueue.main.async {
+            self.searchMoviesVC.movies = self.movies
+            expc.fulfill()
+        }
+
+        wait(for: [expc], timeout: 1)
 
         for section in 0..<movies.count {
             let path = IndexPath(row: 0, section: section)
