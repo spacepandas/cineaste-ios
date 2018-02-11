@@ -20,10 +20,11 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet var versionInfo: DescriptionLabel!
 
-    var settings: [SettingItem] = [SettingItem.about,
-                                   SettingItem.licence,
-                                   SettingItem.exportMovies,
-                                   SettingItem.importMovies]
+    var settings: [SettingItem] = [] {
+        didSet {
+            settingsTableView.reloadData()
+        }
+    }
 
     var selectedSetting: SettingItem?
 
@@ -33,6 +34,11 @@ class SettingsViewController: UIViewController {
         title = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
         view.backgroundColor = UIColor.basicBackground
+
+        settings = [SettingItem.about,
+                    SettingItem.licence,
+                    SettingItem.exportMovies,
+                    SettingItem.importMovies]
 
         versionInfo?.text = versionString()
     }
@@ -59,8 +65,7 @@ class SettingsViewController: UIViewController {
         case .showTextViewFromSettings:
             let vc = segue.destination as? ImprintViewController
             vc?.title = selected.title
-            vc?.textViewContent =
-                (selected == SettingItem.licence)
+            vc?.textViewContent = (selected == SettingItem.licence)
                 ? TextViewContent.licence
                 : TextViewContent.imprint
         default:
