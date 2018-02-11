@@ -11,7 +11,9 @@ platform :ios do
     scan(
       device: "iPhone 7",
       scheme: "Testing",
-      code_coverage: true
+      code_coverage: true,
+      output_directory: "/tmp/output",
+      buildlog_path: "/tmp/buildlog"
     )
   end
 end
