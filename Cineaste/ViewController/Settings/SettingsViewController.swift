@@ -33,6 +33,17 @@ class SettingsViewController: UIViewController {
         title = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
         view.backgroundColor = UIColor.basicBackground
+
+        versionInfo?.text = versionString()
+    }
+
+    func versionString() -> String {
+        guard
+            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
+            else { return "" }
+        let versionText = NSLocalizedString("Version", comment: "Description for app version")
+        return "\(versionText): \(version) (\(build))"
     }
 
     // MARK: - Navigation
