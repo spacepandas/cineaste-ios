@@ -8,7 +8,17 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController {
+    @IBOutlet var settingsTableView: UITableView! {
+        didSet {
+            settingsTableView.dataSource = self
+            settingsTableView.delegate = self
+            settingsTableView.backgroundColor = UIColor.basicBackground
+            settingsTableView.tableFooterView = UIView()
+        }
+    }
+
+    @IBOutlet var versionInfo: DescriptionLabel!
 
     var settings: [SettingItem] = [SettingItem.about,
                                    SettingItem.licence,
@@ -23,48 +33,6 @@ class SettingsViewController: UITableViewController {
         title = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
         view.backgroundColor = UIColor.basicBackground
-        tableView.backgroundColor = UIColor.basicBackground
-        tableView.tableFooterView = UIView()
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.identifier, for: indexPath) as? SettingsCell else {
-            fatalError("Unable to dequeue cell for identifier: \(SettingsCell.identifier)")
-        }
-
-        if settings[indexPath.row].segue == nil {
-            cell.accessoryType = .none
-        } else {
-            cell.accessoryType = .disclosureIndicator
-        }
-
-        cell.configure(with: settings[indexPath.row])
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        selectedSetting = settings[indexPath.row]
-
-        if let segue = selectedSetting?.segue {
-            perform(segue: segue, sender: self)
-        } else {
-            let alert = UIAlertController(title: "Info", message: "Feature isn't implemented", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        }
     }
 
     // MARK: - Navigation
@@ -86,6 +54,48 @@ class SettingsViewController: UITableViewController {
                 : TextViewContent.imprint
         default:
             return
+        }
+    }
+}
+
+extension SettingsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settings.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.identifier, for: indexPath) as? SettingsCell else {
+            fatalError("Unable to dequeue cell for identifier: \(SettingsCell.identifier)")
+        }
+
+        if settings[indexPath.row].segue == nil {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
+        }
+
+        cell.configure(with: settings[indexPath.row])
+
+        return cell
+    }
+}
+
+extension SettingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedSetting = settings[indexPath.row]
+
+        if let segue = selectedSetting?.segue {
+            perform(segue: segue, sender: self)
+        } else {
+            let alert = UIAlertController(title: "Info", message: "Feature isn't implemented", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
         }
     }
 }
