@@ -20,6 +20,6 @@ class ImprintViewController: UIViewController {
 }
 
 extension ImprintViewController: Instantiable {
-    static var storyboard: Storyboard { return .imprint }
+    static var storyboard: Storyboard { return .settings }
     static var storyboardID: String? { return "ImprintViewController" }
 }

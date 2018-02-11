@@ -27,11 +27,11 @@ class MoviesTabBarController: UITabBarController {
         movieNightVC.tabBarItem = UITabBarItem(title: "Movie-Night", image: nil, tag: 2)
         let movieNightVCWithNavi = UINavigationController(rootViewController: movieNightVC)
 
-        let imprintVC = ImprintViewController.instantiate()
-        imprintVC.tabBarItem = UITabBarItem(title: "About", image: nil, tag: 3)
-        let imprintVCWithNavi = UINavigationController(rootViewController: imprintVC)
+        let settingsVC = SettingsViewController.instantiate()
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 3)
+        let settingsVCWithNavi = UINavigationController(rootViewController: settingsVC)
 
-        viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, movieNightVCWithNavi, imprintVCWithNavi]
+        viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, movieNightVCWithNavi, settingsVCWithNavi]
     }
 }
 
