@@ -15,6 +15,8 @@ class SettingsViewController: UITableViewController {
                                    SettingItem.exportMovies,
                                    SettingItem.importMovies]
 
+    var selectedSetting: SettingItem?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,14 +55,37 @@ class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedSetting = settings[indexPath.row]
 
-        if let segue = settings[indexPath.row].segue {
+        if let segue = selectedSetting?.segue {
             perform(segue: segue, sender: self)
         } else {
             let alert = UIAlertController(title: "Info", message: "Feature isn't implemented", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
+        }
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = Segue(initWith: segue) else {
+            fatalError("unable to use Segue enum")
+        }
+
+        guard let selected = selectedSetting else { return }
+
+        switch identifier {
+        case .showTextViewFromSettings:
+            let vc = segue.destination as? ImprintViewController
+            vc?.title = selected.title
+            vc?.textViewContent =
+                (selected == SettingItem.licence)
+                ? TextViewContent.licence
+                : TextViewContent.imprint
+        default:
+            return
         }
     }
 }

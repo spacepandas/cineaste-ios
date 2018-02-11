@@ -87,7 +87,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="cjP-qO-SH6"/>
                     <connections>
-                        <segue destination="yN8-JU-i4Y" kind="show" identifier="showImprintFromSettingsSegue" id="9fG-4F-a8p"/>
+                        <segue destination="yN8-JU-i4Y" kind="show" identifier="showTextViewFromSettingsSegue" id="9fG-4F-a8p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yu-L6-LZW" userLabel="First Responder" sceneMemberID="firstResponder"/>

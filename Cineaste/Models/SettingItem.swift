@@ -23,7 +23,7 @@ enum SettingItem {
         case .licence:
             return NSLocalizedString("Lizenzen", comment: "Title for settings cell licence")
         case .about:
-            return NSLocalizedString("Impressum", comment: "Title for settings cell about")
+            return NSLocalizedString("Über die App", comment: "Title for settings cell about")
         }
     }
 
@@ -34,9 +34,9 @@ enum SettingItem {
         case .importMovies:
             return nil
         case .licence:
-            return nil
+            return Segue.showTextViewFromSettings
         case .about:
-            return Segue.showImprintFromSettings
+            return Segue.showTextViewFromSettings
         }
     }
 }
