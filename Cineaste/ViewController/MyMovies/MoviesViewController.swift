@@ -89,8 +89,10 @@ class MoviesViewController: UIViewController {
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
             vc?.storageManager = storageManager
-        default:
-            return
+        case .showMovieDetail:
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.storedMovie = selectedMovie
+            vc?.storageManager = storageManager
         }
     }
 }
@@ -133,9 +135,7 @@ extension MoviesViewController: UITableViewDelegate {
         }
         selectedMovie = movies[indexPath.row]
 
-        let movieDetailVC = MovieDetailViewController.instantiate()
-        movieDetailVC.storedMovie = selectedMovie
-        self.navigationController?.pushViewController(movieDetailVC, animated: true)
+        perform(segue: Segue.showMovieDetail, sender: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -11,7 +11,9 @@ import UIKit
 class SearchMoviesViewController: UIViewController {
     var movies: [Movie] = [] {
         didSet {
-            self.moviesTableView.reloadData()
+            DispatchQueue.main.async {
+                self.moviesTableView.reloadData()
+            }
         }
     }
 
@@ -23,7 +25,7 @@ class SearchMoviesViewController: UIViewController {
     lazy var resultSearchController: UISearchController  = {
         let resultSearchController = UISearchController(searchResultsController: nil)
         resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.isActive = true
+        resultSearchController.isActive = false
         resultSearchController.searchBar.sizeToFit()
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
@@ -85,9 +87,7 @@ class SearchMoviesViewController: UIViewController {
             vc?.storageManager = storageManager
 
             guard let selectedMovie = selectedMovie else { return }
-            loadDetails(for: selectedMovie) { detailedMovie in
-                vc?.movie = detailedMovie
-            }
+            vc?.movie = selectedMovie
         default:
             return
         }

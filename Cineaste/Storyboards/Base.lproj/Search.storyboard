@@ -151,7 +151,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="moviesTableView" destination="Ghd-3W-lPW" id="qW8-zi-GQg"/>
-                        <segue destination="6zu-rR-wRt" kind="show" identifier="ShowMovieDetailSegue" id="raw-AZ-Z26"/>
+                        <segue destination="6zu-rR-wRt" kind="showDetail" identifier="ShowMovieDetailSegue" action="showViewController:sender:" id="raw-AZ-Z26"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z16-13-h9P" userLabel="First Responder" sceneMemberID="firstResponder"/>

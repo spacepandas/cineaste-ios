@@ -20,6 +20,14 @@
             </objects>
             <point key="canvasLocation" x="3013" y="-1160"/>
         </scene>
+        <!--MovieDetailViewController-->
+        <scene sceneID="d7s-4Y-ji8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="NMk-QO-vK8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EWO-6d-qnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3068" y="-663"/>
+        </scene>
         <!--Movies View Controller-->
         <scene sceneID="ls7-06-u9J">
             <objects>
@@ -192,6 +200,7 @@
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="KTZ-QA-PXo"/>
                         <outlet property="myMoviesTableView" destination="xt5-ya-K37" id="XQ7-My-Mne"/>
                         <segue destination="mxJ-DZ-Bxk" kind="presentation" identifier="ShowSearchFromMovieList" id="Mf1-Xj-P5J"/>
+                        <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="ja9-hr-OdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Np-YM-7eb" userLabel="First Responder" sceneMemberID="firstResponder"/>

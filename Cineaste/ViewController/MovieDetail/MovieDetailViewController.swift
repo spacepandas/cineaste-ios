@@ -49,15 +49,11 @@ class MovieDetailViewController: UIViewController {
     var movie: Movie? {
         didSet {
             guard let movie = movie else { return }
-            DispatchQueue.main.async {
-                if let moviePoster = movie.poster {
-                    self.posterImageView.image = moviePoster
+            Webservice.load(resource: movie.get) { result in
+                guard case let .success(detailedMovie) = result else {
+                    return
                 }
-                self.titleLabel.text = movie.title
-                self.descriptionTextView.text = movie.overview
-                self.runtimeLabel.text = "\(movie.runtime) min"
-                self.votingLabel.text = "\(movie.voteAverage)"
-                self.releaseDateLabel.text = movie.releaseDate.formatted
+                detailedMovie.poster = movie.poster
             }
         }
     }
@@ -81,6 +77,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
+        setupUI()
     }
 
     // MARK: - Actions
@@ -94,6 +91,20 @@ class MovieDetailViewController: UIViewController {
     }
 
     // MARK: - Private
+
+    fileprivate func setupUI() {
+        DispatchQueue.main.async {
+            guard let movie = self.movie else { return }
+            if let moviePoster = movie.poster {
+                self.posterImageView.image = moviePoster
+            }
+            self.titleLabel.text = movie.title
+            self.descriptionTextView.text = movie.overview
+            self.runtimeLabel.text = "\(movie.runtime) min"
+            self.votingLabel.text = "\(movie.voteAverage)"
+            self.releaseDateLabel.text = movie.releaseDate.formatted
+        }
+    }
 
     fileprivate func saveMovie(withWatched watched: Bool) {
         guard let storageManager = storageManager else { return }
@@ -112,9 +123,7 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         }
-
     }
-
 }
 
 extension MovieDetailViewController: Instantiable {
