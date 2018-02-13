@@ -7,11 +7,20 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--MovieNightNavigationController-->
+        <scene sceneID="dw6-Qv-Hsd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieNight" referencedIdentifier="MovieNightNavigationController" id="3Be-Vi-pta" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d9Z-qH-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3380" y="-1435"/>
+        </scene>
         <!--Search-->
         <scene sceneID="XPJ-25-x5q">
             <objects>
@@ -190,11 +199,19 @@
                         <viewLayoutGuide key="safeArea" id="u7c-Dj-4pb"/>
                     </view>
                     <navigationItem key="navigationItem" id="SCx-6I-lgO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Ti-Ek-6CL">
-                            <connections>
-                                <action selector="triggerSearchMovieAction:" destination="B9b-Vg-V1Y" id="6FJ-bW-hrp"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="8Ti-Ek-6CL">
+                                <connections>
+                                    <action selector="triggerSearchMovieAction:" destination="B9b-Vg-V1Y" id="6FJ-bW-hrp"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="movieNight" id="lcM-kg-856">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="LmF-JB-EM3"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="KTZ-QA-PXo"/>
@@ -231,5 +248,6 @@
         <image name="ic_release" width="16" height="17"/>
         <image name="ic_runtime" width="16" height="16"/>
         <image name="ic_vote" width="16" height="16"/>
+        <image name="movieNight" width="23" height="23"/>
     </resources>
 </document>

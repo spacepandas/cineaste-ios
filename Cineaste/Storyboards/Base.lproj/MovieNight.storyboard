@@ -21,8 +21,14 @@
                         <viewLayoutGuide key="safeArea" id="oK4-7Z-NLo"/>
                     </view>
                     <navigationItem key="navigationItem" id="FyT-KT-JyI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tbr-PY-scN">
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="w1p-lN-lqj" id="MfF-jx-iTe"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Start" id="D5m-oj-yJ9"/>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaB-CR-tfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -31,7 +37,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6xH-nl-fpB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="haa-vZ-2Dy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MovieNightNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="haa-vZ-2Dy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8UK-DE-jU0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

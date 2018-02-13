@@ -12,10 +12,14 @@ class MovieNightViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
     }
 
+    // MARK: - Actions
+
+    @IBAction func cancelButtonTouched(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension MovieNightViewController: Instantiable {
