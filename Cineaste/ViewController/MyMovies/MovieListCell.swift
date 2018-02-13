@@ -26,6 +26,8 @@ class MovieListCell: UITableViewCell {
     func configure(with movie: StoredMovie) {
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
+        } else {
+            poster.image = Images.posterPlaceholder
         }
         title.text = movie.title
         votes.text = "\(movie.voteAverage)"

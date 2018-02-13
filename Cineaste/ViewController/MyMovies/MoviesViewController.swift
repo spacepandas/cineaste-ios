@@ -93,6 +93,8 @@ class MoviesViewController: UIViewController {
             let vc = segue.destination as? MovieDetailViewController
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
+        default:
+            break
         }
     }
 }

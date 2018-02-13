@@ -66,8 +66,9 @@ class SearchMoviesCell: UITableViewCell {
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
-                movie.poster = poster
-                self.poster.image = poster
+                let posterToDisplay = poster ?? Images.posterPlaceholder
+                movie.poster = posterToDisplay
+                self.poster.image = posterToDisplay
             }
         }
     }
@@ -75,7 +76,7 @@ class SearchMoviesCell: UITableViewCell {
     fileprivate func loadPoster(for movie: Movie, completionHandler handler: @escaping (_ poster: UIImage?) -> Void) {
         Webservice.load(resource: movie.loadPoster()) { result in
             guard case let .success(image) = result else {
-                // TODO: We should handle the error
+                handler(nil)
                 return
             }
             handler(image)
