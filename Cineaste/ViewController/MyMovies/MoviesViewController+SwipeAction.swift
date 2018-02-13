@@ -19,7 +19,7 @@ extension MoviesViewController {
         let action = UITableViewRowAction(style: .normal, title: newCategory.title) { _, _ in
             self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
-                    // TODO: We should definitely show an error when updating failed
+                    self.showAlert(withMessage: Alert.updateMovieError)
                     return
                 }
             })
@@ -41,7 +41,7 @@ extension MoviesViewController {
         let deleteAction = UITableViewRowAction(style: .destructive, title: deleteActionTitle) { _, _ in
             self.storageManager.remove(movie, handler: { result in
                 guard case .success = result else {
-                    // TODO: We should definitely show an error when deletion failed
+                    self.showAlert(withMessage: Alert.deleteMovieError)
                     return
                 }
             })
@@ -61,7 +61,7 @@ extension MoviesViewController {
         let action = UIContextualAction(style: .normal, title: newCategory.title, handler: { (_, _, success: @escaping (Bool) -> Void) in
             self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
-                    // TODO: We should definitely show an error when updating failed
+                    self.showAlert(withMessage: Alert.updateMovieError)
                     return
                 }
 
@@ -97,7 +97,7 @@ extension MoviesViewController {
         let deleteAction = UIContextualAction(style: .destructive, title: deleteActionTitle, handler: { (_, _, success: @escaping (Bool) -> Void) in
             self.storageManager.remove(movie, handler: { result in
                 guard case .success = result else {
-                    // TODO: We should definitely show an error when deletion failed
+                    self.showAlert(withMessage: Alert.deleteMovieError)
                     return
                 }
 
