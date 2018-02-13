@@ -71,6 +71,8 @@ class SearchMoviesViewController: UIViewController {
         case .showMovieDetail:
             let vc = segue.destination as? MovieDetailViewController
             vc?.movie = selectedMovie
+        default:
+            return
         }
     }
 

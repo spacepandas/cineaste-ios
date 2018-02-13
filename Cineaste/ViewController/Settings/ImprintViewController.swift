@@ -9,17 +9,22 @@
 import UIKit
 
 class ImprintViewController: UIViewController {
-    @IBOutlet var imprintTextView: UITextView!
+    @IBOutlet var imprintTextView: UITextView! {
+        didSet {
+            imprintTextView.text = textViewContent.content
+        }
+    }
+
+    var textViewContent: TextViewContent = .imprint
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("About", comment: "Title for imprint viewController")
     }
 
 }
 
 extension ImprintViewController: Instantiable {
-    static var storyboard: Storyboard { return .imprint }
+    static var storyboard: Storyboard { return .settings }
     static var storyboardID: String? { return "ImprintViewController" }
 }

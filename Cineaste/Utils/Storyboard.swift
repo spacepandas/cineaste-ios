@@ -13,7 +13,7 @@ enum Storyboard: String {
     case movieList = "MoviesList"
     case search = "Search"
     case movieDetail = "MovieDetail"
-    case imprint = "Imprint"
+    case settings = "Settings"
     case movieNight = "MovieNight"
 }
 
