@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class AlertMessage {
+class AlertMessage {
     var title: String
     var message: String
     var action: String
@@ -30,7 +30,7 @@ private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for ca
 private let errorTitle = NSLocalizedString("Fehler", comment: "Title for error alert")
 
 // connection error
-private let connectionErrorMessage = NSLocalizedString("There was a problem connection to the server.", comment: "Message for connection error alert")
+private let connectionErrorMessage = NSLocalizedString("Verbindung zur Filmdatenbank fehlgeschlagen.", comment: "Message for connection error alert")
 private let loadingDataErrorMessage = NSLocalizedString("Die Daten konnten nicht geladen werden.", comment: "Message for loading data error alert")
 
 // core data error
@@ -38,7 +38,7 @@ private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht g
 private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
-open class Alert: AlertMessage {
+class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
     static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
 
@@ -62,7 +62,7 @@ extension UIViewController {
             alert.addAction(action)
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
