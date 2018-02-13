@@ -49,7 +49,7 @@ class MovieDetailViewController: UIViewController {
     var movie: Movie? {
         didSet {
             DispatchQueue.main.async {
-                self.posterImageView.image = self.movie?.poster
+                self.posterImageView.image = self.movie?.poster ?? Images.posterPlaceholder
                 self.titleLabel.text = self.movie?.title
                 self.descriptionTextView.text = self.movie?.overview
                 if let movie = self.movie {

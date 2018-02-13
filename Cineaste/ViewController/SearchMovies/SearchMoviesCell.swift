@@ -19,8 +19,9 @@ class SearchMoviesCell: UITableViewCell {
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
-                movie.poster = poster
-                self.posterImageView.image = poster
+                let posterToDisplay = poster ?? Images.posterPlaceholder
+                movie.poster = posterToDisplay
+                self.posterImageView.image = posterToDisplay
             }
         }
     }
