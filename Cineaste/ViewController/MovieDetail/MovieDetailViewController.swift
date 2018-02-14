@@ -44,22 +44,9 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
-    let storageManager = MovieStorage()
+    var storageManager: MovieStorage?
 
-    var movie: Movie? {
-        didSet {
-            DispatchQueue.main.async {
-                self.posterImageView.image = self.movie?.poster ?? Images.posterPlaceholder
-                self.titleLabel.text = self.movie?.title
-                self.descriptionTextView.text = self.movie?.overview
-                if let movie = self.movie {
-                    self.runtimeLabel.text = "\(movie.runtime) min"
-                    self.votingLabel.text = "\(movie.voteAverage)"
-                    self.releaseDateLabel.text = movie.releaseDate.formatted
-                }
-            }
-        }
-    }
+    var movie: Movie?
 
     var storedMovie: StoredMovie? {
         didSet {
@@ -80,26 +67,9 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
-        loadMovie()
+        loadMovieDetailAndSetupUI()
     }
 
-    // MARK: - Private
-
-    fileprivate func loadMovie() {
-        guard let movie = movie else {
-            return
-        }
-        Webservice.load(resource: movie.get) { [weak self] result in
-            guard case let .success(detailedMovie) = result else {
-                self?.showAlert(withMessage: Alert.loadingDataError)
-                return
-            }
-
-            detailedMovie.poster = movie.poster
-            self?.movie = detailedMovie
-        }
-
-    }
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
@@ -112,7 +82,22 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
+    fileprivate func setupUIWithNetworkMovie() {
+        DispatchQueue.main.async {
+            guard let movie = self.movie else { return }
+            if let moviePoster = movie.poster {
+                self.posterImageView.image = moviePoster
+            }
+            self.titleLabel.text = movie.title
+            self.descriptionTextView.text = movie.overview
+            self.runtimeLabel.text = "\(movie.runtime) min"
+            self.votingLabel.text = "\(movie.voteAverage)"
+            self.releaseDateLabel.text = movie.releaseDate.formatted
+        }
+    }
+
     fileprivate func saveMovie(withWatched watched: Bool) {
+        guard let storageManager = storageManager else { return }
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { result in
                 guard case .success = result else {
@@ -138,6 +123,19 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    fileprivate func loadMovieDetailAndSetupUI() {
+        guard let movie = movie else { return }
+        // Setup with the default data to show something while new data is loading
+        self.setupUIWithNetworkMovie()
+        Webservice.load(resource: movie.get) { result in
+            guard case let .success(detailedMovie) = result else {
+                return
+            }
+            detailedMovie.poster = movie.poster
+            self.movie = detailedMovie
+            self.setupUIWithNetworkMovie()
+        }
+    }
 }
 
 extension MovieDetailViewController: Instantiable {

@@ -57,6 +57,10 @@ class MoviesViewController: UIViewController {
         }
     }
 
+    @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
+        perform(segue: .showSearchFromMovieList, sender: self)
+    }
+
     // MARK: - Private
     fileprivate func hideTableViewIfEmpty() {
         let hideTableView =
@@ -72,6 +76,25 @@ class MoviesViewController: UIViewController {
                 completion: { _ in
                     self.myMoviesTableView.isHidden = hideTableView
             })
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = Segue(initWith: segue) else {
+            fatalError("unable to use Segue enum")
+        }
+
+        switch identifier {
+        case .showSearchFromMovieList:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
+            vc?.storageManager = storageManager
+        case .showMovieDetail:
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.storedMovie = selectedMovie
+            vc?.storageManager = storageManager
+        default:
+            break
         }
     }
 }
@@ -114,9 +137,7 @@ extension MoviesViewController: UITableViewDelegate {
         }
         selectedMovie = movies[indexPath.row]
 
-        let movieDetailVC = MovieDetailViewController.instantiate()
-        movieDetailVC.storedMovie = selectedMovie
-        self.navigationController?.pushViewController(movieDetailVC, animated: true)
+        perform(segue: Segue.showMovieDetail, sender: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

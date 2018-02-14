@@ -44,7 +44,7 @@ class MovieListCellTests: XCTestCase {
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
-        XCTAssertEqual(cell.poster.image, nil)
+        XCTAssertEqual(cell.poster.image, Images.posterPlaceholder)
         XCTAssertEqual(cell.title.text, storedMovie.title)
         XCTAssertEqual(cell.votes.text, "\(storedMovie.voteAverage)")
         XCTAssertEqual(cell.runtime.text, "\(storedMovie.runtime) min")

@@ -8,20 +8,67 @@
 
 import UIKit
 
+protocol SearchMoviesCellDelegate: class {
+    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
+}
+
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    @IBOutlet var posterImageView: UIImageView!
-    @IBOutlet var movieTitleLabel: UILabel!
+    weak var delegate: SearchMoviesCellDelegate?
+    var movie: Movie? {
+        didSet {
+            if let movie = movie {
+                configure(with: movie)
+            }
+        }
+    }
+
+    @IBOutlet var poster: UIImageView!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var separatorView: UIView! {
+        didSet {
+            separatorView.backgroundColor = .primaryOrange
+        }
+    }
+
+    @IBOutlet var releaseDate: DescriptionLabel!
+
+    @IBOutlet weak var seenButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
+            self.seenButton.setTitle(title, for: .normal)
+        }
+    }
+
+    @IBOutlet weak var mustSeeButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
+            self.mustSeeButton.setTitle(title, for: .normal)
+        }
+    }
+
+    // MARK: - Actions
+
+    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
+    }
+
+    @IBAction func seenButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: true)
+    }
 
     func configure(with movie: Movie) {
-        movieTitleLabel.text = movie.title
+        title.text = movie.title
+        releaseDate.text = movie.releaseDate.formatted
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
                 let posterToDisplay = poster ?? Images.posterPlaceholder
                 movie.poster = posterToDisplay
-                self.posterImageView.image = posterToDisplay
+                self.poster.image = posterToDisplay
             }
         }
     }
