@@ -205,7 +205,7 @@
                                     <action selector="triggerSearchMovieAction:" destination="B9b-Vg-V1Y" id="6FJ-bW-hrp"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="movieNight" id="lcM-kg-856">
+                            <barButtonItem image="movieNight" id="lcM-kg-856">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="LmF-JB-EM3"/>

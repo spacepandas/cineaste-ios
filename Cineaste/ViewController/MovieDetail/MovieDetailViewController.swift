@@ -46,17 +46,7 @@ class MovieDetailViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
-    var movie: Movie? {
-        didSet {
-            guard let movie = movie else { return }
-            Webservice.load(resource: movie.get) { result in
-                guard case let .success(detailedMovie) = result else {
-                    return
-                }
-                detailedMovie.poster = movie.poster
-            }
-        }
-    }
+    var movie: Movie?
 
     var storedMovie: StoredMovie? {
         didSet {
@@ -77,7 +67,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.isEditable = false
-        setupUI()
+        loadMovieDetailAndSetupUI()
     }
 
     // MARK: - Actions
@@ -92,7 +82,7 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
-    fileprivate func setupUI() {
+    fileprivate func setupUIWithNetworkMovie() {
         DispatchQueue.main.async {
             guard let movie = self.movie else { return }
             if let moviePoster = movie.poster {
@@ -130,6 +120,20 @@ class MovieDetailViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
+        }
+    }
+
+    fileprivate func loadMovieDetailAndSetupUI() {
+        guard let movie = movie else { return }
+        // Setup with the default data to show something while new data is loading
+        self.setupUIWithNetworkMovie()
+        Webservice.load(resource: movie.get) { result in
+            guard case let .success(detailedMovie) = result else {
+                return
+            }
+            detailedMovie.poster = movie.poster
+            self.movie = detailedMovie
+            self.setupUIWithNetworkMovie()
         }
     }
 }
