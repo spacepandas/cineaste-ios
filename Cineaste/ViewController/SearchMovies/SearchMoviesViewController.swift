@@ -57,14 +57,6 @@ class SearchMoviesViewController: UIViewController {
         configureSearchController()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
