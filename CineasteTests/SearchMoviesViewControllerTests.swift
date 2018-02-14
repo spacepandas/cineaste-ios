@@ -18,5 +18,5 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(searchMoviesVC.moviesTableView.delegate)
         XCTAssertNotNil(searchMoviesVC.moviesTableView.dataSource)
     }
-    
+
 }

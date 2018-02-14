@@ -10,8 +10,10 @@ platform :ios do
   lane :test do
     scan(
       device: "iPhone 7",
-      scheme: "Cineaste",
-      code_coverage: true
+      scheme: "Testing",
+      code_coverage: true,
+      output_directory: "/tmp/output",
+      buildlog_path: "/tmp/buildlog"
     )
   end
 end

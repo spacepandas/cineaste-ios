@@ -12,7 +12,7 @@ import CoreData
 
 class MovieListCellTests: XCTestCase {
     let cell = MovieListCell()
-    
+
     override func setUp() {
         super.setUp()
 
@@ -40,7 +40,7 @@ class MovieListCellTests: XCTestCase {
         cell.addSubview(releaseDate)
         cell.releaseDate = releaseDate
     }
-    
+
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
@@ -60,5 +60,5 @@ class MovieListCellTests: XCTestCase {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: managedObjectContext) as! StoredMovie
         return entity
     }()
-    
+
 }
