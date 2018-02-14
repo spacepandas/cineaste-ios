@@ -21,7 +21,6 @@ extension SearchMoviesViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        resultSearchController.dismiss(animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
         selectedMovie = movies[indexPath.section]
         perform(segue: .showMovieDetail, sender: self)

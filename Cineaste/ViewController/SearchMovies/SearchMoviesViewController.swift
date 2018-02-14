@@ -114,8 +114,8 @@ class SearchMoviesViewController: UIViewController {
             backgroundview.clipsToBounds = true
         } else {
             moviesTableView.tableHeaderView = resultSearchController.searchBar
-            self.definesPresentationContext = true
         }
+        self.definesPresentationContext = true
     }
 
 }
