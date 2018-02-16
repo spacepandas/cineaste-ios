@@ -47,7 +47,7 @@ class MoviesViewController: UIViewController {
 
     let fetchedResultsManager = FetchedResultsManager()
     let storageManager = MovieStorage()
-    private var selectedMovie: StoredMovie?
+    var selectedMovie: StoredMovie?
 
     let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
