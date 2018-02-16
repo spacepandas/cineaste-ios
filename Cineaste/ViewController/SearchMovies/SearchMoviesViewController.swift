@@ -127,7 +127,7 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
         loadDetails(for: movie) { detailedMovie in
             storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
                 guard case .success = result else {
-                    // TODO: We should definitely show an error when updating failed
+                    self.showAlert(withMessage: Alert.insertMovieError)
                     return
                 }
 
