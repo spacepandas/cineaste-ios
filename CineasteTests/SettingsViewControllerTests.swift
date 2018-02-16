@@ -45,7 +45,7 @@ class SettingsViewControllerTests: XCTestCase {
         }
     }
 
-    func testPrepareForSegueShouldInjectCorrectContent() {
+    func testPrepareForSegueShouldInjectCorrectContentToImprintVC() {
         let targetViewController = ImprintViewController.instantiate()
         let targetSegue = UIStoryboardSegue(
             identifier: Segue.showTextViewFromSettings.rawValue,

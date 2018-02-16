@@ -34,9 +34,9 @@ enum SettingItem {
         case .importMovies:
             return nil
         case .licence:
-            return Segue.showTextViewFromSettings
+            return .showTextViewFromSettings
         case .about:
-            return Segue.showTextViewFromSettings
+            return .showTextViewFromSettings
         }
     }
 }

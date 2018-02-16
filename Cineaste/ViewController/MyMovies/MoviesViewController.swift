@@ -80,16 +80,12 @@ class MoviesViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
-
-        switch identifier {
-        case .showSearchFromMovieList:
+        switch Segue(initWith: segue) {
+        case .showSearchFromMovieList?:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
             vc?.storageManager = storageManager
-        case .showMovieDetail:
+        case .showMovieDetail?:
             let vc = segue.destination as? MovieDetailViewController
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
@@ -137,7 +133,7 @@ extension MoviesViewController: UITableViewDelegate {
         }
         selectedMovie = movies[indexPath.row]
 
-        perform(segue: Segue.showMovieDetail, sender: nil)
+        perform(segue: .showMovieDetail, sender: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

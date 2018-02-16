@@ -55,14 +55,10 @@ class SettingsViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
+        switch Segue(initWith: segue) {
+        case .showTextViewFromSettings?:
+            guard let selected = selectedSetting else { return }
 
-        guard let selected = selectedSetting else { return }
-
-        switch identifier {
-        case .showTextViewFromSettings:
             let vc = segue.destination as? ImprintViewController
             vc?.title = selected.title
             vc?.textViewContent = (selected == SettingItem.licence)

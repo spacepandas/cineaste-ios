@@ -69,12 +69,8 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
-
-        switch identifier {
-        case .showMovieDetail:
+        switch Segue(initWith: segue) {
+        case .showMovieDetail?:
             let vc = segue.destination as? MovieDetailViewController
             vc?.storageManager = storageManager
 

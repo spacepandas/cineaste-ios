@@ -11,10 +11,6 @@ import XCTest
 
 class MoviesTabBarControllerTests: XCTestCase {
     let tabBarController = MoviesTabBarController.instantiate()
-    
-    override func setUp() {
-        super.setUp()
-    }
 
     func testTabBarViewControllerCount() {
         tabBarController.viewDidLoad()
