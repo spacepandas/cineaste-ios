@@ -50,8 +50,8 @@ class Movie: Codable {
 extension Movie {
     static fileprivate let baseUrl = "https://api.themoviedb.org/3"
     static fileprivate let posterBaseUrl = "https://image.tmdb.org/t/p/w342"
-    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
-    fileprivate static let locale = Locale.current.identifier
+    static fileprivate let apiKey = ApiKeyStore.theMovieDbKey()
+    static fileprivate let locale = Locale.current.identifier
 
     static func search(withQuery query: String) -> Resource<[Movie]>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
