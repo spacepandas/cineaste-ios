@@ -21,7 +21,7 @@ class MoviesViewControllerTests: XCTestCase {
     }
 
     func testFetchedResultsManagerDelegateIsNotNil() {
-        moviesVC.category = .wantToSee
+        moviesVC.viewDidLoad()
         XCTAssertNotNil(moviesVC.fetchedResultsManager.delegate)
     }
 
@@ -57,6 +57,32 @@ class MoviesViewControllerTests: XCTestCase {
 
         XCTAssertEqual(targetViewController.storedMovie, storedMovie)
         XCTAssertNotNil(targetViewController.storageManager)
+    }
+
+    func testSettingCategoryShouldChangeTitleOfVC() {
+        let seenTitle = MovieListCategory.seen.title
+        moviesVC.category = .seen
+        XCTAssertEqual(moviesVC.title, seenTitle)
+
+        let wantToSeeTitle = MovieListCategory.wantToSee.title
+        moviesVC.category = .wantToSee
+        XCTAssertEqual(moviesVC.title, wantToSeeTitle)
+    }
+
+    func testEmptyListShouldHideTableView() {
+        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
+            XCTAssertTrue(moviesVC.myMoviesTableView.isHidden)
+        } else {
+            XCTAssertFalse(moviesVC.myMoviesTableView.isHidden)
+        }
+    }
+
+    func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
+        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
+            XCTAssertEqual(moviesVC.myMoviesTableView.numberOfRows(inSection: 0), 0)
+        } else {
+            XCTAssertEqual(moviesVC.myMoviesTableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.controller?.fetchedObjects?.count)
+        }
     }
 
     private let storedMovie: StoredMovie = {
