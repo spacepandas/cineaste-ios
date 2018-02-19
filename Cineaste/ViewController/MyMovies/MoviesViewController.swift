@@ -36,8 +36,12 @@ class MoviesViewController: UIViewController {
         didSet {
             myMoviesTableView.dataSource = self
             myMoviesTableView.delegate = self
+
             myMoviesTableView.tableFooterView = UIView()
             myMoviesTableView.backgroundColor = UIColor.basicBackground
+
+            myMoviesTableView.rowHeight = UITableViewAutomaticDimension
+            myMoviesTableView.estimatedRowHeight = 80
         }
     }
 
@@ -49,7 +53,9 @@ class MoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.basicBackground
+
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
             myMoviesTableView.reloadData()
@@ -119,12 +125,6 @@ extension MoviesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension MoviesViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects, !fetchedObjects.isEmpty else { return nil }
-        return indexPath
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -134,14 +134,6 @@ extension MoviesViewController: UITableViewDelegate {
         selectedMovie = movies[indexPath.row]
 
         perform(segue: .showMovieDetail, sender: nil)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects, !movies.isEmpty else {
-            return tableView.frame.size.height
-        }
-
-        return UITableViewAutomaticDimension
     }
 }
 
