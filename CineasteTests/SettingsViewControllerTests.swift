@@ -58,7 +58,7 @@ class SettingsViewControllerTests: XCTestCase {
         settingsVC.prepare(for: targetSegue, sender: settingsVC)
 
         XCTAssertEqual(targetViewController.title, imprintItem.title)
-        XCTAssertEqual(targetViewController.textViewContent, .imprint)
+        XCTAssertEqual(targetViewController.contentType, .imprint)
 
         //inject licence data
         let licenceItem = settingsItems[1]
@@ -66,7 +66,7 @@ class SettingsViewControllerTests: XCTestCase {
         settingsVC.prepare(for: targetSegue, sender: settingsVC)
 
         XCTAssertEqual(targetViewController.title, licenceItem.title)
-        XCTAssertEqual(targetViewController.textViewContent, .licence)
+        XCTAssertEqual(targetViewController.contentType, .licence)
     }
 
     func testSelectRowShouldSetCorrectSelectedSetting() {

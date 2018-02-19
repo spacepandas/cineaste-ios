@@ -49,9 +49,7 @@ class SearchMoviesViewController: UIViewController {
         self.view.backgroundColor = UIColor.basicBackground
 
         loadRecent { [weak self] movies in
-            DispatchQueue.main.async {
-                self?.movies = movies
-            }
+            self?.movies = movies
         }
 
         configureSearchController()
@@ -113,9 +111,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                DispatchQueue.main.async {
-                    self?.movies = movies
-                }
+                self?.movies = movies
             }
         }
     }
@@ -126,13 +122,15 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
         guard let storageManager = storageManager else { return }
         loadDetails(for: movie) { detailedMovie in
             storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        self.showAlert(withMessage: Alert.insertMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
         }

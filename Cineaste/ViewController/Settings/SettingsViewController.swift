@@ -61,7 +61,7 @@ class SettingsViewController: UIViewController {
 
             let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
-            vc?.textViewContent = (selected == SettingItem.licence)
+            vc?.contentType = (selected == SettingItem.licence)
                 ? TextViewContent.licence
                 : TextViewContent.imprint
         default:
@@ -104,10 +104,7 @@ extension SettingsViewController: UITableViewDelegate {
         if let segue = selectedSetting?.segue {
             perform(segue: segue, sender: self)
         } else {
-            let alert = UIAlertController(title: "Info", message: "Feature isn't implemented", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
+            showAlert(withMessage: Alert.missingFeatureInfo)
         }
     }
 }

@@ -28,6 +28,7 @@ private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for ca
 
 // error
 private let errorTitle = NSLocalizedString("Fehler", comment: "Title for error alert")
+private let infoTitle = NSLocalizedString("Info", comment: "Title for info alert")
 
 // connection error
 private let connectionErrorMessage = NSLocalizedString("Verbindung zur Filmdatenbank fehlgeschlagen.", comment: "Message for connection error alert")
@@ -38,6 +39,9 @@ private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht g
 private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
+//missing feature
+private let missingFeatureMessage = NSLocalizedString("Das Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
+
 class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
     static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
@@ -45,6 +49,8 @@ class Alert: AlertMessage {
     static let deleteMovieError = AlertMessage(title: errorTitle, message: deleteMovieErrorMessage, action: okAction)
     static let updateMovieError = AlertMessage(title: errorTitle, message: updateMovieErrorMessage, action: okAction)
     static let insertMovieError = AlertMessage(title: errorTitle, message: insertMovieErrorMessage, action: okAction)
+
+    static let missingFeatureInfo = AlertMessage(title: infoTitle, message: missingFeatureMessage, action: okAction)
 }
 
 extension UIViewController {

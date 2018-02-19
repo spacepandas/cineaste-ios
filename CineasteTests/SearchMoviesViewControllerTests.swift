@@ -15,7 +15,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        self.searchMoviesVC.movies = []
+        searchMoviesVC.movies = []
     }
 
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
@@ -24,7 +24,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(searchMoviesVC.moviesTableView.delegate)
         XCTAssertNotNil(searchMoviesVC.moviesTableView.dataSource)
     }
-
+    
     func testBackgroundColorShouldBeSetCorrectly() {
         searchMoviesVC.viewDidLoad()
 
@@ -35,10 +35,10 @@ class SearchMoviesViewControllerTests: XCTestCase {
     func testNumberOfSectionsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 0)
 
-        self.searchMoviesVC.movies = self.movies
+        searchMoviesVC.movies = movies
         searchMoviesVC.moviesTableView.reloadData()
 
-        XCTAssertEqual(self.searchMoviesVC.moviesTableView.numberOfSections, 2)
+        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 2)
     }
 
     func testCellForRowShouldBeOfTypeSearchMoviesCell() {
