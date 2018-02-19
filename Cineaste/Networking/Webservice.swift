@@ -33,7 +33,7 @@ final class Webservice {
                 completion(Result.error(error!))
                 return
             }
-            guard let result = resource.parseData(data) else {
+            guard let result = resource.parse(data) else {
                 completion(Result.error(NetworkError.parseData))
                 return
             }
