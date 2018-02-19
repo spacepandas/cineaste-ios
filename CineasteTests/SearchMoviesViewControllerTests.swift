@@ -15,9 +15,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        DispatchQueue.main.async {
-            self.searchMoviesVC.movies = []
-        }
+        self.searchMoviesVC.movies = []
     }
 
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
@@ -34,7 +32,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(searchMoviesVC.moviesTableView.backgroundColor, UIColor.clear)
     }
     
-    func testNumberOfRowsShouldEqualNumberOfMovies() {
+    func testNumberOfSectionsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 0)
 
         self.searchMoviesVC.movies = self.movies
