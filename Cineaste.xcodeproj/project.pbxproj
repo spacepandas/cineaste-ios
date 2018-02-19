@@ -17,7 +17,7 @@
 		3F5E0D91203090C300E091BE /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D90203090C300E091BE /* SettingItem.swift */; };
 		3F5E0D932030988E00E091BE /* TextViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D922030988E00E091BE /* TextViewContent.swift */; };
 		3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
-		3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* ImprintViewController.swift */; };
+		3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */; };
 		3F6C887C2002B2FC0052BF24 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887A2002B2FC0052BF24 /* Settings.storyboard */; };
 		3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */; };
 		3F6C88812002B5400052BF24 /* MovieNight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887F2002B5400052BF24 /* MovieNight.storyboard */; };
@@ -98,7 +98,7 @@
 		3F5E0D922030988E00E091BE /* TextViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewContent.swift; sourceTree = "<group>"; };
 		3F61B2FC1FFAD680007A0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MoviesList.storyboard; sourceTree = "<group>"; };
 		3F61B2FF1FFAD683007A0557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoviesList.strings; sourceTree = "<group>"; };
-		3F6C88782002B2C50052BF24 /* ImprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprintViewController.swift; sourceTree = "<group>"; };
+		3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
 		3F6C887B2002B2FC0052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightViewController.swift; sourceTree = "<group>"; };
 		3F6C88802002B5400052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieNight.storyboard; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			children = (
 				3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */,
 				3F5E0D8E2030905B00E091BE /* SettingsCell.swift */,
-				3F6C88782002B2C50052BF24 /* ImprintViewController.swift */,
+				3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
 				3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */,
 				3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */,
-				3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */,
+				3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,

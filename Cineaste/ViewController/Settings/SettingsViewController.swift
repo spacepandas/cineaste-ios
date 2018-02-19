@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController {
         case .showTextViewFromSettings?:
             guard let selected = selectedSetting else { return }
 
-            let vc = segue.destination as? ImprintViewController
+            let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
             vc?.textViewContent = (selected == SettingItem.licence)
                 ? TextViewContent.licence
