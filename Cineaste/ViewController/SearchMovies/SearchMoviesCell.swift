@@ -25,7 +25,7 @@ class SearchMoviesCell: UITableViewCell {
     }
 
     @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: UILabel!
+    @IBOutlet var title: TitleLabel!
     @IBOutlet var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange

@@ -20,7 +20,7 @@ class MovieListCellTests: XCTestCase {
         cell.addSubview(poster)
         cell.poster = poster
 
-        let title = UILabel()
+        let title = TitleLabel()
         cell.addSubview(title)
         cell.title = title
 
