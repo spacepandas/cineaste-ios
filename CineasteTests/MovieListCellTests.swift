@@ -51,7 +51,7 @@ class MovieListCellTests: XCTestCase {
         XCTAssertEqual(cell.releaseDate.text, "\(storedMovie.releaseDate?.formatted ?? Date().formatted)")
     }
 
-    func testCellIdentifier() {
+    func testCellIdentifierForMovieListCell() {
         XCTAssertEqual(MovieListCell.identifier, "MovieListCell")
     }
 

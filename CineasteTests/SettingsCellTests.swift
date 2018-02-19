@@ -20,6 +20,10 @@ class SettingsCellTests: XCTestCase {
         cell.title = title
     }
 
+    func testCellIdentifierForSettingsCell() {
+        XCTAssertEqual(SettingsCell.identifier, "SettingsCell")
+    }
+
     func testConfigureShouldSetCellTitleCorrectly() {
         cell.configure(with: settingsItem)
 

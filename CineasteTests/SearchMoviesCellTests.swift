@@ -39,6 +39,10 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(mustSee)
         cell.mustSeeButton = mustSee
     }
+
+    func testCellIdentifierForSearchMoviesCell() {
+        XCTAssertEqual(SearchMoviesCell.identifier, "SearchMoviesCell")
+    }
     
     func testConfigureShouldSetCellTitleAndReleaseDateCorrectly() {
         cell.configure(with: movie)
