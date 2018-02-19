@@ -25,9 +25,9 @@ enum MovieListCategory: String {
     var image: UIImage {
         switch self {
         case .wantToSee:
-            return #imageLiteral(resourceName: "add_to_watchlist")
+            return Images.wantToSeeIcon
         case .seen:
-            return #imageLiteral(resourceName: "add_to_watchedlist")
+            return Images.seenIcon
         }
     }
 
