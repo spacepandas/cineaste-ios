@@ -51,6 +51,7 @@
 		3FEF5C4B2030B28D00EFCAA2 /* SettingsCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */; };
 		45E30914AA64816E9D8F1F02 /* Pods_Cineaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83ED5B07D59B9D83B9F446 /* Pods_Cineaste.framework */; };
 		634BFA4AFCFA1EDED2BA139C /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */; };
+		951D86D02034B6C700BDD1D0 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D86CF2034B6C700BDD1D0 /* Dependencies.swift */; };
 		9528112E201D05AD00F3EC76 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
 		95281130201D087800F3EC76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
 		9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552262C1FAFB5D300323982 /* StoredMovie.swift */; };
@@ -132,6 +133,8 @@
 		3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellTests.swift; sourceTree = "<group>"; };
 		614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93847470A61BB0CE79904886 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
+		951D86CF2034B6C700BDD1D0 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
 		9528112D201D05AD00F3EC76 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		9552262C1FAFB5D300323982 /* StoredMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredMovie.swift; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				95D32F601F9AA20100497ED2 /* apikey.plist */,
 				9528112F201D087800F3EC76 /* .swiftlint.yml */,
 				958328991FBB81340084CF80 /* cineaste.xcassets */,
+				951D86CF2034B6C700BDD1D0 /* Dependencies.swift */,
+				951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */,
 			);
 			path = Cineaste;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				TargetAttributes = {
 					95AE259B1F9531E20067F5F5 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					95AE25AF1F9531E20067F5F5 = {
@@ -571,9 +577,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste-resources.sh",
+				"${PODS_ROOT}/NearbyMessages/Resources/resources/GNSSharedResources.bundle",
+				"${PODS_ROOT}/NearbyMessages/Resources/resources/ic_expand_more.xcassets",
+				"${PODS_ROOT}/NearbyMessages/Resources/resources/ic_nearby_48pt.xcassets",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GNSSharedResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_expand_more.xcassets",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_nearby_48pt.xcassets",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -681,6 +694,7 @@
 				3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */,
 				95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */,
 				3FDB14542025B80F0063E980 /* AlertMessages.swift in Sources */,
+				951D86D02034B6C700BDD1D0 /* Dependencies.swift in Sources */,
 				3FA808D1200285590036357B /* View.swift in Sources */,
 				3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */,
 				3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */,
@@ -702,7 +716,6 @@
 				3FEF5C492030B28100EFCAA2 /* SettingsViewControllerTests.swift in Sources */,
 				3F83BE801FF3AC3B00E584E9 /* CoreDataHelper.swift in Sources */,
 				3F8644B11FFA95190046114A /* MoviesTabBarControllerTests.swift in Sources */,
-				3F83BE9A1FF3CA1700E584E9 /* SearchMoviesSourceTests.swift in Sources */,
 				3FEF5C4B2030B28D00EFCAA2 /* SettingsCellTests.swift in Sources */,
 				3F8C569E1FFACB2600F09A82 /* MovieStorageTests.swift in Sources */,
 			);
@@ -895,12 +908,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8SM483N5JS;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.Cineaste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cineaste/Cineaste-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -912,12 +930,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8SM483N5JS;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.Cineaste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cineaste/Cineaste-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

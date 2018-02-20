@@ -45,5 +45,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth will only be used to discover nearby devices</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone will only be used to discover nearby devices</string>
 </dict>
 </plist>

@@ -6,6 +6,13 @@ An iOS and android application to manage movies you would like to see and movies
 
 No need for registration! No need for adding friends!
 
+## Install
+
+You will need an `apikey.plist` containing the `MOVIEDB_KEY` and `NEARBY_KEY`.
+```
+pod install
+```
+
 ## Other Clients
 
 1. [android](https://github.com/marcelgross90/Cineaste) 
