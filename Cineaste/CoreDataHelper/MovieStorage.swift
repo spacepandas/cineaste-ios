@@ -110,6 +110,14 @@ class MovieStorage {
         return results ?? [StoredMovie]()
     }
 
+    /// Must be called on main thread because of core data view context
+    func fetchAllWantToSeeMovies() -> [StoredMovie] {
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        request.predicate = NSPredicate(format: "watched == %@", NSNumber(value: false) )
+
+        return (try? persistentContainer.viewContext.fetch(request)) ?? [StoredMovie]()
+    }
+
     func remove(_ storedMovie: StoredMovie,
                 handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {

@@ -31,10 +31,28 @@ class MovieNightViewController: UIViewController {
     // MARK: - Nearby
 
     fileprivate func startPublishing() {
+        let nearbyMovies =
+            Dependencies
+                .shared
+                .movieStorage
+                .fetchAllWantToSeeMovies()
+                .flatMap { storedMovie -> NearbyMovie? in
+                    guard let title = storedMovie.title else {
+                        return nil
+                    }
+                    return NearbyMovie(id: storedMovie.id, title: title, posterPath: storedMovie.posterPath)
+                }
+
+        // TODO: Make this pretty
+        let nearbyMessage = NearbyMessage(userName: "It's me Mario", deviceId: "fancyDeviceId", movies: nearbyMovies)
+
+        guard let messageData = try? JSONEncoder().encode(nearbyMessage) else {
+            return
+        }
         currentPublication = Dependencies
             .shared
             .gnsMessageManager
-            .publication(with: GNSMessage(content: "Test".data(using: .utf8)))
+            .publication(with: GNSMessage(content: messageData))
     }
 
     fileprivate func startSubscribing() {

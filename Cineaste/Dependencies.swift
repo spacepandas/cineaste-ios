@@ -12,8 +12,11 @@ struct Dependencies {
     static let shared = Dependencies()
 
     let gnsMessageManager: GNSMessageManager
+    let movieStorage: MovieStorage
 
     private init() {
+        // TODO: Make everyone use this dependency
+        movieStorage = MovieStorage()
         gnsMessageManager = GNSMessageManager(apiKey: ApiKeyStore.nearbyKey())
         #if DEBUG
 //            GNSMessageManager.setDebugLoggingEnabled(true)
