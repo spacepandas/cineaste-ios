@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct NearbyMessage: Codable {
+struct NearbyMessage: Codable, Equatable {
     let userName: String
     let deviceId: String
     let movies: [NearbyMovie]
@@ -19,5 +19,9 @@ struct NearbyMessage: Codable {
             fatalError("Unable to get UUID")
         }
         return NearbyMessage(userName: username, deviceId: deviceId.description, movies: movies)
+    }
+
+    static func == (lhs: NearbyMessage, rhs: NearbyMessage) -> Bool {
+        return lhs.deviceId == rhs.deviceId
     }
 }

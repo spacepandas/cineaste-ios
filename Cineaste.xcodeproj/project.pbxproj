@@ -57,6 +57,7 @@
 		953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F4203E163500A331A0 /* EnterUsernameViewController.swift */; };
 		953182F7203E17AF00A331A0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Config.swift */; };
 		953182F9203E19A000A331A0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F8203E19A000A331A0 /* UserDefaultsManager.swift */; };
+		953182FB203E212A00A331A0 /* MovieNightUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */; };
 		9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552262C1FAFB5D300323982 /* StoredMovie.swift */; };
 		955C1383203CCBA2009D8337 /* NearbyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955C1382203CCBA2009D8337 /* NearbyMessage.swift */; };
 		955C1385203CCF61009D8337 /* NearbyMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955C1384203CCF61009D8337 /* NearbyMovie.swift */; };
@@ -145,6 +146,7 @@
 		953182F4203E163500A331A0 /* EnterUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterUsernameViewController.swift; sourceTree = "<group>"; };
 		953182F6203E17AF00A331A0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		953182F8203E19A000A331A0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightUserTableViewCell.swift; sourceTree = "<group>"; };
 		9552262C1FAFB5D300323982 /* StoredMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredMovie.swift; sourceTree = "<group>"; };
 		955C1382203CCBA2009D8337 /* NearbyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMessage.swift; sourceTree = "<group>"; };
 		955C1384203CCF61009D8337 /* NearbyMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMovie.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
 				953182F4203E163500A331A0 /* EnterUsernameViewController.swift */,
+				953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */,
 			);
 			path = MovieNight;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				3F8644AB1FFA72EE0046114A /* MoviesTabBarController.swift in Sources */,
 				3F5E0D91203090C300E091BE /* SettingItem.swift in Sources */,
 				3F5E0D932030988E00E091BE /* TextViewContent.swift in Sources */,
+				953182FB203E212A00A331A0 /* MovieNightUserTableViewCell.swift in Sources */,
 				95B5771A201E2C75007BD9F0 /* MovieListCategory.swift in Sources */,
 				9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */,
 				9528112E201D05AD00F3EC76 /* Result.swift in Sources */,
