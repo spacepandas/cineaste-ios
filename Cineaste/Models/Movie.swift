@@ -48,8 +48,6 @@ class Movie: Codable {
 }
 
 extension Movie {
-    static fileprivate let baseUrl = "https://api.themoviedb.org/3"
-    static fileprivate let posterBaseUrl = "https://image.tmdb.org/t/p/w342"
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
     fileprivate static let locale = Locale.current.identifier
 
@@ -57,7 +55,7 @@ extension Movie {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return nil
         }
-        let urlAsString = "\(Movie.baseUrl)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
+        let urlAsString = "\(Config.Backend.url)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
 
         return Resource(url: urlAsString, method: .get) {data in
             let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
@@ -69,7 +67,7 @@ extension Movie {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString =
-        "\(Movie.baseUrl)/discover/movie?" +
+        "\(Config.Backend.url)/discover/movie?" +
         "primary_release_date.gte=\(oneMonthInPast.formattedForRequest)&" +
             "primary_release_date.lte=\(oneMonthInFuture.formattedForRequest)&" +
             "language=\(Movie.locale)&" +
@@ -83,7 +81,7 @@ extension Movie {
 
     func loadPoster() -> Resource<UIImage>? {
         guard let posterPath = posterPath else { return nil }
-        let urlAsString = "\(Movie.posterBaseUrl)\(posterPath)?api_key=\(Movie.apiKey)"
+        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) {data in
             let image = UIImage(data: data)
             return image
@@ -91,7 +89,7 @@ extension Movie {
     }
 
     var get: Resource<Movie>? {
-        let urlAsString = "\(Movie.baseUrl)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
+        let urlAsString = "\(Config.Backend.url)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) {data in
             let movie = try? JSONDecoder().decode(Movie.self, from: data)
             return movie

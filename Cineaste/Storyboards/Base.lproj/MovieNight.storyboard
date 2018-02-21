@@ -17,7 +17,19 @@
                     <view key="view" contentMode="scaleToFill" id="9AK-Sx-iuJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7dP-WF-HeU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oK4-7Z-NLo" firstAttribute="trailing" secondItem="7dP-WF-HeU" secondAttribute="trailing" id="55K-XQ-klB"/>
+                            <constraint firstItem="7dP-WF-HeU" firstAttribute="top" secondItem="oK4-7Z-NLo" secondAttribute="top" id="ciD-PG-YkW"/>
+                            <constraint firstItem="7dP-WF-HeU" firstAttribute="leading" secondItem="oK4-7Z-NLo" secondAttribute="leading" id="jrv-nQ-xM1"/>
+                            <constraint firstAttribute="bottom" secondItem="7dP-WF-HeU" secondAttribute="bottom" id="mdY-EC-I1e"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oK4-7Z-NLo"/>
                     </view>
                     <navigationItem key="navigationItem" id="FyT-KT-JyI">
@@ -29,10 +41,75 @@
                         <barButtonItem key="rightBarButtonItem" title="Start" id="D5m-oj-yJ9"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="cR3-lb-s6Y" kind="presentation" identifier="ShowUsernameSegue" modalPresentationStyle="pageSheet" id="FIf-Tu-IqS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaB-CR-tfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="714" y="203"/>
+        </scene>
+        <!--Enter Username View Controller-->
+        <scene sceneID="WLm-6C-g2f">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="cR3-lb-s6Y" customClass="EnterUsernameViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bNn-os-WAn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tx6-eH-YOE">
+                                <rect key="frame" x="34" y="135" width="307" height="36"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How do you want to be named?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7t-XI-Jtd">
+                                <rect key="frame" x="34" y="202" width="307" height="65"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3j-ZP-XJO">
+                                <rect key="frame" x="34" y="275" width="307" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dY-JJ-GXj">
+                                <rect key="frame" x="34" y="325" width="128" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="vp7-jE-24a" kind="unwind" unwindAction="unwindAfterCancelUsernameWithSegue:" id="vHu-1Q-Zou"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K90-7S-chJ">
+                                <rect key="frame" x="213" y="325" width="128" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTouched:" destination="cR3-lb-s6Y" eventType="touchUpInside" id="Tcc-ZJ-Ixw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JdK-cq-35d"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="9dY-JJ-GXj" id="qIk-gF-bEZ"/>
+                        <outlet property="descriptionLabel" destination="Q7t-XI-Jtd" id="70y-I2-Vhn"/>
+                        <outlet property="headingLabel" destination="Tx6-eH-YOE" id="tXh-4S-b9s"/>
+                        <outlet property="saveButton" destination="K90-7S-chJ" id="ESJ-xU-CTz"/>
+                        <outlet property="usernameTextField" destination="T3j-ZP-XJO" id="M8P-wA-Pdh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ziX-ko-c4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vp7-jE-24a" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="201.94902548725639"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6xH-nl-fpB">

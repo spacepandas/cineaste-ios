@@ -7,9 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 struct NearbyMessage: Codable {
     let userName: String
     let deviceId: String
     let movies: [NearbyMovie]
+
+    static func create(withUsername username: String, movies: [NearbyMovie]) -> NearbyMessage {
+        guard let deviceId = UIDevice.current.identifierForVendor else {
+            fatalError("Unable to get UUID")
+        }
+        return NearbyMessage(userName: username, deviceId: deviceId.description, movies: movies)
+    }
 }

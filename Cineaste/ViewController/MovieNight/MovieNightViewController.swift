@@ -18,13 +18,26 @@ class MovieNightViewController: UIViewController {
         title = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
         view.backgroundColor = UIColor.basicBackground
 
-        startPublishing()
-        startSubscribing()
+        if UserDefaultsManager.getUsername() == nil {
+            perform(segue: Segue.showUsername, sender: nil)
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaultsManager.getUsername() != nil {
+            startPublishing()
+            startSubscribing()
+        }
     }
 
     // MARK: - Actions
 
     @IBAction func cancelButtonTouched(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func unwindAfterCancelUsername(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
     }
 
