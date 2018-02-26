@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-struct NearbyMessage: Codable, Equatable {
+struct NearbyMessage: Codable, Equatable, Hashable {
+
     let userName: String
     let deviceId: String
     let movies: [NearbyMovie]
@@ -23,5 +24,9 @@ struct NearbyMessage: Codable, Equatable {
 
     static func == (lhs: NearbyMessage, rhs: NearbyMessage) -> Bool {
         return lhs.deviceId == rhs.deviceId
+    }
+
+    var hashValue: Int {
+       return userName.hashValue ^ deviceId.hashValue
     }
 }

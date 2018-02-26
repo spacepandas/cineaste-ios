@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
-struct NearbyMovie: Codable {
+struct NearbyMovie: Codable, Hashable {
+
     let id: Int64
     let posterPath: String?
     let title: String
@@ -37,5 +39,13 @@ struct NearbyMovie: Codable {
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(posterPath, forKey: .posterPath)
         try container.encode(title, forKey: .title)
+    }
+
+    var hashValue: Int {
+        return id.hashValue
+    }
+
+    static func == (lhs: NearbyMovie, rhs: NearbyMovie) -> Bool {
+        return lhs.id == rhs.id
     }
 }

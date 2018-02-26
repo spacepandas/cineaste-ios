@@ -52,6 +52,8 @@
 		45E30914AA64816E9D8F1F02 /* Pods_Cineaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83ED5B07D59B9D83B9F446 /* Pods_Cineaste.framework */; };
 		634BFA4AFCFA1EDED2BA139C /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614D56475F502CF4C5A24355 /* Pods_CineasteTests.framework */; };
 		951D86D02034B6C700BDD1D0 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D86CF2034B6C700BDD1D0 /* Dependencies.swift */; };
+		9526A70520448940004E08F7 /* MovieMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70420448940004E08F7 /* MovieMatchViewController.swift */; };
+		9526A70720449206004E08F7 /* MovieMatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */; };
 		9528112E201D05AD00F3EC76 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
 		95281130201D087800F3EC76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
 		953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F4203E163500A331A0 /* EnterUsernameViewController.swift */; };
@@ -141,6 +143,8 @@
 		93847470A61BB0CE79904886 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
 		951D86CF2034B6C700BDD1D0 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
+		9526A70420448940004E08F7 /* MovieMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchViewController.swift; sourceTree = "<group>"; };
+		9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchTableViewCell.swift; sourceTree = "<group>"; };
 		9528112D201D05AD00F3EC76 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		953182F4203E163500A331A0 /* EnterUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterUsernameViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
 				953182F4203E163500A331A0 /* EnterUsernameViewController.swift */,
 				953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */,
+				9526A70420448940004E08F7 /* MovieMatchViewController.swift */,
+				9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */,
 			);
 			path = MovieNight;
 			sourceTree = "<group>";
@@ -708,6 +714,7 @@
 				3FD722CC20264B720046DEAC /* SearchMoviesViewController+UITableView.swift in Sources */,
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
+				9526A70520448940004E08F7 /* MovieMatchViewController.swift in Sources */,
 				953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */,
 				3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */,
 				3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */,
@@ -724,6 +731,7 @@
 				3FD722CE20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift in Sources */,
 				959E8B771FABC6F50004E8C3 /* SearchMoviesViewController.swift in Sources */,
 				3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */,
+				9526A70720449206004E08F7 /* MovieMatchTableViewCell.swift in Sources */,
 				95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */,
 				3FDB14542025B80F0063E980 /* AlertMessages.swift in Sources */,
 				951D86D02034B6C700BDD1D0 /* Dependencies.swift in Sources */,

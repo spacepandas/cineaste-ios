@@ -10,11 +10,13 @@ import UIKit
 
 class MovieNightViewController: UIViewController {
     @IBOutlet fileprivate weak var usersTableView: UITableView!
+    @IBOutlet fileprivate weak var startButton: UIButton!
 
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
 
     fileprivate var nearbyMessages = [NearbyMessage]()
+    fileprivate var myNearbyMessage: NearbyMessage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,13 @@ class MovieNightViewController: UIViewController {
         if UserDefaultsManager.getUsername() == nil {
             perform(segue: Segue.showUsername, sender: nil)
         }
+
+        usersTableView.isHidden = true
+        applyDefaultStyleAndEnableStartButton()
+        disableStartButton()
+        startButton.addTarget(self, action: #selector(applyPressedStyle), for: .touchDown)
+        startButton.addTarget(self, action: #selector(applyDefaultStyleAndEnableStartButton), for: .touchUpOutside)
+        startButton.addTarget(self, action: #selector(applyDefaultStyleAndEnableStartButton), for: .touchUpInside)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +62,34 @@ class MovieNightViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
+        guard let myNearbyMessage = myNearbyMessage else {
+            return
+        }
+
+        var clone = [NearbyMessage](nearbyMessages)
+        clone.append(myNearbyMessage)
+        performSegue(withIdentifier: Segue.showMovieMatches.rawValue, sender: clone)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = Segue(initWith: segue) else {
+            fatalError("unable to use Segue enum")
+        }
+
+        switch identifier {
+        case .showMovieMatches:
+            guard let nearbyMessages = sender as? [NearbyMessage] else {
+                return
+            }
+            let vc = segue.destination as? MovieMatchViewController
+            vc?.configure(with: nearbyMessages)
+        default:
+            fatalError("Segue not registered")
+        }
+    }
     // MARK: - Nearby
 
     fileprivate func startPublishing() {
@@ -72,6 +109,7 @@ class MovieNightViewController: UIViewController {
             return
         }
         let nearbyMessage = NearbyMessage.create(withUsername: username, movies: nearbyMovies)
+        myNearbyMessage = nearbyMessage
         guard let messageData = try? JSONEncoder().encode(nearbyMessage) else {
             return
         }
@@ -94,6 +132,8 @@ class MovieNightViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.nearbyMessages.append(nearbyMessage)
+                    self.applyDefaultStyleAndEnableStartButton()
+                    self.usersTableView.isHidden = false
                     self.usersTableView.reloadData()
                 }
         }, messageLostHandler: { message in
@@ -107,9 +147,39 @@ class MovieNightViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.nearbyMessages.remove(at: index)
+                if self.nearbyMessages.isEmpty {
+                    self.disableStartButton()
+                    self.usersTableView.isHidden = true
+                }
                 self.usersTableView.reloadData()
             }
         })
+    }
+}
+
+extension MovieNightViewController {
+    // MARK: Style button
+
+    @objc
+    func applyDefaultStyleAndEnableStartButton() {
+        startButton.isEnabled = true
+        startButton.tintColor = UIColor.primaryOrange
+        startButton.layer.borderColor = UIColor.primaryOrange.cgColor
+        startButton.layer.borderWidth = 4
+        startButton.layer.cornerRadius = 25
+    }
+
+    @objc
+    func disableStartButton() {
+        startButton.isEnabled = false
+        startButton.tintColor = UIColor.lightGray
+        startButton.layer.borderColor = UIColor.lightGray.cgColor
+    }
+
+    @objc
+    func applyPressedStyle() {
+        startButton.tintColor = UIColor.white
+        startButton.layer.borderColor = UIColor.white.cgColor
     }
 }
 
