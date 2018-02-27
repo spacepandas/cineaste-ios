@@ -24,6 +24,7 @@ class AlertMessage {
 
 // default
 private let okAction = NSLocalizedString("OK", comment: "Title for ok action")
+private let saveAction = NSLocalizedString("Speichern", comment: "Title for save action")
 private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
 
 // error
@@ -38,6 +39,10 @@ private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht g
 private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
+// enter username for movie night
+private let usernameTitle = NSLocalizedString("Enter a username", comment: "Enter username heading")
+private let usernameDescription = NSLocalizedString("How do you want to appear on your friends", comment: "Enter username description")
+
 class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
     static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
@@ -45,6 +50,8 @@ class Alert: AlertMessage {
     static let deleteMovieError = AlertMessage(title: errorTitle, message: deleteMovieErrorMessage, action: okAction)
     static let updateMovieError = AlertMessage(title: errorTitle, message: updateMovieErrorMessage, action: okAction)
     static let insertMovieError = AlertMessage(title: errorTitle, message: insertMovieErrorMessage, action: okAction)
+
+    static let insertUsername = AlertMessage(title: usernameTitle, message: usernameDescription, action: saveAction, cancel: cancelAction)
 }
 
 extension UIViewController {
