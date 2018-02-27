@@ -208,7 +208,7 @@
                             <barButtonItem image="movieNight" id="lcM-kg-856">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="LmF-JB-EM3"/>
+                                    <action selector="movieNightButtonTouched:" destination="B9b-Vg-V1Y" id="Yq0-wR-zU0"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -218,6 +218,7 @@
                         <outlet property="myMoviesTableView" destination="xt5-ya-K37" id="XQ7-My-Mne"/>
                         <segue destination="mxJ-DZ-Bxk" kind="presentation" identifier="ShowSearchFromMovieList" id="Mf1-Xj-P5J"/>
                         <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="ja9-hr-OdI"/>
+                        <segue destination="3Be-Vi-pta" kind="showDetail" identifier="ShowMovieNightSegue" id="AtA-tD-jnv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Np-YM-7eb" userLabel="First Responder" sceneMemberID="firstResponder"/>

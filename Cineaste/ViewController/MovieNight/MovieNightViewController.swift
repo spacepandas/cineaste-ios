@@ -18,9 +18,6 @@ class MovieNightViewController: UIViewController {
     fileprivate var nearbyMessages = [NearbyMessage]()
     fileprivate var myNearbyMessage: NearbyMessage?
 
-    fileprivate var username: String?
-    fileprivate var saveAction: UIAlertAction?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
@@ -28,35 +25,6 @@ class MovieNightViewController: UIViewController {
         usersTableView.dataSource = self
         usersTableView.backgroundColor = UIColor.basicBackground
         usersTableView.tableFooterView = UIView(frame: CGRect.zero)
-
-        if UserDefaultsManager.getUsername() == nil {
-            let alert = UIAlertController(title: Alert.insertUsername.title, message: Alert.insertUsername.message, preferredStyle: .alert)
-            saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
-                if let username = self.username {
-                    UserDefaultsManager.setUsername(username)
-                }
-            }
-
-            if let saveAction = saveAction {
-                saveAction.isEnabled = false
-                alert.addAction(saveAction)
-            }
-
-            if let cancelTitle = Alert.insertUsername.cancel {
-                let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
-                    self.dismiss(animated: true, completion: nil)
-                }
-                alert.addAction(cancelAction)
-            }
-
-            alert.addTextField(configurationHandler: { textField in
-                textField.placeholder = Alert.insertUsername.title
-                self.username = textField.text
-                textField.delegate = self
-            })
-
-            self.present(alert, animated: true)
-        }
 
         usersTableView.isHidden = true
         applyDefaultStyleAndEnableStartButton()
@@ -179,17 +147,6 @@ class MovieNightViewController: UIViewController {
                 self.usersTableView.reloadData()
             }
         })
-    }
-}
-
-extension MovieNightViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-
-        let entryLength = text.count + string.count - range.length
-        saveAction?.isEnabled = entryLength > 0 ? true : false
-
-        return true
     }
 }
 

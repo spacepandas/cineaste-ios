@@ -43,7 +43,8 @@ class MoviesViewController: UIViewController {
 
     let fetchedResultsManager = FetchedResultsManager()
     let storageManager = MovieStorage()
-    private var selectedMovie: StoredMovie?
+    fileprivate var selectedMovie: StoredMovie?
+    fileprivate var saveAction: UIAlertAction?
 
     let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
@@ -57,6 +58,42 @@ class MoviesViewController: UIViewController {
         }
     }
 
+    // MARK: - Action
+
+    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
+        // TODO: Make this more Beautiful
+        if UserDefaultsManager.getUsername() == nil {
+            let alert = UIAlertController(title: Alert.insertUsername.title, message: Alert.insertUsername.message, preferredStyle: .alert)
+            saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
+                guard let textField = alert.textFields?[0], let username = textField.text else {
+                    return
+                }
+                UserDefaultsManager.setUsername(username)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+                }
+            }
+
+            if let saveAction = saveAction {
+                saveAction.isEnabled = false
+                alert.addAction(saveAction)
+            }
+
+            if let cancelTitle = Alert.insertUsername.cancel {
+                let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in }
+                alert.addAction(cancelAction)
+            }
+
+            alert.addTextField(configurationHandler: { textField in
+                textField.placeholder = Alert.insertUsername.title
+                textField.delegate = self
+            })
+
+            self.present(alert, animated: true)
+        } else {
+                    self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+        }
+    }
     @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
         perform(segue: .showSearchFromMovieList, sender: self)
     }
@@ -146,6 +183,17 @@ extension MoviesViewController: UITableViewDelegate {
         }
 
         return UITableViewAutomaticDimension
+    }
+}
+
+extension MoviesViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+
+        let entryLength = text.count + string.count - range.length
+        saveAction?.isEnabled = entryLength > 0 ? true : false
+
+        return true
     }
 }
 

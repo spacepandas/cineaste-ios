@@ -13,7 +13,6 @@ enum Segue: String {
     case showSearchFromMovieList = "ShowSearchFromMovieList"
     case showTextViewFromSettings = "showTextViewFromSettingsSegue"
     case showMovieNight = "ShowMovieNightSegue"
-    case showUsername = "ShowUsernameSegue"
     case showMovieMatches = "ShowMovieMatchesSegue"
 
     init?(initWith segue: UIStoryboardSegue) {
