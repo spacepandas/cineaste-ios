@@ -61,9 +61,9 @@ class SettingsViewController: UIViewController {
 
             let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
-            vc?.contentType = (selected == SettingItem.licence)
-                ? TextViewContent.licence
-                : TextViewContent.imprint
+            vc?.textViewContent = (selected == SettingItem.licence)
+                ? TextViewType.licence
+                : TextViewType.imprint
         default:
             return
         }

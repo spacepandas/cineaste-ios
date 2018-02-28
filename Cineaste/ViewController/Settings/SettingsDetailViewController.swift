@@ -11,14 +11,14 @@ import UIKit
 class SettingsDetailViewController: UIViewController {
     @IBOutlet var settingsDetailTextView: UITextView! {
         didSet {
-            update(contentType)
+            update(textViewContent)
         }
     }
 
-    var contentType: TextViewContent = .imprint {
+    var textViewContent: TextViewType = .imprint {
         didSet {
-            if oldValue != contentType {
-                update(contentType)
+            if oldValue != textViewContent {
+                update(textViewContent)
             }
         }
     }
@@ -28,9 +28,9 @@ class SettingsDetailViewController: UIViewController {
 
     }
 
-    private func update(_ content: TextViewContent) {
+    private func update(_ type: TextViewType) {
         guard let textView = settingsDetailTextView else { return }
-        textView.text = contentType.content
+        textView.text = type.content
     }
 
 }

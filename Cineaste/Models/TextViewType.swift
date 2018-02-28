@@ -9,7 +9,7 @@
 import UIKit
 
 //swiftlint:disable line_length
-enum TextViewContent {
+enum TextViewType {
     case imprint
     case licence
 

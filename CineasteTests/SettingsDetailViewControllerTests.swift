@@ -13,10 +13,10 @@ class SettingsDetailViewControllerTests: XCTestCase {
     let settingsDetailVC = SettingsDetailViewController.instantiate()
 
     func testTextViewShouldDisplayCorrectContent() {
-        settingsDetailVC.contentType = .imprint
-        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewContent.imprint.content)
+        settingsDetailVC.textViewContent = .imprint
+        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewType.imprint.content)
 
-        settingsDetailVC.contentType = .licence
-        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewContent.licence.content)
+        settingsDetailVC.textViewContent = .licence
+        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewType.licence.content)
     }
 }
