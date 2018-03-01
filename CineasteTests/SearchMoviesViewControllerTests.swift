@@ -53,6 +53,21 @@ class SearchMoviesViewControllerTests: XCTestCase {
         }
     }
 
+    func testDequeueReusableCellWithSearchMoviesCellIdentifierShouldReturnTableViewCell() {
+        let tableView = searchMoviesVC.moviesTableView!
+
+        // important:
+        // use dequeueReusableCell:withIdentifier for this test, this method
+        // returns nil, when the tableView can not dequeue a reusable cell,
+        // with dequeueReusableCell:withIdentifier:indexPath it would simply
+        // crash at this point
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesCell.identifier)
+        XCTAssertNotNil(cell)
+
+        let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")
+        XCTAssertNil(invalidCell)
+    }
+
     private let movies: [Movie] = {
         guard let path = Bundle(for: SearchMoviesViewControllerTests.self).path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
