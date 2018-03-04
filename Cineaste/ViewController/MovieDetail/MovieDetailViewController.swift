@@ -41,6 +41,12 @@ class MovieDetailViewController: UIViewController {
             self.mustSeeButton.setTitle(title, for: .normal)
         }
     }
+    @IBOutlet var deleteButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
+            self.deleteButton.setTitle(title, for: .normal)
+        }
+    }
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
@@ -78,6 +84,10 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
         saveMovie(withWatched: true)
+    }
+
+    @IBAction func deleteButtonTouched(_ sender: UIButton) {
+        deleteMovie()
     }
 
     // MARK: - Private
@@ -120,6 +130,22 @@ class MovieDetailViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
+        }
+    }
+
+    fileprivate func deleteMovie() {
+        guard let storageManager = storageManager else { return }
+        if let storedMovie = storedMovie {
+            storageManager.remove(storedMovie, handler: { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
         }
     }
 
