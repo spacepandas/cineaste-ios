@@ -73,6 +73,7 @@ class SearchMoviesViewController: UIViewController {
         case .showMovieDetail?:
             let vc = segue.destination as? MovieDetailViewController
             vc?.storageManager = storageManager
+            vc?.type = .search
 
             guard let selectedMovie = selectedMovie else { return }
             vc?.movie = selectedMovie

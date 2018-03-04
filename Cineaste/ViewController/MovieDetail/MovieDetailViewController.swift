@@ -50,6 +50,25 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
+    var type: MovieDetailType = .search
+
+    private func updateDetail(for type: MovieDetailType) {
+        switch type {
+        case .seen:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = true
+            deleteButton.isHidden = false
+        case .wantToSee:
+            mustSeeButton.isHidden = true
+            seenButton.isHidden = false
+            deleteButton.isHidden = false
+        case .search:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = false
+            deleteButton.isHidden = true
+        }
+    }
+
     var storageManager: MovieStorage?
 
     var movie: Movie?
@@ -72,8 +91,11 @@ class MovieDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         descriptionTextView.isEditable = false
+
         loadMovieDetailAndSetupUI()
+        updateDetail(for: type)
     }
 
     // MARK: - Actions
