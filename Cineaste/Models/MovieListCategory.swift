@@ -16,9 +16,9 @@ enum MovieListCategory: String {
     var title: String {
         switch self {
         case .wantToSee:
-            return NSLocalizedString("Musst du sehen", comment: "Title for want to see movie list")
+            return Strings.wantToSeeList
         case .seen:
-            return NSLocalizedString("Schon gesehen", comment: "Title for seen movie list")
+            return Strings.seenList
         }
     }
 
@@ -28,15 +28,6 @@ enum MovieListCategory: String {
             return Images.wantToSeeIcon
         case .seen:
             return Images.seenIcon
-        }
-    }
-
-    var tabBarTitle: String {
-        switch self {
-        case .wantToSee:
-            return NSLocalizedString("Watch-List", comment: "TabBar title for want to see movie list")
-        case .seen:
-            return NSLocalizedString("Watched-List", comment: "TabBar title for seen movie list")
         }
     }
 

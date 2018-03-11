@@ -31,14 +31,12 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
-            let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
-            self.seenButton.setTitle(title, for: .normal)
+            self.seenButton.setTitle(Strings.seenButton, for: .normal)
         }
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
-            self.mustSeeButton.setTitle(title, for: .normal)
+            self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
         }
     }
     @IBOutlet var deleteButton: ActionButton! {
