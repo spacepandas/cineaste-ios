@@ -57,28 +57,32 @@ class MoviesViewController: UIViewController {
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
             myMoviesTableView.reloadData()
-            hideTableViewIfEmpty()
+            hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
     }
 
     @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
         perform(segue: .showSearchFromMovieList, sender: self)
     }
 
-    // MARK: - Private
-    fileprivate func hideTableViewIfEmpty() {
-        let hideTableView =
-            self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty
-                ?? true
+    func hideTableView(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
+        let isEmpty = isEmpty ?? true
 
         DispatchQueue.main.async {
             UIView.animate(
                 withDuration: 0.2,
                 animations: {
-                    self.myMoviesTableView.alpha = hideTableView ? 0 : 1
+                    self.myMoviesTableView.alpha = isEmpty ? 0 : 1
             },
                 completion: { _ in
-                    self.myMoviesTableView.isHidden = hideTableView
+                    self.myMoviesTableView.isHidden = isEmpty
+                    handler?()
             })
         }
     }
@@ -96,6 +100,61 @@ class MoviesViewController: UIViewController {
             vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
         default:
             break
+        }
+    }
+
+    private func updateShortcutItems() {
+        guard let movies = self.fetchedResultsManager.controller?.fetchedObjects else {
+            return
+        }
+
+        var shortcuts = UIApplication.shared.shortcutItems ?? []
+
+        //initially instantiate shortcuts
+        if shortcuts.isEmpty {
+            let wantToSeeIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
+            let wantToSeeShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
+                                                          localizedTitle: Strings.wantToSeeList,
+                                                          localizedSubtitle: nil,
+                                                          icon: wantToSeeIcon,
+                                                          userInfo: nil)
+
+            let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
+            let seenShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
+                                                     localizedTitle: Strings.seenList,
+                                                     localizedSubtitle: nil,
+                                                     icon: seenIcon,
+                                                     userInfo: nil)
+
+            shortcuts = [wantToSeeShortcut, seenShortcut]
+            UIApplication.shared.shortcutItems = shortcuts
+        }
+
+        let index = category == .wantToSee ? 0 : 1
+        let existingItem = shortcuts[index]
+
+        //only update if value changed
+        if existingItem.localizedSubtitle != shortcutSubtitle(for: movies.count) {
+            //swiftlint:disable:next force_cast
+            let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
+            mutableShortcutItem.localizedSubtitle = shortcutSubtitle(for: movies.count)
+
+            shortcuts[index] = mutableShortcutItem
+
+            UIApplication.shared.shortcutItems = shortcuts
+        }
+    }
+
+    private func shortcutSubtitle(for numberOfMovies: Int) -> String? {
+        switch numberOfMovies {
+        case 0:
+            return nil
+        case 1:
+            return "1 " + Strings.oneMovieShortCut
+        case 2...:
+            return "\(numberOfMovies) " + Strings.movieCounterShortCut
+        default:
+            return nil
         }
     }
 }
@@ -156,7 +215,8 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         myMoviesTableView.endUpdates()
-        hideTableViewIfEmpty()
+        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        updateShortcutItems()
     }
 }
 

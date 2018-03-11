@@ -45,5 +45,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>movieNight</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>StartMovieNightTitle</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>startMovieNight</string>
+		</dict>
+	</array>
 </dict>
 </plist>
