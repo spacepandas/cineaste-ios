@@ -59,6 +59,8 @@ class MoviesViewController: UIViewController {
             myMoviesTableView.reloadData()
             hideTableViewIfEmpty()
         }
+
+        registerForPreviewing(with: self, sourceView: myMoviesTableView)
     }
 
     @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
@@ -157,6 +159,27 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     func endUpdate() {
         myMoviesTableView.endUpdates()
         hideTableViewIfEmpty()
+    }
+}
+
+// MARK: - 3D Touch
+
+extension MoviesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let detailVC = MovieDetailViewController.instantiate()
+        guard let path = myMoviesTableView.indexPathForRow(at: location),
+            let objects = fetchedResultsManager.controller?.fetchedObjects,
+            objects.count > path.row
+            else { return nil }
+
+        let movie = objects[path.row]
+        detailVC.storedMovie = movie
+        detailVC.storageManager = storageManager
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 

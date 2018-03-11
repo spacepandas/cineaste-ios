@@ -44,7 +44,11 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak fileprivate var descriptionTextView: UITextView!
+    @IBOutlet weak fileprivate var descriptionTextView: UITextView! {
+        didSet {
+            descriptionTextView.isEditable = false
+        }
+    }
 
     var type: MovieDetailType = .search
 
@@ -66,31 +70,25 @@ class MovieDetailViewController: UIViewController {
     }
 
     var storageManager: MovieStorage?
-    var movie: Movie?
+
+    var movie: Movie? {
+        didSet {
+            if let movie = movie {
+                loadDetails(for: movie)
+            }
+        }
+    }
 
     var storedMovie: StoredMovie? {
         didSet {
-            guard let movie = self.storedMovie else { return }
-            DispatchQueue.main.async {
-                if let moviePoster = movie.poster {
-                    self.posterImageView.image = UIImage(data: moviePoster)
-                }
-                self.titleLabel.text = movie.title
-                self.descriptionTextView.text = movie.overview
-                self.runtimeLabel.text = "\(movie.runtime) min"
-                self.votingLabel.text = "\(movie.voteAverage)"
-                self.releaseDateLabel.text = movie.releaseDate?.formatted
+            if let movie = storedMovie {
+                setupUI(for: movie)
             }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        descriptionTextView.isEditable = false
-
-        loadMovieDetailAndSetupUI()
-        updateDetail(for: type)
     }
 
     // MARK: - Actions
@@ -109,22 +107,9 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
-    fileprivate func setupUIWithNetworkMovie() {
-        DispatchQueue.main.async {
-            guard let movie = self.movie else { return }
-            if let moviePoster = movie.poster {
-                self.posterImageView.image = moviePoster
-            }
-            self.titleLabel.text = movie.title
-            self.descriptionTextView.text = movie.overview
-            self.runtimeLabel.text = "\(movie.runtime) min"
-            self.votingLabel.text = "\(movie.voteAverage)"
-            self.releaseDateLabel.text = movie.releaseDate.formatted
-        }
-    }
-
     fileprivate func saveMovie(withWatched watched: Bool) {
         guard let storageManager = storageManager else { return }
+
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { result in
                 switch result {
@@ -156,6 +141,7 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func deleteMovie() {
         guard let storageManager = storageManager else { return }
+
         if let storedMovie = storedMovie {
             storageManager.remove(storedMovie, handler: { result in
                 guard case .success = result else {
@@ -170,17 +156,66 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func loadMovieDetailAndSetupUI() {
-        guard let movie = movie else { return }
+    fileprivate func loadDetails(for movie: Movie) {
         // Setup with the default data to show something while new data is loading
-        self.setupUIWithNetworkMovie()
+        self.setupUI(for: movie)
+
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
             self.movie = detailedMovie
-            self.setupUIWithNetworkMovie()
+            self.setupUI(for: detailedMovie)
         }
+    }
+
+    fileprivate func setupUI(for networkMovie: Movie) {
+        DispatchQueue.main.async {
+            if let moviePoster = networkMovie.poster {
+                self.posterImageView.image = moviePoster
+            }
+            self.titleLabel.text = networkMovie.title
+            self.descriptionTextView.text = networkMovie.overview
+            self.runtimeLabel.text = "\(networkMovie.runtime) min"
+            self.votingLabel.text = "\(networkMovie.voteAverage)"
+            self.releaseDateLabel.text = networkMovie.releaseDate.formatted
+        }
+    }
+
+    fileprivate func setupUI(for localMovie: StoredMovie) {
+        DispatchQueue.main.async {
+            if let moviePoster = localMovie.poster {
+                self.posterImageView.image = UIImage(data: moviePoster)
+            }
+            self.titleLabel.text = localMovie.title
+            self.descriptionTextView.text = localMovie.overview
+            self.runtimeLabel.text = "\(localMovie.runtime) min"
+            self.votingLabel.text = "\(localMovie.voteAverage)"
+            self.releaseDateLabel.text = localMovie.releaseDate?.formatted
+        }
+    }
+
+    // MARK: 3D Actions
+
+    override var previewActionItems: [UIPreviewActionItem] {
+        let addToWatchListAction = UIPreviewAction(title: "Muss ich sehen", style: .default) { (_, _) -> Void in
+            self.saveMovie(withWatched: false)
+        }
+
+        let addToWatchedListAction = UIPreviewAction(title: "Schon gesehen", style: .default) { (_, _) -> Void in
+            self.saveMovie(withWatched: true)
+        }
+
+        let deleteMovieAction = UIPreviewAction(title: "Von Liste löschen", style: .destructive) { (_, _) -> Void in
+            self.deleteMovie()
+        }
+
+        if type == .search {
+            return [addToWatchListAction, addToWatchedListAction]
+        } else {
+            return [addToWatchListAction, addToWatchedListAction, deleteMovieAction]
+        }
+
     }
 }
 
