@@ -11,7 +11,6 @@ import CoreData
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
-
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
 
     @IBOutlet var descriptionLabels: [DescriptionLabel]! {
@@ -68,7 +67,6 @@ class MovieDetailViewController: UIViewController {
     }
 
     var storageManager: MovieStorage?
-
     var movie: Movie?
 
     var storedMovie: StoredMovie? {
@@ -130,24 +128,28 @@ class MovieDetailViewController: UIViewController {
         guard let storageManager = storageManager else { return }
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        self.showAlert(withMessage: Alert.insertMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
         } else if let storedMovie = storedMovie {
             storageManager.updateMovieItem(with: storedMovie, watched: watched) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        self.showAlert(withMessage: Alert.updateMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
@@ -174,9 +176,8 @@ class MovieDetailViewController: UIViewController {
         // Setup with the default data to show something while new data is loading
         self.setupUIWithNetworkMovie()
         Webservice.load(resource: movie.get) { result in
-            guard case let .success(detailedMovie) = result else {
-                return
-            }
+            guard case let .success(detailedMovie) = result else { return }
+
             detailedMovie.poster = movie.poster
             self.movie = detailedMovie
             self.setupUIWithNetworkMovie()
