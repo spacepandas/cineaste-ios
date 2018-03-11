@@ -15,7 +15,8 @@ class SearchMoviesViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        searchMoviesVC.movies = []
+        self.searchMoviesVC.movies = []
+        searchMoviesVC.moviesTableView.reloadData()
     }
 
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
