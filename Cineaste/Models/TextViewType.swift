@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum TextViewContent {
+enum TextViewType {
     case imprint
     case licence
 

@@ -58,11 +58,11 @@ class SettingsViewController: UIViewController {
         case .showTextViewFromSettings?:
             guard let selected = selectedSetting else { return }
 
-            let vc = segue.destination as? ImprintViewController
+            let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
             vc?.textViewContent = (selected == SettingItem.licence)
-                ? TextViewContent.licence
-                : TextViewContent.imprint
+                ? TextViewType.licence
+                : TextViewType.imprint
         default:
             return
         }
@@ -103,7 +103,7 @@ extension SettingsViewController: UITableViewDelegate {
         if let segue = selectedSetting?.segue {
             perform(segue: segue, sender: self)
         } else {
-            self.showAlert(withMessage: Alert.missingFeatureInfo)
+            showAlert(withMessage: Alert.missingFeatureInfo)
         }
     }
 }

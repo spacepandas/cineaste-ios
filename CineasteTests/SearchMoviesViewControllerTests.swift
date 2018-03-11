@@ -15,9 +15,8 @@ class SearchMoviesViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        DispatchQueue.main.async {
-            self.searchMoviesVC.movies = []
-        }
+        self.searchMoviesVC.movies = []
+        searchMoviesVC.moviesTableView.reloadData()
     }
 
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
@@ -26,7 +25,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(searchMoviesVC.moviesTableView.delegate)
         XCTAssertNotNil(searchMoviesVC.moviesTableView.dataSource)
     }
-
+    
     func testBackgroundColorShouldBeSetCorrectly() {
         searchMoviesVC.viewDidLoad()
 
@@ -34,13 +33,13 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(searchMoviesVC.moviesTableView.backgroundColor, UIColor.clear)
     }
     
-    func testNumberOfRowsShouldEqualNumberOfMovies() {
+    func testNumberOfSectionsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 0)
 
-        self.searchMoviesVC.movies = self.movies
+        searchMoviesVC.movies = movies
         searchMoviesVC.moviesTableView.reloadData()
 
-        XCTAssertEqual(self.searchMoviesVC.moviesTableView.numberOfSections, 2)
+        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 2)
     }
 
     func testCellForRowShouldBeOfTypeSearchMoviesCell() {
@@ -53,6 +52,21 @@ class SearchMoviesViewControllerTests: XCTestCase {
 
             XCTAssert(cell is SearchMoviesCell)
         }
+    }
+
+    func testDequeueReusableCellWithSearchMoviesCellIdentifierShouldReturnTableViewCell() {
+        let tableView = searchMoviesVC.moviesTableView!
+
+        // important:
+        // use dequeueReusableCell:withIdentifier for this test, this method
+        // returns nil, when the tableView can not dequeue a reusable cell,
+        // with dequeueReusableCell:withIdentifier:indexPath it would simply
+        // crash at this point
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesCell.identifier)
+        XCTAssertNotNil(cell)
+
+        let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")
+        XCTAssertNil(invalidCell)
     }
 
     private let movies: [Movie] = {

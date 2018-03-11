@@ -40,7 +40,7 @@ private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht v
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
 // missing feature
-private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert", comment: "Message for missing feature alert")
+private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
 
 class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
