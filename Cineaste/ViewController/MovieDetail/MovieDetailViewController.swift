@@ -40,8 +40,7 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet var deleteButton: ActionButton! {
         didSet {
-            let title = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
-            self.deleteButton.setTitle(title, for: .normal)
+            self.deleteButton.setTitle(Strings.deleteButton, for: .normal)
         }
     }
 
