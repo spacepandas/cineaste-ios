@@ -14,7 +14,7 @@ class MoviesViewController: UIViewController {
         didSet {
             title = category.title
             emptyListLabel.text =
-                NSLocalizedString("Du hast keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
+                NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
                     comment: "Description for empty movie list")
 
             //only update if category changed
@@ -48,8 +48,6 @@ class MoviesViewController: UIViewController {
     let fetchedResultsManager = FetchedResultsManager()
     let storageManager = MovieStorage()
     private var selectedMovie: StoredMovie?
-
-    let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
     override func viewDidLoad() {
         super.viewDidLoad()
