@@ -35,7 +35,7 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
+            self.mustSeeButton.setTitle(Strings.wantToSeeButton, for: .normal)
         }
     }
     @IBOutlet var deleteButton: ActionButton! {
@@ -50,22 +50,9 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    var type: MovieDetailType = .search
-
-    private func updateDetail(for type: MovieDetailType) {
-        switch type {
-        case .seen:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = true
-            deleteButton.isHidden = false
-        case .wantToSee:
-            mustSeeButton.isHidden = true
-            seenButton.isHidden = false
-            deleteButton.isHidden = false
-        case .search:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = false
-            deleteButton.isHidden = true
+    var type: MovieDetailType = .search {
+        didSet {
+            updateDetail(for: type)
         }
     }
 
@@ -156,6 +143,23 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    private func updateDetail(for type: MovieDetailType) {
+        switch type {
+        case .seen:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = true
+            deleteButton.isHidden = false
+        case .wantToSee:
+            mustSeeButton.isHidden = true
+            seenButton.isHidden = false
+            deleteButton.isHidden = false
+        case .search:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = false
+            deleteButton.isHidden = true
+        }
+    }
+
     fileprivate func loadDetails(for movie: Movie) {
         // Setup with the default data to show something while new data is loading
         self.setupUI(for: movie)
@@ -198,22 +202,25 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let addToWatchListAction = UIPreviewAction(title: "Muss ich sehen", style: .default) { (_, _) -> Void in
+        let wantToSeeAction = UIPreviewAction(title: Strings.wantToSeeButton, style: .default) { (_, _) -> Void in
             self.saveMovie(withWatched: false)
         }
 
-        let addToWatchedListAction = UIPreviewAction(title: "Schon gesehen", style: .default) { (_, _) -> Void in
+        let seenAction = UIPreviewAction(title: Strings.seenButton, style: .default) { (_, _) -> Void in
             self.saveMovie(withWatched: true)
         }
 
-        let deleteMovieAction = UIPreviewAction(title: "Von Liste löschen", style: .destructive) { (_, _) -> Void in
+        let deleteAction = UIPreviewAction(title: Strings.deleteButton, style: .destructive) { (_, _) -> Void in
             self.deleteMovie()
         }
 
-        if type == .search {
-            return [addToWatchListAction, addToWatchedListAction]
-        } else {
-            return [addToWatchListAction, addToWatchedListAction, deleteMovieAction]
+        switch type {
+        case .seen:
+            return [wantToSeeAction, deleteAction]
+        case .wantToSee:
+            return [seenAction, deleteAction]
+        case .search:
+            return [wantToSeeAction, seenAction]
         }
 
     }

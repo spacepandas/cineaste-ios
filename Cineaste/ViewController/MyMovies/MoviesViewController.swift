@@ -175,6 +175,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         let movie = objects[path.row]
         detailVC.storedMovie = movie
         detailVC.storageManager = storageManager
+        detailVC.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
         return detailVC
     }
 

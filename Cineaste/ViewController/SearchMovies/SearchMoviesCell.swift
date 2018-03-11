@@ -42,7 +42,7 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBOutlet weak var mustSeeButton: ActionButton! {
         didSet {
-            self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
+            self.mustSeeButton.setTitle(Strings.wantToSeeButton, for: .normal)
         }
     }
 

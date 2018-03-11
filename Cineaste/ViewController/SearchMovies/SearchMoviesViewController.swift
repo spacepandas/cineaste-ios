@@ -149,6 +149,8 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
             else { return nil }
 
         detailVC.movie = movies[path.section]
+        detailVC.storageManager = storageManager
+        detailVC.type = .search
         return detailVC
     }
 
