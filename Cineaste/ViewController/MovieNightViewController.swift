@@ -12,8 +12,7 @@ class MovieNightViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
+        title = Strings.movieNightTitle
         view.backgroundColor = UIColor.basicBackground
     }
 

@@ -24,6 +24,7 @@ class AlertMessage {
 
 // default
 private let okAction = NSLocalizedString("OK", comment: "Title for ok action")
+private let infoTitle = NSLocalizedString("Info", comment: "Title for information")
 private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
 
 // error
@@ -39,8 +40,8 @@ private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht g
 private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
-//missing feature
-private let missingFeatureMessage = NSLocalizedString("Das Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
+// missing feature
+private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert", comment: "Message for missing feature alert")
 
 class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
