@@ -93,6 +93,7 @@ class MoviesViewController: UIViewController {
             let vc = segue.destination as? MovieDetailViewController
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
+            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
         default:
             break
         }

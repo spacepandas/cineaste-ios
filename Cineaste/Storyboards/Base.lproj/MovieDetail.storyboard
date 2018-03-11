@@ -81,7 +81,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xav-KJ-l14">
-                                                        <rect key="frame" x="76" y="89.5" width="222" height="30"/>
+                                                        <rect key="frame" x="15.5" y="89.5" width="343" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sct-hl-B1B" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
@@ -95,6 +95,13 @@
                                                                 <state key="normal" title="detail.seen"/>
                                                                 <connections>
                                                                     <action selector="seenButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="44h-oA-42n"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUn-AI-5yg" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
+                                                                <rect key="frame" x="242" y="0.0" width="101" height="30"/>
+                                                                <state key="normal" title="detail.delete"/>
+                                                                <connections>
+                                                                    <action selector="deleteButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="y4D-e8-hKf"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -201,6 +208,7 @@
                         <viewLayoutGuide key="safeArea" id="C1U-CL-dSb"/>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="NUn-AI-5yg" id="B3B-Y4-UBd"/>
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
                         <outlet property="mustSeeButton" destination="sct-hl-B1B" id="dyA-w3-osL"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>

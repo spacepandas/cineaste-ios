@@ -38,8 +38,33 @@ class MovieDetailViewController: UIViewController {
             self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
         }
     }
+    @IBOutlet var deleteButton: ActionButton! {
+        didSet {
+            let title = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
+            self.deleteButton.setTitle(title, for: .normal)
+        }
+    }
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
+
+    var type: MovieDetailType = .search
+
+    private func updateDetail(for type: MovieDetailType) {
+        switch type {
+        case .seen:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = true
+            deleteButton.isHidden = false
+        case .wantToSee:
+            mustSeeButton.isHidden = true
+            seenButton.isHidden = false
+            deleteButton.isHidden = false
+        case .search:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = false
+            deleteButton.isHidden = true
+        }
+    }
 
     var storageManager: MovieStorage?
     var movie: Movie?
@@ -64,7 +89,9 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         descriptionTextView.isEditable = false
+
         loadMovieDetailAndSetupUI()
+        updateDetail(for: type)
     }
 
     // MARK: - Actions
@@ -75,6 +102,10 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
         saveMovie(withWatched: true)
+    }
+
+    @IBAction func deleteButtonTouched(_ sender: UIButton) {
+        deleteMovie()
     }
 
     // MARK: - Private
@@ -121,6 +152,22 @@ class MovieDetailViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+
+    fileprivate func deleteMovie() {
+        guard let storageManager = storageManager else { return }
+        if let storedMovie = storedMovie {
+            storageManager.remove(storedMovie, handler: { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
         }
     }
 
