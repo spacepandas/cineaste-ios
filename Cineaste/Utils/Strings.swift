@@ -20,6 +20,12 @@ struct Strings {
     static let movieNightTitle = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
     static let settingsTitle = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
+    // MARK: MOVIES VIEWCONTROLLER
+    static func title(for category: MovieListCategory) -> String {
+        return NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
+            comment: "Description for empty movie list")
+    }
+
     // MARK: TAB TITLE
     static let wantToSeeTab = NSLocalizedString("Musst du sehen", comment: "TabBar title for want to see movie list")
     static let seenTab = NSLocalizedString("Schon gesehen", comment: "TabBar title for seen movie list")
@@ -51,4 +57,8 @@ struct Strings {
     // MARK: SHORTCUT
     static let oneMovieShortCut = NSLocalizedString("Film", comment: "Movie")
     static let movieCounterShortCut = NSLocalizedString("Filme", comment: "Movies")
+
+    // MARK: EXPORT
+    static let exportMoviesFileName = "movies.json"
+    static let exportMoviesFileUTI = "public.json"
 }

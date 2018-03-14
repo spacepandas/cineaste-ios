@@ -13,19 +13,17 @@ class MoviesViewController: UIViewController {
     var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
-            emptyListLabel.text =
-                NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
-                    comment: "Description for empty movie list")
+            emptyListLabel.text = Strings.title(for: category)
 
             //only update if category changed
             guard oldValue != category else { return }
             if fetchedResultsManager.controller == nil {
                 fetchedResultsManager.setup(with: category.predicate) {
-                    myMoviesTableView.reloadData()
+                    self.myMoviesTableView.reloadData()
                 }
             } else {
                 fetchedResultsManager.update(for: category.predicate) {
-                    myMoviesTableView.reloadData()
+                    self.myMoviesTableView.reloadData()
                 }
             }
         }
@@ -46,7 +44,7 @@ class MoviesViewController: UIViewController {
     }
 
     let fetchedResultsManager = FetchedResultsManager()
-    let storageManager = MovieStorage()
+    var storageManager: MovieStorage?
     var selectedMovie: StoredMovie?
 
     override func viewDidLoad() {
@@ -56,8 +54,8 @@ class MoviesViewController: UIViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
-            myMoviesTableView.reloadData()
-            hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+            self.myMoviesTableView.reloadData()
+            self.hideTableView(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
 
         registerForPreviewing(with: self, sourceView: myMoviesTableView)

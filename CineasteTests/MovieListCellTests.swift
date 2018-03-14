@@ -46,9 +46,9 @@ class MovieListCellTests: XCTestCase {
 
         XCTAssertEqual(cell.poster.image, Images.posterPlaceholder)
         XCTAssertEqual(cell.title.text, storedMovie.title)
-        XCTAssertEqual(cell.votes.text, "\(storedMovie.voteAverage)")
-        XCTAssertEqual(cell.runtime.text, "\(storedMovie.runtime) min")
-        XCTAssertEqual(cell.releaseDate.text, "\(storedMovie.releaseDate?.formatted ?? Date().formatted)")
+        XCTAssertEqual(cell.votes.text, storedMovie.formattedVoteAverage)
+        XCTAssertEqual(cell.runtime.text, storedMovie.runtime.formattedForRuntime)
+        XCTAssertEqual(cell.releaseDate.text, storedMovie.releaseDate?.formatted)
     }
 
     private let storedMovie: StoredMovie = {

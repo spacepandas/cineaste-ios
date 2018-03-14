@@ -17,7 +17,7 @@ extension MoviesViewController {
         let newWatchedValue = newCategory == .seen ? true : false
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.title) { _, _ in
-            self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
+            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
@@ -39,7 +39,7 @@ extension MoviesViewController {
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
         let deleteAction = UITableViewRowAction(style: .destructive, title: Strings.deleteActionTitle) { _, _ in
-            self.storageManager.remove(movie, handler: { result in
+            self.storageManager?.remove(movie, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return
@@ -59,7 +59,7 @@ extension MoviesViewController {
         let newWatchedValue = newCategory == .seen ? true : false
 
         let action = UIContextualAction(style: .normal, title: newCategory.title, handler: { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
+            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
@@ -95,7 +95,7 @@ extension MoviesViewController {
         let movie = movies[indexPath.row]
 
         let deleteAction = UIContextualAction(style: .destructive, title: Strings.deleteActionTitle, handler: { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager.remove(movie, handler: { result in
+            self.storageManager?.remove(movie, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return

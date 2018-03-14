@@ -10,18 +10,12 @@ import UIKit
 import CoreData
 
 class MovieStorage {
-    // swiftlint:disable:next implicitly_unwrapped_optional
-    let persistentContainer: NSPersistentContainer!
+    let persistentContainer: NSPersistentContainer
 
     // MARK: Init with dependency
-    init(container: NSPersistentContainer) {
+    init(container: NSPersistentContainer = AppDelegate.persistentContainer) {
         self.persistentContainer = container
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-    }
-
-    convenience init() {
-        //Use the default container for production environment
-        self.init(container: AppDelegate.persistentContainer)
     }
 
     lazy var backgroundContext: NSManagedObjectContext = {
@@ -31,6 +25,7 @@ class MovieStorage {
     }()
 
     // MARK: CRUD
+    //swiftlint:disable:next function_parameter_count
     func insertMovieItem(id: Int64,
                          overview: String,
                          poster: Data?,
@@ -38,7 +33,8 @@ class MovieStorage {
                          releaseDate: Date,
                          runtime: Int16,
                          title: String,
-                         voteAverage: Float,
+                         voteAverage: Decimal,
+                         voteCount: Float,
                          watched: Bool,
                          handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
@@ -52,9 +48,11 @@ class MovieStorage {
 
             storedMovie.releaseDate = releaseDate
             storedMovie.runtime = runtime
-            storedMovie.voteAverage = voteAverage
+            storedMovie.voteAverage = voteAverage as NSDecimalNumber
+            storedMovie.voteCount = voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
         }
     }
@@ -75,9 +73,11 @@ class MovieStorage {
 
             storedMovie.releaseDate = movie.releaseDate
             storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
+            storedMovie.voteAverage = movie.voteAverage as NSDecimalNumber
+            storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
         }
     }
@@ -97,9 +97,53 @@ class MovieStorage {
             storedMovie.releaseDate = movie.releaseDate
             storedMovie.runtime = movie.runtime
             storedMovie.voteAverage = movie.voteAverage
+            storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
+        }
+    }
+
+    func insertMoviesFromImport(with movies: [StoredMovie],
+                                handler: ((_ result: Result<Bool>) -> Void)? = nil) {
+
+        let dispatchGroup = DispatchGroup()
+
+        backgroundContext.perform {
+            for movie in movies {
+                dispatchGroup.enter()
+
+                let storedMovie = StoredMovie(context: self.backgroundContext)
+                storedMovie.id = movie.id
+                storedMovie.title = movie.title
+                storedMovie.overview = movie.overview
+
+                storedMovie.posterPath = movie.posterPath
+                storedMovie.poster = movie.poster
+
+                storedMovie.releaseDate = movie.releaseDate
+                storedMovie.runtime = movie.runtime
+                storedMovie.voteAverage = movie.voteAverage
+                storedMovie.voteCount = movie.voteCount
+
+                storedMovie.watched = movie.watched
+                storedMovie.watchedDate = movie.watchedDate
+
+                self.save { result in
+                    switch result {
+                    case .error(let error):
+                        handler?(Result.error(error))
+                        return
+                    case .success:
+                        dispatchGroup.leave()
+                    }
+                }
+            }
+        }
+
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            handler?(Result.success(true))
         }
     }
 

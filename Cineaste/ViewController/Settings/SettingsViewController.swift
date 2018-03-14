@@ -28,6 +28,9 @@ class SettingsViewController: UIViewController {
 
     var selectedSetting: SettingItem?
 
+    lazy var fetchedResultsManager = FetchedResultsManager()
+    var docController: UIDocumentInteractionController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +44,12 @@ class SettingsViewController: UIViewController {
                     SettingItem.importMovies]
 
         versionInfo?.text = versionString()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.barStyle = .blackOpaque
     }
 
     func versionString() -> String {
@@ -66,6 +75,79 @@ class SettingsViewController: UIViewController {
         default:
             return
         }
+    }
+
+    // MARK: - Import and Export
+
+    func prepareForImport(completionHandler handler: @escaping () -> Void) {
+        setupFetchedResultManager()
+
+        if let objects = fetchedResultsManager.controller?.fetchedObjects,
+            !objects.isEmpty {
+            //database is not empty, ask if user is sure to import new data
+            showAlert(withMessage: Alert.askingForImport, defaultActionHandler: {
+                handler()
+            })
+        } else {
+            handler()
+        }
+    }
+
+    func saveMoviesLocally(completionHandler handler: @escaping (URL) -> Void) {
+        setupFetchedResultManager()
+
+        guard let objects = fetchedResultsManager.controller?.fetchedObjects,
+            !objects.isEmpty else {
+                //database is empty, inform user that export is not useful
+                showAlert(withMessage: Alert.exportEmptyData)
+                return
+        }
+
+        fetchedResultsManager.exportMoviesList { result in
+            switch result {
+            case .error:
+                DispatchQueue.main.async {
+                    self.showAlert(withMessage: Alert.exportFailedInfo)
+                    return
+                }
+            case .success:
+                guard let path = self.fetchedResultsManager.exportMoviesPath
+                    else { return }
+                handler(path)
+            }
+        }
+    }
+
+    private func setupFetchedResultManager() {
+        if fetchedResultsManager.controller == nil {
+            fetchedResultsManager.setup(with: nil)
+        } else {
+            if fetchedResultsManager.controller?.fetchRequest.predicate != nil {
+                fetchedResultsManager.update(for: nil)
+            }
+        }
+    }
+
+    private func showUIToImportMovies() {
+        let documentPickerVC = UIDocumentPickerViewController(documentTypes: [Strings.exportMoviesFileUTI],
+                                                              in: .import)
+        documentPickerVC.delegate = self
+
+        if #available(iOS 11.0, *) {
+            documentPickerVC.allowsMultipleSelection = false
+        }
+
+        navigationController?.navigationBar.barStyle = .default
+        present(documentPickerVC, animated: true, completion: nil)
+    }
+
+    private func showUIToExportMovies(with path: URL, on rect: CGRect) {
+        docController = UIDocumentInteractionController(url: path)
+        docController?.uti = Strings.exportMoviesFileUTI
+
+        docController?.presentOptionsMenu(from: rect,
+                                          in: self.view,
+                                          animated: true)
     }
 }
 
@@ -100,10 +182,52 @@ extension SettingsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedSetting = settings[indexPath.row]
 
-        if let segue = selectedSetting?.segue {
+        guard let setting = selectedSetting else { return }
+        switch setting {
+        case .about, .licence:
+            guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
-        } else {
-            showAlert(withMessage: Alert.missingFeatureInfo)
+        case .exportMovies:
+            saveMoviesLocally { exportPath in
+                DispatchQueue.main.async {
+                    self.showUIToExportMovies(with: exportPath,
+                                              on: tableView.rectForRow(at: indexPath))
+                }
+            }
+        case .importMovies:
+            prepareForImport {
+                DispatchQueue.main.async {
+                    self.showUIToImportMovies()
+                }
+            }
+        }
+    }
+}
+
+extension SettingsViewController: UIDocumentPickerDelegate {
+    //selected json with movies to import
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        do {
+            let data = try Data(contentsOf: url, options: [])
+
+            //display simple UI when importing new data
+            let importMoviesVC = ImportMoviesViewController.instantiate()
+            self.present(importMoviesVC, animated: true) {
+                self.fetchedResultsManager.importData(data) { result in
+                    DispatchQueue.main.async {
+                        self.navigationController?.dismiss(animated: true) {
+                            switch result {
+                            case .error:
+                                self.showAlert(withMessage: Alert.importFailedInfo)
+                            case .success(let counter):
+                                self.showAlert(withMessage: Alert.importSucceededInfo(with: counter))
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            self.showAlert(withMessage: Alert.importFailedCouldNotReadFile)
         }
     }
 }

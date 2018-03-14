@@ -9,10 +9,15 @@
 import UIKit
 import CoreData
 
+enum MovieDecodingError: Error {
+    case dateFromString
+}
+
 class Movie: Codable {
     fileprivate(set) var id: Int64
     fileprivate(set) var title: String
-    fileprivate(set) var voteAverage: Float
+    fileprivate(set) var voteAverage: Decimal
+    fileprivate(set) var voteCount: Float
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
     fileprivate(set) var runtime: Int16
@@ -23,6 +28,7 @@ class Movie: Codable {
         case id
         case title
         case voteAverage = "vote_average"
+        case voteCount = "vote_count"
         case posterPath = "poster_path"
         case overview
         case runtime
@@ -33,17 +39,22 @@ class Movie: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int64.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
-        voteAverage = try container.decode(Float.self, forKey: .voteAverage)
+
+        voteAverage = try container.decodeIfPresent(Decimal.self, forKey: .voteAverage)
+            ?? 0.0
+
+        voteCount = try container.decode(Float.self, forKey: .voteCount)
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         overview = try container.decode(String.self, forKey: .overview)
-        runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime) ?? 0
 
-        let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
-        releaseDate = dateString?.dateFromString ?? Date()
-    }
+        runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime)
+            ?? 0
 
-    func encode(to encoder: Encoder) throws {
-        fatalError("encode not implemented on \(Movie.self)")
+        let dateString = try container.decode(String.self, forKey: .releaseDate)
+        guard let date = dateString.dateFromString else {
+            throw MovieDecodingError.dateFromString
+        }
+        releaseDate = date
     }
 }
 
@@ -59,7 +70,7 @@ extension Movie {
         }
         let urlAsString = "\(Movie.baseUrl)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
 
-        return Resource(url: urlAsString, method: .get) {data in
+        return Resource(url: urlAsString, method: .get) { data in
             let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
             return paginatedMovies?.results
         }
@@ -75,26 +86,45 @@ extension Movie {
             "language=\(Movie.locale)&" +
             "api_key=\(apiKey)"
 
-        return Resource(url: urlAsString, method: .get) {data in
-            let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
-            return paginatedMovies?.results
+        return Resource(url: urlAsString, method: .get) { data in
+            do {
+                let paginatedMovies = try JSONDecoder().decode(PagedMovieResult.self, from: data)
+                return paginatedMovies.results
+            } catch {
+                print(error)
+                return nil
+            }
         }
     }
 
     func loadPoster() -> Resource<UIImage>? {
         guard let posterPath = posterPath else { return nil }
         let urlAsString = "\(Movie.posterBaseUrl)\(posterPath)?api_key=\(Movie.apiKey)"
-        return Resource(url: urlAsString, method: .get) {data in
-            let image = UIImage(data: data)
-            return image
+        return Resource(url: urlAsString, method: .get) { data in
+            return UIImage(data: data)
         }
     }
 
     var get: Resource<Movie>? {
         let urlAsString = "\(Movie.baseUrl)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
-        return Resource(url: urlAsString, method: .get) {data in
-            let movie = try? JSONDecoder().decode(Movie.self, from: data)
-            return movie
+        return Resource(url: urlAsString, method: .get) { data in
+            do {
+                let movie = try JSONDecoder().decode(Movie.self, from: data)
+                return movie
+            } catch {
+                print(error)
+                return nil
+            }
+        }
+    }
+}
+
+extension Movie {
+    var formattedVoteAverage: String {
+        if self.voteCount == 0 {
+            return "-.-"
+        } else {
+            return self.voteAverage.formattedWithOneFractionDigit ?? "-.-"
         }
     }
 }

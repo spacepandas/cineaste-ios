@@ -9,15 +9,24 @@
 import UIKit
 
 extension Date {
-    var formatted: String {
+    private static let dateFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
-        return formatter.string(from: self)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+
+    var formatted: String {
+        Date.dateFormatter.dateFormat = "dd.MM.YYYY"
+        return Date.dateFormatter.string(from: self)
     }
 
     var formattedForRequest: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self)
+        Date.dateFormatter.dateFormat = "yyyy-MM-dd"
+        return Date.dateFormatter.string(from: self)
+    }
+
+    var formattedForJson: String {
+        Date.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
+        return Date.dateFormatter.string(from: self)
     }
 }

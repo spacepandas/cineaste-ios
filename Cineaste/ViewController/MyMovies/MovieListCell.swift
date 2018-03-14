@@ -29,9 +29,10 @@ class MovieListCell: UITableViewCell {
         } else {
             poster.image = Images.posterPlaceholder
         }
+
         title.text = movie.title
-        votes.text = "\(movie.voteAverage)"
-        runtime.text = "\(movie.runtime) min"
-        releaseDate.text = "\(movie.releaseDate?.formatted ?? Date().formatted)"
+        votes.text = movie.formattedVoteAverage
+        runtime.text = movie.runtime.formattedForRuntime
+        releaseDate.text = movie.releaseDate?.formatted
     }
 }

@@ -8,17 +8,36 @@
 
 import CoreData
 
+enum FileExportError: Error {
+    case noCoreDataObjectsFound
+    case creatingDocumentPath
+    case creatingFileAtPath
+    case writingContentInFile
+    case serializingCoreDataObjects
+}
+
+enum FileImportError: Error {
+    case parsingJsonToStoredMovie
+    case savingNewMovies
+}
+
 final class FetchedResultsManager: NSObject {
     var controller: NSFetchedResultsController<StoredMovie>?
     weak var delegate: FetchedResultsManagerDelegate?
 
-    func setup(with predicate: NSPredicate, completionHandler handler: () -> Void) {
+    private var loadMoviesForExport = false
+    var exportMoviesPath: URL?
+
+    func setup(with predicate: NSPredicate?,
+               context: NSManagedObjectContext = AppDelegate.viewContext,
+               completionHandler handler: (() -> Void)? = nil) {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "listPosition", ascending: true),
+                                   NSSortDescriptor(key: "title", ascending: true)]
         request.predicate = predicate
         controller = NSFetchedResultsController<StoredMovie>(
             fetchRequest: request,
-            managedObjectContext: AppDelegate.viewContext,
+            managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil)
         do {
@@ -28,10 +47,10 @@ final class FetchedResultsManager: NSObject {
             return
         }
         controller?.delegate = self
-        handler()
+        handler?()
     }
 
-    func update(for predicate: NSPredicate, completionHandler handler: () -> Void) {
+    func update(for predicate: NSPredicate?, completionHandler handler: (() -> Void)? = nil) {
         controller?.fetchRequest.predicate = predicate
         do {
             try controller?.performFetch()
@@ -39,25 +58,159 @@ final class FetchedResultsManager: NSObject {
             print(error)
             return
         }
-        handler()
+        handler?()
+    }
+}
+
+extension FetchedResultsManager {
+    func exportMoviesList(completionHandler: @escaping (Result<Any?>) -> Void) {
+        loadMoviesForExport = true
+
+        update(for: nil) {
+            guard let movies = self.controller?.fetchedObjects,
+                !movies.isEmpty
+                else {
+                    completionHandler(Result.error(FileExportError.noCoreDataObjectsFound))
+                    return
+            }
+
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+
+            guard let data = try? encoder.encode(movies) else {
+                completionHandler(Result.error(FileExportError.serializingCoreDataObjects))
+                return
+            }
+
+            self.saveToDocumentsDirectory(data) { result in
+                switch result {
+                case .success:
+                    print("Export in file was successful :: data = \(String(data: data, encoding: .utf8) ?? "")")
+                    completionHandler(Result.success(nil))
+                case .error(let error):
+                    print(error)
+                    self.exportMoviesPath = nil
+                    completionHandler(Result.error(FileExportError.writingContentInFile))
+                }
+
+                self.loadMoviesForExport = false
+            }
+        }
+    }
+
+    func importData(_ data: Data, completionHandler: @escaping ((Result<Int>) -> Void)) {
+        let storageManager = MovieStorage()
+
+        resetAllMovies(with: storageManager) {
+            let decoder = JSONDecoder()
+            decoder.userInfo[.context] = storageManager.backgroundContext
+
+            do {
+                let movies = try decoder.decode([StoredMovie].self, from: data)
+
+                let dispatchGroup = DispatchGroup()
+
+                //load all posters
+                for movie in movies {
+                    dispatchGroup.enter()
+
+                    movie.loadPoster { poster in
+                        movie.poster = poster
+
+                        dispatchGroup.leave()
+                    }
+                }
+
+                dispatchGroup.notify(queue: .global()) {
+                    storageManager.insertMoviesFromImport(with: movies) { result in
+                        switch result {
+                        case .error:
+                            completionHandler(Result.error(FileImportError.savingNewMovies))
+                        case .success:
+                            completionHandler(Result.success(movies.count))
+                        }
+                    }
+                }
+            } catch {
+                completionHandler(Result.error(FileImportError.parsingJsonToStoredMovie))
+            }
+        }
+    }
+
+    private func saveToDocumentsDirectory(_ data: Data, completionHandler: (Result<Bool>) -> Void) {
+        guard let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first,
+            let documentsDirectoryPath = URL(string: "file://\(documentsDirectoryPathString)")
+            else {
+                completionHandler(Result.error(FileExportError.creatingDocumentPath))
+                return
+        }
+
+        let jsonFilePath = documentsDirectoryPath.appendingPathComponent(Strings.exportMoviesFileName)
+        exportMoviesPath = jsonFilePath
+
+        let fileManager = FileManager.default
+        var isDirectory: ObjCBool = false
+
+        // creating a .json file in the Documents folder
+        if !fileManager.fileExists(atPath: jsonFilePath.path, isDirectory: &isDirectory) {
+            let created = fileManager.createFile(atPath: jsonFilePath.path, contents: nil, attributes: nil)
+            guard created == true else {
+                completionHandler(Result.error(FileExportError.creatingFileAtPath))
+                return
+            }
+        }
+
+        // Write that JSON to the file created earlier
+        do {
+            let file = try FileHandle(forWritingTo: jsonFilePath)
+            file.truncateFile(atOffset: 0)
+            file.write(data)
+            completionHandler(Result.success(true))
+        } catch {
+            completionHandler(Result.error(FileExportError.writingContentInFile))
+        }
+    }
+
+    private func resetAllMovies(with storageManager: MovieStorage,
+                                handler: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+
+        if let storedMovies = controller?.fetchedObjects {
+            // Remove old data, if available
+            for storedMovie in storedMovies {
+                dispatchGroup.enter()
+
+                storageManager.remove(storedMovie) { _ in
+                    dispatchGroup.leave()
+                }
+            }
+        }
+
+        dispatchGroup.notify(queue: DispatchQueue.global()) {
+            handler()
+        }
     }
 }
 
 extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard loadMoviesForExport == false else { return }
+
         delegate?.beginUpdate()
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard loadMoviesForExport == false else { return }
+
         switch type {
         case .insert:
-        guard let indexPath = newIndexPath else { return }
+            guard let indexPath = newIndexPath else { return }
             delegate?.insertRows(at: [indexPath])
         case .delete:
             guard let indexPath = indexPath else { return }
             delegate?.deleteRows(at: [indexPath])
         case .update:
-        guard let indexPath = newIndexPath else { return }
+            guard let indexPath = newIndexPath else { return }
             delegate?.updateRows(at: [indexPath])
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
@@ -67,6 +220,8 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard loadMoviesForExport == false else { return }
+
         delegate?.endUpdate()
     }
 }

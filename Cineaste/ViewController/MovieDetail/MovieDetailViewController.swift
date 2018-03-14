@@ -190,8 +190,8 @@ class MovieDetailViewController: UIViewController {
             }
             self.titleLabel.text = networkMovie.title
             self.descriptionTextView.text = networkMovie.overview
-            self.runtimeLabel.text = "\(networkMovie.runtime) min"
-            self.votingLabel.text = "\(networkMovie.voteAverage)"
+            self.runtimeLabel.text = networkMovie.runtime.formattedForRuntime
+            self.votingLabel.text = networkMovie.formattedVoteAverage
             self.releaseDateLabel.text = networkMovie.releaseDate.formatted
         }
     }
@@ -203,8 +203,8 @@ class MovieDetailViewController: UIViewController {
             }
             self.titleLabel.text = localMovie.title
             self.descriptionTextView.text = localMovie.overview
-            self.runtimeLabel.text = "\(localMovie.runtime) min"
-            self.votingLabel.text = "\(localMovie.voteAverage)"
+            self.runtimeLabel.text = localMovie.runtime.formattedForRuntime
+            self.votingLabel.text = localMovie.formattedVoteAverage
             self.releaseDateLabel.text = localMovie.releaseDate?.formatted
         }
     }
