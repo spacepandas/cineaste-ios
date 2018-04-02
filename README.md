@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/ChristianNorbertBraun/Cineaste.svg?branch=master)](https://travis-ci.org/ChristianNorbertBraun/Cineaste)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/ChristianNorbertBraun/Cineaste/blob/master/LICENSE)
-[![platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
+[![platform](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)
 
 An iOS (and Android) application to manage movies you would like to see and movies you have seen.
 You can also start movie nights with your friends. There is no need to register or to add friends.
@@ -25,7 +25,7 @@ To enforce swift style and convention and to constantly check our code style, we
 
 1. Open `Cineaste.xcworkspace` in Xcode.
 2. Get a [theMovieDb][theMovieDb] key and add it to the `apikey.plist`.
-3. To run the app on one of your devices, you have to navigate to the project settings under targets to the general tab and choose a team to one you are member of.
+3. To run the app on one of your devices, you have to navigate to the project settings under targets to the general tab and choose a team to one you are member of. Change the bundle identifier to an identifier linked to your Apple developer account in order to run.
 4. Build and run the project.
 
 ## Open tasks
