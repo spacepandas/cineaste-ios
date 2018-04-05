@@ -14,7 +14,7 @@ class MoviesViewController: UIViewController {
         didSet {
             title = category.title
             emptyListLabel.text =
-                NSLocalizedString("Du hast keine Filme auf deiner \(category.tabBarTitle). Füge doch einen neuen Titel hinzu.",
+                NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
                     comment: "Description for empty movie list")
 
             //only update if category changed
@@ -36,21 +36,25 @@ class MoviesViewController: UIViewController {
         didSet {
             myMoviesTableView.dataSource = self
             myMoviesTableView.delegate = self
+
             myMoviesTableView.tableFooterView = UIView()
             myMoviesTableView.backgroundColor = UIColor.basicBackground
+
+            myMoviesTableView.rowHeight = UITableViewAutomaticDimension
+            myMoviesTableView.estimatedRowHeight = 80
         }
     }
 
     let fetchedResultsManager = FetchedResultsManager()
     let storageManager = MovieStorage()
-    fileprivate var selectedMovie: StoredMovie?
+    var selectedMovie: StoredMovie?
     fileprivate var saveAction: UIAlertAction?
-
-    let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.basicBackground
+
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
             myMoviesTableView.reloadData()
@@ -117,19 +121,16 @@ class MoviesViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
-
-        switch identifier {
-        case .showSearchFromMovieList:
+        switch Segue(initWith: segue) {
+        case .showSearchFromMovieList?:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
             vc?.storageManager = storageManager
-        case .showMovieDetail:
+        case .showMovieDetail?:
             let vc = segue.destination as? MovieDetailViewController
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
+            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
         default:
             break
         }
@@ -160,12 +161,6 @@ extension MoviesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension MoviesViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard let fetchedObjects = fetchedResultsManager.controller?.fetchedObjects, !fetchedObjects.isEmpty else { return nil }
-        return indexPath
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -174,15 +169,7 @@ extension MoviesViewController: UITableViewDelegate {
         }
         selectedMovie = movies[indexPath.row]
 
-        perform(segue: Segue.showMovieDetail, sender: nil)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects, !movies.isEmpty else {
-            return tableView.frame.size.height
-        }
-
-        return UITableViewAutomaticDimension
+        perform(segue: .showMovieDetail, sender: nil)
     }
 }
 

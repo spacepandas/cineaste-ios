@@ -20,7 +20,7 @@ class MovieListCellTests: XCTestCase {
         cell.addSubview(poster)
         cell.poster = poster
 
-        let title = UILabel()
+        let title = TitleLabel()
         cell.addSubview(title)
         cell.title = title
 
@@ -49,10 +49,6 @@ class MovieListCellTests: XCTestCase {
         XCTAssertEqual(cell.votes.text, "\(storedMovie.voteAverage)")
         XCTAssertEqual(cell.runtime.text, "\(storedMovie.runtime) min")
         XCTAssertEqual(cell.releaseDate.text, "\(storedMovie.releaseDate?.formatted ?? Date().formatted)")
-    }
-
-    func testCellIdentifier() {
-        XCTAssertEqual(MovieListCell.identifier, "MovieListCell")
     }
 
     private let storedMovie: StoredMovie = {

@@ -18,5 +18,5 @@ enum HTTPMethod: String {
 struct Resource<A> {
     let url: String
     let method: HTTPMethod
-    let parseData: (Data) -> A?
+    let parse: (Data) -> A?
 }

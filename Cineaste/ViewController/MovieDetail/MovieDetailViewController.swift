@@ -11,7 +11,6 @@ import CoreData
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
-
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
 
     @IBOutlet var descriptionLabels: [DescriptionLabel]! {
@@ -31,21 +30,42 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
-            let title = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
-            self.seenButton.setTitle(title, for: .normal)
+            self.seenButton.setTitle(Strings.seenButton, for: .normal)
         }
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            let title = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
-            self.mustSeeButton.setTitle(title, for: .normal)
+            self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
+        }
+    }
+    @IBOutlet var deleteButton: ActionButton! {
+        didSet {
+            self.deleteButton.setTitle(Strings.deleteButton, for: .normal)
         }
     }
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView!
 
-    var storageManager: MovieStorage?
+    var type: MovieDetailType = .search
 
+    private func updateDetail(for type: MovieDetailType) {
+        switch type {
+        case .seen:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = true
+            deleteButton.isHidden = false
+        case .wantToSee:
+            mustSeeButton.isHidden = true
+            seenButton.isHidden = false
+            deleteButton.isHidden = false
+        case .search:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = false
+            deleteButton.isHidden = true
+        }
+    }
+
+    var storageManager: MovieStorage?
     var movie: Movie?
 
     var storedMovie: StoredMovie? {
@@ -66,8 +86,11 @@ class MovieDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         descriptionTextView.isEditable = false
+
         loadMovieDetailAndSetupUI()
+        updateDetail(for: type)
     }
 
     // MARK: - Actions
@@ -78,6 +101,10 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
         saveMovie(withWatched: true)
+    }
+
+    @IBAction func deleteButtonTouched(_ sender: UIButton) {
+        deleteMovie()
     }
 
     // MARK: - Private
@@ -100,26 +127,46 @@ class MovieDetailViewController: UIViewController {
         guard let storageManager = storageManager else { return }
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        self.showAlert(withMessage: Alert.insertMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
         } else if let storedMovie = storedMovie {
             storageManager.updateMovieItem(with: storedMovie, watched: watched) { result in
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        self.showAlert(withMessage: Alert.updateMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        }
+    }
+
+    fileprivate func deleteMovie() {
+        guard let storageManager = storageManager else { return }
+        if let storedMovie = storedMovie {
+            storageManager.remove(storedMovie, handler: { result in
                 guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
+                    self.showAlert(withMessage: Alert.deleteMovieError)
                     return
                 }
 
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
-            }
+            })
         }
     }
 
@@ -128,9 +175,8 @@ class MovieDetailViewController: UIViewController {
         // Setup with the default data to show something while new data is loading
         self.setupUIWithNetworkMovie()
         Webservice.load(resource: movie.get) { result in
-            guard case let .success(detailedMovie) = result else {
-                return
-            }
+            guard case let .success(detailedMovie) = result else { return }
+
             detailedMovie.poster = movie.poster
             self.movie = detailedMovie
             self.setupUIWithNetworkMovie()

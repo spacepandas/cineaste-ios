@@ -12,12 +12,15 @@
 		3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292EF1FD7C90C00ED5593 /* Search.storyboard */; };
 		3F1292FA1FD7CC1100ED5593 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* MovieListCell.swift */; };
 		3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */; };
+		3F585B93203B59B7002F6E07 /* MovieNightViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B92203B59B7002F6E07 /* MovieNightViewControllerTests.swift */; };
+		3F585B95203B5A43002F6E07 /* MovieDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */; };
+		3F585B97203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */; };
 		3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */; };
 		3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8E2030905B00E091BE /* SettingsCell.swift */; };
 		3F5E0D91203090C300E091BE /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D90203090C300E091BE /* SettingItem.swift */; };
-		3F5E0D932030988E00E091BE /* TextViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D922030988E00E091BE /* TextViewContent.swift */; };
+		3F5E0D932030988E00E091BE /* TextViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D922030988E00E091BE /* TextViewType.swift */; };
 		3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
-		3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* ImprintViewController.swift */; };
+		3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */; };
 		3F6C887C2002B2FC0052BF24 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887A2002B2FC0052BF24 /* Settings.storyboard */; };
 		3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */; };
 		3F6C88812002B5400052BF24 /* MovieNight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887F2002B5400052BF24 /* MovieNight.storyboard */; };
@@ -37,9 +40,11 @@
 		3F8644B31FFA96370046114A /* MoviesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */; };
 		3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */; };
 		3F8C569E1FFACB2600F09A82 /* MovieStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */; };
+		3F9806382055250F00B92A27 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9806372055250F00B92A27 /* Strings.swift */; };
 		3FA808CF20027AF60036357B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FA808D1200285590036357B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808D0200285590036357B /* View.swift */; };
 		3FBD8F921FF3FC5B00AD5F02 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
+		3FC8FCE0204C1E7300370A5B /* MovieDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8FCDF204C1E7300370A5B /* MovieDetailType.swift */; };
 		3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */; };
 		3FCC71371FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */; };
 		3FD2F87D201E04AD003B880E /* MoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2F87C201E04AD003B880E /* MoviesViewController+SwipeAction.swift */; };
@@ -101,13 +106,16 @@
 		3F1292F81FD7C9AA00ED5593 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3F1292F91FD7CC1100ED5593 /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
+		3F585B92203B59B7002F6E07 /* MovieNightViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightViewControllerTests.swift; sourceTree = "<group>"; };
+		3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3F5E0D90203090C300E091BE /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
-		3F5E0D922030988E00E091BE /* TextViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewContent.swift; sourceTree = "<group>"; };
+		3F5E0D922030988E00E091BE /* TextViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewType.swift; sourceTree = "<group>"; };
 		3F61B2FC1FFAD680007A0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MoviesList.storyboard; sourceTree = "<group>"; };
 		3F61B2FF1FFAD683007A0557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoviesList.strings; sourceTree = "<group>"; };
-		3F6C88782002B2C50052BF24 /* ImprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprintViewController.swift; sourceTree = "<group>"; };
+		3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
 		3F6C887B2002B2FC0052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightViewController.swift; sourceTree = "<group>"; };
 		3F6C88802002B5400052BF24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieNight.storyboard; sourceTree = "<group>"; };
@@ -127,9 +135,11 @@
 		3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerTests.swift; sourceTree = "<group>"; };
 		3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorage.swift; sourceTree = "<group>"; };
 		3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorageTests.swift; sourceTree = "<group>"; };
+		3F9806372055250F00B92A27 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		3FA808CE20027AF60036357B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3FA808D0200285590036357B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Formatter.swift"; path = "Cineaste/Extension/Date+Formatter.swift"; sourceTree = SOURCE_ROOT; };
+		3FC8FCDF204C1E7300370A5B /* MovieDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailType.swift; sourceTree = "<group>"; };
 		3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
 		3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManagerDelegate.swift; sourceTree = "<group>"; };
 		3FD2F87C201E04AD003B880E /* MoviesViewController+SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+SwipeAction.swift"; sourceTree = "<group>"; };
@@ -216,7 +226,7 @@
 			children = (
 				3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */,
 				3F5E0D8E2030905B00E091BE /* SettingsCell.swift */,
-				3F6C88782002B2C50052BF24 /* ImprintViewController.swift */,
+				3F6C88782002B2C50052BF24 /* SettingsDetailViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -357,8 +367,11 @@
 				3F83BE8D1FF3B29100E584E9 /* SearchMoviesViewControllerTests.swift */,
 				3F83BE8F1FF3B29D00E584E9 /* SearchMoviesCellTests.swift */,
 				3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */,
+				3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */,
 				3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */,
 				3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */,
+				3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */,
+				3F585B92203B59B7002F6E07 /* MovieNightViewControllerTests.swift */,
 			);
 			path = CineasteTests;
 			sourceTree = "<group>";
@@ -383,6 +396,7 @@
 				95C679A12033773A0058FC8C /* Images.swift */,
 				953182F6203E17AF00A331A0 /* Config.swift */,
 				953182F8203E19A000A331A0 /* UserDefaultsManager.swift */,
+				3F9806372055250F00B92A27 /* Strings.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -422,9 +436,10 @@
 				9552262C1FAFB5D300323982 /* StoredMovie.swift */,
 				95B57719201E2C75007BD9F0 /* MovieListCategory.swift */,
 				3F5E0D90203090C300E091BE /* SettingItem.swift */,
-				3F5E0D922030988E00E091BE /* TextViewContent.swift */,
 				955C1382203CCBA2009D8337 /* NearbyMessage.swift */,
 				955C1384203CCF61009D8337 /* NearbyMovie.swift */,
+				3F5E0D922030988E00E091BE /* TextViewType.swift */,
+				3FC8FCDF204C1E7300370A5B /* MovieDetailType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -701,7 +716,7 @@
 				95C679A22033773A0058FC8C /* Images.swift in Sources */,
 				3F8644AB1FFA72EE0046114A /* MoviesTabBarController.swift in Sources */,
 				3F5E0D91203090C300E091BE /* SettingItem.swift in Sources */,
-				3F5E0D932030988E00E091BE /* TextViewContent.swift in Sources */,
+				3F5E0D932030988E00E091BE /* TextViewType.swift in Sources */,
 				953182FB203E212A00A331A0 /* MovieNightUserTableViewCell.swift in Sources */,
 				95B5771A201E2C75007BD9F0 /* MovieListCategory.swift in Sources */,
 				9552262D1FAFB5D300323982 /* StoredMovie.swift in Sources */,
@@ -718,7 +733,7 @@
 				953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */,
 				3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */,
 				3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */,
-				3F6C88792002B2C50052BF24 /* ImprintViewController.swift in Sources */,
+				3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,
@@ -736,10 +751,12 @@
 				3FDB14542025B80F0063E980 /* AlertMessages.swift in Sources */,
 				951D86D02034B6C700BDD1D0 /* Dependencies.swift in Sources */,
 				3FA808D1200285590036357B /* View.swift in Sources */,
+				3F9806382055250F00B92A27 /* Strings.swift in Sources */,
 				3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */,
 				3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */,
 				3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */,
 				3F8644A91FFA69E70046114A /* MoviesViewController.swift in Sources */,
+				3FC8FCE0204C1E7300370A5B /* MovieDetailType.swift in Sources */,
 				3FBD8F921FF3FC5B00AD5F02 /* Date+Formatter.swift in Sources */,
 				95EFA4AE1FA13878004F1F94 /* Webservice.swift in Sources */,
 			);
@@ -753,10 +770,13 @@
 				3F8644B31FFA96370046114A /* MoviesViewControllerTests.swift in Sources */,
 				3F83BE901FF3B29D00E584E9 /* SearchMoviesCellTests.swift in Sources */,
 				3F83BE821FF3AE3700E584E9 /* MovieListCellTests.swift in Sources */,
+				3F585B97203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift in Sources */,
 				3FEF5C492030B28100EFCAA2 /* SettingsViewControllerTests.swift in Sources */,
 				3F83BE801FF3AC3B00E584E9 /* CoreDataHelper.swift in Sources */,
 				3F8644B11FFA95190046114A /* MoviesTabBarControllerTests.swift in Sources */,
 				3FEF5C4B2030B28D00EFCAA2 /* SettingsCellTests.swift in Sources */,
+				3F585B93203B59B7002F6E07 /* MovieNightViewControllerTests.swift in Sources */,
+				3F585B95203B5A43002F6E07 /* MovieDetailViewControllerTests.swift in Sources */,
 				3F8C569E1FFACB2600F09A82 /* MovieStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

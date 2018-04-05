@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
+        title = Strings.settingsTitle
 
         view.backgroundColor = UIColor.basicBackground
 
@@ -48,26 +48,21 @@ class SettingsViewController: UIViewController {
             let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
             let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return "" }
-        let versionText = NSLocalizedString("Version", comment: "Description for app version")
-        return "\(versionText): \(version) (\(build))"
+        return "\(Strings.versionText): \(version) (\(build))"
     }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
+        switch Segue(initWith: segue) {
+        case .showTextViewFromSettings?:
+            guard let selected = selectedSetting else { return }
 
-        guard let selected = selectedSetting else { return }
-
-        switch identifier {
-        case .showTextViewFromSettings:
-            let vc = segue.destination as? ImprintViewController
+            let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
             vc?.textViewContent = (selected == SettingItem.licence)
-                ? TextViewContent.licence
-                : TextViewContent.imprint
+                ? TextViewType.licence
+                : TextViewType.imprint
         default:
             return
         }
@@ -108,10 +103,7 @@ extension SettingsViewController: UITableViewDelegate {
         if let segue = selectedSetting?.segue {
             perform(segue: segue, sender: self)
         } else {
-            let alert = UIAlertController(title: "Info", message: "Feature isn't implemented", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
+            showAlert(withMessage: Alert.missingFeatureInfo)
         }
     }
 }

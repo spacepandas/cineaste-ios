@@ -45,8 +45,8 @@ class SettingsViewControllerTests: XCTestCase {
         }
     }
 
-    func testPrepareForSegueShouldInjectCorrectContent() {
-        let targetViewController = ImprintViewController.instantiate()
+    func testPrepareForSegueShouldInjectCorrectContentToImprintVC() {
+        let targetViewController = SettingsDetailViewController.instantiate()
         let targetSegue = UIStoryboardSegue(
             identifier: Segue.showTextViewFromSettings.rawValue,
             source: settingsVC,
@@ -94,6 +94,21 @@ class SettingsViewControllerTests: XCTestCase {
 
             XCTAssert(cell is SettingsCell)
         }
+    }
+
+    func testDequeueReusableCellWithSettingsCellIdentifierShouldReturnTableViewCell() {
+        let tableView = settingsVC.settingsTableView!
+
+        // important:
+        // use dequeueReusableCell:withIdentifier for this test, this method
+        // returns nil, when the tableView can not dequeue a reusable cell,
+        // with dequeueReusableCell:withIdentifier:indexPath it would simply
+        // crash at this point
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.identifier)
+        XCTAssertNotNil(cell)
+
+        let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")
+        XCTAssertNil(invalidCell)
     }
 
     private let settingsItems: [SettingItem] = {

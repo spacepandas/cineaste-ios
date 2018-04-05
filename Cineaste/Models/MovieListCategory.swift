@@ -16,27 +16,18 @@ enum MovieListCategory: String {
     var title: String {
         switch self {
         case .wantToSee:
-            return NSLocalizedString("Musst du sehen", comment: "Title for want to see movie list")
+            return Strings.wantToSeeList
         case .seen:
-            return NSLocalizedString("Schon gesehen", comment: "Title for seen movie list")
+            return Strings.seenList
         }
     }
 
     var image: UIImage {
         switch self {
         case .wantToSee:
-            return #imageLiteral(resourceName: "add_to_watchlist")
+            return Images.wantToSeeIcon
         case .seen:
-            return #imageLiteral(resourceName: "add_to_watchedlist")
-        }
-    }
-
-    var tabBarTitle: String {
-        switch self {
-        case .wantToSee:
-            return NSLocalizedString("Watch-List", comment: "TabBar title for want to see movie list")
-        case .seen:
-            return NSLocalizedString("Watched-List", comment: "TabBar title for seen movie list")
+            return Images.seenIcon
         }
     }
 

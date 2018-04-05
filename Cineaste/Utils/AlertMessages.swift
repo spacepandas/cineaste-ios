@@ -25,6 +25,7 @@ class AlertMessage {
 // default
 private let okAction = NSLocalizedString("OK", comment: "Title for ok action")
 private let saveAction = NSLocalizedString("Speichern", comment: "Title for save action")
+private let infoTitle = NSLocalizedString("Info", comment: "Title for information")
 private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
 
 // error
@@ -43,6 +44,9 @@ private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht e
 private let usernameTitle = NSLocalizedString("Enter a username", comment: "Enter username heading")
 private let usernameDescription = NSLocalizedString("How do you want to appear on your friends", comment: "Enter username description")
 
+// missing feature
+private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
+
 class Alert: AlertMessage {
     static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
     static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
@@ -52,6 +56,8 @@ class Alert: AlertMessage {
     static let insertMovieError = AlertMessage(title: errorTitle, message: insertMovieErrorMessage, action: okAction)
 
     static let insertUsername = AlertMessage(title: usernameTitle, message: usernameDescription, action: saveAction, cancel: cancelAction)
+
+    static let missingFeatureInfo = AlertMessage(title: infoTitle, message: missingFeatureMessage, action: okAction)
 }
 
 extension UIViewController {

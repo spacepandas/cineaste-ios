@@ -17,13 +17,13 @@ enum SettingItem {
     var title: String {
         switch self {
         case .exportMovies:
-            return NSLocalizedString("Export", comment: "Title for settings cell exportMovies")
+            return Strings.exportTitle
         case .importMovies:
-            return NSLocalizedString("Import", comment: "Title for settings cell importMovies")
+            return Strings.importTitle
         case .licence:
-            return NSLocalizedString("Lizenzen", comment: "Title for settings cell licence")
+            return Strings.licenceTitle
         case .about:
-            return NSLocalizedString("Über die App", comment: "Title for settings cell about")
+            return Strings.aboutAppTitle
         }
     }
 
@@ -34,9 +34,9 @@ enum SettingItem {
         case .importMovies:
             return nil
         case .licence:
-            return Segue.showTextViewFromSettings
+            return .showTextViewFromSettings
         case .about:
-            return Segue.showTextViewFromSettings
+            return .showTextViewFromSettings
         }
     }
 }

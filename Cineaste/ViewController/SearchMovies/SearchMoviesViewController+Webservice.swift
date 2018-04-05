@@ -12,7 +12,7 @@ extension SearchMoviesViewController {
     func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
         Webservice.load(resource: Movie.latestReleases()) { result in
             guard case let .success(movies) = result else {
-                // TODO: We should handle the error
+                self.showAlert(withMessage: Alert.loadingDataError)
                 handler([])
                 return
             }
@@ -24,7 +24,7 @@ extension SearchMoviesViewController {
         if let query = query, !query.isEmpty {
             Webservice.load(resource: Movie.search(withQuery: query)) { result in
                 guard case let .success(movies) = result else {
-                    // TODO: We should handle the error
+                    self.showAlert(withMessage: Alert.loadingDataError)
                     handler([])
                     return
                 }
@@ -43,7 +43,7 @@ extension SearchMoviesViewController {
     func loadDetails(for movie: Movie, completionHandler: @escaping (Movie) -> Void) {
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else {
-                // TODO: We should handle the error
+                self.showAlert(withMessage: Alert.loadingDataError)
                 return
             }
             detailedMovie.poster = movie.poster

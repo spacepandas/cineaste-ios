@@ -12,7 +12,7 @@ class MovieListCell: UITableViewCell {
     static let identifier = "MovieListCell"
 
     @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: UILabel!
+    @IBOutlet var title: TitleLabel!
     @IBOutlet var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
