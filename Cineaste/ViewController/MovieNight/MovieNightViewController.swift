@@ -91,7 +91,7 @@ class MovieNightViewController: UIViewController {
                 .shared
                 .movieStorage
                 .fetchAllWantToSeeMovies()
-                .flatMap { storedMovie -> NearbyMovie? in
+                .compactMap { storedMovie -> NearbyMovie? in
                     guard let title = storedMovie.title else {
                         return nil
                     }

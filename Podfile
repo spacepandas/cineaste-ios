@@ -4,7 +4,7 @@
 target 'Cineaste' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'SwiftLint', '~> 0.23.1'
+  pod 'SwiftLint'
   pod 'NearbyMessages'
 
   # Pods for Cineaste

@@ -52,6 +52,7 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
+
         delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
     }
 
@@ -67,6 +68,7 @@ class SearchMoviesCell: UITableViewCell {
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
                 let posterToDisplay = poster ?? Images.posterPlaceholder
+
                 movie.poster = posterToDisplay
                 self.poster.image = posterToDisplay
             }

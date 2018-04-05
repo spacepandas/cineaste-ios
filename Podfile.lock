@@ -11,11 +11,11 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.3)
-  - SwiftLint (0.23.1)
+  - SwiftLint (0.25.0)
 
 DEPENDENCIES:
   - NearbyMessages
-  - SwiftLint (~> 0.23.1)
+  - SwiftLint
 
 SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
@@ -23,8 +23,8 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   NearbyMessages: be3e1c44b563c020246312647f3f1128b603693d
-  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
 
-PODFILE CHECKSUM: 3d72ed4947d1ef31cd984ca189e84485df733fda
+PODFILE CHECKSUM: bb573462b57c748bbd32429106b7783b1d516e49
 
 COCOAPODS: 1.4.0

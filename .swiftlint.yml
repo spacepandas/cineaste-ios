@@ -30,6 +30,7 @@ opt_in_rules:
 excluded:
   - CineasteTests
   - Pods
+  - Cineaste-Bridging-Header.h  
 
 # Configure warning/error levels
 file_length:
