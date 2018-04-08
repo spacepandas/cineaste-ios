@@ -13,7 +13,7 @@ struct NearbyMovieWithOccurrence {
     var nearbyMovie: NearbyMovie
 }
 
-class MovieMatchViewController: UIViewController, UITableViewDataSource {
+class MovieMatchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MovieMatchTableViewCellDelegate {
     @IBOutlet weak var matchedMoviesTableView: UITableView!
 
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
@@ -23,6 +23,7 @@ class MovieMatchViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         matchedMoviesTableView.dataSource = self
+        matchedMoviesTableView.allowsSelection = false
         matchedMoviesTableView.backgroundColor = UIColor.basicBackground
     }
 
@@ -60,8 +61,28 @@ class MovieMatchViewController: UIViewController, UITableViewDataSource {
                 fatalError("Unable to dequeue cell with identifier \(MovieMatchTableViewCell.cellIdentifier)")
         }
 
-        cell.configure(with: sortedMoviesWithOccurrence[indexPath.row], amountOfPeople: totalNumberOfPeople)
+        cell.configure(with: sortedMoviesWithOccurrence[indexPath.row],
+                       amountOfPeople: totalNumberOfPeople,
+                       delegate: self)
 
         return cell
+    }
+
+    // MARK: - MovieMatchTableViewCellDelegate
+
+    func movieMatchTableViewCell(sender: MovieMatchTableViewCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?) {
+        let movieForRequest = Movie(id: selectedMovie.nearbyMovie.id, title: selectedMovie.nearbyMovie.title)
+        Webservice.load(resource: movieForRequest.get) { result in
+            switch result {
+            case .success(let movie):
+                movie.poster = poster
+                Dependencies.shared.movieStorage.insertMovieItem(with: movie, watched: true)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .error:
+                self.showAlert(withMessage: Alert.loadingDataError)
+            }
+        }
     }
 }

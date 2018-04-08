@@ -42,6 +42,16 @@ class Movie: Codable {
         releaseDate = dateString?.dateFromString ?? Date()
     }
 
+    // This is only for creating a movie to use it with the webservice
+    init(id: Int64, title: String) {
+        self.id = id
+        self.title = title
+        self.voteAverage = 0
+        self.overview = ""
+        self.runtime = 0
+        self.releaseDate = Date()
+    }
+
     func encode(to encoder: Encoder) throws {
         fatalError("encode not implemented on \(Movie.self)")
     }

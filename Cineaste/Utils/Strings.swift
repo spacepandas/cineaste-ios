@@ -13,6 +13,7 @@ struct Strings {
     static let mustSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
     static let deleteButton = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
+    static let startMovieNight = NSLocalizedString("Filmnacht starten", comment: "Title for the start movienight button")
 
     // MARK: VIEWCONTROLLER TITLE
     static let wantToSeeList = NSLocalizedString("Musst du sehen", comment: "Title for want to see movie list")

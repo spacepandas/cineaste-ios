@@ -65,39 +65,43 @@ class MoviesViewController: UIViewController {
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
-        // TODO: Make this more Beautiful
         if UserDefaultsManager.getUsername() == nil {
-            let alert = UIAlertController(title: Alert.insertUsername.title, message: Alert.insertUsername.message, preferredStyle: .alert)
-            saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
-                guard let textField = alert.textFields?[0], let username = textField.text else {
-                    return
-                }
-                UserDefaultsManager.setUsername(username)
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-                }
-            }
-
-            if let saveAction = saveAction {
-                saveAction.isEnabled = false
-                alert.addAction(saveAction)
-            }
-
-            if let cancelTitle = Alert.insertUsername.cancel {
-                let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in }
-                alert.addAction(cancelAction)
-            }
-
-            alert.addTextField(configurationHandler: { textField in
-                textField.placeholder = Alert.insertUsername.title
-                textField.delegate = self
-            })
-
-            self.present(alert, animated: true)
+            showUsernameAlert()
         } else {
-                    self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+            self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
         }
     }
+
+    func showUsernameAlert() {
+        let alert = UIAlertController(title: Alert.insertUsername.title, message: Alert.insertUsername.message, preferredStyle: .alert)
+        saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
+            guard let textField = alert.textFields?[0], let username = textField.text else {
+                return
+            }
+            UserDefaultsManager.setUsername(username)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+            }
+        }
+
+        if let saveAction = saveAction {
+            saveAction.isEnabled = false
+            alert.addAction(saveAction)
+        }
+
+        if let cancelTitle = Alert.insertUsername.cancel {
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in }
+            alert.addAction(cancelAction)
+        }
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = Alert.insertUsername.title
+            textField.delegate = self
+        })
+
+        self.present(alert, animated: true)
+    }
+
     @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
         perform(segue: .showSearchFromMovieList, sender: self)
     }
