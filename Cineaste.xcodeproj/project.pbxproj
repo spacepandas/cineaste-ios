@@ -41,6 +41,8 @@
 		3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */; };
 		3F8C569E1FFACB2600F09A82 /* MovieStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */; };
 		3F9806382055250F00B92A27 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9806372055250F00B92A27 /* Strings.swift */; };
+		3F98063A20554AE400B92A27 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */; };
+		3F98063D20556EA700B92A27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F98063F20556EA700B92A27 /* InfoPlist.strings */; };
 		3FA808CF20027AF60036357B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FA808D1200285590036357B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808D0200285590036357B /* View.swift */; };
 		3FBD8F921FF3FC5B00AD5F02 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
@@ -127,6 +129,8 @@
 		3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorage.swift; sourceTree = "<group>"; };
 		3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorageTests.swift; sourceTree = "<group>"; };
 		3F9806372055250F00B92A27 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutIdentifier.swift; sourceTree = "<group>"; };
+		3F98063E20556EA700B92A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FA808CE20027AF60036357B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3FA808D0200285590036357B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Formatter.swift"; path = "Cineaste/Extension/Date+Formatter.swift"; sourceTree = SOURCE_ROOT; };
@@ -318,6 +322,7 @@
 				95D32F601F9AA20100497ED2 /* apikey.plist */,
 				9528112F201D087800F3EC76 /* .swiftlint.yml */,
 				958328991FBB81340084CF80 /* cineaste.xcassets */,
+				3F98063F20556EA700B92A27 /* InfoPlist.strings */,
 			);
 			path = Cineaste;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				3FDB14532025B80F0063E980 /* AlertMessages.swift */,
 				95C679A12033773A0058FC8C /* Images.swift */,
 				3F9806372055250F00B92A27 /* Strings.swift */,
+				3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */,
 				3F6C88812002B5400052BF24 /* MovieNight.storyboard in Resources */,
 				3F1292F11FD7C90D00ED5593 /* MovieDetail.storyboard in Resources */,
+				3F98063D20556EA700B92A27 /* InfoPlist.strings in Resources */,
 				3F61B2FB1FFAD680007A0557 /* MoviesList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +712,7 @@
 				3FC8FCE0204C1E7300370A5B /* MovieDetailType.swift in Sources */,
 				3FBD8F921FF3FC5B00AD5F02 /* Date+Formatter.swift in Sources */,
 				95EFA4AE1FA13878004F1F94 /* Webservice.swift in Sources */,
+				3F98063A20554AE400B92A27 /* ShortcutIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +787,14 @@
 				3F6C88802002B5400052BF24 /* Base */,
 			);
 			name = MovieNight.storyboard;
+			sourceTree = "<group>";
+		};
+		3F98063F20556EA700B92A27 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F98063E20556EA700B92A27 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		95AE25A31F9531E20067F5F5 /* Main.storyboard */ = {

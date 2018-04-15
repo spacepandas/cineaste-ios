@@ -24,7 +24,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Appearance.setup()
 
+        // check if system launched the app with a quick action
+        // return false so performActionForShortcutItem: is not called twice
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            _ = handle(shortCut: shortcutItem)
+            return false
+        }
+
         return true
+    }
+
+    // MARK: - Home Quick Actions
+
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handle(shortCut: shortcutItem))
+    }
+
+    private func handle(shortCut shortcutItem: UIApplicationShortcutItem) -> Bool {
+        let shortcutType = shortcutItem.type
+        guard let shortcutIdentifier = ShortcutIdentifier(rawValue: shortcutType),
+            let tabBarVC = window?.rootViewController as? MoviesTabBarController
+            else { return false }
+
+        switch shortcutIdentifier {
+        case .wantToSeeList:
+            tabBarVC.selectedIndex = 0
+            return true
+        case .seenList:
+            tabBarVC.selectedIndex = 1
+            return true
+        case .startMovieNight:
+            //TODO: directly start movie night from action
+            tabBarVC.selectedIndex = 0
+            tabBarVC.selectedViewController?.showAlert(withMessage: Alert.missingFeatureInfo)
+            return true
+        }
+
     }
 
     // MARK: - Core Data

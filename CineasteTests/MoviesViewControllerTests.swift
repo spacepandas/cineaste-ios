@@ -70,10 +70,16 @@ class MoviesViewControllerTests: XCTestCase {
     }
 
     func testEmptyListShouldHideTableView() {
-        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
-            XCTAssertTrue(moviesVC.myMoviesTableView.isHidden)
-        } else {
-            XCTAssertFalse(moviesVC.myMoviesTableView.isHidden)
+        moviesVC.hideTableView(nil) {
+            XCTAssertTrue(self.tableView.isHidden)
+        }
+
+        moviesVC.hideTableView(true) {
+            XCTAssertTrue(self.tableView.isHidden)
+        }
+
+        moviesVC.hideTableView(false) {
+            XCTAssertFalse(self.tableView.isHidden)
         }
     }
 
