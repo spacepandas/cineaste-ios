@@ -60,7 +60,9 @@ class MovieDetailViewController: UIViewController {
 
     var movie: Movie? {
         didSet {
-            if let movie = movie {
+            guard let movie = movie else { return }
+
+            if oldValue?.id != movie.id {
                 loadDetails(for: movie)
             }
         }
