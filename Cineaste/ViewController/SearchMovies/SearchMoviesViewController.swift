@@ -53,6 +53,7 @@ class SearchMoviesViewController: UIViewController {
         }
 
         configureSearchController()
+        registerForPreviewing(with: self, sourceView: moviesTableView)
     }
 
     override func viewDidLayoutSubviews() {
@@ -135,6 +136,26 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
                 }
             }
         }
+    }
+}
+
+// MARK: - 3D Touch
+
+extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let detailVC = MovieDetailViewController.instantiate()
+        guard let path = moviesTableView.indexPathForRow(at: location),
+            movies.count > path.section
+            else { return nil }
+
+        detailVC.movie = movies[path.section]
+        detailVC.storageManager = storageManager
+        detailVC.type = .search
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 

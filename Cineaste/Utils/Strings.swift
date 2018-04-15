@@ -10,7 +10,7 @@ import Foundation
 
 struct Strings {
     // MARK: ACTION BUTTONS
-    static let mustSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
+    static let wantToSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
     static let deleteButton = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
 

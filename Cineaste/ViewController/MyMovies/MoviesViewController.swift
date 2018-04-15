@@ -59,6 +59,8 @@ class MoviesViewController: UIViewController {
             myMoviesTableView.reloadData()
             hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
+
+        registerForPreviewing(with: self, sourceView: myMoviesTableView)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -217,6 +219,28 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
         myMoviesTableView.endUpdates()
         hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         updateShortcutItems()
+    }
+}
+
+// MARK: - 3D Touch
+
+extension MoviesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let detailVC = MovieDetailViewController.instantiate()
+        guard let path = myMoviesTableView.indexPathForRow(at: location),
+            let objects = fetchedResultsManager.controller?.fetchedObjects,
+            objects.count > path.row
+            else { return nil }
+
+        let movie = objects[path.row]
+        detailVC.storedMovie = movie
+        detailVC.storageManager = storageManager
+        detailVC.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 
