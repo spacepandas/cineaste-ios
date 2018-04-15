@@ -76,6 +76,8 @@ class MovieDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        updateDetail(for: type)
     }
 
     // MARK: - Actions
@@ -144,6 +146,12 @@ class MovieDetailViewController: UIViewController {
     }
 
     private func updateDetail(for type: MovieDetailType) {
+        guard let mustSeeButton = mustSeeButton,
+            let seenButton = seenButton,
+            let deleteButton = deleteButton else {
+                return
+        }
+
         switch type {
         case .seen:
             mustSeeButton.isHidden = false
