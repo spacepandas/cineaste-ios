@@ -202,15 +202,15 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: Strings.wantToSeeButton, style: .default) { (_, _) -> Void in
+        let wantToSeeAction = UIPreviewAction(title: Strings.wantToSeeButton, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: Strings.seenButton, style: .default) { (_, _) -> Void in
+        let seenAction = UIPreviewAction(title: Strings.seenButton, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: true)
         }
 
-        let deleteAction = UIPreviewAction(title: Strings.deleteButton, style: .destructive) { (_, _) -> Void in
+        let deleteAction = UIPreviewAction(title: Strings.deleteButton, style: .destructive) { _, _ -> Void in
             self.deleteMovie()
         }
 
