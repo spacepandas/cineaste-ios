@@ -7,71 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31D888E5B6F60B005C54E3072CE4FFB5 /* Pods-Cineaste-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C37C6728C8777803570F334FF94CA /* Pods-Cineaste-dummy.m */; };
-		4A96A71C725320144E61016E198EB09F /* Pods-Cineaste-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F78A19F5B4F395FCCFC780A57674EA3A /* Pods-Cineaste-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5557AD41528DE26C03B241067D736A2A /* Pods-CineasteTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 880CF60B02E6DBBDA96453E2745B0492 /* Pods-CineasteTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA560CB26A2FE24145B63AA290D81A6F /* Pods-CineasteTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4F18980FCC7F68E78A340FC84AA7 /* Pods-CineasteTests-dummy.m */; };
-		F8DC70FE58492BB5E2BE17B5C17C6EB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		FA812C1E3C250368246662CAF1E1F2CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		241B55B75A1A2D225766AF9B89D3CF4E /* Pods-CineasteTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */; };
+		6E5BD8AC28F67449E8FB0A6FA0E0260D /* Pods-Cineaste-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */; };
+		798F46B439BD9910B955ED14D1BBB9CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		FE1F6EBF40F6303755D5F1D30F381641 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		66F1948A2439A2728D2AC59C9382758E /* PBXContainerItemProxy */ = {
+		0AA9F2A7882DFF5573F8CE8EF9C14968 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CFE4ACDD89F13DA213B5C51B33DB826A;
+			remoteGlobalIDString = E53C0BBD528F675D229DF00241983A9A;
 			remoteInfo = "Pods-Cineaste";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0BF1FE27E3BD303C4210B25F7B9A73F6 /* Pods-CineasteTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CineasteTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1773ACAF93356E6FBD4399A6F7CEE365 /* Pods-Cineaste-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-resources.sh"; sourceTree = "<group>"; };
-		353437D026EE5BC1E42FD51510E7520F /* Pods_CineasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CineasteTests.framework; path = "Pods-CineasteTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		37AC4F18980FCC7F68E78A340FC84AA7 /* Pods-CineasteTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CineasteTests-dummy.m"; sourceTree = "<group>"; };
-		4879E671720A241545F69061E219DD71 /* Pods-Cineaste-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Cineaste-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4CB581B94EEEED0AE7E92E987D29A881 /* Pods-CineasteTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-frameworks.sh"; sourceTree = "<group>"; };
-		4E27FD0F29A922A20A2566974DC0ADC4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A869A05A6A7E389F447416DAE95AE38 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
-		5DDD046636A27481842628E3D3602B9B /* Pods-CineasteTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CineasteTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		0F6CF4631172071678D50B12862D3A24 /* Pods-Cineaste-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Cineaste-acknowledgements.plist"; sourceTree = "<group>"; };
+		1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1D8DA3AB1E68FF7628F245A90B335EC1 /* Pods-CineasteTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CineasteTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.release.xcconfig"; sourceTree = "<group>"; };
+		4288069A451113A2F302D63439439C94 /* Pods-Cineaste-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Cineaste-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4EBE2BC7D3A28105D22281359A57C9F8 /* Pods-Cineaste-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-frameworks.sh"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		736186BA6D098536356CE24CA82036D3 /* Pods-Cineaste-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-frameworks.sh"; sourceTree = "<group>"; };
-		87030438A8EB07442349022296C9FF8D /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
-		880CF60B02E6DBBDA96453E2745B0492 /* Pods-CineasteTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CineasteTests-umbrella.h"; sourceTree = "<group>"; };
-		88D22BF3B878304AC94256E1B60B2AF5 /* Pods-Cineaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.release.xcconfig"; sourceTree = "<group>"; };
+		6C7B52F85C9246722F62F4E9079AD8FE /* Pods-Cineaste-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-resources.sh"; sourceTree = "<group>"; };
+		752F1B895309003A4BE92F3795B107E8 /* Pods-CineasteTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CineasteTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7DB547631624B2A396FDA5CA37191869 /* Pods-CineasteTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-resources.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9A0544B3E6099C045738F4CE1D65BA89 /* Pods-Cineaste-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Cineaste-acknowledgements.plist"; sourceTree = "<group>"; };
-		9EFF83F4A6AA9AE9C7292F707B486099 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC8C37C6728C8777803570F334FF94CA /* Pods-Cineaste-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Cineaste-dummy.m"; sourceTree = "<group>"; };
-		D37CE4A6F7EDDFBB39363E0E8E22D4E1 /* Pods_Cineaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Cineaste.framework; path = "Pods-Cineaste.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD1AC91EB43A4BF059F560F6439AD704 /* Pods-Cineaste.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Cineaste.modulemap"; sourceTree = "<group>"; };
-		E5C8B6E87DB856E65B3FB491A9C7E4B9 /* Pods-CineasteTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-resources.sh"; sourceTree = "<group>"; };
-		F0BCE5D95B724C54FC483CD2B8BA4753 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
-		F78A19F5B4F395FCCFC780A57674EA3A /* Pods-Cineaste-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Cineaste-umbrella.h"; sourceTree = "<group>"; };
-		FD132560CCF7E7F34C92B2F9A54D4620 /* Pods-CineasteTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CineasteTests.modulemap"; sourceTree = "<group>"; };
+		B2E17EB0AF1C150C947FA5F493ADD4AA /* Pods-CineasteTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-frameworks.sh"; sourceTree = "<group>"; };
+		C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Cineaste-dummy.m"; sourceTree = "<group>"; };
+		CBD05F62BDB3A137B8F798E8BF7AA377 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
+		DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CineasteTests.a"; path = "libPods-CineasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55D1BEA914FFDA2E8DBB41762FE20F5 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		F0C5BDBFCF1A0780C6AA1E1E1D0E7382 /* libPods-Cineaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Cineaste.a"; path = "libPods-Cineaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CineasteTests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		69C63729FFCF2DF3CFA8AA3611107505 /* Frameworks */ = {
+		0F850A51CB0CDBD9A11B8E9F785F1B93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA812C1E3C250368246662CAF1E1F2CD /* Foundation.framework in Frameworks */,
+				798F46B439BD9910B955ED14D1BBB9CD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		763204784B4752DA9135F4345DE7FDB1 /* Frameworks */ = {
+		1521D134A56C0A78492E0F630BC63527 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8DC70FE58492BB5E2BE17B5C17C6EB8 /* Foundation.framework in Frameworks */,
+				FE1F6EBF40F6303755D5F1D30F381641 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ED373203212474A8EC12A6354E71F02 /* Pods-CineasteTests */ = {
+			isa = PBXGroup;
+			children = (
+				752F1B895309003A4BE92F3795B107E8 /* Pods-CineasteTests-acknowledgements.markdown */,
+				1D8DA3AB1E68FF7628F245A90B335EC1 /* Pods-CineasteTests-acknowledgements.plist */,
+				F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */,
+				B2E17EB0AF1C150C947FA5F493ADD4AA /* Pods-CineasteTests-frameworks.sh */,
+				7DB547631624B2A396FDA5CA37191869 /* Pods-CineasteTests-resources.sh */,
+				1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */,
+				E55D1BEA914FFDA2E8DBB41762FE20F5 /* Pods-CineasteTests.release.xcconfig */,
+			);
+			name = "Pods-CineasteTests";
+			path = "Target Support Files/Pods-CineasteTests";
+			sourceTree = "<group>";
+		};
 		32A23E08346748F1793F899C5FF672C1 /* SwiftLint */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,33 +87,24 @@
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
-		45C4750A33A8AF7FB67D63875CDDD3E6 /* Pods-CineasteTests */ = {
-			isa = PBXGroup;
-			children = (
-				4E27FD0F29A922A20A2566974DC0ADC4 /* Info.plist */,
-				FD132560CCF7E7F34C92B2F9A54D4620 /* Pods-CineasteTests.modulemap */,
-				0BF1FE27E3BD303C4210B25F7B9A73F6 /* Pods-CineasteTests-acknowledgements.markdown */,
-				5DDD046636A27481842628E3D3602B9B /* Pods-CineasteTests-acknowledgements.plist */,
-				37AC4F18980FCC7F68E78A340FC84AA7 /* Pods-CineasteTests-dummy.m */,
-				4CB581B94EEEED0AE7E92E987D29A881 /* Pods-CineasteTests-frameworks.sh */,
-				E5C8B6E87DB856E65B3FB491A9C7E4B9 /* Pods-CineasteTests-resources.sh */,
-				880CF60B02E6DBBDA96453E2745B0492 /* Pods-CineasteTests-umbrella.h */,
-				87030438A8EB07442349022296C9FF8D /* Pods-CineasteTests.debug.xcconfig */,
-				5A869A05A6A7E389F447416DAE95AE38 /* Pods-CineasteTests.release.xcconfig */,
-			);
-			name = "Pods-CineasteTests";
-			path = "Target Support Files/Pods-CineasteTests";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */,
-				E29D2F490FEEF1E8B1C10226465F53B6 /* Products */,
-				C6ECD6A460BF37F95300456E5C895C3B /* Targets Support Files */,
+				A8CA68E7CCEA87B738DB15527E56F843 /* Products */,
+				973611F2E22B8881A38686C6F2583186 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		973611F2E22B8881A38686C6F2583186 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F2F28CC50E9EC6B3C0A315C1156FE /* Pods-Cineaste */,
+				0ED373203212474A8EC12A6354E71F02 /* Pods-CineasteTests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */ = {
@@ -117,22 +115,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AE2055BAD69D9E43A01F7BB2C0A1AADB /* Pods-Cineaste */ = {
+		A8CA68E7CCEA87B738DB15527E56F843 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9EFF83F4A6AA9AE9C7292F707B486099 /* Info.plist */,
-				DD1AC91EB43A4BF059F560F6439AD704 /* Pods-Cineaste.modulemap */,
-				4879E671720A241545F69061E219DD71 /* Pods-Cineaste-acknowledgements.markdown */,
-				9A0544B3E6099C045738F4CE1D65BA89 /* Pods-Cineaste-acknowledgements.plist */,
-				BC8C37C6728C8777803570F334FF94CA /* Pods-Cineaste-dummy.m */,
-				736186BA6D098536356CE24CA82036D3 /* Pods-Cineaste-frameworks.sh */,
-				1773ACAF93356E6FBD4399A6F7CEE365 /* Pods-Cineaste-resources.sh */,
-				F78A19F5B4F395FCCFC780A57674EA3A /* Pods-Cineaste-umbrella.h */,
-				F0BCE5D95B724C54FC483CD2B8BA4753 /* Pods-Cineaste.debug.xcconfig */,
-				88D22BF3B878304AC94256E1B60B2AF5 /* Pods-Cineaste.release.xcconfig */,
+				F0C5BDBFCF1A0780C6AA1E1E1D0E7382 /* libPods-Cineaste.a */,
+				DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */,
 			);
-			name = "Pods-Cineaste";
-			path = "Target Support Files/Pods-Cineaste";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -143,15 +132,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C6ECD6A460BF37F95300456E5C895C3B /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AE2055BAD69D9E43A01F7BB2C0A1AADB /* Pods-Cineaste */,
-				45C4750A33A8AF7FB67D63875CDDD3E6 /* Pods-CineasteTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,62 +140,47 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		E29D2F490FEEF1E8B1C10226465F53B6 /* Products */ = {
+		FA1F2F28CC50E9EC6B3C0A315C1156FE /* Pods-Cineaste */ = {
 			isa = PBXGroup;
 			children = (
-				D37CE4A6F7EDDFBB39363E0E8E22D4E1 /* Pods_Cineaste.framework */,
-				353437D026EE5BC1E42FD51510E7520F /* Pods_CineasteTests.framework */,
+				4288069A451113A2F302D63439439C94 /* Pods-Cineaste-acknowledgements.markdown */,
+				0F6CF4631172071678D50B12862D3A24 /* Pods-Cineaste-acknowledgements.plist */,
+				C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */,
+				4EBE2BC7D3A28105D22281359A57C9F8 /* Pods-Cineaste-frameworks.sh */,
+				6C7B52F85C9246722F62F4E9079AD8FE /* Pods-Cineaste-resources.sh */,
+				CBD05F62BDB3A137B8F798E8BF7AA377 /* Pods-Cineaste.debug.xcconfig */,
+				22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-Cineaste";
+			path = "Target Support Files/Pods-Cineaste";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		15AFD2AF196ABE221531A4DD5D8DA44D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5557AD41528DE26C03B241067D736A2A /* Pods-CineasteTests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77C21FF0C5631753C9BC6EF1242B48D5 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A96A71C725320144E61016E198EB09F /* Pods-Cineaste-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		73715A345D6CC4747D7281341C9BC2CE /* Pods-CineasteTests */ = {
+		D7409E84B961FFA5407B7C45A5A838B0 /* Pods-CineasteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F5B7F358963D5ED59C9A304BA235A7C /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */;
+			buildConfigurationList = F49C96183FC83EB6E3A9B748C699FA95 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */;
 			buildPhases = (
-				54B3BFF8C4E3BF87527B2F2C70B7D21C /* Sources */,
-				763204784B4752DA9135F4345DE7FDB1 /* Frameworks */,
-				15AFD2AF196ABE221531A4DD5D8DA44D /* Headers */,
+				4F6B5BA9DED53F57E326D36F5CD73BAA /* Sources */,
+				1521D134A56C0A78492E0F630BC63527 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CB732C824F4D979BD954DA347FE310BE /* PBXTargetDependency */,
+				0C00DA4B6CB6EBC37F2A2CF7A7DD5C0B /* PBXTargetDependency */,
 			);
 			name = "Pods-CineasteTests";
 			productName = "Pods-CineasteTests";
-			productReference = 353437D026EE5BC1E42FD51510E7520F /* Pods_CineasteTests.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */;
+			productType = "com.apple.product-type.library.static";
 		};
-		CFE4ACDD89F13DA213B5C51B33DB826A /* Pods-Cineaste */ = {
+		E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0439E18650894A8C0EBF91A0322378F2 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */;
+			buildConfigurationList = 24407C8F7EDCF5E044123C8E24CC9854 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */;
 			buildPhases = (
-				F4647F1F2D476AACCED4A3406B9B3C4D /* Sources */,
-				69C63729FFCF2DF3CFA8AA3611107505 /* Frameworks */,
-				77C21FF0C5631753C9BC6EF1242B48D5 /* Headers */,
+				AF526C997BDBDC843FE49C3ADA0B755C /* Sources */,
+				0F850A51CB0CDBD9A11B8E9F785F1B93 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,8 +188,8 @@
 			);
 			name = "Pods-Cineaste";
 			productName = "Pods-Cineaste";
-			productReference = D37CE4A6F7EDDFBB39363E0E8E22D4E1 /* Pods_Cineaste.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = F0C5BDBFCF1A0780C6AA1E1E1D0E7382 /* libPods-Cineaste.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -243,114 +208,45 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E29D2F490FEEF1E8B1C10226465F53B6 /* Products */;
+			productRefGroup = A8CA68E7CCEA87B738DB15527E56F843 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFE4ACDD89F13DA213B5C51B33DB826A /* Pods-Cineaste */,
-				73715A345D6CC4747D7281341C9BC2CE /* Pods-CineasteTests */,
+				E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */,
+				D7409E84B961FFA5407B7C45A5A838B0 /* Pods-CineasteTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		54B3BFF8C4E3BF87527B2F2C70B7D21C /* Sources */ = {
+		4F6B5BA9DED53F57E326D36F5CD73BAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA560CB26A2FE24145B63AA290D81A6F /* Pods-CineasteTests-dummy.m in Sources */,
+				241B55B75A1A2D225766AF9B89D3CF4E /* Pods-CineasteTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4647F1F2D476AACCED4A3406B9B3C4D /* Sources */ = {
+		AF526C997BDBDC843FE49C3ADA0B755C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31D888E5B6F60B005C54E3072CE4FFB5 /* Pods-Cineaste-dummy.m in Sources */,
+				6E5BD8AC28F67449E8FB0A6FA0E0260D /* Pods-Cineaste-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CB732C824F4D979BD954DA347FE310BE /* PBXTargetDependency */ = {
+		0C00DA4B6CB6EBC37F2A2CF7A7DD5C0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Cineaste";
-			target = CFE4ACDD89F13DA213B5C51B33DB826A /* Pods-Cineaste */;
-			targetProxy = 66F1948A2439A2728D2AC59C9382758E /* PBXContainerItemProxy */;
+			target = E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */;
+			targetProxy = 0AA9F2A7882DFF5573F8CE8EF9C14968 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		20BA8319F47585194C853950CF82B09E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0BCE5D95B724C54FC483CD2B8BA4753 /* Pods-Cineaste.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Cineaste/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Cineaste/Pods-Cineaste.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		2D344E5D3EADCC66654F7902CF189F34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A869A05A6A7E389F447416DAE95AE38 /* Pods-CineasteTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CineasteTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CineasteTests/Pods-CineasteTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		553022A828EE1991F07D2D73F565AEF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -472,83 +368,104 @@
 			};
 			name = Release;
 		};
-		82B706361966629825B7EBEA47DEAC52 /* Debug */ = {
+		6BBDCB6B0F81146D1DCE830A20076319 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87030438A8EB07442349022296C9FF8D /* Pods-CineasteTests.debug.xcconfig */;
+			baseConfigurationReference = 1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CineasteTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CineasteTests/Pods-CineasteTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		9431B294C9D9B70AFFC463579DC78E6F /* Release */ = {
+		B0F981E8C2C5B06E5D1F62FA37C7C6FB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88D22BF3B878304AC94256E1B60B2AF5 /* Pods-Cineaste.release.xcconfig */;
+			baseConfigurationReference = 22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Cineaste/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Cineaste/Pods-Cineaste.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		D5333DAF35023A0DA8308EDAC17A6E58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E55D1BEA914FFDA2E8DBB41762FE20F5 /* Pods-CineasteTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1697CB861DD2764BC8236FA64817EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBD05F62BDB3A137B8F798E8BF7AA377 /* Pods-Cineaste.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0439E18650894A8C0EBF91A0322378F2 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */ = {
+		24407C8F7EDCF5E044123C8E24CC9854 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				20BA8319F47585194C853950CF82B09E /* Debug */,
-				9431B294C9D9B70AFFC463579DC78E6F /* Release */,
+				E1697CB861DD2764BC8236FA64817EB5 /* Debug */,
+				B0F981E8C2C5B06E5D1F62FA37C7C6FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -562,11 +479,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F5B7F358963D5ED59C9A304BA235A7C /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */ = {
+		F49C96183FC83EB6E3A9B748C699FA95 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				82B706361966629825B7EBEA47DEAC52 /* Debug */,
-				2D344E5D3EADCC66654F7902CF189F34 /* Release */,
+				6BBDCB6B0F81146D1DCE830A20076319 /* Debug */,
+				D5333DAF35023A0DA8308EDAC17A6E58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
