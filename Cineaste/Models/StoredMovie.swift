@@ -29,15 +29,20 @@ class StoredMovie: NSManagedObject, Codable {
         title = movie.title
         overview = movie.overview
         posterPath = movie.posterPath
+
         if let moviePoster = movie.poster {
             poster = UIImageJPEGRepresentation(moviePoster, 1)
         }
+
         voteAverage = movie.voteAverage as NSDecimalNumber
         voteCount = movie.voteCount
+
         runtime = movie.runtime
         releaseDate = movie.releaseDate
+
         watched = false
         watchedDate = nil
+
         listPosition = 0
     }
 
@@ -51,17 +56,21 @@ class StoredMovie: NSManagedObject, Codable {
     }
 
     enum CodingKeys: String, CodingKey {
+        case id
+        case title
         case overview
-        case listPosition
-        case releaseDate = "release_date"
-        case runtime
+        case posterPath = "poster_path"
+
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+
+        case runtime
+        case releaseDate = "release_date"
+
         case watched
         case watchedDate
-        case id
-        case posterPath = "poster_path"
-        case title
+
+        case listPosition
     }
 
     required convenience init(from decoder: Decoder) throws {
@@ -84,6 +93,7 @@ class StoredMovie: NSManagedObject, Codable {
 
         voteAverage = try container.decode(Decimal.self, forKey: .voteAverage) as NSDecimalNumber
         voteCount = try container.decode(Float.self, forKey: .voteCount)
+
         runtime = try container.decode(Int16.self, forKey: .runtime)
 
         let releaseDateString = try container.decode(String.self, forKey: .releaseDate)
@@ -107,21 +117,24 @@ class StoredMovie: NSManagedObject, Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
         try container.encode(overview, forKey: .overview)
-        try container.encode(listPosition, forKey: .listPosition)
-        try container.encode(releaseDate?.formattedForJson, forKey: .releaseDate)
-        try container.encode(runtime, forKey: .runtime)
+        try container.encodeIfPresent(posterPath, forKey: .posterPath)
 
         if let voteAverage = voteAverage as Decimal? {
             try container.encode(voteAverage, forKey: .voteAverage)
         }
 
         try container.encode(voteCount, forKey: .voteCount)
+
+        try container.encode(runtime, forKey: .runtime)
+        try container.encodeIfPresent(releaseDate?.formattedForJson, forKey: .releaseDate)
+
         try container.encode(watched, forKey: .watched)
         try container.encodeIfPresent(watchedDate?.formattedForJson, forKey: .watchedDate)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(posterPath, forKey: .posterPath)
-        try container.encode(title, forKey: .title)
+
+        try container.encode(listPosition, forKey: .listPosition)
     }
 
 }
