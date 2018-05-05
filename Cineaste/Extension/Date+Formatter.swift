@@ -10,13 +10,12 @@ import UIKit
 
 extension Date {
     private static let dateFormatter = { () -> DateFormatter in
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
+        DateFormatter()
     }()
 
     var formatted: String {
-        Date.dateFormatter.dateFormat = "dd.MM.YYYY"
+        Date.dateFormatter.locale = Locale.current
+        Date.dateFormatter.dateStyle = .medium
         return Date.dateFormatter.string(from: self)
     }
 
@@ -26,6 +25,8 @@ extension Date {
     }
 
     var formattedForJson: String {
+        //important to have locale as "en_US_POSIX" for export and import
+        Date.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         Date.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
         return Date.dateFormatter.string(from: self)
     }
