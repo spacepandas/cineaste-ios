@@ -6,18 +6,39 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum TextViewType {
     case imprint
     case licence
 
-    var content: String {
+    var content: [ContentBlock] {
         switch self {
         case .imprint:
-            return Strings.imprintContent
+            return [ContentBlock(title: nil,
+                                 paragraph: Strings.imprintContent)]
         case .licence:
-            return Strings.licenceContent
+            guard let url = Bundle.main.url(forResource: "Acknowledgements",
+                                            withExtension: "plist",
+                                            subdirectory: "Settings.bundle"),
+                let dictionary = NSDictionary(contentsOf: url),
+                let array = dictionary.object(forKey: "PreferenceSpecifiers")
+                    as? [[String: String]]
+                else {
+                    print("Acknowledgements.plist in Settings.bundle not found or could not parse file")
+                    return []
+            }
+
+            var contentArray = [ContentBlock]()
+
+            for element in array {
+                if let title = element["Title"],
+                    let paragraph = element["FooterText"] {
+                    contentArray.append(ContentBlock(title: title, paragraph: paragraph))
+                }
+            }
+
+            return contentArray
         }
     }
 }

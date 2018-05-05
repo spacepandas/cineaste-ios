@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsDetailViewController: UIViewController {
-    @IBOutlet var settingsDetailTextView: UITextView! {
+    @IBOutlet var settingsDetailTextView: DescriptionTextView! {
         didSet {
             update(textViewContent)
         }
@@ -28,9 +28,16 @@ class SettingsDetailViewController: UIViewController {
 
     }
 
+    override func viewDidLayoutSubviews() {
+        //scroll textview to top
+        settingsDetailTextView.setContentOffset(CGPoint(x: 0, y: 0),
+                                                animated: false)
+    }
+
     private func update(_ type: TextViewType) {
         guard let textView = settingsDetailTextView else { return }
-        textView.text = type.content
+
+        textView.setup(with: type.content)
     }
 
 }

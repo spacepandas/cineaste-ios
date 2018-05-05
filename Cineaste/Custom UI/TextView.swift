@@ -9,28 +9,48 @@
 import UIKit
 
 public class DescriptionTextView: UITextView {
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
 
-    // swiftlint:disable:next implicitly_unwrapped_optional
-    override public var text: String! {
-        didSet {
-            setup()
-        }
-    }
+    func setup(with contentBlocks: [ContentBlock]) {
+        isEditable = false
 
-    func setup() {
-        let color = UIColor.basicBackground
-        let font = UIFont.systemFont(ofSize: 16)
+        //Define attributes
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7
+        style.hyphenationFactor = 0.7
 
-        let attributes = [NSAttributedStringKey.paragraphStyle: style,
-                          NSAttributedStringKey.font: font,
-                          NSAttributedStringKey.foregroundColor: color]
-        self.attributedText = NSAttributedString(string: self.text,
-                                                 attributes: attributes)
+        let titleAttributes = [NSAttributedStringKey.paragraphStyle: style,
+                               NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
+                               NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
+
+        let paragraphAttributes = [NSAttributedStringKey.paragraphStyle: style,
+                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
+                                   NSAttributedStringKey.foregroundColor: UIColor.accentText]
+
+        //Chain attributed string
+        let contentChain = NSMutableAttributedString(string: "")
+
+        for block in contentBlocks {
+            if let title = block.title,
+                !title.isEmpty {
+                let titleBlock = "\(title)\n"
+                contentChain.append(NSAttributedString(string: titleBlock))
+
+                let range = NSRange(location: contentChain.length - titleBlock.count,
+                                    length: titleBlock.count)
+                contentChain.addAttributes(titleAttributes,
+                                           range: range)
+            }
+
+            let paragraphBlock = "\(block.paragraph)\n\n"
+            contentChain.append(NSAttributedString(string: paragraphBlock))
+
+            let range = NSRange(location: contentChain.length - paragraphBlock.count,
+                                length: paragraphBlock.count)
+            contentChain.addAttributes(paragraphAttributes,
+                                       range: range)
+        }
+
+        self.attributedText = contentChain
     }
+
 }
