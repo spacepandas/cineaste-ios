@@ -105,48 +105,6 @@ class MovieStorage {
         }
     }
 
-    func insertMoviesFromImport(with movies: [StoredMovie],
-                                handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-
-        let dispatchGroup = DispatchGroup()
-
-        backgroundContext.perform {
-            for movie in movies {
-                dispatchGroup.enter()
-
-                let storedMovie = StoredMovie(context: self.backgroundContext)
-                storedMovie.id = movie.id
-                storedMovie.title = movie.title
-                storedMovie.overview = movie.overview
-
-                storedMovie.posterPath = movie.posterPath
-                storedMovie.poster = movie.poster
-
-                storedMovie.releaseDate = movie.releaseDate
-                storedMovie.runtime = movie.runtime
-                storedMovie.voteAverage = movie.voteAverage
-                storedMovie.voteCount = movie.voteCount
-
-                storedMovie.watched = movie.watched
-                storedMovie.watchedDate = movie.watchedDate
-
-                self.save { result in
-                    switch result {
-                    case .error(let error):
-                        handler?(Result.error(error))
-                        return
-                    case .success:
-                        dispatchGroup.leave()
-                    }
-                }
-            }
-        }
-
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-            handler?(Result.success(true))
-        }
-    }
-
     /// Must be called on main thread because of core data view context
     func fetchAll() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()

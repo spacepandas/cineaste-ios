@@ -122,12 +122,12 @@ extension FetchedResultsManager {
                 }
 
                 dispatchGroup.notify(queue: .global()) {
-                    storageManager.insertMoviesFromImport(with: movies) { result in
-                        switch result {
-                        case .error:
-                            completionHandler(Result.error(FileImportError.savingNewMovies))
-                        case .success:
+                    if storageManager.backgroundContext.hasChanges {
+                        do {
+                            try storageManager.backgroundContext.save()
                             completionHandler(Result.success(movies.count))
+                        } catch {
+                            completionHandler(Result.error(FileImportError.savingNewMovies))
                         }
                     }
                 }
