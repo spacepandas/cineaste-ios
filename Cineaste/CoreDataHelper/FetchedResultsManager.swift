@@ -77,7 +77,9 @@ extension FetchedResultsManager {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
 
-            guard let data = try? encoder.encode(movies) else {
+            let export = ImportExportObject(with: movies)
+
+            guard let data = try? encoder.encode(export) else {
                 completionHandler(Result.error(FileExportError.serializingCoreDataObjects))
                 return
             }
@@ -106,7 +108,8 @@ extension FetchedResultsManager {
             decoder.userInfo[.context] = storageManager.backgroundContext
 
             do {
-                let movies = try decoder.decode([StoredMovie].self, from: data)
+                let export = try decoder.decode(ImportExportObject.self, from: data)
+                let movies = export.movies
 
                 let dispatchGroup = DispatchGroup()
 
