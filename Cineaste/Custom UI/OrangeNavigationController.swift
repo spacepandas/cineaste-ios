@@ -17,7 +17,6 @@ class OrangeNavigationController: UINavigationController {
         navigationBar.barTintColor = .primaryOrange
         navigationBar.tintColor = .basicWhite
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicWhite]
-        navigationBar.barStyle = .blackOpaque
     }
 
 }

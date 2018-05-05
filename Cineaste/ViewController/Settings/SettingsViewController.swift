@@ -49,7 +49,9 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBar.barStyle = .blackOpaque
+        if UIApplication.shared.statusBarStyle != .lightContent {
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
 
     func versionString() -> String {
@@ -137,7 +139,7 @@ class SettingsViewController: UIViewController {
             documentPickerVC.allowsMultipleSelection = false
         }
 
-        navigationController?.navigationBar.barStyle = .default
+        UIApplication.shared.statusBarStyle = .default
         present(documentPickerVC, animated: true, completion: nil)
     }
 
