@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsDetailViewController: UIViewController {
     @IBOutlet var settingsDetailTextView: DescriptionTextView! {
         didSet {
+            settingsDetailTextView.delegate = self
             update(textViewContent)
         }
     }
@@ -28,6 +30,12 @@ class SettingsDetailViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
     override func viewDidLayoutSubviews() {
         //scroll textview to top
         settingsDetailTextView.setContentOffset(CGPoint(x: 0, y: 0),
@@ -40,6 +48,17 @@ class SettingsDetailViewController: UIViewController {
         textView.setup(with: type.content)
     }
 
+}
+
+extension SettingsDetailViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+
+        let viewController = SFSafariViewController(url: URL)
+        UIApplication.shared.statusBarStyle = .default
+        present(viewController, animated: true, completion: nil)
+
+        return false
+    }
 }
 
 extension SettingsDetailViewController: Instantiable {

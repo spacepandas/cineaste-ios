@@ -12,6 +12,8 @@ public class DescriptionTextView: UITextView {
 
     func setup(with contentBlocks: [ContentBlock]) {
         isEditable = false
+        dataDetectorTypes = .link
+        linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.primaryOrange]
 
         //Define attributes
         let style = NSMutableParagraphStyle()
