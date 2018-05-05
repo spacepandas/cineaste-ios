@@ -15,7 +15,7 @@ extension Int16 {
         return formatter
     }()
 
-    var formattedForRuntime: String {
-        return "\(Int16.numberFormatter.string(from: NSNumber(value: self)) ?? "-.-") min"
+    var formatted: String? {
+        return Int16.numberFormatter.string(from: NSNumber(value: self))
     }
 }

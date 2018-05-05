@@ -60,7 +60,7 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie) {
         title.text = movie.title
-        releaseDate.text = movie.releaseDate.formatted
+        releaseDate.text = movie.formattedReleaseDate
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {

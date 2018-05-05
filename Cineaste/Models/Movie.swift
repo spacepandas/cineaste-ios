@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 
-enum MovieDecodingError: Error {
-    case dateFromString
-}
-
 class Movie: Codable {
     fileprivate(set) var id: Int64
     fileprivate(set) var title: String
@@ -21,7 +17,7 @@ class Movie: Codable {
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
     fileprivate(set) var runtime: Int16
-    fileprivate(set) var releaseDate: Date
+    fileprivate(set) var releaseDate: Date?
     var poster: UIImage?
 
     enum CodingKeys: String, CodingKey {
@@ -50,11 +46,8 @@ class Movie: Codable {
         runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime)
             ?? 0
 
-        let dateString = try container.decode(String.self, forKey: .releaseDate)
-        guard let date = dateString.dateFromString else {
-            throw MovieDecodingError.dateFromString
-        }
-        releaseDate = date
+        let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        releaseDate = dateString?.dateFromString
     }
 }
 
@@ -122,9 +115,22 @@ extension Movie {
 extension Movie {
     var formattedVoteAverage: String {
         if self.voteCount == 0 {
-            return "-.-"
+            return Strings.unknownVoteAverage
         } else {
-            return self.voteAverage.formattedWithOneFractionDigit ?? "-.-"
+            return self.voteAverage.formattedWithOneFractionDigit
+                ?? Strings.unknownVoteAverage
         }
+    }
+
+    var formattedReleaseDate: String {
+        if let release = releaseDate {
+            return release.formatted
+        } else {
+            return Strings.unknownReleaseDate
+        }
+    }
+
+    var formattedRuntime: String {
+        return "\(runtime.formatted ?? Strings.unknownRuntime) min"
     }
 }

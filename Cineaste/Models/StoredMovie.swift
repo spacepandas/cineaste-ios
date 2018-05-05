@@ -152,9 +152,22 @@ extension StoredMovie {
 extension StoredMovie {
     var formattedVoteAverage: String {
         if self.voteCount == 0 {
-            return "-.-"
+            return Strings.unknownVoteAverage
         } else {
-            return (self.voteAverage as Decimal?)?.formattedWithOneFractionDigit ?? "-.-"
+            return (self.voteAverage as Decimal?)?.formattedWithOneFractionDigit
+                ?? Strings.unknownVoteAverage
         }
+    }
+
+    var formattedReleaseDate: String {
+        if let release = releaseDate {
+            return release.formatted
+        } else {
+            return Strings.unknownReleaseDate
+        }
+    }
+
+    var formattedRuntime: String {
+        return "\(runtime.formatted ?? Strings.unknownRuntime) min"
     }
 }
