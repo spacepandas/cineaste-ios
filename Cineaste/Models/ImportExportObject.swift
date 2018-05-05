@@ -14,8 +14,4 @@ class ImportExportObject: Codable {
     init(with movies: [StoredMovie]) {
         self.movies = movies
     }
-
-    enum CodingKeys: String, CodingKey {
-        case movies
-    }
 }
