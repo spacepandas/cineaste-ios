@@ -140,24 +140,19 @@ class StoredMovie: NSManagedObject, Codable {
 }
 
 extension StoredMovie {
-    static fileprivate let posterBaseUrl = "https://image.tmdb.org/t/p/w342"
-    static fileprivate let apiKey = ApiKeyStore.theMovieDbKey()
-
-    fileprivate func loadPoster() -> Resource<Data>? {
-        guard let posterPath = posterPath else { return nil }
-        let urlAsString = "\(StoredMovie.posterBaseUrl)\(posterPath)?api_key=\(StoredMovie.apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            return data
-        }
-    }
-
     func loadPoster(completionHandler handler: @escaping (_ poster: Data?) -> Void) {
-        Webservice.load(resource: self.loadPoster()) { result in
+        guard let posterPath = posterPath else {
+            handler(nil)
+            return
+        }
+
+        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
             guard case let .success(image) = result else {
                 handler(nil)
                 return
             }
-            handler(image)
+            let data = UIImageJPEGRepresentation(image, 1)
+            handler(data)
         }
     }
 }

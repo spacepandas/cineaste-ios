@@ -90,8 +90,7 @@ extension Movie {
         }
     }
 
-    func loadPoster() -> Resource<UIImage>? {
-        guard let posterPath = posterPath else { return nil }
+    static func loadPoster(from posterPath: String) -> Resource<UIImage>? {
         let urlAsString = "\(Movie.posterBaseUrl)\(posterPath)?api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) { data in
             return UIImage(data: data)
