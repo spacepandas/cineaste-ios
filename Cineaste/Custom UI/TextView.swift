@@ -10,7 +10,7 @@ import UIKit
 
 public class DescriptionTextView: UITextView {
 
-    func setup(with contentBlocks: [ContentBlock]) {
+    func setup(with type: TextViewType) {
         isEditable = false
         dataDetectorTypes = .link
         linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.primaryOrange]
@@ -28,31 +28,10 @@ public class DescriptionTextView: UITextView {
                                    NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
                                    NSAttributedStringKey.foregroundColor: UIColor.accentText]
 
-        //Chain attributed string
-        let contentChain = NSMutableAttributedString(string: "")
+        let chain = type.chainContent(titleAttributes: titleAttributes,
+                               paragraphAttributes: paragraphAttributes)
 
-        for block in contentBlocks {
-            if let title = block.title,
-                !title.isEmpty {
-                let titleBlock = "\(title)\n"
-                contentChain.append(NSAttributedString(string: titleBlock))
-
-                let range = NSRange(location: contentChain.length - titleBlock.count,
-                                    length: titleBlock.count)
-                contentChain.addAttributes(titleAttributes,
-                                           range: range)
-            }
-
-            let paragraphBlock = "\(block.paragraph)\n\n"
-            contentChain.append(NSAttributedString(string: paragraphBlock))
-
-            let range = NSRange(location: contentChain.length - paragraphBlock.count,
-                                length: paragraphBlock.count)
-            contentChain.addAttributes(paragraphAttributes,
-                                       range: range)
-        }
-
-        self.attributedText = contentChain
+        self.attributedText = chain
     }
 
 }

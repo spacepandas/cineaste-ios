@@ -45,7 +45,7 @@ class SettingsDetailViewController: UIViewController {
     private func update(_ type: TextViewType) {
         guard let textView = settingsDetailTextView else { return }
 
-        textView.setup(with: type.content)
+        textView.setup(with: type)
     }
 
 }

@@ -34,11 +34,38 @@ enum TextViewType {
             for element in array {
                 if let title = element["Title"],
                     let paragraph = element["FooterText"] {
-                    contentArray.append(ContentBlock(title: title, paragraph: paragraph))
+                    contentArray.append(ContentBlock(title: title,
+                                                     paragraph: paragraph))
                 }
             }
 
             return contentArray
         }
+    }
+
+    func chainContent(titleAttributes: [NSAttributedStringKey: NSObject],
+                      paragraphAttributes: [NSAttributedStringKey: NSObject]) -> NSMutableAttributedString {
+        let chain = NSMutableAttributedString(string: "")
+        for block in self.content {
+            if let title = block.title,
+                !title.isEmpty {
+                let titleBlock = "\(title)\n"
+                chain.append(NSAttributedString(string: titleBlock))
+
+                let range = NSRange(location: chain.length - titleBlock.count,
+                                    length: titleBlock.count)
+                chain.addAttributes(titleAttributes,
+                                           range: range)
+            }
+
+            let paragraphBlock = "\(block.paragraph)\n\n"
+            chain.append(NSAttributedString(string: paragraphBlock))
+
+            let range = NSRange(location: chain.length - paragraphBlock.count,
+                                length: paragraphBlock.count)
+            chain.addAttributes(paragraphAttributes,
+                                       range: range)
+        }
+        return chain
     }
 }
