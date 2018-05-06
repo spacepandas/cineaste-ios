@@ -22,7 +22,7 @@ class MoviesViewController: UIViewController {
                     self.myMoviesTableView.reloadData()
                 }
             } else {
-                fetchedResultsManager.update(for: category.predicate) {
+                fetchedResultsManager.refetch(for: category.predicate) {
                     self.myMoviesTableView.reloadData()
                 }
             }

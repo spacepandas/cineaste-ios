@@ -112,6 +112,22 @@ class MovieStorage {
         return results ?? [StoredMovie]()
     }
 
+    func resetCoreData(completion: @escaping (Error?) -> Void) {
+        backgroundContext.perform {
+            do {
+                let entities: [StoredMovie] = try self.backgroundContext.fetch(StoredMovie.fetchRequest())
+                for entity in entities {
+                    self.backgroundContext.delete(entity)
+                }
+                try self.backgroundContext.save()
+                completion(nil)
+            } catch {
+                completion(error)
+                print(error)
+            }
+        }
+    }
+
     func remove(_ storedMovie: StoredMovie,
                 handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {

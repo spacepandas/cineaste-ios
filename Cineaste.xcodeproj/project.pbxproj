@@ -452,8 +452,6 @@
 				95AE25991F9531E20067F5F5 /* Frameworks */,
 				95AE259A1F9531E20067F5F5 /* Resources */,
 				951BEDF71FB0FF73006EFDED /* Swift Lint */,
-				9D769FF9570102F56DBD03DE /* [CP] Embed Pods Frameworks */,
-				69079A620D358D197954E1AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -472,8 +470,6 @@
 				95AE25AC1F9531E20067F5F5 /* Sources */,
 				95AE25AD1F9531E20067F5F5 /* Frameworks */,
 				95AE25AE1F9531E20067F5F5 /* Resources */,
-				3921CB7A069E436D7776843B /* [CP] Embed Pods Frameworks */,
-				4C5AE26C7CDE9F61E982F1C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -557,36 +553,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3921CB7A069E436D7776843B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4C5AE26C7CDE9F61E982F1C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5CD10334490D706589DA5108 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -603,21 +569,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69079A620D358D197954E1AF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		951BEDF71FB0FF73006EFDED /* Swift Lint */ = {
@@ -647,21 +598,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 \\\n| xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" \\\n| perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
-		};
-		9D769FF9570102F56DBD03DE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		FC45D091E6D68FD4089A58E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -965,7 +901,7 @@
 				DEVELOPMENT_TEAM = 8SM483N5JS;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.Cineaste;
+				PRODUCT_BUNDLE_IDENTIFIER = org.notimeforthat.Cineaste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -982,7 +918,7 @@
 				DEVELOPMENT_TEAM = 8SM483N5JS;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.Cineaste;
+				PRODUCT_BUNDLE_IDENTIFIER = org.notimeforthat.Cineaste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

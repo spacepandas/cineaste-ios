@@ -50,7 +50,7 @@ final class FetchedResultsManager: NSObject {
         handler?()
     }
 
-    func update(for predicate: NSPredicate?, completionHandler handler: (() -> Void)? = nil) {
+    func refetch(for predicate: NSPredicate?, completionHandler handler: (() -> Void)? = nil) {
         controller?.fetchRequest.predicate = predicate
         do {
             try controller?.performFetch()
@@ -66,7 +66,7 @@ extension FetchedResultsManager {
     func exportMoviesList(completionHandler: @escaping (Result<Any?>) -> Void) {
         loadMoviesForExport = true
 
-        update(for: nil) {
+        refetch(for: nil) {
             guard let movies = self.controller?.fetchedObjects,
                 !movies.isEmpty
                 else {
@@ -103,7 +103,7 @@ extension FetchedResultsManager {
     func importData(_ data: Data, completionHandler: @escaping ((Result<Int>) -> Void)) {
         let storageManager = MovieStorage()
 
-        resetAllMovies(with: storageManager) {
+        storageManager.resetCoreData { _ in
             let decoder = JSONDecoder()
             decoder.userInfo[.context] = storageManager.backgroundContext
 
@@ -171,26 +171,6 @@ extension FetchedResultsManager {
             completionHandler(Result.success(true))
         } catch {
             completionHandler(Result.error(FileExportError.writingContentInFile))
-        }
-    }
-
-    private func resetAllMovies(with storageManager: MovieStorage,
-                                handler: @escaping () -> Void) {
-        let dispatchGroup = DispatchGroup()
-
-        if let storedMovies = controller?.fetchedObjects {
-            // Remove old data, if available
-            for storedMovie in storedMovies {
-                dispatchGroup.enter()
-
-                storageManager.remove(storedMovie) { _ in
-                    dispatchGroup.leave()
-                }
-            }
-        }
-
-        dispatchGroup.notify(queue: DispatchQueue.global()) {
-            handler()
         }
     }
 }

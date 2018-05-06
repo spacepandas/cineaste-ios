@@ -125,7 +125,7 @@ class SettingsViewController: UIViewController {
             fetchedResultsManager.setup(with: nil)
         } else {
             if fetchedResultsManager.controller?.fetchRequest.predicate != nil {
-                fetchedResultsManager.update(for: nil)
+                fetchedResultsManager.refetch(for: nil)
             }
         }
     }
