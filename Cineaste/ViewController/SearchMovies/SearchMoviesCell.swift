@@ -60,7 +60,7 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie) {
         title.text = movie.title
-        releaseDate.text = movie.releaseDate.formatted
+        releaseDate.text = movie.formattedReleaseDate
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
@@ -72,7 +72,12 @@ class SearchMoviesCell: UITableViewCell {
     }
 
     fileprivate func loadPoster(for movie: Movie, completionHandler handler: @escaping (_ poster: UIImage?) -> Void) {
-        Webservice.load(resource: movie.loadPoster()) { result in
+        guard let posterPath = movie.posterPath else {
+            handler(nil)
+            return
+        }
+
+        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
             guard case let .success(image) = result else {
                 handler(nil)
                 return

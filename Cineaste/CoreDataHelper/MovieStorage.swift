@@ -10,18 +10,12 @@ import UIKit
 import CoreData
 
 class MovieStorage {
-    // swiftlint:disable:next implicitly_unwrapped_optional
-    let persistentContainer: NSPersistentContainer!
+    let persistentContainer: NSPersistentContainer
 
     // MARK: Init with dependency
-    init(container: NSPersistentContainer) {
+    init(container: NSPersistentContainer = AppDelegate.persistentContainer) {
         self.persistentContainer = container
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-    }
-
-    convenience init() {
-        //Use the default container for production environment
-        self.init(container: AppDelegate.persistentContainer)
     }
 
     lazy var backgroundContext: NSManagedObjectContext = {
@@ -31,6 +25,7 @@ class MovieStorage {
     }()
 
     // MARK: CRUD
+    //swiftlint:disable:next function_parameter_count
     func insertMovieItem(id: Int64,
                          overview: String,
                          poster: Data?,
@@ -38,7 +33,8 @@ class MovieStorage {
                          releaseDate: Date,
                          runtime: Int16,
                          title: String,
-                         voteAverage: Float,
+                         voteAverage: Decimal,
+                         voteCount: Float,
                          watched: Bool,
                          handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
@@ -52,9 +48,11 @@ class MovieStorage {
 
             storedMovie.releaseDate = releaseDate
             storedMovie.runtime = runtime
-            storedMovie.voteAverage = voteAverage
+            storedMovie.voteAverage = voteAverage as NSDecimalNumber
+            storedMovie.voteCount = voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
         }
     }
@@ -75,9 +73,11 @@ class MovieStorage {
 
             storedMovie.releaseDate = movie.releaseDate
             storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
+            storedMovie.voteAverage = movie.voteAverage as NSDecimalNumber
+            storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
         }
     }
@@ -97,8 +97,10 @@ class MovieStorage {
             storedMovie.releaseDate = movie.releaseDate
             storedMovie.runtime = movie.runtime
             storedMovie.voteAverage = movie.voteAverage
+            storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
+            storedMovie.watchedDate = watched ? Date() : nil
             self.save(handler: handler)
         }
     }
@@ -108,6 +110,22 @@ class MovieStorage {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? [StoredMovie]()
+    }
+
+    func resetCoreData(completion: @escaping (Error?) -> Void) {
+        backgroundContext.perform {
+            do {
+                let entities: [StoredMovie] = try self.backgroundContext.fetch(StoredMovie.fetchRequest())
+                for entity in entities {
+                    self.backgroundContext.delete(entity)
+                }
+                try self.backgroundContext.save()
+                completion(nil)
+            } catch {
+                completion(error)
+                print(error)
+            }
+        }
     }
 
     func remove(_ storedMovie: StoredMovie,
