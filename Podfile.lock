@@ -18,7 +18,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - GoogleInterchangeUtilities
     - GoogleNetworkingUtilities
     - GoogleSymbolUtilities
@@ -34,6 +34,6 @@ SPEC CHECKSUMS:
   NearbyMessages: be3e1c44b563c020246312647f3f1128b603693d
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 1013ff8b061e2ac721ce5ad73e46b42920fb1466
+PODFILE CHECKSUM: 935cca078ebd2bb69db7b38230c994f856a750c3
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
