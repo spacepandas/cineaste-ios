@@ -14,6 +14,7 @@ protocol MovieMatchTableViewCellDelegate: class {
 
 class MovieMatchTableViewCell: UITableViewCell {
     static let cellIdentifier = "MovieMatchTableViewCell"
+
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var movieTitelLabel: UILabel!
     @IBOutlet weak var numberOfMatchesLabel: UILabel!
@@ -28,6 +29,7 @@ class MovieMatchTableViewCell: UITableViewCell {
                    amountOfPeople: Int,
                    delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
+
         seenButton.setTitle(Strings.startMovieNight, for: .normal)
         nearbyMovie = movieWithOccurance
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title

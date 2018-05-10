@@ -9,8 +9,15 @@
 import UIKit
 
 class MovieNightViewController: UIViewController {
-    @IBOutlet fileprivate weak var usersTableView: UITableView!
-    @IBOutlet fileprivate weak var startButton: UIButton!
+    @IBOutlet fileprivate weak var usersTableView: UITableView! {
+        didSet {
+            usersTableView.dataSource = self
+            usersTableView.backgroundColor = UIColor.basicBackground
+            usersTableView.tableFooterView = UIView(frame: CGRect.zero)
+        }
+    }
+
+    @IBOutlet fileprivate weak var startButton: StartMovieNightButton!
 
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
@@ -20,11 +27,9 @@ class MovieNightViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
+
+        title = Strings.movieNightTitle
         view.backgroundColor = UIColor.basicBackground
-        usersTableView.dataSource = self
-        usersTableView.backgroundColor = UIColor.basicBackground
-        usersTableView.tableFooterView = UIView(frame: CGRect.zero)
 
         usersTableView.isHidden = true
         applyDefaultStyleAndEnableStartButton()
@@ -36,6 +41,7 @@ class MovieNightViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if UserDefaultsManager.getUsername() != nil {
             startPublishing()
             startSubscribing()
@@ -44,6 +50,7 @@ class MovieNightViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         currentPublication = nil
         currentSubscription = nil
     }

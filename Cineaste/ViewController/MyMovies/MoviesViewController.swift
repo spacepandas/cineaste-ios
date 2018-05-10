@@ -79,7 +79,9 @@ class MoviesViewController: UIViewController {
     }
 
     func showUsernameAlert() {
-        let alert = UIAlertController(title: Alert.insertUsername.title, message: Alert.insertUsername.message, preferredStyle: .alert)
+        let alert = UIAlertController(title: Alert.insertUsername.title,
+                                      message: Alert.insertUsername.message,
+                                      preferredStyle: .alert)
         saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
             guard let textField = alert.textFields?[0], let username = textField.text else {
                 return
@@ -96,7 +98,7 @@ class MoviesViewController: UIViewController {
         }
 
         if let cancelTitle = Alert.insertUsername.cancel {
-            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in }
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
             alert.addAction(cancelAction)
         }
 

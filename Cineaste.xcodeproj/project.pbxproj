@@ -362,13 +362,12 @@
 				95DC32011F97E0EF0014E3EA /* Models */,
 				95DC32001F97E0E20014E3EA /* Storyboards */,
 				95DC31FF1F97E0D80014E3EA /* ViewController */,
-				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				95DC32031F97E1300014E3EA /* Model.xcdatamodeld */,
 				95D32F601F9AA20100497ED2 /* apikey.plist */,
 				9528112F201D087800F3EC76 /* .swiftlint.yml */,
 				958328991FBB81340084CF80 /* cineaste.xcassets */,
-				951D86CF2034B6C700BDD1D0 /* Dependencies.swift */,
 				951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */,
+				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				3F98063F20556EA700B92A27 /* InfoPlist.strings */,
 			);
 			path = Cineaste;
@@ -416,6 +415,7 @@
 				953182F8203E19A000A331A0 /* UserDefaultsManager.swift */,
 				3F9806372055250F00B92A27 /* Strings.swift */,
 				3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */,
+				951D86CF2034B6C700BDD1D0 /* Dependencies.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -423,11 +423,11 @@
 		95DC31FF1F97E0D80014E3EA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				953182F3203E161700A331A0 /* MovieNight */,
 				3F8644AA1FFA72EE0046114A /* MoviesTabBarController.swift */,
 				959E8B741FABC6CD0004E8C3 /* MyMovies */,
 				959E8B751FABC6DB0004E8C3 /* SearchMovies */,
 				95B24EF31FADDB070070912A /* MovieDetail */,
+				953182F3203E161700A331A0 /* MovieNight */,
 				3F5E0D8D2030900200E091BE /* Settings */,
 			);
 			path = ViewController;

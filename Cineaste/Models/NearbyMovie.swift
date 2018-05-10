@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct NearbyMovie: Codable, Hashable {
-
     let id: Int64
     let posterPath: String?
     let title: String

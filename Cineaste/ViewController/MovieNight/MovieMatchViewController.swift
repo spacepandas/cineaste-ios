@@ -13,8 +13,14 @@ struct NearbyMovieWithOccurrence {
     var nearbyMovie: NearbyMovie
 }
 
-class MovieMatchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MovieMatchTableViewCellDelegate {
-    @IBOutlet weak var matchedMoviesTableView: UITableView!
+class MovieMatchViewController: UIViewController {
+    @IBOutlet weak var matchedMoviesTableView: UITableView! {
+        didSet {
+            matchedMoviesTableView.dataSource = self
+            matchedMoviesTableView.allowsSelection = false
+            matchedMoviesTableView.backgroundColor = UIColor.basicBackground
+        }
+    }
 
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
     fileprivate var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
@@ -22,9 +28,7 @@ class MovieMatchViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        matchedMoviesTableView.dataSource = self
-        matchedMoviesTableView.allowsSelection = false
-        matchedMoviesTableView.backgroundColor = UIColor.basicBackground
+
     }
 
     func configure(with messagesToMatch: [NearbyMessage]) {
@@ -48,9 +52,9 @@ class MovieMatchViewController: UIViewController, UITableViewDataSource, UITable
             leftSide.occurances > rightSide.occurances
         }
     }
+}
 
-    // MARK: - UITableViewDataSource
-
+extension MovieMatchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedMoviesWithOccurrence.count
     }
@@ -67,9 +71,9 @@ class MovieMatchViewController: UIViewController, UITableViewDataSource, UITable
 
         return cell
     }
+}
 
-    // MARK: - MovieMatchTableViewCellDelegate
-
+extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
     func movieMatchTableViewCell(sender: MovieMatchTableViewCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?) {
         let movieForRequest = Movie(id: selectedMovie.nearbyMovie.id, title: selectedMovie.nearbyMovie.title)
         Webservice.load(resource: movieForRequest.get) { result in
