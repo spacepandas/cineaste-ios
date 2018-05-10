@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MovieNightUserTableViewCell: UITableViewCell {
+class MovieNightUserCell: UITableViewCell {
     static let cellIdentifier = "MovieNightUserTableViewCell"
 
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var numberOfMoviesLabel: UILabel!
+    @IBOutlet weak var usernameLabel: TitleLabel!
+    @IBOutlet weak var numberOfMoviesLabel: DescriptionLabel!
 
     func configure(width nearbyMessage: NearbyMessage) {
         usernameLabel.text = nearbyMessage.userName

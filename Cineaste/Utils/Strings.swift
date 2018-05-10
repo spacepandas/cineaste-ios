@@ -71,6 +71,10 @@ struct Strings {
         }
     }
 
+    static func matches(for number: Int, amountOfPeople: Int) -> String {
+        return NSLocalizedString("\(number) von \(amountOfPeople)", comment: "Number of matches description")
+    }
+
     // MARK: EXPORT
     static let exportMoviesFileName = "movies.json"
     static let exportMoviesFileUTI = "public.json"

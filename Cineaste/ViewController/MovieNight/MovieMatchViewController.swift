@@ -60,9 +60,9 @@ extension MovieMatchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieMatchTableViewCell.cellIdentifier, for: indexPath)
-            as? MovieMatchTableViewCell else {
-                fatalError("Unable to dequeue cell with identifier \(MovieMatchTableViewCell.cellIdentifier)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieMatchCell.cellIdentifier, for: indexPath)
+            as? MovieMatchCell else {
+                fatalError("Unable to dequeue cell with identifier \(MovieMatchCell.cellIdentifier)")
         }
 
         cell.configure(with: sortedMoviesWithOccurrence[indexPath.row],
@@ -74,13 +74,17 @@ extension MovieMatchViewController: UITableViewDataSource {
 }
 
 extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
-    func movieMatchTableViewCell(sender: MovieMatchTableViewCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?) {
-        let movieForRequest = Movie(id: selectedMovie.nearbyMovie.id, title: selectedMovie.nearbyMovie.title)
+    func movieMatchTableViewCell(sender: MovieMatchCell,
+                                 didSelectMovie selectedMovie: NearbyMovieWithOccurrence,
+                                 withPoster poster: UIImage?) {
+        let movieForRequest = Movie(id: selectedMovie.nearbyMovie.id,
+                                    title: selectedMovie.nearbyMovie.title)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
             case .success(let movie):
                 movie.poster = poster
-                Dependencies.shared.movieStorage.insertMovieItem(with: movie, watched: true)
+                Dependencies.shared.movieStorage.insertMovieItem(with: movie,
+                                                                 watched: true)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }

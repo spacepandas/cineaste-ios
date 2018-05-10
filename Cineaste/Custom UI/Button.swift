@@ -58,6 +58,8 @@ public class StartMovieNightButton: UIButton {
     }
 
     func setup() {
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
         if isEnabled {
             self.tintColor = UIColor.primaryOrange
             self.layer.borderColor = UIColor.primaryOrange.cgColor

@@ -9,15 +9,21 @@
 import UIKit
 
 protocol MovieMatchTableViewCellDelegate: class {
-    func movieMatchTableViewCell(sender: MovieMatchTableViewCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?)
+    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?)
 }
 
-class MovieMatchTableViewCell: UITableViewCell {
+class MovieMatchCell: UITableViewCell {
     static let cellIdentifier = "MovieMatchTableViewCell"
 
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var movieTitelLabel: UILabel!
-    @IBOutlet weak var numberOfMatchesLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView! {
+        didSet {
+            separatorView.backgroundColor = .primaryOrange
+        }
+    }
+
+    @IBOutlet weak var movieTitelLabel: TitleLabel!
+    @IBOutlet weak var numberOfMatchesLabel: DescriptionLabel!
     @IBOutlet weak var seenButton: ActionButton!
 
     fileprivate var posterToDisplay: UIImage?
@@ -42,7 +48,8 @@ class MovieMatchTableViewCell: UITableViewCell {
             }
         }
 
-        numberOfMatchesLabel.text = "\(movieWithOccurance.occurances) of \(amountOfPeople)"
+        numberOfMatchesLabel.text = Strings.matches(for: movieWithOccurance.occurances,
+                                                    amountOfPeople: amountOfPeople)
     }
 
     fileprivate func loadPoster(for movie: NearbyMovie, completionHandler handler: @escaping (_ poster: UIImage?) -> Void) {

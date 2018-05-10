@@ -13,6 +13,12 @@ class MovieNightViewController: UIViewController {
         didSet {
             usersTableView.dataSource = self
             usersTableView.backgroundColor = UIColor.basicBackground
+
+            usersTableView.allowsSelection = false
+
+            usersTableView.estimatedRowHeight = 100
+            usersTableView.rowHeight = UITableViewAutomaticDimension
+
             usersTableView.tableFooterView = UIView(frame: CGRect.zero)
         }
     }
@@ -159,8 +165,8 @@ extension MovieNightViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieNightUserTableViewCell.cellIdentifier, for: indexPath) as? MovieNightUserTableViewCell else {
-            fatalError("Unable to dequeue cell with identifier \(MovieNightUserTableViewCell.cellIdentifier)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieNightUserCell.cellIdentifier, for: indexPath) as? MovieNightUserCell else {
+            fatalError("Unable to dequeue cell with identifier \(MovieNightUserCell.cellIdentifier)")
         }
 
         cell.configure(width: nearbyMessages[indexPath.row])
