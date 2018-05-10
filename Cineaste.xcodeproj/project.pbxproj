@@ -66,7 +66,6 @@
 		9526A70720449206004E08F7 /* MovieMatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */; };
 		9528112E201D05AD00F3EC76 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
 		95281130201D087800F3EC76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
-		953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F4203E163500A331A0 /* EnterUsernameViewController.swift */; };
 		953182F7203E17AF00A331A0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Config.swift */; };
 		953182F9203E19A000A331A0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F8203E19A000A331A0 /* UserDefaultsManager.swift */; };
 		953182FB203E212A00A331A0 /* MovieNightUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */; };
@@ -171,7 +170,6 @@
 		9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchTableViewCell.swift; sourceTree = "<group>"; };
 		9528112D201D05AD00F3EC76 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
-		953182F4203E163500A331A0 /* EnterUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterUsernameViewController.swift; sourceTree = "<group>"; };
 		953182F6203E17AF00A331A0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		953182F8203E19A000A331A0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightUserTableViewCell.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
-				953182F4203E163500A331A0 /* EnterUsernameViewController.swift */,
 				953182FA203E212A00A331A0 /* MovieNightUserTableViewCell.swift */,
 				9526A70420448940004E08F7 /* MovieMatchViewController.swift */,
 				9526A70620449206004E08F7 /* MovieMatchTableViewCell.swift */,
@@ -710,7 +707,6 @@
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,
 				9526A70520448940004E08F7 /* MovieMatchViewController.swift in Sources */,
-				953182F5203E163500A331A0 /* EnterUsernameViewController.swift in Sources */,
 				3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */,
 				3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */,
 				3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */,
