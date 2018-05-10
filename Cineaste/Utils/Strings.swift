@@ -18,7 +18,7 @@ struct Strings {
     // MARK: VIEWCONTROLLER TITLE
     static let wantToSeeList = NSLocalizedString("Musst du sehen", comment: "Title for want to see movie list")
     static let seenList = NSLocalizedString("Schon gesehen", comment: "Title for seen movie list")
-    static let movieNightTitle = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
+    static let movieNightTitle = NSLocalizedString("Filmnacht", comment: "Title for movie night viewController")
     static let settingsTitle = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
     // MARK: MOVIES VIEWCONTROLLER
@@ -58,6 +58,18 @@ struct Strings {
     // MARK: SHORTCUT
     static let oneMovieShortCut = NSLocalizedString("Film", comment: "Movie")
     static let movieCounterShortCut = NSLocalizedString("Filme", comment: "Movies")
+
+    // MARK: MOVIENIGHT
+    static func nearbyMovies(for counter: Int) -> String {
+        switch counter {
+        case 0:
+            return NSLocalizedString("Keine Filme", comment: "No nearby movies")
+        case 1:
+            return NSLocalizedString("Einen Film", comment: "One nearby movies")
+        default:
+            return NSLocalizedString("\(counter) Filme", comment: "More nearby movies")
+        }
+    }
 
     // MARK: EXPORT
     static let exportMoviesFileName = "movies.json"

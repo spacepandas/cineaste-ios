@@ -43,8 +43,8 @@ private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht v
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
 
 // enter username for movie night
-private let usernameTitle = NSLocalizedString("Enter a username", comment: "Enter username heading")
-private let usernameDescription = NSLocalizedString("How do you want to appear on your friends", comment: "Enter username description")
+private let usernameTitle = NSLocalizedString("Benutzername", comment: "Enter username title")
+private let usernameDescription = NSLocalizedString("Gib einen Namen an, unter dem dich deine Freunde sehen können.", comment: "Enter username description")
 
 // missing feature
 private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
