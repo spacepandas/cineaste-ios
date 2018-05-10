@@ -35,7 +35,7 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            self.mustSeeButton.setTitle(Strings.mustSeeButton, for: .normal)
+            self.mustSeeButton.setTitle(Strings.wantToSeeButton, for: .normal)
         }
     }
     @IBOutlet var deleteButton: ActionButton! {
@@ -44,42 +44,34 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak fileprivate var descriptionTextView: UITextView!
+    @IBOutlet weak fileprivate var descriptionTextView: UITextView! {
+        didSet {
+            descriptionTextView.isEditable = false
+        }
+    }
 
-    var type: MovieDetailType = .search
-
-    private func updateDetail(for type: MovieDetailType) {
-        switch type {
-        case .seen:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = true
-            deleteButton.isHidden = false
-        case .wantToSee:
-            mustSeeButton.isHidden = true
-            seenButton.isHidden = false
-            deleteButton.isHidden = false
-        case .search:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = false
-            deleteButton.isHidden = true
+    var type: MovieDetailType = .search {
+        didSet {
+            updateDetail(for: type)
         }
     }
 
     var storageManager: MovieStorage?
-    var movie: Movie?
+
+    var movie: Movie? {
+        didSet {
+            guard let movie = movie else { return }
+
+            if oldValue?.id != movie.id {
+                loadDetails(for: movie)
+            }
+        }
+    }
 
     var storedMovie: StoredMovie? {
         didSet {
-            guard let movie = self.storedMovie else { return }
-            DispatchQueue.main.async {
-                if let moviePoster = movie.poster {
-                    self.posterImageView.image = UIImage(data: moviePoster)
-                }
-                self.titleLabel.text = movie.title
-                self.descriptionTextView.text = movie.overview
-                self.runtimeLabel.text = "\(movie.runtime) min"
-                self.votingLabel.text = "\(movie.voteAverage)"
-                self.releaseDateLabel.text = movie.releaseDate?.formatted
+            if let movie = storedMovie {
+                setupUI(for: movie)
             }
         }
     }
@@ -87,9 +79,6 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        descriptionTextView.isEditable = false
-
-        loadMovieDetailAndSetupUI()
         updateDetail(for: type)
     }
 
@@ -109,22 +98,9 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
-    fileprivate func setupUIWithNetworkMovie() {
-        DispatchQueue.main.async {
-            guard let movie = self.movie else { return }
-            if let moviePoster = movie.poster {
-                self.posterImageView.image = moviePoster
-            }
-            self.titleLabel.text = movie.title
-            self.descriptionTextView.text = movie.overview
-            self.runtimeLabel.text = "\(movie.runtime) min"
-            self.votingLabel.text = "\(movie.voteAverage)"
-            self.releaseDateLabel.text = movie.releaseDate.formatted
-        }
-    }
-
     fileprivate func saveMovie(withWatched watched: Bool) {
         guard let storageManager = storageManager else { return }
+
         if let movie = movie {
             storageManager.insertMovieItem(with: movie, watched: watched) { result in
                 switch result {
@@ -156,6 +132,7 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func deleteMovie() {
         guard let storageManager = storageManager else { return }
+
         if let storedMovie = storedMovie {
             storageManager.remove(storedMovie, handler: { result in
                 guard case .success = result else {
@@ -170,17 +147,92 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func loadMovieDetailAndSetupUI() {
-        guard let movie = movie else { return }
+    private func updateDetail(for type: MovieDetailType) {
+        guard let mustSeeButton = mustSeeButton,
+            let seenButton = seenButton,
+            let deleteButton = deleteButton else {
+                return
+        }
+
+        switch type {
+        case .seen:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = true
+            deleteButton.isHidden = false
+        case .wantToSee:
+            mustSeeButton.isHidden = true
+            seenButton.isHidden = false
+            deleteButton.isHidden = false
+        case .search:
+            mustSeeButton.isHidden = false
+            seenButton.isHidden = false
+            deleteButton.isHidden = true
+        }
+    }
+
+    fileprivate func loadDetails(for movie: Movie) {
         // Setup with the default data to show something while new data is loading
-        self.setupUIWithNetworkMovie()
+        self.setupUI(for: movie)
+
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
             self.movie = detailedMovie
-            self.setupUIWithNetworkMovie()
+            self.setupUI(for: detailedMovie)
         }
+    }
+
+    fileprivate func setupUI(for networkMovie: Movie) {
+        DispatchQueue.main.async {
+            if let moviePoster = networkMovie.poster {
+                self.posterImageView.image = moviePoster
+            }
+            self.titleLabel.text = networkMovie.title
+            self.descriptionTextView.text = networkMovie.overview
+            self.runtimeLabel.text = networkMovie.formattedRuntime
+            self.votingLabel.text = networkMovie.formattedVoteAverage
+            self.releaseDateLabel.text = networkMovie.formattedReleaseDate
+        }
+    }
+
+    fileprivate func setupUI(for localMovie: StoredMovie) {
+        DispatchQueue.main.async {
+            if let moviePoster = localMovie.poster {
+                self.posterImageView.image = UIImage(data: moviePoster)
+            }
+            self.titleLabel.text = localMovie.title
+            self.descriptionTextView.text = localMovie.overview
+            self.runtimeLabel.text = localMovie.formattedRuntime
+            self.votingLabel.text = localMovie.formattedVoteAverage
+            self.releaseDateLabel.text = localMovie.formattedReleaseDate
+        }
+    }
+
+    // MARK: 3D Actions
+
+    override var previewActionItems: [UIPreviewActionItem] {
+        let wantToSeeAction = UIPreviewAction(title: Strings.wantToSeeButton, style: .default) { _, _ -> Void in
+            self.saveMovie(withWatched: false)
+        }
+
+        let seenAction = UIPreviewAction(title: Strings.seenButton, style: .default) { _, _ -> Void in
+            self.saveMovie(withWatched: true)
+        }
+
+        let deleteAction = UIPreviewAction(title: Strings.deleteButton, style: .destructive) { _, _ -> Void in
+            self.deleteMovie()
+        }
+
+        switch type {
+        case .seen:
+            return [wantToSeeAction, deleteAction]
+        case .wantToSee:
+            return [seenAction, deleteAction]
+        case .search:
+            return [wantToSeeAction, seenAction]
+        }
+
     }
 }
 

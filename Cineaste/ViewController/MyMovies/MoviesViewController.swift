@@ -13,19 +13,17 @@ class MoviesViewController: UIViewController {
     var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
-            emptyListLabel.text =
-                NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
-                    comment: "Description for empty movie list")
+            emptyListLabel.text = Strings.title(for: category)
 
             //only update if category changed
             guard oldValue != category else { return }
             if fetchedResultsManager.controller == nil {
                 fetchedResultsManager.setup(with: category.predicate) {
-                    myMoviesTableView.reloadData()
+                    self.myMoviesTableView.reloadData()
                 }
             } else {
-                fetchedResultsManager.update(for: category.predicate) {
-                    myMoviesTableView.reloadData()
+                fetchedResultsManager.refetch(for: category.predicate) {
+                    self.myMoviesTableView.reloadData()
                 }
             }
         }
@@ -46,7 +44,7 @@ class MoviesViewController: UIViewController {
     }
 
     let fetchedResultsManager = FetchedResultsManager()
-    let storageManager = MovieStorage()
+    var storageManager: MovieStorage?
     var selectedMovie: StoredMovie?
     fileprivate var saveAction: UIAlertAction?
 
@@ -57,9 +55,17 @@ class MoviesViewController: UIViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
-            myMoviesTableView.reloadData()
-            hideTableViewIfEmpty()
+            self.myMoviesTableView.reloadData()
+            self.hideTableView(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
+
+        registerForPreviewing(with: self, sourceView: myMoviesTableView)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
     }
 
     // MARK: - Action
@@ -106,20 +112,18 @@ class MoviesViewController: UIViewController {
         perform(segue: .showSearchFromMovieList, sender: self)
     }
 
-    // MARK: - Private
-    fileprivate func hideTableViewIfEmpty() {
-        let hideTableView =
-            self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty
-                ?? true
+    func hideTableView(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
+        let isEmpty = isEmpty ?? true
 
         DispatchQueue.main.async {
             UIView.animate(
                 withDuration: 0.2,
                 animations: {
-                    self.myMoviesTableView.alpha = hideTableView ? 0 : 1
+                    self.myMoviesTableView.alpha = isEmpty ? 0 : 1
             },
                 completion: { _ in
-                    self.myMoviesTableView.isHidden = hideTableView
+                    self.myMoviesTableView.isHidden = isEmpty
+                    handler?()
             })
         }
     }
@@ -137,6 +141,61 @@ class MoviesViewController: UIViewController {
             vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
         default:
             break
+        }
+    }
+
+    private func updateShortcutItems() {
+        guard let movies = self.fetchedResultsManager.controller?.fetchedObjects else {
+            return
+        }
+
+        var shortcuts = UIApplication.shared.shortcutItems ?? []
+
+        //initially instantiate shortcuts
+        if shortcuts.isEmpty {
+            let wantToSeeIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
+            let wantToSeeShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
+                                                          localizedTitle: Strings.wantToSeeList,
+                                                          localizedSubtitle: nil,
+                                                          icon: wantToSeeIcon,
+                                                          userInfo: nil)
+
+            let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
+            let seenShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
+                                                     localizedTitle: Strings.seenList,
+                                                     localizedSubtitle: nil,
+                                                     icon: seenIcon,
+                                                     userInfo: nil)
+
+            shortcuts = [wantToSeeShortcut, seenShortcut]
+            UIApplication.shared.shortcutItems = shortcuts
+        }
+
+        let index = category == .wantToSee ? 0 : 1
+        let existingItem = shortcuts[index]
+
+        //only update if value changed
+        if existingItem.localizedSubtitle != shortcutSubtitle(for: movies.count) {
+            //swiftlint:disable:next force_cast
+            let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
+            mutableShortcutItem.localizedSubtitle = shortcutSubtitle(for: movies.count)
+
+            shortcuts[index] = mutableShortcutItem
+
+            UIApplication.shared.shortcutItems = shortcuts
+        }
+    }
+
+    private func shortcutSubtitle(for numberOfMovies: Int) -> String? {
+        switch numberOfMovies {
+        case 0:
+            return nil
+        case 1:
+            return "1 " + Strings.oneMovieShortCut
+        case 2...:
+            return "\(numberOfMovies) " + Strings.movieCounterShortCut
+        default:
+            return nil
         }
     }
 }
@@ -208,7 +267,30 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         myMoviesTableView.endUpdates()
-        hideTableViewIfEmpty()
+        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        updateShortcutItems()
+    }
+}
+
+// MARK: - 3D Touch
+
+extension MoviesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let detailVC = MovieDetailViewController.instantiate()
+        guard let path = myMoviesTableView.indexPathForRow(at: location),
+            let objects = fetchedResultsManager.controller?.fetchedObjects,
+            objects.count > path.row
+            else { return nil }
+
+        let movie = objects[path.row]
+        detailVC.storedMovie = movie
+        detailVC.storageManager = storageManager
+        detailVC.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 

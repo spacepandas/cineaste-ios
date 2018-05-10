@@ -9,9 +9,19 @@
 import UIKit
 
 extension String {
-    var dateFromString: Date? {
+    private static let dateFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.date(from: self)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+
+    var dateFromString: Date? {
+        String.dateFormatter.dateFormat = "yyyy-MM-dd"
+        return String.dateFormatter.date(from: self)
+    }
+
+    var dateFromImportedMoviesString: Date? {
+        String.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
+        return String.dateFormatter.date(from: self)
     }
 }

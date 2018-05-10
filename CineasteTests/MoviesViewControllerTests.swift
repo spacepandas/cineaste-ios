@@ -32,6 +32,7 @@ class MoviesViewControllerTests: XCTestCase {
             identifier: Segue.showSearchFromMovieList.rawValue,
             source: moviesVC,
             destination: naviTargetViewController)
+        moviesVC.storageManager = MovieStorage()
 
         XCTAssertNil(targetViewController.storageManager)
 
@@ -47,6 +48,7 @@ class MoviesViewControllerTests: XCTestCase {
             identifier: Segue.showMovieDetail.rawValue,
             source: moviesVC,
             destination: targetViewController)
+        moviesVC.storageManager = MovieStorage()
 
         XCTAssertNil(targetViewController.storedMovie)
         XCTAssertNil(targetViewController.storageManager)
@@ -70,24 +72,28 @@ class MoviesViewControllerTests: XCTestCase {
     }
 
     func testEmptyListShouldHideTableView() {
-        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
-            XCTAssertTrue(moviesVC.myMoviesTableView.isHidden)
-        } else {
-            XCTAssertFalse(moviesVC.myMoviesTableView.isHidden)
+        moviesVC.hideTableView(nil) {
+            XCTAssertTrue(self.tableView.isHidden)
+        }
+
+        moviesVC.hideTableView(true) {
+            XCTAssertTrue(self.tableView.isHidden)
+        }
+
+        moviesVC.hideTableView(false) {
+            XCTAssertFalse(self.tableView.isHidden)
         }
     }
 
     func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
         if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
-            XCTAssertEqual(moviesVC.myMoviesTableView.numberOfRows(inSection: 0), 0)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         } else {
-            XCTAssertEqual(moviesVC.myMoviesTableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.controller?.fetchedObjects?.count)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.controller?.fetchedObjects?.count)
         }
     }
 
     func testDequeueReusableCellWithMovieListCellIdentifierShouldReturnTableViewCell() {
-        let tableView = moviesVC.myMoviesTableView!
-
         // important:
         // use dequeueReusableCell:withIdentifier for this test, this method
         // returns nil, when the tableView can not dequeue a reusable cell,

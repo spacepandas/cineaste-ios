@@ -47,7 +47,7 @@ class MovieMatchTableViewCell: UITableViewCell {
         guard let posterPath = movie.posterPath else {
             return
         }
-        Webservice.load(resource: Movie.loadPoster(path: posterPath)) { result in
+        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
             guard case let .success(image) = result else {
                 handler(nil)
                 return

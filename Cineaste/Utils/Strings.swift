@@ -10,7 +10,7 @@ import Foundation
 
 struct Strings {
     // MARK: ACTION BUTTONS
-    static let mustSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
+    static let wantToSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
     static let deleteButton = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
     static let startMovieNight = NSLocalizedString("Filmnacht starten", comment: "Title for the start movienight button")
@@ -20,6 +20,12 @@ struct Strings {
     static let seenList = NSLocalizedString("Schon gesehen", comment: "Title for seen movie list")
     static let movieNightTitle = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
     static let settingsTitle = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
+
+    // MARK: MOVIES VIEWCONTROLLER
+    static func title(for category: MovieListCategory) -> String {
+        return NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
+            comment: "Description for empty movie list")
+    }
 
     // MARK: TAB TITLE
     static let wantToSeeTab = NSLocalizedString("Musst du sehen", comment: "TabBar title for want to see movie list")
@@ -48,4 +54,18 @@ struct Strings {
     Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.
     """
     //swiftlint:enable line_length
+
+    // MARK: SHORTCUT
+    static let oneMovieShortCut = NSLocalizedString("Film", comment: "Movie")
+    static let movieCounterShortCut = NSLocalizedString("Filme", comment: "Movies")
+
+    // MARK: EXPORT
+    static let exportMoviesFileName = "movies.json"
+    static let exportMoviesFileUTI = "public.json"
+
+    // MARK: Empty state
+    static let unknownVoteCount = "-.-"
+    static let unknownVoteAverage = "-.-"
+    static let unknownRuntime = "-.-"
+    static let unknownReleaseDate = NSLocalizedString("Unbekannt", comment: "Title for unknown release date")
 }
