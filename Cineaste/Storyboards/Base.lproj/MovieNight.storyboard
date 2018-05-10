@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="haa-vZ-2Dy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="haa-vZ-2Dy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,13 +100,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suche nach Freunden in deiner Nähe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hm-E0-Ody">
-                                <rect key="frame" x="75" y="355" width="225" height="21.5"/>
+                                <rect key="frame" x="75" y="344.5" width="225" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="0.96343925559999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-5d-ovy">
-                                <rect key="frame" x="177.5" y="386.5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="397.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7dP-WF-HeU">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
@@ -142,7 +142,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE7-rw-ox8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE7-rw-ox8" customClass="StartMovieNightButton" customModule="Cineaste" customModuleProvider="target">
                                 <rect key="frame" x="72.5" y="597" width="230" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="AHe-dj-phx"/>
@@ -188,10 +188,10 @@
             </objects>
             <point key="canvasLocation" x="712.79999999999995" y="202.84857571214394"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Orange Navigation Controller-->
         <scene sceneID="6xH-nl-fpB">
             <objects>
-                <navigationController storyboardIdentifier="MovieNightNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="haa-vZ-2Dy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MovieNightNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="haa-vZ-2Dy" customClass="OrangeNavigationController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8UK-DE-jU0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

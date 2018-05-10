@@ -32,11 +32,7 @@ class MovieNightViewController: UIViewController {
         view.backgroundColor = UIColor.basicBackground
 
         usersTableView.isHidden = true
-        applyDefaultStyleAndEnableStartButton()
-        disableStartButton()
-        startButton.addTarget(self, action: #selector(applyPressedStyle), for: .touchDown)
-        startButton.addTarget(self, action: #selector(applyDefaultStyleAndEnableStartButton), for: .touchUpOutside)
-        startButton.addTarget(self, action: #selector(applyDefaultStyleAndEnableStartButton), for: .touchUpInside)
+        startButton.isEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +128,7 @@ class MovieNightViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.nearbyMessages.append(nearbyMessage)
-                    self.applyDefaultStyleAndEnableStartButton()
+                    self.startButton.isEnabled = true
                     self.usersTableView.isHidden = false
                     self.usersTableView.reloadData()
                 }
@@ -148,38 +144,12 @@ class MovieNightViewController: UIViewController {
             DispatchQueue.main.async {
                 self.nearbyMessages.remove(at: index)
                 if self.nearbyMessages.isEmpty {
-                    self.disableStartButton()
+                    self.startButton.isEnabled = false
                     self.usersTableView.isHidden = true
                 }
                 self.usersTableView.reloadData()
             }
         })
-    }
-}
-
-extension MovieNightViewController {
-    // MARK: Style button
-
-    @objc
-    func applyDefaultStyleAndEnableStartButton() {
-        startButton.isEnabled = true
-        startButton.tintColor = UIColor.primaryOrange
-        startButton.layer.borderColor = UIColor.primaryOrange.cgColor
-        startButton.layer.borderWidth = 4
-        startButton.layer.cornerRadius = 25
-    }
-
-    @objc
-    func disableStartButton() {
-        startButton.isEnabled = false
-        startButton.tintColor = UIColor.lightGray
-        startButton.layer.borderColor = UIColor.lightGray.cgColor
-    }
-
-    @objc
-    func applyPressedStyle() {
-        startButton.tintColor = UIColor.white
-        startButton.layer.borderColor = UIColor.white.cgColor
     }
 }
 

@@ -28,3 +28,44 @@ public class ActionButton: UIButton {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
 }
+
+public class StartMovieNightButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    public override var isEnabled: Bool {
+        didSet {
+            setup()
+        }
+    }
+
+    public override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                self.tintColor = UIColor.white
+                self.layer.borderColor = UIColor.white.cgColor
+            } else {
+                setup()
+            }
+        }
+    }
+
+    func setup() {
+        if isEnabled {
+            self.tintColor = UIColor.primaryOrange
+            self.layer.borderColor = UIColor.primaryOrange.cgColor
+            self.layer.borderWidth = 4
+            self.layer.cornerRadius = 25
+        } else {
+            self.tintColor = UIColor.lightGray
+            self.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
+}
