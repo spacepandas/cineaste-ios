@@ -26,10 +26,7 @@ class MovieMatchViewController: UIViewController {
     fileprivate var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
     fileprivate var totalNumberOfPeople: Int = 0
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+    var storageManager: MovieStorage?
 
     func configure(with messagesToMatch: [NearbyMessage]) {
         totalNumberOfPeople = messagesToMatch.count
@@ -83,8 +80,10 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
             switch result {
             case .success(let movie):
                 movie.poster = poster
-                Dependencies.shared.movieStorage.insertMovieItem(with: movie,
-                                                                 watched: true)
+
+                guard let storageManager = self.storageManager else { return }
+                storageManager.insertMovieItem(with: movie, watched: true)
+
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }

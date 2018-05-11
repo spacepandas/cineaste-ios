@@ -25,6 +25,9 @@ class MovieNightViewController: UIViewController {
 
     @IBOutlet fileprivate weak var startButton: StartMovieNightButton!
 
+    var storageManager: MovieStorage?
+
+    fileprivate lazy var gnsMessageManager: GNSMessageManager = GNSMessageManager(apiKey: ApiKeyStore.nearbyKey())
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
 
@@ -87,6 +90,7 @@ class MovieNightViewController: UIViewController {
             }
             let vc = segue.destination as? MovieMatchViewController
             vc?.configure(with: nearbyMessages)
+            vc?.storageManager = storageManager
         default:
             return
         }
@@ -95,34 +99,22 @@ class MovieNightViewController: UIViewController {
     // MARK: - Nearby
 
     fileprivate func startPublishing() {
-        let nearbyMovies =
-            Dependencies
-                .shared
-                .movieStorage
-                .fetchAllWantToSeeMovies()
-                .compactMap { storedMovie -> NearbyMovie? in
-                    guard let title = storedMovie.title else {
-                        return nil
-                    }
-                    return NearbyMovie(id: storedMovie.id, title: title, posterPath: storedMovie.posterPath)
-                }
-
-        guard let username = UserDefaultsManager.getUsername() else {
-            return
+        guard let storageManager = storageManager else { return }
+        let nearbyMovies = storageManager.fetchAllWantToSeeMovies().compactMap { storedMovie -> NearbyMovie? in
+            guard let title = storedMovie.title else { return nil }
+            return NearbyMovie(id: storedMovie.id, title: title, posterPath: storedMovie.posterPath)
         }
+
+        guard let username = UserDefaultsManager.getUsername() else { return }
         let nearbyMessage = NearbyMessage.create(withUsername: username, movies: nearbyMovies)
         myNearbyMessage = nearbyMessage
-        guard let messageData = try? JSONEncoder().encode(nearbyMessage) else {
-            return
-        }
-        currentPublication = Dependencies
-            .shared
-            .gnsMessageManager
-            .publication(with: GNSMessage(content: messageData))
+
+        guard let messageData = try? JSONEncoder().encode(nearbyMessage) else { return }
+        currentPublication = gnsMessageManager.publication(with: GNSMessage(content: messageData))
     }
 
     fileprivate func startSubscribing() {
-        currentSubscription = Dependencies.shared.gnsMessageManager.subscription(
+        currentSubscription = gnsMessageManager.subscription(
             messageFoundHandler: { message in
                 guard let data = message?.content,
                 let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self, from: data) else {

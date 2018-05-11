@@ -141,6 +141,9 @@ class MoviesViewController: UIViewController {
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
             vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        case .showMovieNight?:
+            let vc = segue.destination as? MovieNightViewController
+            vc?.storageManager = storageManager
         default:
             break
         }
