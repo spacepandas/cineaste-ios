@@ -32,9 +32,9 @@ final class FetchedResultsManager: NSObject {
                context: NSManagedObjectContext = AppDelegate.viewContext,
                completionHandler handler: (() -> Void)? = nil) {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "listPosition", ascending: true),
-                                   NSSortDescriptor(key: "title", ascending: true)]
         request.predicate = predicate
+        sort(fetchRequest: request, for: predicate)
+
         controller = NSFetchedResultsController<StoredMovie>(
             fetchRequest: request,
             managedObjectContext: context,
@@ -50,8 +50,19 @@ final class FetchedResultsManager: NSObject {
         handler?()
     }
 
+    private func sort(fetchRequest: NSFetchRequest<StoredMovie>?, for predicate: NSPredicate?) {
+        if predicate == MovieListCategory.seen.predicate {
+            fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "watchedDate", ascending: false)]
+        } else if predicate == MovieListCategory.wantToSee.predicate {
+            fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "listPosition", ascending: true),
+                                            NSSortDescriptor(key: "title", ascending: true)]
+        }
+    }
+
     func refetch(for predicate: NSPredicate?, completionHandler handler: (() -> Void)? = nil) {
         controller?.fetchRequest.predicate = predicate
+        sort(fetchRequest: controller?.fetchRequest, for: predicate)
+
         do {
             try controller?.performFetch()
         } catch {

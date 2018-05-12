@@ -16,6 +16,14 @@ extension Date {
     var formatted: String {
         Date.dateFormatter.locale = Locale.current
         Date.dateFormatter.dateStyle = .medium
+        Date.dateFormatter.timeStyle = .none
+        return Date.dateFormatter.string(from: self)
+    }
+
+    var formattedWithTime: String {
+        Date.dateFormatter.locale = Locale.current
+        Date.dateFormatter.dateStyle = .long
+        Date.dateFormatter.timeStyle = .short
         return Date.dateFormatter.string(from: self)
     }
 

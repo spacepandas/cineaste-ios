@@ -26,6 +26,8 @@ struct Strings {
             comment: "Description for empty movie list")
     }
 
+    static let onDate = NSLocalizedString("am", comment: "on a date")
+
     // MARK: TAB TITLE
     static let wantToSeeTab = NSLocalizedString("Musst du sehen", comment: "TabBar title for want to see movie list")
     static let seenTab = NSLocalizedString("Schon gesehen", comment: "TabBar title for seen movie list")

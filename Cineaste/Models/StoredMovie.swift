@@ -178,4 +178,9 @@ extension StoredMovie {
     var formattedRuntime: String {
         return "\(runtime.formatted ?? Strings.unknownRuntime) min"
     }
+
+    var formattedWatchedDate: String? {
+        guard let watchedDate = watchedDate else { return nil }
+        return "\(Strings.onDate) \(watchedDate.formattedWithTime)"
+    }
 }
