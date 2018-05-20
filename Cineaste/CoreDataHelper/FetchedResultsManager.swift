@@ -53,7 +53,7 @@ final class FetchedResultsManager: NSObject {
     private func sort(fetchRequest: NSFetchRequest<StoredMovie>?, for predicate: NSPredicate?) {
         if predicate == MovieListCategory.seen.predicate {
             fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "watchedDate", ascending: false)]
-        } else if predicate == MovieListCategory.wantToSee.predicate {
+        } else {
             fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "listPosition", ascending: true),
                                             NSSortDescriptor(key: "title", ascending: true)]
         }
