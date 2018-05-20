@@ -80,6 +80,10 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         updateDetail(for: type)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+                                                            target: self,
+                                                            action: #selector(shareMovie))
     }
 
     // MARK: - Actions
@@ -94,6 +98,35 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
         deleteMovie()
+    }
+
+    @objc
+    func shareMovie(_ sender: UIBarButtonItem) {
+        var title: String?
+        var movieUrl = Config.Backend.shareMovieUrl
+
+        if let movie = storedMovie {
+            title = movie.title
+            movieUrl += "\(movie.id)"
+        } else if let movie = movie {
+            title = movie.title
+            movieUrl += "\(movie.id)"
+        }
+
+        var items = [Any]()
+
+        if let title = title {
+            items.append(title)
+        }
+
+        if let url = URL(string: movieUrl) {
+            items.append(url)
+        }
+
+        let activityController = UIActivityViewController(activityItems: items,
+                                                          applicationActivities: nil)
+
+        present(activityController, animated: true, completion: nil)
     }
 
     // MARK: - Private
