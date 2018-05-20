@@ -33,21 +33,21 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(searchMoviesVC.moviesTableView.backgroundColor, UIColor.clear)
     }
     
-    func testNumberOfSectionsShouldEqualNumberOfMovies() {
-        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 0)
+    func testNumberOfRowsShouldEqualNumberOfMovies() {
+        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfRows(inSection: 0), 0)
 
         searchMoviesVC.movies = movies
         searchMoviesVC.moviesTableView.reloadData()
 
-        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfSections, 2)
+        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfRows(inSection: 0), 2)
     }
 
     func testCellForRowShouldBeOfTypeSearchMoviesCell() {
         searchMoviesVC.movies = movies
         searchMoviesVC.moviesTableView.reloadData()
 
-        for section in 0..<movies.count {
-            let path = IndexPath(row: 0, section: section)
+        for row in 0..<movies.count {
+            let path = IndexPath(row: row, section: 0)
             let cell = searchMoviesVC.moviesTableView.cellForRow(at: path)
 
             XCTAssert(cell is SearchMoviesCell)

@@ -31,8 +31,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-yW-7c3">
-                                                    <rect key="frame" x="94.5" y="11.5" width="260.5" height="76.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-Io-6Ie">
+                                                    <rect key="frame" x="94.5" y="10" width="260.5" height="79.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMc-8F-ocU" customClass="TitleLabel" customModule="Cineaste" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="260.5" height="20.5"/>
@@ -41,7 +41,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="huN-Vb-l1b">
-                                                            <rect key="frame" x="-0.5" y="25.5" width="261" height="13"/>
+                                                            <rect key="frame" x="0.0" y="28.5" width="260.5" height="13"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_release" translatesAutoresizingMaskIntoConstraints="NO" id="7Gc-kU-MAP">
                                                                     <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
@@ -51,7 +51,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-il-h2d" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="21" y="0.0" width="240" height="13"/>
+                                                                    <rect key="frame" x="21" y="0.0" width="239.5" height="13"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -59,17 +59,17 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
-                                                            <rect key="frame" x="-0.5" y="46.5" width="238" height="30"/>
+                                                            <rect key="frame" x="0.0" y="49.5" width="260.5" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-dZ-m0S" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="30"/>
                                                                     <state key="normal" title="search.mustsee"/>
                                                                     <connections>
                                                                         <action selector="mustSeeButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="0cc-rD-MSK"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnp-Tu-JeS" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="129" y="0.0" width="109" height="30"/>
+                                                                    <rect key="frame" x="140.5" y="0.0" width="120" height="30"/>
                                                                     <state key="normal" title="search.seen"/>
                                                                     <connections>
                                                                         <action selector="seenButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="WMr-Ij-BiF"/>
@@ -78,20 +78,7 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="jzm-uo-pc2" secondAttribute="bottom" id="49I-Q6-iuL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="huN-Vb-l1b" secondAttribute="trailing" id="4d0-Jd-91M"/>
-                                                        <constraint firstItem="jzm-uo-pc2" firstAttribute="top" secondItem="huN-Vb-l1b" secondAttribute="bottom" constant="8" symbolic="YES" id="C3N-6F-PL2"/>
-                                                        <constraint firstItem="jzm-uo-pc2" firstAttribute="leading" secondItem="pHh-yW-7c3" secondAttribute="leading" id="GTH-dS-v6m"/>
-                                                        <constraint firstAttribute="trailing" secondItem="XMc-8F-ocU" secondAttribute="trailing" id="c4u-fP-XzD"/>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jzm-uo-pc2" secondAttribute="trailing" id="cj0-HX-mKf"/>
-                                                        <constraint firstItem="XMc-8F-ocU" firstAttribute="leading" secondItem="pHh-yW-7c3" secondAttribute="leading" id="oBn-KV-efy"/>
-                                                        <constraint firstItem="huN-Vb-l1b" firstAttribute="top" secondItem="XMc-8F-ocU" secondAttribute="bottom" constant="5" id="qC9-tx-8yL"/>
-                                                        <constraint firstItem="huN-Vb-l1b" firstAttribute="leading" secondItem="pHh-yW-7c3" secondAttribute="leading" id="uCe-1h-x0o"/>
-                                                        <constraint firstItem="XMc-8F-ocU" firstAttribute="top" secondItem="pHh-yW-7c3" secondAttribute="top" id="vvW-QA-gji"/>
-                                                    </constraints>
-                                                </view>
+                                                </stackView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="blM-l6-VJr">
                                                     <rect key="frame" x="0.0" y="0.0" width="69.5" height="99.5"/>
                                                     <constraints>
@@ -110,14 +97,13 @@
                                             <constraints>
                                                 <constraint firstItem="blM-l6-VJr" firstAttribute="leading" secondItem="FUh-ZM-Ge8" secondAttribute="leading" id="35W-sH-rLH"/>
                                                 <constraint firstItem="Drj-Pn-RyL" firstAttribute="leading" secondItem="blM-l6-VJr" secondAttribute="trailing" id="5ay-7z-et9"/>
-                                                <constraint firstAttribute="trailing" secondItem="pHh-yW-7c3" secondAttribute="trailing" constant="20" id="9qn-HS-5Ik"/>
+                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FUh-ZM-Ge8" secondAttribute="top" constant="5" id="6Kn-pN-aDv"/>
+                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="centerY" secondItem="FUh-ZM-Ge8" secondAttribute="centerY" id="A00-GZ-fj0"/>
+                                                <constraint firstAttribute="trailing" secondItem="8TH-Io-6Ie" secondAttribute="trailing" constant="20" id="FQA-MW-fd4"/>
                                                 <constraint firstItem="Drj-Pn-RyL" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="R0e-sf-pl1"/>
                                                 <constraint firstAttribute="bottom" secondItem="blM-l6-VJr" secondAttribute="bottom" priority="750" id="RfZ-Qs-w09"/>
-                                                <constraint firstAttribute="bottom" secondItem="pHh-yW-7c3" secondAttribute="bottom" priority="750" constant="20" symbolic="YES" id="VEJ-x0-DlJ"/>
-                                                <constraint firstItem="pHh-yW-7c3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FUh-ZM-Ge8" secondAttribute="top" constant="8" id="ZQH-E1-YtG"/>
+                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="leading" secondItem="Drj-Pn-RyL" secondAttribute="trailing" constant="20" id="ZMH-KV-IqS"/>
                                                 <constraint firstItem="blM-l6-VJr" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="f7U-us-KVo"/>
-                                                <constraint firstItem="pHh-yW-7c3" firstAttribute="centerY" secondItem="FUh-ZM-Ge8" secondAttribute="centerY" id="iHN-IH-Nnl"/>
-                                                <constraint firstItem="pHh-yW-7c3" firstAttribute="leading" secondItem="Drj-Pn-RyL" secondAttribute="trailing" constant="20" id="lvH-Rd-plZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Drj-Pn-RyL" secondAttribute="bottom" id="xVO-lX-xKL"/>
                                             </constraints>
                                         </tableViewCellContentView>
