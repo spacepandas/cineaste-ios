@@ -22,9 +22,7 @@ extension SearchMoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMoviesCell.identifier, for: indexPath) as? SearchMoviesCell else {
-            fatalError("Unable to dequeue cell for identifier: \(SearchMoviesCell.identifier)")
-        }
+        let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
         cell.movie = movies[indexPath.row]
         cell.delegate = self

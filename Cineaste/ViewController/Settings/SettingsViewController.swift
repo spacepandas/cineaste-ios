@@ -163,9 +163,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.identifier, for: indexPath) as? SettingsCell else {
-            fatalError("Unable to dequeue cell for identifier: \(SettingsCell.identifier)")
-        }
+        let cell: SettingsCell = tableView.dequeueCell(identifier: SettingsCell.identifier)
 
         if settings[indexPath.row].segue == nil {
             cell.accessoryType = .none

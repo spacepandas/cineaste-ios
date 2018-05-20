@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieNightUserCell: UITableViewCell {
-    static let cellIdentifier = "MovieNightUserTableViewCell"
+    static let identifier = "MovieNightUserTableViewCell"
 
     @IBOutlet weak var usernameLabel: TitleLabel!
     @IBOutlet weak var numberOfMoviesLabel: DescriptionLabel!

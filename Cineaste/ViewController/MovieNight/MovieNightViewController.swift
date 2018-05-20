@@ -157,9 +157,7 @@ extension MovieNightViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieNightUserCell.cellIdentifier, for: indexPath) as? MovieNightUserCell else {
-            fatalError("Unable to dequeue cell with identifier \(MovieNightUserCell.cellIdentifier)")
-        }
+        let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
 
         cell.configure(width: nearbyMessages[indexPath.row])
 

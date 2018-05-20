@@ -13,7 +13,7 @@ protocol MovieMatchTableViewCellDelegate: class {
 }
 
 class MovieMatchCell: UITableViewCell {
-    static let cellIdentifier = "MovieMatchTableViewCell"
+    static let identifier = "MovieMatchTableViewCell"
 
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var separatorView: UIView! {

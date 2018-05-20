@@ -57,10 +57,7 @@ extension MovieMatchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieMatchCell.cellIdentifier, for: indexPath)
-            as? MovieMatchCell else {
-                fatalError("Unable to dequeue cell with identifier \(MovieMatchCell.cellIdentifier)")
-        }
+        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
 
         cell.configure(with: sortedMoviesWithOccurrence[indexPath.row],
                        amountOfPeople: totalNumberOfPeople,

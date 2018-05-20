@@ -16,7 +16,9 @@ enum Segue: String {
     case showMovieMatches = "ShowMovieMatchesSegue"
 
     init?(initWith segue: UIStoryboardSegue) {
-        guard let identifier = segue.identifier else { fatalError("Segue identifier not found.") }
+        guard let identifier = segue.identifier else {
+            fatalError("Segue identifier not found.")
+        }
         self.init(rawValue: identifier)
     }
 }
