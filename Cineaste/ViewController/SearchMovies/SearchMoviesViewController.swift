@@ -103,7 +103,8 @@ class SearchMoviesViewController: UIViewController {
         } else {
             moviesTableView.tableHeaderView = resultSearchController.searchBar
         }
-        self.definesPresentationContext = true
+
+        definesPresentationContext = true
     }
 
 }
@@ -127,10 +128,16 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
                 switch result {
                 case .error:
                     DispatchQueue.main.async {
+                        if self.resultSearchController.isActive {
+                            self.resultSearchController.isActive = false
+                        }
                         self.showAlert(withMessage: Alert.insertMovieError)
                     }
                 case .success:
                     DispatchQueue.main.async {
+                        if self.resultSearchController.isActive {
+                            self.resultSearchController.isActive = false
+                        }
                         self.dismiss(animated: true, completion: nil)
                     }
                 }

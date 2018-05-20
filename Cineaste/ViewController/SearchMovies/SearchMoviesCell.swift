@@ -50,7 +50,6 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         guard let movie = movie else { return }
-
         delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
     }
 
