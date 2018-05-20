@@ -1,4 +1,4 @@
-framework module Pods_Cineaste {
+module Pods_Cineaste [system] {
   umbrella header "Pods-Cineaste-umbrella.h"
 
   export *

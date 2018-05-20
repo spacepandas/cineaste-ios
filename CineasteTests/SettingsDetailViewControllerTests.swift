@@ -11,12 +11,26 @@ import XCTest
 
 class SettingsDetailViewControllerTests: XCTestCase {
     let settingsDetailVC = SettingsDetailViewController.instantiate()
-
+    
     func testTextViewShouldDisplayCorrectContent() {
+        let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)]
+        let paragraphAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
+        
+        //IMPRINT
         settingsDetailVC.textViewContent = .imprint
-        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewType.imprint.content)
-
+        XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
+        
+        let imprintChain = TextViewType.imprint.chainContent(titleAttributes: titleAttributes,
+                                                             paragraphAttributes: paragraphAttributes)
+        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, imprintChain.string)
+        
+        //LICENSE
         settingsDetailVC.textViewContent = .licence
-        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, TextViewType.licence.content)
+        XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
+        
+        let licenseChain = TextViewType.licence.chainContent(titleAttributes: titleAttributes,
+                                                             paragraphAttributes: paragraphAttributes)
+        XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, licenseChain.string)
     }
+    
 }

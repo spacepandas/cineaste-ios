@@ -13,4 +13,5 @@ struct Images {
     static let posterPlaceholder = #imageLiteral(resourceName: "placeholder_poster")
     static let wantToSeeIcon = #imageLiteral(resourceName: "add_to_watchlist")
     static let seenIcon = #imageLiteral(resourceName: "add_to_watchedlist")
+    static let settingsIcon = #imageLiteral(resourceName: "ic_settings")
 }

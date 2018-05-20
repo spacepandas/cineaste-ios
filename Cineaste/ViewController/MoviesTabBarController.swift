@@ -28,7 +28,7 @@ class MoviesTabBarController: UITabBarController {
         let seenVCWithNavi = OrangeNavigationController(rootViewController: seenVC)
 
         let settingsVC = SettingsViewController.instantiate()
-        settingsVC.tabBarItem = UITabBarItem(title: Strings.settingTab, image: nil, tag: 2)
+        settingsVC.tabBarItem = UITabBarItem(title: Strings.settingTab, image: Images.settingsIcon, tag: 2)
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
         viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
