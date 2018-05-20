@@ -14,6 +14,10 @@ struct ApiKeyStore {
         return getValue(forKey: "MOVIEDB_KEY")
     }
 
+    static func nearbyKey() -> String {
+        return getValue(forKey: "NEARBY_KEY")
+    }
+
     fileprivate static func getValue(forKey key: String) -> String {
         guard let path = Bundle.main.path(forResource: "apikey", ofType: "plist")
             else {

@@ -49,19 +49,27 @@ class Movie: Codable {
         let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
         releaseDate = dateString?.dateFromString
     }
+
+    // This is only for creating a movie to use it with the webservice
+    init(id: Int64, title: String) {
+        self.id = id
+        self.title = title
+        self.voteAverage = 0
+        self.voteCount = 0
+        self.overview = ""
+        self.runtime = 0
+    }
 }
 
 extension Movie {
-    static fileprivate let baseUrl = "https://api.themoviedb.org/3"
-    static fileprivate let posterBaseUrl = "https://image.tmdb.org/t/p/w342"
-    static fileprivate let apiKey = ApiKeyStore.theMovieDbKey()
-    static fileprivate let locale = Locale.current.identifier
+    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
+    fileprivate static let locale = Locale.current.identifier
 
     static func search(withQuery query: String) -> Resource<[Movie]>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return nil
         }
-        let urlAsString = "\(Movie.baseUrl)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
+        let urlAsString = "\(Config.Backend.url)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
 
         return Resource(url: urlAsString, method: .get) { data in
             let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
@@ -73,7 +81,7 @@ extension Movie {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString =
-        "\(Movie.baseUrl)/discover/movie?" +
+        "\(Config.Backend.url)/discover/movie?" +
         "primary_release_date.gte=\(oneMonthInPast.formattedForRequest)&" +
             "primary_release_date.lte=\(oneMonthInFuture.formattedForRequest)&" +
             "language=\(Movie.locale)&" +
@@ -91,14 +99,14 @@ extension Movie {
     }
 
     static func loadPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Movie.posterBaseUrl)\(posterPath)?api_key=\(Movie.apiKey)"
+        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) { data in
             return UIImage(data: data)
         }
     }
 
     var get: Resource<Movie>? {
-        let urlAsString = "\(Movie.baseUrl)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
+        let urlAsString = "\(Config.Backend.url)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let movie = try JSONDecoder().decode(Movie.self, from: data)

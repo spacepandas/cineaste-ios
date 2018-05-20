@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth will only be used to discover nearby devices</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone will only be used to discover nearby devices</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

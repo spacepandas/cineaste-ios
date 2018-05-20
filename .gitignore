@@ -6,6 +6,7 @@ Cineaste/apikey.plist
 ## Build generated
 build/
 DerivedData/
+Pods/
 
 ## Various settings
 *.pbxuser

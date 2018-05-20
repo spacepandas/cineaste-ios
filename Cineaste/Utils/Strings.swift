@@ -13,11 +13,12 @@ struct Strings {
     static let wantToSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
     static let deleteButton = NSLocalizedString("Von Liste löschen", comment: "Title for delete movie button")
+    static let startMovieNight = NSLocalizedString("Filmnacht starten", comment: "Title for the start movienight button")
 
     // MARK: VIEWCONTROLLER TITLE
     static let wantToSeeList = NSLocalizedString("Musst du sehen", comment: "Title for want to see movie list")
     static let seenList = NSLocalizedString("Schon gesehen", comment: "Title for seen movie list")
-    static let movieNightTitle = NSLocalizedString("Movie-Night", comment: "Title for movie night viewController")
+    static let movieNightTitle = NSLocalizedString("Filmnacht", comment: "Title for movie night viewController")
     static let settingsTitle = NSLocalizedString("Einstellungen", comment: "Title for settings viewController")
 
     // MARK: MOVIES VIEWCONTROLLER
@@ -53,6 +54,22 @@ struct Strings {
     // MARK: SHORTCUT
     static let oneMovieShortCut = NSLocalizedString("Film", comment: "Movie")
     static let movieCounterShortCut = NSLocalizedString("Filme", comment: "Movies")
+
+    // MARK: MOVIENIGHT
+    static func nearbyMovies(for counter: Int) -> String {
+        switch counter {
+        case 0:
+            return NSLocalizedString("Keine Filme", comment: "No nearby movies")
+        case 1:
+            return NSLocalizedString("Einen Film", comment: "One nearby movies")
+        default:
+            return NSLocalizedString("\(counter) Filme", comment: "More nearby movies")
+        }
+    }
+
+    static func matches(for number: Int, amountOfPeople: Int) -> String {
+        return NSLocalizedString("\(number) von \(amountOfPeople)", comment: "Number of matches description")
+    }
 
     // MARK: EXPORT
     static let exportMoviesFileName = "movies.json"

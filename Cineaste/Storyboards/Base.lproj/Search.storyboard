@@ -34,7 +34,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-yW-7c3">
                                                     <rect key="frame" x="94.5" y="11.5" width="260.5" height="76.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMc-8F-ocU" customClass="TitleLabel" customModule="Cineaste" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMc-8F-ocU" customClass="TitleLabel" customModule="Cineaste" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="260.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -50,7 +50,7 @@
                                                                         <constraint firstAttribute="width" constant="13" id="hgw-PK-4cD"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-il-h2d" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-il-h2d" customClass="DescriptionLabel" customModule="Cineaste" customModuleProvider="target">
                                                                     <rect key="frame" x="21" y="0.0" width="240" height="13"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
@@ -59,18 +59,18 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
-                                                            <rect key="frame" x="-0.5" y="46.5" width="222" height="30"/>
+                                                            <rect key="frame" x="-0.5" y="46.5" width="238" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-dZ-m0S" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
-                                                                    <state key="normal" title="detail.mustsee"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                                                    <state key="normal" title="search.mustsee"/>
                                                                     <connections>
                                                                         <action selector="mustSeeButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="0cc-rD-MSK"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnp-Tu-JeS" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="121" y="0.0" width="101" height="30"/>
-                                                                    <state key="normal" title="detail.seen"/>
+                                                                    <rect key="frame" x="129" y="0.0" width="109" height="30"/>
+                                                                    <state key="normal" title="search.seen"/>
                                                                     <connections>
                                                                         <action selector="seenButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="WMr-Ij-BiF"/>
                                                                     </connections>

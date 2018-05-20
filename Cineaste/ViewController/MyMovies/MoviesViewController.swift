@@ -46,6 +46,7 @@ class MoviesViewController: UIViewController {
     let fetchedResultsManager = FetchedResultsManager()
     var storageManager: MovieStorage?
     var selectedMovie: StoredMovie?
+    fileprivate var saveAction: UIAlertAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,48 @@ class MoviesViewController: UIViewController {
         super.viewDidAppear(animated)
 
         hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+    }
+
+    // MARK: - Action
+
+    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
+        if UserDefaultsManager.getUsername() == nil {
+            showUsernameAlert()
+        } else {
+            self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+        }
+    }
+
+    func showUsernameAlert() {
+        let alert = UIAlertController(title: Alert.insertUsername.title,
+                                      message: Alert.insertUsername.message,
+                                      preferredStyle: .alert)
+        saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
+            guard let textField = alert.textFields?[0], let username = textField.text else {
+                return
+            }
+            UserDefaultsManager.setUsername(username)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+            }
+        }
+
+        if let saveAction = saveAction {
+            saveAction.isEnabled = false
+            alert.addAction(saveAction)
+        }
+
+        if let cancelTitle = Alert.insertUsername.cancel {
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
+            alert.addAction(cancelAction)
+        }
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = Alert.insertUsername.title
+            textField.delegate = self
+        })
+
+        self.present(alert, animated: true)
     }
 
     @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
@@ -98,6 +141,9 @@ class MoviesViewController: UIViewController {
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
             vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        case .showMovieNight?:
+            let vc = segue.destination as? MovieNightViewController
+            vc?.storageManager = storageManager
         default:
             break
         }
@@ -192,6 +238,17 @@ extension MoviesViewController: UITableViewDelegate {
         selectedMovie = movies[indexPath.row]
 
         perform(segue: .showMovieDetail, sender: nil)
+    }
+}
+
+extension MoviesViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+
+        let entryLength = text.count + string.count - range.length
+        saveAction?.isEnabled = entryLength > 0 ? true : false
+
+        return true
     }
 }
 

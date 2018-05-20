@@ -56,9 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarVC.selectedIndex = 1
             return true
         case .startMovieNight:
-            //TODO: directly start movie night from action
-            tabBarVC.selectedIndex = 0
-            tabBarVC.selectedViewController?.showAlert(withMessage: Alert.missingFeatureInfo)
+            guard let moviesVC = tabBarVC.selectedViewController?.childViewControllers.first as? MoviesViewController else { return false }
+
+            moviesVC.movieNightButtonTouched(UIBarButtonItem())
             return true
         }
 

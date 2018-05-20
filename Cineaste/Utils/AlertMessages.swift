@@ -24,6 +24,7 @@ class AlertMessage {
 
 // default
 private let okAction = NSLocalizedString("OK", comment: "Title for ok action")
+private let saveAction = NSLocalizedString("Speichern", comment: "Title for save action")
 private let infoTitle = NSLocalizedString("Info", comment: "Title for information")
 private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
 private let yesAction = NSLocalizedString("Ja", comment: "Title for yes action")
@@ -40,6 +41,10 @@ private let loadingDataErrorMessage = NSLocalizedString("Die Daten konnten nicht
 private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht gelöscht werden.", comment: "Message for delete movie error alert")
 private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
 private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
+
+// enter username for movie night
+private let usernameTitle = NSLocalizedString("Benutzername", comment: "Enter username title")
+private let usernameDescription = NSLocalizedString("Gib einen Namen an, unter dem dich deine Freunde sehen können.", comment: "Enter username description")
 
 // missing feature
 private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
@@ -70,6 +75,8 @@ class Alert: AlertMessage {
     static let deleteMovieError = AlertMessage(title: errorTitle, message: deleteMovieErrorMessage, action: okAction)
     static let updateMovieError = AlertMessage(title: errorTitle, message: updateMovieErrorMessage, action: okAction)
     static let insertMovieError = AlertMessage(title: errorTitle, message: insertMovieErrorMessage, action: okAction)
+
+    static let insertUsername = AlertMessage(title: usernameTitle, message: usernameDescription, action: saveAction, cancel: cancelAction)
 
     static let missingFeatureInfo = AlertMessage(title: infoTitle, message: missingFeatureMessage, action: okAction)
 

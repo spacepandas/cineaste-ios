@@ -3,11 +3,10 @@ platform :ios, '10.0'
 
 target 'Cineaste' do
   pod 'SwiftLint'
+  pod 'NearbyMessages'
 
-  # Pods for Cineaste
   target 'CineasteTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 end
 

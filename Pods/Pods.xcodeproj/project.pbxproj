@@ -7,63 +7,125 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		241B55B75A1A2D225766AF9B89D3CF4E /* Pods-CineasteTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */; };
-		6E5BD8AC28F67449E8FB0A6FA0E0260D /* Pods-Cineaste-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */; };
-		798F46B439BD9910B955ED14D1BBB9CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		FE1F6EBF40F6303755D5F1D30F381641 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		8C2215493B52DCB9FD1D9FC951FFDAEA /* Pods-Cineaste-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */; };
+		FE3AE1CF227399E30BED876A667EBC11 /* Pods-CineasteTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0AA9F2A7882DFF5573F8CE8EF9C14968 /* PBXContainerItemProxy */ = {
+		298F0DCB15634FCB3A213BBFBF292E8E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E53C0BBD528F675D229DF00241983A9A;
+			remoteGlobalIDString = 96C021576841E3715579B636CD993F97;
 			remoteInfo = "Pods-Cineaste";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08A0530A3FE7CA8CF0FE247D51AE75DA /* GNSOperationStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSOperationStatus.h; path = Sources/GNSOperationStatus.h; sourceTree = "<group>"; };
 		0F6CF4631172071678D50B12862D3A24 /* Pods-Cineaste-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Cineaste-acknowledgements.plist"; sourceTree = "<group>"; };
 		1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1D8DA3AB1E68FF7628F245A90B335EC1 /* Pods-CineasteTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CineasteTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.release.xcconfig"; sourceTree = "<group>"; };
 		4288069A451113A2F302D63439439C94 /* Pods-Cineaste-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Cineaste-acknowledgements.markdown"; sourceTree = "<group>"; };
+		431A91EFCB8038170D7645FAD86E40CB /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
 		4EBE2BC7D3A28105D22281359A57C9F8 /* Pods-Cineaste-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-frameworks.sh"; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		61C416FE4F87AE1CC6AC02A15FF3FE8A /* GNSSubscriptionParams.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSSubscriptionParams.h; path = Sources/GNSSubscriptionParams.h; sourceTree = "<group>"; };
 		6C7B52F85C9246722F62F4E9079AD8FE /* Pods-Cineaste-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Cineaste-resources.sh"; sourceTree = "<group>"; };
 		752F1B895309003A4BE92F3795B107E8 /* Pods-CineasteTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CineasteTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7D84B32779F914EBB7173D662229D39B /* ic_nearby_48pt.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ic_nearby_48pt.xcassets; path = Resources/resources/ic_nearby_48pt.xcassets; sourceTree = "<group>"; };
 		7DB547631624B2A396FDA5CA37191869 /* Pods-CineasteTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-resources.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		943F0099D4127AC3C1F2A24674FE6F69 /* libGNSMessages.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGNSMessages.a; path = Libraries/libGNSMessages.a; sourceTree = "<group>"; };
+		947D1D387612B2D1DCA1711BECA731BB /* ic_expand_more.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ic_expand_more.xcassets; path = Resources/resources/ic_expand_more.xcassets; sourceTree = "<group>"; };
+		95E42640EFA41DBB6A8641193BB4E6DE /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		A38A0232F35FA8C5FAE5157221334FE6 /* GNSPermission.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSPermission.h; path = Sources/GNSPermission.h; sourceTree = "<group>"; };
+		AB0DF74222B2B21DA505C0D889CEC2A6 /* GNSMessageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSMessageManager.h; path = Sources/GNSMessageManager.h; sourceTree = "<group>"; };
 		B2E17EB0AF1C150C947FA5F493ADD4AA /* Pods-CineasteTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CineasteTests-frameworks.sh"; sourceTree = "<group>"; };
+		BF0BB81477667CE43F703AC537578A87 /* GNSMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSMessage.h; path = Sources/GNSMessage.h; sourceTree = "<group>"; };
+		BF1398CB15571BF5EDCB7563DFC02A6D /* GNSMessages.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSMessages.h; path = Sources/GNSMessages.h; sourceTree = "<group>"; };
+		C7A160DE4C709DC323487A36A4BB2751 /* GNSSharedResources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GNSSharedResources.bundle; path = Resources/resources/GNSSharedResources.bundle; sourceTree = "<group>"; };
 		C98EB7FC6976DCBA75B9747CB90C5792 /* Pods-Cineaste-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Cineaste-dummy.m"; sourceTree = "<group>"; };
 		CBD05F62BDB3A137B8F798E8BF7AA377 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
+		CD40CE11C9F8F43D96BA2213F5D61E33 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		CFB4C9F3E401DCDEF4EB8B8C5B5D1105 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		DAD2E2EF59F637AD319DAC345033CD9E /* GNSStrategy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSStrategy.h; path = Sources/GNSStrategy.h; sourceTree = "<group>"; };
 		DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CineasteTests.a"; path = "libPods-CineasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55D1BEA914FFDA2E8DBB41762FE20F5 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		EC06C45B115F39ABADEDFA00CBAC2D98 /* GNSPublicationParams.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSPublicationParams.h; path = Sources/GNSPublicationParams.h; sourceTree = "<group>"; };
 		F0C5BDBFCF1A0780C6AA1E1E1D0E7382 /* libPods-Cineaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Cineaste.a"; path = "libPods-Cineaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E65C03CC47CCE2879E08C3CD45BD3C /* Pods-CineasteTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CineasteTests-dummy.m"; sourceTree = "<group>"; };
+		F2616A4B7B0A1D36E0FE96ACF4E98151 /* GNSError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSError.h; path = Sources/GNSError.h; sourceTree = "<group>"; };
+		FE9DF2041CB012619768C61954C8018C /* GNSBeaconStrategy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GNSBeaconStrategy.h; path = Sources/GNSBeaconStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0F850A51CB0CDBD9A11B8E9F785F1B93 /* Frameworks */ = {
+		0D313ABFD7D3F04DC59448AEBB677F2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				798F46B439BD9910B955ED14D1BBB9CD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1521D134A56C0A78492E0F630BC63527 /* Frameworks */ = {
+		8B7D2F4B81DCB3F7A483FC5A0F6E155A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE1F6EBF40F6303755D5F1D30F381641 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000DA95A562FA889FFDB8EA98EA54FE7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F2C2F1A5453DC91E97AA67E7EA68489 /* GoogleInterchangeUtilities */,
+				FE334034258C1797E457E334A0647AD7 /* GoogleNetworkingUtilities */,
+				3B28AB23B72E3E7BBE5062E76086C104 /* GoogleSymbolUtilities */,
+				AC17416ABFE233DB3CC4FBAADC911B11 /* GoogleUtilities */,
+				0712638DBA5705F5C32DD01BC779625B /* NearbyMessages */,
+				0CC1A9297AFC6D11491E421B6E7CB9BB /* SwiftLint */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		022A897E0B5F88334113F1C0CEDEED0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				431A91EFCB8038170D7645FAD86E40CB /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0712638DBA5705F5C32DD01BC779625B /* NearbyMessages */ = {
+			isa = PBXGroup;
+			children = (
+				FE9DF2041CB012619768C61954C8018C /* GNSBeaconStrategy.h */,
+				F2616A4B7B0A1D36E0FE96ACF4E98151 /* GNSError.h */,
+				BF0BB81477667CE43F703AC537578A87 /* GNSMessage.h */,
+				AB0DF74222B2B21DA505C0D889CEC2A6 /* GNSMessageManager.h */,
+				BF1398CB15571BF5EDCB7563DFC02A6D /* GNSMessages.h */,
+				08A0530A3FE7CA8CF0FE247D51AE75DA /* GNSOperationStatus.h */,
+				A38A0232F35FA8C5FAE5157221334FE6 /* GNSPermission.h */,
+				EC06C45B115F39ABADEDFA00CBAC2D98 /* GNSPublicationParams.h */,
+				DAD2E2EF59F637AD319DAC345033CD9E /* GNSStrategy.h */,
+				61C416FE4F87AE1CC6AC02A15FF3FE8A /* GNSSubscriptionParams.h */,
+				79708835E3BF365BB57A157B787C4BD1 /* Frameworks */,
+				C7D7A6BA0275F5C132E088E72495E209 /* Resources */,
+			);
+			name = NearbyMessages;
+			path = NearbyMessages;
+			sourceTree = "<group>";
+		};
+		0CC1A9297AFC6D11491E421B6E7CB9BB /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
 		0ED373203212474A8EC12A6354E71F02 /* Pods-CineasteTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,20 +141,52 @@
 			path = "Target Support Files/Pods-CineasteTests";
 			sourceTree = "<group>";
 		};
-		32A23E08346748F1793F899C5FF672C1 /* SwiftLint */ = {
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = SwiftLint;
-			path = SwiftLint;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B28AB23B72E3E7BBE5062E76086C104 /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				9A7766C3E38B12865D938FC6EF22B7F2 /* Frameworks */,
+			);
+			name = GoogleSymbolUtilities;
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		49224E4A00D75D7A598B77897A806D11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95E42640EFA41DBB6A8641193BB4E6DE /* GoogleInterchangeUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72ACA827F7B0A28E7C05747288DED507 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFB4C9F3E401DCDEF4EB8B8C5B5D1105 /* GoogleNetworkingUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79708835E3BF365BB57A157B787C4BD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				943F0099D4127AC3C1F2A24674FE6F69 /* libGNSMessages.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
+				000DA95A562FA889FFDB8EA98EA54FE7 /* Pods */,
 				A8CA68E7CCEA87B738DB15527E56F843 /* Products */,
 				973611F2E22B8881A38686C6F2583186 /* Targets Support Files */,
 			);
@@ -107,12 +201,21 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */ = {
+		9A7766C3E38B12865D938FC6EF22B7F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32A23E08346748F1793F899C5FF672C1 /* SwiftLint */,
+				CD40CE11C9F8F43D96BA2213F5D61E33 /* GoogleSymbolUtilities.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F2C2F1A5453DC91E97AA67E7EA68489 /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				49224E4A00D75D7A598B77897A806D11 /* Frameworks */,
+			);
+			name = GoogleInterchangeUtilities;
+			path = GoogleInterchangeUtilities;
 			sourceTree = "<group>";
 		};
 		A8CA68E7CCEA87B738DB15527E56F843 /* Products */ = {
@@ -124,20 +227,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		AC17416ABFE233DB3CC4FBAADC911B11 /* GoogleUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+				022A897E0B5F88334113F1C0CEDEED0A /* Frameworks */,
 			);
-			name = Frameworks;
+			name = GoogleUtilities;
+			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+		C7D7A6BA0275F5C132E088E72495E209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+				C7A160DE4C709DC323487A36A4BB2751 /* GNSSharedResources.bundle */,
+				947D1D387612B2D1DCA1711BECA731BB /* ic_expand_more.xcassets */,
+				7D84B32779F914EBB7173D662229D39B /* ic_nearby_48pt.xcassets */,
 			);
-			name = iOS;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		FA1F2F28CC50E9EC6B3C0A315C1156FE /* Pods-Cineaste */ = {
@@ -155,32 +261,24 @@
 			path = "Target Support Files/Pods-Cineaste";
 			sourceTree = "<group>";
 		};
+		FE334034258C1797E457E334A0647AD7 /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				72ACA827F7B0A28E7C05747288DED507 /* Frameworks */,
+			);
+			name = GoogleNetworkingUtilities;
+			path = GoogleNetworkingUtilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D7409E84B961FFA5407B7C45A5A838B0 /* Pods-CineasteTests */ = {
+		96C021576841E3715579B636CD993F97 /* Pods-Cineaste */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F49C96183FC83EB6E3A9B748C699FA95 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */;
+			buildConfigurationList = A1A16F48B214313F71B97E6B66869E30 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */;
 			buildPhases = (
-				4F6B5BA9DED53F57E326D36F5CD73BAA /* Sources */,
-				1521D134A56C0A78492E0F630BC63527 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0C00DA4B6CB6EBC37F2A2CF7A7DD5C0B /* PBXTargetDependency */,
-			);
-			name = "Pods-CineasteTests";
-			productName = "Pods-CineasteTests";
-			productReference = DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 24407C8F7EDCF5E044123C8E24CC9854 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */;
-			buildPhases = (
-				AF526C997BDBDC843FE49C3ADA0B755C /* Sources */,
-				0F850A51CB0CDBD9A11B8E9F785F1B93 /* Frameworks */,
+				2F4E76475CD1B85C1D7ACA72F64974E4 /* Sources */,
+				0D313ABFD7D3F04DC59448AEBB677F2E /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +287,23 @@
 			name = "Pods-Cineaste";
 			productName = "Pods-Cineaste";
 			productReference = F0C5BDBFCF1A0780C6AA1E1E1D0E7382 /* libPods-Cineaste.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF93E220C79A327205CFF5418D5014CA /* Pods-CineasteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 648DCFAF0FEC45DD5CC60F8DD7344F06 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */;
+			buildPhases = (
+				411723310BF33F7C6E20BBFD67BF75D1 /* Sources */,
+				8B7D2F4B81DCB3F7A483FC5A0F6E155A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F64235D3783770B144FAB7BF0B7B154C /* PBXTargetDependency */,
+			);
+			name = "Pods-CineasteTests";
+			productName = "Pods-CineasteTests";
+			productReference = DE464FA74163485ED329D27888C5ACDB /* libPods-CineasteTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -212,37 +327,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */,
-				D7409E84B961FFA5407B7C45A5A838B0 /* Pods-CineasteTests */,
+				96C021576841E3715579B636CD993F97 /* Pods-Cineaste */,
+				AF93E220C79A327205CFF5418D5014CA /* Pods-CineasteTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4F6B5BA9DED53F57E326D36F5CD73BAA /* Sources */ = {
+		2F4E76475CD1B85C1D7ACA72F64974E4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241B55B75A1A2D225766AF9B89D3CF4E /* Pods-CineasteTests-dummy.m in Sources */,
+				8C2215493B52DCB9FD1D9FC951FFDAEA /* Pods-Cineaste-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF526C997BDBDC843FE49C3ADA0B755C /* Sources */ = {
+		411723310BF33F7C6E20BBFD67BF75D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E5BD8AC28F67449E8FB0A6FA0E0260D /* Pods-Cineaste-dummy.m in Sources */,
+				FE3AE1CF227399E30BED876A667EBC11 /* Pods-CineasteTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0C00DA4B6CB6EBC37F2A2CF7A7DD5C0B /* PBXTargetDependency */ = {
+		F64235D3783770B144FAB7BF0B7B154C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Cineaste";
-			target = E53C0BBD528F675D229DF00241983A9A /* Pods-Cineaste */;
-			targetProxy = 0AA9F2A7882DFF5573F8CE8EF9C14968 /* PBXContainerItemProxy */;
+			target = 96C021576841E3715579B636CD993F97 /* Pods-Cineaste */;
+			targetProxy = 298F0DCB15634FCB3A213BBFBF292E8E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -310,6 +425,29 @@
 			};
 			name = Debug;
 		};
+		563818A1C1829A0F1573FA52B5F5CA2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		58CE816B060A41D32CEC095441D0E3E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -368,52 +506,7 @@
 			};
 			name = Release;
 		};
-		6BBDCB6B0F81146D1DCE830A20076319 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		B0F981E8C2C5B06E5D1F62FA37C7C6FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22F8EB4D4CE9234FE9CCC27AF5C770EF /* Pods-Cineaste.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D5333DAF35023A0DA8308EDAC17A6E58 /* Release */ = {
+		DD9BF2C4372121A6B17D7A0EDA1482A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E55D1BEA914FFDA2E8DBB41762FE20F5 /* Pods-CineasteTests.release.xcconfig */;
 			buildSettings = {
@@ -436,9 +529,31 @@
 			};
 			name = Release;
 		};
-		E1697CB861DD2764BC8236FA64817EB5 /* Debug */ = {
+		E181EF94C8838EBD9853AC6763830356 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CBD05F62BDB3A137B8F798E8BF7AA377 /* Pods-Cineaste.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FC67171F14796F031F8C0E392D40A31C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BDAFD62611D65B88FD0645B03695C0B /* Pods-CineasteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -461,15 +576,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		24407C8F7EDCF5E044123C8E24CC9854 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1697CB861DD2764BC8236FA64817EB5 /* Debug */,
-				B0F981E8C2C5B06E5D1F62FA37C7C6FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -479,11 +585,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F49C96183FC83EB6E3A9B748C699FA95 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */ = {
+		648DCFAF0FEC45DD5CC60F8DD7344F06 /* Build configuration list for PBXNativeTarget "Pods-CineasteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BBDCB6B0F81146D1DCE830A20076319 /* Debug */,
-				D5333DAF35023A0DA8308EDAC17A6E58 /* Release */,
+				FC67171F14796F031F8C0E392D40A31C /* Debug */,
+				DD9BF2C4372121A6B17D7A0EDA1482A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1A16F48B214313F71B97E6B66869E30 /* Build configuration list for PBXNativeTarget "Pods-Cineaste" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E181EF94C8838EBD9853AC6763830356 /* Debug */,
+				563818A1C1829A0F1573FA52B5F5CA2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
