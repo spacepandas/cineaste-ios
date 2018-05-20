@@ -30,13 +30,7 @@ To enforce swift style and convention and to constantly check our code style, we
 
 ## Open tasks
 
-The iOS application is still in development. Some of the missing features are:
-- [#14](https://github.com/ChristianNorbertBraun/Cineaste/issues/14): functionality to start a movie night with [Nearby][nearbyLink] from Google ([get started - iOS documentation](https://developers.google.com/nearby/messages/ios/get-started))
-- [#18](https://github.com/ChristianNorbertBraun/Cineaste/issues/18): improved design for wantToSee and seen views
-- [#15](https://github.com/ChristianNorbertBraun/Cineaste/issues/15): import and export options
-- [#23](https://github.com/ChristianNorbertBraun/Cineaste/issues/23): normal and dark mode (two design-themes)
-
-You can have a look at the other open [issues](https://github.com/ChristianNorbertBraun/Cineaste/issues).
+You can have a look at open [issues](https://github.com/ChristianNorbertBraun/Cineaste/issues).
 
 ## License
 
