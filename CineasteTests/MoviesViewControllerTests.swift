@@ -106,6 +106,19 @@ class MoviesViewControllerTests: XCTestCase {
         XCTAssertNil(invalidCell)
     }
 
+    func testDequeueReusableCellWithSeenMovieCellIdentifierShouldReturnTableViewCell() {
+        // important:
+        // use dequeueReusableCell:withIdentifier for this test, this method
+        // returns nil, when the tableView can not dequeue a reusable cell,
+        // with dequeueReusableCell:withIdentifier:indexPath it would simply
+        // crash at this point
+        let cell = tableView.dequeueReusableCell(withIdentifier: SeenMovieCell.identifier)
+        XCTAssertNotNil(cell)
+
+        let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")
+        XCTAssertNil(invalidCell)
+    }
+
     private let storedMovie: StoredMovie = {
         let managedObjectContext = setUpInMemoryManagedObjectContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: managedObjectContext) as! StoredMovie
