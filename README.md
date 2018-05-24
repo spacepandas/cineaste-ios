@@ -23,6 +23,7 @@ To enforce swift style and convention and to constantly check our code style, we
 
 ## How to build
 
+0. Run `pod install` in cineaste-ios folder to install all used cocoa pods. 
 1. Open `Cineaste.xcworkspace` in Xcode.
 2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add it to the `apikey.plist`.
 3. To run the app on one of your devices, you have to navigate to the project settings under targets to the general tab and choose a team to one you are member of. Change the bundle identifier to an identifier linked to your Apple developer account in order to run.
