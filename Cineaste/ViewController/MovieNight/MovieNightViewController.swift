@@ -79,15 +79,12 @@ class MovieNightViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
-
-        switch identifier {
-        case .showMovieMatches:
+        switch Segue(initWith: segue) {
+        case .showMovieMatches?:
             guard let nearbyMessages = sender as? [NearbyMessage] else {
                 return
             }
+
             let vc = segue.destination as? MovieMatchViewController
             vc?.configure(with: nearbyMessages)
             vc?.storageManager = storageManager
