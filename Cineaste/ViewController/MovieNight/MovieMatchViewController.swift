@@ -19,6 +19,8 @@ class MovieMatchViewController: UIViewController {
             matchedMoviesTableView.dataSource = self
             matchedMoviesTableView.allowsSelection = false
             matchedMoviesTableView.backgroundColor = UIColor.basicBackground
+
+            matchedMoviesTableView.tableFooterView = UIView(frame: CGRect.zero)
         }
     }
 
