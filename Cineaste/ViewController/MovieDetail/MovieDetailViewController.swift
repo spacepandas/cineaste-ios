@@ -84,6 +84,11 @@ class MovieDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(shareMovie))
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self,
+                                                       action: #selector(showPoster))
+        posterImageView.isUserInteractionEnabled = true
+        posterImageView.addGestureRecognizer(gestureRecognizer)
     }
 
     // MARK: - Actions
@@ -98,6 +103,26 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
         deleteMovie()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch Segue(initWith: segue) {
+        case .showPosterFromMovieDetail?:
+            let posterVC = segue.destination as? PosterViewController
+            if let storedMovie = storedMovie,
+                let poster = storedMovie.poster {
+                posterVC?.image = UIImage(data: poster)
+            } else if let movie = movie {
+                posterVC?.image = movie.poster
+            }
+        default:
+            break
+        }
+    }
+
+    @objc
+    func showPoster() {
+        perform(segue: .showPosterFromMovieDetail, sender: nil)
     }
 
     @objc

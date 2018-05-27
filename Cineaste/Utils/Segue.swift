@@ -14,6 +14,7 @@ enum Segue: String {
     case showTextViewFromSettings = "showTextViewFromSettingsSegue"
     case showMovieNight = "ShowMovieNightSegue"
     case showMovieMatches = "ShowMovieMatchesSegue"
+    case showPosterFromMovieDetail = "showPosterFromMovieDetail"
 
     init?(initWith segue: UIStoryboardSegue) {
         guard let identifier = segue.identifier else {

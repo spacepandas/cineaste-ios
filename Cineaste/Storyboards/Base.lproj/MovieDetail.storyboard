@@ -221,11 +221,69 @@
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
                         <outletCollection property="descriptionLabels" destination="BDx-pl-gqc" collectionClass="NSMutableArray" id="aJG-ve-0PW"/>
                         <outletCollection property="descriptionLabels" destination="OTM-90-udk" collectionClass="NSMutableArray" id="qw0-gW-UWp"/>
+                        <segue destination="zXD-4l-9EK" kind="presentation" identifier="showPosterFromMovieDetail" id="YDm-H6-cJS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBb-XY-tXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5932" y="5.8470764617691158"/>
+        </scene>
+        <!--Poster View Controller-->
+        <scene sceneID="Fct-9U-0RG">
+            <objects>
+                <viewController storyboardIdentifier="PosterViewController" id="zXD-4l-9EK" customClass="PosterViewController" customModule="Cineaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5JE-mA-0ly">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyM-f2-szt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lJQ-tj-KWh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lJQ-tj-KWh" firstAttribute="leading" secondItem="OyM-f2-szt" secondAttribute="leading" id="0Rw-tD-Y9l"/>
+                                    <constraint firstAttribute="bottom" secondItem="lJQ-tj-KWh" secondAttribute="bottom" id="2GC-bt-hHt"/>
+                                    <constraint firstItem="lJQ-tj-KWh" firstAttribute="top" secondItem="OyM-f2-szt" secondAttribute="top" id="IhP-hR-osP"/>
+                                    <constraint firstAttribute="trailing" secondItem="lJQ-tj-KWh" secondAttribute="trailing" id="SMS-ys-ll4"/>
+                                    <constraint firstItem="lJQ-tj-KWh" firstAttribute="height" secondItem="OyM-f2-szt" secondAttribute="height" id="Yhk-bf-PGR"/>
+                                    <constraint firstItem="lJQ-tj-KWh" firstAttribute="width" secondItem="OyM-f2-szt" secondAttribute="width" id="iCZ-9N-Toq"/>
+                                </constraints>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5G9-DX-0eN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="flexibleSpace" id="ZSA-NK-1hL"/>
+                                    <barButtonItem systemItem="done" id="Thx-QM-97n">
+                                        <connections>
+                                            <action selector="doneButtonTouched:" destination="zXD-4l-9EK" id="fwB-Cj-tcC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="OyM-f2-szt" secondAttribute="top" id="39w-NR-i8K"/>
+                            <constraint firstItem="OyM-f2-szt" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="4AR-fT-S83"/>
+                            <constraint firstItem="EgO-iW-GC4" firstAttribute="trailing" secondItem="5G9-DX-0eN" secondAttribute="trailing" id="9d6-NS-mcR"/>
+                            <constraint firstItem="5G9-DX-0eN" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="Eph-RH-lFg"/>
+                            <constraint firstAttribute="bottom" secondItem="OyM-f2-szt" secondAttribute="bottom" id="P9W-4u-4kp"/>
+                            <constraint firstItem="5G9-DX-0eN" firstAttribute="top" secondItem="EgO-iW-GC4" secondAttribute="top" id="Ryu-zd-atN"/>
+                            <constraint firstItem="EgO-iW-GC4" firstAttribute="trailing" secondItem="OyM-f2-szt" secondAttribute="trailing" id="p4x-87-mIl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EgO-iW-GC4"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="lJQ-tj-KWh" id="vF1-4o-aqx"/>
+                        <outlet property="scrollView" destination="OyM-f2-szt" id="E0Y-GQ-w8f"/>
+                        <outlet property="toolbar" destination="5G9-DX-0eN" id="h8x-qO-EOF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3P0-WZ-8W1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6773.6000000000004" y="4.9475262368815596"/>
         </scene>
     </scenes>
     <resources>
