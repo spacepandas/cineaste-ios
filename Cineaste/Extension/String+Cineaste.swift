@@ -54,21 +54,11 @@ extension String {
     //swiftlint:enable line_length
 
     // MARK: SHORTCUT
-    static let oneMovieShortCut = NSLocalizedString("Film", comment: "Movie")
-    static let movieCounterShortCut = NSLocalizedString("Filme", comment: "Movies")
-
-    // MARK: MOVIENIGHT
-    static func nearbyMovies(for counter: Int) -> String {
-        switch counter {
-        case 0:
-            return NSLocalizedString("Keine Filme", comment: "No nearby movies")
-        case 1:
-            return NSLocalizedString("Einen Film", comment: "One nearby movies")
-        default:
-            return NSLocalizedString("\(counter) Filme", comment: "More nearby movies")
-        }
+    static func movies(for counter: Int) -> String {
+        return String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
     }
 
+    // MARK: MOVIENIGHT
     static func matches(for number: Int, amountOfPeople: Int) -> String {
         return NSLocalizedString("\(number) von \(amountOfPeople)", comment: "Number of matches description")
     }

@@ -180,27 +180,15 @@ class MoviesViewController: UIViewController {
         let existingItem = shortcuts[index]
 
         //only update if value changed
-        if existingItem.localizedSubtitle != shortcutSubtitle(for: movies.count) {
+        let newShortcutSubtitle = movies.isEmpty ? nil : String.movies(for: movies.count)
+        if existingItem.localizedSubtitle != newShortcutSubtitle {
             //swiftlint:disable:next force_cast
             let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
-            mutableShortcutItem.localizedSubtitle = shortcutSubtitle(for: movies.count)
+            mutableShortcutItem.localizedSubtitle = newShortcutSubtitle
 
             shortcuts[index] = mutableShortcutItem
 
             UIApplication.shared.shortcutItems = shortcuts
-        }
-    }
-
-    private func shortcutSubtitle(for numberOfMovies: Int) -> String? {
-        switch numberOfMovies {
-        case 0:
-            return nil
-        case 1:
-            return "1 " + String.oneMovieShortCut
-        case 2...:
-            return "\(numberOfMovies) " + String.movieCounterShortCut
-        default:
-            return nil
         }
     }
 }
