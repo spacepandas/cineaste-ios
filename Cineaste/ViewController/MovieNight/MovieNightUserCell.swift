@@ -14,7 +14,7 @@ class MovieNightUserCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: TitleLabel!
     @IBOutlet weak var numberOfMoviesLabel: DescriptionLabel!
 
-    func configure(width nearbyMessage: NearbyMessage) {
+    func configure(with nearbyMessage: NearbyMessage) {
         usernameLabel.text = nearbyMessage.userName
         numberOfMoviesLabel.text = String.movies(for: nearbyMessage.movies.count)
     }

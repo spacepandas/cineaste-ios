@@ -158,9 +158,7 @@ extension MovieNightViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
-
-        cell.configure(width: nearbyMessages[indexPath.row])
-
+        cell.configure(with: nearbyMessages[indexPath.row])
         return cell
     }
 }
