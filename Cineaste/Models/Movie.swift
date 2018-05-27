@@ -63,7 +63,7 @@ class Movie: Codable {
 
 extension Movie {
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
-    fileprivate static let locale = Locale.current.identifier
+    fileprivate static let locale = Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
 
     static func search(withQuery query: String) -> Resource<[Movie]>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
@@ -84,7 +84,7 @@ extension Movie {
         "\(Config.Backend.url)/discover/movie?" +
         "primary_release_date.gte=\(oneMonthInPast.formattedForRequest)&" +
             "primary_release_date.lte=\(oneMonthInFuture.formattedForRequest)&" +
-            "language=\(Movie.locale)&" +
+            "language=\(locale)&" +
             "api_key=\(apiKey)"
 
         return Resource(url: urlAsString, method: .get) { data in
@@ -99,7 +99,7 @@ extension Movie {
     }
 
     static func loadPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(Movie.apiKey)"
+        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(apiKey)"
         return Resource(url: urlAsString, method: .get) { data in
             return UIImage(data: data)
         }
