@@ -30,17 +30,17 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
-            self.seenButton.setTitle(Strings.seenButton, for: .normal)
+            self.seenButton.setTitle(String.seenButton, for: .normal)
         }
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            self.mustSeeButton.setTitle(Strings.wantToSeeButton, for: .normal)
+            self.mustSeeButton.setTitle(String.wantToSeeButton, for: .normal)
         }
     }
     @IBOutlet var deleteButton: ActionButton! {
         didSet {
-            self.deleteButton.setTitle(Strings.deleteButton, for: .normal)
+            self.deleteButton.setTitle(String.deleteButton, for: .normal)
         }
     }
 
@@ -245,15 +245,15 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: Strings.wantToSeeButton, style: .default) { _, _ -> Void in
+        let wantToSeeAction = UIPreviewAction(title: String.wantToSeeButton, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: Strings.seenButton, style: .default) { _, _ -> Void in
+        let seenAction = UIPreviewAction(title: String.seenButton, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: true)
         }
 
-        let deleteAction = UIPreviewAction(title: Strings.deleteButton, style: .destructive) { _, _ -> Void in
+        let deleteAction = UIPreviewAction(title: String.deleteButton, style: .destructive) { _, _ -> Void in
             self.deleteMovie()
         }
 

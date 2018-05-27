@@ -16,18 +16,18 @@ enum MovieListCategory: String {
     var title: String {
         switch self {
         case .wantToSee:
-            return Strings.wantToSeeList
+            return String.wantToSeeList
         case .seen:
-            return Strings.seenList
+            return String.seenList
         }
     }
 
     var image: UIImage {
         switch self {
         case .wantToSee:
-            return Images.wantToSeeIcon
+            return UIImage.wantToSeeIcon
         case .seen:
-            return Images.seenIcon
+            return UIImage.seenIcon
         }
     }
 

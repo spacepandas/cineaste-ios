@@ -36,7 +36,7 @@ class SeenMovieCellTests: XCTestCase {
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
-        XCTAssertEqual(cell.poster.image, Images.posterPlaceholder)
+        XCTAssertEqual(cell.poster.image, UIImage.posterPlaceholder)
         XCTAssertEqual(cell.title.text, storedMovie.title)
         XCTAssertEqual(cell.watched.text, storedMovie.formattedWatchedDate)
     }

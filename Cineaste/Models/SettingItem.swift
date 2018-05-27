@@ -17,13 +17,13 @@ enum SettingItem {
     var title: String {
         switch self {
         case .exportMovies:
-            return Strings.exportTitle
+            return String.exportTitle
         case .importMovies:
-            return Strings.importTitle
+            return String.importTitle
         case .licence:
-            return Strings.licenceTitle
+            return String.licenceTitle
         case .about:
-            return Strings.aboutAppTitle
+            return String.aboutAppTitle
         }
     }
 

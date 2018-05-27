@@ -29,7 +29,7 @@ class SeenMovieCell: UITableViewCell {
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {
-            poster.image = Images.posterPlaceholder
+            poster.image = UIImage.posterPlaceholder
         }
 
         title.text = movie.title

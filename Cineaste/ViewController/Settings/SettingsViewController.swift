@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.settingsTitle
+        title = String.settingsTitle
 
         view.backgroundColor = UIColor.basicBackground
 
@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController {
             let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
             let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return "" }
-        return "\(Strings.versionText): \(version) (\(build))"
+        return "\(String.versionText): \(version) (\(build))"
     }
 
     // MARK: - Navigation
@@ -131,7 +131,7 @@ class SettingsViewController: UIViewController {
     }
 
     private func showUIToImportMovies() {
-        let documentPickerVC = UIDocumentPickerViewController(documentTypes: [Strings.exportMoviesFileUTI],
+        let documentPickerVC = UIDocumentPickerViewController(documentTypes: [String.exportMoviesFileUTI],
                                                               in: .import)
         documentPickerVC.delegate = self
 
@@ -145,7 +145,7 @@ class SettingsViewController: UIViewController {
 
     private func showUIToExportMovies(with path: URL, on rect: CGRect) {
         docController = UIDocumentInteractionController(url: path)
-        docController?.uti = Strings.exportMoviesFileUTI
+        docController?.uti = String.exportMoviesFileUTI
 
         docController?.presentOptionsMenu(from: rect,
                                           in: self.view,

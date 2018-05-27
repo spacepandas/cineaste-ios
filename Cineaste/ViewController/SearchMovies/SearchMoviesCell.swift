@@ -36,13 +36,13 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBOutlet weak var seenButton: ActionButton! {
         didSet {
-            self.seenButton.setTitle(Strings.seenButton, for: .normal)
+            self.seenButton.setTitle(String.seenButton, for: .normal)
         }
     }
 
     @IBOutlet weak var mustSeeButton: ActionButton! {
         didSet {
-            self.mustSeeButton.setTitle(Strings.wantToSeeButton, for: .normal)
+            self.mustSeeButton.setTitle(String.wantToSeeButton, for: .normal)
         }
     }
 
@@ -64,7 +64,7 @@ class SearchMoviesCell: UITableViewCell {
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
-                let posterToDisplay = poster ?? Images.posterPlaceholder
+                let posterToDisplay = poster ?? UIImage.posterPlaceholder
 
                 movie.poster = posterToDisplay
                 self.poster.image = posterToDisplay

@@ -160,10 +160,10 @@ extension StoredMovie {
 extension StoredMovie {
     var formattedVoteAverage: String {
         if self.voteCount == 0 {
-            return Strings.unknownVoteAverage
+            return String.unknownVoteAverage
         } else {
             return (self.voteAverage as Decimal?)?.formattedWithOneFractionDigit
-                ?? Strings.unknownVoteAverage
+                ?? String.unknownVoteAverage
         }
     }
 
@@ -171,16 +171,16 @@ extension StoredMovie {
         if let release = releaseDate {
             return release.formatted
         } else {
-            return Strings.unknownReleaseDate
+            return String.unknownReleaseDate
         }
     }
 
     var formattedRuntime: String {
-        return "\(runtime.formatted ?? Strings.unknownRuntime) min"
+        return "\(runtime.formatted ?? String.unknownRuntime) min"
     }
 
     var formattedWatchedDate: String? {
         guard let watchedDate = watchedDate else { return nil }
-        return "\(Strings.onDate) \(watchedDate.formattedWithTime)"
+        return "\(String.onDate) \(watchedDate.formattedWithTime)"
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Strings {
+extension String {
     // MARK: ACTION BUTTONS
     static let wantToSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")

@@ -36,7 +36,7 @@ class MovieMatchCell: UITableViewCell {
                    delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
-        seenButton.setTitle(Strings.startMovieNight, for: .normal)
+        seenButton.setTitle(String.startMovieNight, for: .normal)
         nearbyMovie = movieWithOccurance
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
         seenButton.addTarget(self, action: #selector(startMovienightButtonTouched(_:)), for: .touchUpInside)
@@ -44,11 +44,11 @@ class MovieMatchCell: UITableViewCell {
         loadPoster(for: movieWithOccurance.nearbyMovie) { poster in
             DispatchQueue.main.async {
                 self.posterToDisplay = poster
-                self.posterImageView.image = self.posterToDisplay ?? Images.posterPlaceholder
+                self.posterImageView.image = self.posterToDisplay ?? UIImage.posterPlaceholder
             }
         }
 
-        numberOfMatchesLabel.text = Strings.matches(for: movieWithOccurance.occurances,
+        numberOfMatchesLabel.text = String.matches(for: movieWithOccurance.occurances,
                                                     amountOfPeople: amountOfPeople)
     }
 

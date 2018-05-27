@@ -37,7 +37,7 @@ class MovieNightViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.movieNightTitle
+        title = String.movieNightTitle
         view.backgroundColor = UIColor.basicBackground
 
         usersTableView.isHidden = true

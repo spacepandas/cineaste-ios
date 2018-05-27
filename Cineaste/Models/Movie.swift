@@ -122,10 +122,10 @@ extension Movie {
 extension Movie {
     var formattedVoteAverage: String {
         if self.voteCount == 0 {
-            return Strings.unknownVoteAverage
+            return String.unknownVoteAverage
         } else {
             return self.voteAverage.formattedWithOneFractionDigit
-                ?? Strings.unknownVoteAverage
+                ?? String.unknownVoteAverage
         }
     }
 
@@ -133,11 +133,11 @@ extension Movie {
         if let release = releaseDate {
             return release.formatted
         } else {
-            return Strings.unknownReleaseDate
+            return String.unknownReleaseDate
         }
     }
 
     var formattedRuntime: String {
-        return "\(runtime.formatted ?? Strings.unknownRuntime) min"
+        return "\(runtime.formatted ?? String.unknownRuntime) min"
     }
 }

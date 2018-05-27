@@ -6,10 +6,9 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-struct Images {
+extension UIImage {
     static let posterPlaceholder = #imageLiteral(resourceName: "placeholder_poster")
     static let wantToSeeIcon = #imageLiteral(resourceName: "add_to_watchlist")
     static let seenIcon = #imageLiteral(resourceName: "add_to_watchedlist")

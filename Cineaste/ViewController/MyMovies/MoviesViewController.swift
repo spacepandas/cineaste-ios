@@ -13,7 +13,7 @@ class MoviesViewController: UIViewController {
     var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
-            emptyListLabel.text = Strings.title(for: category)
+            emptyListLabel.text = String.title(for: category)
 
             //only update if category changed
             guard oldValue != category else { return }
@@ -160,14 +160,14 @@ class MoviesViewController: UIViewController {
         if shortcuts.isEmpty {
             let wantToSeeIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
             let wantToSeeShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
-                                                          localizedTitle: Strings.wantToSeeList,
+                                                          localizedTitle: String.wantToSeeList,
                                                           localizedSubtitle: nil,
                                                           icon: wantToSeeIcon,
                                                           userInfo: nil)
 
             let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
             let seenShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
-                                                     localizedTitle: Strings.seenList,
+                                                     localizedTitle: String.seenList,
                                                      localizedSubtitle: nil,
                                                      icon: seenIcon,
                                                      userInfo: nil)
@@ -196,9 +196,9 @@ class MoviesViewController: UIViewController {
         case 0:
             return nil
         case 1:
-            return "1 " + Strings.oneMovieShortCut
+            return "1 " + String.oneMovieShortCut
         case 2...:
-            return "\(numberOfMovies) " + Strings.movieCounterShortCut
+            return "\(numberOfMovies) " + String.movieCounterShortCut
         default:
             return nil
         }

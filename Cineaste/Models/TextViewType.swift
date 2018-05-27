@@ -16,7 +16,7 @@ enum TextViewType {
         switch self {
         case .imprint:
             return [ContentBlock(title: nil,
-                                 paragraph: Strings.imprintContent)]
+                                 paragraph: String.imprintContent)]
         case .licence:
             guard let url = Bundle.main.url(forResource: "Acknowledgements",
                                             withExtension: "plist",

@@ -16,6 +16,6 @@ class MovieNightUserCell: UITableViewCell {
 
     func configure(width nearbyMessage: NearbyMessage) {
         usernameLabel.text = nearbyMessage.userName
-        numberOfMoviesLabel.text = Strings.nearbyMovies(for: nearbyMessage.movies.count)
+        numberOfMoviesLabel.text = String.nearbyMovies(for: nearbyMessage.movies.count)
     }
 }
