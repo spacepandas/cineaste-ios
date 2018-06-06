@@ -47,11 +47,36 @@ extension String {
     static let deleteActionTitle = NSLocalizedString("Löschen", comment: "Title for delete swipe action")
 
     // MARK: CONTENT
-    //swiftlint:disable line_length
-    static let imprintContent = """
-    Cineaste ist ein Open Source Projekt und startete bereits 2016 mit einer Android App.\n\niOS App - GitHub: github.com/ChristianNorbertBraun/Cineaste\nAndroid App - GitHub: github.com/marcelgross90/Cineaste\n\nDas Kernfeature der App liegt darin, möglichst leicht Filme für einen gemeinsamen Filmeabend zu finden. Über den "Matching"-Button sucht dein Handy nach Freunden in deiner Umgebung und findet Filme, die ihr alle sehen wollt.\n\nDie Daten werden dabei über Bluetooth übertragen. Das heißt, dass deine Filmlisten zu jedem Zeitpunkt sicher auf deinem Gerät sind und dort auch bleiben. Daten werden also nur innerhalb deines Wohnzimmers ausgetauscht.\n\nCineaste befindet sich noch im Anfangsstadium und könnte manchmal nicht richtig funktionieren. Natürlich geben wir unser Bestes um das Erlebnis so gut wie möglich zu machen, dabei sind wir aber auf dein Feedback angewiesen. Schreib doch einfach ein Kommentar im App Store oder entwickle gemeinsam mit uns Cineaste weiter! Für die Filme zapfen wir übrigens TheMovieDb (www.themoviedb.org) an.\n\nBesonderer Dank geht an Philipp Wolf für das Design!
+    static let imprintContent = NSLocalizedString(
     """
-    //swiftlint:enable line_length
+    Cineaste ist ein Open Source Projekt und startete bereits 2016 mit einer \
+    Android App.
+
+    iOS App - GitHub: github.com/ChristianNorbertBraun/Cineaste
+    Android App - GitHub: github.com/marcelgross90/Cineaste
+
+    Das Kernfeature der App liegt darin, möglichst leicht Filme für einen \
+    gemeinsamen Filmeabend zu finden. Über den "Matching"-Button sucht dein \
+    Handy nach Freunden in deiner Umgebung und findet Filme, die ihr alle \
+    sehen wollt.
+
+    Die Daten werden dabei über Bluetooth übertragen. Das heißt, dass deine \
+    Filmlisten zu jedem Zeitpunkt sicher auf deinem Gerät sind und dort auch \
+    bleiben. Daten werden also nur innerhalb deines Wohnzimmers ausgetauscht.
+
+    Cineaste befindet sich noch im Anfangsstadium und könnte manchmal nicht \
+    richtig funktionieren. Natürlich geben wir unser Bestes um das Erlebnis so \
+    gut wie möglich zu machen, dabei sind wir aber auf dein Feedback \
+    angewiesen. Schreib doch einfach ein Kommentar im App Store oder entwickle \
+    gemeinsam mit uns Cineaste weiter! Für die Filme zapfen wir übrigens \
+    TheMovieDb (www.themoviedb.org) an.
+
+    Besonderer Dank geht an Philipp Wolf für das Design!
+    """,
+    comment: "Imprint content")
+
+    static let movieDBTitle = NSLocalizedString("The Movie DB", comment: "Title for movieDB")
+    static let movieDBDescription = NSLocalizedString("This product uses the TMDb API but is not endorsed or certified by TMDb.", comment: "Description for movieDB")
 
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {

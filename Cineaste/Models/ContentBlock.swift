@@ -6,7 +6,7 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-struct ContentBlock {
+struct ContentBlock: Equatable {
     var title: String?
     var paragraph: String
 }

@@ -17,6 +17,12 @@ class SettingsDetailViewController: UIViewController {
         }
     }
 
+    @IBOutlet var movieDBImageView: UIImageView! {
+        didSet {
+            movieDBImageView.isHidden = true
+        }
+    }
+
     var textViewContent: TextViewType = .imprint {
         didSet {
             if oldValue != textViewContent {
@@ -43,9 +49,15 @@ class SettingsDetailViewController: UIViewController {
     }
 
     private func update(_ type: TextViewType) {
-        guard let textView = settingsDetailTextView else { return }
+        guard let textView = settingsDetailTextView,
+            let imageView = movieDBImageView
+            else { return }
 
         textView.setup(with: type)
+
+        if textViewContent == .imprint {
+            imageView.isHidden = false
+        }
     }
 
 }

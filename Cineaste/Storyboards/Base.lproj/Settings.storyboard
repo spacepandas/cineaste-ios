@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdc-ZJ-pMO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdc-ZJ-pMO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -70,25 +73,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tST-Bu-Eoa" customClass="DescriptionTextView" customModule="Cineaste" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="335" height="563"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsW-Qg-oDd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l46-Gc-9ey">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FUd-c8-v77">
+                                                <rect key="frame" x="20" y="20" width="335" height="261"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tST-Bu-Eoa" customClass="DescriptionTextView" customModule="Cineaste" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TMDb-logo" translatesAutoresizingMaskIntoConstraints="NO" id="fav-t5-0qL">
+                                                        <rect key="frame" x="0.0" y="208" width="134" height="53"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="fav-t5-0qL" secondAttribute="height" multiplier="407:161" id="Oke-05-eVv"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="fav-t5-0qL" firstAttribute="width" secondItem="FUd-c8-v77" secondAttribute="width" multiplier="0.4" id="dvV-iS-hYX"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="FUd-c8-v77" firstAttribute="top" secondItem="l46-Gc-9ey" secondAttribute="top" constant="20" symbolic="YES" id="7ke-ZX-X70"/>
+                                            <constraint firstAttribute="trailing" secondItem="FUd-c8-v77" secondAttribute="trailing" constant="20" symbolic="YES" id="8js-Vb-Gfi"/>
+                                            <constraint firstItem="FUd-c8-v77" firstAttribute="leading" secondItem="l46-Gc-9ey" secondAttribute="leading" constant="20" symbolic="YES" id="ANH-Rt-wrK"/>
+                                            <constraint firstAttribute="bottom" secondItem="FUd-c8-v77" secondAttribute="bottom" constant="20" symbolic="YES" id="b17-kp-jAn"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="l46-Gc-9ey" firstAttribute="width" secondItem="rsW-Qg-oDd" secondAttribute="width" id="9uq-ap-BIl"/>
+                                    <constraint firstItem="l46-Gc-9ey" firstAttribute="top" secondItem="rsW-Qg-oDd" secondAttribute="top" id="AsO-n7-6wa"/>
+                                    <constraint firstAttribute="bottom" secondItem="l46-Gc-9ey" secondAttribute="bottom" id="DDd-WO-GVm"/>
+                                    <constraint firstAttribute="trailing" secondItem="l46-Gc-9ey" secondAttribute="trailing" id="o5o-Vy-zLL"/>
+                                    <constraint firstItem="l46-Gc-9ey" firstAttribute="leading" secondItem="rsW-Qg-oDd" secondAttribute="leading" id="ufB-U1-Yey"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jNj-EI-gu6" firstAttribute="bottom" secondItem="tST-Bu-Eoa" secondAttribute="bottom" constant="20" id="F5s-hT-3mc"/>
-                            <constraint firstItem="tST-Bu-Eoa" firstAttribute="top" secondItem="jNj-EI-gu6" secondAttribute="top" constant="20" id="gw6-Ti-42M"/>
-                            <constraint firstItem="jNj-EI-gu6" firstAttribute="trailing" secondItem="tST-Bu-Eoa" secondAttribute="trailing" constant="20" id="i0b-pI-TlN"/>
-                            <constraint firstItem="tST-Bu-Eoa" firstAttribute="leading" secondItem="jNj-EI-gu6" secondAttribute="leading" constant="20" id="kJm-1w-hlf"/>
+                            <constraint firstItem="jNj-EI-gu6" firstAttribute="bottom" secondItem="rsW-Qg-oDd" secondAttribute="bottom" id="2jf-yd-9J2"/>
+                            <constraint firstItem="jNj-EI-gu6" firstAttribute="trailing" secondItem="rsW-Qg-oDd" secondAttribute="trailing" id="5nh-hK-jkO"/>
+                            <constraint firstItem="rsW-Qg-oDd" firstAttribute="top" secondItem="jNj-EI-gu6" secondAttribute="top" id="OXA-d3-dth"/>
+                            <constraint firstItem="rsW-Qg-oDd" firstAttribute="leading" secondItem="jNj-EI-gu6" secondAttribute="leading" id="akL-sC-MQG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jNj-EI-gu6"/>
                     </view>
                     <navigationItem key="navigationItem" id="A8U-Qg-0hn"/>
                     <connections>
+                        <outlet property="movieDBImageView" destination="fav-t5-0qL" id="V8s-l5-wVI"/>
                         <outlet property="settingsDetailTextView" destination="tST-Bu-Eoa" id="Pg4-VG-LrM"/>
                     </connections>
                 </viewController>
@@ -184,4 +226,7 @@
             <point key="canvasLocation" x="-852" y="-2"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TMDb-logo" width="407" height="161"/>
+    </resources>
 </document>

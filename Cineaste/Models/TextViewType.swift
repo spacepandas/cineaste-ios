@@ -16,7 +16,9 @@ enum TextViewType {
         switch self {
         case .imprint:
             return [ContentBlock(title: nil,
-                                 paragraph: String.imprintContent)]
+                                 paragraph: String.imprintContent),
+                    ContentBlock(title: String.movieDBTitle,
+                                 paragraph: String.movieDBDescription)]
         case .licence:
             guard let url = Bundle.main.url(forResource: "Acknowledgements",
                                             withExtension: "plist",
@@ -58,7 +60,13 @@ enum TextViewType {
                                            range: range)
             }
 
-            let paragraphBlock = "\(block.paragraph)\n\n"
+            var paragraphBlock = "\(block.paragraph)"
+            if let last = self.content.last {
+                if block != last {
+                    paragraphBlock.append("\n\n")
+                }
+            }
+
             chain.append(NSAttributedString(string: paragraphBlock))
 
             let range = NSRange(location: chain.length - paragraphBlock.count,
