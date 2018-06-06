@@ -9,6 +9,15 @@
 import Foundation
 
 extension String {
+    // MARK: DEFAULT
+    static let okAction = NSLocalizedString("OK", comment: "Title for ok action")
+    static let saveAction = NSLocalizedString("Speichern", comment: "Title for save action")
+    static let infoTitle = NSLocalizedString("Info", comment: "Title for information")
+    static let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
+    static let yesAction = NSLocalizedString("Ja", comment: "Title for yes action")
+    static let noAction = NSLocalizedString("Nein", comment: "Title for no action")
+    static let errorTitle = NSLocalizedString("Fehler", comment: "Title for error alert")
+
     // MARK: ACTION BUTTONS
     static let wantToSeeButton = NSLocalizedString("Muss ich sehen", comment: "Title for must see movie button")
     static let seenButton = NSLocalizedString("Schon gesehen", comment: "Title for seen movie button")
@@ -23,7 +32,11 @@ extension String {
 
     // MARK: MOVIES VIEWCONTROLLER
     static func title(for category: MovieListCategory) -> String {
-        return NSLocalizedString("Du hast keine Filme auf deiner \"\(category.title)\"-Liste.\nFüge doch einen neuen Titel hinzu.",
+        return NSLocalizedString(
+            """
+            Du hast keine Filme auf deiner \"\(category.title)\"-Liste.
+            Füge doch einen neuen Titel hinzu.
+            """,
             comment: "Description for empty movie list")
     }
 
@@ -97,4 +110,45 @@ extension String {
     static let unknownVoteAverage = "-.-"
     static let unknownRuntime = "-.-"
     static let unknownReleaseDate = NSLocalizedString("Unbekannt", comment: "Title for unknown release date")
+
+    // MARK: Alert messages
+
+    // connection error
+    static let connectionErrorMessage = NSLocalizedString("Verbindung zur Filmdatenbank fehlgeschlagen.", comment: "Message for connection error alert")
+    static let loadingDataErrorMessage = NSLocalizedString("Die Daten konnten nicht geladen werden.", comment: "Message for loading data error alert")
+
+    // core data error
+    static let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht gelöscht werden.", comment: "Message for delete movie error alert")
+    static let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
+    static let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
+
+    // enter username for movie night
+    static let usernameTitle = NSLocalizedString("Benutzername", comment: "Enter username title")
+    static let usernameDescription = NSLocalizedString("Gib einen Namen an, unter dem dich deine Freunde sehen können.", comment: "Enter username description")
+
+    // missing feature
+    static let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
+
+    // import
+    static let askForImportTitle = NSLocalizedString("Bist du sicher?", comment: "Title for asking for import alert")
+    static let askForImportMessage = NSLocalizedString(
+        """
+        Möchtest du deine bisherigen Daten wirklich mit Neuen überschreiben?
+        Die alten Daten werden unwiderruflich gelöscht.
+        """,
+        comment: "Message for asking for import alert")
+    static let importSucceededMessage = NSLocalizedString("Import erfolgreich", comment: "Message for import succeeded alert")
+
+    static func importSucceededMessage(with counter: Int) -> String {
+        let movies = String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
+        let importString = NSLocalizedString("erfolgreich importiert.", comment: "Message for movie import succeeded alert")
+        return movies + " " + importString
+    }
+
+    static let importFailedMessage = NSLocalizedString("Import fehlgeschlagen", comment: "Message for import failed alert")
+    static let importFailedCouldNotReadFileMessage = NSLocalizedString("Import fehlgeschlagen\nDie Datei konnte nicht gelesen werden.", comment: "Message for import failed because the file could not be read alert")
+
+    // export
+    static let exportFailedMessage = NSLocalizedString("Export fehlgeschlagen", comment: "Message for export failed alert")
+    static let exportWithEmptyDataMessage = NSLocalizedString("Deine Datenbank ist leer. Füge Filme zu deiner Watchlist hinzu, dann kannst du diese auch exportieren.", comment: "Message for export with empty data alert")
 }

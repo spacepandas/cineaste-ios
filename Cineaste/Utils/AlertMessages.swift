@@ -14,7 +14,10 @@ class AlertMessage {
     var action: String
     var cancel: String?
 
-    init(title: String, message: String, action: String, cancel: String? = nil) {
+    init(title: String,
+         message: String,
+         action: String,
+         cancel: String? = nil) {
         self.title = title
         self.message = message
         self.action = action
@@ -22,80 +25,36 @@ class AlertMessage {
     }
 }
 
-// default
-private let okAction = NSLocalizedString("OK", comment: "Title for ok action")
-private let saveAction = NSLocalizedString("Speichern", comment: "Title for save action")
-private let infoTitle = NSLocalizedString("Info", comment: "Title for information")
-private let cancelAction = NSLocalizedString("Abbrechen", comment: "Title for cancel action")
-private let yesAction = NSLocalizedString("Ja", comment: "Title for yes action")
-private let noAction = NSLocalizedString("Nein", comment: "Title for no action")
-
-// error
-private let errorTitle = NSLocalizedString("Fehler", comment: "Title for error alert")
-
-// connection error
-private let connectionErrorMessage = NSLocalizedString("Verbindung zur Filmdatenbank fehlgeschlagen.", comment: "Message for connection error alert")
-private let loadingDataErrorMessage = NSLocalizedString("Die Daten konnten nicht geladen werden.", comment: "Message for loading data error alert")
-
-// core data error
-private let deleteMovieErrorMessage = NSLocalizedString("Der Film konnte nicht gelöscht werden.", comment: "Message for delete movie error alert")
-private let updateMovieErrorMessage = NSLocalizedString("Der Film konnte nicht verschoben werden.", comment: "Message for update movie error alert")
-private let insertMovieErrorMessage = NSLocalizedString("Der Film konnte nicht eingefügt werden.", comment: "Message for insert movie error alert")
-
-// enter username for movie night
-private let usernameTitle = NSLocalizedString("Benutzername", comment: "Enter username title")
-private let usernameDescription = NSLocalizedString("Gib einen Namen an, unter dem dich deine Freunde sehen können.", comment: "Enter username description")
-
-// missing feature
-private let missingFeatureMessage = NSLocalizedString("Dieses Feature wurde noch nicht implementiert.", comment: "Message for missing feature alert")
-
-// import
-private let askForImportTitle = NSLocalizedString("Bist du sicher?", comment: "Title for asking for import alert")
-private let askForImportMessage = NSLocalizedString("Möchtest du deine bisherigen Daten wirklich mit Neuen überschreiben?\nDie alten Daten werden unwiderruflich gelöscht.", comment: "Message for asking for import alert")
-private let importSucceededMessage = NSLocalizedString("Import erfolgreich", comment: "Message for import succeeded alert")
-
-private func importSucceededMessage(with counter: Int) -> String {
-    if counter == 1 {
-        return NSLocalizedString("\(counter) Film erfolgreich importiert", comment: "Message for one movie import succeeded alert")
-    }
-    return NSLocalizedString("\(counter) Filme erfolgreich importiert", comment: "Message for import succeeded alert with counter")
-}
-
-private let importFailedMessage = NSLocalizedString("Import fehlgeschlagen", comment: "Message for import failed alert")
-private let importFailedCouldNotReadFileMessage = NSLocalizedString("Import fehlgeschlagen\nDie Datei konnte nicht gelesen werden.", comment: "Message for import failed because the file could not be read alert")
-
-// export
-private let exportFailedMessage = NSLocalizedString("Export fehlgeschlagen", comment: "Message for export failed alert")
-private let exportWithEmptyDataMessage = NSLocalizedString("Deine Datenbank ist leer. Füge Filme zu deiner Watchlist hinzu, dann kannst du diese auch exportieren.", comment: "Message for export with empty data alert")
-
 class Alert: AlertMessage {
-    static let connectionError = AlertMessage(title: errorTitle, message: connectionErrorMessage, action: okAction)
-    static let loadingDataError = AlertMessage(title: errorTitle, message: loadingDataErrorMessage, action: okAction)
+    static let connectionError = AlertMessage(title: String.errorTitle, message: String.connectionErrorMessage, action: String.okAction)
+    static let loadingDataError = AlertMessage(title: String.errorTitle, message: String.loadingDataErrorMessage, action: String.okAction)
 
-    static let deleteMovieError = AlertMessage(title: errorTitle, message: deleteMovieErrorMessage, action: okAction)
-    static let updateMovieError = AlertMessage(title: errorTitle, message: updateMovieErrorMessage, action: okAction)
-    static let insertMovieError = AlertMessage(title: errorTitle, message: insertMovieErrorMessage, action: okAction)
+    static let deleteMovieError = AlertMessage(title: String.errorTitle, message: String.deleteMovieErrorMessage, action: String.okAction)
+    static let updateMovieError = AlertMessage(title: String.errorTitle, message: String.updateMovieErrorMessage, action: String.okAction)
+    static let insertMovieError = AlertMessage(title: String.errorTitle, message: String.insertMovieErrorMessage, action: String.okAction)
 
-    static let insertUsername = AlertMessage(title: usernameTitle, message: usernameDescription, action: saveAction, cancel: cancelAction)
+    static let insertUsername = AlertMessage(title: String.usernameTitle, message: String.usernameDescription, action: String.saveAction, cancel: String.cancelAction)
 
-    static let missingFeatureInfo = AlertMessage(title: infoTitle, message: missingFeatureMessage, action: okAction)
+    static let missingFeatureInfo = AlertMessage(title: String.infoTitle, message: String.missingFeatureMessage, action: String.okAction)
 
-    static let askingForImport = AlertMessage(title: askForImportTitle, message: askForImportMessage, action: yesAction, cancel: noAction)
-    static let importSucceededInfo = AlertMessage(title: infoTitle, message: importSucceededMessage, action: okAction)
+    static let askingForImport = AlertMessage(title: String.askForImportTitle, message: String.askForImportMessage, action: String.yesAction, cancel: String.noAction)
+    static let importSucceededInfo = AlertMessage(title: String.infoTitle, message: String.importSucceededMessage, action: String.okAction)
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
-        return AlertMessage(title: infoTitle, message: importSucceededMessage(with: counter), action: okAction)
+        return AlertMessage(title: String.infoTitle, message: String.importSucceededMessage(with: counter), action: String.okAction)
     }
 
-    static let importFailedInfo = AlertMessage(title: errorTitle, message: importFailedMessage, action: okAction)
-    static let importFailedCouldNotReadFile = AlertMessage(title: errorTitle, message: importFailedCouldNotReadFileMessage, action: okAction)
+    static let importFailedInfo = AlertMessage(title: String.errorTitle, message: String.importFailedMessage, action: String.okAction)
+    static let importFailedCouldNotReadFile = AlertMessage(title: String.errorTitle, message: String.importFailedCouldNotReadFileMessage, action: String.okAction)
 
-    static let exportFailedInfo = AlertMessage(title: errorTitle, message: exportFailedMessage, action: okAction)
-    static let exportEmptyData = AlertMessage(title: infoTitle, message: exportWithEmptyDataMessage, action: okAction)
+    static let exportFailedInfo = AlertMessage(title: String.errorTitle, message: String.exportFailedMessage, action: String.okAction)
+    static let exportEmptyData = AlertMessage(title: String.infoTitle, message: String.exportWithEmptyDataMessage, action: String.okAction)
 }
 
 extension UIViewController {
-    func showAlert(withMessage message: AlertMessage, defaultActionHandler: (() -> Void)? = nil, cancelActionHandler: (() -> Void)? = nil) {
+    func showAlert(withMessage message: AlertMessage,
+                   defaultActionHandler: (() -> Void)? = nil,
+                   cancelActionHandler: (() -> Void)? = nil) {
         let alert = UIAlertController(message)
         let action = UIAlertAction(title: message.action, style: .default) { _ in
             defaultActionHandler?()
