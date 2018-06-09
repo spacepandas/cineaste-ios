@@ -18,17 +18,20 @@ class MoviesTabBarController: UITabBarController {
         let wantToSeeVC = MoviesViewController.instantiate()
         wantToSeeVC.category = .wantToSee
         wantToSeeVC.tabBarItem = UITabBarItem(title: String.wantToSeeTab, image: MovieListCategory.wantToSee.image, tag: 0)
+        wantToSeeVC.tabBarItem.accessibilityIdentifier = "WantToSeeTab"
         wantToSeeVC.storageManager = storageManager
         let wantToSeeVCWithNavi = OrangeNavigationController(rootViewController: wantToSeeVC)
 
         let seenVC = MoviesViewController.instantiate()
         seenVC.category = .seen
         seenVC.tabBarItem = UITabBarItem(title: String.seenTab, image: MovieListCategory.seen.image, tag: 1)
+        seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
         seenVC.storageManager = storageManager
         let seenVCWithNavi = OrangeNavigationController(rootViewController: seenVC)
 
         let settingsVC = SettingsViewController.instantiate()
         settingsVC.tabBarItem = UITabBarItem(title: String.settingTab, image: UIImage.settingsIcon, tag: 2)
+        settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
         viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, settingsVCWithNavi]

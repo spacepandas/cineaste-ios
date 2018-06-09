@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H5Q-aj-Qxh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H5Q-aj-Qxh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -85,6 +85,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sct-hl-B1B" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="detail.mustsee.button"/>
                                                                 <state key="normal" title="detail.mustsee"/>
                                                                 <connections>
                                                                     <action selector="mustSeeButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="UIR-Qi-4BF"/>
@@ -92,6 +93,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c62-By-W4W" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
                                                                 <rect key="frame" x="121" y="0.0" width="101" height="30"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="detail.seen.button"/>
                                                                 <state key="normal" title="detail.seen"/>
                                                                 <connections>
                                                                     <action selector="seenButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="44h-oA-42n"/>
@@ -99,6 +101,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUn-AI-5yg" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
                                                                 <rect key="frame" x="242" y="0.0" width="101" height="30"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="detail.delete.button"/>
                                                                 <state key="normal" title="detail.delete"/>
                                                                 <connections>
                                                                     <action selector="deleteButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="y4D-e8-hKf"/>
