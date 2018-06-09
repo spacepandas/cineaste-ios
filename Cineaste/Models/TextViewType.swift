@@ -17,6 +17,8 @@ enum TextViewType {
         case .imprint:
             return [ContentBlock(title: nil,
                                  paragraph: String.imprintContent),
+                    ContentBlock(title: String.openSourceTitle,
+                                 paragraph: String.openSourceDescription),
                     ContentBlock(title: String.movieDBTitle,
                                  paragraph: String.movieDBDescription)]
         case .licence:

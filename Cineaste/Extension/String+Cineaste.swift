@@ -61,35 +61,55 @@ extension String {
 
     // MARK: CONTENT
     static let imprintContent = NSLocalizedString(
-    """
-    Cineaste ist ein Open Source Projekt und startete bereits 2016 mit einer \
-    Android App.
+        """
+        Cineaste ist der bequemste Weg das richtige Bewegtbild für einen \
+        entspannten Filmabend zu finden. Hier kannst du alle Filme, die du \
+        noch sehen möchtest, oder schon gesehen hast, einfach und \
+        übersichtlich verwalten.
 
-    iOS App - GitHub: github.com/ChristianNorbertBraun/Cineaste
-    Android App - GitHub: github.com/marcelgross90/Cineaste
+        Ein einziger Klick findet bei deinem nächsten Filmabend den Titel, \
+        welchen die meisten Anwesenden sehen wollen. Hierbei werden deine \
+        Filme über Bluetooth nur in deinem Wohnzimmer geteilt. Ist der \
+        passende Titel gefunden, können deine Freunde deine Filme nicht mehr \
+        sehen. Das heißt, dass deine Filmlisten zu keinem Zeitpunkt über \
+        irgendwelche Server gehen und sicher auf deinem Gerät liegen.
 
-    Das Kernfeature der App liegt darin, möglichst leicht Filme für einen \
-    gemeinsamen Filmeabend zu finden. Über den "Matching"-Button sucht dein \
-    Handy nach Freunden in deiner Umgebung und findet Filme, die ihr alle \
-    sehen wollt.
+        Solltest du doch einmal deine Filmlisten dauerhaft zu einem anderen \
+        Gerät übertragen wollen, kannst du sie problemlos exportieren und \
+        importieren.
+        """,
+        comment: "Imprint content")
 
-    Die Daten werden dabei über Bluetooth übertragen. Das heißt, dass deine \
-    Filmlisten zu jedem Zeitpunkt sicher auf deinem Gerät sind und dort auch \
-    bleiben. Daten werden also nur innerhalb deines Wohnzimmers ausgetauscht.
+    static let openSourceTitle = NSLocalizedString("Open Source Projekt", comment: "Title for openSource")
+    static let openSourceDescription = NSLocalizedString(
+        """
+        Cineaste startete 2016 mit einer Android App und seit Ende 2017 \
+        arbeiten die SpacePandas nun auch an der längst überfälligen iOS App. \
+        Und weil wir absolut nichts zu verbergen haben ist Cineaste Open \
+        Source. Das heißt jeder kann unseren Code sehen und etwas zu der App \
+        beitragen.
 
-    Cineaste befindet sich noch im Anfangsstadium und könnte manchmal nicht \
-    richtig funktionieren. Natürlich geben wir unser Bestes um das Erlebnis so \
-    gut wie möglich zu machen, dabei sind wir aber auf dein Feedback \
-    angewiesen. Schreib doch einfach ein Kommentar im App Store oder entwickle \
-    gemeinsam mit uns Cineaste weiter! Für die Filme zapfen wir übrigens \
-    TheMovieDb (www.themoviedb.org) an.
+        Wir geben unser Bestes, um das Nutzererlebnis so gut wie möglich zu \
+        machen, dabei sind wir aber auf dein Feedback angewiesen. Schreib doch \
+        einen Kommentar im App Store oder schau auf GitHub vorbei.
 
-    Besonderer Dank geht an Philipp Wolf für das Design!
-    """,
-    comment: "Imprint content")
+        Android App - GitHub: github.com/marcelgross90/Cineaste
+        iOS App - GitHub: github.com/ChristianNorbertBraun/Cineaste
 
-    static let movieDBTitle = NSLocalizedString("The Movie DB", comment: "Title for movieDB")
-    static let movieDBDescription = NSLocalizedString("This product uses the TMDb API but is not endorsed or certified by TMDb.", comment: "Description for movieDB")
+        Besonderer Dank geht an Philipp Wolf für das Design!
+        """,
+        comment: "Title for openSource")
+
+    static let movieDBTitle = NSLocalizedString("TMDb", comment: "Title for movieDB")
+    static let movieDBDescription = NSLocalizedString(
+        """
+        Das Wissen über die ganzen Filme haben wir übrigens von TMDb \
+        (www.themoviedb.org).
+
+        Diese App nutzt die TMDb API, wird jedoch nicht durch TMDb unterstützt \
+        oder zertifiziert.
+        """,
+        comment: "Description for movieDB")
 
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {

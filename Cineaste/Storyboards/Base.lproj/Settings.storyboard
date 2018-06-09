@@ -77,10 +77,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l46-Gc-9ey">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="315.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FUd-c8-v77">
-                                                <rect key="frame" x="20" y="20" width="335" height="261"/>
+                                                <rect key="frame" x="20" y="20" width="335" height="275.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tST-Bu-Eoa" customClass="DescriptionTextView" customModule="Cineaste" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="200"/>
@@ -90,14 +90,14 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TMDb-logo" translatesAutoresizingMaskIntoConstraints="NO" id="fav-t5-0qL">
-                                                        <rect key="frame" x="0.0" y="208" width="134" height="53"/>
+                                                        <rect key="frame" x="0.0" y="208" width="84" height="67.5"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="fav-t5-0qL" secondAttribute="height" multiplier="407:161" id="Oke-05-eVv"/>
+                                                            <constraint firstAttribute="width" secondItem="fav-t5-0qL" secondAttribute="height" multiplier="275:223" id="Oke-05-eVv"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="fav-t5-0qL" firstAttribute="width" secondItem="FUd-c8-v77" secondAttribute="width" multiplier="0.4" id="dvV-iS-hYX"/>
+                                                    <constraint firstItem="fav-t5-0qL" firstAttribute="width" secondItem="FUd-c8-v77" secondAttribute="width" multiplier="0.25" id="dvV-iS-hYX"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -227,6 +227,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TMDb-logo" width="407" height="161"/>
+        <image name="TMDb-logo" width="251" height="223"/>
     </resources>
 </document>

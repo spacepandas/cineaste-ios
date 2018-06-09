@@ -12,7 +12,6 @@ public class DescriptionTextView: UITextView {
     private let paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7
-        style.hyphenationFactor = 0.7
         return style
     }()
 
