@@ -26,6 +26,11 @@ Runs all the tests
 fastlane ios screenshots
 ```
 Make screenshots of app
+### ios buildnumber
+```
+fastlane ios buildnumber
+```
+Update build number to number of commits
 
 ----
 
