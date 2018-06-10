@@ -39,7 +39,9 @@ extension String {
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
     static let exportTitle = NSLocalizedString("export", comment: "Title for settings cell exportMovies")
+    static let exportDescription = NSLocalizedString("exportDescription", comment: "Description for settings cell exportMovies")
     static let importTitle = NSLocalizedString("import", comment: "Title for settings cell importMovies")
+    static let importDescription = NSLocalizedString("importDescription", comment: "Description for settings cell importMovies")
     static let licenseTitle = NSLocalizedString("license", comment: "Title for settings cell licence")
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
 

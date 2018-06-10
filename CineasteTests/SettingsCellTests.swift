@@ -18,15 +18,23 @@ class SettingsCellTests: XCTestCase {
         let title = TitleLabel()
         cell.addSubview(title)
         cell.title = title
+
+        let description = DescriptionLabel()
+        cell.addSubview(description)
+        cell.descriptionLabel = description
     }
 
     func testConfigureShouldSetCellTitleCorrectly() {
-        cell.configure(with: settingsItem)
+        let aboutItem = SettingItem.about
+        cell.configure(with: aboutItem)
 
-        XCTAssertEqual(cell.title.text, settingsItem.title)
+        XCTAssertEqual(cell.title.text, aboutItem.title)
+        XCTAssert(cell.descriptionLabel.isHidden)
+
+        let importItem = SettingItem.importMovies
+        cell.configure(with: importItem)
+        XCTAssertEqual(cell.title.text, importItem.title)
+        XCTAssertFalse(cell.descriptionLabel.isHidden)
+        XCTAssertEqual(cell.descriptionLabel.text, importItem.description)
     }
-
-    private let settingsItem: SettingItem = {
-        return SettingItem.about
-    }()
 }

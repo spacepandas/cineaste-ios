@@ -27,6 +27,19 @@ enum SettingItem {
         }
     }
 
+    var description: String? {
+        switch self {
+        case .exportMovies:
+            return String.exportDescription
+        case .importMovies:
+            return String.importDescription
+        case .licence:
+            return nil
+        case .about:
+            return nil
+        }
+    }
+
     var segue: Segue? {
         switch self {
         case .exportMovies:

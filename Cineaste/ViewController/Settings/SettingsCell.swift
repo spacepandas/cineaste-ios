@@ -12,9 +12,17 @@ class SettingsCell: UITableViewCell {
     static let identifier = "SettingsCell"
 
     @IBOutlet var title: TitleLabel!
+    @IBOutlet var descriptionLabel: DescriptionLabel!
 
     func configure(with settingsItem: SettingItem) {
         title.text = settingsItem.title
+
+        if let description = settingsItem.description {
+            descriptionLabel.isHidden = false
+            descriptionLabel.text = description
+        } else {
+            descriptionLabel.isHidden = true
+        }
     }
 
 }
