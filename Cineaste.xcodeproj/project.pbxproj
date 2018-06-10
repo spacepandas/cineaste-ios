@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0178F920CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */; };
 		3F059D471FF3FA8B00D5576B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F059D461FF3FA8B00D5576B /* Label.swift */; };
 		3F1292F11FD7C90D00ED5593 /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292ED1FD7C90C00ED5593 /* MovieDetail.storyboard */; };
 		3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292EF1FD7C90C00ED5593 /* Search.storyboard */; };
@@ -119,6 +120,7 @@
 
 /* Begin PBXFileReference section */
 		10EC925C48CF013D296C7E00 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
+		3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+VariantFittingPresentationWidth.swift"; sourceTree = "<group>"; };
 		3F059D461FF3FA8B00D5576B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		3F1292EE1FD7C90C00ED5593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieDetail.storyboard; sourceTree = "<group>"; };
 		3F1292F01FD7C90C00ED5593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */,
 				95C679A12033773A0058FC8C /* UIImage+Cineaste.swift */,
 				3F9806372055250F00B92A27 /* String+Cineaste.swift */,
+				3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				3F059D471FF3FA8B00D5576B /* Label.swift in Sources */,
 				955C1385203CCF61009D8337 /* NearbyMovie.swift in Sources */,
 				3FD722CC20264B720046DEAC /* SearchMoviesViewController+UITableView.swift in Sources */,
+				3F0178F920CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3FAA3BBA2082668900726DE2 /* Decimal+Formatter.swift in Sources */,
 				95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */,
 				95D32F641F9AA2EA00497ED2 /* ApiKeyStore.swift in Sources */,

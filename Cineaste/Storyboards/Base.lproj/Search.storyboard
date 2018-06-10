@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -58,18 +58,18 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
                                                             <rect key="frame" x="0.0" y="49.5" width="260.5" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-dZ-m0S" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
                                                                     <state key="normal" title="search.mustsee"/>
                                                                     <connections>
                                                                         <action selector="mustSeeButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="0cc-rD-MSK"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnp-Tu-JeS" customClass="ActionButton" customModule="Cineaste" customModuleProvider="target">
-                                                                    <rect key="frame" x="140.5" y="0.0" width="120" height="30"/>
+                                                                    <rect key="frame" x="176.5" y="0.0" width="84" height="30"/>
                                                                     <state key="normal" title="search.seen"/>
                                                                     <connections>
                                                                         <action selector="seenButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="WMr-Ij-BiF"/>

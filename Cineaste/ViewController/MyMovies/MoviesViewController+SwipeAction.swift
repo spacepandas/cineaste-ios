@@ -38,7 +38,7 @@ extension MoviesViewController {
 
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
-        let deleteAction = UITableViewRowAction(style: .destructive, title: String.deleteActionTitle) { _, _ in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: String.deleteAction) { _, _ in
             self.storageManager?.remove(movie, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
@@ -94,7 +94,7 @@ extension MoviesViewController {
 
         let movie = movies[indexPath.row]
 
-        let deleteAction = UIContextualAction(style: .destructive, title: String.deleteActionTitle, handler: { (_, _, success: @escaping (Bool) -> Void) in
+        let deleteAction = UIContextualAction(style: .destructive, title: String.deleteAction, handler: { (_, _, success: @escaping (Bool) -> Void) in
             self.storageManager?.remove(movie, handler: { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
