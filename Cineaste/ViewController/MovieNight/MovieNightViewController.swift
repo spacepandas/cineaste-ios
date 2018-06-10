@@ -24,6 +24,11 @@ class MovieNightViewController: UIViewController {
     }
 
     @IBOutlet fileprivate weak var startButton: StartMovieNightButton!
+    @IBOutlet fileprivate weak var searchFriendsLabel: TitleLabel! {
+        didSet {
+            searchFriendsLabel.textColor = .white
+        }
+    }
 
     var storageManager: MovieStorage?
 
@@ -39,6 +44,7 @@ class MovieNightViewController: UIViewController {
 
         title = String.movieNightTitle
         view.backgroundColor = UIColor.basicBackground
+        searchFriendsLabel.text = String.searchFriendsOnMovieNight
 
         usersTableView.isHidden = true
         startButton.isEnabled = false

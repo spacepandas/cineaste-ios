@@ -30,7 +30,7 @@ class MoviesTabBarController: UITabBarController {
         let seenVCWithNavi = OrangeNavigationController(rootViewController: seenVC)
 
         let settingsVC = SettingsViewController.instantiate()
-        settingsVC.tabBarItem = UITabBarItem(title: String.settingTab, image: UIImage.settingsIcon, tag: 2)
+        settingsVC.tabBarItem = UITabBarItem(title: String.settingsTitle, image: UIImage.settingsIcon, tag: 2)
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 

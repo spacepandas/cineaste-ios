@@ -15,14 +15,8 @@ class ScreenshotsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app: XCUIApplication = XCUIApplication()
-        app.launchArguments = [
-            "-AppleLanguages",
-            "(de)",
-            "-AppleLocale",
-            "de_DE"
-        ]
-        app.launch()
         setupSnapshot(app)
+        app.launch()
     }
 
     func testScreenshots() {

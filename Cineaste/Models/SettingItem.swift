@@ -21,7 +21,7 @@ enum SettingItem {
         case .importMovies:
             return String.importTitle
         case .licence:
-            return String.licenceTitle
+            return String.licenseTitle
         case .about:
             return String.aboutAppTitle
         }

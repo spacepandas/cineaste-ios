@@ -30,12 +30,12 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
-            seenButton.setTitle(String.seenList, for: .normal)
+            seenButton.setTitle(String.seen, for: .normal)
         }
     }
     @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
         didSet {
-            mustSeeButton.setTitle(String.wantToSeeList, for: .normal)
+            mustSeeButton.setTitle(String.wantToSee, for: .normal)
         }
     }
     @IBOutlet var deleteButton: ActionButton! {
@@ -270,11 +270,11 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: String.wantToSeeList, style: .default) { _, _ -> Void in
+        let wantToSeeAction = UIPreviewAction(title: String.wantToSee, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: String.seenList, style: .default) { _, _ -> Void in
+        let seenAction = UIPreviewAction(title: String.seen, style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: true)
         }
 

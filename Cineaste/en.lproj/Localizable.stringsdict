@@ -13,11 +13,11 @@
                 <key>NSStringFormatValueTypeKey</key>
                 <string>d</string>
                 <key>zero</key>
-                <string>Keine Filme</string>
+                <string>No movies</string>
                 <key>one</key>
-                <string>Ein Film</string>
+                <string>One movie</string>
                 <key>other</key>
-                <string>%d Filme</string>
+                <string>%d movies</string>
             </dict>
         </dict>
         <key>seen.width</key>
@@ -25,9 +25,9 @@
             <key>NSStringVariableWidthRuleType</key>
             <dict>
                 <key>1</key>
-                <string>Gesehen</string>
+                <string>Seen</string>
                 <key>30</key>
-                <string>Schon gesehen</string>
+                <string>Already seen</string>
             </dict>
         </dict>
         <key>wantToSee.width</key>
@@ -35,9 +35,9 @@
             <key>NSStringVariableWidthRuleType</key>
             <dict>
                 <key>1</key>
-                <string>Musst du sehen</string>
+                <string>Want to see</string>
                 <key>30</key>
-                <string>Musst du sehen</string>
+                <string>Want to see</string>
             </dict>
         </dict>
         <key>delete.width</key>
@@ -45,9 +45,9 @@
             <key>NSStringVariableWidthRuleType</key>
             <dict>
                 <key>1</key>
-                <string>Löschen</string>
+                <string>Delete</string>
                 <key>30</key>
-                <string>Von Liste löschen</string>
+                <string>Delete from list</string>
             </dict>
         </dict>
     </dict>

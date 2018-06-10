@@ -31,6 +31,15 @@ enum MovieListCategory: String {
         }
     }
 
+    var action: String {
+        switch self {
+        case .wantToSee:
+            return String.wantToSee
+        case .seen:
+            return String.seen
+        }
+    }
+
     var predicate: NSPredicate {
         switch self {
         case .wantToSee:
