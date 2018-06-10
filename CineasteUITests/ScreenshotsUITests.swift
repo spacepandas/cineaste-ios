@@ -43,18 +43,27 @@ class ScreenshotsUITests: XCTestCase {
 
         let wantToSeeMovie = app.cells.element(boundBy: 0)
         wantToSeeMovie.tap()
+        snapshot("05_wantToSee_detail")
+
         let seenButton = app.buttons["detail.seen.button"]
         seenButton.tap()
         let seenTab = app.buttons["SeenTab"]
         seenTab.tap()
-        snapshot("05_seenList")
+        snapshot("06_seenList")
+
+        let seenMovie = app.cells.element(boundBy: 0)
+        seenMovie.tap()
+        snapshot("07_seen_detail")
+
+        let back = app.navigationBars.buttons.element(boundBy: 0)
+        back.tap()
 
         let startMovieNightButton = app.navigationBars.buttons.element(boundBy: 0)
         startMovieNightButton.tap()
 
         let usernameAlert = app.alerts.element(boundBy: 0)
         if usernameAlert.exists {
-            snapshot("06_startMovieNight_usernameAlert")
+            snapshot("08_startMovieNight_usernameAlert")
             let textField = usernameAlert.textFields.element(boundBy: 0)
             textField.tap()
             textField.typeText("Screenshots")
@@ -64,31 +73,30 @@ class ScreenshotsUITests: XCTestCase {
 
         let nearbyAlert = app.alerts.element(boundBy: 0)
         if nearbyAlert.exists {
-            snapshot("07_startMovieNight_nearbyAlert")
+            snapshot("09_startMovieNight_nearbyAlert")
             let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
             moreInfoButton.tap()
-            snapshot("08_startMovieNight_nearbyAlert_moreInfo")
+            snapshot("10_startMovieNight_nearbyAlert_moreInfo")
             let allowNearbyButton = app.buttons.element(boundBy: 1)
             allowNearbyButton.tap()
         }
-        snapshot("09_startMovieNight_searching")
+        snapshot("11_startMovieNight_searching")
 
         let cancel = app.navigationBars.buttons.element(boundBy: 0)
         cancel.tap()
 
         let settingsTab = app.buttons["SettingsTab"]
         settingsTab.tap()
-        snapshot("10_settings")
+        snapshot("12_settings")
 
         let aboutTheApp = app.cells.element(boundBy: 0)
         aboutTheApp.tap()
-        snapshot("11_settings_aboutTheApp")
+        snapshot("13_settings_aboutTheApp")
 
-        let back = app.navigationBars.buttons.element(boundBy: 0)
         back.tap()
         let license = app.cells.element(boundBy: 1)
         license.tap()
-        snapshot("12_settings_license")
+        snapshot("14_settings_license")
     }
 
 }
