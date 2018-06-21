@@ -2,14 +2,14 @@
 
 [![Build Status](https://travis-ci.org/ChristianNorbertBraun/Cineaste.svg?branch=master)](https://travis-ci.org/ChristianNorbertBraun/Cineaste)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
-[![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/ChristianNorbertBraun/Cineaste/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
 [![platform](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)
 [![languages](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)
 
 An iOS (and Android) application to manage movies you would like to see and movies you have seen.
 You can also start movie nights with your friends. There is no need to register or to add friends.
 
-Check out the [Android client](https://github.com/marcelgross90/Cineaste) on github. It is available on Google Play.
+Check out the [Android client](https://github.com/spacepandas/cineaste-android) on github. It is available on Google Play.
 
 <a href='https://play.google.com/store/apps/details?id=de.cineaste.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png' height="45px"/></a>
 
@@ -32,11 +32,11 @@ To enforce swift style and convention and to constantly check our code style, we
 
 ## Open tasks
 
-You can have a look at open [issues](https://github.com/ChristianNorbertBraun/Cineaste/issues).
+You can have a look at open [issues](https://github.com/spacepandas/cineaste-ios/issues).
 
 ## License
 
-Cineaste is released under the **Apache License**. Please see the [LICENSE](https://github.com/ChristianNorbertBraun/Cineaste/blob/master/LICENSE) file for more information.
+Cineaste is released under the **Apache License**. Please see the [LICENSE](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE) file for more information.
 
 [nearbyLink]: https://developers.google.com/nearby/messages/overview
 [theMovieDb]: https://www.themoviedb.org/
