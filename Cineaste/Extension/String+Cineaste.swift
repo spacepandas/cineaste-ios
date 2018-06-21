@@ -61,6 +61,9 @@ extension String {
     static let movieDBTitle = NSLocalizedString("TMDb", comment: "Title for movieDB")
     static let movieDBDescription = NSLocalizedString("TMDbContent", comment: "Description for movieDB")
 
+    static let spacePandasTitle = NSLocalizedString("SpacePandas", comment: "Title for spacePandas")
+    static let spacePandasDescription = NSLocalizedString("SpacePandasContent", comment: "Description for spacePandas")
+
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {
         return String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)

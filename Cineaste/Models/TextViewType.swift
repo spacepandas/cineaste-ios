@@ -19,6 +19,8 @@ enum TextViewType {
                                  paragraph: String.imprintContent),
                     ContentBlock(title: String.openSourceTitle,
                                  paragraph: String.openSourceDescription),
+                    ContentBlock(title: String.spacePandasTitle,
+                                 paragraph: String.spacePandasDescription),
                     ContentBlock(title: String.movieDBTitle,
                                  paragraph: String.movieDBDescription)]
         case .licence:
