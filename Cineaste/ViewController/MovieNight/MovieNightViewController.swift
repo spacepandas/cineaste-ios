@@ -133,7 +133,7 @@ class MovieNightViewController: UIViewController {
                     self.usersTableView.isHidden = false
                     self.usersTableView.reloadData()
                 }
-        }, messageLostHandler: { message in
+            }, messageLostHandler: { message in
             guard let data = message?.content,
                 let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self, from: data) else {
                     return
@@ -150,7 +150,7 @@ class MovieNightViewController: UIViewController {
                 }
                 self.usersTableView.reloadData()
             }
-        })
+            })
     }
 }
 

@@ -122,11 +122,11 @@ class MoviesViewController: UIViewController {
                 withDuration: 0.2,
                 animations: {
                     self.myMoviesTableView.alpha = isEmpty ? 0 : 1
-            },
+                },
                 completion: { _ in
                     self.myMoviesTableView.isHidden = isEmpty
                     handler?()
-            })
+                })
         }
     }
 
