@@ -8,25 +8,81 @@
 
 import UIKit
 
+protocol SearchMoviesCellDelegate: class {
+    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
+}
+
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    @IBOutlet var posterImageView: UIImageView!
-    @IBOutlet var movieTitleLabel: UILabel!
+    weak var delegate: SearchMoviesCellDelegate?
+    var movie: Movie? {
+        didSet {
+            if let movie = movie {
+                configure(with: movie)
+            }
+        }
+    }
+
+    @IBOutlet var poster: UIImageView!
+    @IBOutlet var title: TitleLabel!
+    @IBOutlet var separatorView: UIView! {
+        didSet {
+            separatorView.backgroundColor = .primaryOrange
+        }
+    }
+
+    @IBOutlet var releaseDate: DescriptionLabel!
+
+    @IBOutlet weak var seenButton: ActionButton! {
+        didSet {
+            seenButton.setTitle(String.seen, for: .normal)
+        }
+    }
+
+    @IBOutlet weak var mustSeeButton: ActionButton! {
+        didSet {
+            mustSeeButton.setTitle(String.wantToSee, for: .normal)
+        }
+    }
+
+    // MARK: - Actions
+
+    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
+    }
+
+    @IBAction func seenButtonTouched(_ sender: UIButton) {
+        guard let movie = movie else { return }
+        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: true)
+    }
 
     func configure(with movie: Movie) {
-        movieTitleLabel.text = movie.title
+        title.text = movie.title
+        releaseDate.text = movie.formattedReleaseDate
 
         loadPoster(for: movie) { poster in
             DispatchQueue.main.async {
-                movie.poster = poster
-                self.posterImageView.image = poster
+                let posterToDisplay = poster ?? UIImage.posterPlaceholder
+
+                movie.poster = posterToDisplay
+                self.poster.image = posterToDisplay
             }
         }
     }
 
     fileprivate func loadPoster(for movie: Movie, completionHandler handler: @escaping (_ poster: UIImage?) -> Void) {
-        Webservice.load(resource: movie.loadPoster()) { image, _ in
+        guard let posterPath = movie.posterPath else {
+            handler(nil)
+            return
+        }
+
+        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
+            guard case let .success(image) = result else {
+                handler(nil)
+                return
+            }
             handler(image)
         }
     }

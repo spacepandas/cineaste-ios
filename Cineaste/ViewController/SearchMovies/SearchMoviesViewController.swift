@@ -9,46 +9,51 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
-    @IBOutlet var moviesTableView: UITableView! {
+    var movies: [Movie] = [] {
         didSet {
-            moviesTableView.dataSource = dataSource
-            moviesTableView.delegate = self
+            DispatchQueue.main.async {
+                self.moviesTableView.reloadData()
+            }
         }
     }
 
-    private var selectedMovie: Movie?
-    private var searchDelayTimer: Timer?
+    var selectedMovie: Movie?
+    var storageManager: MovieStorage?
 
-    private let dataSource = SearchMoviesSource()
+    private var searchDelayTimer: Timer?
 
     lazy var resultSearchController: UISearchController  = {
         let resultSearchController = UISearchController(searchResultsController: nil)
         resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.isActive = true
+        resultSearchController.isActive = false
         resultSearchController.searchBar.sizeToFit()
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
     }()
 
+    @IBOutlet var moviesTableView: UITableView! {
+        didSet {
+            moviesTableView.dataSource = self
+            moviesTableView.delegate = self
+
+            moviesTableView.estimatedRowHeight = 100
+            moviesTableView.rowHeight = UITableViewAutomaticDimension
+
+            moviesTableView.backgroundColor = UIColor.clear
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.basicBackground
+
         loadRecent { [weak self] movies in
-            self?.dataSource.movies = movies
-            DispatchQueue.main.async {
-                self?.moviesTableView.reloadData()
-            }
+            self?.movies = movies
         }
 
         configureSearchController()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
+        registerForPreviewing(with: self, sourceView: moviesTableView)
     }
 
     override func viewDidLayoutSubviews() {
@@ -63,14 +68,16 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = Segue(initWith: segue) else {
-            fatalError("unable to use Segue enum")
-        }
-
-        switch identifier {
-        case .showMovieDetail:
+        switch Segue(initWith: segue) {
+        case .showMovieDetail?:
             let vc = segue.destination as? MovieDetailViewController
+            vc?.storageManager = storageManager
+            vc?.type = .search
+
+            guard let selectedMovie = selectedMovie else { return }
             vc?.movie = selectedMovie
+        default:
+            return
         }
     }
 
@@ -95,32 +102,11 @@ class SearchMoviesViewController: UIViewController {
             backgroundview.clipsToBounds = true
         } else {
             moviesTableView.tableHeaderView = resultSearchController.searchBar
-            self.definesPresentationContext = true
         }
+
+        definesPresentationContext = true
     }
 
-    // MARK: - Load data
-
-    fileprivate func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
-        Webservice.load(resource: Movie.latestReleases()) { movies, _ in
-            handler(movies ?? [])
-        }
-    }
-
-    fileprivate func loadMovies(forQuery query: String?, handler: @escaping ([Movie]) -> Void) {
-        if let query = query, !query.isEmpty {
-            Webservice.load(resource: Movie.search(withQuery: query)) { movies, _ in
-                handler(movies ?? [])
-            }
-        } else {
-            loadRecent { [weak self] movies in
-                self?.dataSource.movies = movies
-                DispatchQueue.main.async {
-                    self?.moviesTableView.reloadData()
-                }
-            }
-        }
-    }
 }
 
 extension SearchMoviesViewController: UISearchResultsUpdating {
@@ -128,24 +114,55 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.dataSource.movies = movies
-                DispatchQueue.main.async {
-                    self?.moviesTableView.reloadData()
+                self?.movies = movies
+            }
+        }
+    }
+}
+
+extension SearchMoviesViewController: SearchMoviesCellDelegate {
+    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
+        guard let storageManager = storageManager else { return }
+        loadDetails(for: movie) { detailedMovie in
+            storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
+                switch result {
+                case .error:
+                    DispatchQueue.main.async {
+                        if self.resultSearchController.isActive {
+                            self.resultSearchController.isActive = false
+                        }
+                        self.showAlert(withMessage: Alert.insertMovieError)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        if self.resultSearchController.isActive {
+                            self.resultSearchController.isActive = false
+                        }
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
         }
     }
 }
 
-extension SearchMoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovie = dataSource.movies[indexPath.row]
+// MARK: - 3D Touch
 
-        DispatchQueue.main.async {
-            self.resultSearchController.isActive = false
-        }
+extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let detailVC = MovieDetailViewController.instantiate()
+        guard let path = moviesTableView.indexPathForRow(at: location),
+            movies.count > path.section
+            else { return nil }
 
-        perform(segue: .showMovieDetail, sender: self)
+        detailVC.movie = movies[path.section]
+        detailVC.storageManager = storageManager
+        detailVC.type = .search
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 

@@ -17,17 +17,34 @@ class SearchMoviesCellTests: XCTestCase {
 
         let imageView = UIImageView()
         cell.addSubview(imageView)
-        cell.posterImageView = imageView
+        cell.poster = imageView
 
-        let title = UILabel()
+        let title = TitleLabel()
         cell.addSubview(title)
-        cell.movieTitleLabel = title
+        cell.title = title
+
+        let view = UIView()
+        cell.addSubview(view)
+        cell.separatorView = view
+
+        let description = DescriptionLabel()
+        cell.addSubview(description)
+        cell.releaseDate = description
+
+        let seen = ActionButton()
+        cell.addSubview(seen)
+        cell.seenButton = seen
+
+        let mustSee = ActionButton()
+        cell.addSubview(mustSee)
+        cell.mustSeeButton = mustSee
     }
     
-    func testConfigureShouldSetCellTitleCorrectly() {
+    func testConfigureShouldSetCellTitleAndReleaseDateCorrectly() {
         cell.configure(with: movie)
 
-        XCTAssertEqual(cell.movieTitleLabel.text, movie.title)
+        XCTAssertEqual(cell.title.text, movie.title)
+        XCTAssertEqual(cell.releaseDate.text, movie.formattedReleaseDate)
     }
 
     private let movie: Movie = {

@@ -10,9 +10,16 @@ import UIKit
 
 enum Segue: String {
     case showMovieDetail = "ShowMovieDetailSegue"
+    case showSearchFromMovieList = "ShowSearchFromMovieList"
+    case showTextViewFromSettings = "showTextViewFromSettingsSegue"
+    case showMovieNight = "ShowMovieNightSegue"
+    case showMovieMatches = "ShowMovieMatchesSegue"
+    case showPosterFromMovieDetail = "showPosterFromMovieDetail"
 
     init?(initWith segue: UIStoryboardSegue) {
-        guard let identifier = segue.identifier else { fatalError("Segue identifier not found.") }
+        guard let identifier = segue.identifier else {
+            fatalError("Segue identifier not found.")
+        }
         self.init(rawValue: identifier)
     }
 }

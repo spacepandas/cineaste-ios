@@ -1,4 +1,6 @@
 ---
+disabled_rules:
+    - todo
 # Enable more optional rules
 opt_in_rules:
   - implicit_return
@@ -28,6 +30,7 @@ opt_in_rules:
 excluded:
   - CineasteTests
   - Pods
+  - Cineaste-Bridging-Header.h  
 
 # Configure warning/error levels
 file_length:
@@ -37,7 +40,7 @@ function_body_length:
   - 100
   - 150
 function_parameter_count:
-  - 8
+  - 9
   - 10
 line_length:
   - 220

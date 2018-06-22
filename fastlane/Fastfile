@@ -1,17 +1,41 @@
 fastlane_version "2.0.0"
 default_platform :ios
 
+ProjectName = "Cineaste"
+Scheme = ProjectName
+
+BundleIdentifier = "org.notimeforthat.Cineaste"
+Target_Folder_Name = "build" #without the trailing / !
+screenshot_output_dir = "#{Target_Folder_Name}/screenshots"
+
 platform :ios do
-  before_all do
-    ensure_git_status_clean
-  end
+  # before_all do
+  #   ensure_git_status_clean
+  # end
 
   desc "Runs all the tests"
   lane :test do
     scan(
       device: "iPhone 7",
-      scheme: "Cineaste",
+      scheme: Scheme,
       code_coverage: true
+    )
+  end
+
+  desc "Make screenshots of app"
+  lane :screenshots do
+    snapshot(
+      output_directory: screenshot_output_dir,
+      app_identifier: BundleIdentifier
+    )
+  end
+
+  desc "Update build number to number of commits"
+  lane :buildnumber do
+    build_number = number_of_commits.to_s
+    increment_build_number(
+      build_number: build_number,
+      xcodeproj: "#{ProjectName}.xcodeproj"
     )
   end
 end
