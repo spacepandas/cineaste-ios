@@ -1,6 +1,6 @@
 # Cineaste
 
-[![Build Status](https://travis-ci.org/ChristianNorbertBraun/Cineaste.svg?branch=master)](https://travis-ci.org/ChristianNorbertBraun/Cineaste)
+[![Build Status](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
 [![platform](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)
