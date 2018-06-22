@@ -72,7 +72,7 @@
 		3FE49554209DD33A006CD0D3 /* ImportExportObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */; };
 		3FEF5C492030B28100EFCAA2 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */; };
 		3FEF5C4B2030B28D00EFCAA2 /* SettingsCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */; };
-		5EFA613CA434399B67B6CA7F /* libPods-CineasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA081A29AE61AE0233AEB16E /* libPods-CineasteTests.a */; };
+		57886A0D265E737DDC32A9FA /* libPods-CineasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2FE32320E3385D68EC4AA1 /* libPods-CineasteTests.a */; };
 		9526A70520448940004E08F7 /* MovieMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70420448940004E08F7 /* MovieMatchViewController.swift */; };
 		9526A70720449206004E08F7 /* MovieMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70620449206004E08F7 /* MovieMatchCell.swift */; };
 		9528112E201D05AD00F3EC76 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
@@ -99,7 +99,7 @@
 		95EFA4AE1FA13878004F1F94 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EFA4AD1FA13878004F1F94 /* Webservice.swift */; };
 		95EFA4B01FA13AAA004F1F94 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EFA4AF1FA13AAA004F1F94 /* Resource.swift */; };
 		95F0DBC91F9D2CF9004681C7 /* PagedMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */; };
-		AB857B8A247D34396C61B790 /* libPods-Cineaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F209C17204435966B20FD4 /* libPods-Cineaste.a */; };
+		C64647E839787AC5EBEFEC99 /* libPods-Cineaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC800F26DA21440262D6D425 /* libPods-Cineaste.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,7 +120,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10EC925C48CF013D296C7E00 /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
+		08D2281281C2CB933F956740 /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D7F54C550FA70064C55FCAF /* Pods-Cineaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.release.xcconfig"; sourceTree = "<group>"; };
+		3E033D105B8B6801C5E36D7D /* Pods-Cineaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.debug.xcconfig"; sourceTree = "<group>"; };
 		3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+VariantFittingPresentationWidth.swift"; sourceTree = "<group>"; };
 		3F0178FA20CD2CBD00600DB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3F0178FB20CD2D8900600DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -198,9 +200,7 @@
 		3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportObject.swift; sourceTree = "<group>"; };
 		3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
 		3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellTests.swift; sourceTree = "<group>"; };
-		5A281C9054D31DC026F344BE /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
-		5C51DCF4A8787AB51D732791 /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
-		73F209C17204435966B20FD4 /* libPods-Cineaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cineaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5250AB7D010CEFD181CC0F77 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
 		9526A70420448940004E08F7 /* MovieMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchViewController.swift; sourceTree = "<group>"; };
 		9526A70620449206004E08F7 /* MovieMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchCell.swift; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 		95EFA4AD1FA13878004F1F94 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		95EFA4AF1FA13AAA004F1F94 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedMovieResult.swift; sourceTree = "<group>"; };
-		BB99519CA7DCBFF993793716 /* Pods-Cineaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste/Pods-Cineaste.release.xcconfig"; sourceTree = "<group>"; };
-		FA081A29AE61AE0233AEB16E /* libPods-CineasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CineasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC800F26DA21440262D6D425 /* libPods-Cineaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cineaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC2FE32320E3385D68EC4AA1 /* libPods-CineasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CineasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB857B8A247D34396C61B790 /* libPods-Cineaste.a in Frameworks */,
+				C64647E839787AC5EBEFEC99 /* libPods-Cineaste.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,22 +256,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EFA613CA434399B67B6CA7F /* libPods-CineasteTests.a in Frameworks */,
+				57886A0D265E737DDC32A9FA /* libPods-CineasteTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26AA56BA37588A32E46B6EC3 /* Pods */ = {
+		1CE3429C13B7C61C1075B064 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				10EC925C48CF013D296C7E00 /* Pods-Cineaste.debug.xcconfig */,
-				BB99519CA7DCBFF993793716 /* Pods-Cineaste.release.xcconfig */,
-				5C51DCF4A8787AB51D732791 /* Pods-CineasteTests.debug.xcconfig */,
-				5A281C9054D31DC026F344BE /* Pods-CineasteTests.release.xcconfig */,
+				AC800F26DA21440262D6D425 /* libPods-Cineaste.a */,
+				BC2FE32320E3385D68EC4AA1 /* libPods-CineasteTests.a */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3F059D481FF3FA9C00D5576B /* Custom UI */ = {
@@ -343,6 +341,17 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		8BFAFB693327051DA6B71528 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E033D105B8B6801C5E36D7D /* Pods-Cineaste.debug.xcconfig */,
+				2D7F54C550FA70064C55FCAF /* Pods-Cineaste.release.xcconfig */,
+				08D2281281C2CB933F956740 /* Pods-CineasteTests.debug.xcconfig */,
+				5250AB7D010CEFD181CC0F77 /* Pods-CineasteTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		953182F3203E161700A331A0 /* MovieNight */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,8 +392,8 @@
 				95AE25B31F9531E20067F5F5 /* CineasteTests */,
 				3F2408F3203CB88E00EB9141 /* CineasteUITests */,
 				95AE259D1F9531E20067F5F5 /* Products */,
-				26AA56BA37588A32E46B6EC3 /* Pods */,
-				B57B7805DFBFC32635F5C6EC /* Frameworks */,
+				8BFAFB693327051DA6B71528 /* Pods */,
+				1CE3429C13B7C61C1075B064 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -524,15 +533,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		B57B7805DFBFC32635F5C6EC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				73F209C17204435966B20FD4 /* libPods-Cineaste.a */,
-				FA081A29AE61AE0233AEB16E /* libPods-CineasteTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -558,13 +558,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste" */;
 			buildPhases = (
-				4607E40C6BD11FE1A9342D20 /* [CP] Check Pods Manifest.lock */,
+				C4D33555393E5EA73F557688 /* [CP] Check Pods Manifest.lock */,
 				95281131201D091100F3EC76 /* Find TODOS/WARNINGS */,
 				951BEDF71FB0FF73006EFDED /* Swift Lint */,
 				95AE25981F9531E20067F5F5 /* Sources */,
 				95AE25991F9531E20067F5F5 /* Frameworks */,
 				95AE259A1F9531E20067F5F5 /* Resources */,
-				BAB26E930718F5A7FA35EFC6 /* [CP] Copy Pods Resources */,
+				DC07018C1C0122B45AE6195A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -579,7 +579,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95AE25BC1F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "CineasteTests" */;
 			buildPhases = (
-				66171FDC02A654FA0A955A68 /* [CP] Check Pods Manifest.lock */,
+				43869BF032F123801D269908 /* [CP] Check Pods Manifest.lock */,
 				95AE25AC1F9531E20067F5F5 /* Sources */,
 				95AE25AD1F9531E20067F5F5 /* Frameworks */,
 				95AE25AE1F9531E20067F5F5 /* Resources */,
@@ -684,25 +684,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4607E40C6BD11FE1A9342D20 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cineaste-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		66171FDC02A654FA0A955A68 /* [CP] Check Pods Manifest.lock */ = {
+		43869BF032F123801D269908 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -748,7 +730,25 @@
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 \\\n| xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" \\\n| perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
-		BAB26E930718F5A7FA35EFC6 /* [CP] Copy Pods Resources */ = {
+		C4D33555393E5EA73F557688 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cineaste-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC07018C1C0122B45AE6195A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1124,7 +1124,7 @@
 		};
 		95AE25BA1F9531E20067F5F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10EC925C48CF013D296C7E00 /* Pods-Cineaste.debug.xcconfig */;
+			baseConfigurationReference = 3E033D105B8B6801C5E36D7D /* Pods-Cineaste.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1148,7 +1148,7 @@
 		};
 		95AE25BB1F9531E20067F5F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB99519CA7DCBFF993793716 /* Pods-Cineaste.release.xcconfig */;
+			baseConfigurationReference = 2D7F54C550FA70064C55FCAF /* Pods-Cineaste.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1171,7 +1171,7 @@
 		};
 		95AE25BD1F9531E20067F5F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C51DCF4A8787AB51D732791 /* Pods-CineasteTests.debug.xcconfig */;
+			baseConfigurationReference = 08D2281281C2CB933F956740 /* Pods-CineasteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1189,7 +1189,7 @@
 		};
 		95AE25BE1F9531E20067F5F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A281C9054D31DC026F344BE /* Pods-CineasteTests.release.xcconfig */;
+			baseConfigurationReference = 5250AB7D010CEFD181CC0F77 /* Pods-CineasteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
