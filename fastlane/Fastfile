@@ -38,7 +38,7 @@ platform :ios do
   lane :screenshots do
     snapshot(
       output_directory: screenshot_output_dir,
-      app_identifier: BundleIdentifier
+      app_identifier: BundleIdentifiers["appStore"]
     )
   end
 
