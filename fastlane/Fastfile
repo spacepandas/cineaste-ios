@@ -2,9 +2,21 @@ fastlane_version "2.0.0"
 default_platform :ios
 
 ProjectName = "Cineaste"
-Scheme = ProjectName
+Schemes = {
+  "dev" => ProjectName,
+  "appStore" => "#{ProjectName}-AppStore"
+}
+Scheme_UnitTests = "Testing"
+Scheme_UITests = "Snapshot"
 
-BundleIdentifier = "org.notimeforthat.Cineaste"
+BundleIdentifiers = {
+  "dev" => "de.spacepandas.ios.cineaste-dev",
+  "appStore" => "de.spacepandas.ios.cineaste"
+}
+
+version_number_to_set = "1.0.0"
+build_number_to_set = number_of_commits.to_s
+
 Target_Folder_Name = "build" #without the trailing / !
 screenshot_output_dir = "#{Target_Folder_Name}/screenshots"
 
@@ -17,7 +29,7 @@ platform :ios do
   lane :test do
     scan(
       device: "iPhone 7",
-      scheme: Scheme,
+      scheme: Scheme_UnitTests,
       code_coverage: true
     )
   end
@@ -30,12 +42,26 @@ platform :ios do
     )
   end
 
-  desc "Update build number to number of commits"
-  lane :buildnumber do
-    build_number = number_of_commits.to_s
+  desc "Build the appStore app"
+  lane :build do
     increment_build_number(
-      build_number: build_number,
+      build_number: build_number_to_set,
       xcodeproj: "#{ProjectName}.xcodeproj"
+    )
+
+    increment_version_number(
+      version_number: version_number_to_set
+    )
+
+    time_string = Time.new.strftime("%Y.%m.%d")
+    build_specific_name = "#{version_number_to_set}-#{build_number_to_set}-#{time_string}"
+
+    gym(
+      scheme: Schemes["appStore"],
+      output_name: "#{ProjectName}-#{build_specific_name}",
+      output_directory: Target_Folder_Name,
+      clean: true,
+      include_bitcode: false
     )
   end
 end

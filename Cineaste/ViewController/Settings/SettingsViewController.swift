@@ -59,7 +59,13 @@ class SettingsViewController: UIViewController {
             let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
             let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return "" }
-        return "\(String.versionText): \(version) (\(build))"
+        var versionInformation = "\(String.versionText): \(version) (\(build))"
+
+        #if DEBUG
+        versionInformation.append(" || Dev")
+        #endif
+
+        return versionInformation
     }
 
     // MARK: - Navigation
