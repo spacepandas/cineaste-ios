@@ -44,6 +44,7 @@ extension String {
     static let importDescription = NSLocalizedString("importDescription", comment: "Description for settings cell importMovies")
     static let licenseTitle = NSLocalizedString("license", comment: "Title for settings cell licence")
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
+    static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
 
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")
@@ -121,4 +122,6 @@ extension String {
     // export
     static let exportFailedMessage = NSLocalizedString("exportFailed", comment: "Message for export failed alert")
     static let exportWithEmptyDataMessage = NSLocalizedString("emptyDatabase", comment: "Message for export with empty data alert")
+
+    static let noEmailClientMessage = NSLocalizedString("noEmailClient", comment: "Message for no email client alert")
 }

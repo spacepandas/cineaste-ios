@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingsViewController: UIViewController {
     @IBOutlet var settingsTableView: UITableView! {
@@ -14,11 +15,12 @@ class SettingsViewController: UIViewController {
             settingsTableView.dataSource = self
             settingsTableView.delegate = self
             settingsTableView.backgroundColor = UIColor.basicBackground
-            settingsTableView.tableFooterView = UIView()
+            settingsTableView.tableFooterView = footerView
         }
     }
 
     @IBOutlet var versionInfo: DescriptionLabel!
+    @IBOutlet var footerView: UIView!
 
     var settings: [SettingItem] = [] {
         didSet {
@@ -38,10 +40,7 @@ class SettingsViewController: UIViewController {
 
         view.backgroundColor = UIColor.basicBackground
 
-        settings = [SettingItem.about,
-                    SettingItem.licence,
-                    SettingItem.exportMovies,
-                    SettingItem.importMovies]
+        settings = SettingItem.all
 
         versionInfo?.text = versionString()
     }
@@ -206,7 +205,24 @@ extension SettingsViewController: UITableViewDelegate {
                     self.showUIToImportMovies()
                 }
             }
+        case .contact:
+            if MFMailComposeViewController.canSendMail() {
+                let mailComposeVC = MFMailComposeViewController()
+                mailComposeVC.mailComposeDelegate = self
+                mailComposeVC.setSubject("Cineaste iOS || \(versionString())")
+                mailComposeVC.setToRecipients(["ios@spacepandas.de"])
+
+                present(mailComposeVC, animated: true, completion: nil)
+            } else {
+                showAlert(withMessage: Alert.noEmailClient)
+            }
         }
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

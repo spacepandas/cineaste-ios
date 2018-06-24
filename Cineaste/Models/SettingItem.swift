@@ -13,6 +13,7 @@ enum SettingItem {
     case importMovies
     case licence
     case about
+    case contact
 
     var title: String {
         switch self {
@@ -24,6 +25,8 @@ enum SettingItem {
             return String.licenseTitle
         case .about:
             return String.aboutAppTitle
+        case .contact:
+            return String.contactTitle
         }
     }
 
@@ -33,23 +36,29 @@ enum SettingItem {
             return String.exportDescription
         case .importMovies:
             return String.importDescription
-        case .licence:
-            return nil
-        case .about:
+        case .licence,
+             .about,
+             .contact:
             return nil
         }
     }
 
     var segue: Segue? {
         switch self {
-        case .exportMovies:
-            return nil
-        case .importMovies:
-            return nil
         case .licence:
             return .showTextViewFromSettings
         case .about:
             return .showTextViewFromSettings
+        case .exportMovies,
+             .importMovies,
+             .contact:
+            return nil
         }
     }
+
+    static let all = [SettingItem.about,
+                      SettingItem.licence,
+                      SettingItem.exportMovies,
+                      SettingItem.importMovies,
+                      SettingItem.contact]
 }

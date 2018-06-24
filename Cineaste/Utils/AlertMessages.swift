@@ -49,6 +49,8 @@ class Alert: AlertMessage {
 
     static let exportFailedInfo = AlertMessage(title: String.errorTitle, message: String.exportFailedMessage, action: String.okAction)
     static let exportEmptyData = AlertMessage(title: String.infoTitle, message: String.exportWithEmptyDataMessage, action: String.okAction)
+
+    static let noEmailClient = AlertMessage(title: String.infoTitle, message: String.noEmailClientMessage, action: .okAction)
 }
 
 extension UIViewController {
