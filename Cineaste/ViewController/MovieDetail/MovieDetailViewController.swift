@@ -112,8 +112,10 @@ class MovieDetailViewController: UIViewController {
             if let storedMovie = storedMovie,
                 let poster = storedMovie.poster {
                 posterVC?.image = UIImage(data: poster)
+                posterVC?.posterPath = storedMovie.posterPath
             } else if let movie = movie {
                 posterVC?.image = movie.poster
+                posterVC?.posterPath = movie.posterPath
             }
         default:
             break

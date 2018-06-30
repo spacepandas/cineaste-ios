@@ -105,6 +105,13 @@ extension Movie {
         }
     }
 
+    static func loadOriginalPoster(from posterPath: String) -> Resource<UIImage>? {
+        let urlAsString = "\(Config.Backend.posterUrlOriginal)\(posterPath)?api_key=\(apiKey)"
+        return Resource(url: urlAsString, method: .get) { data in
+            UIImage(data: data)
+        }
+    }
+
     var get: Resource<Movie>? {
         let urlAsString = "\(Config.Backend.url)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
         return Resource(url: urlAsString, method: .get) { data in

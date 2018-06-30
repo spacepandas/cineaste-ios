@@ -17,6 +17,8 @@ extension UIColor {
     static let basicBackground = #colorLiteral(red: 0.2549019608, green: 0.2901960784, blue: 0.3176470588, alpha: 1)
 
     static let accentText = #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5019607843, alpha: 1)
+
+    static let transparentBlack = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
 }
 
 enum Appearance {

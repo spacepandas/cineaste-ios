@@ -11,6 +11,8 @@ import UIKit
 class PosterViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var blurredBackgroundImage: UIImageView!
+    @IBOutlet var backgroundView: UIView!
 
     @IBOutlet var toolbar: UIToolbar! {
         didSet {
@@ -25,11 +27,16 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
     }
 
     var image: UIImage?
+    var posterPath: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.black
+        backgroundView.backgroundColor = .transparentBlack
+        backgroundView.addBlurEffect(with: .dark)
+
+        blurredBackgroundImage.image = image
+        blurredBackgroundImage.addBlurEffect(with: .dark)
 
         imageView.image = image
         imageView.isUserInteractionEnabled = true
@@ -42,6 +49,9 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
                                                        action: #selector(handleDoubleTapScrollView(recognizer:)))
         gestureRecognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(gestureRecognizer)
+
+        guard let posterPath = posterPath else { return }
+        loadOriginalPosterSize(for: posterPath)
     }
 
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
@@ -56,6 +66,18 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
                             animated: true)
         } else {
             scrollView.setZoomScale(1, animated: true)
+        }
+    }
+
+    func loadOriginalPosterSize(for posterPath: String) {
+        Webservice.load(resource: Movie.loadOriginalPoster(from: posterPath)) { result in
+            guard case let .success(poster) = result else {
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.imageView.image = poster
+            }
         }
     }
 
@@ -77,4 +99,16 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
 extension PosterViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "PosterViewController" }
+}
+
+extension UIView {
+    func addBlurEffect(with style: UIBlurEffectStyle) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+
+        // for supporting device rotation
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
 }
