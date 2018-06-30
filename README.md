@@ -1,4 +1,4 @@
-# Cineaste
+# Cineaste App (iOS)
 
 [![Build Status](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
@@ -8,6 +8,8 @@
 
 An iOS (and Android) application to manage movies you would like to see and movies you have seen.
 You can also start movie nights with your friends. There is no need to register or to add friends.
+
+<a href="https://itunes.apple.com/us/app/cineaste-app/id1402748020?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:152px;height:45px;background-size:contain;"></a>
 
 Check out the [Android client](https://github.com/spacepandas/cineaste-android) on github. It is available on Google Play.
 
@@ -24,15 +26,25 @@ To enforce swift style and convention and to constantly check our code style, we
 
 ## How to build
 
-0. Run `pod install` in cineaste-ios folder to install all used cocoa pods. 
+0. Run `pod install` in cineaste-ios folder to install all used cocoa pods.
 1. Open `Cineaste.xcworkspace` in Xcode.
-2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add it to the `apikey.plist`.
+2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the `apikey.plist`.
+
+```xml 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MOVIEDB_KEY</key>
+	<string>XXXX</string>
+	<key>NEARBY_KEY</key>
+	<string>XXXX</string>
+</dict>
+</plist>
+```
+
 3. To run the app on one of your devices, you have to navigate to the project settings under targets to the general tab and choose a team to one you are member of. Change the bundle identifier to an identifier linked to your Apple developer account in order to run.
 4. Build and run the project.
-
-## Open tasks
-
-You can have a look at open [issues](https://github.com/spacepandas/cineaste-ios/issues).
 
 ## License
 
