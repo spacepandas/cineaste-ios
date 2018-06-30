@@ -9,7 +9,7 @@
 An iOS (and Android) application to manage movies you would like to see and movies you have seen.
 You can also start movie nights with your friends. There is no need to register or to add friends.
 
-<a href="https://itunes.apple.com/us/app/cineaste-app/id1402748020?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:152px;height:45px;background-size:contain;"></a>
+<a href='https://itunes.apple.com/us/app/cineaste-app/id1402748020'><img alt='Download on the App Store' img src='https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg' width="152" height="45"/></a>
 
 Check out the [Android client](https://github.com/spacepandas/cineaste-android) on github. It is available on Google Play.
 
