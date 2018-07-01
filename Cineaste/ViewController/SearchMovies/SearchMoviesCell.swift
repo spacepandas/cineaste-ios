@@ -66,6 +66,7 @@ class SearchMoviesCell: UITableViewCell {
 
         guard let posterPath = movie.posterPath else { return }
         posterLoadingTask = Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
+            self.posterLoadingTask = nil
             guard case let .success(poster) = result else {
                 return
             }
