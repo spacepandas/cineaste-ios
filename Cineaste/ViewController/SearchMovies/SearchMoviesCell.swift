@@ -80,6 +80,5 @@ class SearchMoviesCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         posterLoadingTask?.cancel()
-        poster.image = UIImage.posterPlaceholder
     }
 }
