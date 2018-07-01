@@ -16,6 +16,7 @@ class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
     weak var delegate: SearchMoviesCellDelegate?
+    private weak var posterLoadingTask: URLSessionTask?
     var movie: Movie? {
         didSet {
             if let movie = movie {
@@ -64,7 +65,7 @@ class SearchMoviesCell: UITableViewCell {
         poster.image = UIImage.posterPlaceholder
 
         guard let posterPath = movie.posterPath else { return }
-        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
+        posterLoadingTask = Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
             guard case let .success(poster) = result else {
                 return
             }
@@ -74,5 +75,11 @@ class SearchMoviesCell: UITableViewCell {
                 self.poster.image = poster
             }
         }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterLoadingTask?.cancel()
+        poster.image = UIImage.posterPlaceholder
     }
 }

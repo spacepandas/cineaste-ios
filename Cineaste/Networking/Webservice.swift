@@ -16,18 +16,20 @@ enum NetworkError: Error {
 }
 
 final class Webservice {
-    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A>) -> Void) {
+    @discardableResult
+    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A>) -> Void) -> URLSessionTask? {
         guard let resource = resource else {
             completion(Result.error(NetworkError.emptyResource))
-            return
+            return nil
         }
         guard let url = URL(string: resource.url) else {
             completion(Result.error(NetworkError.parseUrl))
-            return
+            return nil
         }
         var request = URLRequest(url: url)
         request.httpMethod = resource.method.rawValue
-        URLSession.shared.dataTask(with: request) { data, _, error in
+
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil, let data = data else {
                 // swiftlint:disable:next force_unwrapping
                 completion(Result.error(error!))
@@ -38,6 +40,9 @@ final class Webservice {
                 return
             }
             completion(Result.success(result))
-        }.resume()
+        }
+
+        task.resume()
+        return task
     }
 }
