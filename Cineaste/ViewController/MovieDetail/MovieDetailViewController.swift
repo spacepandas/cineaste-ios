@@ -124,7 +124,9 @@ class MovieDetailViewController: UIViewController {
 
     @objc
     func showPoster() {
-        perform(segue: .showPosterFromMovieDetail, sender: nil)
+        if posterImageView.image != UIImage.posterPlaceholder {
+            perform(segue: .showPosterFromMovieDetail, sender: nil)
+        }
     }
 
     @objc
@@ -245,9 +247,9 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func setupUI(for networkMovie: Movie) {
         DispatchQueue.main.async {
-            if let moviePoster = networkMovie.poster {
-                self.posterImageView.image = moviePoster
-            }
+            self.posterImageView.image = networkMovie.poster
+                ?? UIImage.posterPlaceholder
+
             self.titleLabel.text = networkMovie.title
             self.descriptionTextView.text = networkMovie.overview
             self.runtimeLabel.text = networkMovie.formattedRuntime
@@ -260,7 +262,10 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             if let moviePoster = localMovie.poster {
                 self.posterImageView.image = UIImage(data: moviePoster)
+            } else {
+                self.posterImageView.image = UIImage.posterPlaceholder
             }
+
             self.titleLabel.text = localMovie.title
             self.descriptionTextView.text = localMovie.overview
             self.runtimeLabel.text = localMovie.formattedRuntime
