@@ -24,6 +24,7 @@
 		3F585B93203B59B7002F6E07 /* MovieNightViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B92203B59B7002F6E07 /* MovieNightViewControllerTests.swift */; };
 		3F585B95203B5A43002F6E07 /* MovieDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */; };
 		3F585B97203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */; };
+		3F5A475220EC01B3003CD282 /* SFSafariViewController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A475120EC01B3003CD282 /* SFSafariViewController+Style.swift */; };
 		3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */; };
 		3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8E2030905B00E091BE /* SettingsCell.swift */; };
 		3F5E0D91203090C300E091BE /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D90203090C300E091BE /* SettingItem.swift */; };
@@ -222,6 +223,7 @@
 		3F585B92203B59B7002F6E07 /* MovieNightViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightViewControllerTests.swift; sourceTree = "<group>"; };
 		3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		3F5A475120EC01B3003CD282 /* SFSafariViewController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Style.swift"; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3F5E0D90203090C300E091BE /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				95C679A12033773A0058FC8C /* UIImage+Cineaste.swift */,
 				3F9806372055250F00B92A27 /* String+Cineaste.swift */,
 				3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */,
+				3F5A475120EC01B3003CD282 /* SFSafariViewController+Style.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				3F8C569C1FFACAFF00F09A82 /* MovieStorage.swift in Sources */,
 				3F6C88792002B2C50052BF24 /* SettingsDetailViewController.swift in Sources */,
 				3FAAD61A20A6E5EE001A19D2 /* SeenMovieCell.swift in Sources */,
+				3F5A475220EC01B3003CD282 /* SFSafariViewController+Style.swift in Sources */,
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,
