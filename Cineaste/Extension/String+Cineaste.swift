@@ -65,6 +65,12 @@ extension String {
     static let spacePandasTitle = NSLocalizedString("SpacePandas", comment: "Title for spacePandas")
     static let spacePandasDescription = NSLocalizedString("SpacePandasContent", comment: "Description for spacePandas")
 
+    static let helpPandasTitle = NSLocalizedString("helpPandas", comment: "Title for helpPandas")
+    static let littlePandasDescription = NSLocalizedString("helpPandasContent", comment: "Description for helpPandas")
+
+    static let icons8Title = NSLocalizedString("icons8", comment: "Title for icons8")
+    static let icons8Description = NSLocalizedString("icons8link", comment: "Description for icons8")
+
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {
         return String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
