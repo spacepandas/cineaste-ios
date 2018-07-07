@@ -103,7 +103,7 @@ class MoviesViewController: UIViewController {
         }
 
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = Alert.insertUsername.title
+            textField.placeholder = String.usernamePlaceholder
             textField.delegate = self
         })
 
