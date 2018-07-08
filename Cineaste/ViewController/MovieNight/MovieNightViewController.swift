@@ -148,7 +148,7 @@ class MovieNightViewController: UIViewController {
                     }
                     self.usersTableView.reloadData()
                 }
-        })
+            })
     }
 }
 
