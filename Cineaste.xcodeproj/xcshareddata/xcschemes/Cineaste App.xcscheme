@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FF790E120DE274A007B7D37"
-               BuildableName = "Cineaste-AppStore.app"
-               BlueprintName = "Cineaste-AppStore"
+               BuildableName = "Cineaste App.app"
+               BlueprintName = "Cineaste App"
                ReferencedContainer = "container:Cineaste.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FF790E120DE274A007B7D37"
-            BuildableName = "Cineaste-AppStore.app"
-            BlueprintName = "Cineaste-AppStore"
+            BuildableName = "Cineaste App.app"
+            BlueprintName = "Cineaste App"
             ReferencedContainer = "container:Cineaste.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FF790E120DE274A007B7D37"
-            BuildableName = "Cineaste-AppStore.app"
-            BlueprintName = "Cineaste-AppStore"
+            BuildableName = "Cineaste App.app"
+            BlueprintName = "Cineaste App"
             ReferencedContainer = "container:Cineaste.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FF790E120DE274A007B7D37"
-            BuildableName = "Cineaste-AppStore.app"
-            BlueprintName = "Cineaste-AppStore"
+            BuildableName = "Cineaste App.app"
+            BlueprintName = "Cineaste App"
             ReferencedContainer = "container:Cineaste.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

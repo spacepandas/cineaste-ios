@@ -272,7 +272,7 @@
 		3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportObject.swift; sourceTree = "<group>"; };
 		3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
 		3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellTests.swift; sourceTree = "<group>"; };
-		3FF7913720DE274A007B7D37 /* Cineaste-AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste-AppStore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF7913920DE2A21007B7D37 /* Cineaste-AppStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cineaste-AppStore-Info.plist"; sourceTree = "<group>"; };
 		5250AB7D010CEFD181CC0F77 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		958328991FBB81340084CF80 /* cineaste.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = cineaste.xcassets; sourceTree = "<group>"; };
 		959E8B761FABC6F50004E8C3 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		959E8B781FABC99D0004E8C3 /* SearchMoviesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesCell.swift; sourceTree = "<group>"; };
-		95AE259C1F9531E20067F5F5 /* Cineaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cineaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95AE259C1F9531E20067F5F5 /* Cineaste App-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AE259F1F9531E20067F5F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95AE25A41F9531E20067F5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95AE25A91F9531E20067F5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -482,10 +482,10 @@
 		95AE259D1F9531E20067F5F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95AE259C1F9531E20067F5F5 /* Cineaste.app */,
+				95AE259C1F9531E20067F5F5 /* Cineaste App-Dev.app */,
 				95AE25B01F9531E20067F5F5 /* CineasteTests.xctest */,
 				3F2408F2203CB88E00EB9141 /* CineasteUITests.xctest */,
-				3FF7913720DE274A007B7D37 /* Cineaste-AppStore.app */,
+				3FF7913720DE274A007B7D37 /* Cineaste App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -638,9 +638,9 @@
 			productReference = 3F2408F2203CB88E00EB9141 /* CineasteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		3FF790E120DE274A007B7D37 /* Cineaste-AppStore */ = {
+		3FF790E120DE274A007B7D37 /* Cineaste App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste-AppStore" */;
+			buildConfigurationList = 3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste App" */;
 			buildPhases = (
 				3FF790E220DE274A007B7D37 /* [CP] Check Pods Manifest.lock */,
 				3FF790E320DE274A007B7D37 /* Find TODOS/WARNINGS */,
@@ -654,14 +654,14 @@
 			);
 			dependencies = (
 			);
-			name = "Cineaste-AppStore";
+			name = "Cineaste App";
 			productName = Cineaste;
-			productReference = 3FF7913720DE274A007B7D37 /* Cineaste-AppStore.app */;
+			productReference = 3FF7913720DE274A007B7D37 /* Cineaste App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		95AE259B1F9531E20067F5F5 /* Cineaste */ = {
+		95AE259B1F9531E20067F5F5 /* Cineaste App-Dev */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste" */;
+			buildConfigurationList = 95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste App-Dev" */;
 			buildPhases = (
 				C4D33555393E5EA73F557688 /* [CP] Check Pods Manifest.lock */,
 				95281131201D091100F3EC76 /* Find TODOS/WARNINGS */,
@@ -675,9 +675,9 @@
 			);
 			dependencies = (
 			);
-			name = Cineaste;
+			name = "Cineaste App-Dev";
 			productName = Cineaste;
-			productReference = 95AE259C1F9531E20067F5F5 /* Cineaste.app */;
+			productReference = 95AE259C1F9531E20067F5F5 /* Cineaste App-Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		95AE25AF1F9531E20067F5F5 /* CineasteTests */ = {
@@ -744,8 +744,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				95AE259B1F9531E20067F5F5 /* Cineaste */,
-				3FF790E120DE274A007B7D37 /* Cineaste-AppStore */,
+				95AE259B1F9531E20067F5F5 /* Cineaste App-Dev */,
+				3FF790E120DE274A007B7D37 /* Cineaste App */,
 				95AE25AF1F9531E20067F5F5 /* CineasteTests */,
 				3F2408F1203CB88E00EB9141 /* CineasteUITests */,
 			);
@@ -1138,12 +1138,12 @@
 /* Begin PBXTargetDependency section */
 		3F2408F8203CB88E00EB9141 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 95AE259B1F9531E20067F5F5 /* Cineaste */;
+			target = 95AE259B1F9531E20067F5F5 /* Cineaste App-Dev */;
 			targetProxy = 3F2408F7203CB88E00EB9141 /* PBXContainerItemProxy */;
 		};
 		95AE25B21F9531E20067F5F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 95AE259B1F9531E20067F5F5 /* Cineaste */;
+			target = 95AE259B1F9531E20067F5F5 /* Cineaste App-Dev */;
 			targetProxy = 95AE25B11F9531E20067F5F5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1525,7 +1525,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste-AppStore" */ = {
+		3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FF7913520DE274A007B7D37 /* Debug */,
@@ -1543,7 +1543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste" */ = {
+		95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste App-Dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95AE25BA1F9531E20067F5F5 /* Debug */,
