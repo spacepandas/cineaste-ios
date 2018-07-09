@@ -8,7 +8,7 @@
 
 import XCTest
 import CoreData
-@testable import Cineaste
+@testable import Cineaste_App_Dev
 
 class MovieListCellTests: XCTestCase {
     let cell = MovieListCell()
