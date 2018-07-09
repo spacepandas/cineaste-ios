@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth will only be used to discover nearby devices</string>
+	<string>Bluetooth</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>The microphone will only be used to discover nearby devices</string>
+	<string>Microphone</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
