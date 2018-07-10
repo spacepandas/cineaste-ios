@@ -684,6 +684,7 @@
 				7F3E5955D60286E7C8D4012B /* [CP] Check Pods Manifest.lock */,
 				95281131201D091100F3EC76 /* Find TODOS/WARNINGS */,
 				951BEDF71FB0FF73006EFDED /* Swift Lint */,
+				4E60B97320F5330F0020B5B6 /* Check API Keys */,
 				95AE25981F9531E20067F5F5 /* Sources */,
 				95AE25991F9531E20067F5F5 /* Frameworks */,
 				95AE259A1F9531E20067F5F5 /* Resources */,
@@ -938,6 +939,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4E60B97320F5330F0020B5B6 /* Check API Keys */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check API Keys";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NEARBY_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :NEARBY_KEY' Cineaste/apikey.plist)\"\nMOVIEDB_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :MOVIEDB_KEY' Cineaste/apikey.plist)\"\n\nif [[ -z \"$NEARBY_KEY\" ]]; then\n    echo \"Cineaste/apikey.plist\":1: warning: \"Add a NEARBY_KEY to apikey.plist\"\nfi\n\nif [[ -z \"$MOVIEDB_KEY\" ]]; then\n    echo \"Cineaste/apikey.plist\":1: warning: \"Add a MOVIEDB_KEY to apikey.plist\"\nfi\n\nexit 0\n";
 		};
 		7F3E5955D60286E7C8D4012B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
