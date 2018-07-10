@@ -44,7 +44,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.configure(with: movie)
 
         XCTAssertEqual(cell.title.text, movie.title)
-        XCTAssertEqual(cell.releaseDate.text, movie.formattedReleaseDate)
+        XCTAssertEqual(cell.releaseDate.text, movie.formattedReleaseDate())
     }
 
     private let movie: Movie = {
