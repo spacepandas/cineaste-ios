@@ -33,7 +33,18 @@ class MovieStorageTests: XCTestCase {
     func testCreateStoredMovie() {
         let expc = expectation(description: "StoredMovie should be created")
         let id: Int64 = 100
-        storageManager.insertMovieItem(id: id, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, voteCount: 1, watched: false) { result in
+        storageManager.insertMovieItem(id: id,
+                                       overview: "",
+                                       poster: nil,
+                                       posterPath: "",
+                                       releaseDate: Date(),
+                                       localizedReleaseDate: Date(),
+                                       runtime: 1,
+                                       title: "",
+                                       voteAverage: 2,
+                                       voteCount: 1,
+                                       watched: false)
+        { result in
             switch result {
             case .success:
                 expc.fulfill()

@@ -41,5 +41,34 @@
     "title": "Cineaste Test Movie",
     "video": false,
     "vote_average": 6.9,
-    "vote_count": 32
+    "vote_count": 32,
+    "release_dates": {
+        "id": 260513,
+        "results": [
+            {
+                "iso_3166_1": "DE",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "pl",
+                        "note": "",
+                        "release_date": "2018-07-13T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IN",
+                "release_dates": [
+                    {
+                        "certification": "UA",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2018-06-22T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            }
+        ]
+    }
 }

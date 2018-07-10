@@ -31,6 +31,7 @@ class MovieStorage {
                          poster: Data?,
                          posterPath: String,
                          releaseDate: Date,
+                         localizedReleaseDate: Date,
                          runtime: Int16,
                          title: String,
                          voteAverage: Decimal,
@@ -47,6 +48,7 @@ class MovieStorage {
             storedMovie.poster = poster
 
             storedMovie.releaseDate = releaseDate
+            storedMovie.localizedReleaseDate = localizedReleaseDate
             storedMovie.runtime = runtime
             storedMovie.voteAverage = voteAverage as NSDecimalNumber
             storedMovie.voteCount = voteCount
@@ -72,6 +74,7 @@ class MovieStorage {
             }
 
             storedMovie.releaseDate = movie.releaseDate
+            storedMovie.localizedReleaseDate = movie.localizedReleaseDate
             storedMovie.runtime = movie.runtime
             storedMovie.voteAverage = movie.voteAverage as NSDecimalNumber
             storedMovie.voteCount = movie.voteCount
@@ -95,6 +98,7 @@ class MovieStorage {
             storedMovie.poster = movie.poster
 
             storedMovie.releaseDate = movie.releaseDate
+            storedMovie.localizedReleaseDate = movie.localizedReleaseDate
             storedMovie.runtime = movie.runtime
             storedMovie.voteAverage = movie.voteAverage
             storedMovie.voteCount = movie.voteCount
