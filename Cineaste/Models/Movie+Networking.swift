@@ -86,7 +86,8 @@ extension Movie {
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let movie = try JSONDecoder().decode(Movie.self, from: data)
-                movie.localizedReleaseDate = try Movie.configureLocalizedReleaseDate(from: data)
+                movie.localizedReleaseDate = Movie
+                    .configureLocalizedReleaseDate(from: data)
                 return movie
             } catch {
                 print(error)
@@ -95,9 +96,10 @@ extension Movie {
         }
     }
 
-    static func configureLocalizedReleaseDate(from data: Data) throws -> Date? {
-        let releaseDates = try JSONDecoder().decode(LocalizedReleaseDates.self, from: data)
-        let releaseDateLocale = releaseDates
+    static func configureLocalizedReleaseDate(from data: Data) -> Date? {
+        let localizedReleaseDates = try? JSONDecoder()
+            .decode(LocalizedReleaseDates.self, from: data)
+        let releaseDateLocale = localizedReleaseDates?
             .releaseDates
             .first(where: { $0.identifier == String.regionIso31661 })?
             .releaseDate
