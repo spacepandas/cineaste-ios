@@ -61,7 +61,7 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie) {
         title.text = movie.title
-        releaseDate.text = movie.formattedReleaseDate
+        releaseDate.text = movie.formattedReleaseDate()
         poster.image = UIImage.posterPlaceholder
 
         guard let posterPath = movie.posterPath else { return }

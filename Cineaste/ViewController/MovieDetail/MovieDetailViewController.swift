@@ -247,30 +247,46 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func setupUI(for networkMovie: Movie) {
         DispatchQueue.main.async {
-            self.posterImageView.image = networkMovie.poster
+            guard let posterImageView = self.posterImageView,
+                let titleLabel = self.titleLabel,
+                let descriptionTextView = self.descriptionTextView,
+                let runtimeLabel = self.runtimeLabel,
+                let votingLabel = self.votingLabel,
+                let releaseDateLabel = self.releaseDateLabel else { return }
+
+            posterImageView.image = networkMovie.poster
                 ?? UIImage.posterPlaceholder
 
-            self.titleLabel.text = networkMovie.title
-            self.descriptionTextView.text = networkMovie.overview
-            self.runtimeLabel.text = networkMovie.formattedRuntime
-            self.votingLabel.text = networkMovie.formattedVoteAverage
-            self.releaseDateLabel.text = networkMovie.formattedReleaseDate
+            titleLabel.text = networkMovie.title
+            descriptionTextView.text = networkMovie.overview
+            runtimeLabel.text = networkMovie.formattedRuntime
+            votingLabel.text = networkMovie.formattedVoteAverage
+            releaseDateLabel.text = networkMovie
+                .formattedReleaseDate(useLongVersion: true)
         }
     }
 
     fileprivate func setupUI(for localMovie: StoredMovie) {
         DispatchQueue.main.async {
+            guard let posterImageView = self.posterImageView,
+                let titleLabel = self.titleLabel,
+                let descriptionTextView = self.descriptionTextView,
+                let runtimeLabel = self.runtimeLabel,
+                let votingLabel = self.votingLabel,
+                let releaseDateLabel = self.releaseDateLabel else { return }
+
             if let moviePoster = localMovie.poster {
-                self.posterImageView.image = UIImage(data: moviePoster)
+                posterImageView.image = UIImage(data: moviePoster)
             } else {
-                self.posterImageView.image = UIImage.posterPlaceholder
+                posterImageView.image = UIImage.posterPlaceholder
             }
 
-            self.titleLabel.text = localMovie.title
-            self.descriptionTextView.text = localMovie.overview
-            self.runtimeLabel.text = localMovie.formattedRuntime
-            self.votingLabel.text = localMovie.formattedVoteAverage
-            self.releaseDateLabel.text = localMovie.formattedReleaseDate
+            titleLabel.text = localMovie.title
+            descriptionTextView.text = localMovie.overview
+            runtimeLabel.text = localMovie.formattedRuntime
+            votingLabel.text = localMovie.formattedVoteAverage
+            releaseDateLabel.text = localMovie
+                .formattedReleaseDate(useLongVersion: true)
         }
     }
 

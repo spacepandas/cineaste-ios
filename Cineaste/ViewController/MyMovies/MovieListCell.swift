@@ -33,6 +33,6 @@ class MovieListCell: UITableViewCell {
         title.text = movie.title
         votes.text = movie.formattedVoteAverage
         runtime.text = movie.formattedRuntime
-        releaseDate.text = movie.formattedReleaseDate
+        releaseDate.text = movie.formattedReleaseDate()
     }
 }
