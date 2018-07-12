@@ -67,6 +67,7 @@
 		3F98063A20554AE400B92A27 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */; };
 		3F98063D20556EA700B92A27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F98063F20556EA700B92A27 /* InfoPlist.strings */; };
 		3FA6C9D820F7B5990050368E /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* SafariViewController.swift */; };
+		3FA6C9D920F7DCEC0050368E /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* SafariViewController.swift */; };
 		3FA808CF20027AF60036357B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FA808D1200285590036357B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808D0200285590036357B /* View.swift */; };
 		3FAA3BBA2082668900726DE2 /* Decimal+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAA3BB92082668900726DE2 /* Decimal+Formatter.swift */; };
@@ -1049,6 +1050,7 @@
 				3FF790E620DE274A007B7D37 /* Instantiable.swift in Sources */,
 				3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */,
 				3FF790E820DE274A007B7D37 /* Config.swift in Sources */,
+				3FA6C9D920F7DCEC0050368E /* SafariViewController.swift in Sources */,
 				3FF790E920DE274A007B7D37 /* PagedMovieResult.swift in Sources */,
 				3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */,
 				3F7ABD5320F5C708004B069E /* StoredMovie+Formatted.swift in Sources */,
