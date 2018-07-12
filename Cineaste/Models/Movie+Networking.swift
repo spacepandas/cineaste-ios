@@ -26,9 +26,6 @@ extension Movie {
             do {
                 let paginatedMovies = try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
-                for movie in paginatedMovies.results {
-                    movie.localizedReleaseDate = movie.releaseDate
-                }
                 return paginatedMovies.results
             } catch {
                 print(error)
@@ -52,9 +49,6 @@ extension Movie {
             do {
                 let paginatedMovies = try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
-                for movie in paginatedMovies.results {
-                    movie.localizedReleaseDate = movie.releaseDate
-                }
                 return paginatedMovies.results
             } catch {
                 print(error)
@@ -90,7 +84,7 @@ extension Movie {
 
                 let release = try? decoder.decode(LocalizedReleaseDate.self,
                                                   from: data)
-                movie.localizedReleaseDate = release?.date
+                movie.releaseDate = release?.date
 
                 return movie
             } catch {

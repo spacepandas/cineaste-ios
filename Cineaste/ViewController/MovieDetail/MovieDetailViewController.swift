@@ -283,8 +283,7 @@ class MovieDetailViewController: UIViewController {
             descriptionTextView.text = networkMovie.overview
             runtimeLabel.text = networkMovie.formattedRuntime
             votingLabel.text = networkMovie.formattedVoteAverage
-            releaseDateLabel.text = networkMovie
-                .formattedReleaseDate(useLongVersion: true)
+            releaseDateLabel.text = networkMovie.formattedReleaseDate
         }
     }
 
@@ -307,8 +306,7 @@ class MovieDetailViewController: UIViewController {
             descriptionTextView.text = localMovie.overview
             runtimeLabel.text = localMovie.formattedRuntime
             votingLabel.text = localMovie.formattedVoteAverage
-            releaseDateLabel.text = localMovie
-                .formattedReleaseDate(useLongVersion: true)
+            releaseDateLabel.text = localMovie.formattedReleaseDate
         }
     }
 

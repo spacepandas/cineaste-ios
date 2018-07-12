@@ -18,14 +18,8 @@ extension Movie {
         }
     }
 
-    func formattedReleaseDate(useLongVersion: Bool = false) -> String {
-        if let release = localizedReleaseDate,
-            let regionName = Locale.current
-                .localizedString(forRegionCode: String.regionIso31661) {
-            return useLongVersion
-                ? "\(release.formatted) (in \(regionName))"
-                : release.formatted
-        } else if let release = releaseDate {
+    var formattedReleaseDate: String {
+        if let release = releaseDate {
             return release.formatted
         } else {
             return String.unknownReleaseDate

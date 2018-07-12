@@ -17,8 +17,7 @@ class Movie: Codable {
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
     fileprivate(set) var runtime: Int16
-    fileprivate(set) var releaseDate: Date?
-    var localizedReleaseDate: Date?
+    var releaseDate: Date?
     var poster: UIImage?
 
     enum CodingKeys: String, CodingKey {

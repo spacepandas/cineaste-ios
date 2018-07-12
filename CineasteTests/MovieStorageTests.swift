@@ -38,7 +38,6 @@ class MovieStorageTests: XCTestCase {
                                        poster: nil,
                                        posterPath: "",
                                        releaseDate: Date(),
-                                       localizedReleaseDate: Date(),
                                        runtime: 1,
                                        title: "",
                                        voteAverage: 2,
