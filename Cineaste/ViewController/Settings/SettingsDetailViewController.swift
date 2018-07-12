@@ -33,13 +33,6 @@ class SettingsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func viewDidLayoutSubviews() {
@@ -65,9 +58,8 @@ class SettingsDetailViewController: UIViewController {
 extension SettingsDetailViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
-        let viewController = SFSafariViewController(url: URL)
-        UIApplication.shared.statusBarStyle = .default
-        present(viewController, animated: true, completion: nil)
+        let safariVC = CustomSafariViewController(url: URL)
+        present(safariVC, animated: true, completion: nil)
 
         return false
     }

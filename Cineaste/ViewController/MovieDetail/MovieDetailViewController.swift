@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SafariServices
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
@@ -28,6 +29,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    @IBOutlet var moreInformationButton: ActionButton!
     @IBOutlet weak fileprivate var seenButton: ActionButton! {
         didSet {
             seenButton.setTitle(String.seen, for: .normal)
@@ -89,6 +91,8 @@ class MovieDetailViewController: UIViewController {
                                                        action: #selector(showPoster))
         posterImageView.isUserInteractionEnabled = true
         posterImageView.addGestureRecognizer(gestureRecognizer)
+
+        moreInformationButton.setTitle(String.moreInformation, for: .normal)
     }
 
     // MARK: - Actions
@@ -129,17 +133,21 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    @IBAction func showMoreInformation(_ sender: UIButton) {
+        guard let url = generateMovieURL() else { return }
+
+        let safariVC = CustomSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
+    }
+
     @objc
     func shareMovie(_ sender: UIBarButtonItem) {
         var title: String?
-        var movieUrl = Config.Backend.shareMovieUrl
 
         if let movie = storedMovie {
             title = movie.title
-            movieUrl += "\(movie.id)"
         } else if let movie = movie {
             title = movie.title
-            movieUrl += "\(movie.id)"
         }
 
         var items = [Any]()
@@ -148,7 +156,7 @@ class MovieDetailViewController: UIViewController {
             items.append(title)
         }
 
-        if let url = URL(string: movieUrl) {
+        if let url = generateMovieURL() {
             items.append(url)
         }
 
@@ -159,6 +167,20 @@ class MovieDetailViewController: UIViewController {
     }
 
     // MARK: - Private
+
+    fileprivate func generateMovieURL() -> URL? {
+        var movieUrl = Config.Backend.shareMovieUrl
+
+        if let movie = storedMovie {
+            movieUrl += "\(movie.id)"
+        } else if let movie = movie {
+            movieUrl += "\(movie.id)"
+        } else {
+            preconditionFailure("Either movie or storedMovie must be set to generate share movie url")
+        }
+
+        return URL(string: movieUrl)
+    }
 
     fileprivate func saveMovie(withWatched watched: Bool) {
         guard let storageManager = storageManager else { return }

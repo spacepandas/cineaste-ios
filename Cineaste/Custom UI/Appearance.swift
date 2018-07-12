@@ -15,6 +15,7 @@ extension UIColor {
     static let basicYellow = #colorLiteral(red: 0.9843137255, green: 0.8862745098, blue: 0.1803921569, alpha: 1)
     static let basicWhite = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     static let basicBackground = #colorLiteral(red: 0.2549019608, green: 0.2901960784, blue: 0.3176470588, alpha: 1)
+    static let safariBarTint = #colorLiteral(red: 0.1458641843, green: 0.157300925, blue: 0.1739156683, alpha: 1)
 
     static let accentText = #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5019607843, alpha: 1)
 
