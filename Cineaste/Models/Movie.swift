@@ -17,7 +17,7 @@ class Movie: Codable {
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
     fileprivate(set) var runtime: Int16
-    fileprivate(set) var releaseDate: Date?
+    var releaseDate: Date?
     var poster: UIImage?
 
     enum CodingKeys: String, CodingKey {
@@ -58,93 +58,5 @@ class Movie: Codable {
         self.voteCount = 0
         self.overview = ""
         self.runtime = 0
-    }
-}
-
-extension Movie {
-    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
-    fileprivate static let locale = Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
-
-    static func search(withQuery query: String) -> Resource<[Movie]>? {
-        guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return nil
-        }
-        let urlAsString = "\(Config.Backend.url)/search/movie?language=\(locale)&api_key=\(apiKey)&query=\(escapedQuery)"
-
-        return Resource(url: urlAsString, method: .get) { data in
-            let paginatedMovies = try? JSONDecoder().decode(PagedMovieResult.self, from: data)
-            return paginatedMovies?.results
-        }
-    }
-
-    static func latestReleases() -> Resource<[Movie]>? {
-        let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
-        let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
-        let urlAsString =
-        "\(Config.Backend.url)/discover/movie?" +
-        "primary_release_date.gte=\(oneMonthInPast.formattedForRequest)&" +
-            "primary_release_date.lte=\(oneMonthInFuture.formattedForRequest)&" +
-            "language=\(locale)&" +
-            "api_key=\(apiKey)"
-
-        return Resource(url: urlAsString, method: .get) { data in
-            do {
-                let paginatedMovies = try JSONDecoder().decode(PagedMovieResult.self, from: data)
-                return paginatedMovies.results
-            } catch {
-                print(error)
-                return nil
-            }
-        }
-    }
-
-    static func loadPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            UIImage(data: data)
-        }
-    }
-
-    static func loadOriginalPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Config.Backend.posterUrlOriginal)\(posterPath)?api_key=\(apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            UIImage(data: data)
-        }
-    }
-
-    var get: Resource<Movie>? {
-        let urlAsString = "\(Config.Backend.url)/movie/\(id)?language=\(Movie.locale)&api_key=\(Movie.apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            do {
-                let movie = try JSONDecoder().decode(Movie.self, from: data)
-                return movie
-            } catch {
-                print(error)
-                return nil
-            }
-        }
-    }
-}
-
-extension Movie {
-    var formattedVoteAverage: String {
-        if self.voteCount == 0 {
-            return String.unknownVoteAverage
-        } else {
-            return self.voteAverage.formattedWithOneFractionDigit
-                ?? String.unknownVoteAverage
-        }
-    }
-
-    var formattedReleaseDate: String {
-        if let release = releaseDate {
-            return release.formatted
-        } else {
-            return String.unknownReleaseDate
-        }
-    }
-
-    var formattedRuntime: String {
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
     }
 }
