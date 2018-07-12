@@ -66,6 +66,12 @@ extension String {
     static let spacePandasTitle = NSLocalizedString("SpacePandas", comment: "Title for spacePandas")
     static let spacePandasDescription = NSLocalizedString("SpacePandasContent", comment: "Description for spacePandas")
 
+    static let helpPandasTitle = NSLocalizedString("helpPandas", comment: "Title for helpPandas")
+    static let littlePandasDescription = NSLocalizedString("helpPandasContent", comment: "Description for helpPandas")
+
+    static let icons8Title = NSLocalizedString("icons8", comment: "Title for icons8")
+    static let icons8Description = NSLocalizedString("icons8link", comment: "Description for icons8")
+
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {
         return String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
@@ -100,8 +106,9 @@ extension String {
     static let insertMovieErrorMessage = NSLocalizedString("couldNotAddMovie", comment: "Message for insert movie error alert")
 
     // enter username for movie night
-    static let usernameTitle = NSLocalizedString("username", comment: "Enter username title")
-    static let usernameDescription = NSLocalizedString("enterUsername", comment: "Enter username description")
+    static let usernamePlaceholder = NSLocalizedString("username", comment: "Enter username title")
+    static let firstMovieNightTitle = NSLocalizedString("firstMovieNight", comment: "Start first movie night title")
+    static let explainMovieNightDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
 
     // missing feature
     static let missingFeatureMessage = NSLocalizedString("missingFeature", comment: "Message for missing feature alert")

@@ -21,6 +21,10 @@ enum TextViewType {
                                  paragraph: String.openSourceDescription),
                     ContentBlock(title: String.spacePandasTitle,
                                  paragraph: String.spacePandasDescription),
+                    ContentBlock(title: String.helpPandasTitle,
+                                 paragraph: String.littlePandasDescription),
+                    ContentBlock(title: String.icons8Title,
+                                 paragraph: String.icons8Description),
                     ContentBlock(title: String.movieDBTitle,
                                  paragraph: String.movieDBDescription)]
         case .licence:

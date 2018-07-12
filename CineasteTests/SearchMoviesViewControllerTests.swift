@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Cineaste
+@testable import Cineaste_App_Dev
 
 class SearchMoviesViewControllerTests: XCTestCase {
     let searchMoviesVC = SearchMoviesViewController.instantiate()

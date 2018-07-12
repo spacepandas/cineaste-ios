@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Cineaste
+@testable import Cineaste_App_Dev
 
 class SettingsViewControllerTests: XCTestCase {
     let settingsVC = SettingsViewController.instantiate()

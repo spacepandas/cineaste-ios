@@ -64,6 +64,7 @@ class MovieNightViewController: UIViewController {
 
         currentPublication = nil
         currentSubscription = nil
+
     }
 
     // MARK: - Actions
@@ -139,17 +140,14 @@ class MovieNightViewController: UIViewController {
                     return
             }
 
-            guard let index = self.nearbyMessages.index(of: nearbyMessage) else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.nearbyMessages.remove(at: index)
-                if self.nearbyMessages.isEmpty {
-                    self.startButton.isEnabled = false
-                    self.usersTableView.isHidden = true
+                DispatchQueue.main.async {
+                    self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
+                    if self.nearbyMessages.isEmpty {
+                        self.startButton.isEnabled = false
+                        self.usersTableView.isHidden = true
+                    }
+                    self.usersTableView.reloadData()
                 }
-                self.usersTableView.reloadData()
-            }
             })
     }
 }

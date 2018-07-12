@@ -33,7 +33,7 @@ class Alert: AlertMessage {
     static let updateMovieError = AlertMessage(title: String.errorTitle, message: String.updateMovieErrorMessage, action: String.okAction)
     static let insertMovieError = AlertMessage(title: String.errorTitle, message: String.insertMovieErrorMessage, action: String.okAction)
 
-    static let insertUsername = AlertMessage(title: String.usernameTitle, message: String.usernameDescription, action: String.saveAction, cancel: String.cancelAction)
+    static let insertUsername = AlertMessage(title: String.firstMovieNightTitle, message: String.explainMovieNightDescription, action: String.saveAction, cancel: String.cancelAction)
 
     static let missingFeatureInfo = AlertMessage(title: String.infoTitle, message: String.missingFeatureMessage, action: String.okAction)
 

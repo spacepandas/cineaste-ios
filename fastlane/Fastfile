@@ -3,8 +3,8 @@ default_platform :ios
 
 ProjectName = "Cineaste"
 Schemes = {
-  "dev" => ProjectName,
-  "appStore" => "#{ProjectName}-AppStore"
+  "dev" => "#{ProjectName} App-Dev",
+  "appStore" => "#{ProjectName} App"
 }
 Scheme_UnitTests = "Testing"
 Scheme_UITests = "Snapshot"
