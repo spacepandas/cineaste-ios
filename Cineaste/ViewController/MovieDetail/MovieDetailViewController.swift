@@ -176,6 +176,8 @@ class MovieDetailViewController: UIViewController {
             movieUrl += "\(movie.id)"
         } else if let movie = movie {
             movieUrl += "\(movie.id)"
+        } else {
+            preconditionFailure("Either movie or storedMovie must be set to generate share movie url")
         }
 
         return URL(string: movieUrl)
