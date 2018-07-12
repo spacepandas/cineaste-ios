@@ -11,29 +11,34 @@ import XCTest
 
 class ReleaseDatesTests: XCTestCase {
 
-    func testTaxReligionJsonShouldResultInTaxReligionsStructWhenParsedCorrectly() {
+    func testReleaseDateJsonShouldResultInReleaseDateStructWhenParsedCorrectly() {
         guard let path = Bundle(for: ReleaseDatesTests.self)
             .path(forResource: "ReleaseDates", ofType: "json") else {
                 fatalError("Could not load file for resource ReleaseDates.json")
         }
 
+        precondition(Locale.current.identifier == "en_US",
+                     """
+                     Region in simulator has to be set to US to successfully \
+                     use the mock data.
+                     """
+        )
+
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+            let data = try Data(contentsOf: URL(fileURLWithPath: path),
+                                options: .alwaysMapped)
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let releaseDates = try decoder.decode(LocalizedReleaseDates.self, from: data)
+            let releaseDates = try? decoder.decode(LocalizedReleaseDate.self,
+                                                   from: data)
             XCTAssertNotNil(releaseDates)
 
-            let releaseDateLocale = releaseDates
-                .releaseDates
-                .first(where: { $0.identifier == "DE" })?
-                .releaseDate
-            XCTAssertNotNil(releaseDateLocale)
-            XCTAssertEqual(releaseDateLocale,
-                           "2018-07-13T00:00:00.000Z".dateFromISO8601)
+            let date = releaseDates?.date
+            XCTAssertNotNil(date)
+            XCTAssertEqual(date, "2003-12-17T00:00:00.000Z".dateFromISO8601)
         } catch {
-            XCTFail("json could not be parsed in LocalizedReleaseDates: \(error)")
+            XCTFail("json couldn't be parsed to LocalizedReleaseDates: \(error)")
         }
     }
 }

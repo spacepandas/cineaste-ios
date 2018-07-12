@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    //e.g. "DE"
     static var regionIso31661: String {
         var locale = Locale.current.identifier
 
@@ -18,6 +19,7 @@ extension String {
         return locale
     }
 
+    //e.g. "de-DE
     static var languageFormattedForTMDb: String {
         return Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
     }

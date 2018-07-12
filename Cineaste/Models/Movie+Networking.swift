@@ -85,24 +85,18 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let movie = try JSONDecoder().decode(Movie.self, from: data)
-                movie.localizedReleaseDate = Movie
-                    .configureLocalizedReleaseDate(from: data)
+                let decoder = JSONDecoder()
+                let movie = try decoder.decode(Movie.self, from: data)
+
+                let release = try? decoder.decode(LocalizedReleaseDate.self,
+                                                  from: data)
+                movie.localizedReleaseDate = release?.date
+
                 return movie
             } catch {
                 print(error)
                 return nil
             }
         }
-    }
-
-    static func configureLocalizedReleaseDate(from data: Data) -> Date? {
-        let localizedReleaseDates = try? JSONDecoder()
-            .decode(LocalizedReleaseDates.self, from: data)
-        let releaseDateLocale = localizedReleaseDates?
-            .releaseDates
-            .first(where: { $0.identifier == String.regionIso31661 })?
-            .releaseDate
-        return releaseDateLocale
     }
 }

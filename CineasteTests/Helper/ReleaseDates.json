@@ -46,14 +46,28 @@
         "id": 260513,
         "results": [
             {
-                "iso_3166_1": "DE",
+                "iso_3166_1": "US",
                 "release_dates": [
                     {
-                        "certification": "",
-                        "iso_639_1": "pl",
+                        "certification": "11",
+                        "iso_639_1": "",
                         "note": "",
-                        "release_date": "2018-07-13T00:00:00.000Z",
+                        "release_date": "2003-12-17T00:00:00.000Z",
                         "type": 3
+                    },
+                    {
+                        "certification": "11",
+                        "iso_639_1": "de",
+                        "note": "DVD release",
+                        "release_date": "2004-05-25T00:00:00.000Z",
+                        "type": 5
+                    },
+                    {
+                        "certification": "11",
+                        "iso_639_1": "",
+                        "note": "Blu-ray release",
+                        "release_date": "2010-04-07T00:00:00.000Z",
+                        "type": 5
                     }
                 ]
             },
