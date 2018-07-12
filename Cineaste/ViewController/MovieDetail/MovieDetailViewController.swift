@@ -136,8 +136,7 @@ class MovieDetailViewController: UIViewController {
     @IBAction func showMoreInformation(_ sender: UIButton) {
         guard let url = generateMovieURL() else { return }
 
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.addStyle()
+        let safariVC = CustomSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
     }
 

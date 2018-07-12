@@ -58,8 +58,7 @@ class SettingsDetailViewController: UIViewController {
 extension SettingsDetailViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
-        let safariVC = SFSafariViewController(url: URL)
-        safariVC.addStyle()
+        let safariVC = CustomSafariViewController(url: URL)
         present(safariVC, animated: true, completion: nil)
 
         return false
