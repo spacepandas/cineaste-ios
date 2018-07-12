@@ -30,7 +30,7 @@ struct LocalizedReleaseDate: Decodable {
 
         date = allRegionReleaseDate?
             .first(where: { $0.type == 3 &&
-                ($0.regionIdentifier == String.regionIso31661 || $0.regionIdentifier.isEmpty) })?
+                ($0.regionIdentifier == String.languageIso6391 || $0.regionIdentifier.isEmpty) })?
             .regionReleaseDate
     }
 }
