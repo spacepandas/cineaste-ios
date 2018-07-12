@@ -20,7 +20,7 @@ extension Movie {
             "&api_key=\(apiKey)" +
             "&query=\(escapedQuery)" +
             "&region=\(String.regionIso31661)" +
-        "&with_release_type=2%7C3"
+        "&with_release_type=3"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
@@ -43,7 +43,7 @@ extension Movie {
             "&region=\(String.regionIso31661)" +
             "&release_date.gte=\(oneMonthInPast.formattedForRequest)" +
             "&release_date.lte=\(oneMonthInFuture.formattedForRequest)" +
-        "&with_release_type=2%7C3"
+        "&with_release_type=3"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
