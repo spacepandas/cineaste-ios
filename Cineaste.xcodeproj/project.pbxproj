@@ -976,7 +976,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml --strict";
 		};
 		95281131201D091100F3EC76 /* Find TODOS/WARNINGS */ = {
 			isa = PBXShellScriptBuildPhase;
