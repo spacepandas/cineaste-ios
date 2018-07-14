@@ -756,7 +756,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = notimeforthat.org;
+				ORGANIZATIONNAME = spacepandas.de;
 				TargetAttributes = {
 					3F2408F1203CB88E00EB9141 = {
 						CreatedOnToolsVersion = 9.2;
