@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct ApiKeyStore {
-
+enum ApiKeyStore {
     static func theMovieDbKey() -> String {
         return getValue(forKey: "MOVIEDB_KEY")
     }
@@ -18,7 +17,7 @@ struct ApiKeyStore {
         return getValue(forKey: "NEARBY_KEY")
     }
 
-    fileprivate static func getValue(forKey key: String) -> String {
+    private static func getValue(forKey key: String) -> String {
         guard let path = Bundle.main.path(forResource: "apikey", ofType: "plist")
             else {
                 fatalError("No apikey file")

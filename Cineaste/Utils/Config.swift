@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Config {
-    struct Backend {
+enum Config {
+    enum Backend {
         static let url = "https://api.themoviedb.org/3"
         static let posterUrl = "https://image.tmdb.org/t/p/w342"
         static let posterUrlOriginal = "https://image.tmdb.org/t/p/original"
         static let shareMovieUrl = "https://www.themoviedb.org/movie/"
     }
 
-    struct UserDefaults {
+    enum UserDefaults {
         static let usernameKey = "cineaste-username"
     }
 }

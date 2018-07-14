@@ -25,6 +25,9 @@ opt_in_rules:
   - attributes
   - first_where
   - multiline_parameters
+  - convenience_type
+  - redundant_set_access_control
+  - multiline_function_chains
 
 # Exclude tests, pods and vendor sources
 excluded:

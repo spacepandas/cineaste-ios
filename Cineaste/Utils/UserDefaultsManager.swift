@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserDefaultsManager {
+enum UserDefaultsManager {
     static func getUsername() -> String? {
         return UserDefaults.standard.string(forKey: Config.UserDefaults.usernameKey)
     }
