@@ -25,10 +25,8 @@ extension SearchMoviesViewController: UITableViewDataSource {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
         // last cell for current page
-        if indexPath.row == movies.count - 1 {
-            guard let total = totalResults else {
-                return UITableViewCell()
-            }
+        if indexPath.row == movies.count - 1,
+            let total = totalResults {
 
             if total > movies.count {
                 loadRecent { movies in
