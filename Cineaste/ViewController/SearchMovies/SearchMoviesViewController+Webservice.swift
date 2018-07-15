@@ -10,13 +10,21 @@ import UIKit
 
 extension SearchMoviesViewController {
     func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
-        Webservice.load(resource: Movie.latestReleases()) { result in
-            guard case let .success(movies) = result else {
+        var pageToLoad = 1
+        if let page = currentPage {
+            pageToLoad = page + 1
+        }
+
+        print(pageToLoad)
+        Webservice.load(resource: Movie.latestReleases(page: pageToLoad)) { result in
+            guard case let .success(result) = result else {
                 self.showAlert(withMessage: Alert.loadingDataError)
                 handler([])
                 return
             }
-            handler(movies)
+            self.currentPage = result.page
+            self.totalResults = result.totalResults
+            handler(result.results)
         }
     }
 

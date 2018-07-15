@@ -19,6 +19,8 @@ class SearchMoviesViewController: UIViewController {
 
     var selectedMovie: Movie?
     var storageManager: MovieStorage?
+    var currentPage: Int?
+    var totalResults: Int?
 
     private var searchDelayTimer: Timer?
 

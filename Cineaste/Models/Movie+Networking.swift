@@ -34,7 +34,7 @@ extension Movie {
         }
     }
 
-    static func latestReleases() -> Resource<[Movie]>? {
+    static func latestReleases(page: Int) -> Resource<PagedMovieResult>? {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString = "\(Config.Backend.url)/discover/movie" +
@@ -43,13 +43,15 @@ extension Movie {
             "&region=\(String.regionIso31661)" +
             "&release_date.gte=\(oneMonthInPast.formattedForRequest)" +
             "&release_date.lte=\(oneMonthInFuture.formattedForRequest)" +
-        "&with_release_type=3"
+            "&with_release_type=3" +
+        "&page=\(page)"
+        print(urlAsString)
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let paginatedMovies = try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
-                return paginatedMovies.results
+                return paginatedMovies
             } catch {
                 print(error)
                 return nil

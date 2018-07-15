@@ -24,6 +24,18 @@ extension SearchMoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
+        // last cell
+        if indexPath.row == movies.count - 1 {
+            guard let total = totalResults else {
+                return UITableViewCell()
+            }
+            if total > movies.count {
+                loadRecent { movies in
+                    self.movies += movies
+                }
+            }
+        }
+
         cell.movie = movies[indexPath.row]
         cell.delegate = self
         return cell
