@@ -41,28 +41,16 @@ class MovieMatchCell: UITableViewCell {
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
         seenButton.addTarget(self, action: #selector(startMovienightButtonTouched(_:)), for: .touchUpInside)
 
-        loadPoster(for: movieWithOccurance.nearbyMovie) { poster in
-            DispatchQueue.main.async {
-                self.posterToDisplay = poster
-                self.posterImageView.image = self.posterToDisplay ?? UIImage.posterPlaceholder
-            }
+        if let posterPath = movieWithOccurance.nearbyMovie.posterPath {
+            let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
+            posterImageView.kf.setImage(with: posterUrl,
+                                        placeholder: UIImage.posterPlaceholder)
+        } else {
+            posterImageView.image = UIImage.posterPlaceholder
         }
 
         numberOfMatchesLabel.text = String.matches(for: movieWithOccurance.occurances,
                                                     amountOfPeople: amountOfPeople)
-    }
-
-    fileprivate func loadPoster(for movie: NearbyMovie, completionHandler handler: @escaping (_ poster: UIImage?) -> Void) {
-        guard let posterPath = movie.posterPath else {
-            return
-        }
-        Webservice.load(resource: Movie.loadPoster(from: posterPath)) { result in
-            guard case let .success(image) = result else {
-                handler(nil)
-                return
-            }
-            handler(image)
-        }
     }
 
     // MARK: - Actions

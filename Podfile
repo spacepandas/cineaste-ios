@@ -7,6 +7,7 @@ abstract_target 'Cineaste' do
 
   pod 'SwiftLint'
   pod 'NearbyMessages'
+  pod 'Kingfisher', '~> 4.0'
 
   target 'CineasteTests' do
     inherit! :search_paths
