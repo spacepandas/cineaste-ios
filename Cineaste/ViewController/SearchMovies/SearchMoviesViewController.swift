@@ -9,6 +9,8 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
+    @IBOutlet var loadingIndicatorView: UIView!
+
     var movies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -42,6 +44,7 @@ class SearchMoviesViewController: UIViewController {
             moviesTableView.rowHeight = UITableViewAutomaticDimension
 
             moviesTableView.backgroundColor = UIColor.clear
+            moviesTableView.tableFooterView = loadingIndicatorView
         }
     }
 

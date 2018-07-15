@@ -24,15 +24,21 @@ extension SearchMoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
-        // last cell
+        // last cell for current page
         if indexPath.row == movies.count - 1 {
             guard let total = totalResults else {
                 return UITableViewCell()
             }
+
             if total > movies.count {
                 loadRecent { movies in
                     self.movies += movies
                 }
+            }
+
+            //hide footerView with indicator on very last item on last page
+            if indexPath.row == total - 1 {
+                tableView.tableFooterView = nil
             }
         }
 
