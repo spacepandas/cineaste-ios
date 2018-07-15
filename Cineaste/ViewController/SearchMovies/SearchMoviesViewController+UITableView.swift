@@ -36,7 +36,8 @@ extension SearchMoviesViewController: UITableViewDataSource {
                 }
             }
 
-            //hide footerView with indicator on very last item on last page
+            // remove footerView with loading indicator 
+            // on the very last item on the last page
             if indexPath.row == total - 1 {
                 tableView.tableFooterView = nil
             }
