@@ -15,7 +15,6 @@ extension SearchMoviesViewController {
             pageToLoad = page + 1
         }
 
-        print(pageToLoad)
         Webservice.load(resource: Movie.latestReleases(page: pageToLoad)) { result in
             guard case let .success(result) = result else {
                 self.showAlert(withMessage: Alert.loadingDataError)

@@ -45,7 +45,6 @@ extension Movie {
             "&release_date.lte=\(oneMonthInFuture.formattedForRequest)" +
             "&with_release_type=3" +
         "&page=\(page)"
-        print(urlAsString)
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
