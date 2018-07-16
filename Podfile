@@ -1,5 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
+use_frameworks!
+inhibit_all_warnings!
 
 abstract_target 'Cineaste' do
   target 'Cineaste App-Dev'
