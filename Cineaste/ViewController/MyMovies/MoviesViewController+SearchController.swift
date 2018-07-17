@@ -13,7 +13,7 @@ extension MoviesViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
 
         if !searchText.isEmpty {
-            let predicate = NSPredicate(format: "title contains[c] '\(searchText)'")
+            let predicate = NSPredicate(format: "title contains[c] '\(searchText)' AND \(category.predicate)")
 
             fetchedResultsManager.refetch(for: predicate) {
                 self.myMoviesTableView.reloadData()
