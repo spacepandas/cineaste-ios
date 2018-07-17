@@ -25,6 +25,8 @@ class SearchMoviesViewController: UIViewController {
     var currentPage: Int?
     var totalResults: Int?
 
+    var isLoadingNextPage = false
+
     private var searchDelayTimer: Timer?
 
     lazy var resultSearchController: UISearchController  = {
@@ -39,6 +41,7 @@ class SearchMoviesViewController: UIViewController {
     @IBOutlet var moviesTableView: UITableView! {
         didSet {
             moviesTableView.dataSource = self
+            moviesTableView.prefetchDataSource = self
             moviesTableView.delegate = self
 
             moviesTableView.estimatedRowHeight = 100
