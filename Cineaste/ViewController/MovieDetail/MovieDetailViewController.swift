@@ -30,21 +30,9 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBOutlet var moreInformationButton: ActionButton!
-    @IBOutlet weak fileprivate var seenButton: ActionButton! {
-        didSet {
-            seenButton.setTitle(String.seen, for: .normal)
-        }
-    }
-    @IBOutlet weak fileprivate var mustSeeButton: ActionButton! {
-        didSet {
-            mustSeeButton.setTitle(String.wantToSee, for: .normal)
-        }
-    }
-    @IBOutlet var deleteButton: ActionButton! {
-        didSet {
-            deleteButton.setTitle(String.deleteActionLong, for: .normal)
-        }
-    }
+    @IBOutlet var seenButton: ActionButton!
+    @IBOutlet var mustSeeButton: ActionButton!
+    @IBOutlet var deleteButton: ActionButton!
 
     @IBOutlet weak fileprivate var descriptionTextView: UITextView! {
         didSet {
@@ -82,6 +70,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         updateDetail(for: type)
+        setupLocalization()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
@@ -167,6 +156,12 @@ class MovieDetailViewController: UIViewController {
     }
 
     // MARK: - Private
+
+    fileprivate func setupLocalization() {
+        seenButton.setTitle(String.seen, for: .normal)
+        mustSeeButton.setTitle(String.wantToSee, for: .normal)
+        deleteButton.setTitle(String.deleteActionLong, for: .normal)
+    }
 
     fileprivate func generateMovieURL() -> URL? {
         var movieUrl = Config.Backend.shareMovieUrl
