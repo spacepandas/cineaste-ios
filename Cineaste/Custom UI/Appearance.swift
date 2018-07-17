@@ -24,17 +24,21 @@ extension UIColor {
 
 enum Appearance {
     static func setup() {
+        let whiteTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicWhite]
+        let darkTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
+
         let navigationBar = UINavigationBar.appearance()
         navigationBar.tintColor = .primaryOrange
+
+        if #available(iOS 11.0, *) {
+            navigationBar.largeTitleTextAttributes = whiteTextAttributes
+        }
 
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
         tabBar.tintColor = .basicWhite
         tabBar.barTintColor = .primaryOrange
         tabBar.unselectedItemTintColor = .basicBackground
-
-        let whiteTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicWhite]
-        let darkTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
 
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes(whiteTextAttributes, for: .selected)

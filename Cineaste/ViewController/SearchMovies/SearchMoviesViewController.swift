@@ -45,6 +45,10 @@ class SearchMoviesViewController: UIViewController {
 
         self.view.backgroundColor = UIColor.basicBackground
 
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
+
         loadRecent { [weak self] movies in
             self?.movies = movies
         }
