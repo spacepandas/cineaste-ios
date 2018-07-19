@@ -9,6 +9,8 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
+    @IBOutlet var loadingIndicatorView: UIView!
+
     var movies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -19,6 +21,11 @@ class SearchMoviesViewController: UIViewController {
 
     var selectedMovie: Movie?
     var storageManager: MovieStorage?
+
+    var currentPage: Int?
+    var totalResults: Int?
+
+    var isLoadingNextPage = false
 
     private var searchDelayTimer: Timer?
 
@@ -34,12 +41,14 @@ class SearchMoviesViewController: UIViewController {
     @IBOutlet var moviesTableView: UITableView! {
         didSet {
             moviesTableView.dataSource = self
+            moviesTableView.prefetchDataSource = self
             moviesTableView.delegate = self
 
             moviesTableView.estimatedRowHeight = 100
             moviesTableView.rowHeight = UITableViewAutomaticDimension
 
             moviesTableView.backgroundColor = UIColor.clear
+            moviesTableView.tableFooterView = loadingIndicatorView
         }
     }
 
@@ -111,6 +120,10 @@ class SearchMoviesViewController: UIViewController {
 
 extension SearchMoviesViewController: UISearchResultsUpdating {
     internal func updateSearchResults(for searchController: UISearchController) {
+        //reset pagination
+        currentPage = nil
+        totalResults = nil
+
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in

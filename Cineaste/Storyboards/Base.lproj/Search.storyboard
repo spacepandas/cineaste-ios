@@ -136,11 +136,27 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicatorView" destination="MUX-60-4Ps" id="AaX-NJ-c4e"/>
                         <outlet property="moviesTableView" destination="Ghd-3W-lPW" id="qW8-zi-GQg"/>
                         <segue destination="6zu-rR-wRt" kind="show" identifier="ShowMovieDetailSegue" id="raw-AZ-Z26"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z16-13-h9P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="MUX-60-4Ps">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-Zu-dfX">
+                            <rect key="frame" x="177.5" y="10" width="20" height="40"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerX" secondItem="MUX-60-4Ps" secondAttribute="centerX" id="S0c-vC-OKE"/>
+                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerY" secondItem="MUX-60-4Ps" secondAttribute="centerY" id="XfZ-Uj-S5m"/>
+                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="top" secondItem="7FF-lZ-CXt" secondAttribute="top" constant="10" id="fGd-Sj-8Zm"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="7FF-lZ-CXt"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="4876" y="6.6502463054187197"/>
         </scene>
