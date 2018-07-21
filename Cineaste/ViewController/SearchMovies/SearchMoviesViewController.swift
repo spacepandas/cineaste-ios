@@ -22,7 +22,7 @@ class SearchMoviesViewController: UIViewController {
 
     private var searchDelayTimer: Timer?
 
-    lazy var resultSearchController: SearchController  = {
+    lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
         return resultSearchController

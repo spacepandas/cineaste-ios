@@ -29,7 +29,7 @@ class MoviesViewController: UIViewController {
         }
     }
 
-    lazy var resultSearchController: SearchController  = {
+    lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
