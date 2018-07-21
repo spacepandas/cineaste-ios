@@ -9,17 +9,15 @@
 import UIKit
 
 class ImportMoviesViewController: UIViewController {
-
     @IBOutlet var importStateLabel: TitleLabel!
     @IBOutlet var importActivityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        importStateLabel.text = "Filme importieren..."
+        importStateLabel.text = String.importingMovies
         importActivityIndicator.color = UIColor.black
     }
-
 }
 
 extension ImportMoviesViewController: Instantiable {

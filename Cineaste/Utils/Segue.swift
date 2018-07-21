@@ -26,6 +26,6 @@ enum Segue: String {
 
 extension UIViewController {
     func perform(segue: Segue, sender: AnyObject?) {
-        self.performSegue(withIdentifier: segue.rawValue, sender: sender)
+        performSegue(withIdentifier: segue.rawValue, sender: sender)
     }
 }

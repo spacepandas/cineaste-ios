@@ -6,7 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 enum MovieListCategory: String {

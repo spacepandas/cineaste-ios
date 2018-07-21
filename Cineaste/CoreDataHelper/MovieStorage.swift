@@ -123,7 +123,8 @@ class MovieStorage {
     func resetCoreData(completion: @escaping (Error?) -> Void) {
         backgroundContext.perform {
             do {
-                let entities: [StoredMovie] = try self.backgroundContext.fetch(StoredMovie.fetchRequest())
+                let entities: [StoredMovie] = try self.backgroundContext
+                    .fetch(StoredMovie.fetchRequest())
                 for entity in entities {
                     self.backgroundContext.delete(entity)
                 }

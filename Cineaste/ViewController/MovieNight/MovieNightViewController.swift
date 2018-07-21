@@ -32,11 +32,12 @@ class MovieNightViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
-    fileprivate lazy var gnsMessageManager: GNSMessageManager = GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
+    fileprivate lazy var gnsMessageManager: GNSMessageManager =
+        GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
 
-    fileprivate var nearbyMessages = [NearbyMessage]()
+    var nearbyMessages = [NearbyMessage]()
     fileprivate var myNearbyMessage: NearbyMessage?
 
     override func viewDidLoad() {
@@ -80,7 +81,8 @@ class MovieNightViewController: UIViewController {
 
         var clone = [NearbyMessage](nearbyMessages)
         clone.append(myNearbyMessage)
-        performSegue(withIdentifier: Segue.showMovieMatches.rawValue, sender: clone)
+        performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
+                     sender: clone)
     }
 
     // MARK: - Navigation
@@ -104,30 +106,37 @@ class MovieNightViewController: UIViewController {
 
     fileprivate func startPublishing() {
         guard let storageManager = storageManager else { return }
-        let nearbyMovies = storageManager.fetchAllWantToSeeMovies().compactMap { storedMovie -> NearbyMovie? in
-            guard let title = storedMovie.title else { return nil }
-            return NearbyMovie(id: storedMovie.id, title: title, posterPath: storedMovie.posterPath)
-        }
+        let nearbyMovies = storageManager
+            .fetchAllWantToSeeMovies()
+            .compactMap { storedMovie -> NearbyMovie? in
+                guard let title = storedMovie.title else { return nil }
+                return NearbyMovie(id: storedMovie.id,
+                                   title: title,
+                                   posterPath: storedMovie.posterPath)
+            }
 
         guard let username = UserDefaultsManager.getUsername() else { return }
-        let nearbyMessage = NearbyMessage.create(withUsername: username, movies: nearbyMovies)
+        let nearbyMessage = NearbyMessage.create(withUsername: username,
+                                                 movies: nearbyMovies)
         myNearbyMessage = nearbyMessage
 
-        guard let messageData = try? JSONEncoder().encode(nearbyMessage) else { return }
-        currentPublication = gnsMessageManager.publication(with: GNSMessage(content: messageData))
+        guard let messageData = try? JSONEncoder().encode(nearbyMessage)
+            else { return }
+        currentPublication = gnsMessageManager
+            .publication(with: GNSMessage(content: messageData))
     }
 
     fileprivate func startSubscribing() {
         currentSubscription = gnsMessageManager.subscription(
             messageFoundHandler: { message in
                 guard let data = message?.content,
-                let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self, from: data) else {
-                    return
-                }
+                    let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
+                                                                  from: data)
+                    else { return }
 
-                guard self.nearbyMessages.index(of: nearbyMessage) == nil else {
-                    return
-                }
+                guard self.nearbyMessages.index(of: nearbyMessage) == nil
+                    else { return }
+
                 DispatchQueue.main.async {
                     self.nearbyMessages.append(nearbyMessage)
                     self.startButton.isEnabled = true
@@ -136,31 +145,19 @@ class MovieNightViewController: UIViewController {
                 }
             }, messageLostHandler: { message in
             guard let data = message?.content,
-                let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self, from: data) else {
-                    return
-            }
+                let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
+                                                              from: data)
+                else { return }
 
-                DispatchQueue.main.async {
-                    self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
-                    if self.nearbyMessages.isEmpty {
-                        self.startButton.isEnabled = false
-                        self.usersTableView.isHidden = true
-                    }
-                    self.usersTableView.reloadData()
+            DispatchQueue.main.async {
+                self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
+                if self.nearbyMessages.isEmpty {
+                    self.startButton.isEnabled = false
+                    self.usersTableView.isHidden = true
                 }
+                self.usersTableView.reloadData()
+            }
             })
-    }
-}
-
-extension MovieNightViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyMessages.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
-        cell.configure(with: nearbyMessages[indexPath.row])
-        return cell
     }
 }
 

@@ -1,6 +1,6 @@
 //
 //  Movie+Formatted.swift
-//  Cineaste App-Dev
+//  Cineaste
 //
 //  Created by Felizia Bernutz on 10.07.18.
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
@@ -10,10 +10,10 @@ import Foundation
 
 extension Movie {
     var formattedVoteAverage: String {
-        if self.voteCount == 0 {
+        if voteCount == 0 {
             return String.unknownVoteAverage
         } else {
-            return self.voteAverage.formattedWithOneFractionDigit
+            return voteAverage.formattedWithOneFractionDigit
                 ?? String.unknownVoteAverage
         }
     }

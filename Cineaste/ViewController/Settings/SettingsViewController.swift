@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MessageUI
 
 class SettingsViewController: UIViewController {
     @IBOutlet var settingsTableView: UITableView! {
@@ -55,8 +54,10 @@ class SettingsViewController: UIViewController {
 
     func versionString() -> String {
         guard
-            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-            let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
+            let version = Bundle.main
+                .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main
+                .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return "" }
         var versionInformation = "\(String.versionText): \(version) (\(build))"
 
@@ -76,7 +77,8 @@ class SettingsViewController: UIViewController {
 
             let vc = segue.destination as? SettingsDetailViewController
             vc?.title = selected.title
-            vc?.textViewContent = (selected == SettingItem.licence)
+            vc?.textViewContent =
+                selected == SettingItem.licence
                 ? TextViewType.licence
                 : TextViewType.imprint
         default:
@@ -135,7 +137,7 @@ class SettingsViewController: UIViewController {
         }
     }
 
-    private func showUIToImportMovies() {
+    func showUIToImportMovies() {
         let documentPickerVC = UIDocumentPickerViewController(documentTypes: [String.exportMoviesFileUTI],
                                                               in: .import)
         documentPickerVC.delegate = self
@@ -148,109 +150,13 @@ class SettingsViewController: UIViewController {
         present(documentPickerVC, animated: true, completion: nil)
     }
 
-    private func showUIToExportMovies(with path: URL, on rect: CGRect) {
+    func showUIToExportMovies(with path: URL, on rect: CGRect) {
         docController = UIDocumentInteractionController(url: path)
         docController?.uti = String.exportMoviesFileUTI
 
         docController?.presentOptionsMenu(from: rect,
                                           in: self.view,
                                           animated: true)
-    }
-}
-
-extension SettingsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SettingsCell = tableView.dequeueCell(identifier: SettingsCell.identifier)
-
-        if settings[indexPath.row].segue == nil {
-            cell.accessoryType = .none
-        } else {
-            cell.accessoryType = .disclosureIndicator
-        }
-
-        cell.configure(with: settings[indexPath.row])
-
-        return cell
-    }
-}
-
-extension SettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        selectedSetting = settings[indexPath.row]
-
-        guard let setting = selectedSetting else { return }
-        switch setting {
-        case .about, .licence:
-            guard let segue = setting.segue else { return }
-            perform(segue: segue, sender: self)
-        case .exportMovies:
-            saveMoviesLocally { exportPath in
-                DispatchQueue.main.async {
-                    self.showUIToExportMovies(with: exportPath,
-                                              on: tableView.rectForRow(at: indexPath))
-                }
-            }
-        case .importMovies:
-            prepareForImport {
-                DispatchQueue.main.async {
-                    self.showUIToImportMovies()
-                }
-            }
-        case .contact:
-            if MFMailComposeViewController.canSendMail() {
-                let mailComposeVC = MFMailComposeViewController()
-                mailComposeVC.mailComposeDelegate = self
-                mailComposeVC.setSubject("Cineaste iOS || \(versionString())")
-                mailComposeVC.setToRecipients(["ios@spacepandas.de"])
-
-                present(mailComposeVC, animated: true, completion: nil)
-            } else {
-                showAlert(withMessage: Alert.noEmailClient)
-            }
-        }
-    }
-}
-
-extension SettingsViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension SettingsViewController: UIDocumentPickerDelegate {
-    //selected json with movies to import
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        do {
-            let data = try Data(contentsOf: url, options: [])
-
-            //display simple UI when importing new data
-            let importMoviesVC = ImportMoviesViewController.instantiate()
-            self.present(importMoviesVC, animated: true) {
-                self.fetchedResultsManager.importData(data) { result in
-                    DispatchQueue.main.async {
-                        self.navigationController?.dismiss(animated: true) {
-                            switch result {
-                            case .error:
-                                self.showAlert(withMessage: Alert.importFailedInfo)
-                            case .success(let counter):
-                                self.showAlert(withMessage: Alert.importSucceededInfo(with: counter))
-                            }
-                        }
-                    }
-                }
-            }
-        } catch {
-            self.showAlert(withMessage: Alert.importFailedCouldNotReadFile)
-        }
     }
 }
 

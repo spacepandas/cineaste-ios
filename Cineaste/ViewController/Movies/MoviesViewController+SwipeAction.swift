@@ -13,8 +13,11 @@ extension MoviesViewController {
     // MARK: - iOS 10 functions
 
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
-        let newCategory: MovieListCategory = category == .seen ? .wantToSee : .seen
-        let newWatchedValue = newCategory == .seen ? true : false
+        let newCategory: MovieListCategory =
+            category == .seen
+                ? .wantToSee
+                : .seen
+        let newWatchedValue = newCategory == .seen
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.action) { _, _ in
             self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
@@ -55,11 +58,15 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
-        let newCategory: MovieListCategory = category == .seen ? .wantToSee : .seen
-        let newWatchedValue = newCategory == .seen ? true : false
+        let newCategory: MovieListCategory =
+            category == .seen
+                ? .wantToSee
+                : .seen
+        let newWatchedValue = newCategory == .seen
 
-        let action = UIContextualAction(style: .normal, title: newCategory.action, handler: { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
+        let action = UIContextualAction(style: .normal,
+                                        title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
+            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
@@ -68,8 +75,9 @@ extension MoviesViewController {
                 DispatchQueue.main.async {
                     success(true)
                 }
-            })
-        })
+            }
+        }
+
         action.image = newCategory.image
         action.backgroundColor = UIColor.basicYellow
 
@@ -94,8 +102,9 @@ extension MoviesViewController {
 
         let movie = movies[indexPath.row]
 
-        let deleteAction = UIContextualAction(style: .destructive, title: String.deleteAction, handler: { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager?.remove(movie, handler: { result in
+        let deleteAction = UIContextualAction(style: .destructive,
+                                              title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in
+            self.storageManager?.remove(movie) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return
@@ -104,8 +113,8 @@ extension MoviesViewController {
                 DispatchQueue.main.async {
                     success(true)
                 }
-            })
-        })
+            }
+        }
 
         deleteAction.backgroundColor = UIColor.primaryOrange
 

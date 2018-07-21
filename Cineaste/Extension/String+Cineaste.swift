@@ -8,6 +8,7 @@
 
 import Foundation
 
+//swiftlint:disable line_length
 extension String {
     // MARK: DEFAULT
     static let okAction = NSLocalizedString("ok", comment: "Title for ok action")
@@ -84,6 +85,9 @@ extension String {
 
     static let searchFriendsOnMovieNight = NSLocalizedString("searchFriends", comment: "Search friends on movie night")
 
+    // MARK: IMPORT
+    static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
+
     // MARK: EXPORT
     static let exportMoviesFileName = "movies.json"
     static let exportMoviesFileUTI = "public.json"
@@ -133,3 +137,4 @@ extension String {
 
     static let noEmailClientMessage = NSLocalizedString("noEmailClient", comment: "Message for no email client alert")
 }
+//swiftlint:enable line_length

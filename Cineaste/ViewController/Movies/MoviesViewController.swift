@@ -120,7 +120,7 @@ class MoviesViewController: UIViewController {
         if UserDefaultsManager.getUsername() == nil {
             showUsernameAlert()
         } else {
-            self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+            performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
         }
     }
 
@@ -193,7 +193,7 @@ class MoviesViewController: UIViewController {
             textField.delegate = self
         })
 
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
 
     private func updateShortcutItems() {
@@ -206,18 +206,20 @@ class MoviesViewController: UIViewController {
         //initially instantiate shortcuts
         if shortcuts.isEmpty {
             let wantToSeeIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
-            let wantToSeeShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
-                                                          localizedTitle: String.wantToSeeList,
-                                                          localizedSubtitle: nil,
-                                                          icon: wantToSeeIcon,
-                                                          userInfo: nil)
+            let wantToSeeShortcut =
+                UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
+                                          localizedTitle: String.wantToSeeList,
+                                          localizedSubtitle: nil,
+                                          icon: wantToSeeIcon,
+                                          userInfo: nil)
 
             let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
-            let seenShortcut = UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
-                                                     localizedTitle: String.seenList,
-                                                     localizedSubtitle: nil,
-                                                     icon: seenIcon,
-                                                     userInfo: nil)
+            let seenShortcut =
+                UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
+                                          localizedTitle: String.seenList,
+                                          localizedSubtitle: nil,
+                                          icon: seenIcon,
+                                          userInfo: nil)
 
             shortcuts = [wantToSeeShortcut, seenShortcut]
             UIApplication.shared.shortcutItems = shortcuts
@@ -227,7 +229,10 @@ class MoviesViewController: UIViewController {
         let existingItem = shortcuts[index]
 
         //only update if value changed
-        let newShortcutSubtitle = movies.isEmpty ? nil : String.movies(for: movies.count)
+        let newShortcutSubtitle =
+            movies.isEmpty
+            ? nil
+            : String.movies(for: movies.count)
         if existingItem.localizedSubtitle != newShortcutSubtitle {
             //swiftlint:disable:next force_cast
             let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
@@ -240,49 +245,7 @@ class MoviesViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-
-extension MoviesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch category {
-        case .wantToSee:
-            let cell: MovieListCell = tableView.dequeueCell(identifier: MovieListCell.identifier)
-
-            if let controller = fetchedResultsManager.controller {
-                cell.configure(with: controller.object(at: indexPath))
-            }
-
-            return cell
-        case .seen:
-            let cell: SeenMovieCell = tableView.dequeueCell(identifier: SeenMovieCell.identifier)
-
-            if let controller = fetchedResultsManager.controller {
-                cell.configure(with: controller.object(at: indexPath))
-            }
-
-            return cell
-        }
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension MoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-        selectedMovie = movies[indexPath.row]
-
-        perform(segue: .showMovieDetail, sender: nil)
-    }
-}
+// MARK: - UITextFieldDelegate
 
 extension MoviesViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

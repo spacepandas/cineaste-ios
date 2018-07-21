@@ -56,7 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarVC.selectedIndex = 1
             return true
         case .startMovieNight:
-            guard let moviesVC = tabBarVC.selectedViewController?.childViewControllers.first as? MoviesViewController else { return false }
+            guard
+                let moviesVC = tabBarVC.selectedViewController?
+                    .childViewControllers.first as? MoviesViewController
+                else { return false }
 
             moviesVC.movieNightButtonTouched(UIBarButtonItem())
             return true

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import SafariServices
 
+//swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
@@ -76,9 +77,10 @@ class MovieDetailViewController: UIViewController {
         updateDetail(for: type)
         setupLocalization()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
-                                                            target: self,
-                                                            action: #selector(shareMovie))
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(barButtonSystemItem: .action,
+                            target: self,
+                            action: #selector(shareMovie))
 
         let gestureRecognizer = UITapGestureRecognizer(target: self,
                                                        action: #selector(showPoster))
@@ -153,8 +155,9 @@ class MovieDetailViewController: UIViewController {
             items.append(url)
         }
 
-        let activityController = UIActivityViewController(activityItems: items,
-                                                          applicationActivities: nil)
+        let activityController =
+            UIActivityViewController(activityItems: items,
+                                     applicationActivities: nil)
 
         present(activityController, animated: true, completion: nil)
     }
@@ -185,7 +188,8 @@ class MovieDetailViewController: UIViewController {
         guard let storageManager = storageManager else { return }
 
         if let movie = movie {
-            storageManager.insertMovieItem(with: movie, watched: watched) { result in
+            storageManager.insertMovieItem(with: movie,
+                                           watched: watched) { result in
                 switch result {
                 case .error:
                     DispatchQueue.main.async {
@@ -198,7 +202,8 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         } else if let storedMovie = storedMovie {
-            storageManager.updateMovieItem(with: storedMovie, watched: watched) { result in
+            storageManager.updateMovieItem(with: storedMovie,
+                                           watched: watched) { result in
                 switch result {
                 case .error:
                     DispatchQueue.main.async {
@@ -217,7 +222,7 @@ class MovieDetailViewController: UIViewController {
         guard let storageManager = storageManager else { return }
 
         if let storedMovie = storedMovie {
-            storageManager.remove(storedMovie, handler: { result in
+            storageManager.remove(storedMovie) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return
@@ -226,7 +231,7 @@ class MovieDetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
-            })
+            }
         }
     }
 
@@ -255,7 +260,7 @@ class MovieDetailViewController: UIViewController {
 
     fileprivate func loadDetails(for movie: Movie) {
         // Setup with the default data to show something while new data is loading
-        self.setupUI(for: movie)
+        setupUI(for: movie)
 
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
@@ -312,15 +317,18 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: String.wantToSee, style: .default) { _, _ -> Void in
+        let wantToSeeAction = UIPreviewAction(title: String.wantToSee,
+                                              style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: String.seen, style: .default) { _, _ -> Void in
+        let seenAction = UIPreviewAction(title: String.seen,
+                                         style: .default) { _, _ -> Void in
             self.saveMovie(withWatched: true)
         }
 
-        let deleteAction = UIPreviewAction(title: String.deleteActionLong, style: .destructive) { _, _ -> Void in
+        let deleteAction = UIPreviewAction(title: String.deleteActionLong,
+                                           style: .destructive) { _, _ -> Void in
             self.deleteMovie()
         }
 
@@ -340,3 +348,4 @@ extension MovieDetailViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "MovieDetailViewController" }
 }
+//swiftlint:enable type_body_length

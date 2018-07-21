@@ -1,6 +1,7 @@
 ---
 disabled_rules:
-    - todo
+  - todo
+  - private_outlet
 # Enable more optional rules
 opt_in_rules:
   - implicit_return
@@ -11,12 +12,14 @@ opt_in_rules:
   - overridden_super_call
   - closure_end_indentation
   - empty_count
+  - empty_string
   - fatal_error_message
   - force_unwrapping
+  - force_try
+  - force_cast
   - switch_case_on_newline
   - redundant_nil_coalescing
   - prohibited_super_call
-  # - private_outlet
   - operator_usage_whitespace
   - object_literal
   - number_separator
@@ -25,6 +28,7 @@ opt_in_rules:
   - attributes
   - first_where
   - multiline_parameters
+  - multiline_arguments
   - convenience_type
   - redundant_set_access_control
   - multiline_function_chains
@@ -38,17 +42,13 @@ excluded:
 
 # Configure warning/error levels
 file_length:
-  - 450
-  - 500
+  warning: 450
+  error: 500
 function_body_length:
-  - 100
-  - 150
+  warning: 100
+  error: 150
 function_parameter_count:
-  - 9
-  - 10
-line_length:
-  - 220
-  - 250
+  warning: 9
 identifier_name:
   max_length:
     warning: 45
@@ -59,6 +59,12 @@ type_name:
   max_length:
     error: 70
     warning: 50
+line_length:
+  warning: 120
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
 # Configure rules violation to be traited as an error
 explicit_init:
   severity: error

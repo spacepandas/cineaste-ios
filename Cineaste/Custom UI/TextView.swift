@@ -25,34 +25,42 @@ public class DescriptionTextView: UITextView {
         didSet {
             setup()
 
-            let defaultAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                                     NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
-                                     NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
+            let defaultAttributes = [
+                NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
+                NSAttributedStringKey.foregroundColor: UIColor.basicBackground
+            ]
 
-            self.attributedText = NSAttributedString(string: self.text,
-                                                     attributes: defaultAttributes)
+            attributedText = NSAttributedString(string: self.text,
+                                                attributes: defaultAttributes)
         }
     }
 
     func setup() {
         isEditable = false
         dataDetectorTypes = .link
-        linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.primaryOrange]
+        linkTextAttributes = [
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.primaryOrange
+        ]
     }
 
     func setup(with type: TextViewType) {
-        let titleAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                               NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
-                               NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
+        let titleAttributes = [
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
+            NSAttributedStringKey.foregroundColor: UIColor.basicBackground
+        ]
 
-        let paragraphAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
-                                   NSAttributedStringKey.foregroundColor: UIColor.accentText]
+        let paragraphAttributes = [
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedStringKey.foregroundColor: UIColor.accentText
+        ]
 
         let chain = type.chainContent(titleAttributes: titleAttributes,
                                       paragraphAttributes: paragraphAttributes)
 
-        self.attributedText = chain
+        attributedText = chain
     }
 
 }

@@ -15,18 +15,20 @@ enum TextViewType {
     var content: [ContentBlock] {
         switch self {
         case .imprint:
-            return [ContentBlock(title: nil,
-                                 paragraph: String.imprintContent),
-                    ContentBlock(title: String.openSourceTitle,
-                                 paragraph: String.openSourceDescription),
-                    ContentBlock(title: String.spacePandasTitle,
-                                 paragraph: String.spacePandasDescription),
-                    ContentBlock(title: String.helpPandasTitle,
-                                 paragraph: String.littlePandasDescription),
-                    ContentBlock(title: String.icons8Title,
-                                 paragraph: String.icons8Description),
-                    ContentBlock(title: String.movieDBTitle,
-                                 paragraph: String.movieDBDescription)]
+            return [
+                ContentBlock(title: nil,
+                             paragraph: String.imprintContent),
+                ContentBlock(title: String.openSourceTitle,
+                             paragraph: String.openSourceDescription),
+                ContentBlock(title: String.spacePandasTitle,
+                             paragraph: String.spacePandasDescription),
+                ContentBlock(title: String.helpPandasTitle,
+                             paragraph: String.littlePandasDescription),
+                ContentBlock(title: String.icons8Title,
+                             paragraph: String.icons8Description),
+                ContentBlock(title: String.movieDBTitle,
+                             paragraph: String.movieDBDescription)
+            ]
         case .licence:
             guard let url = Bundle.main.url(forResource: "Acknowledgements",
                                             withExtension: "plist",

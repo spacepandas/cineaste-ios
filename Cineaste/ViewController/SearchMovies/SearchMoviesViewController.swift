@@ -27,7 +27,7 @@ class SearchMoviesViewController: UIViewController {
 
     var isLoadingNextPage = false
 
-    private var searchDelayTimer: Timer?
+    var searchDelayTimer: Timer?
 
     lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
@@ -112,21 +112,6 @@ class SearchMoviesViewController: UIViewController {
 
 }
 
-extension SearchMoviesViewController: UISearchResultsUpdating {
-    internal func updateSearchResults(for searchController: UISearchController) {
-        //reset pagination
-        currentPage = nil
-        totalResults = nil
-
-        searchDelayTimer?.invalidate()
-        searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
-            self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.movies = movies
-            }
-        }
-    }
-}
-
 extension SearchMoviesViewController: SearchMoviesCellDelegate {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
         guard let storageManager = storageManager else { return }
@@ -151,26 +136,6 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
                 }
             }
         }
-    }
-}
-
-// MARK: - 3D Touch
-
-extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        let detailVC = MovieDetailViewController.instantiate()
-        guard let path = moviesTableView.indexPathForRow(at: location),
-            movies.count > path.section
-            else { return nil }
-
-        detailVC.movie = movies[path.section]
-        detailVC.storageManager = storageManager
-        detailVC.type = .search
-        return detailVC
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 
