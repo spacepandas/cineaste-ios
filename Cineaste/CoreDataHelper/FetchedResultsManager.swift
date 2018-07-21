@@ -168,7 +168,7 @@ extension FetchedResultsManager {
         }
 
         let jsonFilePath = documentsDirectoryPath
-            .appendingPathComponent(String.exportMoviesFileName)
+            .appendingPathComponent(String.exportMoviesFileName(with: Date().formatted))
         exportMoviesPath = jsonFilePath
 
         let fileManager = FileManager.default
