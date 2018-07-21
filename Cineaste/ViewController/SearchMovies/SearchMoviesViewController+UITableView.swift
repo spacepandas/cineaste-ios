@@ -10,23 +10,18 @@ import UIKit
 
 extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        // last row on the current page
-        let lastRow = indexPaths.first(where: { $0.row == movies.count - 1 })
-        if lastRow != nil,
-            let total = totalResults {
-            if total > movies.count && !isLoadingNextPage {
+        guard
+            indexPaths.first(where: { $0.isLast(of: movies.count) }) != nil,
+            let total = totalResults
+            else { return }
 
-                isLoadingNextPage = true
-                loadRecent { movies in
-                    self.movies += movies
-                    self.isLoadingNextPage = false
-                }
-            }
+        if total > movies.count && !isLoadingNextPage {
+            moviesTableView.tableFooterView = loadingIndicatorView
+            isLoadingNextPage = true
 
-            // last row on the last page
-            let veryLastRow = indexPaths.first(where: { $0.row == total - 1 })
-            if veryLastRow != nil {
-                tableView.tableFooterView = nil
+            loadMovies(forQuery: self.resultSearchController.searchBar.text, nextPage: true) { movies in
+                self.movies += movies
+                self.isLoadingNextPage = false
             }
         }
     }
@@ -48,6 +43,12 @@ extension SearchMoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
         cell.movie = movies[indexPath.row]
+
+        if let numberOfMovies = totalResults,
+            indexPath.isLast(of: numberOfMovies) {
+            moviesTableView.tableFooterView = UIView()
+        }
+
         cell.delegate = self
         return cell
     }

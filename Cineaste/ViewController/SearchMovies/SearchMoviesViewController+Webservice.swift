@@ -9,13 +9,21 @@
 import UIKit
 
 extension SearchMoviesViewController {
-    func loadRecent(movies handler: @escaping ([Movie]) -> Void) {
+    func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, handler: @escaping ([Movie]) -> Void) {
         var pageToLoad = 1
-        if let page = currentPage {
+        if let page = currentPage,
+            nextPage {
             pageToLoad = page + 1
         }
 
-        Webservice.load(resource: Movie.latestReleases(page: pageToLoad)) { result in
+        let resource: Resource<PagedMovieResult>?
+        if let query = query, !query.isEmpty {
+            resource = Movie.search(withQuery: query, page: pageToLoad)
+        } else {
+            resource = Movie.latestReleases(page: pageToLoad)
+        }
+
+        Webservice.load(resource: resource) { result in
             switch result {
             case .error:
                 self.showAlert(withMessage: Alert.loadingDataError)
@@ -24,27 +32,6 @@ extension SearchMoviesViewController {
                 self.currentPage = result.page
                 self.totalResults = result.totalResults
                 handler(result.results)
-            }
-        }
-    }
-
-    func loadMovies(forQuery query: String?, handler: @escaping ([Movie]) -> Void) {
-        if let query = query, !query.isEmpty {
-            Webservice.load(resource: Movie.search(withQuery: query)) { result in
-                switch result {
-                case .error:
-                    self.showAlert(withMessage: Alert.loadingDataError)
-                    handler([])
-                case .success(let movies):
-                    handler(movies)
-                }
-            }
-        } else {
-            loadRecent { [weak self] movies in
-                self?.movies = movies
-                DispatchQueue.main.async {
-                    self?.moviesTableView.reloadData()
-                }
             }
         }
     }

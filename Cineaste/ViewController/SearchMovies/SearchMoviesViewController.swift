@@ -32,6 +32,7 @@ class SearchMoviesViewController: UIViewController {
     lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
+        resultSearchController.delegate = self
         return resultSearchController
     }()
 
@@ -58,7 +59,7 @@ class SearchMoviesViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        loadRecent { [weak self] movies in
+        loadMovies { [weak self] movies in
             self?.movies = movies
         }
 

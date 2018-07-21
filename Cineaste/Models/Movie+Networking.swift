@@ -11,7 +11,7 @@ import UIKit
 extension Movie {
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey
 
-    static func search(withQuery query: String) -> Resource<[Movie]>? {
+    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return nil
         }
@@ -20,13 +20,14 @@ extension Movie {
             "&api_key=\(apiKey)" +
             "&query=\(escapedQuery)" +
             "&region=\(String.regionIso31661)" +
-        "&with_release_type=3"
+            "&with_release_type=3" +
+        "&page=\(page)"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let paginatedMovies = try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
-                return paginatedMovies.results
+                return paginatedMovies
             } catch {
                 print(error)
                 return nil
