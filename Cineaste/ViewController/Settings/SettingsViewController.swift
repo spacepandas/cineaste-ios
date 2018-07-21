@@ -50,6 +50,10 @@ class SettingsViewController: UIViewController {
         if UIApplication.shared.statusBarStyle != .lightContent {
             UIApplication.shared.statusBarStyle = .lightContent
         }
+
+        if let indexPath = settingsTableView.indexPathForSelectedRow {
+            settingsTableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
     func versionString() -> String {

@@ -77,6 +77,14 @@ class MoviesViewController: UIViewController {
         configureSearchController()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = myMoviesTableView.indexPathForSelectedRow {
+            myMoviesTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     // MARK: - SearchController
 
     func configureSearchController() {

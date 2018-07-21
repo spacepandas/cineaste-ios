@@ -77,6 +77,14 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = moviesTableView.indexPathForSelectedRow {
+            moviesTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
