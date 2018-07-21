@@ -38,7 +38,6 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
         blurredBackgroundImage.image = image
         blurredBackgroundImage.addBlurEffect(with: .dark)
 
-        imageView.image = image
         imageView.isUserInteractionEnabled = true
 
         scrollView.delegate = self
@@ -50,8 +49,14 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
         gestureRecognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(gestureRecognizer)
 
-        guard let posterPath = posterPath else { return }
-        loadOriginalPosterSize(for: posterPath)
+        if let posterPath = posterPath {
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: Movie.posterUrl(from: posterPath, for: .original),
+                                  placeholder: image)
+        } else {
+            imageView.image = image
+        }
+
     }
 
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
@@ -66,18 +71,6 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
                             animated: true)
         } else {
             scrollView.setZoomScale(1, animated: true)
-        }
-    }
-
-    func loadOriginalPosterSize(for posterPath: String) {
-        Webservice.load(resource: Movie.loadOriginalPoster(from: posterPath)) { result in
-            guard case let .success(poster) = result else {
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.imageView.image = poster
-            }
         }
     }
 

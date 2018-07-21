@@ -58,18 +58,12 @@ extension Movie {
         }
     }
 
-    static func loadPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Config.Backend.posterUrl)\(posterPath)?api_key=\(apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            UIImage(data: data)
+    static func posterUrl(from posterPath: String, for size: Config.PosterSize) -> URL {
+        let urlAsString = "\(size.address)\(posterPath)?api_key=\(apiKey)"
+        guard let url = URL(string: urlAsString) else {
+            fatalError("Could not create url for poster download")
         }
-    }
-
-    static func loadOriginalPoster(from posterPath: String) -> Resource<UIImage>? {
-        let urlAsString = "\(Config.Backend.posterUrlOriginal)\(posterPath)?api_key=\(apiKey)"
-        return Resource(url: urlAsString, method: .get) { data in
-            UIImage(data: data)
-        }
+        return url
     }
 
     var get: Resource<Movie>? {

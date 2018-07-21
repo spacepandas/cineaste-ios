@@ -11,12 +11,26 @@ import Foundation
 enum Config {
     enum Backend {
         static let url = "https://api.themoviedb.org/3"
-        static let posterUrl = "https://image.tmdb.org/t/p/w342"
-        static let posterUrlOriginal = "https://image.tmdb.org/t/p/original"
         static let shareMovieUrl = "https://www.themoviedb.org/movie/"
     }
 
     enum UserDefaults {
         static let usernameKey = "cineaste-username"
+    }
+
+    enum PosterSize {
+        case small
+        case original
+
+        var address: String {
+            let host = "https://image.tmdb.org/t/p"
+
+            switch self {
+            case .small:
+                return "\(host)/w342"
+            case .original:
+                return "\(host)/original"
+            }
+        }
     }
 }
