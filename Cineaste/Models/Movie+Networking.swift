@@ -1,6 +1,6 @@
 //
 //  Movie+Networking.swift
-//  Cineaste App-Dev
+//  Cineaste
 //
 //  Created by Felizia Bernutz on 10.07.18.
 //  Copyright © 2018 notimeforthat.org. All rights reserved.

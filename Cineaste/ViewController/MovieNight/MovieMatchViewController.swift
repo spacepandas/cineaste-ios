@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct NearbyMovieWithOccurrence {
-    var occurances: Int = 1
-    var nearbyMovie: NearbyMovie
-}
-
 class MovieMatchViewController: UIViewController {
     @IBOutlet weak var matchedMoviesTableView: UITableView! {
         didSet {
@@ -25,8 +20,8 @@ class MovieMatchViewController: UIViewController {
     }
 
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
-    fileprivate var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
-    fileprivate var totalNumberOfPeople: Int = 0
+    var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
+    var totalNumberOfPeople: Int = 0
 
     var storageManager: MovieStorage?
 
@@ -35,7 +30,9 @@ class MovieMatchViewController: UIViewController {
         for message in messagesToMatch {
             for movie in message.movies {
                 if nearbyMovieOccurrences[movie] == nil {
-                    nearbyMovieOccurrences[movie] = NearbyMovieWithOccurrence(occurances: 1, nearbyMovie: movie)
+                    nearbyMovieOccurrences[movie] =
+                        NearbyMovieWithOccurrence(occurances: 1,
+                                                  nearbyMovie: movie)
                 } else {
                     nearbyMovieOccurrences[movie]?.occurances += 1
                 }
@@ -50,22 +47,6 @@ class MovieMatchViewController: UIViewController {
         sortedMoviesWithOccurrence = movies.sorted { leftSide, rightSide -> Bool in
             leftSide.occurances > rightSide.occurances
         }
-    }
-}
-
-extension MovieMatchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedMoviesWithOccurrence.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
-
-        cell.configure(with: sortedMoviesWithOccurrence[indexPath.row],
-                       amountOfPeople: totalNumberOfPeople,
-                       delegate: self)
-
-        return cell
     }
 }
 

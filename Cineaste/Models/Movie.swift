@@ -12,8 +12,8 @@ import CoreData
 class Movie: Codable {
     fileprivate(set) var id: Int64
     fileprivate(set) var title: String
-    fileprivate(set) var voteAverage: Decimal
-    fileprivate(set) var voteCount: Float
+    fileprivate(set) var voteAverage: Double
+    fileprivate(set) var voteCount: Double
     fileprivate(set) var posterPath: String?
     fileprivate(set) var overview: String
     fileprivate(set) var runtime: Int16
@@ -36,10 +36,12 @@ class Movie: Codable {
         id = try container.decode(Int64.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
 
-        voteAverage = try container.decodeIfPresent(Decimal.self, forKey: .voteAverage)
-            ?? 0.0
+        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage)
+            ?? 0
 
-        voteCount = try container.decode(Float.self, forKey: .voteCount)
+        voteCount = try container.decodeIfPresent(Double.self, forKey: .voteCount)
+            ?? 0
+
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         overview = try container.decode(String.self, forKey: .overview)
 

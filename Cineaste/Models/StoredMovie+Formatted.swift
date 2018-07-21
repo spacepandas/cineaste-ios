@@ -1,6 +1,6 @@
 //
 //  StoredMovie+Formatted.swift
-//  Cineaste App-Dev
+//  Cineaste
 //
 //  Created by Felizia Bernutz on 10.07.18.
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
@@ -10,11 +10,12 @@ import Foundation
 
 extension StoredMovie {
     var formattedVoteAverage: String {
-        if self.voteCount == 0 {
-            return String.unknownVoteAverage
-        } else {
-            return (self.voteAverage as Decimal?)?.formattedWithOneFractionDigit
+        if voteCount != 0,
+            voteAverage != 0 {
+            return voteAverage.formattedWithOneFractionDigit
                 ?? String.unknownVoteAverage
+        } else {
+            return String.unknownVoteAverage
         }
     }
 
@@ -27,7 +28,11 @@ extension StoredMovie {
     }
 
     var formattedRuntime: String {
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
+        if runtime != 0 {
+            return "\(runtime.formatted ?? String.unknownRuntime) min"
+        } else {
+            return "\(String.unknownRuntime) min"
+        }
     }
 
     var formattedWatchedDate: String? {

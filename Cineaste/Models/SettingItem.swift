@@ -56,9 +56,11 @@ enum SettingItem {
         }
     }
 
-    static let all = [SettingItem.about,
-                      SettingItem.licence,
-                      SettingItem.exportMovies,
-                      SettingItem.importMovies,
-                      SettingItem.contact]
+    static let all = [
+        SettingItem.about,
+        SettingItem.licence,
+        SettingItem.exportMovies,
+        SettingItem.importMovies,
+        SettingItem.contact
+    ]
 }

@@ -33,8 +33,8 @@ class MovieStorage {
                          releaseDate: Date,
                          runtime: Int16,
                          title: String,
-                         voteAverage: Decimal,
-                         voteCount: Float,
+                         voteAverage: Double,
+                         voteCount: Double,
                          watched: Bool,
                          handler: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
@@ -48,7 +48,7 @@ class MovieStorage {
 
             storedMovie.releaseDate = releaseDate
             storedMovie.runtime = runtime
-            storedMovie.voteAverage = voteAverage as NSDecimalNumber
+            storedMovie.voteAverage = voteAverage
             storedMovie.voteCount = voteCount
 
             storedMovie.watched = watched
@@ -73,7 +73,7 @@ class MovieStorage {
 
             storedMovie.releaseDate = movie.releaseDate
             storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage as NSDecimalNumber
+            storedMovie.voteAverage = movie.voteAverage
             storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
@@ -123,7 +123,8 @@ class MovieStorage {
     func resetCoreData(completion: @escaping (Error?) -> Void) {
         backgroundContext.perform {
             do {
-                let entities: [StoredMovie] = try self.backgroundContext.fetch(StoredMovie.fetchRequest())
+                let entities: [StoredMovie] = try self.backgroundContext
+                    .fetch(StoredMovie.fetchRequest())
                 for entity in entities {
                     self.backgroundContext.delete(entity)
                 }

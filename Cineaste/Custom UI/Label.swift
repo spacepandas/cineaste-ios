@@ -20,8 +20,8 @@ public class DescriptionLabel: UILabel {
     }
 
     func setup() {
-        self.font = UIFont.systemFont(ofSize: 13.0)
-        self.textColor = UIColor.accentText
+        font = UIFont.systemFont(ofSize: 13.0)
+        textColor = UIColor.accentText
     }
 }
 
@@ -37,7 +37,7 @@ public class TitleLabel: UILabel {
     }
 
     func setup() {
-        self.font = UIFont.systemFont(ofSize: 18.0)
-        self.textColor = UIColor.black
+        font = UIFont.systemFont(ofSize: 18.0)
+        textColor = UIColor.black
     }
 }

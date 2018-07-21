@@ -64,7 +64,7 @@ class CoreDataHelper {
                              releaseDate: Date,
                              runtime: Int16,
                              title: String,
-                             voteAverage: Float,
+                             voteAverage: Double,
                              watched: Bool,
                              watchedDate: Date,
                              listPosition: Int16) {

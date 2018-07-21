@@ -6,7 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct NearbyMessage: Codable, Equatable, Hashable {
@@ -19,7 +18,9 @@ struct NearbyMessage: Codable, Equatable, Hashable {
         guard let deviceId = UIDevice.current.identifierForVendor else {
             fatalError("Unable to get UUID")
         }
-        return NearbyMessage(userName: username, deviceId: deviceId.description, movies: movies)
+        return NearbyMessage(userName: username,
+                             deviceId: deviceId.description,
+                             movies: movies)
     }
 
     static func == (lhs: NearbyMessage, rhs: NearbyMessage) -> Bool {

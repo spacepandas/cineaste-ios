@@ -44,14 +44,16 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
         scrollView.minimumZoomScale = 1
         scrollView.maximumZoomScale = 2.0
 
-        let gestureRecognizer = UITapGestureRecognizer(target: self,
-                                                       action: #selector(handleDoubleTapScrollView(recognizer:)))
+        let gestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(handleDoubleTapScrollView(recognizer:)))
         gestureRecognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(gestureRecognizer)
 
         if let posterPath = posterPath {
             imageView.kf.indicatorType = .activity
-            imageView.kf.setImage(with: Movie.posterUrl(from: posterPath, for: .original),
+            imageView.kf.setImage(with: Movie.posterUrl(from: posterPath,
+                                                        for: .original),
                                   placeholder: image)
         } else {
             imageView.image = image
@@ -92,16 +94,4 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
 extension PosterViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "PosterViewController" }
-}
-
-extension UIView {
-    func addBlurEffect(with style: UIBlurEffectStyle) {
-        let blurEffect = UIBlurEffect(style: style)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-
-        // for supporting device rotation
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(blurEffectView)
-    }
 }

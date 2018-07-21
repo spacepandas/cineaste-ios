@@ -52,10 +52,14 @@ final class FetchedResultsManager: NSObject {
 
     private func sort(fetchRequest: NSFetchRequest<StoredMovie>?, for predicate: NSPredicate?) {
         if predicate == MovieListCategory.seen.predicate {
-            fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "watchedDate", ascending: false)]
+            fetchRequest?.sortDescriptors = [
+                NSSortDescriptor(key: "watchedDate", ascending: false)
+            ]
         } else {
-            fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "listPosition", ascending: true),
-                                            NSSortDescriptor(key: "title", ascending: true)]
+            fetchRequest?.sortDescriptors = [
+                NSSortDescriptor(key: "listPosition", ascending: true),
+                NSSortDescriptor(key: "title", ascending: true)
+            ]
         }
     }
 
@@ -119,7 +123,8 @@ extension FetchedResultsManager {
             decoder.userInfo[.context] = storageManager.backgroundContext
 
             do {
-                let export = try decoder.decode(ImportExportObject.self, from: data)
+                let export = try decoder.decode(ImportExportObject.self,
+                                                from: data)
                 let movies = export.movies
 
                 let dispatchGroup = DispatchGroup()
@@ -152,22 +157,29 @@ extension FetchedResultsManager {
     }
 
     private func saveToDocumentsDirectory(_ data: Data, completionHandler: (Result<Bool>) -> Void) {
-        guard let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first,
+        guard let documentsDirectoryPathString =
+            NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                .userDomainMask,
+                                                true).first,
             let documentsDirectoryPath = URL(string: "file://\(documentsDirectoryPathString)")
             else {
                 completionHandler(Result.error(FileExportError.creatingDocumentPath))
                 return
         }
 
-        let jsonFilePath = documentsDirectoryPath.appendingPathComponent(String.exportMoviesFileName)
+        let jsonFilePath = documentsDirectoryPath
+            .appendingPathComponent(String.exportMoviesFileName(with: Date().formatted))
         exportMoviesPath = jsonFilePath
 
         let fileManager = FileManager.default
         var isDirectory: ObjCBool = false
 
         // creating a .json file in the Documents folder
-        if !fileManager.fileExists(atPath: jsonFilePath.path, isDirectory: &isDirectory) {
-            let created = fileManager.createFile(atPath: jsonFilePath.path, contents: nil, attributes: nil)
+        if !fileManager.fileExists(atPath: jsonFilePath.path,
+                                   isDirectory: &isDirectory) {
+            let created = fileManager.createFile(atPath: jsonFilePath.path,
+                                                 contents: nil,
+                                                 attributes: nil)
             guard created == true else {
                 completionHandler(Result.error(FileExportError.creatingFileAtPath))
                 return
@@ -207,7 +219,9 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
             guard let indexPath = newIndexPath else { return }
             delegate?.updateRows(at: [indexPath])
         case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+            guard let indexPath = indexPath,
+                let newIndexPath = newIndexPath
+                else { return }
             delegate?.moveRow(at: indexPath, to: newIndexPath)
             return
         }

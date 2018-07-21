@@ -39,7 +39,9 @@ class MovieMatchCell: UITableViewCell {
         seenButton.setTitle(String.startMovieNight, for: .normal)
         nearbyMovie = movieWithOccurance
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
-        seenButton.addTarget(self, action: #selector(startMovienightButtonTouched(_:)), for: .touchUpInside)
+        seenButton.addTarget(self,
+                             action: #selector(startMovienightButtonTouched(_:)),
+                             for: .touchUpInside)
 
         if let posterPath = movieWithOccurance.nearbyMovie.posterPath {
             let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
@@ -60,6 +62,8 @@ class MovieMatchCell: UITableViewCell {
         guard let nearbyMovie = nearbyMovie else {
             fatalError("Nearbymovie must be set for starting a movienight")
         }
-        delegate?.movieMatchTableViewCell(sender: self, didSelectMovie: nearbyMovie, withPoster: posterToDisplay)
+        delegate?.movieMatchTableViewCell(sender: self,
+                                          didSelectMovie: nearbyMovie,
+                                          withPoster: posterToDisplay)
     }
 }

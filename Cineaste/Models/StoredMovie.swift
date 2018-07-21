@@ -34,7 +34,7 @@ class StoredMovie: NSManagedObject, Codable {
             poster = UIImageJPEGRepresentation(moviePoster, 1)
         }
 
-        voteAverage = movie.voteAverage as NSDecimalNumber
+        voteAverage = movie.voteAverage
         voteCount = movie.voteCount
 
         runtime = movie.runtime
@@ -91,9 +91,8 @@ class StoredMovie: NSManagedObject, Codable {
         overview = try container.decode(String.self, forKey: .overview)
         posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
 
-        voteAverage = try container.decode(Decimal.self, forKey: .voteAverage) as NSDecimalNumber
-        voteCount = try container.decode(Float.self, forKey: .voteCount)
-
+        voteAverage = try container.decode(Double.self, forKey: .voteAverage)
+        voteCount = try container.decode(Double.self, forKey: .voteCount)
         runtime = try container.decode(Int16.self, forKey: .runtime)
 
         let releaseDateString = try container.decode(String.self, forKey: .releaseDate)
@@ -122,10 +121,7 @@ class StoredMovie: NSManagedObject, Codable {
         try container.encode(overview, forKey: .overview)
         try container.encodeIfPresent(posterPath, forKey: .posterPath)
 
-        if let voteAverage = voteAverage as Decimal? {
-            try container.encode(voteAverage, forKey: .voteAverage)
-        }
-
+        try container.encode(voteAverage, forKey: .voteAverage)
         try container.encode(voteCount, forKey: .voteCount)
 
         try container.encode(runtime, forKey: .runtime)
