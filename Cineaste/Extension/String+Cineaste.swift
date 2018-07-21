@@ -93,9 +93,9 @@ extension String {
     static let exportMoviesFileUTI = "public.json"
 
     // MARK: Empty state
-    static let unknownVoteCount = "-.-"
-    static let unknownVoteAverage = "-.-"
-    static let unknownRuntime = "-.-"
+    static let unknownVoteCount = "-"
+    static let unknownVoteAverage = "-"
+    static let unknownRuntime = "-"
     static let unknownReleaseDate = NSLocalizedString("unknown", comment: "Title for unknown release date")
 
     // MARK: Alert messages

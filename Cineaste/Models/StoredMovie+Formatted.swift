@@ -10,11 +10,12 @@ import Foundation
 
 extension StoredMovie {
     var formattedVoteAverage: String {
-        if voteCount == 0 {
-            return String.unknownVoteAverage
-        } else {
-            return (voteAverage as Decimal?)?.formattedWithOneFractionDigit
+        if voteCount != 0,
+            voteAverage != 0 {
+            return voteAverage.formattedWithOneFractionDigit
                 ?? String.unknownVoteAverage
+        } else {
+            return String.unknownVoteAverage
         }
     }
 
@@ -27,7 +28,11 @@ extension StoredMovie {
     }
 
     var formattedRuntime: String {
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
+        if runtime != 0 {
+            return "\(runtime.formatted ?? String.unknownRuntime) min"
+        } else {
+            return "\(String.unknownRuntime) min"
+        }
     }
 
     var formattedWatchedDate: String? {
