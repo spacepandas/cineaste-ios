@@ -29,7 +29,18 @@ class MoviesViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var emptyListLabel: UILabel!
+    lazy var resultSearchController: SearchController = {
+        let resultSearchController = SearchController(searchResultsController: nil)
+        resultSearchController.searchResultsUpdater = self
+        return resultSearchController
+    }()
+
+    @IBOutlet var emptyView: UIView!
+    @IBOutlet var emptyListLabel: TitleLabel! {
+        didSet {
+            emptyListLabel.textColor = UIColor.basicWhite
+        }
+    }
     @IBOutlet var myMoviesTableView: UITableView! {
         didSet {
             myMoviesTableView.dataSource = self
@@ -40,6 +51,8 @@ class MoviesViewController: UIViewController {
 
             myMoviesTableView.rowHeight = UITableViewAutomaticDimension
             myMoviesTableView.estimatedRowHeight = 80
+
+            myMoviesTableView.backgroundView = emptyView
         }
     }
 
@@ -56,16 +69,49 @@ class MoviesViewController: UIViewController {
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
             self.myMoviesTableView.reloadData()
-            self.hideTableView(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+            self.showEmptyState(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
 
         registerForPreviewing(with: self, sourceView: myMoviesTableView)
+
+        configureSearchController()
+    }
+
+    // MARK: - SearchController
+
+    func configureSearchController() {
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = resultSearchController
+            navigationItem.hidesSearchBarWhenScrolling = true
+        } else {
+            myMoviesTableView.tableHeaderView = resultSearchController.searchBar
+        }
+
+        definesPresentationContext = true
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if #available(iOS 11.0, *) {
+            return
+        } else {
+            resultSearchController.searchBar.sizeToFit()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        showEmptyState(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        fetchedResultsManager.refetch(for: category.predicate) {
+            self.resultSearchController.isActive = false
+        }
     }
 
     // MARK: - Action
@@ -75,6 +121,46 @@ class MoviesViewController: UIViewController {
             showUsernameAlert()
         } else {
             self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+        }
+    }
+
+    @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
+        perform(segue: .showSearchFromMovieList, sender: self)
+    }
+
+    func showEmptyState(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
+        let isEmpty = isEmpty ?? true
+
+        DispatchQueue.main.async {
+            UIView.animate(
+                withDuration: 0.2,
+                animations: {
+                    self.myMoviesTableView.backgroundView?.alpha = isEmpty ? 1 : 0
+                },
+                completion: { _ in
+                    self.myMoviesTableView.backgroundView?.isHidden = !isEmpty
+                    handler?()
+                })
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch Segue(initWith: segue) {
+        case .showSearchFromMovieList?:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
+            vc?.storageManager = storageManager
+        case .showMovieDetail?:
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.storedMovie = selectedMovie
+            vc?.storageManager = storageManager
+            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        case .showMovieNight?:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
+            vc?.storageManager = storageManager
+        default:
+            break
         }
     }
 
@@ -108,46 +194,6 @@ class MoviesViewController: UIViewController {
         })
 
         self.present(alert, animated: true)
-    }
-
-    @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
-        perform(segue: .showSearchFromMovieList, sender: self)
-    }
-
-    func hideTableView(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
-        let isEmpty = isEmpty ?? true
-
-        DispatchQueue.main.async {
-            UIView.animate(
-                withDuration: 0.2,
-                animations: {
-                    self.myMoviesTableView.alpha = isEmpty ? 0 : 1
-                },
-                completion: { _ in
-                    self.myMoviesTableView.isHidden = isEmpty
-                    handler?()
-                })
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showSearchFromMovieList?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
-            vc?.storageManager = storageManager
-        case .showMovieDetail?:
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.storedMovie = selectedMovie
-            vc?.storageManager = storageManager
-            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
-        case .showMovieNight?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
-            vc?.storageManager = storageManager
-        default:
-            break
-        }
     }
 
     private func updateShortcutItems() {
@@ -269,30 +315,8 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         myMoviesTableView.endUpdates()
-        hideTableView(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        showEmptyState(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         updateShortcutItems()
-    }
-}
-
-// MARK: - 3D Touch
-
-extension MoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        let detailVC = MovieDetailViewController.instantiate()
-        guard let path = myMoviesTableView.indexPathForRow(at: location),
-            let objects = fetchedResultsManager.controller?.fetchedObjects,
-            objects.count > path.row
-            else { return nil }
-
-        let movie = objects[path.row]
-        detailVC.storedMovie = movie
-        detailVC.storageManager = storageManager
-        detailVC.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
-        return detailVC
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
 

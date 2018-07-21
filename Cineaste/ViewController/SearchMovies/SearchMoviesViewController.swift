@@ -29,11 +29,8 @@ class SearchMoviesViewController: UIViewController {
 
     private var searchDelayTimer: Timer?
 
-    lazy var resultSearchController: UISearchController  = {
-        let resultSearchController = UISearchController(searchResultsController: nil)
-        resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.isActive = false
-        resultSearchController.searchBar.sizeToFit()
+    lazy var resultSearchController: SearchController = {
+        let resultSearchController = SearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
     }()
@@ -56,6 +53,10 @@ class SearchMoviesViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.basicBackground
+
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
 
         loadRecent { [weak self] movies in
             self?.movies = movies
@@ -102,13 +103,6 @@ class SearchMoviesViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultSearchController
             navigationItem.hidesSearchBarWhenScrolling = false
-
-            //add style for searchField - only in iOS 11
-            guard let textfield = resultSearchController.searchBar.value(forKey: "searchField") as? UITextField,
-                let backgroundview = textfield.subviews.first else { return }
-            backgroundview.backgroundColor = .basicWhite
-            backgroundview.layer.cornerRadius = 10
-            backgroundview.clipsToBounds = true
         } else {
             moviesTableView.tableHeaderView = resultSearchController.searchBar
         }
