@@ -10,8 +10,12 @@ import UIKit
 
 enum Appearance {
     static func setup() {
-        let whiteTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicWhite]
-        let darkTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicBackground]
+        let whiteTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.basicWhite
+        ]
+        let darkTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.basicBackground
+        ]
 
         let navigationBar = UINavigationBar.appearance()
         navigationBar.tintColor = .primaryOrange
