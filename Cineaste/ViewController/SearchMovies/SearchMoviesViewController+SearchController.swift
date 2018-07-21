@@ -11,14 +11,9 @@ import UIKit
 extension SearchMoviesViewController: UISearchControllerDelegate {
     func willPresentSearchController(_ searchController: UISearchController) {
         moviesTableView.setContentOffset(.zero, animated: true)
-        resetPagination()
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
-        resetPagination()
-    }
-
-    private func resetPagination() {
         currentPage = nil
         totalResults = nil
 
