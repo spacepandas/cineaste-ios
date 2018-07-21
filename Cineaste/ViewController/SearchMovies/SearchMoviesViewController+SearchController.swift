@@ -21,6 +21,10 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
     private func resetPagination() {
         currentPage = nil
         totalResults = nil
+
+        loadMovies { [weak self] movies in
+            self?.movies = movies
+        }
     }
 }
 
