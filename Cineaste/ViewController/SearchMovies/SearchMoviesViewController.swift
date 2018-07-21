@@ -131,6 +131,7 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
         guard let storageManager = storageManager else { return }
         loadDetails(for: movie) { detailedMovie in
+            guard let detailedMovie = detailedMovie else { return }
             storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
                 switch result {
                 case .error:

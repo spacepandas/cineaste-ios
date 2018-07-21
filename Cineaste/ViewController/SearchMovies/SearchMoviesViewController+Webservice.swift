@@ -16,26 +16,28 @@ extension SearchMoviesViewController {
         }
 
         Webservice.load(resource: Movie.latestReleases(page: pageToLoad)) { result in
-            guard case let .success(result) = result else {
+            switch result {
+            case .error:
                 self.showAlert(withMessage: Alert.loadingDataError)
                 handler([])
-                return
+            case .success(let result):
+                self.currentPage = result.page
+                self.totalResults = result.totalResults
+                handler(result.results)
             }
-            self.currentPage = result.page
-            self.totalResults = result.totalResults
-            handler(result.results)
         }
     }
 
     func loadMovies(forQuery query: String?, handler: @escaping ([Movie]) -> Void) {
         if let query = query, !query.isEmpty {
             Webservice.load(resource: Movie.search(withQuery: query)) { result in
-                guard case let .success(movies) = result else {
+                switch result {
+                case .error:
                     self.showAlert(withMessage: Alert.loadingDataError)
                     handler([])
-                    return
+                case .success(let movies):
+                    handler(movies)
                 }
-                handler(movies)
             }
         } else {
             loadRecent { [weak self] movies in
@@ -47,14 +49,16 @@ extension SearchMoviesViewController {
         }
     }
 
-    func loadDetails(for movie: Movie, completionHandler: @escaping (Movie) -> Void) {
+    func loadDetails(for movie: Movie, completionHandler handler: @escaping (Movie?) -> Void) {
         Webservice.load(resource: movie.get) { result in
-            guard case let .success(detailedMovie) = result else {
+            switch result {
+            case .error:
                 self.showAlert(withMessage: Alert.loadingDataError)
-                return
+                handler(nil)
+            case .success(let detailedMovie):
+                detailedMovie.poster = movie.poster
+                handler(detailedMovie)
             }
-            detailedMovie.poster = movie.poster
-            completionHandler(detailedMovie)
         }
     }
 }
