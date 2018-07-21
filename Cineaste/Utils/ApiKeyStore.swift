@@ -9,13 +9,8 @@
 import Foundation
 
 enum ApiKeyStore {
-    static func theMovieDbKey() -> String {
-        return getValue(forKey: "MOVIEDB_KEY")
-    }
-
-    static func nearbyKey() -> String {
-        return getValue(forKey: "NEARBY_KEY")
-    }
+    static let theMovieDbKey: String = getValue(forKey: "MOVIEDB_KEY")
+    static let nearbyKey: String = getValue(forKey: "NEARBY_KEY")
 
     private static func getValue(forKey key: String) -> String {
         guard let path = Bundle.main.path(forResource: "apikey", ofType: "plist")

@@ -32,7 +32,7 @@ class MovieNightViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
-    fileprivate lazy var gnsMessageManager: GNSMessageManager = GNSMessageManager(apiKey: ApiKeyStore.nearbyKey())
+    fileprivate lazy var gnsMessageManager: GNSMessageManager = GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
 

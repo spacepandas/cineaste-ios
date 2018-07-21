@@ -13,10 +13,17 @@ class OrangeNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .basicWhite
+
         navigationBar.isTranslucent = false
         navigationBar.barTintColor = .primaryOrange
         navigationBar.tintColor = .basicWhite
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.basicWhite]
+
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .automatic
+            navigationBar.prefersLargeTitles = true
+        }
     }
 
 }

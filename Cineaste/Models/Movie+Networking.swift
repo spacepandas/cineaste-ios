@@ -9,7 +9,7 @@
 import UIKit
 
 extension Movie {
-    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey()
+    fileprivate static let apiKey = ApiKeyStore.theMovieDbKey
 
     static func search(withQuery query: String) -> Resource<[Movie]>? {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
