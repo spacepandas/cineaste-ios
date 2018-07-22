@@ -106,7 +106,7 @@ class SearchMoviesViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    // MARK: - SearchController
+    // MARK: - Custom functions
 
     func configureSearchController() {
         if #available(iOS 11.0, *) {
@@ -119,6 +119,15 @@ class SearchMoviesViewController: UIViewController {
         definesPresentationContext = true
     }
 
+    func scrollToTopCell(withAnimation: Bool) {
+        guard !movies.isEmpty else { return }
+
+        DispatchQueue.main.async {
+            self.moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0),
+                                             at: .top,
+                                             animated: withAnimation)
+        }
+    }
 }
 
 extension SearchMoviesViewController: SearchMoviesCellDelegate {

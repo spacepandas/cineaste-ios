@@ -9,16 +9,15 @@
 import UIKit
 
 extension SearchMoviesViewController: UISearchControllerDelegate {
-    func willPresentSearchController(_ searchController: UISearchController) {
-        moviesTableView.setContentOffset(.zero, animated: true)
-    }
-
     func didDismissSearchController(_ searchController: UISearchController) {
-        currentPage = nil
-        totalResults = nil
+        if let text = searchController.searchBar.text, !text.isEmpty {
+            currentPage = nil
+            totalResults = nil
 
-        loadMovies { [weak self] movies in
-            self?.movies = movies
+            loadMovies { [weak self] movies in
+                self?.movies = movies
+                self?.scrollToTopCell(withAnimation: true)
+            }
         }
     }
 }
@@ -29,6 +28,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
                 self?.movies = movies
+                self?.scrollToTopCell(withAnimation: false)
             }
         }
     }
