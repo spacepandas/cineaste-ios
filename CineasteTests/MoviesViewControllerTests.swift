@@ -16,7 +16,7 @@ class MoviesViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        tableView = moviesVC.myMoviesTableView
+        tableView = moviesVC.tableView
         tableView.dataSource = moviesVC
     }
 
