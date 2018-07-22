@@ -14,6 +14,7 @@ enum SettingItem {
     case licence
     case about
     case contact
+    case appStore
 
     var title: String {
         switch self {
@@ -27,6 +28,8 @@ enum SettingItem {
             return String.aboutAppTitle
         case .contact:
             return String.contactTitle
+        case .appStore:
+            return String.appStoreTitle
         }
     }
 
@@ -38,7 +41,8 @@ enum SettingItem {
             return String.importDescription
         case .licence,
              .about,
-             .contact:
+             .contact,
+             .appStore:
             return nil
         }
     }
@@ -51,7 +55,8 @@ enum SettingItem {
             return .showTextViewFromSettings
         case .exportMovies,
              .importMovies,
-             .contact:
+             .contact,
+             .appStore:
             return nil
         }
     }
@@ -61,6 +66,7 @@ enum SettingItem {
         SettingItem.licence,
         SettingItem.exportMovies,
         SettingItem.importMovies,
-        SettingItem.contact
+        SettingItem.contact,
+        SettingItem.appStore
     ]
 }

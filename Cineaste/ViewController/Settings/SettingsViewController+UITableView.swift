@@ -62,6 +62,13 @@ extension SettingsViewController: UITableViewDelegate {
             } else {
                 showAlert(withMessage: Alert.noEmailClient)
             }
+        case .appStore:
+            tableView.deselectRow(at: indexPath, animated: true)
+
+            let writeReviewUrl = "\(Config.appStoreUrl)?action=write-review"
+            guard let writeReviewURL = URL(string: writeReviewUrl)
+                else { fatalError("Expected a valid URL") }
+            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
         }
     }
 }

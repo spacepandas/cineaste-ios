@@ -14,6 +14,8 @@ enum Config {
         static let shareMovieUrl = "https://www.themoviedb.org/movie/"
     }
 
+    static let appStoreUrl = "https://itunes.apple.com/app/id1402748020"
+
     enum UserDefaults {
         static let usernameKey = "cineaste-username"
     }

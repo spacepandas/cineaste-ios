@@ -47,6 +47,7 @@ extension String {
     static let licenseTitle = NSLocalizedString("license", comment: "Title for settings cell licence")
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
     static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
+    static let appStoreTitle = NSLocalizedString("appStore", comment: "Title for settings cell appStore")
 
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")
