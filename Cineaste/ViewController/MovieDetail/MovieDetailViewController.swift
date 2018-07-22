@@ -23,7 +23,7 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
-    @IBOutlet weak var detailScrollView: UIScrollView!
+    @IBOutlet weak fileprivate var detailScrollView: UIScrollView!
     @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
     @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
     @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
@@ -352,7 +352,7 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let outerMaxOffset = abs(scrollView.contentSize.height - scrollView.frame.height)
+        let outerMaxOffset = scrollView.contentSize.height - scrollView.frame.height
         let percentage = scrollView.contentOffset.y / outerMaxOffset
         let detailRatio = detailScrollView.frame.height / detailScrollView.contentSize.height
 
