@@ -15,6 +15,10 @@ class SearchMoviesViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.moviesTableView.reloadData()
+
+                if self.movies.isEmpty {
+                    self.moviesTableView.tableFooterView = UIView()
+                }
             }
         }
     }
