@@ -13,10 +13,10 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
         let detailVC = MovieDetailViewController.instantiate()
         guard let path = moviesTableView.indexPathForRow(at: location),
-            movies.count > path.section
+            movies.count > path.row
             else { return nil }
 
-        detailVC.movie = movies[path.section]
+        detailVC.movie = movies[path.row]
         detailVC.storageManager = storageManager
         detailVC.type = .search
         return detailVC
