@@ -8,12 +8,12 @@
 
 import UIKit
 
-extension MoviesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension MoviesViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch category {
         case .wantToSee:
             let cell: MovieListCell = tableView.dequeueCell(identifier: MovieListCell.identifier)
@@ -33,12 +33,8 @@ extension MoviesViewController: UITableViewDataSource {
             return cell
         }
     }
-}
 
-// MARK: - UITableViewDelegate
-
-extension MoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
             fatalError("Failure in loading fetchedObject")
         }

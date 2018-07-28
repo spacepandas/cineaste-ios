@@ -16,11 +16,11 @@ extension MoviesViewController: UISearchResultsUpdating {
             let predicate = NSPredicate(format: "title contains[c] '\(searchText)' AND \(category.predicate)")
 
             fetchedResultsManager.refetch(for: predicate) {
-                self.myMoviesTableView.reloadData()
+                self.tableView.reloadData()
             }
         } else {
             fetchedResultsManager.refetch(for: category.predicate) {
-                self.myMoviesTableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }

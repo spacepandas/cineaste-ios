@@ -32,7 +32,7 @@ extension MoviesViewController {
         return action
     }
 
-    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
             fatalError("Failure in loading fetchedObject")
         }
@@ -85,7 +85,7 @@ extension MoviesViewController {
     }
 
     @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
             fatalError("Failure in loading fetchedObject")
         }
@@ -95,7 +95,7 @@ extension MoviesViewController {
     }
 
     @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
             fatalError("Failure in loading fetchedObject")
         }

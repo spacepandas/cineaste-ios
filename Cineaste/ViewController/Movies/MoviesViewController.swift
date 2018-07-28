@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MoviesViewController: UIViewController {
+class MoviesViewController: UITableViewController {
     var category: MovieListCategory = .wantToSee {
         didSet {
             title = category.title
@@ -19,11 +19,11 @@ class MoviesViewController: UIViewController {
             guard oldValue != category else { return }
             if fetchedResultsManager.controller == nil {
                 fetchedResultsManager.setup(with: category.predicate) {
-                    self.myMoviesTableView.reloadData()
+                    self.tableView.reloadData()
                 }
             } else {
                 fetchedResultsManager.refetch(for: category.predicate) {
-                    self.myMoviesTableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -41,20 +41,6 @@ class MoviesViewController: UIViewController {
             emptyListLabel.textColor = UIColor.basicWhite
         }
     }
-    @IBOutlet var myMoviesTableView: UITableView! {
-        didSet {
-            myMoviesTableView.dataSource = self
-            myMoviesTableView.delegate = self
-
-            myMoviesTableView.tableFooterView = UIView()
-            myMoviesTableView.backgroundColor = UIColor.basicBackground
-
-            myMoviesTableView.rowHeight = UITableViewAutomaticDimension
-            myMoviesTableView.estimatedRowHeight = 80
-
-            myMoviesTableView.backgroundView = emptyView
-        }
-    }
 
     let fetchedResultsManager = FetchedResultsManager()
     var storageManager: MovieStorage?
@@ -68,43 +54,21 @@ class MoviesViewController: UIViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.setup(with: category.predicate) {
-            self.myMoviesTableView.reloadData()
+            self.tableView.reloadData()
             self.showEmptyState(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         }
 
-        registerForPreviewing(with: self, sourceView: myMoviesTableView)
+        registerForPreviewing(with: self, sourceView: tableView)
 
+        configureTableView()
         configureSearchController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let indexPath = myMoviesTableView.indexPathForSelectedRow {
-            myMoviesTableView.deselectRow(at: indexPath, animated: true)
-        }
-    }
-
-    // MARK: - SearchController
-
-    func configureSearchController() {
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = resultSearchController
-            navigationItem.hidesSearchBarWhenScrolling = true
-        } else {
-            myMoviesTableView.tableHeaderView = resultSearchController.searchBar
-        }
-
-        definesPresentationContext = true
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if #available(iOS 11.0, *) {
-            return
-        } else {
-            resultSearchController.searchBar.sizeToFit()
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
@@ -122,6 +86,39 @@ class MoviesViewController: UIViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if #available(iOS 11.0, *) {
+            return
+        } else {
+            resultSearchController.searchBar.sizeToFit()
+        }
+    }
+
+    // MARK: - SearchController
+
+    func configureSearchController() {
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = resultSearchController
+            navigationItem.hidesSearchBarWhenScrolling = true
+        } else {
+            tableView.tableHeaderView = resultSearchController.searchBar
+        }
+
+        definesPresentationContext = true
+    }
+
+    func configureTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.basicBackground
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+
+        tableView.backgroundView = emptyView
+    }
+
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
@@ -129,26 +126,6 @@ class MoviesViewController: UIViewController {
             showUsernameAlert()
         } else {
             performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-        }
-    }
-
-    @IBAction func triggerSearchMovieAction(_ sender: UIBarButtonItem) {
-        perform(segue: .showSearchFromMovieList, sender: self)
-    }
-
-    func showEmptyState(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
-        let isEmpty = isEmpty ?? true
-
-        DispatchQueue.main.async {
-            UIView.animate(
-                withDuration: 0.2,
-                animations: {
-                    self.myMoviesTableView.backgroundView?.alpha = isEmpty ? 1 : 0
-                },
-                completion: { _ in
-                    self.myMoviesTableView.backgroundView?.isHidden = !isEmpty
-                    handler?()
-                })
         }
     }
 
@@ -169,6 +146,22 @@ class MoviesViewController: UIViewController {
             vc?.storageManager = storageManager
         default:
             break
+        }
+    }
+
+    func showEmptyState(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
+        let isEmpty = isEmpty ?? true
+
+        DispatchQueue.main.async {
+            UIView.animate(
+                withDuration: 0.2,
+                animations: {
+                    self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
+                },
+                completion: { _ in
+                    self.tableView.backgroundView?.isHidden = !isEmpty
+                    handler?()
+                })
         }
     }
 
@@ -270,22 +263,22 @@ extension MoviesViewController: UITextFieldDelegate {
 
 extension MoviesViewController: FetchedResultsManagerDelegate {
     func beginUpdate() {
-        myMoviesTableView.beginUpdates()
+        tableView.beginUpdates()
     }
     func insertRows(at index: [IndexPath]) {
-        myMoviesTableView.insertRows(at: index, with: .fade)
+        tableView.insertRows(at: index, with: .fade)
     }
     func deleteRows(at index: [IndexPath]) {
-        myMoviesTableView.deleteRows(at: index, with: .fade)
+        tableView.deleteRows(at: index, with: .fade)
     }
     func updateRows(at index: [IndexPath]) {
-        myMoviesTableView.reloadRows(at: index, with: .fade)
+        tableView.reloadRows(at: index, with: .fade)
     }
     func moveRow(at index: IndexPath, to newIndex: IndexPath) {
-        myMoviesTableView.moveRow(at: index, to: newIndex)
+        tableView.moveRow(at: index, to: newIndex)
     }
     func endUpdate() {
-        myMoviesTableView.endUpdates()
+        tableView.endUpdates()
         showEmptyState(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
         updateShortcutItems()
     }
