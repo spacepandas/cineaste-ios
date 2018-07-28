@@ -13,6 +13,7 @@ import SafariServices
 //swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
+    @IBOutlet weak fileprivate var posterHeight: NSLayoutConstraint!
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
 
     @IBOutlet var descriptionLabels: [DescriptionLabel]! {
@@ -63,6 +64,17 @@ class MovieDetailViewController: UIViewController {
         didSet {
             if let movie = storedMovie {
                 setupUI(for: movie)
+            }
+        }
+    }
+
+    var moviePoster: UIImage? {
+        didSet {
+            DispatchQueue.main.async {
+                guard let poster = self.moviePoster else { return }
+                self.posterImageView.image = self.moviePoster
+                let aspectRatio = poster.size.height / poster.size.width
+                self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
             }
         }
     }
@@ -272,16 +284,14 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func setupUI(for networkMovie: Movie) {
+        moviePoster = networkMovie.poster ?? UIImage.posterPlaceholder
+
         DispatchQueue.main.async {
-            guard let posterImageView = self.posterImageView,
-                let titleLabel = self.titleLabel,
+            guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
                 let runtimeLabel = self.runtimeLabel,
                 let votingLabel = self.votingLabel,
                 let releaseDateLabel = self.releaseDateLabel else { return }
-
-            posterImageView.image = networkMovie.poster
-                ?? UIImage.posterPlaceholder
 
             titleLabel.text = networkMovie.title
             descriptionTextView.text = networkMovie.overview
@@ -292,19 +302,14 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func setupUI(for localMovie: StoredMovie) {
+        moviePoster = localMovie.poster.map(UIImage.init) ?? UIImage.posterPlaceholder
+
         DispatchQueue.main.async {
-            guard let posterImageView = self.posterImageView,
-                let titleLabel = self.titleLabel,
+            guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
                 let runtimeLabel = self.runtimeLabel,
                 let votingLabel = self.votingLabel,
                 let releaseDateLabel = self.releaseDateLabel else { return }
-
-            if let moviePoster = localMovie.poster {
-                posterImageView.image = UIImage(data: moviePoster)
-            } else {
-                posterImageView.image = UIImage.posterPlaceholder
-            }
 
             titleLabel.text = localMovie.title
             descriptionTextView.text = localMovie.overview
