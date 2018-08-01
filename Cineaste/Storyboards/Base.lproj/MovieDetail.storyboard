@@ -25,25 +25,34 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="874"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="511"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bg-1L-aEC">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="467"/>
-                                            </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-SV-Cq1">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82I-FK-pt6">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_poster" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-SV-Cq1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="167" id="pfa-lB-wsn"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="U28-3x-661"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="F4g-Gz-JRF"/>
+                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="82I-FK-pt6" secondAttribute="height" multiplier="8:5" id="NtD-NO-EwD"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CXV-SV-Cq1" secondAttribute="bottom" id="WPg-ex-mgp"/>
+                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="top" secondItem="82I-FK-pt6" secondAttribute="top" id="wrL-tw-nQs"/>
+                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="82I-FK-pt6" secondAttribute="leading" id="znq-Yp-WYK"/>
                                                 </constraints>
-                                            </imageView>
+                                            </scrollView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineaste_detail_flaeche" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
-                                                <rect key="frame" x="0.0" y="417" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="54.5" width="375" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jsk-NF-wyG"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="467.5" width="375" height="406.5"/>
+                                                <rect key="frame" x="0.0" y="104.5" width="375" height="406.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT7-RW-EIo" customClass="TitleLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                         <rect key="frame" x="150" y="20" width="75" height="20.5"/>
@@ -156,7 +165,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdq-Gq-LIm" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
-                                                <rect key="frame" x="280" y="423" width="50" height="50"/>
+                                                <rect key="frame" x="280" y="60.5" width="50" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBZ-3T-p4o" customClass="VoteView" customModule="Cineaste_App" customModuleProvider="target">
                                                         <rect key="frame" x="2" y="2" width="46" height="46"/>
@@ -197,21 +206,20 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="6bg-1L-aEC" firstAttribute="top" secondItem="Omu-gQ-AJU" secondAttribute="top" id="2a9-Jg-EPF"/>
-                                            <constraint firstItem="CXV-SV-Cq1" firstAttribute="top" secondItem="Omu-gQ-AJU" secondAttribute="top" id="52P-6a-bg4"/>
+                                            <constraint firstItem="vGg-FL-9Xo" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="2k1-WG-u5j"/>
                                             <constraint firstItem="vGg-FL-9Xo" firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="top" id="9al-En-nah"/>
-                                            <constraint firstItem="6bg-1L-aEC" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="B5k-W2-vD7"/>
                                             <constraint firstAttribute="trailing" secondItem="cDP-XA-M1C" secondAttribute="trailing" id="CAP-l1-494"/>
                                             <constraint firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="bottom" id="JYo-8D-mWc"/>
                                             <constraint firstItem="Bdq-Gq-LIm" firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" constant="6" id="O55-z3-U0K"/>
                                             <constraint firstAttribute="trailing" secondItem="vGg-FL-9Xo" secondAttribute="trailing" id="Q3R-0A-16z"/>
                                             <constraint firstItem="cDP-XA-M1C" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="XOT-HB-cSg"/>
-                                            <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="bYY-Al-N5e"/>
+                                            <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="fgn-P1-JNr"/>
                                             <constraint firstAttribute="trailing" secondItem="Bdq-Gq-LIm" secondAttribute="trailing" constant="45" id="fq5-g8-76Q"/>
-                                            <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="hEZ-bX-STV"/>
-                                            <constraint firstItem="vGg-FL-9Xo" firstAttribute="bottom" secondItem="6bg-1L-aEC" secondAttribute="bottom" id="iHb-T5-ifH"/>
-                                            <constraint firstAttribute="trailing" secondItem="6bg-1L-aEC" secondAttribute="trailing" id="o8B-w0-PQM"/>
                                             <constraint firstItem="vGg-FL-9Xo" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="oWq-LE-X68"/>
+                                            <constraint firstAttribute="trailing" secondItem="82I-FK-pt6" secondAttribute="trailing" id="qO6-CS-KJi"/>
+                                            <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="qyY-0O-4aa"/>
+                                            <constraint firstItem="82I-FK-pt6" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="tC7-Ix-750"/>
+                                            <constraint firstItem="82I-FK-pt6" firstAttribute="top" secondItem="Omu-gQ-AJU" secondAttribute="top" id="wIu-tL-FkF"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -221,11 +229,13 @@
                                     <constraint firstItem="Omu-gQ-AJU" firstAttribute="leading" secondItem="drp-du-gIo" secondAttribute="leading" id="ZHX-C0-qeH"/>
                                     <constraint firstItem="Omu-gQ-AJU" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="top" id="qrz-06-9Le"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="H5Q-aj-Qxh" id="QHe-Re-4r7"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6bg-1L-aEC" firstAttribute="height" secondItem="Hvt-Pf-hic" secondAttribute="height" multiplier="0.7" id="5qG-7L-Ctb"/>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="gkH-6H-peu"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
@@ -234,12 +244,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C1U-CL-dSb"/>
                     </view>
+                    <navigationItem key="navigationItem" id="I07-cP-vJB"/>
                     <connections>
                         <outlet property="deleteButton" destination="NUn-AI-5yg" id="B3B-Y4-UBd"/>
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
+                        <outlet property="detailScrollView" destination="82I-FK-pt6" id="Bib-Ky-b0z"/>
                         <outlet property="moreInformationButton" destination="M6U-dL-Xho" id="NeM-qE-MWU"/>
                         <outlet property="mustSeeButton" destination="sct-hl-B1B" id="dyA-w3-osL"/>
-                        <outlet property="posterHeight" destination="U28-3x-661" id="YeQ-KP-hf7"/>
+                        <outlet property="posterHeight" destination="pfa-lB-wsn" id="Zit-yK-Qah"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
                         <outlet property="releaseDateLabel" destination="BDx-pl-gqc" id="AHZ-60-SF8"/>
                         <outlet property="runtimeLabel" destination="OTM-90-udk" id="A1S-fP-VbP"/>
@@ -253,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBb-XY-tXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5932" y="5.8470764617691158"/>
+            <point key="canvasLocation" x="6871.1999999999998" y="5.8470764617691158"/>
         </scene>
         <!--Poster View Controller-->
         <scene sceneID="Fct-9U-0RG">
@@ -327,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P0-WZ-8W1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6773.6000000000004" y="4.9475262368815596"/>
+            <point key="canvasLocation" x="7712.8000000000002" y="4.9475262368815596"/>
         </scene>
     </scenes>
     <resources>
@@ -335,5 +347,6 @@
         <image name="cinema" width="32" height="14"/>
         <image name="ic_release" width="16" height="17"/>
         <image name="ic_runtime" width="16" height="16"/>
+        <image name="placeholder_poster" width="111" height="167"/>
     </resources>
 </document>
