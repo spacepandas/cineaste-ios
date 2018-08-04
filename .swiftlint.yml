@@ -76,3 +76,5 @@ force_unwrapping:
   severity: error
 weak_delegate:
   severity: error
+multiline_arguments:
+  only_enforce_after_first_closure_on_first_line: true
