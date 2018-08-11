@@ -45,12 +45,29 @@
                                                     <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="82I-FK-pt6" secondAttribute="leading" id="znq-Yp-WYK"/>
                                                 </constraints>
                                             </scrollView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineaste_detail_flaeche" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I40-Pc-bfk" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="54.5" width="375" height="50"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineaste_detail_flaeche" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
+                                                        <rect key="frame" x="0.0" y="-0.5" width="375" height="50"/>
+                                                    </imageView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="jsk-NF-wyG"/>
+                                                    <constraint firstItem="vGg-FL-9Xo" firstAttribute="top" secondItem="I40-Pc-bfk" secondAttribute="top" id="Erj-Nx-BDB"/>
+                                                    <constraint firstItem="vGg-FL-9Xo" firstAttribute="leading" secondItem="I40-Pc-bfk" secondAttribute="leading" id="ISt-ro-Tsc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" id="W6N-vg-M2A"/>
+                                                    <constraint firstAttribute="height" constant="50" id="f5h-1U-Czf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vGg-FL-9Xo" secondAttribute="trailing" id="u09-dM-OW2"/>
                                                 </constraints>
-                                            </imageView>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.59999999999999998"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
                                                 <rect key="frame" x="0.0" y="104.5" width="375" height="406.5"/>
                                                 <subviews>
@@ -202,20 +219,28 @@
                                                     <constraint firstAttribute="trailing" secondItem="IBZ-3T-p4o" secondAttribute="trailing" constant="2" id="mvw-4s-U74"/>
                                                     <constraint firstAttribute="height" constant="50" id="ygK-AL-mes"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="vGg-FL-9Xo" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="2k1-WG-u5j"/>
-                                            <constraint firstItem="vGg-FL-9Xo" firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="top" id="9al-En-nah"/>
                                             <constraint firstAttribute="trailing" secondItem="cDP-XA-M1C" secondAttribute="trailing" id="CAP-l1-494"/>
+                                            <constraint firstItem="I40-Pc-bfk" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="Hcg-Vd-gik"/>
                                             <constraint firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="bottom" id="JYo-8D-mWc"/>
-                                            <constraint firstItem="Bdq-Gq-LIm" firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" constant="6" id="O55-z3-U0K"/>
-                                            <constraint firstAttribute="trailing" secondItem="vGg-FL-9Xo" secondAttribute="trailing" id="Q3R-0A-16z"/>
+                                            <constraint firstItem="I40-Pc-bfk" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="OJX-kY-zx7"/>
                                             <constraint firstItem="cDP-XA-M1C" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="XOT-HB-cSg"/>
+                                            <constraint firstItem="cDP-XA-M1C" firstAttribute="top" secondItem="I40-Pc-bfk" secondAttribute="bottom" id="a8T-cD-pMx"/>
                                             <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="fgn-P1-JNr"/>
                                             <constraint firstAttribute="trailing" secondItem="Bdq-Gq-LIm" secondAttribute="trailing" constant="45" id="fq5-g8-76Q"/>
-                                            <constraint firstItem="vGg-FL-9Xo" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="oWq-LE-X68"/>
+                                            <constraint firstAttribute="trailing" secondItem="I40-Pc-bfk" secondAttribute="trailing" id="oUP-10-aGF"/>
+                                            <constraint firstItem="Bdq-Gq-LIm" firstAttribute="bottom" secondItem="I40-Pc-bfk" secondAttribute="bottom" constant="6" id="pdk-mD-CO7"/>
                                             <constraint firstAttribute="trailing" secondItem="82I-FK-pt6" secondAttribute="trailing" id="qO6-CS-KJi"/>
                                             <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="qyY-0O-4aa"/>
                                             <constraint firstItem="82I-FK-pt6" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="tC7-Ix-750"/>
