@@ -94,7 +94,7 @@ class PosterViewController: UIViewController {
             blurredBackgroundImage.alpha = 1 - alpha
         case .ended:
             let minimumVelocity = 1_500 as CGFloat
-            let minimumScreenRatio = 0.5 as CGFloat
+            let minimumScreenRatio = 0.1 as CGFloat
             let animationDuration = 0.2
 
             let velocity = recognizer.velocity(in: imageView)
