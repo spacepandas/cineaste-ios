@@ -91,7 +91,6 @@ class PosterViewController: UIViewController {
 
             let halfImageHeight = imageView.bounds.height / 2
             let alpha = abs(halfImageHeight - imageView.center.y) / halfImageHeight
-
             blurredBackgroundImage.alpha = 1 - alpha
         case .ended:
             let minimumVelocity = 1_500 as CGFloat
@@ -101,10 +100,10 @@ class PosterViewController: UIViewController {
             let velocity = recognizer.velocity(in: imageView)
 
             let isFastEnoughToDismiss = velocity.y > minimumVelocity
-            let isLowEnoughToDismiss =
-                translation.y > view.frame.size.height * minimumScreenRatio
+            let isMovedEnoughToDismiss =
+                abs(translation.y) > view.frame.size.height * minimumScreenRatio
 
-            if isFastEnoughToDismiss || isLowEnoughToDismiss {
+            if isFastEnoughToDismiss || isMovedEnoughToDismiss {
                 UIView.animate(withDuration: animationDuration, animations: {
                     self.imageView.frame.origin =
                         CGPoint(x: self.imageView.frame.origin.x,
