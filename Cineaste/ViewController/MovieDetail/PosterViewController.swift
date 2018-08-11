@@ -86,7 +86,7 @@ class PosterViewController: UIViewController {
             originalPosition = imageView.center
             currentPositionTouched = recognizer.location(in: imageView)
         case .changed:
-            imageView.frame.origin = CGPoint(x: translation.x,
+            imageView.frame.origin = CGPoint(x: 0,
                                              y: translation.y)
 
             let halfImageHeight = imageView.bounds.height / 2
