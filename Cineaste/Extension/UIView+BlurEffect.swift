@@ -12,10 +12,10 @@ extension UIView {
     func addBlurEffect(with style: UIBlurEffectStyle) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
+        blurEffectView.frame = bounds
 
         // for supporting device rotation
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(blurEffectView)
+        addSubview(blurEffectView)
     }
 }
