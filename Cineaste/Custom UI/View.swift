@@ -32,7 +32,20 @@ public class VoteView: UIView {
     }
 }
 
+@IBDesignable
 public class ShadowView: UIView {
+    @IBInspectable var shadowOpacity: Float = 0.3 {
+        didSet {
+            layer.shadowOpacity = shadowOpacity
+        }
+    }
+
+    @IBInspectable var shadowRadius: CGFloat = 3.0 {
+        didSet {
+            layer.shadowRadius = shadowRadius
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -45,8 +58,8 @@ public class ShadowView: UIView {
 
     func setup() {
         layer.shadowColor = UIColor.accentText.cgColor
-        layer.shadowOpacity = 0.2
+        layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
-        layer.shadowRadius = 3
+        layer.shadowRadius = shadowRadius
     }
 }
