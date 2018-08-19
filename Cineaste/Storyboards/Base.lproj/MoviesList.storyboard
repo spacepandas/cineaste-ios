@@ -85,7 +85,7 @@
                                                 <constraint firstAttribute="width" secondItem="Lqp-of-e97" secondAttribute="height" multiplier="0.7" id="rhr-z8-Vaj"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GE-UA-Hy3">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GE-UA-Hy3" customClass="NonClearView" customModule="Cineaste_App_Dev">
                                             <rect key="frame" x="69.5" y="0.0" width="5" height="99.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -210,7 +210,7 @@
                                                 <constraint firstAttribute="width" secondItem="mrt-l2-SPo" secondAttribute="height" multiplier="0.7" id="ysr-Cf-3mU"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-RV-Bhu">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-RV-Bhu" customClass="NonClearView" customModule="Cineaste_App_Dev">
                                             <rect key="frame" x="69.5" y="0.0" width="5" height="99.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
