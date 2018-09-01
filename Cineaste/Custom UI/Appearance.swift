@@ -10,9 +10,6 @@ import UIKit
 
 enum Appearance {
     static func setup() {
-
-        let new3 = #colorLiteral(red: 0.9882352941, green: 0.7921568627, blue: 0.2745098039, alpha: 1)
-
         let whiteTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.basicWhite
         ]
