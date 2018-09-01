@@ -8,11 +8,12 @@
 
 import UIKit
 
-class PosterViewController: UIViewController, UIScrollViewDelegate {
+class PosterViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var blurredBackgroundImage: UIImageView!
     @IBOutlet var backgroundView: UIView!
+    @IBOutlet var toolbarBackgroundView: UIView!
 
     @IBOutlet var toolbar: UIToolbar! {
         didSet {
@@ -29,11 +30,14 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
     var image: UIImage?
     var posterPath: String?
 
+    var originalPosition: CGPoint?
+    var currentPositionTouched: CGPoint?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundView.backgroundColor = .transparentBlack
-        backgroundView.addBlurEffect(with: .dark)
+        toolbarBackgroundView.backgroundColor = .transparentBlack
+        toolbarBackgroundView.addBlurEffect(with: .dark)
 
         blurredBackgroundImage.image = image
         blurredBackgroundImage.addBlurEffect(with: .dark)
@@ -44,11 +48,26 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
         scrollView.minimumZoomScale = 1
         scrollView.maximumZoomScale = 2.0
 
-        let gestureRecognizer =
+        let oneTapGestureRecognizer =
             UITapGestureRecognizer(target: self,
-                                   action: #selector(handleDoubleTapScrollView(recognizer:)))
-        gestureRecognizer.numberOfTapsRequired = 2
-        scrollView.addGestureRecognizer(gestureRecognizer)
+                                   action: #selector(handleOneTap(recognizer:)))
+        oneTapGestureRecognizer.numberOfTapsRequired = 1
+        oneTapGestureRecognizer.delegate = self
+        scrollView.addGestureRecognizer(oneTapGestureRecognizer)
+
+        let doubleTapGestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(handleDoubleTap(recognizer:)))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer.delegate = self
+        scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
+
+        let panGestureRecognizer =
+            UIPanGestureRecognizer(target: self,
+                                   action: #selector(handlePanGesture(recognizer:)))
+        panGestureRecognizer.maximumNumberOfTouches = 1
+        panGestureRecognizer.delegate = self
+        scrollView.addGestureRecognizer(panGestureRecognizer)
 
         if let posterPath = posterPath {
             imageView.kf.indicatorType = .activity
@@ -66,7 +85,15 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc
-    func handleDoubleTapScrollView(recognizer: UITapGestureRecognizer) {
+    func handleOneTap(recognizer: UITapGestureRecognizer) {
+        backgroundView.isHidden =
+            backgroundView.isHidden
+            ? false
+            : true
+    }
+
+    @objc
+    func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         if scrollView.zoomScale == 1 {
             scrollView.zoom(to: zoomRectForScale(scale: scrollView.maximumZoomScale,
                                                  center: recognizer.location(in: recognizer.view)),
@@ -86,8 +113,78 @@ class PosterViewController: UIViewController, UIScrollViewDelegate {
         return zoomRect
     }
 
+    @objc
+    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+        guard scrollView.zoomScale == 1 else { return }
+
+        let translation = recognizer.translation(in: imageView)
+
+        switch recognizer.state {
+        case .began:
+            originalPosition = imageView.center
+            currentPositionTouched = recognizer.location(in: imageView)
+        case .changed:
+            imageView.frame.origin = CGPoint(x: 0,
+                                             y: translation.y)
+
+            let halfImageHeight = imageView.bounds.height / 2
+            let alpha = abs(halfImageHeight - imageView.center.y) / halfImageHeight
+            blurredBackgroundImage.alpha = 1 - alpha
+            backgroundView.alpha = 1 - alpha
+        case .ended:
+            let minimumVelocity = 1_500 as CGFloat
+            let minimumScreenRatio = 0.1 as CGFloat
+            let animationDuration = 0.2
+
+            let velocity = recognizer.velocity(in: imageView)
+
+            let isFastEnoughToDismiss = velocity.y > minimumVelocity
+            let isMovedEnoughToDismiss =
+                abs(translation.y) > view.frame.size.height * minimumScreenRatio
+
+            if isFastEnoughToDismiss || isMovedEnoughToDismiss {
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.imageView.frame.origin =
+                        CGPoint(x: self.imageView.frame.origin.x,
+                                y: self.imageView.frame.size.height)
+                    self.blurredBackgroundImage.alpha = 0
+                    self.backgroundView.alpha = 0
+                }, completion: { _ in
+                    self.dismiss(animated: false)
+                })
+            } else {
+                UIView.animate(withDuration: animationDuration) {
+                    if let position = self.originalPosition {
+                        self.imageView.center = position
+                        self.blurredBackgroundImage.alpha = 1
+                        self.backgroundView.alpha = 1
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
+}
+
+extension PosterViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
+    }
+}
+
+extension PosterViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        // Don't recognize a single tap until a double-tap fails.
+        if (gestureRecognizer as? UITapGestureRecognizer)?.numberOfTapsRequired == 1
+            && (otherGestureRecognizer as? UITapGestureRecognizer)?.numberOfTapsRequired == 2 {
+            return true
+        }
+        return false
     }
 }
 

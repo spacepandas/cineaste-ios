@@ -295,7 +295,7 @@
         <!--Poster View Controller-->
         <scene sceneID="Fct-9U-0RG">
             <objects>
-                <viewController storyboardIdentifier="PosterViewController" id="zXD-4l-9EK" customClass="PosterViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PosterViewController" modalPresentationStyle="overFullScreen" id="zXD-4l-9EK" customClass="PosterViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5JE-mA-0ly">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,47 +319,60 @@
                                     <constraint firstItem="lJQ-tj-KWh" firstAttribute="width" secondItem="OyM-f2-szt" secondAttribute="width" id="iCZ-9N-Toq"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5J-5a-iWO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3O8-Ji-VbM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5J-5a-iWO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5G9-DX-0eN">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <items>
+                                            <barButtonItem systemItem="flexibleSpace" id="ZSA-NK-1hL"/>
+                                            <barButtonItem systemItem="done" id="Thx-QM-97n">
+                                                <connections>
+                                                    <action selector="doneButtonTouched:" destination="zXD-4l-9EK" id="fwB-Cj-tcC"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="L5J-5a-iWO" firstAttribute="leading" secondItem="3O8-Ji-VbM" secondAttribute="leading" id="3Yq-CW-dJJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="5G9-DX-0eN" secondAttribute="bottom" id="YtU-Om-RNS"/>
+                                    <constraint firstAttribute="bottom" secondItem="L5J-5a-iWO" secondAttribute="bottom" id="h4l-av-imN"/>
+                                    <constraint firstItem="L5J-5a-iWO" firstAttribute="bottom" secondItem="5G9-DX-0eN" secondAttribute="bottom" id="i2e-TB-qy7"/>
+                                    <constraint firstItem="L5J-5a-iWO" firstAttribute="top" secondItem="3O8-Ji-VbM" secondAttribute="top" id="jNB-at-oO7"/>
+                                    <constraint firstAttribute="trailing" secondItem="5G9-DX-0eN" secondAttribute="trailing" id="mK3-Fw-ogL"/>
+                                    <constraint firstItem="5G9-DX-0eN" firstAttribute="leading" secondItem="3O8-Ji-VbM" secondAttribute="leading" id="rWe-ns-PjM"/>
+                                    <constraint firstAttribute="trailing" secondItem="L5J-5a-iWO" secondAttribute="trailing" id="zJm-hy-sCj"/>
+                                </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5G9-DX-0eN">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem systemItem="flexibleSpace" id="ZSA-NK-1hL"/>
-                                    <barButtonItem systemItem="done" id="Thx-QM-97n">
-                                        <connections>
-                                            <action selector="doneButtonTouched:" destination="zXD-4l-9EK" id="fwB-Cj-tcC"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="L5J-5a-iWO" firstAttribute="top" secondItem="5JE-mA-0ly" secondAttribute="top" id="0Tn-oF-pfP"/>
                             <constraint firstAttribute="top" secondItem="OyM-f2-szt" secondAttribute="top" id="39w-NR-i8K"/>
                             <constraint firstItem="OyM-f2-szt" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="4AR-fT-S83"/>
                             <constraint firstItem="8bQ-kq-m07" firstAttribute="bottom" secondItem="5JE-mA-0ly" secondAttribute="bottom" id="5be-Xa-n7T"/>
-                            <constraint firstItem="EgO-iW-GC4" firstAttribute="trailing" secondItem="5G9-DX-0eN" secondAttribute="trailing" id="9d6-NS-mcR"/>
-                            <constraint firstItem="5G9-DX-0eN" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="Eph-RH-lFg"/>
-                            <constraint firstItem="L5J-5a-iWO" firstAttribute="bottom" secondItem="5G9-DX-0eN" secondAttribute="bottom" id="FXZ-zJ-uiA"/>
-                            <constraint firstItem="L5J-5a-iWO" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="LY7-M3-vA7"/>
+                            <constraint firstItem="3O8-Ji-VbM" firstAttribute="leading" secondItem="5JE-mA-0ly" secondAttribute="leading" id="932-gE-UDB"/>
+                            <constraint firstAttribute="trailing" secondItem="3O8-Ji-VbM" secondAttribute="trailing" id="FQf-GV-Vkc"/>
                             <constraint firstItem="8bQ-kq-m07" firstAttribute="trailing" secondItem="EgO-iW-GC4" secondAttribute="trailing" id="MsX-Tz-snj"/>
                             <constraint firstAttribute="bottom" secondItem="OyM-f2-szt" secondAttribute="bottom" id="P9W-4u-4kp"/>
-                            <constraint firstItem="5G9-DX-0eN" firstAttribute="top" secondItem="EgO-iW-GC4" secondAttribute="top" id="Ryu-zd-atN"/>
+                            <constraint firstItem="EgO-iW-GC4" firstAttribute="top" secondItem="5G9-DX-0eN" secondAttribute="top" id="TQy-mj-j5Y"/>
                             <constraint firstItem="8bQ-kq-m07" firstAttribute="top" secondItem="5JE-mA-0ly" secondAttribute="top" id="bIv-kv-sdL"/>
                             <constraint firstItem="8bQ-kq-m07" firstAttribute="leading" secondItem="EgO-iW-GC4" secondAttribute="leading" id="c1E-CQ-jap"/>
-                            <constraint firstItem="L5J-5a-iWO" firstAttribute="trailing" secondItem="EgO-iW-GC4" secondAttribute="trailing" id="f08-dS-GO4"/>
+                            <constraint firstItem="3O8-Ji-VbM" firstAttribute="top" secondItem="5JE-mA-0ly" secondAttribute="top" id="kaJ-tO-NYP"/>
                             <constraint firstItem="EgO-iW-GC4" firstAttribute="trailing" secondItem="OyM-f2-szt" secondAttribute="trailing" id="p4x-87-mIl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EgO-iW-GC4"/>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="L5J-5a-iWO" id="hwe-pj-sXH"/>
+                        <outlet property="backgroundView" destination="3O8-Ji-VbM" id="eU5-p1-Rzz"/>
                         <outlet property="blurredBackgroundImage" destination="8bQ-kq-m07" id="m7H-5D-2OC"/>
                         <outlet property="imageView" destination="lJQ-tj-KWh" id="vF1-4o-aqx"/>
                         <outlet property="scrollView" destination="OyM-f2-szt" id="E0Y-GQ-w8f"/>
                         <outlet property="toolbar" destination="5G9-DX-0eN" id="h8x-qO-EOF"/>
+                        <outlet property="toolbarBackgroundView" destination="L5J-5a-iWO" id="o5h-c1-GJV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P0-WZ-8W1" userLabel="First Responder" sceneMemberID="firstResponder"/>
