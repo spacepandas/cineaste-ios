@@ -86,7 +86,7 @@
                                                         <constraint firstAttribute="width" secondItem="blM-l6-VJr" secondAttribute="height" multiplier="0.7" id="G7p-YU-o20"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drj-Pn-RyL">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drj-Pn-RyL" customClass="NonClearView" customModule="Cineaste_App" customModuleProvider="target">
                                                     <rect key="frame" x="69.5" y="0.0" width="5" height="99.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
