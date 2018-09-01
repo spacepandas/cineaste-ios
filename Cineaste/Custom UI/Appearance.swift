@@ -10,8 +10,14 @@ import UIKit
 
 enum Appearance {
     static func setup() {
+
+        let new3 = #colorLiteral(red: 0.9882352941, green: 0.7921568627, blue: 0.2745098039, alpha: 1)
+
         let whiteTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.basicWhite
+        ]
+        let yellowTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.basicYellow
         ]
         let darkTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.basicBackground
@@ -26,12 +32,12 @@ enum Appearance {
 
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
-        tabBar.tintColor = .basicWhite
+        tabBar.tintColor = .basicYellow
         tabBar.barTintColor = .primaryOrange
-        tabBar.unselectedItemTintColor = .basicBackground
+        tabBar.unselectedItemTintColor = .basicWhite
 
         let tabBarItem = UITabBarItem.appearance()
-        tabBarItem.setTitleTextAttributes(whiteTextAttributes, for: .selected)
+        tabBarItem.setTitleTextAttributes(yellowTextAttributes, for: .selected)
         tabBarItem.setTitleTextAttributes(darkTextAttributes, for: .normal)
 
         let searchBar = UISearchBar.appearance()
