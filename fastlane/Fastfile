@@ -27,7 +27,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(
+    run_tests(
       device: "iPhone 7",
       scheme: Scheme_UnitTests,
       code_coverage: true
@@ -36,7 +36,7 @@ platform :ios do
 
   desc "Make screenshots of app"
   lane :screenshots do
-    snapshot(
+    capture_ios_screenshots(
       output_directory: screenshot_output_dir,
       app_identifier: BundleIdentifiers["appStore"]
     )
@@ -56,7 +56,7 @@ platform :ios do
     time_string = Time.new.strftime("%Y.%m.%d")
     build_specific_name = "#{version_number_to_set}-#{build_number_to_set}-#{time_string}"
 
-    gym(
+    build_ios_app(
       scheme: Schemes["appStore"],
       output_name: "#{ProjectName}-#{build_specific_name}",
       output_directory: Target_Folder_Name,
