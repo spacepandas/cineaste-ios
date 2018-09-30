@@ -28,11 +28,6 @@ class SettingsViewController: UIViewController {
     }
 
     var selectedSetting: SettingItem?
-    var wantsToPresentImportUI = false {
-        didSet {
-            setNeedsStatusBarAppearanceUpdate()
-        }
-    }
 
     lazy var fetchedResultsManager = FetchedResultsManager()
     var docController: UIDocumentInteractionController?
@@ -52,15 +47,9 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        wantsToPresentImportUI = false
-
         if let indexPath = settingsTableView.indexPathForSelectedRow {
             settingsTableView.deselectRow(at: indexPath, animated: true)
         }
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return wantsToPresentImportUI ? .default : .lightContent
     }
 
     func versionString() -> String {
@@ -156,8 +145,6 @@ class SettingsViewController: UIViewController {
         if #available(iOS 11.0, *) {
             documentPickerVC.allowsMultipleSelection = false
         }
-
-        wantsToPresentImportUI = true
 
         present(documentPickerVC, animated: true, completion: nil)
     }
