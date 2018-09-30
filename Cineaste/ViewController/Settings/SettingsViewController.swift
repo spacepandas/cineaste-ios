@@ -60,11 +60,7 @@ class SettingsViewController: UIViewController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if wantsToPresentImportUI {
-            return .default
-        } else {
-            return .lightContent
-        }
+        return wantsToPresentImportUI ? .default : .lightContent
     }
 
     func versionString() -> String {
