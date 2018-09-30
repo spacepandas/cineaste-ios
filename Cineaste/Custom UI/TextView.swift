@@ -26,9 +26,9 @@ public class DescriptionTextView: UITextView {
             setup()
 
             let defaultAttributes = [
-                NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
-                NSAttributedStringKey.foregroundColor: UIColor.basicBackground
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
             ]
 
             attributedText = NSAttributedString(string: self.text,
@@ -40,21 +40,21 @@ public class DescriptionTextView: UITextView {
         isEditable = false
         dataDetectorTypes = .link
         linkTextAttributes = [
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.primaryOrange
+            NSAttributedString.Key.foregroundColor: UIColor.primaryOrange
         ]
     }
 
     func setup(with type: TextViewType) {
         let titleAttributes = [
-            NSAttributedStringKey.paragraphStyle: paragraphStyle,
-            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
-            NSAttributedStringKey.foregroundColor: UIColor.basicBackground
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
+            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
         ]
 
         let paragraphAttributes = [
-            NSAttributedStringKey.paragraphStyle: paragraphStyle,
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
-            NSAttributedStringKey.foregroundColor: UIColor.accentText
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: UIColor.accentText
         ]
 
         let chain = type.chainContent(titleAttributes: titleAttributes,

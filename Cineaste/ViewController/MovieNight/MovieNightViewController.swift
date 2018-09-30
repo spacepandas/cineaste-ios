@@ -17,7 +17,7 @@ class MovieNightViewController: UIViewController {
             usersTableView.allowsSelection = false
 
             usersTableView.estimatedRowHeight = 100
-            usersTableView.rowHeight = UITableViewAutomaticDimension
+            usersTableView.rowHeight = UITableView.automaticDimension
 
             usersTableView.tableFooterView = UIView(frame: CGRect.zero)
         }

@@ -19,7 +19,7 @@ public class ActionButton: UIButton {
         setup()
     }
 
-    public override func setTitle(_ title: String?, for state: UIControlState) {
+    public override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title?.uppercased(), for: state)
     }
 

@@ -47,7 +47,7 @@ class SearchMoviesViewController: UIViewController {
             moviesTableView.delegate = self
 
             moviesTableView.estimatedRowHeight = 100
-            moviesTableView.rowHeight = UITableViewAutomaticDimension
+            moviesTableView.rowHeight = UITableView.automaticDimension
 
             moviesTableView.backgroundColor = UIColor.clear
             moviesTableView.tableFooterView = loadingIndicatorView

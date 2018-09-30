@@ -47,10 +47,6 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if UIApplication.shared.statusBarStyle != .lightContent {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
-
         if let indexPath = settingsTableView.indexPathForSelectedRow {
             settingsTableView.deselectRow(at: indexPath, animated: true)
         }
@@ -150,7 +146,6 @@ class SettingsViewController: UIViewController {
             documentPickerVC.allowsMultipleSelection = false
         }
 
-        UIApplication.shared.statusBarStyle = .default
         present(documentPickerVC, animated: true, completion: nil)
     }
 

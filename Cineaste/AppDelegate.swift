@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter
             .default
             .addObserver(self,
@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // check if system launched the app with a quick action
         // return false so performActionForShortcutItem: is not called twice
-        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem]
+            as? UIApplicationShortcutItem {
             _ = handle(shortCut: shortcutItem)
             return false
         }
@@ -58,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .startMovieNight:
             guard
                 let moviesVC = tabBarVC.selectedViewController?
-                    .childViewControllers.first as? MoviesViewController
+                    .children.first as? MoviesViewController
                 else { return false }
 
             moviesVC.movieNightButtonTouched(UIBarButtonItem())
