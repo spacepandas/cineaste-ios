@@ -31,7 +31,7 @@ class StoredMovie: NSManagedObject, Codable {
         posterPath = movie.posterPath
 
         if let moviePoster = movie.poster {
-            poster = UIImageJPEGRepresentation(moviePoster, 1)
+            poster = moviePoster.jpegData(compressionQuality: 1)
         }
 
         voteAverage = movie.voteAverage

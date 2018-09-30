@@ -13,8 +13,8 @@ class SettingsDetailViewControllerTests: XCTestCase {
     let settingsDetailVC = SettingsDetailViewController.instantiate()
     
     func testTextViewShouldDisplayCorrectContent() {
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)]
-        let paragraphAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)]
+        let paragraphAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         
         //IMPRINT
         settingsDetailVC.textViewContent = .imprint

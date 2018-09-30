@@ -68,7 +68,7 @@ class MovieStorage {
 
             storedMovie.posterPath = movie.posterPath
             if let moviePoster = movie.poster {
-                storedMovie.poster = UIImageJPEGRepresentation(moviePoster, 1)
+                storedMovie.poster = moviePoster.jpegData(compressionQuality: 1)
             }
 
             storedMovie.releaseDate = movie.releaseDate

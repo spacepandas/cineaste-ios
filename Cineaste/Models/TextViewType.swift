@@ -55,8 +55,8 @@ enum TextViewType {
         }
     }
 
-    func chainContent(titleAttributes: [NSAttributedStringKey: NSObject],
-                      paragraphAttributes: [NSAttributedStringKey: NSObject]) -> NSMutableAttributedString {
+    func chainContent(titleAttributes: [NSAttributedString.Key: NSObject],
+                      paragraphAttributes: [NSAttributedString.Key: NSObject]) -> NSMutableAttributedString {
         let chain = NSMutableAttributedString(string: "")
         for block in self.content {
             if let title = block.title,
