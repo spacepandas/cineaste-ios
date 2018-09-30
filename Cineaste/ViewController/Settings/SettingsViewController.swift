@@ -28,6 +28,11 @@ class SettingsViewController: UIViewController {
     }
 
     var selectedSetting: SettingItem?
+    var wantsToPresentImportUI = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
 
     lazy var fetchedResultsManager = FetchedResultsManager()
     var docController: UIDocumentInteractionController?
@@ -47,12 +52,18 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if UIApplication.shared.statusBarStyle != .lightContent {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        wantsToPresentImportUI = false
 
         if let indexPath = settingsTableView.indexPathForSelectedRow {
             settingsTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if wantsToPresentImportUI {
+            return .default
+        } else {
+            return .lightContent
         }
     }
 
@@ -150,7 +161,8 @@ class SettingsViewController: UIViewController {
             documentPickerVC.allowsMultipleSelection = false
         }
 
-        UIApplication.shared.statusBarStyle = .default
+        wantsToPresentImportUI = true
+
         present(documentPickerVC, animated: true, completion: nil)
     }
 

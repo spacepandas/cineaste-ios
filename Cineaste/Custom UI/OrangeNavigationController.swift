@@ -28,4 +28,8 @@ class OrangeNavigationController: UINavigationController {
         }
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 }
