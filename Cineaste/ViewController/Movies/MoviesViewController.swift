@@ -36,9 +36,15 @@ class MoviesViewController: UITableViewController {
     }()
 
     @IBOutlet var emptyView: UIView!
-    @IBOutlet var emptyListLabel: TitleLabel! {
+    @IBOutlet var empyListTitle: UILabel! {
         didSet {
-            emptyListLabel.textColor = UIColor.basicWhite
+            empyListTitle.textColor = .accentTextOnBlack
+            empyListTitle.text = .noContentTitle
+        }
+    }
+    @IBOutlet var emptyListLabel: UILabel! {
+        didSet {
+            emptyListLabel.textColor = .accentTextOnBlack
         }
     }
 

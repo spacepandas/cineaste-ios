@@ -18,7 +18,11 @@ class SettingsViewController: UIViewController {
         }
     }
 
-    @IBOutlet var versionInfo: DescriptionLabel!
+    @IBOutlet var versionInfo: DescriptionLabel! {
+        didSet {
+            versionInfo.textColor = .accentTextOnBlack
+        }
+    }
     @IBOutlet var footerView: UIView!
 
     var settings: [SettingItem] = [] {

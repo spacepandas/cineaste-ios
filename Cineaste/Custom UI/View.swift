@@ -25,7 +25,7 @@ public class VoteView: UIView {
 
         backgroundColor = UIColor.basicYellow
 
-        layer.shadowColor = UIColor.accentText.cgColor
+        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = 3
@@ -57,7 +57,7 @@ public class ShadowView: UIView {
     }
 
     func setup() {
-        layer.shadowColor = UIColor.accentText.cgColor
+        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = shadowRadius

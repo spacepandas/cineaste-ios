@@ -21,7 +21,7 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet var watched: DescriptionLabel!
     @IBOutlet var watchedIcon: UIImageView! {
         didSet {
-            watchedIcon.tintColor = UIColor.accentText
+            watchedIcon.tintColor = UIColor.accentTextOnWhite
         }
     }
 
