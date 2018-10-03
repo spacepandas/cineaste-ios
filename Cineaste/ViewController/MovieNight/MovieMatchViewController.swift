@@ -25,6 +25,12 @@ class MovieMatchViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = String.resultsForMovieNight
+    }
+
     func configure(with messagesToMatch: [NearbyMessage]) {
         totalNumberOfPeople = messagesToMatch.count
         for message in messagesToMatch {

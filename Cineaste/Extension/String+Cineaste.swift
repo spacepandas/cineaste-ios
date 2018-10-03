@@ -86,6 +86,7 @@ extension String {
     }
 
     static let searchFriendsOnMovieNight = NSLocalizedString("searchFriends", comment: "Search friends on movie night")
+    static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")
 
     // MARK: IMPORT
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
