@@ -9,12 +9,12 @@
 import UIKit
 import MessageUI
 
-extension SettingsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension SettingsViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SettingsCell = tableView.dequeueCell(identifier: SettingsCell.identifier)
 
         if settings[indexPath.row].segue == nil {
@@ -27,10 +27,8 @@ extension SettingsViewController: UITableViewDataSource {
 
         return cell
     }
-}
 
-extension SettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSetting = settings[indexPath.row]
 
         guard let setting = selectedSetting else { return }

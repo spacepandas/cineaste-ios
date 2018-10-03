@@ -8,29 +8,15 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-    @IBOutlet var settingsTableView: UITableView! {
-        didSet {
-            settingsTableView.dataSource = self
-            settingsTableView.delegate = self
-            settingsTableView.backgroundColor = UIColor.basicBackground
-            settingsTableView.tableFooterView = footerView
-        }
-    }
-
+class SettingsViewController: UITableViewController {
+    @IBOutlet var footerView: UIView!
     @IBOutlet var versionInfo: DescriptionLabel! {
         didSet {
             versionInfo.textColor = .accentTextOnBlack
         }
     }
-    @IBOutlet var footerView: UIView!
 
-    var settings: [SettingItem] = [] {
-        didSet {
-            settingsTableView.reloadData()
-        }
-    }
-
+    let settings = SettingItem.all
     var selectedSetting: SettingItem?
 
     lazy var fetchedResultsManager = FetchedResultsManager()
@@ -41,9 +27,8 @@ class SettingsViewController: UIViewController {
 
         title = String.settingsTitle
 
-        view.backgroundColor = UIColor.basicBackground
-
-        settings = SettingItem.all
+        tableView.backgroundColor = UIColor.basicBackground
+        tableView.tableFooterView = footerView
 
         versionInfo?.text = versionString()
     }
@@ -51,8 +36,8 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let indexPath = settingsTableView.indexPathForSelectedRow {
-            settingsTableView.deselectRow(at: indexPath, animated: true)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
