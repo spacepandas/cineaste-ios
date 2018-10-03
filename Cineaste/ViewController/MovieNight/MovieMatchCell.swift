@@ -36,7 +36,7 @@ class MovieMatchCell: UITableViewCell {
                    delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
-        seenButton.setTitle(String.startMovieNight, for: .normal)
+        seenButton.setTitle(.startMovieNight, for: .normal)
         nearbyMovie = movieWithOccurance
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
         seenButton.addTarget(self,
