@@ -65,7 +65,6 @@ class MovieNightViewController: UIViewController {
 
         currentPublication = nil
         currentSubscription = nil
-
     }
 
     // MARK: - Actions
