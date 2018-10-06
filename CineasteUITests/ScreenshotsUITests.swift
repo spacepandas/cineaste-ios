@@ -15,8 +15,8 @@ class ScreenshotsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app: XCUIApplication = XCUIApplication()
-        app.launch()
         setupSnapshot(app)
+        app.launch()
     }
 
     func testScreenshots() {
