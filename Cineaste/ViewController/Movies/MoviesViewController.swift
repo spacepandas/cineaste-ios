@@ -175,8 +175,6 @@ class MoviesViewController: UITableViewController {
         let alert = UIAlertController(title: Alert.insertUsername.title,
                                       message: Alert.insertUsername.message,
                                       preferredStyle: .alert)
-        alert.view.tintColor = UIColor.primaryOrange
-
         saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
             guard let textField = alert.textFields?[0], let username = textField.text else {
                 return

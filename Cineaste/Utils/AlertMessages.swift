@@ -105,8 +105,6 @@ extension UIViewController {
                    cancelActionHandler: (() -> Void)? = nil) {
 
         let alert = UIAlertController(message)
-        alert.view.tintColor = UIColor.primaryOrange
-
         let action = UIAlertAction(title: message.action,
                                    style: .default) { _ in
             defaultActionHandler?()
