@@ -21,7 +21,7 @@ public class DescriptionLabel: UILabel {
 
     func setup() {
         font = UIFont.systemFont(ofSize: 13.0)
-        textColor = UIColor.accentText
+        textColor = UIColor.accentTextOnWhite
     }
 }
 

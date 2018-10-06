@@ -37,6 +37,7 @@ extension String {
         return String.localizedStringWithFormat(NSLocalizedString("noMoviesOnList %@", comment: "Description for empty movie list"), category.title)
     }
 
+    static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
     static let onDate = NSLocalizedString("onDate", comment: "on a date")
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
@@ -85,6 +86,7 @@ extension String {
     }
 
     static let searchFriendsOnMovieNight = NSLocalizedString("searchFriends", comment: "Search friends on movie night")
+    static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")
 
     // MARK: IMPORT
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")

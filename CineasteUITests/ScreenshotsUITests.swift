@@ -15,8 +15,8 @@ class ScreenshotsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app: XCUIApplication = XCUIApplication()
-        app.launch()
         setupSnapshot(app)
+        app.launch()
     }
 
     func testScreenshots() {
@@ -76,21 +76,32 @@ class ScreenshotsUITests: XCTestCase {
         }
         snapshot("11_startMovieNight_searching")
 
-        let cancel = app.navigationBars.buttons.element(boundBy: 0)
-        cancel.tap()
+        //use DEBUG triple tap to test nearby feature
+        app.tap()
+        app.tap()
+        app.tap()
+
+        snapshot("12_startMovieNight_friendsFound")
+
+        let startButton = app.buttons.element(boundBy: 1)
+        startButton.tap()
+        snapshot("13_startMovieNight_results")
+
+        back.tap()
+        back.tap()
 
         let settingsTab = app.buttons["SettingsTab"]
         settingsTab.tap()
-        snapshot("12_settings")
+        snapshot("14_settings")
 
         let aboutTheApp = app.cells.element(boundBy: 0)
         aboutTheApp.tap()
-        snapshot("13_settings_aboutTheApp")
+        snapshot("15_settings_aboutTheApp")
 
         back.tap()
         let license = app.cells.element(boundBy: 1)
         license.tap()
-        snapshot("14_settings_license")
+        snapshot("16_settings_license")
     }
 
 }

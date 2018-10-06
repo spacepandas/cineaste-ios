@@ -73,7 +73,7 @@ class MovieDetailViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 guard let poster = self.moviePoster else { return }
-                self.posterImageView.image = self.moviePoster
+                self.posterImageView.image = poster
                 let aspectRatio = poster.size.height / poster.size.width
                 self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
             }

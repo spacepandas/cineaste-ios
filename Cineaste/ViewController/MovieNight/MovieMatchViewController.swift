@@ -25,6 +25,12 @@ class MovieMatchViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = String.resultsForMovieNight
+    }
+
     func configure(with messagesToMatch: [NearbyMessage]) {
         totalNumberOfPeople = messagesToMatch.count
         for message in messagesToMatch {
@@ -59,7 +65,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
             case .success(let movie):
-                movie.poster = poster
+                movie.poster = poster ?? movie.poster
 
                 guard let storageManager = self.storageManager else { return }
                 storageManager.insertMovieItem(with: movie, watched: true)

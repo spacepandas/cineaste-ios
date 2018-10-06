@@ -26,8 +26,6 @@ class MovieMatchCell: UITableViewCell {
     @IBOutlet weak var numberOfMatchesLabel: DescriptionLabel!
     @IBOutlet weak var seenButton: ActionButton!
 
-    fileprivate var posterToDisplay: UIImage?
-
     fileprivate var nearbyMovie: NearbyMovieWithOccurrence?
     fileprivate weak var delegate: MovieMatchTableViewCellDelegate?
 
@@ -36,7 +34,7 @@ class MovieMatchCell: UITableViewCell {
                    delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
-        seenButton.setTitle(String.startMovieNight, for: .normal)
+        seenButton.setTitle(.startMovieNight, for: .normal)
         nearbyMovie = movieWithOccurance
         movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
         seenButton.addTarget(self,
@@ -64,6 +62,6 @@ class MovieMatchCell: UITableViewCell {
         }
         delegate?.movieMatchTableViewCell(sender: self,
                                           didSelectMovie: nearbyMovie,
-                                          withPoster: posterToDisplay)
+                                          withPoster: posterImageView.image)
     }
 }

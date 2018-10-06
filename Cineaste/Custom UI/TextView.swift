@@ -54,7 +54,7 @@ public class DescriptionTextView: UITextView {
         let paragraphAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-            NSAttributedString.Key.foregroundColor: UIColor.accentText
+            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
         ]
 
         let chain = type.chainContent(titleAttributes: titleAttributes,
