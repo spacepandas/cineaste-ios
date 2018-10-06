@@ -59,6 +59,14 @@ class MovieNightViewController: UIViewController {
 
         title = String.movieNightTitle
         startButton.isEnabled = false
+
+        #if DEBUG
+        let tripleTapGestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(toggleSearchingForFriendsMode))
+        tripleTapGestureRecognizer.numberOfTapsRequired = 3
+        view.addGestureRecognizer(tripleTapGestureRecognizer)
+        #endif
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +100,29 @@ class MovieNightViewController: UIViewController {
         clone.append(myNearbyMessage)
         performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
                      sender: clone)
+    }
+
+    @objc
+    func toggleSearchingForFriendsMode() {
+        #if DEBUG
+        if nearbyMessages.isEmpty {
+            let nearbyMovies = [NearbyMovie(id: 1,
+                                            title: "Film 1",
+                                            posterPath: nil),
+                                NearbyMovie(id: 2,
+                                            title: "Film 2",
+                                            posterPath: nil),
+                                NearbyMovie(id: 3,
+                                            title: "Film 3",
+                                            posterPath: nil)]
+
+            nearbyMessages = [NearbyMessage(userName: "Simulator",
+                                            deviceId: "1",
+                                            movies: nearbyMovies)]
+        } else {
+            nearbyMessages = []
+        }
+        #endif
     }
 
     // MARK: - Navigation
