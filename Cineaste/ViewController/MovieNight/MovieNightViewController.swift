@@ -19,14 +19,18 @@ class MovieNightViewController: UIViewController {
             usersTableView.estimatedRowHeight = 100
             usersTableView.rowHeight = UITableView.automaticDimension
 
-            usersTableView.tableFooterView = UIView(frame: CGRect.zero)
+            usersTableView.tableFooterView = UIView()
+            usersTableView.backgroundView = searchForFriendsView
         }
     }
 
     @IBOutlet fileprivate weak var startButton: StartMovieNightButton!
-    @IBOutlet fileprivate weak var searchFriendsLabel: TitleLabel! {
+
+    @IBOutlet fileprivate weak var searchForFriendsView: UIView!
+    @IBOutlet fileprivate weak var searchFriendsLabel: UILabel! {
         didSet {
-            searchFriendsLabel.textColor = .white
+            searchFriendsLabel.text = .searchFriendsOnMovieNight
+            searchFriendsLabel.textColor = .accentTextOnBlack
         }
     }
 
@@ -37,17 +41,23 @@ class MovieNightViewController: UIViewController {
     fileprivate var currentPublication: GNSPublication?
     fileprivate var currentSubscription: GNSSubscription?
 
-    var nearbyMessages = [NearbyMessage]()
+    var nearbyMessages = [NearbyMessage]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.startButton.isEnabled = !self.nearbyMessages.isEmpty
+                self.usersTableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
+
+                self.usersTableView.reloadData()
+            }
+        }
+    }
+
     fileprivate var myNearbyMessage: NearbyMessage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = String.movieNightTitle
-        view.backgroundColor = UIColor.basicBackground
-        searchFriendsLabel.text = String.searchFriendsOnMovieNight
-
-        usersTableView.isHidden = true
         startButton.isEnabled = false
     }
 
@@ -138,9 +148,6 @@ class MovieNightViewController: UIViewController {
 
                 DispatchQueue.main.async {
                     self.nearbyMessages.append(nearbyMessage)
-                    self.startButton.isEnabled = true
-                    self.usersTableView.isHidden = false
-                    self.usersTableView.reloadData()
                 }
             }, messageLostHandler: { message in
             guard let data = message?.content,
@@ -148,14 +155,7 @@ class MovieNightViewController: UIViewController {
                                                               from: data)
                 else { return }
 
-            DispatchQueue.main.async {
-                self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
-                if self.nearbyMessages.isEmpty {
-                    self.startButton.isEnabled = false
-                    self.usersTableView.isHidden = true
-                }
-                self.usersTableView.reloadData()
-            }
+            self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
             })
     }
 }
