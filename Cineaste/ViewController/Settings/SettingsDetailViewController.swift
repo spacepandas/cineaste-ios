@@ -17,11 +17,7 @@ class SettingsDetailViewController: UIViewController {
         }
     }
 
-    @IBOutlet var movieDBImageView: UIImageView! {
-        didSet {
-            movieDBImageView.isHidden = true
-        }
-    }
+    @IBOutlet var movieDBImageView: UIImageView!
 
     var textViewContent: TextViewType = .imprint {
         didSet {
@@ -37,8 +33,11 @@ class SettingsDetailViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
+
+        movieDBImageView.isHidden = true
     }
 
+    //TODO: do we need this?
     override func viewDidLayoutSubviews() {
         //scroll textview to top
         settingsDetailTextView.setContentOffset(CGPoint(x: 0, y: 0),

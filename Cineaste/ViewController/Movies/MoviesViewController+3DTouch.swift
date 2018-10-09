@@ -11,12 +11,12 @@ import UIKit
 extension MoviesViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         let detailVC = MovieDetailViewController.instantiate()
+
         guard let path = tableView.indexPathForRow(at: location),
-            let objects = fetchedResultsManager.controller?.fetchedObjects,
-            objects.count > path.row
+            fetchedResultsManager.movies.count > path.row
             else { return nil }
 
-        let movie = objects[path.row]
+        let movie = fetchedResultsManager.movies[path.row]
         detailVC.storedMovie = movie
         detailVC.storageManager = storageManager
         detailVC.type =

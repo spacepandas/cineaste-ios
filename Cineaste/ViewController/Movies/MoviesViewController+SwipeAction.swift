@@ -33,11 +33,7 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[editActionsForRowAt.row]
+        let movie = fetchedResultsManager.movies[editActionsForRowAt.row]
 
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
@@ -86,21 +82,13 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[indexPath.row]
+        let movie = fetchedResultsManager.movies[indexPath.row]
         return action(for: category, with: movie)
     }
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[indexPath.row]
+        let movie = fetchedResultsManager.movies[indexPath.row]
 
         let deleteAction = UIContextualAction(style: .destructive,
                                               title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in

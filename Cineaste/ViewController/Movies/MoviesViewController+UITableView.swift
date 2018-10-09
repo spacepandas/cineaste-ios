@@ -10,36 +10,24 @@ import UIKit
 
 extension MoviesViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.controller?.fetchedObjects?.count ?? 0
+        return fetchedResultsManager.movies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch category {
         case .wantToSee:
             let cell: MovieListCell = tableView.dequeueCell(identifier: MovieListCell.identifier)
-
-            if let controller = fetchedResultsManager.controller {
-                cell.configure(with: controller.object(at: indexPath))
-            }
-
+            cell.configure(with: fetchedResultsManager.movies[indexPath.row])
             return cell
         case .seen:
             let cell: SeenMovieCell = tableView.dequeueCell(identifier: SeenMovieCell.identifier)
-
-            if let controller = fetchedResultsManager.controller {
-                cell.configure(with: controller.object(at: indexPath))
-            }
-
+            cell.configure(with: fetchedResultsManager.movies[indexPath.row])
             return cell
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-        selectedMovie = movies[indexPath.row]
-
+        selectedMovie = fetchedResultsManager.movies[indexPath.row]
         perform(segue: .showMovieDetail, sender: nil)
     }
 }

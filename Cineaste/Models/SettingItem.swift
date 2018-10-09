@@ -8,24 +8,24 @@
 
 import UIKit
 
-enum SettingItem {
+enum SettingItem: CaseIterable {
+    case about
+    case licence
     case exportMovies
     case importMovies
-    case licence
-    case about
     case contact
     case appStore
 
     var title: String {
         switch self {
+        case .about:
+            return String.aboutAppTitle
+        case .licence:
+            return String.licenseTitle
         case .exportMovies:
             return String.exportTitle
         case .importMovies:
             return String.importTitle
-        case .licence:
-            return String.licenseTitle
-        case .about:
-            return String.aboutAppTitle
         case .contact:
             return String.contactTitle
         case .appStore:
@@ -35,23 +35,23 @@ enum SettingItem {
 
     var description: String? {
         switch self {
-        case .exportMovies:
-            return String.exportDescription
-        case .importMovies:
-            return String.importDescription
         case .licence,
              .about,
              .contact,
              .appStore:
             return nil
+        case .exportMovies:
+            return String.exportDescription
+        case .importMovies:
+            return String.importDescription
         }
     }
 
     var segue: Segue? {
         switch self {
-        case .licence:
-            return .showTextViewFromSettings
         case .about:
+            return .showTextViewFromSettings
+        case .licence:
             return .showTextViewFromSettings
         case .exportMovies,
              .importMovies,
@@ -60,13 +60,4 @@ enum SettingItem {
             return nil
         }
     }
-
-    static let all = [
-        SettingItem.about,
-        SettingItem.licence,
-        SettingItem.exportMovies,
-        SettingItem.importMovies,
-        SettingItem.contact,
-        SettingItem.appStore
-    ]
 }

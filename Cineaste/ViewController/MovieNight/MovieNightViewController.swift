@@ -9,18 +9,18 @@
 import UIKit
 
 class MovieNightViewController: UIViewController {
-    @IBOutlet fileprivate weak var usersTableView: UITableView! {
+    @IBOutlet fileprivate weak var tableView: UITableView! {
         didSet {
-            usersTableView.dataSource = self
-            usersTableView.backgroundColor = UIColor.basicBackground
+            tableView.dataSource = self
+            tableView.backgroundColor = UIColor.basicBackground
 
-            usersTableView.allowsSelection = false
+            tableView.allowsSelection = false
 
-            usersTableView.estimatedRowHeight = 100
-            usersTableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableView.automaticDimension
 
-            usersTableView.tableFooterView = UIView()
-            usersTableView.backgroundView = searchForFriendsView
+            tableView.tableFooterView = UIView()
+            tableView.backgroundView = searchForFriendsView
         }
     }
 
@@ -45,9 +45,9 @@ class MovieNightViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.startButton.isEnabled = !self.nearbyMessages.isEmpty
-                self.usersTableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
+                self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
 
-                self.usersTableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
@@ -88,7 +88,7 @@ class MovieNightViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func cancelButtonTouched(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
@@ -144,6 +144,7 @@ class MovieNightViewController: UIViewController {
 
     // MARK: - Nearby
 
+    //TODO: refactor & formatting
     fileprivate func startPublishing() {
         guard let storageManager = storageManager else { return }
         let nearbyMovies = storageManager

@@ -16,10 +16,10 @@ extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
             else { return }
 
         if total > movies.count && !isLoadingNextPage {
-            moviesTableView.tableFooterView = loadingIndicatorView
+            tableView.tableFooterView = loadingIndicatorView
             isLoadingNextPage = true
 
-            loadMovies(forQuery: self.resultSearchController.searchBar.text, nextPage: true) { movies in
+            loadMovies(forQuery: resultSearchController.searchBar.text, nextPage: true) { movies in
                 self.movies += movies
                 self.isLoadingNextPage = false
             }
@@ -45,7 +45,7 @@ extension SearchMoviesViewController: UITableViewDataSource {
 
         if let numberOfMovies = totalResults,
             indexPath.isLast(of: numberOfMovies) {
-            moviesTableView.tableFooterView = UIView()
+            tableView.tableFooterView = UIView()
         }
 
         cell.delegate = self

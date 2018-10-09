@@ -13,6 +13,7 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult,
                                error: Error?) {
-        dismiss(animated: true, completion: nil)
+        //TODO: do we need this?
+        dismiss(animated: true)
     }
 }

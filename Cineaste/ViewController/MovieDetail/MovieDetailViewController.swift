@@ -55,7 +55,8 @@ class MovieDetailViewController: UIViewController {
         didSet {
             guard let movie = movie else { return }
 
-            if oldValue?.id != movie.id {
+            let changedMovie = oldValue?.id != movie.id
+            if changedMovie {
                 loadDetails(for: movie)
             }
         }
@@ -117,6 +118,15 @@ class MovieDetailViewController: UIViewController {
         deleteMovie()
     }
 
+    @IBAction func showMoreInformation(_ sender: UIButton) {
+        guard let url = generateMovieURL() else { return }
+
+        let safariVC = CustomSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
+    }
+
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
@@ -134,18 +144,12 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    // MARK: - Gesture Recognizer
+
     @objc
     func showPoster() {
-        if posterImageView.image != UIImage.posterPlaceholder {
-            perform(segue: .showPosterFromMovieDetail, sender: nil)
-        }
-    }
-
-    @IBAction func showMoreInformation(_ sender: UIButton) {
-        guard let url = generateMovieURL() else { return }
-
-        let safariVC = CustomSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
+        guard posterImageView.image != UIImage.posterPlaceholder else { return }
+        perform(segue: .showPosterFromMovieDetail, sender: nil)
     }
 
     @objc
@@ -205,12 +209,10 @@ class MovieDetailViewController: UIViewController {
                                            watched: watched) { result in
                 switch result {
                 case .error:
-                    DispatchQueue.main.async {
-                        self.showAlert(withMessage: Alert.insertMovieError)
-                    }
+                    self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true)
                     }
                 }
             }
@@ -219,28 +221,27 @@ class MovieDetailViewController: UIViewController {
                                            watched: watched) { result in
                 switch result {
                 case .error:
-                    DispatchQueue.main.async {
-                        self.showAlert(withMessage: Alert.updateMovieError)
-                    }
+                    self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
+        } else {
+            preconditionFailure("Either movie or storedMovie must be set to save it")
         }
     }
 
     fileprivate func deleteMovie() {
-        guard let storageManager = storageManager else { return }
+        guard let storageManager = storageManager,
+            let storedMovie = storedMovie else { return }
 
-        if let storedMovie = storedMovie {
-            storageManager.remove(storedMovie) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
-
+        storageManager.remove(storedMovie) { result in
+            switch result {
+            case .error:
+                self.showAlert(withMessage: Alert.deleteMovieError)
+            case .success:
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }

@@ -12,7 +12,8 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
         let detailVC = MovieDetailViewController.instantiate()
-        guard let path = moviesTableView.indexPathForRow(at: location),
+
+        guard let path = tableView.indexPathForRow(at: location),
             movies.count > path.row
             else { return nil }
 

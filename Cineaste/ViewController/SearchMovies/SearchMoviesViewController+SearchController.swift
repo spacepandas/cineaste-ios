@@ -10,14 +10,14 @@ import UIKit
 
 extension SearchMoviesViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        if let text = searchController.searchBar.text, !text.isEmpty {
-            currentPage = nil
-            totalResults = nil
+        guard let text = searchController.searchBar.text, !text.isEmpty else { return }
 
-            loadMovies { [weak self] movies in
-                self?.movies = movies
-                self?.scrollToTopCell(withAnimation: true)
-            }
+        currentPage = nil
+        totalResults = nil
+
+        loadMovies { [weak self] movies in
+            self?.movies = movies
+            self?.scrollToTopCell(withAnimation: true)
         }
     }
 }

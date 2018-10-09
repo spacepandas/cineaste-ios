@@ -32,6 +32,7 @@ extension SettingsViewController {
         selectedSetting = settings[indexPath.row]
 
         guard let setting = selectedSetting else { return }
+
         switch setting {
         case .about, .licence:
             guard let segue = setting.segue else { return }

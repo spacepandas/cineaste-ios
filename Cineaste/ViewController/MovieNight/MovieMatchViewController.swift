@@ -9,13 +9,14 @@
 import UIKit
 
 class MovieMatchViewController: UIViewController {
-    @IBOutlet weak var matchedMoviesTableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            matchedMoviesTableView.dataSource = self
-            matchedMoviesTableView.allowsSelection = false
-            matchedMoviesTableView.backgroundColor = UIColor.basicBackground
+            tableView.dataSource = self
 
-            matchedMoviesTableView.tableFooterView = UIView(frame: CGRect.zero)
+            tableView.allowsSelection = false
+            tableView.backgroundColor = UIColor.basicBackground
+
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
         }
     }
 
@@ -71,7 +72,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
                 storageManager.insertMovieItem(with: movie, watched: true)
 
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true)
                 }
             case .error:
                 self.showAlert(withMessage: Alert.loadingDataError)

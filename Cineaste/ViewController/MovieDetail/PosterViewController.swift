@@ -81,15 +81,12 @@ class PosterViewController: UIViewController {
     }
 
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     @objc
     func handleOneTap(recognizer: UITapGestureRecognizer) {
-        backgroundView.isHidden =
-            backgroundView.isHidden
-            ? false
-            : true
+        backgroundView.isHidden.toggle()
     }
 
     @objc

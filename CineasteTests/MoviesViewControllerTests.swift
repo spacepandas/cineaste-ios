@@ -88,10 +88,10 @@ class MoviesViewControllerTests: XCTestCase {
     }
 
     func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
-        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
+        if moviesVC.fetchedResultsManager.movies.isEmpty ?? true {
             XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         } else {
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.controller?.fetchedObjects?.count)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.movies.count)
         }
     }
 

@@ -15,11 +15,11 @@ struct NearbyMessage: Codable, Equatable, Hashable {
     let movies: [NearbyMovie]
 
     static func create(withUsername username: String, movies: [NearbyMovie]) -> NearbyMessage {
-        guard let deviceId = UIDevice.current.identifierForVendor else {
+        guard let deviceId = UIDevice.current.identifierForVendor?.description else {
             fatalError("Unable to get UUID")
         }
         return NearbyMessage(userName: username,
-                             deviceId: deviceId.description,
+                             deviceId: deviceId,
                              movies: movies)
     }
 

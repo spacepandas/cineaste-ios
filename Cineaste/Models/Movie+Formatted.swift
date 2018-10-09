@@ -10,8 +10,7 @@ import Foundation
 
 extension Movie {
     var formattedVoteAverage: String {
-        if voteCount != 0,
-            voteAverage != 0 {
+        if voteCount != 0 && voteAverage != 0 {
             return voteAverage.formattedWithOneFractionDigit
                 ?? String.unknownVoteAverage
         } else {

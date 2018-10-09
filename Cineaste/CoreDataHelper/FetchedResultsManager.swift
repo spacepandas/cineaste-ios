@@ -22,97 +22,79 @@ enum FileImportError: Error {
 }
 
 final class FetchedResultsManager: NSObject {
-    var controller: NSFetchedResultsController<StoredMovie>?
+    let controller: NSFetchedResultsController<StoredMovie>
     weak var delegate: FetchedResultsManagerDelegate?
 
     private var loadMoviesForExport = false
-    var exportMoviesPath: URL?
+    var exportMoviesPath: String?
 
-    func setup(with predicate: NSPredicate?,
-               context: NSManagedObjectContext = AppDelegate.viewContext,
-               completionHandler handler: (() -> Void)? = nil) {
+    var movies: [StoredMovie] {
+        return controller.fetchedObjects ?? []
+    }
+
+    init(with predicate: NSPredicate? = nil,
+         context: NSManagedObjectContext = AppDelegate.viewContext) {
+
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         request.predicate = predicate
-        sort(fetchRequest: request, for: predicate)
+
+        if predicate == MovieListCategory.seen.predicate {
+            request.sortDescriptors = [
+                NSSortDescriptor(key: "watchedDate", ascending: false)
+            ]
+        } else {
+            request.sortDescriptors = [
+                NSSortDescriptor(key: "listPosition", ascending: true),
+                NSSortDescriptor(key: "title", ascending: true)
+            ]
+        }
 
         controller = NSFetchedResultsController<StoredMovie>(
             fetchRequest: request,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil)
-        do {
-            try controller?.performFetch()
-        } catch {
-            print(error)
-            return
-        }
-        controller?.delegate = self
-        handler?()
+
+        super.init()
+
+        controller.delegate = self
+        try? controller.performFetch()
     }
 
-    private func sort(fetchRequest: NSFetchRequest<StoredMovie>?, for predicate: NSPredicate?) {
+    func refetch(for predicate: NSPredicate? = nil) {
+        controller.fetchRequest.predicate = predicate
+
         if predicate == MovieListCategory.seen.predicate {
-            fetchRequest?.sortDescriptors = [
+            controller.fetchRequest.sortDescriptors = [
                 NSSortDescriptor(key: "watchedDate", ascending: false)
             ]
         } else {
-            fetchRequest?.sortDescriptors = [
+            controller.fetchRequest.sortDescriptors = [
                 NSSortDescriptor(key: "listPosition", ascending: true),
                 NSSortDescriptor(key: "title", ascending: true)
             ]
         }
-    }
 
-    func refetch(for predicate: NSPredicate?, completionHandler handler: (() -> Void)? = nil) {
-        controller?.fetchRequest.predicate = predicate
-        sort(fetchRequest: controller?.fetchRequest, for: predicate)
-
-        do {
-            try controller?.performFetch()
-        } catch {
-            print(error)
-            return
-        }
-        handler?()
+        try? controller.performFetch()
     }
 }
 
 extension FetchedResultsManager {
-    func exportMoviesList(completionHandler: @escaping (Result<Any?>) -> Void) {
+    func exportMoviesList() throws {
         loadMoviesForExport = true
 
-        refetch(for: nil) {
-            guard let movies = self.controller?.fetchedObjects,
-                !movies.isEmpty
-                else {
-                    completionHandler(Result.error(FileExportError.noCoreDataObjectsFound))
-                    return
-            }
+        refetch()
 
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-
-            let export = ImportExportObject(with: movies)
-
-            guard let data = try? encoder.encode(export) else {
-                completionHandler(Result.error(FileExportError.serializingCoreDataObjects))
-                return
-            }
-
-            self.saveToDocumentsDirectory(data) { result in
-                switch result {
-                case .success:
-                    print("Export in file was successful :: data = \(String(data: data, encoding: .utf8) ?? "")")
-                    completionHandler(Result.success(nil))
-                case .error(let error):
-                    print(error)
-                    self.exportMoviesPath = nil
-                    completionHandler(Result.error(FileExportError.writingContentInFile))
-                }
-
-                self.loadMoviesForExport = false
-            }
+        guard !movies.isEmpty else {
+            throw(FileExportError.noCoreDataObjectsFound)
         }
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        let data = try encoder.encode(ImportExportObject(with: movies))
+        try saveToDocumentsDirectory(data)
+        loadMoviesForExport = false
     }
 
     func importData(_ data: Data, completionHandler: @escaping ((Result<Int>) -> Void)) {
@@ -144,57 +126,45 @@ extension FetchedResultsManager {
                     if storageManager.backgroundContext.hasChanges {
                         do {
                             try storageManager.backgroundContext.save()
-                            completionHandler(Result.success(movies.count))
+                            completionHandler(.success(movies.count))
                         } catch {
-                            completionHandler(Result.error(FileImportError.savingNewMovies))
+                            completionHandler(.error(FileImportError.savingNewMovies))
                         }
                     }
                 }
             } catch {
-                completionHandler(Result.error(FileImportError.parsingJsonToStoredMovie))
+                completionHandler(.error(FileImportError.parsingJsonToStoredMovie))
             }
         }
     }
 
-    private func saveToDocumentsDirectory(_ data: Data, completionHandler: (Result<Bool>) -> Void) {
-        guard let documentsDirectoryPathString =
+    private func saveToDocumentsDirectory(_ data: Data) throws {
+        let documentsDirectory =
             NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                 .userDomainMask,
-                                                true).first,
-            let documentsDirectoryPath = URL(string: "file://\(documentsDirectoryPathString)")
-            else {
-                completionHandler(Result.error(FileExportError.creatingDocumentPath))
-                return
-        }
+                                                true)[0]
 
-        let jsonFilePath = documentsDirectoryPath
-            .appendingPathComponent(String.exportMoviesFileName(with: Date().formatted))
-        exportMoviesPath = jsonFilePath
+        let moviesPath = documentsDirectory + String.exportMoviesFileName(with: Date().formatted)
+        exportMoviesPath = moviesPath
 
         let fileManager = FileManager.default
-        var isDirectory: ObjCBool = false
 
         // creating a .json file in the Documents folder
-        if !fileManager.fileExists(atPath: jsonFilePath.path,
-                                   isDirectory: &isDirectory) {
-            let created = fileManager.createFile(atPath: jsonFilePath.path,
-                                                 contents: nil,
-                                                 attributes: nil)
-            guard created == true else {
-                completionHandler(Result.error(FileExportError.creatingFileAtPath))
-                return
+        if !fileManager.fileExists(atPath: moviesPath) {
+            guard fileManager.createFile(atPath: moviesPath,
+                                         contents: nil,
+                                         attributes: nil)
+                else {
+                    throw(FileExportError.creatingFileAtPath)
             }
         }
 
         // Write that JSON to the file created earlier
-        do {
-            let file = try FileHandle(forWritingTo: jsonFilePath)
-            file.truncateFile(atOffset: 0)
-            file.write(data)
-            completionHandler(Result.success(true))
-        } catch {
-            completionHandler(Result.error(FileExportError.writingContentInFile))
+        guard let file = FileHandle(forWritingAtPath: moviesPath) else {
+            throw(FileExportError.writingContentInFile)
         }
+        file.truncateFile(atOffset: 0)
+        file.write(data)
     }
 }
 
@@ -223,7 +193,6 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
                 let newIndexPath = newIndexPath
                 else { return }
             delegate?.moveRow(at: indexPath, to: newIndexPath)
-            return
         }
     }
 

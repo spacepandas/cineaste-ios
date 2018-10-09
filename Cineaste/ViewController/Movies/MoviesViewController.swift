@@ -10,31 +10,6 @@ import UIKit
 import CoreData
 
 class MoviesViewController: UITableViewController {
-    var category: MovieListCategory = .wantToSee {
-        didSet {
-            title = category.title
-            emptyListLabel.text = String.title(for: category)
-
-            //only update if category changed
-            guard oldValue != category else { return }
-            if fetchedResultsManager.controller == nil {
-                fetchedResultsManager.setup(with: category.predicate) {
-                    self.tableView.reloadData()
-                }
-            } else {
-                fetchedResultsManager.refetch(for: category.predicate) {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-
-    lazy var resultSearchController: SearchController = {
-        let resultSearchController = SearchController(searchResultsController: nil)
-        resultSearchController.searchResultsUpdater = self
-        return resultSearchController
-    }()
-
     @IBOutlet var emptyView: UIView!
     @IBOutlet var empyListTitle: UILabel! {
         didSet {
@@ -48,7 +23,26 @@ class MoviesViewController: UITableViewController {
         }
     }
 
+    var category: MovieListCategory = .wantToSee {
+        didSet {
+            title = category.title
+            emptyListLabel.text = String.title(for: category)
+
+            let changedCategory = oldValue != category
+            guard changedCategory else { return }
+            fetchedResultsManager.refetch(for: category.predicate)
+            tableView.reloadData()
+        }
+    }
+
+    lazy var resultSearchController: SearchController = {
+        let resultSearchController = SearchController(searchResultsController: nil)
+        resultSearchController.searchResultsUpdater = self
+        return resultSearchController
+    }()
+
     let fetchedResultsManager = FetchedResultsManager()
+
     var storageManager: MovieStorage?
     var selectedMovie: StoredMovie?
     fileprivate var saveAction: UIAlertAction?
@@ -59,10 +53,8 @@ class MoviesViewController: UITableViewController {
         view.backgroundColor = UIColor.basicBackground
 
         fetchedResultsManager.delegate = self
-        fetchedResultsManager.setup(with: category.predicate) {
-            self.tableView.reloadData()
-            self.showEmptyState(self.fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
-        }
+        fetchedResultsManager.refetch(for: category.predicate)
+        showEmptyState()
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -81,15 +73,14 @@ class MoviesViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        showEmptyState(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        showEmptyState()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        fetchedResultsManager.refetch(for: category.predicate) {
-            self.resultSearchController.isActive = false
-        }
+        fetchedResultsManager.refetch(for: category.predicate)
+        resultSearchController.isActive = false
     }
 
     override func viewDidLayoutSubviews() {
@@ -102,7 +93,39 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    // MARK: - SearchController
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch Segue(initWith: segue) {
+        case .showSearchFromMovieList?:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
+            vc?.storageManager = storageManager
+        case .showMovieDetail?:
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.storedMovie = selectedMovie
+            vc?.storageManager = storageManager
+            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+        case .showMovieNight?:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
+            vc?.storageManager = storageManager
+        default:
+            break
+        }
+    }
+
+    // MARK: - Action
+
+    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
+        if UserDefaultsManager.getUsername() == nil {
+            askForUsername()
+        } else {
+            performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
+        }
+    }
+
+    // MARK: - Configuration
 
     func configureSearchController() {
         if #available(iOS 11.0, *) {
@@ -125,53 +148,21 @@ class MoviesViewController: UITableViewController {
         tableView.backgroundView = emptyView
     }
 
-    // MARK: - Action
+    // MARK: - Custom functions
 
-    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
-        if UserDefaultsManager.getUsername() == nil {
-            showUsernameAlert()
-        } else {
-            performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-        }
+    private func showEmptyState() {
+        let isEmpty = fetchedResultsManager.movies.isEmpty
+
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+                self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
+            }, completion: { _ in
+            self.tableView.backgroundView?.isHidden = !isEmpty
+            })
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showSearchFromMovieList?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
-            vc?.storageManager = storageManager
-        case .showMovieDetail?:
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.storedMovie = selectedMovie
-            vc?.storageManager = storageManager
-            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
-        case .showMovieNight?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
-            vc?.storageManager = storageManager
-        default:
-            break
-        }
-    }
-
-    func showEmptyState(_ isEmpty: Bool?, handler: (() -> Void)? = nil) {
-        let isEmpty = isEmpty ?? true
-
-        DispatchQueue.main.async {
-            UIView.animate(
-                withDuration: 0.2,
-                animations: {
-                    self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
-                },
-                completion: { _ in
-                    self.tableView.backgroundView?.isHidden = !isEmpty
-                    handler?()
-                })
-        }
-    }
-
-    func showUsernameAlert() {
+    private func askForUsername() {
         let alert = UIAlertController(title: Alert.insertUsername.title,
                                       message: Alert.insertUsername.message,
                                       preferredStyle: .alert)
@@ -180,9 +171,7 @@ class MoviesViewController: UITableViewController {
                 return
             }
             UserDefaultsManager.setUsername(username)
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-            }
+            self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
         }
 
         if let saveAction = saveAction {
@@ -204,10 +193,6 @@ class MoviesViewController: UITableViewController {
     }
 
     private func updateShortcutItems() {
-        guard let movies = self.fetchedResultsManager.controller?.fetchedObjects else {
-            return
-        }
-
         var shortcuts = UIApplication.shared.shortcutItems ?? []
 
         //initially instantiate shortcuts
@@ -237,9 +222,9 @@ class MoviesViewController: UITableViewController {
 
         //only update if value changed
         let newShortcutSubtitle =
-            movies.isEmpty
+            fetchedResultsManager.movies.isEmpty
             ? nil
-            : String.movies(for: movies.count)
+            : String.movies(for: fetchedResultsManager.movies.count)
         if existingItem.localizedSubtitle != newShortcutSubtitle {
             //swiftlint:disable:next force_cast
             let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
@@ -285,7 +270,7 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         tableView.endUpdates()
-        showEmptyState(fetchedResultsManager.controller?.fetchedObjects?.isEmpty)
+        showEmptyState()
         updateShortcutItems()
     }
 }

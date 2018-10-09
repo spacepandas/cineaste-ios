@@ -16,7 +16,7 @@ class SettingsViewController: UITableViewController {
         }
     }
 
-    let settings = SettingItem.all
+    let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
 
     lazy var fetchedResultsManager = FetchedResultsManager()
@@ -78,51 +78,34 @@ class SettingsViewController: UITableViewController {
     // MARK: - Import and Export
 
     func prepareForImport(completionHandler handler: @escaping () -> Void) {
-        setupFetchedResultManager()
+        fetchedResultsManager.refetch()
 
-        if let objects = fetchedResultsManager.controller?.fetchedObjects,
-            !objects.isEmpty {
+        if fetchedResultsManager.movies.isEmpty {
+            handler()
+        } else {
             //database is not empty, ask if user is sure to import new data
             showAlert(withMessage: Alert.askingForImport, defaultActionHandler: {
                 handler()
             })
-        } else {
-            handler()
         }
     }
 
     func saveMoviesLocally(completionHandler handler: @escaping (URL) -> Void) {
-        setupFetchedResultManager()
+        fetchedResultsManager.refetch()
 
-        guard let objects = fetchedResultsManager.controller?.fetchedObjects,
-            !objects.isEmpty else {
-                //database is empty, inform user that export is not useful
-                showAlert(withMessage: Alert.exportEmptyData)
-                return
+        guard !fetchedResultsManager.movies.isEmpty else {
+            //database is empty, inform user that an export is not useful
+            showAlert(withMessage: Alert.exportEmptyData)
+            return
         }
 
-        fetchedResultsManager.exportMoviesList { result in
-            switch result {
-            case .error:
-                DispatchQueue.main.async {
-                    self.showAlert(withMessage: Alert.exportFailedInfo)
-                    return
-                }
-            case .success:
-                guard let path = self.fetchedResultsManager.exportMoviesPath
-                    else { return }
-                handler(path)
-            }
-        }
-    }
-
-    private func setupFetchedResultManager() {
-        if fetchedResultsManager.controller == nil {
-            fetchedResultsManager.setup(with: nil)
-        } else {
-            if fetchedResultsManager.controller?.fetchRequest.predicate != nil {
-                fetchedResultsManager.refetch(for: nil)
-            }
+        do {
+            try fetchedResultsManager.exportMoviesList()
+            guard let path = fetchedResultsManager.exportMoviesPath
+                else { return }
+            handler(URL(fileURLWithPath: path))
+        } catch {
+            showAlert(withMessage: Alert.exportFailedInfo)
         }
     }
 
