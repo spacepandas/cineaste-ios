@@ -52,7 +52,7 @@ class MovieNightViewController: UIViewController {
         }
     }
 
-    fileprivate var myNearbyMessage: NearbyMessage?
+    fileprivate var ownNearbyMessage: NearbyMessage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,14 +90,8 @@ class MovieNightViewController: UIViewController {
     }
 
     @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
-        guard let myNearbyMessage = myNearbyMessage
-            else { return }
-
-        //TODO: why clone?
-        var clone = [NearbyMessage](nearbyMessages)
-        clone.append(myNearbyMessage)
         performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                     sender: clone)
+                     sender: nearbyMessages)
     }
 
     @objc
@@ -128,11 +122,16 @@ class MovieNightViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieMatches?:
-            guard let nearbyMessages = sender as? [NearbyMessage]
+            guard
+                let nearbyMessages = sender as? [NearbyMessage],
+                let ownMessage = ownNearbyMessage
                 else { return }
 
+            var combinedMessages = nearbyMessages
+            combinedMessages.append(ownMessage)
+
             let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: nearbyMessages)
+            vc?.configure(with: combinedMessages)
             vc?.storageManager = storageManager
         default:
             return
@@ -156,7 +155,7 @@ class MovieNightViewController: UIViewController {
         guard let username = UserDefaultsManager.getUsername() else { return }
 
         let nearbyMessage = NearbyMessage(with: username, movies: nearbyMovies)
-        myNearbyMessage = nearbyMessage
+        ownNearbyMessage = nearbyMessage
 
         guard let messageData = try? JSONEncoder().encode(nearbyMessage)
             else { return }
