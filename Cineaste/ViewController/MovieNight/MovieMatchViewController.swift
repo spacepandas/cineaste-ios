@@ -16,10 +16,11 @@ class MovieMatchViewController: UIViewController {
             tableView.allowsSelection = false
             tableView.backgroundColor = UIColor.basicBackground
 
-            tableView.tableFooterView = UIView(frame: CGRect.zero)
+            tableView.tableFooterView = UIView()
         }
     }
 
+    //TODO: refactor
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
     var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
     var totalNumberOfPeople: Int = 0
