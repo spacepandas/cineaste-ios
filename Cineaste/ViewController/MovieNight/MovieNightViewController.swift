@@ -72,10 +72,8 @@ class MovieNightViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if UserDefaultsManager.getUsername() != nil {
-            startPublishing()
-            startSubscribing()
-        }
+        publishWatchlistMovies()
+        subscribeToNearbyMessages()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -87,15 +85,15 @@ class MovieNightViewController: UIViewController {
 
     // MARK: - Actions
 
-    @IBAction func cancelButtonTouched(_ sender: Any) {
+    @IBAction func cancelMovieNight(_ sender: Any) {
         dismiss(animated: true)
     }
 
     @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
-        guard let myNearbyMessage = myNearbyMessage else {
-            return
-        }
+        guard let myNearbyMessage = myNearbyMessage
+            else { return }
 
+        //TODO: why clone?
         var clone = [NearbyMessage](nearbyMessages)
         clone.append(myNearbyMessage)
         performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
@@ -130,9 +128,8 @@ class MovieNightViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieMatches?:
-            guard let nearbyMessages = sender as? [NearbyMessage] else {
-                return
-            }
+            guard let nearbyMessages = sender as? [NearbyMessage]
+                else { return }
 
             let vc = segue.destination as? MovieMatchViewController
             vc?.configure(with: nearbyMessages)
@@ -144,11 +141,11 @@ class MovieNightViewController: UIViewController {
 
     // MARK: - Nearby
 
-    //TODO: refactor & formatting
-    fileprivate func startPublishing() {
+    fileprivate func publishWatchlistMovies() {
         guard let storageManager = storageManager else { return }
+
         let nearbyMovies = storageManager
-            .fetchAllWantToSeeMovies()
+            .fetchAllWatchlistMovies()
             .compactMap { storedMovie -> NearbyMovie? in
                 guard let title = storedMovie.title else { return nil }
                 return NearbyMovie(id: storedMovie.id,
@@ -157,38 +154,48 @@ class MovieNightViewController: UIViewController {
             }
 
         guard let username = UserDefaultsManager.getUsername() else { return }
-        let nearbyMessage = NearbyMessage.create(withUsername: username,
-                                                 movies: nearbyMovies)
+
+        let nearbyMessage = NearbyMessage(with: username, movies: nearbyMovies)
         myNearbyMessage = nearbyMessage
 
         guard let messageData = try? JSONEncoder().encode(nearbyMessage)
             else { return }
-        currentPublication = gnsMessageManager
-            .publication(with: GNSMessage(content: messageData))
+
+        currentPublication = gnsMessageManager.publication(
+            with: GNSMessage(content: messageData)
+        )
     }
 
-    fileprivate func startSubscribing() {
+    fileprivate func subscribeToNearbyMessages() {
         currentSubscription = gnsMessageManager.subscription(
             messageFoundHandler: { message in
-                guard let data = message?.content,
-                    let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
-                                                                  from: data)
+                guard let nearbyMessage = self.convertGNSMessage(from: message)
                     else { return }
 
-                guard self.nearbyMessages.index(of: nearbyMessage) == nil
-                    else { return }
-
-                DispatchQueue.main.async {
+                // add nearbyMessage
+                if !self.nearbyMessages.contains(nearbyMessage) {
                     self.nearbyMessages.append(nearbyMessage)
                 }
-            }, messageLostHandler: { message in
-            guard let data = message?.content,
-                let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
-                                                              from: data)
-                else { return }
+            },
+            messageLostHandler: { message in
+                guard let nearbyMessage = self.convertGNSMessage(from: message)
+                    else { return }
 
-            self.nearbyMessages = self.nearbyMessages.filter { $0 != nearbyMessage }
-            })
+                // remove nearbyMessage
+                self.nearbyMessages = self.nearbyMessages
+                    .filter { $0 != nearbyMessage }
+            }
+        )
+    }
+
+    private func convertGNSMessage(from message: GNSMessage?) -> NearbyMessage? {
+        if let data = message?.content,
+            let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
+                                                          from: data) {
+            return nearbyMessage
+        } else {
+            return nil
+        }
     }
 }
 
