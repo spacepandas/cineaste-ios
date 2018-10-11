@@ -193,7 +193,6 @@
 		3FF7913020DE274A007B7D37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F98063F20556EA700B92A27 /* InfoPlist.strings */; };
 		3FF7913120DE274A007B7D37 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3FF7913220DE274A007B7D37 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */; };
-		3FF7913A20DE2A21007B7D37 /* Cineaste-AppStore-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7913920DE2A21007B7D37 /* Cineaste-AppStore-Info.plist */; };
 		4EABD57B2129C49E007F20D9 /* NonClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57A2129C49E007F20D9 /* NonClearView.swift */; };
 		4EABD57C2129C5E2007F20D9 /* NonClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57A2129C49E007F20D9 /* NonClearView.swift */; };
 		4EABD57E2129C622007F20D9 /* NonClearViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */; };
@@ -907,7 +906,6 @@
 				95281130201D087800F3EC76 /* .swiftlint.yml in Resources */,
 				95AE25AA1F9531E20067F5F5 /* LaunchScreen.storyboard in Resources */,
 				9583289A1FBB81340084CF80 /* cineaste.xcassets in Resources */,
-				3FF7913A20DE2A21007B7D37 /* Cineaste-AppStore-Info.plist in Resources */,
 				3F01790E20CD32C500600DB4 /* Localizable.strings in Resources */,
 				95D32F611F9AA20100497ED2 /* apikey.plist in Resources */,
 				3F1DA162209C64D900AC4D09 /* Settings.bundle in Resources */,
