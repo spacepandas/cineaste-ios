@@ -66,8 +66,8 @@ class MoviesViewControllerTests: XCTestCase {
         moviesVC.category = .seen
         XCTAssertEqual(moviesVC.title, seenTitle)
 
-        let wantToSeeTitle = MovieListCategory.wantToSee.title
-        moviesVC.category = .wantToSee
+        let wantToSeeTitle = MovieListCategory.watchlist.title
+        moviesVC.category = .watchlist
         XCTAssertEqual(moviesVC.title, wantToSeeTitle)
     }
 

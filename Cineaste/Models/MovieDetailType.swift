@@ -8,6 +8,6 @@
 
 enum MovieDetailType {
     case seen
-    case wantToSee
+    case watchlist
     case search
 }

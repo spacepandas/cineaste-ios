@@ -23,7 +23,7 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    var category: MovieListCategory = .wantToSee {
+    var category: MovieListCategory = .watchlist {
         didSet {
             title = category.title
             emptyListLabel.text = String.title(for: category)
@@ -105,7 +105,7 @@ class MoviesViewController: UITableViewController {
             let vc = segue.destination as? MovieDetailViewController
             vc?.storedMovie = selectedMovie
             vc?.storageManager = storageManager
-            vc?.type = (category == MovieListCategory.seen) ? .seen : .wantToSee
+            vc?.type = (category == MovieListCategory.seen) ? .seen : .watchlist
         case .showMovieNight?:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? MovieNightViewController
@@ -198,27 +198,27 @@ class MoviesViewController: UITableViewController {
 
         //initially instantiate shortcuts
         if shortcuts.isEmpty {
-            let wantToSeeIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
-            let wantToSeeShortcut =
-                UIApplicationShortcutItem(type: ShortcutIdentifier.wantToSeeList.rawValue,
-                                          localizedTitle: String.wantToSeeList,
+            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
+            let watchlistShortcut =
+                UIApplicationShortcutItem(type: ShortcutIdentifier.watchlist.rawValue,
+                                          localizedTitle: String.watchlist,
                                           localizedSubtitle: nil,
-                                          icon: wantToSeeIcon,
+                                          icon: watchlistIcon,
                                           userInfo: nil)
 
             let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
             let seenShortcut =
-                UIApplicationShortcutItem(type: ShortcutIdentifier.seenList.rawValue,
-                                          localizedTitle: String.seenList,
+                UIApplicationShortcutItem(type: ShortcutIdentifier.seen.rawValue,
+                                          localizedTitle: String.seen,
                                           localizedSubtitle: nil,
                                           icon: seenIcon,
                                           userInfo: nil)
 
-            shortcuts = [wantToSeeShortcut, seenShortcut]
+            shortcuts = [watchlistShortcut, seenShortcut]
             UIApplication.shared.shortcutItems = shortcuts
         }
 
-        let index = category == .wantToSee ? 0 : 1
+        let index = category == .watchlist ? 0 : 1
         let existingItem = shortcuts[index]
 
         //only update if value changed

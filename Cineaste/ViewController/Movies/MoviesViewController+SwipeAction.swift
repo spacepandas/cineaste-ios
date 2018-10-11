@@ -15,7 +15,7 @@ extension MoviesViewController {
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
         let newCategory: MovieListCategory =
             category == .seen
-                ? .wantToSee
+                ? .watchlist
                 : .seen
         let newWatchedValue = newCategory == .seen
 
@@ -56,7 +56,7 @@ extension MoviesViewController {
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
         let newCategory: MovieListCategory =
             category == .seen
-                ? .wantToSee
+                ? .watchlist
                 : .seen
         let newWatchedValue = newCategory == .seen
 

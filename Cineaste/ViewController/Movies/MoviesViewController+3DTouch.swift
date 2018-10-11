@@ -22,7 +22,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         detailVC.type =
             category == .seen
             ? .seen
-            : .wantToSee
+            : .watchlist
         return detailVC
     }
 

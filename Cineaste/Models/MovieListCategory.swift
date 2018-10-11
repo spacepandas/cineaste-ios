@@ -9,22 +9,22 @@
 import UIKit
 
 enum MovieListCategory: String {
-    case wantToSee
+    case watchlist
     case seen
 
     var title: String {
         switch self {
-        case .wantToSee:
-            return String.wantToSeeList
+        case .watchlist:
+            return String.watchlist
         case .seen:
-            return String.seenList
+            return String.seen
         }
     }
 
     var image: UIImage {
         switch self {
-        case .wantToSee:
-            return UIImage.wantToSeeIcon
+        case .watchlist:
+            return UIImage.watchlistIcon
         case .seen:
             return UIImage.seenIcon
         }
@@ -32,16 +32,16 @@ enum MovieListCategory: String {
 
     var action: String {
         switch self {
-        case .wantToSee:
-            return String.wantToSee
+        case .watchlist:
+            return String.watchlistAction
         case .seen:
-            return String.seen
+            return String.seenAction
         }
     }
 
     var predicate: NSPredicate {
         switch self {
-        case .wantToSee:
+        case .watchlist:
             return NSPredicate(format: "watched == %@", NSNumber(value: false))
         case .seen:
             return NSPredicate(format: "watched == %@", NSNumber(value: true))

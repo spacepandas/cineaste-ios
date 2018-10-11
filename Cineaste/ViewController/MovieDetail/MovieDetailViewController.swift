@@ -182,8 +182,8 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private
 
     fileprivate func setupLocalization() {
-        seenButton.setTitle(String.seen, for: .normal)
-        mustSeeButton.setTitle(String.wantToSee, for: .normal)
+        seenButton.setTitle(String.seenAction, for: .normal)
+        mustSeeButton.setTitle(String.watchlistAction, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
     }
 
@@ -261,7 +261,7 @@ class MovieDetailViewController: UIViewController {
             mustSeeButton.isHidden = false
             seenButton.isHidden = true
             deleteButton.isHidden = false
-        case .wantToSee:
+        case .watchlist:
             mustSeeButton.isHidden = true
             seenButton.isHidden = false
             deleteButton.isHidden = false
@@ -324,12 +324,12 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: String.wantToSee,
+        let watchlistAction = UIPreviewAction(title: String.watchlistAction,
                                               style: .default) { _, _ -> Void in
             self.saveMovie(asWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: String.seen,
+        let seenAction = UIPreviewAction(title: String.seenAction,
                                          style: .default) { _, _ -> Void in
             self.saveMovie(asWatched: true)
         }
@@ -341,11 +341,11 @@ class MovieDetailViewController: UIViewController {
 
         switch type {
         case .seen:
-            return [wantToSeeAction, deleteAction]
-        case .wantToSee:
+            return [watchlistAction, deleteAction]
+        case .watchlist:
             return [seenAction, deleteAction]
         case .search:
-            return [wantToSeeAction, seenAction]
+            return [watchlistAction, seenAction]
         }
 
     }

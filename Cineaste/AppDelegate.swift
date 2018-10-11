@@ -50,10 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else { return false }
 
         switch shortcutIdentifier {
-        case .wantToSeeList:
+        case .watchlist:
             tabBarVC.selectedIndex = 0
             return true
-        case .seenList:
+        case .seen:
             tabBarVC.selectedIndex = 1
             return true
         case .startMovieNight:

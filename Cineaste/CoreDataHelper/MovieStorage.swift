@@ -113,7 +113,7 @@ class MovieStorage {
     }
 
     /// Must be called on main thread because of core data view context
-    func fetchAllWantToSeeMovies() -> [StoredMovie] {
+    func fetchAllWatchlistMovies() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         request.predicate = MovieListCategory.seen.predicate
         let results = try? persistentContainer.viewContext.fetch(request)

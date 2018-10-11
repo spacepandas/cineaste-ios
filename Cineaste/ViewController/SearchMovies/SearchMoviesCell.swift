@@ -37,13 +37,13 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBOutlet weak var seenButton: ActionButton! {
         didSet {
-            seenButton.setTitle(String.seen, for: .normal)
+            seenButton.setTitle(String.seenAction, for: .normal)
         }
     }
 
     @IBOutlet weak var mustSeeButton: ActionButton! {
         didSet {
-            mustSeeButton.setTitle(String.wantToSee, for: .normal)
+            mustSeeButton.setTitle(String.watchlistAction, for: .normal)
         }
     }
 
