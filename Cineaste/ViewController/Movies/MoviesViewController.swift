@@ -150,16 +150,17 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Custom functions
 
-    private func showEmptyState() {
-        let isEmpty = fetchedResultsManager.movies.isEmpty
+    func showEmptyState(_ emptyState: Bool? = nil, completion: (() -> Void)? = nil) {
+        let isEmpty = emptyState ?? fetchedResultsManager.movies.isEmpty
 
-        UIView.animate(
-            withDuration: 0.2,
-            animations: {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
             }, completion: { _ in
-            self.tableView.backgroundView?.isHidden = !isEmpty
+                self.tableView.backgroundView?.isHidden = !isEmpty
+                completion?()
             })
+        }
     }
 
     private func askForUsername() {
