@@ -107,11 +107,11 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        saveMovie(withWatched: false)
+        saveMovie(asWatched: false)
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
-        saveMovie(withWatched: true)
+        saveMovie(asWatched: true)
     }
 
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
@@ -201,7 +201,7 @@ class MovieDetailViewController: UIViewController {
         return URL(string: movieUrl)
     }
 
-    fileprivate func saveMovie(withWatched watched: Bool) {
+    fileprivate func saveMovie(asWatched watched: Bool) {
         guard let storageManager = storageManager else { return }
 
         if let movie = movie {
@@ -229,7 +229,6 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         } else {
-            //TODO: check if this is correct
             preconditionFailure("Either movie or storedMovie must be set to save it")
         }
     }
@@ -327,12 +326,12 @@ class MovieDetailViewController: UIViewController {
     override var previewActionItems: [UIPreviewActionItem] {
         let wantToSeeAction = UIPreviewAction(title: String.wantToSee,
                                               style: .default) { _, _ -> Void in
-            self.saveMovie(withWatched: false)
+            self.saveMovie(asWatched: false)
         }
 
         let seenAction = UIPreviewAction(title: String.seen,
                                          style: .default) { _, _ -> Void in
-            self.saveMovie(withWatched: true)
+            self.saveMovie(asWatched: true)
         }
 
         let deleteAction = UIPreviewAction(title: String.deleteActionLong,
