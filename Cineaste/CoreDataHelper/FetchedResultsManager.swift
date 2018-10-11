@@ -97,7 +97,7 @@ extension FetchedResultsManager {
         loadMoviesForExport = false
     }
 
-    func importData(_ data: Data, completionHandler: @escaping ((Result<Int>) -> Void)) {
+    func importData(_ data: Data, completionHandler completion: @escaping ((Result<Int>) -> Void)) {
         let storageManager = MovieStorage()
 
         storageManager.resetCoreData { _ in
@@ -126,14 +126,14 @@ extension FetchedResultsManager {
                     if storageManager.backgroundContext.hasChanges {
                         do {
                             try storageManager.backgroundContext.save()
-                            completionHandler(.success(movies.count))
+                            completion(.success(movies.count))
                         } catch {
-                            completionHandler(.error(FileImportError.savingNewMovies))
+                            completion(.error(FileImportError.savingNewMovies))
                         }
                     }
                 }
             } catch {
-                completionHandler(.error(FileImportError.parsingJsonToStoredMovie))
+                completion(.error(FileImportError.parsingJsonToStoredMovie))
             }
         }
     }

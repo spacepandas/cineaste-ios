@@ -27,75 +27,75 @@ class AlertMessage {
 
 class Alert: AlertMessage {
     static let connectionError =
-        AlertMessage(title: String.errorTitle,
-                     message: String.connectionErrorMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .connectionErrorMessage,
+                     action: .okAction)
     static let loadingDataError =
-        AlertMessage(title: String.errorTitle,
-                     message: String.loadingDataErrorMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .loadingDataErrorMessage,
+                     action: .okAction)
 
     static let deleteMovieError =
-        AlertMessage(title: String.errorTitle,
-                     message: String.deleteMovieErrorMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .deleteMovieErrorMessage,
+                     action: .okAction)
     static let updateMovieError =
-        AlertMessage(title: String.errorTitle,
-                     message: String.updateMovieErrorMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .updateMovieErrorMessage,
+                     action: .okAction)
     static let insertMovieError =
-        AlertMessage(title: String.errorTitle,
-                     message: String.insertMovieErrorMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .insertMovieErrorMessage,
+                     action: .okAction)
 
     static let insertUsername =
-        AlertMessage(title: String.firstMovieNightTitle,
-                     message: String.explainMovieNightDescription,
-                     action: String.saveAction,
-                     cancel: String.cancelAction)
+        AlertMessage(title: .firstMovieNightTitle,
+                     message: .explainMovieNightDescription,
+                     action: .saveAction,
+                     cancel: .cancelAction)
 
     static let missingFeatureInfo =
-        AlertMessage(title: String.infoTitle,
-                     message: String.missingFeatureMessage,
-                     action: String.okAction)
+        AlertMessage(title: .infoTitle,
+                     message: .missingFeatureMessage,
+                     action: .okAction)
 
     static let askingForImport =
-        AlertMessage(title: String.askForImportTitle,
-                     message: String.askForImportMessage,
-                     action: String.yesAction,
-                     cancel: String.noAction)
+        AlertMessage(title: .askForImportTitle,
+                     message: .askForImportMessage,
+                     action: .yesAction,
+                     cancel: .noAction)
     static let importSucceededInfo =
-        AlertMessage(title: String.infoTitle,
-                     message: String.importSucceededMessage,
-                     action: String.okAction)
+        AlertMessage(title: .infoTitle,
+                     message: .importSucceededMessage,
+                     action: .okAction)
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
-        return AlertMessage(title: String.infoTitle,
-                            message: String.importSucceededMessage(with: counter),
-                            action: String.okAction)
+        return AlertMessage(title: .infoTitle,
+                            message: .importSucceededMessage(with: counter),
+                            action: .okAction)
     }
 
     static let importFailedInfo =
-        AlertMessage(title: String.errorTitle,
-                     message: String.importFailedMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .importFailedMessage,
+                     action: .okAction)
     static let importFailedCouldNotReadFile =
-        AlertMessage(title: String.errorTitle,
-                     message: String.importFailedCouldNotReadFileMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .importFailedCouldNotReadFileMessage,
+                     action: .okAction)
 
     static let exportFailedInfo =
-        AlertMessage(title: String.errorTitle,
-                     message: String.exportFailedMessage,
-                     action: String.okAction)
+        AlertMessage(title: .errorTitle,
+                     message: .exportFailedMessage,
+                     action: .okAction)
     static let exportEmptyData =
-        AlertMessage(title: String.infoTitle,
-                     message: String.exportWithEmptyDataMessage,
-                     action: String.okAction)
+        AlertMessage(title: .infoTitle,
+                     message: .exportWithEmptyDataMessage,
+                     action: .okAction)
 
     static let noEmailClient =
-        AlertMessage(title: String.infoTitle,
-                     message: String.noEmailClientMessage,
+        AlertMessage(title: .infoTitle,
+                     message: .noEmailClientMessage,
                      action: .okAction)
 }
 
