@@ -37,13 +37,6 @@ class SettingsDetailViewController: UIViewController {
         movieDBImageView.isHidden = true
     }
 
-    //TODO: do we need this?
-    override func viewDidLayoutSubviews() {
-        //scroll textview to top
-        settingsDetailTextView.setContentOffset(CGPoint(x: 0, y: 0),
-                                                animated: false)
-    }
-
     private func update(_ type: TextViewType) {
         guard let textView = settingsDetailTextView,
             let imageView = movieDBImageView
