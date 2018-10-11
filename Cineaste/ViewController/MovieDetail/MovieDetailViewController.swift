@@ -229,6 +229,7 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         } else {
+            //TODO: check if this is correct
             preconditionFailure("Either movie or storedMovie must be set to save it")
         }
     }
