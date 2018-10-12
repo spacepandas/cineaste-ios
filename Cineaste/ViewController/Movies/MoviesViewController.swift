@@ -185,10 +185,10 @@ class MoviesViewController: UITableViewController {
             alert.addAction(cancelAction)
         }
 
-        alert.addTextField(configurationHandler: { textField in
+        alert.addTextField { textField in
             textField.placeholder = String.usernamePlaceholder
             textField.delegate = self
-        })
+        }
 
         present(alert, animated: true)
     }

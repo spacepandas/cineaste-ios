@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchMoviesCellDelegate: class {
+protocol SearchMoviesCellDelegate: AnyObject {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
 }
 

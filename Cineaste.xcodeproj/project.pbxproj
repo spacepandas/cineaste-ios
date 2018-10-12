@@ -73,8 +73,8 @@
 		3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA120FA856E002F7665 /* MoviesViewController+SearchController.swift */; };
 		3FA48FA520FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */; };
 		3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */; };
-		3FA6C9D820F7B5990050368E /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* SafariViewController.swift */; };
-		3FA6C9D920F7DCEC0050368E /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* SafariViewController.swift */; };
+		3FA6C9D820F7B5990050368E /* CustomSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */; };
+		3FA6C9D920F7DCEC0050368E /* CustomSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */; };
 		3FA808CF20027AF60036357B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FA808D1200285590036357B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808D0200285590036357B /* View.swift */; };
 		3FAA3BBA2082668900726DE2 /* Double+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAA3BB92082668900726DE2 /* Double+Formatter.swift */; };
@@ -315,7 +315,7 @@
 		3FA48F9E20FA7C14002F7665 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		3FA48FA120FA856E002F7665 /* MoviesViewController+SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+SearchController.swift"; sourceTree = "<group>"; };
 		3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+3DTouch.swift"; sourceTree = "<group>"; };
-		3FA6C9D720F7B5990050368E /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
+		3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSafariViewController.swift; sourceTree = "<group>"; };
 		3FA808CE20027AF60036357B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3FA808D0200285590036357B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3FAA3BB92082668900726DE2 /* Double+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatter.swift"; sourceTree = "<group>"; };
@@ -448,7 +448,7 @@
 				3F059D461FF3FA8B00D5576B /* Label.swift */,
 				4EABD57A2129C49E007F20D9 /* NonClearView.swift */,
 				3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */,
-				3FA6C9D720F7B5990050368E /* SafariViewController.swift */,
+				3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */,
 				3FA48F9E20FA7C14002F7665 /* SearchController.swift */,
 				3F71F684200292B700496E05 /* TextView.swift */,
 				3FA808D0200285590036357B /* View.swift */,
@@ -1155,7 +1155,7 @@
 				3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */,
 				3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */,
 				3FF790E820DE274A007B7D37 /* Config.swift in Sources */,
-				3FA6C9D920F7DCEC0050368E /* SafariViewController.swift in Sources */,
+				3FA6C9D920F7DCEC0050368E /* CustomSafariViewController.swift in Sources */,
 				3FF790E920DE274A007B7D37 /* PagedMovieResult.swift in Sources */,
 				3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */,
 				3F7ABD5320F5C708004B069E /* StoredMovie+Formatted.swift in Sources */,
@@ -1290,7 +1290,7 @@
 				95DC32051F97E1300014E3EA /* Model.xcdatamodeld in Sources */,
 				95B24EF51FADDB260070912A /* MovieDetailViewController.swift in Sources */,
 				3F6C887E2002B5090052BF24 /* MovieNightViewController.swift in Sources */,
-				3FA6C9D820F7B5990050368E /* SafariViewController.swift in Sources */,
+				3FA6C9D820F7B5990050368E /* CustomSafariViewController.swift in Sources */,
 				3FD2F87D201E04AD003B880E /* MoviesViewController+SwipeAction.swift in Sources */,
 				3FF095C82103246400ADFB86 /* NearbyMovieWithOccurrence.swift in Sources */,
 				3FF095D12103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift in Sources */,

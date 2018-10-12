@@ -25,12 +25,13 @@ struct LocalizedReleaseDate: Decodable {
         let allRegionReleaseDate = rawResponse
             .allReleaseDates
             .results
-            .first(where: { $0.identifier == String.regionIso31661 })?
+            .first { $0.identifier == String.regionIso31661 }?
             .regionReleaseDates
 
         date = allRegionReleaseDate?
-            .first(where: { $0.type == 3 &&
-                ($0.regionIdentifier == String.languageIso6391 || $0.regionIdentifier.isEmpty) })?
+            .first { $0.type == 3 &&
+                ($0.regionIdentifier == String.languageIso6391 || $0.regionIdentifier.isEmpty)
+            }?
             .regionReleaseDate
     }
 }

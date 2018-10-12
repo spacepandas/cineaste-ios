@@ -20,12 +20,12 @@ extension MoviesViewController {
         let newWatchedValue = newCategory == .seen
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.action) { _, _ in
-            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
+            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
                 }
-            })
+            }
         }
         action.backgroundColor = UIColor.basicYellow
 
@@ -38,12 +38,12 @@ extension MoviesViewController {
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
         let deleteAction = UITableViewRowAction(style: .destructive, title: String.deleteAction) { _, _ in
-            self.storageManager?.remove(movie, handler: { result in
+            self.storageManager?.remove(movie) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return
                 }
-            })
+            }
         }
         deleteAction.backgroundColor = UIColor.primaryOrange
 

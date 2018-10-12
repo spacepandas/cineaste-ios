@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Instantiable: class {
+protocol Instantiable: AnyObject {
     static var storyboard: Storyboard { get }
     static var storyboardID: String? { get }
 }

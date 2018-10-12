@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MovieMatchTableViewCellDelegate: class {
+protocol MovieMatchTableViewCellDelegate: AnyObject {
     func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?)
 }
 
@@ -50,7 +50,7 @@ class MovieMatchCell: UITableViewCell {
         }
 
         numberOfMatchesLabel.text = String.matches(for: movieWithOccurance.occurances,
-                                                    amountOfPeople: amountOfPeople)
+                                                   amountOfPeople: amountOfPeople)
     }
 
     // MARK: - Actions

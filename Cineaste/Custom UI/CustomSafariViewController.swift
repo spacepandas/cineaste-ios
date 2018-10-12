@@ -1,5 +1,5 @@
 //
-//  SafariViewController.swift
+//  CustomSafariViewController.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 12.07.18.
