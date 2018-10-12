@@ -32,6 +32,7 @@ extension MoviesViewController {
         return action
     }
 
+    // swiftlint:disable:next discouraged_optional_collection
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let movie = fetchedResultsManager.movies[editActionsForRowAt.row]
 
