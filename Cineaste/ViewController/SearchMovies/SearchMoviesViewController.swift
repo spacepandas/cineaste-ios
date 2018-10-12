@@ -71,6 +71,10 @@ class SearchMoviesViewController: UIViewController {
         registerForPreviewing(with: self, sourceView: tableView)
     }
 
+    func configure(with storageManager: MovieStorage) {
+        self.storageManager = storageManager
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -94,12 +98,14 @@ class SearchMoviesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.storageManager = storageManager
-            vc?.type = .search
+            guard let selectedMovie = selectedMovie,
+                let storageManager = storageManager
+                else { return }
 
-            guard let selectedMovie = selectedMovie else { return }
-            vc?.movie = selectedMovie
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.configure(with: .network(selectedMovie),
+                          type: .search,
+                          storageManager: storageManager)
         default:
             return
         }

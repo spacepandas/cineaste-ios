@@ -37,6 +37,11 @@ class SettingsDetailViewController: UIViewController {
         movieDBImageView.isHidden = true
     }
 
+    func configure(with title: String, textViewContent: TextViewType) {
+        self.title = title
+        self.textViewContent = textViewContent
+    }
+
     private func update(_ type: TextViewType) {
         guard let textView = settingsDetailTextView,
             let imageView = movieDBImageView

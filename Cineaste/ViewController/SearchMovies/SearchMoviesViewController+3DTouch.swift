@@ -11,15 +11,16 @@ import UIKit
 extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
-        let detailVC = MovieDetailViewController.instantiate()
 
         guard let path = tableView.indexPathForRow(at: location),
+            let storageManager = storageManager,
             movies.count > path.row
             else { return nil }
 
-        detailVC.movie = movies[path.row]
-        detailVC.storageManager = storageManager
-        detailVC.type = .search
+        let detailVC = MovieDetailViewController.instantiate()
+        detailVC.configure(with: .network(movies[path.row]),
+                           type: .search,
+                           storageManager: storageManager)
         return detailVC
     }
 

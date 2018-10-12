@@ -80,6 +80,11 @@ class PosterViewController: UIViewController {
 
     }
 
+    func configure(with image: UIImage, posterPath: String) {
+        self.image = image
+        self.posterPath = posterPath
+    }
+
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }

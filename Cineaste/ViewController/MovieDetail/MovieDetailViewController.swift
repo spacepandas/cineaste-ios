@@ -104,6 +104,14 @@ class MovieDetailViewController: UIViewController {
         moreInformationButton.setTitle(String.moreInformation, for: .normal)
     }
 
+    func configure(with selectedMovie: MovieType,
+                   type: MovieDetailType,
+                   storageManager: MovieStorage) {
+        movie = selectedMovie
+        self.type = type
+        self.storageManager = storageManager
+    }
+
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {

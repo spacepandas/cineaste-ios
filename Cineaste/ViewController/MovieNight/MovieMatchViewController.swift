@@ -19,7 +19,7 @@ class MovieMatchViewController: UIViewController {
             tableView.tableFooterView = UIView()
         }
     }
-    
+
     //TODO: refactor
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
     var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
@@ -33,8 +33,10 @@ class MovieMatchViewController: UIViewController {
         title = String.resultsForMovieNight
     }
 
-    func configure(with messagesToMatch: [NearbyMessage]) {
+    func configure(with messagesToMatch: [NearbyMessage], storageManager: MovieStorage) {
         totalNumberOfPeople = messagesToMatch.count
+        self.storageManager = storageManager
+
         for message in messagesToMatch {
             for movie in message.movies {
                 if nearbyMovieOccurrences[movie] == nil {

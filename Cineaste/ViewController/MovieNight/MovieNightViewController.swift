@@ -69,6 +69,10 @@ class MovieNightViewController: UIViewController {
         #endif
     }
 
+    func configure(with storageManager: MovieStorage) {
+        self.storageManager = storageManager
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -124,15 +128,16 @@ class MovieNightViewController: UIViewController {
         case .showMovieMatches?:
             guard
                 let nearbyMessages = sender as? [NearbyMessage],
-                let ownMessage = ownNearbyMessage
+                let ownMessage = ownNearbyMessage,
+                let storageManager = storageManager
                 else { return }
 
             var combinedMessages = nearbyMessages
             combinedMessages.append(ownMessage)
 
             let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: combinedMessages)
-            vc?.storageManager = storageManager
+            vc?.configure(with: combinedMessages,
+                          storageManager: storageManager)
         default:
             return
         }
