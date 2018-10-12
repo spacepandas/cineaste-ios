@@ -54,7 +54,7 @@ class MoviesViewController: UITableViewController {
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.refetch(for: category.predicate)
-        showEmptyState()
+        showEmptyState(fetchedResultsManager.movies.isEmpty)
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -73,7 +73,7 @@ class MoviesViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        showEmptyState()
+        showEmptyState(fetchedResultsManager.movies.isEmpty)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,8 +150,8 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Custom functions
 
-    func showEmptyState(_ emptyState: Bool? = nil, completion: (() -> Void)? = nil) {
-        let isEmpty = emptyState ?? fetchedResultsManager.movies.isEmpty
+    func showEmptyState(_ emptyState: Bool, completion: (() -> Void)? = nil) {
+        let isEmpty = emptyState
 
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.2, animations: {
@@ -271,7 +271,7 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
     }
     func endUpdate() {
         tableView.endUpdates()
-        showEmptyState()
+        showEmptyState(fetchedResultsManager.movies.isEmpty)
         updateShortcutItems()
     }
 }

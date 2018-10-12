@@ -19,7 +19,7 @@ class MovieMatchViewController: UIViewController {
             tableView.tableFooterView = UIView()
         }
     }
-
+    
     //TODO: refactor
     fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
     var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()

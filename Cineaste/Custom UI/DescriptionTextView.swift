@@ -1,5 +1,5 @@
 //
-//  TextView.swift
+//  DescriptionTextView.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 07.01.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class DescriptionTextView: UITextView {
+class DescriptionTextView: UITextView {
     private let paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7

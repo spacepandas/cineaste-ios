@@ -1,5 +1,5 @@
 //
-//  AlertMessages.swift
+//  AlertMessage.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 03.02.18.

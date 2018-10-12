@@ -8,35 +8,33 @@
 
 import UIKit
 
-public class DescriptionLabel: UILabel {
+class Label: UILabel {
+    func setup() {
+        fatalError("Override this method in your subclass")
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        setup()
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setup()
     }
+}
 
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    func setup() {
+class DescriptionLabel: Label {
+    override func setup() {
         font = UIFont.systemFont(ofSize: 13.0)
         textColor = UIColor.accentTextOnWhite
     }
 }
 
-public class TitleLabel: UILabel {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    func setup() {
+class TitleLabel: Label {
+    override func setup() {
         font = UIFont.systemFont(ofSize: 18.0)
         textColor = UIColor.black
     }
