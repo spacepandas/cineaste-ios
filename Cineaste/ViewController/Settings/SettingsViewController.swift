@@ -77,15 +77,17 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Import and Export
 
-    func prepareForImport(completionHandler handler: @escaping () -> Void) {
+    func prepareForImport(completionHandler completion: @escaping (Bool) -> Void) {
         fetchedResultsManager.refetch()
 
         if fetchedResultsManager.movies.isEmpty {
-            handler()
+            completion(true)
         } else {
             //database is not empty, ask if user is sure to import new data
             showAlert(withMessage: Alert.askingForImport, defaultActionHandler: {
-                handler()
+                completion(true)
+            }, cancelActionHandler: {
+                completion(false)
             })
         }
     }

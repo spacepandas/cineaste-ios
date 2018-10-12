@@ -45,9 +45,13 @@ extension SettingsViewController {
                 }
             }
         case .importMovies:
-            prepareForImport {
+            prepareForImport { success in
                 DispatchQueue.main.async {
-                    self.showUIToImportMovies()
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+
+                    if success {
+                        self.showUIToImportMovies()
+                    }
                 }
             }
         case .contact:
