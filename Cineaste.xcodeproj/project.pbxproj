@@ -758,7 +758,6 @@
 			buildConfigurationList = 3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste App" */;
 			buildPhases = (
 				A9C86AC80C006656AB011C79 /* [CP] Check Pods Manifest.lock */,
-				3FF790E320DE274A007B7D37 /* Find TODOS/WARNINGS */,
 				3FF790E420DE274A007B7D37 /* Swift Lint */,
 				3FF790E520DE274A007B7D37 /* Sources */,
 				3FF7912220DE274A007B7D37 /* Frameworks */,
@@ -780,7 +779,6 @@
 			buildConfigurationList = 95AE25B91F9531E20067F5F5 /* Build configuration list for PBXNativeTarget "Cineaste App-Dev" */;
 			buildPhases = (
 				E31EA6CAC533D7025832346B /* [CP] Check Pods Manifest.lock */,
-				95281131201D091100F3EC76 /* Find TODOS/WARNINGS */,
 				951BEDF71FB0FF73006EFDED /* Swift Lint */,
 				4E60B97320F5330F0020B5B6 /* Check API Keys */,
 				95AE25981F9531E20067F5F5 /* Sources */,
@@ -933,20 +931,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3FF790E320DE274A007B7D37 /* Find TODOS/WARNINGS */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Find TODOS/WARNINGS";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 \\\n| xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" \\\n| perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
-		};
 		3FF790E420DE274A007B7D37 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -988,20 +972,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml";
-		};
-		95281131201D091100F3EC76 /* Find TODOS/WARNINGS */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Find TODOS/WARNINGS";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 \\\n| xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" \\\n| perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
 		95444F90A184A28CED4E526F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
