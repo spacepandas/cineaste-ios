@@ -33,30 +33,6 @@ class SettingsViewControllerTests: XCTestCase {
         }
     }
 
-    func testPrepareForSegueShouldInjectCorrectContentToImprintVC() {
-        let targetViewController = SettingsDetailViewController.instantiate()
-        let targetSegue = UIStoryboardSegue(
-            identifier: Segue.showTextViewFromSettings.rawValue,
-            source: settingsVC,
-            destination: targetViewController)
-
-        //inject imprint data
-        let imprintItem = settingsVC.settings[0]
-        settingsVC.selectedSetting = imprintItem
-        settingsVC.prepare(for: targetSegue, sender: settingsVC)
-
-        XCTAssertEqual(targetViewController.title, imprintItem.title)
-        XCTAssertEqual(targetViewController.textViewContent, .imprint)
-
-        //inject licence data
-        let licenceItem = settingsVC.settings[1]
-        settingsVC.selectedSetting = licenceItem
-        settingsVC.prepare(for: targetSegue, sender: settingsVC)
-
-        XCTAssertEqual(targetViewController.title, licenceItem.title)
-        XCTAssertEqual(targetViewController.textViewContent, .licence)
-    }
-
     func testSelectRowShouldSetCorrectSelectedSetting() {
         //nothing selected
         XCTAssertNil(settingsVC.selectedSetting)

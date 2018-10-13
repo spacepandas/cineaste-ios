@@ -17,7 +17,7 @@ class SettingsDetailViewControllerTests: XCTestCase {
         let paragraphAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         
         //IMPRINT
-        settingsDetailVC.textViewContent = .imprint
+        settingsDetailVC.configure(with: "", textViewContent: .imprint)
         XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
         
         let imprintChain = TextViewType.imprint.chainContent(titleAttributes: titleAttributes,
@@ -25,7 +25,7 @@ class SettingsDetailViewControllerTests: XCTestCase {
         XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, imprintChain.string)
         
         //LICENSE
-        settingsDetailVC.textViewContent = .licence
+        settingsDetailVC.configure(with: "", textViewContent: .licence)
         XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
         
         let licenseChain = TextViewType.licence.chainContent(titleAttributes: titleAttributes,

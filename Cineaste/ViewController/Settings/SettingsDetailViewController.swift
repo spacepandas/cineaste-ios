@@ -17,9 +17,13 @@ class SettingsDetailViewController: UIViewController {
         }
     }
 
-    @IBOutlet private weak var movieDBImageView: UIImageView!
+    @IBOutlet private weak var movieDBImageView: UIImageView! {
+        didSet {
+            movieDBImageView.isHidden = true
+        }
+    }
 
-    var textViewContent: TextViewType = .imprint {
+    private var textViewContent: TextViewType = .imprint {
         didSet {
             if oldValue != textViewContent {
                 update(textViewContent)
@@ -33,8 +37,6 @@ class SettingsDetailViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
-
-        movieDBImageView.isHidden = true
     }
 
     func configure(with title: String, textViewContent: TextViewType) {
