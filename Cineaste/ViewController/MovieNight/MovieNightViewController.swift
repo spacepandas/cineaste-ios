@@ -102,19 +102,28 @@ class MovieNightViewController: UIViewController {
     func toggleSearchingForFriendsMode() {
         #if DEBUG
         if nearbyMessages.isEmpty {
-            let nearbyMovies = [NearbyMovie(id: 1,
-                                            title: "Film 1",
-                                            posterPath: nil),
-                                NearbyMovie(id: 2,
-                                            title: "Film 2",
-                                            posterPath: nil),
-                                NearbyMovie(id: 3,
-                                            title: "Film 3",
-                                            posterPath: nil)]
+            let simulatorMovies = [NearbyMovie(id: 1,
+                                               title: "Film B",
+                                               posterPath: nil),
+                                   NearbyMovie(id: 2,
+                                               title: "Asterix",
+                                               posterPath: nil),
+                                   NearbyMovie(id: 3,
+                                               title: "Film 3",
+                                               posterPath: nil)]
+            let developerMovies = [NearbyMovie(id: 1,
+                                               title: "Film B",
+                                               posterPath: nil),
+                                   NearbyMovie(id: 2,
+                                               title: "Asterix",
+                                               posterPath: nil)]
 
             nearbyMessages = [NearbyMessage(userName: "Simulator",
                                             deviceId: "1",
-                                            movies: nearbyMovies)]
+                                            movies: simulatorMovies),
+                              NearbyMessage(userName: "Developer",
+                                            deviceId: "2",
+                                            movies: developerMovies)]
         } else {
             nearbyMessages = []
         }
