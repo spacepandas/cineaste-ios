@@ -144,7 +144,7 @@ extension FetchedResultsManager {
                                                 .userDomainMask,
                                                 true)[0]
 
-        let moviesPath = documentsDirectory + String.exportMoviesFileName(with: Date().formatted)
+        let moviesPath = documentsDirectory + "/" + String.exportMoviesFileName(with: Date().formatted)
         exportMoviesPath = moviesPath
 
         let fileManager = FileManager.default
