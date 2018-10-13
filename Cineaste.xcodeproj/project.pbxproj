@@ -23,7 +23,6 @@
 		3F27A6C220F3F8810053482B /* ReleaseDates.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F27A6BE20F3F33F0053482B /* ReleaseDates.json */; };
 		3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */; };
 		3F449DC32073FA4E00C5F5B8 /* ImportMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F449DC22073FA4E00C5F5B8 /* ImportMoviesViewController.swift */; };
-		3F585B95203B5A43002F6E07 /* MovieDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */; };
 		3F585B97203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */; };
 		3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */; };
 		3F5E0D8F2030905B00E091BE /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D8E2030905B00E091BE /* SettingsCell.swift */; };
@@ -273,7 +272,6 @@
 		3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDatesTests.swift; sourceTree = "<group>"; };
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
 		3F449DC22073FA4E00C5F5B8 /* ImportMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportMoviesViewController.swift; sourceTree = "<group>"; };
-		3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -625,7 +623,6 @@
 			children = (
 				3F39D5DF20833DD400B29F48 /* Helper */,
 				95AE25B61F9531E20067F5F5 /* Info.plist */,
-				3F585B94203B5A43002F6E07 /* MovieDetailViewControllerTests.swift */,
 				3F83BE811FF3AE3700E584E9 /* MovieListCellTests.swift */,
 				3F8644B01FFA95190046114A /* MoviesTabBarControllerTests.swift */,
 				3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */,
@@ -1309,7 +1306,6 @@
 				3F8644B11FFA95190046114A /* MoviesTabBarControllerTests.swift in Sources */,
 				3F27A6C120F3F4260053482B /* ReleaseDatesTests.swift in Sources */,
 				3FEF5C4B2030B28D00EFCAA2 /* SettingsCellTests.swift in Sources */,
-				3F585B95203B5A43002F6E07 /* MovieDetailViewControllerTests.swift in Sources */,
 				3F8C569E1FFACB2600F09A82 /* MovieStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
