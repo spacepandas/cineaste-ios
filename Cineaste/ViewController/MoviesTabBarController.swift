@@ -15,18 +15,18 @@ class MoviesTabBarController: UITabBarController {
 
         let storageManager = MovieStorage()
 
-        let wantToSeeVC = MoviesViewController.instantiate()
-        wantToSeeVC.category = .wantToSee
-        wantToSeeVC.tabBarItem = UITabBarItem(title: String.wantToSeeList,
-                                              image: MovieListCategory.wantToSee.image,
+        let watchlistVC = MoviesViewController.instantiate()
+        watchlistVC.category = .watchlist
+        watchlistVC.tabBarItem = UITabBarItem(title: String.watchlist,
+                                              image: MovieListCategory.watchlist.image,
                                               tag: 0)
-        wantToSeeVC.tabBarItem.accessibilityIdentifier = "WantToSeeTab"
-        wantToSeeVC.storageManager = storageManager
-        let wantToSeeVCWithNavi = OrangeNavigationController(rootViewController: wantToSeeVC)
+        watchlistVC.tabBarItem.accessibilityIdentifier = "WatchlistTab"
+        watchlistVC.storageManager = storageManager
+        let watchlistVCWithNavi = OrangeNavigationController(rootViewController: watchlistVC)
 
         let seenVC = MoviesViewController.instantiate()
         seenVC.category = .seen
-        seenVC.tabBarItem = UITabBarItem(title: String.seenList,
+        seenVC.tabBarItem = UITabBarItem(title: String.seen,
                                          image: MovieListCategory.seen.image,
                                          tag: 1)
         seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
@@ -40,7 +40,7 @@ class MoviesTabBarController: UITabBarController {
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
-        viewControllers = [wantToSeeVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
+        viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
     }
 }
 

@@ -10,5 +10,4 @@
 StartMovieNightTitle = "Start movie night";
 
 //Permission
-NSBluetoothPeripheralUsageDescription = "When starting a movie night bluetooth will only be used to discover nearby devices with which you can compare your movie lists";
 NSMicrophoneUsageDescription = "When starting a movie night the microphone will only be used to discover nearby devices with which you can compare your movie lists";

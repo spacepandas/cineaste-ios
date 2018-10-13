@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FetchedResultsManagerDelegate: class {
+protocol FetchedResultsManagerDelegate: AnyObject {
     func beginUpdate()
     func insertRows(at index: [IndexPath])
     func updateRows(at index: [IndexPath])

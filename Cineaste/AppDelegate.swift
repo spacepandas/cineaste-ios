@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter
             .default
@@ -50,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else { return false }
 
         switch shortcutIdentifier {
-        case .wantToSeeList:
+        case .watchlist:
             tabBarVC.selectedIndex = 0
             return true
-        case .seenList:
+        case .seen:
             tabBarVC.selectedIndex = 1
             return true
         case .startMovieNight:
@@ -85,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores(completionHandler: { _, error in
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -100,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        })
+        }
 
         return container
     }()

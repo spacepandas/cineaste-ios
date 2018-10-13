@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 enum TextViewType {
     case imprint
     case licence
@@ -67,7 +65,7 @@ enum TextViewType {
                 let range = NSRange(location: chain.length - titleBlock.count,
                                     length: titleBlock.count)
                 chain.addAttributes(titleAttributes,
-                                           range: range)
+                                    range: range)
             }
 
             var paragraphBlock = "\(block.paragraph)"
@@ -82,7 +80,7 @@ enum TextViewType {
             let range = NSRange(location: chain.length - paragraphBlock.count,
                                 length: paragraphBlock.count)
             chain.addAttributes(paragraphAttributes,
-                                       range: range)
+                                range: range)
         }
         return chain
     }

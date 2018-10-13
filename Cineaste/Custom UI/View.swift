@@ -8,18 +8,24 @@
 
 import UIKit
 
-public class VoteView: UIView {
+class View: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 
     func setup() {
+        fatalError("Override this method in your subclass")
+    }
+}
+
+class VoteView: View {
+    override func setup() {
         clipsToBounds = true
         layer.cornerRadius = self.frame.height / 2
 
@@ -33,7 +39,7 @@ public class VoteView: UIView {
 }
 
 @IBDesignable
-public class ShadowView: UIView {
+class ShadowView: View {
     @IBInspectable var shadowOpacity: Float = 0.3 {
         didSet {
             layer.shadowOpacity = shadowOpacity
@@ -46,17 +52,7 @@ public class ShadowView: UIView {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    func setup() {
+    override func setup() {
         layer.shadowColor = UIColor.accentTextOnWhite.cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)

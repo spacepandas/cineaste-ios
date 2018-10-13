@@ -9,15 +9,29 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
-    @IBOutlet var loadingIndicatorView: UIView!
+    @IBOutlet weak var loadingIndicatorView: UIView!
+
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.prefetchDataSource = self
+            tableView.delegate = self
+
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableView.automaticDimension
+
+            tableView.backgroundColor = UIColor.clear
+            tableView.tableFooterView = loadingIndicatorView
+        }
+    }
 
     var movies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.moviesTableView.reloadData()
+                self.tableView.reloadData()
 
                 if self.movies.isEmpty {
-                    self.moviesTableView.tableFooterView = UIView()
+                    self.tableView.tableFooterView = UIView()
                 }
             }
         }
@@ -40,24 +54,10 @@ class SearchMoviesViewController: UIViewController {
         return resultSearchController
     }()
 
-    @IBOutlet var moviesTableView: UITableView! {
-        didSet {
-            moviesTableView.dataSource = self
-            moviesTableView.prefetchDataSource = self
-            moviesTableView.delegate = self
-
-            moviesTableView.estimatedRowHeight = 100
-            moviesTableView.rowHeight = UITableView.automaticDimension
-
-            moviesTableView.backgroundColor = UIColor.clear
-            moviesTableView.tableFooterView = loadingIndicatorView
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.basicBackground
+        view.backgroundColor = UIColor.basicBackground
 
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
@@ -68,7 +68,11 @@ class SearchMoviesViewController: UIViewController {
         }
 
         configureSearchController()
-        registerForPreviewing(with: self, sourceView: moviesTableView)
+        registerForPreviewing(with: self, sourceView: tableView)
+    }
+
+    func configure(with storageManager: MovieStorage) {
+        self.storageManager = storageManager
     }
 
     override func viewDidLayoutSubviews() {
@@ -84,21 +88,24 @@ class SearchMoviesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let indexPath = moviesTableView.indexPathForSelectedRow {
-            moviesTableView.deselectRow(at: indexPath, animated: true)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
     // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.storageManager = storageManager
-            vc?.type = .search
+            guard let selectedMovie = selectedMovie,
+                let storageManager = storageManager
+                else { return }
 
-            guard let selectedMovie = selectedMovie else { return }
-            vc?.movie = selectedMovie
+            let vc = segue.destination as? MovieDetailViewController
+            vc?.configure(with: .network(selectedMovie),
+                          type: .search,
+                          storageManager: storageManager)
         default:
             return
         }
@@ -107,29 +114,32 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
-    // MARK: - Custom functions
+    // MARK: - Configuration
 
     func configureSearchController() {
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultSearchController
             navigationItem.hidesSearchBarWhenScrolling = false
         } else {
-            moviesTableView.tableHeaderView = resultSearchController.searchBar
+            tableView.tableHeaderView = resultSearchController.searchBar
         }
 
         definesPresentationContext = true
     }
 
+    // MARK: - Custom functions
+
     func scrollToTopCell(withAnimation: Bool) {
         guard !movies.isEmpty else { return }
 
         DispatchQueue.main.async {
-            self.moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0),
-                                             at: .top,
-                                             animated: withAnimation)
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.scrollToRow(at: indexPath,
+                                       at: .top,
+                                       animated: withAnimation)
         }
     }
 }
@@ -137,23 +147,21 @@ class SearchMoviesViewController: UIViewController {
 extension SearchMoviesViewController: SearchMoviesCellDelegate {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
         guard let storageManager = storageManager else { return }
+
         loadDetails(for: movie) { detailedMovie in
             guard let detailedMovie = detailedMovie else { return }
+
             storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
-                switch result {
-                case .error:
-                    DispatchQueue.main.async {
-                        if self.resultSearchController.isActive {
-                            self.resultSearchController.isActive = false
-                        }
-                        self.showAlert(withMessage: Alert.insertMovieError)
+                DispatchQueue.main.async {
+                    if self.resultSearchController.isActive {
+                        self.resultSearchController.isActive = false
                     }
-                case .success:
-                    DispatchQueue.main.async {
-                        if self.resultSearchController.isActive {
-                            self.resultSearchController.isActive = false
-                        }
-                        self.dismiss(animated: true, completion: nil)
+
+                    switch result {
+                    case .error:
+                        self.showAlert(withMessage: Alert.insertMovieError)
+                    case .success:
+                        self.dismiss(animated: true)
                     }
                 }
             }

@@ -12,64 +12,65 @@ import SafariServices
 
 //swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
-    @IBOutlet weak fileprivate var posterImageView: UIImageView!
-    @IBOutlet weak fileprivate var posterHeight: NSLayoutConstraint!
-    @IBOutlet weak fileprivate var titleLabel: TitleLabel!
 
-    @IBOutlet var descriptionLabels: [DescriptionLabel]! {
+    enum MovieType {
+        case stored(StoredMovie)
+        case network(Movie)
+    }
+
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: TitleLabel!
+
+    @IBOutlet private var descriptionLabels: [DescriptionLabel]! {
         didSet {
             for label in descriptionLabels {
                 label.textColor = UIColor.basicBackground
             }
         }
     }
-    @IBOutlet weak fileprivate var detailScrollView: UIScrollView!
-    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+    @IBOutlet private weak var detailScrollView: UIScrollView!
+    @IBOutlet private weak var releaseDateLabel: DescriptionLabel!
+    @IBOutlet private weak var runtimeLabel: DescriptionLabel!
+    @IBOutlet private weak var votingLabel: DescriptionLabel! {
         didSet {
             votingLabel.textColor = UIColor.black
         }
     }
 
-    @IBOutlet var moreInformationButton: ActionButton!
-    @IBOutlet var seenButton: ActionButton!
-    @IBOutlet var mustSeeButton: ActionButton!
-    @IBOutlet var deleteButton: ActionButton!
+    @IBOutlet private weak var moreInformationButton: ActionButton!
+    @IBOutlet private weak var seenButton: ActionButton!
+    @IBOutlet private weak var mustSeeButton: ActionButton!
+    @IBOutlet private weak var deleteButton: ActionButton!
 
-    @IBOutlet weak fileprivate var descriptionTextView: UITextView! {
+    @IBOutlet private weak var descriptionTextView: UITextView! {
         didSet {
             descriptionTextView.isEditable = false
         }
     }
 
-    var type: MovieDetailType = .search {
+    private var type: MovieDetailType = .search {
         didSet {
             updateDetail(for: type)
         }
     }
 
-    var storageManager: MovieStorage?
+    private var storageManager: MovieStorage?
 
-    var movie: Movie? {
+    private var movie: MovieType? {
         didSet {
             guard let movie = movie else { return }
 
-            if oldValue?.id != movie.id {
-                loadDetails(for: movie)
+            switch movie {
+            case .stored(let storedMovie):
+                setupUI(for: storedMovie)
+            case .network(let networkMovie):
+                loadDetails(for: networkMovie)
             }
         }
     }
 
-    var storedMovie: StoredMovie? {
-        didSet {
-            if let movie = storedMovie {
-                setupUI(for: movie)
-            }
-        }
-    }
-
-    var moviePoster: UIImage? {
+    private var moviePoster: UIImage? {
         didSet {
             DispatchQueue.main.async {
                 guard let poster = self.moviePoster else { return }
@@ -103,58 +104,82 @@ class MovieDetailViewController: UIViewController {
         moreInformationButton.setTitle(String.moreInformation, for: .normal)
     }
 
+    func configure(with selectedMovie: MovieType,
+                   type: MovieDetailType,
+                   storageManager: MovieStorage) {
+        movie = selectedMovie
+        self.type = type
+        self.storageManager = storageManager
+    }
+
     // MARK: - Actions
 
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        saveMovie(withWatched: false)
+        saveMovie(asWatched: false)
     }
 
     @IBAction func seenButtonTouched(_ sender: UIButton) {
-        saveMovie(withWatched: true)
+        saveMovie(asWatched: true)
     }
 
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
         deleteMovie()
     }
 
+    @IBAction func showMoreInformation(_ sender: UIButton) {
+        guard let url = generateMovieURL() else { return }
+
+        let safariVC = CustomSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
+
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
+            guard let movie = movie else { return }
+
             let posterVC = segue.destination as? PosterViewController
-            if let storedMovie = storedMovie,
-                let poster = storedMovie.poster {
-                posterVC?.image = UIImage(data: poster)
-                posterVC?.posterPath = storedMovie.posterPath
-            } else if let movie = movie {
-                posterVC?.image = movie.poster
-                posterVC?.posterPath = movie.posterPath
+            switch movie {
+            case .network(let movie):
+                guard let poster = movie.poster,
+                    let posterPath = movie.posterPath
+                    else { return }
+
+                posterVC?.configure(with: poster,
+                                    posterPath: posterPath)
+            case .stored(let movie):
+                guard let poster = movie.poster,
+                    let image = UIImage(data: poster),
+                    let posterPath = movie.posterPath
+                    else { return }
+
+                posterVC?.configure(with: image,
+                                    posterPath: posterPath)
             }
         default:
             break
         }
     }
 
+    // MARK: - Gesture Recognizer
+
     @objc
     func showPoster() {
-        if posterImageView.image != UIImage.posterPlaceholder {
-            perform(segue: .showPosterFromMovieDetail, sender: nil)
-        }
-    }
-
-    @IBAction func showMoreInformation(_ sender: UIButton) {
-        guard let url = generateMovieURL() else { return }
-
-        let safariVC = CustomSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
+        guard posterImageView.image != UIImage.posterPlaceholder else { return }
+        perform(segue: .showPosterFromMovieDetail, sender: nil)
     }
 
     @objc
     func shareMovie(_ sender: UIBarButtonItem) {
         var title: String?
+        guard let movie = movie else { return }
 
-        if let movie = storedMovie {
+        switch movie {
+        case .network(let movie):
             title = movie.title
-        } else if let movie = movie {
+        case .stored(let movie):
             title = movie.title
         }
 
@@ -172,56 +197,54 @@ class MovieDetailViewController: UIViewController {
             UIActivityViewController(activityItems: items,
                                      applicationActivities: nil)
 
-        present(activityController, animated: true, completion: nil)
+        present(activityController, animated: true)
     }
 
     // MARK: - Private
 
     fileprivate func setupLocalization() {
-        seenButton.setTitle(String.seen, for: .normal)
-        mustSeeButton.setTitle(String.wantToSee, for: .normal)
+        seenButton.setTitle(String.seenAction, for: .normal)
+        mustSeeButton.setTitle(String.watchlistAction, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
     }
 
     fileprivate func generateMovieURL() -> URL? {
-        var movieUrl = Config.Backend.shareMovieUrl
+        var movieUrl = Constants.Backend.shareMovieUrl
 
-        if let movie = storedMovie {
+        guard let movie = movie else { return nil }
+
+        switch movie {
+        case .network(let movie):
             movieUrl += "\(movie.id)"
-        } else if let movie = movie {
+        case .stored(let movie):
             movieUrl += "\(movie.id)"
-        } else {
-            preconditionFailure("Either movie or storedMovie must be set to generate share movie url")
         }
 
         return URL(string: movieUrl)
     }
 
-    fileprivate func saveMovie(withWatched watched: Bool) {
-        guard let storageManager = storageManager else { return }
+    fileprivate func saveMovie(asWatched watched: Bool) {
+        guard let storageManager = storageManager,
+            let movie = movie
+            else { return }
 
-        if let movie = movie {
-            storageManager.insertMovieItem(with: movie,
-                                           watched: watched) { result in
+        switch movie {
+        case .network(let movie):
+            storageManager.insertMovieItem(with: movie, watched: watched) { result in
                 switch result {
                 case .error:
-                    DispatchQueue.main.async {
-                        self.showAlert(withMessage: Alert.insertMovieError)
-                    }
+                    self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true)
                     }
                 }
             }
-        } else if let storedMovie = storedMovie {
-            storageManager.updateMovieItem(with: storedMovie,
-                                           watched: watched) { result in
+        case .stored(let movie):
+            storageManager.updateMovieItem(with: movie, watched: watched) { result in
                 switch result {
                 case .error:
-                    DispatchQueue.main.async {
-                        self.showAlert(withMessage: Alert.updateMovieError)
-                    }
+                    self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
@@ -232,15 +255,16 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func deleteMovie() {
-        guard let storageManager = storageManager else { return }
+        guard let storageManager = storageManager,
+            let movie = movie,
+            case let .stored(storedMovie) = movie
+            else { return }
 
-        if let storedMovie = storedMovie {
-            storageManager.remove(storedMovie) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
-
+        storageManager.remove(storedMovie) { result in
+            switch result {
+            case .error:
+                self.showAlert(withMessage: Alert.deleteMovieError)
+            case .success:
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -260,7 +284,7 @@ class MovieDetailViewController: UIViewController {
             mustSeeButton.isHidden = false
             seenButton.isHidden = true
             deleteButton.isHidden = false
-        case .wantToSee:
+        case .watchlist:
             mustSeeButton.isHidden = true
             seenButton.isHidden = false
             deleteButton.isHidden = false
@@ -279,7 +303,7 @@ class MovieDetailViewController: UIViewController {
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
-            self.movie = detailedMovie
+            self.movie = .network(detailedMovie)
             self.setupUI(for: detailedMovie)
         }
     }
@@ -323,14 +347,14 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let wantToSeeAction = UIPreviewAction(title: String.wantToSee,
+        let watchlistAction = UIPreviewAction(title: String.watchlistAction,
                                               style: .default) { _, _ -> Void in
-            self.saveMovie(withWatched: false)
+            self.saveMovie(asWatched: false)
         }
 
-        let seenAction = UIPreviewAction(title: String.seen,
+        let seenAction = UIPreviewAction(title: String.seenAction,
                                          style: .default) { _, _ -> Void in
-            self.saveMovie(withWatched: true)
+            self.saveMovie(asWatched: true)
         }
 
         let deleteAction = UIPreviewAction(title: String.deleteActionLong,
@@ -340,11 +364,11 @@ class MovieDetailViewController: UIViewController {
 
         switch type {
         case .seen:
-            return [wantToSeeAction, deleteAction]
-        case .wantToSee:
+            return [watchlistAction, deleteAction]
+        case .watchlist:
             return [seenAction, deleteAction]
         case .search:
-            return [wantToSeeAction, seenAction]
+            return [watchlistAction, seenAction]
         }
 
     }

@@ -1,5 +1,5 @@
 //
-//  TextView.swift
+//  DescriptionTextView.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 07.01.18.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-public class DescriptionTextView: UITextView {
+class DescriptionTextView: UITextView {
     private let paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7
         return style
     }()
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 
     // swiftlint:disable:next implicitly_unwrapped_optional
-    override public var text: String! {
+    override var text: String! {
         didSet {
             setup()
 

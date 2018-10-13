@@ -9,13 +9,13 @@
 import UIKit
 
 class PosterViewController: UIViewController {
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var blurredBackgroundImage: UIImageView!
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet var toolbarBackgroundView: UIView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var blurredBackgroundImage: UIImageView!
+    @IBOutlet private weak var backgroundView: UIView!
+    @IBOutlet private weak var toolbarBackgroundView: UIView!
 
-    @IBOutlet var toolbar: UIToolbar! {
+    @IBOutlet private weak var toolbar: UIToolbar! {
         didSet {
             toolbar.setBackgroundImage(UIImage(),
                                        forToolbarPosition: .any,
@@ -27,11 +27,11 @@ class PosterViewController: UIViewController {
         }
     }
 
-    var image: UIImage?
-    var posterPath: String?
+    private var image: UIImage?
+    private var posterPath: String?
 
-    var originalPosition: CGPoint?
-    var currentPositionTouched: CGPoint?
+    private var originalPosition: CGPoint?
+    private var currentPositionTouched: CGPoint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,16 +80,18 @@ class PosterViewController: UIViewController {
 
     }
 
+    func configure(with image: UIImage, posterPath: String) {
+        self.image = image
+        self.posterPath = posterPath
+    }
+
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     @objc
     func handleOneTap(recognizer: UITapGestureRecognizer) {
-        backgroundView.isHidden =
-            backgroundView.isHidden
-            ? false
-            : true
+        backgroundView.isHidden.toggle()
     }
 
     @objc

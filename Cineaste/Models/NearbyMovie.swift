@@ -6,25 +6,21 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import UIKit
-
-struct NearbyMovie: Codable, Hashable {
+struct NearbyMovie: Hashable {
     let id: Int64
-    let posterPath: String?
     let title: String
+    let posterPath: String?
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case posterPath = "poster_path"
-        case title
+    var hashValue: Int {
+        return id.hashValue
     }
 
-    init (id: Int64, title: String, posterPath: String?) {
-        self.id = id
-        self.title = title
-        self.posterPath = posterPath
+    static func == (lhs: NearbyMovie, rhs: NearbyMovie) -> Bool {
+        return lhs.id == rhs.id
     }
+}
 
+extension NearbyMovie: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int64.self, forKey: .id)
@@ -35,15 +31,13 @@ struct NearbyMovie: Codable, Hashable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(posterPath, forKey: .posterPath)
         try container.encode(title, forKey: .title)
+        try container.encodeIfPresent(posterPath, forKey: .posterPath)
     }
 
-    var hashValue: Int {
-        return id.hashValue
-    }
-
-    static func == (lhs: NearbyMovie, rhs: NearbyMovie) -> Bool {
-        return lhs.id == rhs.id
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case posterPath = "poster_path"
     }
 }

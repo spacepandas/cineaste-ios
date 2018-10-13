@@ -15,39 +15,36 @@ extension MoviesViewController {
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
         let newCategory: MovieListCategory =
             category == .seen
-                ? .wantToSee
+                ? .watchlist
                 : .seen
         let newWatchedValue = newCategory == .seen
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.action) { _, _ in
-            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue, handler: { result in
+            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
                 }
-            })
+            }
         }
         action.backgroundColor = UIColor.basicYellow
 
         return action
     }
 
+    // swiftlint:disable:next discouraged_optional_collection
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[editActionsForRowAt.row]
+        let movie = fetchedResultsManager.movies[editActionsForRowAt.row]
 
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
         let deleteAction = UITableViewRowAction(style: .destructive, title: String.deleteAction) { _, _ in
-            self.storageManager?.remove(movie, handler: { result in
+            self.storageManager?.remove(movie) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                     return
                 }
-            })
+            }
         }
         deleteAction.backgroundColor = UIColor.primaryOrange
 
@@ -60,7 +57,7 @@ extension MoviesViewController {
     func action(for category: MovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
         let newCategory: MovieListCategory =
             category == .seen
-                ? .wantToSee
+                ? .watchlist
                 : .seen
         let newWatchedValue = newCategory == .seen
 
@@ -86,21 +83,13 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[indexPath.row]
+        let movie = fetchedResultsManager.movies[indexPath.row]
         return action(for: category, with: movie)
     }
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let movies = fetchedResultsManager.controller?.fetchedObjects else {
-            fatalError("Failure in loading fetchedObject")
-        }
-
-        let movie = movies[indexPath.row]
+        let movie = fetchedResultsManager.movies[indexPath.row]
 
         let deleteAction = UIContextualAction(style: .destructive,
                                               title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in

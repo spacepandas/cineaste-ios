@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ActionButton: UIButton {
+class Button: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -19,27 +19,23 @@ public class ActionButton: UIButton {
         setup()
     }
 
+    func setup() {
+        fatalError("Override this method in your subclass")
+    }
+}
+
+class ActionButton: Button {
     public override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title?.uppercased(), for: state)
     }
 
-    func setup() {
+    override func setup() {
         setTitleColor(UIColor.primaryDarkOrange, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
 }
 
-public class StartMovieNightButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
+class StartMovieNightButton: Button {
     public override var isEnabled: Bool {
         didSet {
             setup()
@@ -57,7 +53,7 @@ public class StartMovieNightButton: UIButton {
         }
     }
 
-    func setup() {
+    override func setup() {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 
         if isEnabled {

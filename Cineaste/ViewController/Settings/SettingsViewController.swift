@@ -9,14 +9,14 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
-    @IBOutlet var footerView: UIView!
-    @IBOutlet var versionInfo: DescriptionLabel! {
+    @IBOutlet private weak var footerView: UIView!
+    @IBOutlet private weak var versionInfo: DescriptionLabel! {
         didSet {
             versionInfo.textColor = .accentTextOnBlack
         }
     }
 
-    let settings = SettingItem.all
+    let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
 
     lazy var fetchedResultsManager = FetchedResultsManager()
@@ -65,11 +65,8 @@ class SettingsViewController: UITableViewController {
             guard let selected = selectedSetting else { return }
 
             let vc = segue.destination as? SettingsDetailViewController
-            vc?.title = selected.title
-            vc?.textViewContent =
-                selected == SettingItem.licence
-                ? TextViewType.licence
-                : TextViewType.imprint
+            vc?.configure(with: selected.title,
+                          textViewContent: selected == .licence ? .licence : .imprint)
         default:
             return
         }
@@ -77,52 +74,37 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Import and Export
 
-    func prepareForImport(completionHandler handler: @escaping () -> Void) {
-        setupFetchedResultManager()
+    func prepareForImport(completionHandler completion: @escaping (Bool) -> Void) {
+        fetchedResultsManager.refetch()
 
-        if let objects = fetchedResultsManager.controller?.fetchedObjects,
-            !objects.isEmpty {
+        if fetchedResultsManager.movies.isEmpty {
+            completion(true)
+        } else {
             //database is not empty, ask if user is sure to import new data
             showAlert(withMessage: Alert.askingForImport, defaultActionHandler: {
-                handler()
+                completion(true)
+            }, cancelActionHandler: {
+                completion(false)
             })
-        } else {
-            handler()
         }
     }
 
-    func saveMoviesLocally(completionHandler handler: @escaping (URL) -> Void) {
-        setupFetchedResultManager()
+    func saveMoviesLocally(completionHandler completion: @escaping (URL) -> Void) {
+        fetchedResultsManager.refetch()
 
-        guard let objects = fetchedResultsManager.controller?.fetchedObjects,
-            !objects.isEmpty else {
-                //database is empty, inform user that export is not useful
-                showAlert(withMessage: Alert.exportEmptyData)
-                return
+        guard !fetchedResultsManager.movies.isEmpty else {
+            //database is empty, inform user that an export is not useful
+            showAlert(withMessage: Alert.exportEmptyData)
+            return
         }
 
-        fetchedResultsManager.exportMoviesList { result in
-            switch result {
-            case .error:
-                DispatchQueue.main.async {
-                    self.showAlert(withMessage: Alert.exportFailedInfo)
-                    return
-                }
-            case .success:
-                guard let path = self.fetchedResultsManager.exportMoviesPath
-                    else { return }
-                handler(path)
-            }
-        }
-    }
-
-    private func setupFetchedResultManager() {
-        if fetchedResultsManager.controller == nil {
-            fetchedResultsManager.setup(with: nil)
-        } else {
-            if fetchedResultsManager.controller?.fetchRequest.predicate != nil {
-                fetchedResultsManager.refetch(for: nil)
-            }
+        do {
+            try fetchedResultsManager.exportMoviesList()
+            guard let path = fetchedResultsManager.exportMoviesPath
+                else { return }
+            completion(URL(fileURLWithPath: path))
+        } catch {
+            showAlert(withMessage: Alert.exportFailedInfo)
         }
     }
 
@@ -135,7 +117,7 @@ class SettingsViewController: UITableViewController {
             documentPickerVC.allowsMultipleSelection = false
         }
 
-        present(documentPickerVC, animated: true, completion: nil)
+        present(documentPickerVC, animated: true)
     }
 
     func showUIToExportMovies(with path: URL, on rect: CGRect) {

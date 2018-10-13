@@ -9,11 +9,11 @@
 import Foundation
 
 enum UserDefaultsManager {
-    static func getUsername() -> String? {
-        return UserDefaults.standard.string(forKey: Config.UserDefaults.usernameKey)
-    }
+    static var username = UserDefaults.standard
+        .string(forKey: Constants.UserDefaults.usernameKey)
 
     static func setUsername(_ username: String) {
-        UserDefaults.standard.set(username, forKey: Config.UserDefaults.usernameKey)
+        UserDefaults.standard
+            .set(username, forKey: Constants.UserDefaults.usernameKey)
     }
 }

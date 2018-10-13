@@ -20,15 +20,15 @@ extension String {
     static let errorTitle = NSLocalizedString("error", comment: "Title for error alert")
 
     // MARK: ACTION BUTTONS
-    static let wantToSee = NSLocalizedString("wantToSee.width", comment: "Title for must see movie button").forWidth
-    static let seen = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
+    static let watchlistAction = NSLocalizedString("wantToSee.width", comment: "Title for must see movie button").forWidth
+    static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
     static let moreInformation = NSLocalizedString("moreInformation", comment: "Title for the more information button")
 
     // MARK: VIEWCONTROLLER TITLE
-    static let wantToSeeList = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
-    static let seenList = NSLocalizedString("history", comment: "Title for seen movie list")
+    static let watchlist = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
+    static let seen = NSLocalizedString("history", comment: "Title for seen movie list")
     static let movieNightTitle = NSLocalizedString("movieNight", comment: "Title for movie night viewController")
     static let settingsTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
 

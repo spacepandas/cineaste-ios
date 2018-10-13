@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchMoviesCellDelegate: class {
+protocol SearchMoviesCellDelegate: AnyObject {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
 }
 
@@ -25,25 +25,25 @@ class SearchMoviesCell: UITableViewCell {
         }
     }
 
-    @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: TitleLabel!
-    @IBOutlet var separatorView: UIView! {
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
 
-    @IBOutlet var releaseDate: DescriptionLabel!
+    @IBOutlet weak var releaseDate: DescriptionLabel!
 
     @IBOutlet weak var seenButton: ActionButton! {
         didSet {
-            seenButton.setTitle(String.seen, for: .normal)
+            seenButton.setTitle(String.seenAction, for: .normal)
         }
     }
 
     @IBOutlet weak var mustSeeButton: ActionButton! {
         didSet {
-            mustSeeButton.setTitle(String.wantToSee, for: .normal)
+            mustSeeButton.setTitle(String.watchlistAction, for: .normal)
         }
     }
 

@@ -11,15 +11,15 @@ import UIKit
 class SeenMovieCell: UITableViewCell {
     static let identifier = "SeenMovieCell"
 
-    @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: TitleLabel!
-    @IBOutlet var separatorView: UIView! {
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
-    @IBOutlet var watched: DescriptionLabel!
-    @IBOutlet var watchedIcon: UIImageView! {
+    @IBOutlet weak var watched: DescriptionLabel!
+    @IBOutlet weak var watchedIcon: UIImageView! {
         didSet {
             watchedIcon.tintColor = UIColor.accentTextOnWhite
         }

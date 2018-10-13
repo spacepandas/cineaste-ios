@@ -25,58 +25,18 @@ class MoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(moviesVC.fetchedResultsManager.delegate)
     }
 
-    func testPrepareForSegueShouldInjectCorrectContentToSearchVC() {
-        let naviTargetViewController = SearchMoviesViewController.instantiateInNavigationController()
-        let targetViewController = naviTargetViewController.viewControllers.first as! SearchMoviesViewController
-        let targetSegue = UIStoryboardSegue(
-            identifier: Segue.showSearchFromMovieList.rawValue,
-            source: moviesVC,
-            destination: naviTargetViewController)
-        moviesVC.storageManager = MovieStorage()
-
-        XCTAssertNil(targetViewController.storageManager)
-
-        //inject storageManager
-        moviesVC.prepare(for: targetSegue, sender: moviesVC)
-
-        XCTAssertNotNil(targetViewController.storageManager)
-    }
-
-    func testPrepareForSegueShouldInjectCorrectContentToMovieDetailVC() {
-        let targetViewController = MovieDetailViewController.instantiate()
-        let targetSegue = UIStoryboardSegue(
-            identifier: Segue.showMovieDetail.rawValue,
-            source: moviesVC,
-            destination: targetViewController)
-        moviesVC.storageManager = MovieStorage()
-
-        XCTAssertNil(targetViewController.storedMovie)
-        XCTAssertNil(targetViewController.storageManager)
-
-        //inject selectedMovie
-        moviesVC.selectedMovie = storedMovie
-        moviesVC.prepare(for: targetSegue, sender: moviesVC)
-
-        XCTAssertEqual(targetViewController.storedMovie, storedMovie)
-        XCTAssertNotNil(targetViewController.storageManager)
-    }
-
     func testSettingCategoryShouldChangeTitleOfVC() {
         let seenTitle = MovieListCategory.seen.title
         moviesVC.category = .seen
         XCTAssertEqual(moviesVC.title, seenTitle)
 
-        let wantToSeeTitle = MovieListCategory.wantToSee.title
-        moviesVC.category = .wantToSee
+        let wantToSeeTitle = MovieListCategory.watchlist.title
+        moviesVC.category = .watchlist
         XCTAssertEqual(moviesVC.title, wantToSeeTitle)
     }
 
     func testEmptyListShouldHideTableView() {
         XCTAssertNotNil(tableView.backgroundView)
-
-        moviesVC.showEmptyState(nil) {
-            XCTAssertFalse(self.tableView.backgroundView!.isHidden)
-        }
 
         moviesVC.showEmptyState(true) {
             XCTAssertFalse(self.tableView.backgroundView!.isHidden)
@@ -88,10 +48,10 @@ class MoviesViewControllerTests: XCTestCase {
     }
 
     func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
-        if moviesVC.fetchedResultsManager.controller?.fetchedObjects?.isEmpty ?? true {
+        if moviesVC.fetchedResultsManager.movies.isEmpty {
             XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         } else {
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.controller?.fetchedObjects?.count)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.movies.count)
         }
     }
 

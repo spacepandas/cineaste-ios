@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Config {
+enum Constants {
     enum Backend {
         static let url = "https://api.themoviedb.org/3"
         static let shareMovieUrl = "https://www.themoviedb.org/movie/"

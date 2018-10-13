@@ -9,21 +9,21 @@
 import UIKit
 
 class MovieMatchViewController: UIViewController {
-    @IBOutlet weak var matchedMoviesTableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            matchedMoviesTableView.dataSource = self
-            matchedMoviesTableView.allowsSelection = false
-            matchedMoviesTableView.backgroundColor = UIColor.basicBackground
+            tableView.dataSource = self
 
-            matchedMoviesTableView.tableFooterView = UIView(frame: CGRect.zero)
+            tableView.allowsSelection = false
+            tableView.backgroundColor = UIColor.basicBackground
+
+            tableView.tableFooterView = UIView()
         }
     }
 
-    fileprivate var nearbyMovieOccurrences: [NearbyMovie: NearbyMovieWithOccurrence] = [:]
-    var sortedMoviesWithOccurrence = [NearbyMovieWithOccurrence]()
-    var totalNumberOfPeople: Int = 0
+    private var moviesWithNumber: [(NearbyMovie, Int)] = []
+    private var totalNumberOfPeople: Int = 0
 
-    var storageManager: MovieStorage?
+    private var storageManager: MovieStorage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,37 +31,51 @@ class MovieMatchViewController: UIViewController {
         title = String.resultsForMovieNight
     }
 
-    func configure(with messagesToMatch: [NearbyMessage]) {
+    func configure(with messagesToMatch: [NearbyMessage], storageManager: MovieStorage) {
         totalNumberOfPeople = messagesToMatch.count
-        for message in messagesToMatch {
-            for movie in message.movies {
-                if nearbyMovieOccurrences[movie] == nil {
-                    nearbyMovieOccurrences[movie] =
-                        NearbyMovieWithOccurrence(occurances: 1,
-                                                  nearbyMovie: movie)
+        self.storageManager = storageManager
+
+        var moviesWithNumberDict: [NearbyMovie: Int] = [:]
+
+        for movies in messagesToMatch {
+            for movie in movies.movies {
+                if let number = moviesWithNumberDict[movie] {
+                    moviesWithNumberDict[movie] = number + 1
                 } else {
-                    nearbyMovieOccurrences[movie]?.occurances += 1
+                    moviesWithNumberDict[movie] = 1
                 }
             }
         }
 
-        orderMatchedMoviesByOccurance()
-    }
-
-    fileprivate func orderMatchedMoviesByOccurance() {
-        let movies = Array(nearbyMovieOccurrences.values)
-        sortedMoviesWithOccurrence = movies.sorted { leftSide, rightSide -> Bool in
-            leftSide.occurances > rightSide.occurances
+        moviesWithNumber = moviesWithNumberDict.sorted {
+            // first sort by number, second sort by title
+            ($0.value, $1.key.title) > ($1.value, $0.key.title)
         }
     }
 }
 
+extension MovieMatchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return moviesWithNumber.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
+
+        let movieWithNumber = moviesWithNumber[indexPath.row]
+        cell.configure(with: movieWithNumber.0,
+                       numberOfMatches: movieWithNumber.1,
+                       amountOfPeople: totalNumberOfPeople,
+                       delegate: self)
+
+        return cell
+    }
+}
+
 extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
-    func movieMatchTableViewCell(sender: MovieMatchCell,
-                                 didSelectMovie selectedMovie: NearbyMovieWithOccurrence,
-                                 withPoster poster: UIImage?) {
-        let movieForRequest = Movie(id: selectedMovie.nearbyMovie.id,
-                                    title: selectedMovie.nearbyMovie.title)
+    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?) {
+        let movieForRequest = Movie(id: movie.id,
+                                    title: movie.title)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
             case .success(let movie):
@@ -71,7 +85,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
                 storageManager.insertMovieItem(with: movie, watched: true)
 
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true)
                 }
             case .error:
                 self.showAlert(withMessage: Alert.loadingDataError)

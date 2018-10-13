@@ -8,26 +8,31 @@
 
 import UIKit
 
-struct NearbyMessage: Codable, Equatable, Hashable {
-
+struct NearbyMessage: Codable {
     let userName: String
     let deviceId: String
     let movies: [NearbyMovie]
+}
 
-    static func create(withUsername username: String, movies: [NearbyMovie]) -> NearbyMessage {
-        guard let deviceId = UIDevice.current.identifierForVendor else {
-            fatalError("Unable to get UUID")
-        }
-        return NearbyMessage(userName: username,
-                             deviceId: deviceId.description,
-                             movies: movies)
+extension NearbyMessage {
+    init?(with userName: String, movies: [NearbyMovie]) {
+        guard let deviceId = UIDevice.current.identifierForVendor?.description
+            else { fatalError("Unable to get UUID") }
+
+        self.userName = userName
+        self.deviceId = deviceId
+        self.movies = movies
     }
+}
 
+extension NearbyMessage: Hashable {
+    var hashValue: Int {
+        return userName.hashValue ^ deviceId.hashValue
+    }
+}
+
+extension NearbyMessage: Equatable {
     static func == (lhs: NearbyMessage, rhs: NearbyMessage) -> Bool {
         return lhs.deviceId == rhs.deviceId
-    }
-
-    var hashValue: Int {
-       return userName.hashValue ^ deviceId.hashValue
     }
 }

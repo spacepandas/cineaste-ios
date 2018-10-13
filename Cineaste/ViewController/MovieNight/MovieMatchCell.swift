@@ -8,40 +8,41 @@
 
 import UIKit
 
-protocol MovieMatchTableViewCellDelegate: class {
-    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie selectedMovie: NearbyMovieWithOccurrence, withPoster poster: UIImage?)
+protocol MovieMatchTableViewCellDelegate: AnyObject {
+    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?)
 }
 
 class MovieMatchCell: UITableViewCell {
     static let identifier = "MovieMatchTableViewCell"
 
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var separatorView: UIView! {
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
 
-    @IBOutlet weak var movieTitelLabel: TitleLabel!
-    @IBOutlet weak var numberOfMatchesLabel: DescriptionLabel!
-    @IBOutlet weak var seenButton: ActionButton!
+    @IBOutlet private weak var movieTitelLabel: TitleLabel!
+    @IBOutlet private weak var numberOfMatchesLabel: DescriptionLabel!
+    @IBOutlet private weak var seenButton: ActionButton!
 
-    fileprivate var nearbyMovie: NearbyMovieWithOccurrence?
-    fileprivate weak var delegate: MovieMatchTableViewCellDelegate?
+    private var nearbyMovie: NearbyMovie?
+    private weak var delegate: MovieMatchTableViewCellDelegate?
 
-    func configure(with movieWithOccurance: NearbyMovieWithOccurrence,
+    func configure(with movie: NearbyMovie,
+                   numberOfMatches: Int,
                    amountOfPeople: Int,
                    delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
         seenButton.setTitle(.startMovieNight, for: .normal)
-        nearbyMovie = movieWithOccurance
-        movieTitelLabel.text = movieWithOccurance.nearbyMovie.title
+        nearbyMovie = movie
+        movieTitelLabel.text = movie.title
         seenButton.addTarget(self,
-                             action: #selector(startMovienightButtonTouched(_:)),
+                             action: #selector(startMovieNightButtonTouched(_:)),
                              for: .touchUpInside)
 
-        if let posterPath = movieWithOccurance.nearbyMovie.posterPath {
+        if let posterPath = movie.posterPath {
             let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
             posterImageView.kf.setImage(with: posterUrl,
                                         placeholder: UIImage.posterPlaceholder)
@@ -49,17 +50,16 @@ class MovieMatchCell: UITableViewCell {
             posterImageView.image = UIImage.posterPlaceholder
         }
 
-        numberOfMatchesLabel.text = String.matches(for: movieWithOccurance.occurances,
-                                                    amountOfPeople: amountOfPeople)
+        numberOfMatchesLabel.text = String.matches(for: numberOfMatches,
+                                                   amountOfPeople: amountOfPeople)
     }
 
     // MARK: - Actions
 
     @objc
-    func startMovienightButtonTouched(_ sender: UIButton) {
-        guard let nearbyMovie = nearbyMovie else {
-            fatalError("Nearbymovie must be set for starting a movienight")
-        }
+    func startMovieNightButtonTouched(_ sender: UIButton) {
+        guard let nearbyMovie = nearbyMovie else { return }
+
         delegate?.movieMatchTableViewCell(sender: self,
                                           didSelectMovie: nearbyMovie,
                                           withPoster: posterImageView.image)

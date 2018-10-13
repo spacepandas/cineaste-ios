@@ -10,20 +10,20 @@ import UIKit
 import SafariServices
 
 class SettingsDetailViewController: UIViewController {
-    @IBOutlet var settingsDetailTextView: DescriptionTextView! {
+    @IBOutlet weak var settingsDetailTextView: DescriptionTextView! {
         didSet {
             settingsDetailTextView.delegate = self
             update(textViewContent)
         }
     }
 
-    @IBOutlet var movieDBImageView: UIImageView! {
+    @IBOutlet private weak var movieDBImageView: UIImageView! {
         didSet {
             movieDBImageView.isHidden = true
         }
     }
 
-    var textViewContent: TextViewType = .imprint {
+    private var textViewContent: TextViewType = .imprint {
         didSet {
             if oldValue != textViewContent {
                 update(textViewContent)
@@ -39,10 +39,9 @@ class SettingsDetailViewController: UIViewController {
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        //scroll textview to top
-        settingsDetailTextView.setContentOffset(CGPoint(x: 0, y: 0),
-                                                animated: false)
+    func configure(with title: String, textViewContent: TextViewType) {
+        self.title = title
+        self.textViewContent = textViewContent
     }
 
     private func update(_ type: TextViewType) {
@@ -63,7 +62,7 @@ extension SettingsDetailViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
         let safariVC = CustomSafariViewController(url: URL)
-        present(safariVC, animated: true, completion: nil)
+        present(safariVC, animated: true)
 
         return false
     }

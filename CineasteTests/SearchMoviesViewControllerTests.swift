@@ -16,46 +16,46 @@ class SearchMoviesViewControllerTests: XCTestCase {
         super.setUp()
 
         self.searchMoviesVC.movies = []
-        searchMoviesVC.moviesTableView.reloadData()
+        searchMoviesVC.tableView.reloadData()
     }
 
     func testTableViewDelegateAndDataSourceShouldNotBeNil() {
         searchMoviesVC.viewDidLoad()
 
-        XCTAssertNotNil(searchMoviesVC.moviesTableView.delegate)
-        XCTAssertNotNil(searchMoviesVC.moviesTableView.dataSource)
+        XCTAssertNotNil(searchMoviesVC.tableView.delegate)
+        XCTAssertNotNil(searchMoviesVC.tableView.dataSource)
     }
     
     func testBackgroundColorShouldBeSetCorrectly() {
         searchMoviesVC.viewDidLoad()
 
         XCTAssertEqual(searchMoviesVC.view.backgroundColor, UIColor.basicBackground)
-        XCTAssertEqual(searchMoviesVC.moviesTableView.backgroundColor, UIColor.clear)
+        XCTAssertEqual(searchMoviesVC.tableView.backgroundColor, UIColor.clear)
     }
     
     func testNumberOfRowsShouldEqualNumberOfMovies() {
-        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfRows(inSection: 0), 0)
+        XCTAssertEqual(searchMoviesVC.tableView.numberOfRows(inSection: 0), 0)
 
         searchMoviesVC.movies = movies
-        searchMoviesVC.moviesTableView.reloadData()
+        searchMoviesVC.tableView.reloadData()
 
-        XCTAssertEqual(searchMoviesVC.moviesTableView.numberOfRows(inSection: 0), 2)
+        XCTAssertEqual(searchMoviesVC.tableView.numberOfRows(inSection: 0), 2)
     }
 
     func testCellForRowShouldBeOfTypeSearchMoviesCell() {
         searchMoviesVC.movies = movies
-        searchMoviesVC.moviesTableView.reloadData()
+        searchMoviesVC.tableView.reloadData()
 
         for row in 0..<movies.count {
             let path = IndexPath(row: row, section: 0)
-            let cell = searchMoviesVC.moviesTableView.cellForRow(at: path)
+            let cell = searchMoviesVC.tableView.cellForRow(at: path)
 
             XCTAssert(cell is SearchMoviesCell)
         }
     }
 
     func testDequeueReusableCellWithSearchMoviesCellIdentifierShouldReturnTableViewCell() {
-        let tableView = searchMoviesVC.moviesTableView!
+        let tableView = searchMoviesVC.tableView!
 
         // important:
         // use dequeueReusableCell:withIdentifier for this test, this method

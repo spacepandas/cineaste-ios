@@ -11,17 +11,17 @@ import UIKit
 class MovieListCell: UITableViewCell {
     static let identifier = "MovieListCell"
 
-    @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: TitleLabel!
-    @IBOutlet var separatorView: UIView! {
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
 
-    @IBOutlet var votes: DescriptionLabel!
-    @IBOutlet var runtime: DescriptionLabel!
-    @IBOutlet var releaseDate: DescriptionLabel!
+    @IBOutlet weak var votes: DescriptionLabel!
+    @IBOutlet weak var runtime: DescriptionLabel!
+    @IBOutlet weak var releaseDate: DescriptionLabel!
 
     func configure(with movie: StoredMovie) {
         if let moviePoster = movie.poster {

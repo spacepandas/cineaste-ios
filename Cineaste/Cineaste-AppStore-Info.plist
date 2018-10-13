@@ -20,12 +20,12 @@
 	<string>1.3.0</string>
 	<key>CFBundleVersion</key>
 	<string>345</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth will only be used to discover nearby devices</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>The microphone will only be used to discover nearby devices</string>
+	<string>Microphone</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

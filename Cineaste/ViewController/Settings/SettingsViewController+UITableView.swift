@@ -32,6 +32,7 @@ extension SettingsViewController {
         selectedSetting = settings[indexPath.row]
 
         guard let setting = selectedSetting else { return }
+
         switch setting {
         case .about, .licence:
             guard let segue = setting.segue else { return }
@@ -44,9 +45,13 @@ extension SettingsViewController {
                 }
             }
         case .importMovies:
-            prepareForImport {
+            prepareForImport { success in
                 DispatchQueue.main.async {
-                    self.showUIToImportMovies()
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+
+                    if success {
+                        self.showUIToImportMovies()
+                    }
                 }
             }
         case .contact:
@@ -56,14 +61,14 @@ extension SettingsViewController {
                 mailComposeVC.setSubject("Cineaste iOS || \(versionString())")
                 mailComposeVC.setToRecipients(["ios@spacepandas.de"])
 
-                present(mailComposeVC, animated: true, completion: nil)
+                present(mailComposeVC, animated: true)
             } else {
                 showAlert(withMessage: Alert.noEmailClient)
             }
         case .appStore:
             tableView.deselectRow(at: indexPath, animated: true)
 
-            let writeReviewUrl = "\(Config.appStoreUrl)?action=write-review"
+            let writeReviewUrl = "\(Constants.appStoreUrl)?action=write-review"
             guard let writeReviewURL = URL(string: writeReviewUrl)
                 else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)

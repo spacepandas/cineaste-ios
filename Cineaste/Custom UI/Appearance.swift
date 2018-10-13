@@ -39,11 +39,13 @@ enum Appearance {
         searchBar.barTintColor = .primaryOrange
 
         //change color of cursor
-        let searchField = UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+        let searchField = UITextField
+            .appearance(whenContainedInInstancesOf: [UISearchBar.self])
         searchField.tintColor = .basicBackground
 
         //change tint color in UIAlertController
-        let alertController = UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self])
+        let alertController = UIView
+            .appearance(whenContainedInInstancesOf: [UIAlertController.self])
         alertController.tintColor = .primaryOrange
     }
 }

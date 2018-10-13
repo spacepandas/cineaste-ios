@@ -109,15 +109,15 @@ class MovieStorage {
     func fetchAll() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         let results = try? persistentContainer.viewContext.fetch(request)
-        return results ?? [StoredMovie]()
+        return results ?? []
     }
 
     /// Must be called on main thread because of core data view context
-    func fetchAllWantToSeeMovies() -> [StoredMovie] {
+    func fetchAllWatchlistMovies() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        request.predicate = NSPredicate(format: "watched == %@", NSNumber(value: false) )
-
-        return (try? persistentContainer.viewContext.fetch(request)) ?? [StoredMovie]()
+        request.predicate = MovieListCategory.watchlist.predicate
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
     }
 
     func resetCoreData(completion: @escaping (Error?) -> Void) {
@@ -132,7 +132,6 @@ class MovieStorage {
                 completion(nil)
             } catch {
                 completion(error)
-                print(error)
             }
         }
     }

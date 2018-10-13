@@ -24,8 +24,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone</string>
 	<key>UIApplicationShortcutItems</key>

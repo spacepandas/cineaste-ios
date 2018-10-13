@@ -41,6 +41,7 @@ extension String {
 
     //e.g. "de-DE
     static var languageFormattedForTMDb: String {
-        return Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
+        return Locale.current.identifier
+            .replacingOccurrences(of: "_", with: "-")
     }
 }

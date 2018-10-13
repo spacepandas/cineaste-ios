@@ -10,6 +10,6 @@ import Foundation
 
 enum ShortcutIdentifier: String {
     case startMovieNight
-    case wantToSeeList
-    case seenList
+    case watchlist
+    case seen
 }
