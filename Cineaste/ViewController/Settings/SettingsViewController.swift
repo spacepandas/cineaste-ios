@@ -89,7 +89,7 @@ class SettingsViewController: UITableViewController {
         }
     }
 
-    func saveMoviesLocally(completionHandler handler: @escaping (URL) -> Void) {
+    func saveMoviesLocally(completionHandler completion: @escaping (URL) -> Void) {
         fetchedResultsManager.refetch()
 
         guard !fetchedResultsManager.movies.isEmpty else {
@@ -102,7 +102,7 @@ class SettingsViewController: UITableViewController {
             try fetchedResultsManager.exportMoviesList()
             guard let path = fetchedResultsManager.exportMoviesPath
                 else { return }
-            handler(URL(fileURLWithPath: path))
+            completion(URL(fileURLWithPath: path))
         } catch {
             showAlert(withMessage: Alert.exportFailedInfo)
         }
