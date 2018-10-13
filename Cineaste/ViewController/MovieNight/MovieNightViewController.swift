@@ -155,7 +155,9 @@ class MovieNightViewController: UIViewController {
     // MARK: - Nearby
 
     fileprivate func publishWatchlistMovies() {
-        guard let storageManager = storageManager else { return }
+        guard let storageManager = storageManager,
+            let username = UserDefaultsManager.username
+            else { return }
 
         let nearbyMovies = storageManager
             .fetchAllWatchlistMovies()
@@ -165,8 +167,6 @@ class MovieNightViewController: UIViewController {
                                    title: title,
                                    posterPath: storedMovie.posterPath)
             }
-
-        guard let username = UserDefaultsManager.getUsername() else { return }
 
         let nearbyMessage = NearbyMessage(with: username, movies: nearbyMovies)
         ownNearbyMessage = nearbyMessage
