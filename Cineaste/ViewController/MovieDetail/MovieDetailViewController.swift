@@ -59,8 +59,6 @@ class MovieDetailViewController: UIViewController {
 
     var movie: MovieType? {
         didSet {
-            //TODO: only reload when really changed
-//            let changedMovie = oldValue != movie
             guard let movie = movie else { return }
 
             switch movie {
