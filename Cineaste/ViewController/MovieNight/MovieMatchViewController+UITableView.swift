@@ -10,13 +10,15 @@ import UIKit
 
 extension MovieMatchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedMoviesWithOccurrence.count
+        return moviesWithNumber.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
 
-        cell.configure(with: sortedMoviesWithOccurrence[indexPath.row],
+        let movieWithNumber = moviesWithNumber[indexPath.row]
+        cell.configure(with: movieWithNumber.0,
+                       numberOfMatches: movieWithNumber.1,
                        amountOfPeople: totalNumberOfPeople,
                        delegate: self)
 
