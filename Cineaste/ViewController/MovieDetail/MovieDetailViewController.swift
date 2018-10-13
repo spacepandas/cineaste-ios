@@ -18,32 +18,32 @@ class MovieDetailViewController: UIViewController {
         case network(Movie)
     }
 
-    @IBOutlet weak fileprivate var posterImageView: UIImageView!
-    @IBOutlet weak fileprivate var posterHeight: NSLayoutConstraint!
-    @IBOutlet weak fileprivate var titleLabel: TitleLabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: TitleLabel!
 
-    @IBOutlet var descriptionLabels: [DescriptionLabel]! {
+    @IBOutlet private var descriptionLabels: [DescriptionLabel]! {
         didSet {
             for label in descriptionLabels {
                 label.textColor = UIColor.basicBackground
             }
         }
     }
-    @IBOutlet weak fileprivate var detailScrollView: UIScrollView!
-    @IBOutlet weak fileprivate var releaseDateLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var runtimeLabel: DescriptionLabel!
-    @IBOutlet weak fileprivate var votingLabel: DescriptionLabel! {
+    @IBOutlet private weak var detailScrollView: UIScrollView!
+    @IBOutlet private weak var releaseDateLabel: DescriptionLabel!
+    @IBOutlet private weak var runtimeLabel: DescriptionLabel!
+    @IBOutlet private weak var votingLabel: DescriptionLabel! {
         didSet {
             votingLabel.textColor = UIColor.black
         }
     }
 
-    @IBOutlet var moreInformationButton: ActionButton!
-    @IBOutlet var seenButton: ActionButton!
-    @IBOutlet var mustSeeButton: ActionButton!
-    @IBOutlet var deleteButton: ActionButton!
+    @IBOutlet private weak var moreInformationButton: ActionButton!
+    @IBOutlet private weak var seenButton: ActionButton!
+    @IBOutlet private weak var mustSeeButton: ActionButton!
+    @IBOutlet private weak var deleteButton: ActionButton!
 
-    @IBOutlet weak fileprivate var descriptionTextView: UITextView! {
+    @IBOutlet private weak var descriptionTextView: UITextView! {
         didSet {
             descriptionTextView.isEditable = false
         }

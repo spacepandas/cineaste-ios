@@ -25,15 +25,15 @@ class SearchMoviesCell: UITableViewCell {
         }
     }
 
-    @IBOutlet var poster: UIImageView!
-    @IBOutlet var title: TitleLabel!
-    @IBOutlet var separatorView: UIView! {
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
 
-    @IBOutlet var releaseDate: DescriptionLabel!
+    @IBOutlet weak var releaseDate: DescriptionLabel!
 
     @IBOutlet weak var seenButton: ActionButton! {
         didSet {

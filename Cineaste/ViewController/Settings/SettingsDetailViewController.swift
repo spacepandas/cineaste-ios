@@ -10,14 +10,14 @@ import UIKit
 import SafariServices
 
 class SettingsDetailViewController: UIViewController {
-    @IBOutlet var settingsDetailTextView: DescriptionTextView! {
+    @IBOutlet weak var settingsDetailTextView: DescriptionTextView! {
         didSet {
             settingsDetailTextView.delegate = self
             update(textViewContent)
         }
     }
 
-    @IBOutlet var movieDBImageView: UIImageView!
+    @IBOutlet private weak var movieDBImageView: UIImageView!
 
     var textViewContent: TextViewType = .imprint {
         didSet {

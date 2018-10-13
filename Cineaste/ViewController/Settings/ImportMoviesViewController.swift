@@ -9,8 +9,8 @@
 import UIKit
 
 class ImportMoviesViewController: UIViewController {
-    @IBOutlet var importStateLabel: TitleLabel!
-    @IBOutlet var importActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var importStateLabel: TitleLabel!
+    @IBOutlet private weak var importActivityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

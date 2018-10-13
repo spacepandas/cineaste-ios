@@ -10,14 +10,14 @@ import UIKit
 import CoreData
 
 class MoviesViewController: UITableViewController {
-    @IBOutlet var emptyView: UIView!
-    @IBOutlet var empyListTitle: UILabel! {
+    @IBOutlet private weak var emptyView: UIView!
+    @IBOutlet private weak var empyListTitle: UILabel! {
         didSet {
             empyListTitle.textColor = .accentTextOnBlack
             empyListTitle.text = .noContentTitle
         }
     }
-    @IBOutlet var emptyListLabel: UILabel! {
+    @IBOutlet private weak var emptyListLabel: UILabel! {
         didSet {
             emptyListLabel.textColor = .accentTextOnBlack
         }

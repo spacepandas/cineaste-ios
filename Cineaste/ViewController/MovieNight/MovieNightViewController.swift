@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieNightViewController: UIViewController {
-    @IBOutlet fileprivate weak var tableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
             tableView.backgroundColor = UIColor.basicBackground
@@ -24,10 +24,10 @@ class MovieNightViewController: UIViewController {
         }
     }
 
-    @IBOutlet fileprivate weak var startButton: StartMovieNightButton!
+    @IBOutlet private weak var startButton: StartMovieNightButton!
 
-    @IBOutlet fileprivate weak var searchForFriendsView: UIView!
-    @IBOutlet fileprivate weak var searchFriendsLabel: UILabel! {
+    @IBOutlet private weak var searchForFriendsView: UIView!
+    @IBOutlet private weak var searchFriendsLabel: UILabel! {
         didSet {
             searchFriendsLabel.text = .searchFriendsOnMovieNight
             searchFriendsLabel.textColor = .accentTextOnBlack

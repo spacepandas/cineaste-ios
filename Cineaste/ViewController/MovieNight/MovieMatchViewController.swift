@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieMatchViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
 

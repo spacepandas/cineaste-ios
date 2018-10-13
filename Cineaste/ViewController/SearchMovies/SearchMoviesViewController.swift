@@ -9,7 +9,21 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
-    @IBOutlet var loadingIndicatorView: UIView!
+    @IBOutlet weak var loadingIndicatorView: UIView!
+
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.prefetchDataSource = self
+            tableView.delegate = self
+
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableView.automaticDimension
+
+            tableView.backgroundColor = UIColor.clear
+            tableView.tableFooterView = loadingIndicatorView
+        }
+    }
 
     var movies: [Movie] = [] {
         didSet {
@@ -39,20 +53,6 @@ class SearchMoviesViewController: UIViewController {
         resultSearchController.delegate = self
         return resultSearchController
     }()
-
-    @IBOutlet var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
-            tableView.prefetchDataSource = self
-            tableView.delegate = self
-
-            tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableView.automaticDimension
-
-            tableView.backgroundColor = UIColor.clear
-            tableView.tableFooterView = loadingIndicatorView
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

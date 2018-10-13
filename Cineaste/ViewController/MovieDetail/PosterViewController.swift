@@ -9,13 +9,13 @@
 import UIKit
 
 class PosterViewController: UIViewController {
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var blurredBackgroundImage: UIImageView!
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet var toolbarBackgroundView: UIView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var blurredBackgroundImage: UIImageView!
+    @IBOutlet private weak var backgroundView: UIView!
+    @IBOutlet private weak var toolbarBackgroundView: UIView!
 
-    @IBOutlet var toolbar: UIToolbar! {
+    @IBOutlet private weak var toolbar: UIToolbar! {
         didSet {
             toolbar.setBackgroundImage(UIImage(),
                                        forToolbarPosition: .any,

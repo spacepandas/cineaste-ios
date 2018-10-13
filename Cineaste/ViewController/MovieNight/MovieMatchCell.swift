@@ -15,16 +15,16 @@ protocol MovieMatchTableViewCellDelegate: AnyObject {
 class MovieMatchCell: UITableViewCell {
     static let identifier = "MovieMatchTableViewCell"
 
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var separatorView: UIView! {
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var separatorView: UIView! {
         didSet {
             separatorView.backgroundColor = .primaryOrange
         }
     }
 
-    @IBOutlet weak var movieTitelLabel: TitleLabel!
-    @IBOutlet weak var numberOfMatchesLabel: DescriptionLabel!
-    @IBOutlet weak var seenButton: ActionButton!
+    @IBOutlet private weak var movieTitelLabel: TitleLabel!
+    @IBOutlet private weak var numberOfMatchesLabel: DescriptionLabel!
+    @IBOutlet private weak var seenButton: ActionButton!
 
     fileprivate var nearbyMovie: NearbyMovie?
     fileprivate weak var delegate: MovieMatchTableViewCellDelegate?

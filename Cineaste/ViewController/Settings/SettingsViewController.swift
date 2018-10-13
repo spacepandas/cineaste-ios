@@ -9,8 +9,8 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
-    @IBOutlet var footerView: UIView!
-    @IBOutlet var versionInfo: DescriptionLabel! {
+    @IBOutlet private weak var footerView: UIView!
+    @IBOutlet private weak var versionInfo: DescriptionLabel! {
         didSet {
             versionInfo.textColor = .accentTextOnBlack
         }
