@@ -1,8 +1,14 @@
 language: swift
 osx_image: xcode10
-install:
+env: LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+before_install:
   - bundle install
   - pod repo update
   - pod install
-script:
-  - bundle exec fastlane test
+
+jobs:
+  include:
+    - stage: test
+      name: testing
+      script: bundle exec fastlane test
