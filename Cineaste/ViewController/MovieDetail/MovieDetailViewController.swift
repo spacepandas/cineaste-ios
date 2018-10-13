@@ -209,7 +209,7 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func generateMovieURL() -> URL? {
-        var movieUrl = Config.Backend.shareMovieUrl
+        var movieUrl = Constants.Backend.shareMovieUrl
 
         guard let movie = movie else { return nil }
 

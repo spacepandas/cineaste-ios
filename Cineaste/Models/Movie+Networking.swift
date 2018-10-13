@@ -15,7 +15,7 @@ extension Movie {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return nil
         }
-        let urlAsString = "\(Config.Backend.url)/search/movie" +
+        let urlAsString = "\(Constants.Backend.url)/search/movie" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&api_key=\(apiKey)" +
             "&query=\(escapedQuery)" +
@@ -38,7 +38,7 @@ extension Movie {
     static func latestReleases(page: Int) -> Resource<PagedMovieResult>? {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
-        let urlAsString = "\(Config.Backend.url)/discover/movie" +
+        let urlAsString = "\(Constants.Backend.url)/discover/movie" +
             "?api_key=\(apiKey)" +
             "&language=\(String.languageFormattedForTMDb)" +
             "&region=\(String.regionIso31661)" +
@@ -59,7 +59,7 @@ extension Movie {
         }
     }
 
-    static func posterUrl(from posterPath: String, for size: Config.PosterSize) -> URL {
+    static func posterUrl(from posterPath: String, for size: Constants.PosterSize) -> URL {
         let urlAsString = "\(size.address)\(posterPath)?api_key=\(apiKey)"
         guard let url = URL(string: urlAsString) else {
             fatalError("Could not create url for poster download")
@@ -68,7 +68,7 @@ extension Movie {
     }
 
     var get: Resource<Movie>? {
-        let urlAsString = "\(Config.Backend.url)/movie/\(id)" +
+        let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&api_key=\(Movie.apiKey)" +
         "&append_to_response=release_dates"

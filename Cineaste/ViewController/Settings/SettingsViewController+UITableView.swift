@@ -68,7 +68,7 @@ extension SettingsViewController {
         case .appStore:
             tableView.deselectRow(at: indexPath, animated: true)
 
-            let writeReviewUrl = "\(Config.appStoreUrl)?action=write-review"
+            let writeReviewUrl = "\(Constants.appStoreUrl)?action=write-review"
             guard let writeReviewURL = URL(string: writeReviewUrl)
                 else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)

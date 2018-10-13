@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 extension StoredMovie {
-    static func posterUrl(from posterPath: String, for size: Config.PosterSize) -> URL {
+    static func posterUrl(from posterPath: String, for size: Constants.PosterSize) -> URL {
         let urlAsString = "\(size.address)\(posterPath)?api_key=\(ApiKeyStore.theMovieDbKey)"
         guard let url = URL(string: urlAsString) else {
             fatalError("Could not create url for poster download")
