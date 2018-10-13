@@ -12,6 +12,12 @@ import SafariServices
 
 //swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
+
+    enum MovieType {
+        case stored(StoredMovie)
+        case network(Movie)
+    }
+
     @IBOutlet weak fileprivate var posterImageView: UIImageView!
     @IBOutlet weak fileprivate var posterHeight: NSLayoutConstraint!
     @IBOutlet weak fileprivate var titleLabel: TitleLabel!
@@ -51,21 +57,17 @@ class MovieDetailViewController: UIViewController {
 
     var storageManager: MovieStorage?
 
-    var movie: Movie? {
+    var movie: MovieType? {
         didSet {
+            //TODO: only reload when really changed
+//            let changedMovie = oldValue != movie
             guard let movie = movie else { return }
 
-            let changedMovie = oldValue?.id != movie.id
-            if changedMovie {
-                loadDetails(for: movie)
-            }
-        }
-    }
-
-    var storedMovie: StoredMovie? {
-        didSet {
-            if let movie = storedMovie {
-                setupUI(for: movie)
+            switch movie {
+            case .stored(let storedMovie):
+                setupUI(for: storedMovie)
+            case .network(let networkMovie):
+                loadDetails(for: networkMovie)
             }
         }
     }
@@ -138,14 +140,25 @@ class MovieDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
+            guard let movie = movie else { return }
+
             let posterVC = segue.destination as? PosterViewController
-            if let storedMovie = storedMovie,
-                let poster = storedMovie.poster {
-                posterVC?.image = UIImage(data: poster)
-                posterVC?.posterPath = storedMovie.posterPath
-            } else if let movie = movie {
-                posterVC?.image = movie.poster
-                posterVC?.posterPath = movie.posterPath
+            switch movie {
+            case .network(let movie):
+                guard let poster = movie.poster,
+                    let posterPath = movie.posterPath
+                    else { return }
+
+                posterVC?.configure(with: poster,
+                                    posterPath: posterPath)
+            case .stored(let movie):
+                guard let poster = movie.poster,
+                    let image = UIImage(data: poster),
+                    let posterPath = movie.posterPath
+                    else { return }
+
+                posterVC?.configure(with: image,
+                                    posterPath: posterPath)
             }
         default:
             break
@@ -163,10 +176,12 @@ class MovieDetailViewController: UIViewController {
     @objc
     func shareMovie(_ sender: UIBarButtonItem) {
         var title: String?
+        guard let movie = movie else { return }
 
-        if let movie = storedMovie {
+        switch movie {
+        case .network(let movie):
             title = movie.title
-        } else if let movie = movie {
+        case .stored(let movie):
             title = movie.title
         }
 
@@ -198,23 +213,26 @@ class MovieDetailViewController: UIViewController {
     fileprivate func generateMovieURL() -> URL? {
         var movieUrl = Config.Backend.shareMovieUrl
 
-        if let movie = storedMovie {
+        guard let movie = movie else { return nil }
+
+        switch movie {
+        case .network(let movie):
             movieUrl += "\(movie.id)"
-        } else if let movie = movie {
+        case .stored(let movie):
             movieUrl += "\(movie.id)"
-        } else {
-            preconditionFailure("Either movie or storedMovie must be set to generate share movie url")
         }
 
         return URL(string: movieUrl)
     }
 
     fileprivate func saveMovie(asWatched watched: Bool) {
-        guard let storageManager = storageManager else { return }
+        guard let storageManager = storageManager,
+            let movie = movie
+            else { return }
 
-        if let movie = movie {
-            storageManager.insertMovieItem(with: movie,
-                                           watched: watched) { result in
+        switch movie {
+        case .network(let movie):
+            storageManager.insertMovieItem(with: movie, watched: watched) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.insertMovieError)
@@ -224,9 +242,8 @@ class MovieDetailViewController: UIViewController {
                     }
                 }
             }
-        } else if let storedMovie = storedMovie {
-            storageManager.updateMovieItem(with: storedMovie,
-                                           watched: watched) { result in
+        case .stored(let movie):
+            storageManager.updateMovieItem(with: movie, watched: watched) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.updateMovieError)
@@ -236,14 +253,14 @@ class MovieDetailViewController: UIViewController {
                     }
                 }
             }
-        } else {
-            preconditionFailure("Either movie or storedMovie must be set to save it")
         }
     }
 
     fileprivate func deleteMovie() {
         guard let storageManager = storageManager,
-            let storedMovie = storedMovie else { return }
+            let movie = movie,
+            case let .stored(storedMovie) = movie
+            else { return }
 
         storageManager.remove(storedMovie) { result in
             switch result {
@@ -288,7 +305,7 @@ class MovieDetailViewController: UIViewController {
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
-            self.movie = detailedMovie
+            self.movie = .network(detailedMovie)
             self.setupUI(for: detailedMovie)
         }
     }
