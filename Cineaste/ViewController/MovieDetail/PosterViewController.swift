@@ -27,11 +27,11 @@ class PosterViewController: UIViewController {
         }
     }
 
-    var image: UIImage?
-    var posterPath: String?
+    private var image: UIImage?
+    private var posterPath: String?
 
-    var originalPosition: CGPoint?
-    var currentPositionTouched: CGPoint?
+    private var originalPosition: CGPoint?
+    private var currentPositionTouched: CGPoint?
 
     override func viewDidLoad() {
         super.viewDidLoad()

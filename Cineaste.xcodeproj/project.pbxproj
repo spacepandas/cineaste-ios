@@ -106,10 +106,6 @@
 		3FF095C02103227F00ADFB86 /* MoviesViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095BE2103225400ADFB86 /* MoviesViewController+UITableView.swift */; };
 		3FF095C22103236400ADFB86 /* UIView+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */; };
 		3FF095C32103236400ADFB86 /* UIView+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */; };
-		3FF095C52103243000ADFB86 /* MovieMatchViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095C42103243000ADFB86 /* MovieMatchViewController+UITableView.swift */; };
-		3FF095C62103243000ADFB86 /* MovieMatchViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095C42103243000ADFB86 /* MovieMatchViewController+UITableView.swift */; };
-		3FF095CB210324DE00ADFB86 /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095CA210324DE00ADFB86 /* MovieNightViewController+UITableView.swift */; };
-		3FF095CC210324DE00ADFB86 /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095CA210324DE00ADFB86 /* MovieNightViewController+UITableView.swift */; };
 		3FF095CE2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095CD2103256100ADFB86 /* SettingsViewController+UITableView.swift */; };
 		3FF095CF2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095CD2103256100ADFB86 /* SettingsViewController+UITableView.swift */; };
 		3FF095D12103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */; };
@@ -340,8 +336,6 @@
 		3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SearchController.swift"; sourceTree = "<group>"; };
 		3FF095BE2103225400ADFB86 /* MoviesViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BlurEffect.swift"; sourceTree = "<group>"; };
-		3FF095C42103243000ADFB86 /* MovieMatchViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieMatchViewController+UITableView.swift"; sourceTree = "<group>"; };
-		3FF095CA210324DE00ADFB86 /* MovieNightViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3FF095CD2103256100ADFB86 /* SettingsViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		3FF095D3210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+UIDocumentPicker.swift"; sourceTree = "<group>"; };
@@ -532,10 +526,8 @@
 			isa = PBXGroup;
 			children = (
 				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
-				3FF095CA210324DE00ADFB86 /* MovieNightViewController+UITableView.swift */,
 				953182FA203E212A00A331A0 /* MovieNightUserCell.swift */,
 				9526A70420448940004E08F7 /* MovieMatchViewController.swift */,
-				3FF095C42103243000ADFB86 /* MovieMatchViewController+UITableView.swift */,
 				9526A70620449206004E08F7 /* MovieMatchCell.swift */,
 			);
 			path = MovieNight;
@@ -1136,7 +1128,6 @@
 				3FDEF4762103368300955129 /* DebugPrint.swift in Sources */,
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
-				3FF095C62103243000ADFB86 /* MovieMatchViewController+UITableView.swift in Sources */,
 				3FF790F520DE274A007B7D37 /* Result.swift in Sources */,
 				3FF790F620DE274A007B7D37 /* OrangeNavigationController.swift in Sources */,
 				3FF790F720DE274A007B7D37 /* Button.swift in Sources */,
@@ -1179,7 +1170,6 @@
 				3FF7911320DE274A007B7D37 /* Storyboard.swift in Sources */,
 				3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */,
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,
-				3FF095CC210324DE00ADFB86 /* MovieNightViewController+UITableView.swift in Sources */,
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,
 				3FF7911720DE274A007B7D37 /* View.swift in Sources */,
 				3FF7911820DE274A007B7D37 /* String+Cineaste.swift in Sources */,
@@ -1226,7 +1216,6 @@
 				3FDEF4752103368300955129 /* DebugPrint.swift in Sources */,
 				3F83BE981FF3BF7000E584E9 /* Segue.swift in Sources */,
 				3F71F685200292B700496E05 /* DescriptionTextView.swift in Sources */,
-				3FF095C52103243000ADFB86 /* MovieMatchViewController+UITableView.swift in Sources */,
 				3F059D471FF3FA8B00D5576B /* Label.swift in Sources */,
 				3F941B7720F5295D008A4407 /* Movie+Formatted.swift in Sources */,
 				955C1385203CCF61009D8337 /* NearbyMovie.swift in Sources */,
@@ -1269,7 +1258,6 @@
 				959E8B771FABC6F50004E8C3 /* SearchMoviesViewController.swift in Sources */,
 				3F83BE7A1FF39E1B00E584E9 /* Storyboard.swift in Sources */,
 				9526A70720449206004E08F7 /* MovieMatchCell.swift in Sources */,
-				3FF095CB210324DE00ADFB86 /* MovieNightViewController+UITableView.swift in Sources */,
 				95AE25A01F9531E20067F5F5 /* AppDelegate.swift in Sources */,
 				3FDB14542025B80F0063E980 /* AlertMessage.swift in Sources */,
 				3FA808D1200285590036357B /* View.swift in Sources */,

@@ -34,14 +34,14 @@ class MovieNightViewController: UIViewController {
         }
     }
 
-    var storageManager: MovieStorage?
+    private var storageManager: MovieStorage?
 
-    fileprivate lazy var gnsMessageManager: GNSMessageManager =
+    private lazy var gnsMessageManager: GNSMessageManager =
         GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
-    fileprivate var currentPublication: GNSPublication?
-    fileprivate var currentSubscription: GNSSubscription?
+    private var currentPublication: GNSPublication?
+    private var currentSubscription: GNSSubscription?
 
-    var nearbyMessages = [NearbyMessage]() {
+    private var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
                 self.startButton.isEnabled = !self.nearbyMessages.isEmpty
@@ -52,7 +52,7 @@ class MovieNightViewController: UIViewController {
         }
     }
 
-    fileprivate var ownNearbyMessage: NearbyMessage?
+    private var ownNearbyMessage: NearbyMessage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,6 +209,18 @@ class MovieNightViewController: UIViewController {
         } else {
             return nil
         }
+    }
+}
+
+extension MovieNightViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nearbyMessages.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
+        cell.configure(with: nearbyMessages[indexPath.row])
+        return cell
     }
 }
 

@@ -26,8 +26,8 @@ class MovieMatchCell: UITableViewCell {
     @IBOutlet private weak var numberOfMatchesLabel: DescriptionLabel!
     @IBOutlet private weak var seenButton: ActionButton!
 
-    fileprivate var nearbyMovie: NearbyMovie?
-    fileprivate weak var delegate: MovieMatchTableViewCellDelegate?
+    private var nearbyMovie: NearbyMovie?
+    private weak var delegate: MovieMatchTableViewCellDelegate?
 
     func configure(with movie: NearbyMovie,
                    numberOfMatches: Int,

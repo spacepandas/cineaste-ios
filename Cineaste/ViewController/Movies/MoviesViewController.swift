@@ -35,7 +35,7 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    lazy var resultSearchController: SearchController = {
+    private lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
@@ -45,7 +45,7 @@ class MoviesViewController: UITableViewController {
 
     var storageManager: MovieStorage?
     var selectedMovie: StoredMovie?
-    fileprivate var saveAction: UIAlertAction?
+    private var saveAction: UIAlertAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()

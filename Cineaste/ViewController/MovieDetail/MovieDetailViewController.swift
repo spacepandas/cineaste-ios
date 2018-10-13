@@ -49,15 +49,15 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    var type: MovieDetailType = .search {
+    private var type: MovieDetailType = .search {
         didSet {
             updateDetail(for: type)
         }
     }
 
-    var storageManager: MovieStorage?
+    private var storageManager: MovieStorage?
 
-    var movie: MovieType? {
+    private var movie: MovieType? {
         didSet {
             guard let movie = movie else { return }
 
@@ -70,7 +70,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    var moviePoster: UIImage? {
+    private var moviePoster: UIImage? {
         didSet {
             DispatchQueue.main.async {
                 guard let poster = self.moviePoster else { return }

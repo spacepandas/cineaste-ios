@@ -20,10 +20,10 @@ class MovieMatchViewController: UIViewController {
         }
     }
 
-    var moviesWithNumber: [(NearbyMovie, Int)] = []
-    var totalNumberOfPeople: Int = 0
+    private var moviesWithNumber: [(NearbyMovie, Int)] = []
+    private var totalNumberOfPeople: Int = 0
 
-    var storageManager: MovieStorage?
+    private var storageManager: MovieStorage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,24 @@ class MovieMatchViewController: UIViewController {
             // first sort by number, second sort by title
             ($0.value, $1.key.title) > ($1.value, $0.key.title)
         }
+    }
+}
+
+extension MovieMatchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return moviesWithNumber.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
+
+        let movieWithNumber = moviesWithNumber[indexPath.row]
+        cell.configure(with: movieWithNumber.0,
+                       numberOfMatches: movieWithNumber.1,
+                       amountOfPeople: totalNumberOfPeople,
+                       delegate: self)
+
+        return cell
     }
 }
 
