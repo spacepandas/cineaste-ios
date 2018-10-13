@@ -130,7 +130,7 @@ class MovieDetailViewController: UIViewController {
         guard let url = generateMovieURL() else { return }
 
         let safariVC = CustomSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
+        present(safariVC, animated: true)
     }
 
     // MARK: - Navigation
@@ -197,7 +197,7 @@ class MovieDetailViewController: UIViewController {
             UIActivityViewController(activityItems: items,
                                      applicationActivities: nil)
 
-        present(activityController, animated: true, completion: nil)
+        present(activityController, animated: true)
     }
 
     // MARK: - Private

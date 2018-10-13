@@ -117,7 +117,7 @@ class SettingsViewController: UITableViewController {
             documentPickerVC.allowsMultipleSelection = false
         }
 
-        present(documentPickerVC, animated: true, completion: nil)
+        present(documentPickerVC, animated: true)
     }
 
     func showUIToExportMovies(with path: URL, on rect: CGRect) {

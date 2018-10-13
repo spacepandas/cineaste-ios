@@ -61,7 +61,7 @@ extension SettingsViewController {
                 mailComposeVC.setSubject("Cineaste iOS || \(versionString())")
                 mailComposeVC.setToRecipients(["ios@spacepandas.de"])
 
-                present(mailComposeVC, animated: true, completion: nil)
+                present(mailComposeVC, animated: true)
             } else {
                 showAlert(withMessage: Alert.noEmailClient)
             }

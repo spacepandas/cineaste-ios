@@ -60,7 +60,7 @@ extension SettingsDetailViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
         let safariVC = CustomSafariViewController(url: URL)
-        present(safariVC, animated: true, completion: nil)
+        present(safariVC, animated: true)
 
         return false
     }
