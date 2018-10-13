@@ -9,15 +9,15 @@
 import UIKit
 import SafariServices
 
-public class CustomSafariViewController: SFSafariViewController {
+class CustomSafariViewController: SFSafariViewController {
     @available(iOS 11.0, *)
-    public override init(url URL: URL, configuration: SFSafariViewController.Configuration) {
+    override init(url URL: URL, configuration: SFSafariViewController.Configuration) {
         super.init(url: URL, configuration: configuration)
 
         setup()
     }
 
-    public override init(url URL: URL, entersReaderIfAvailable: Bool) {
+    override init(url URL: URL, entersReaderIfAvailable: Bool) {
         super.init(url: URL, entersReaderIfAvailable: entersReaderIfAvailable)
 
         setup()

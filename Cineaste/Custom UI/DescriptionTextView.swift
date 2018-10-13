@@ -15,13 +15,13 @@ class DescriptionTextView: UITextView {
         return style
     }()
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 
     // swiftlint:disable:next implicitly_unwrapped_optional
-    override public var text: String! {
+    override var text: String! {
         didSet {
             setup()
 
