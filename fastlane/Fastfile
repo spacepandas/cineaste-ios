@@ -1,7 +1,8 @@
 fastlane_version "2.0.0"
-default_platform :ios
 
 ProjectName = "Cineaste"
+AppIdentifier = "Cineaste App"
+
 Schemes = {
   "dev" => "#{ProjectName} App-Dev",
   "appStore" => "#{ProjectName} App"
@@ -14,54 +15,87 @@ BundleIdentifiers = {
   "appStore" => "de.spacepandas.ios.cineaste"
 }
 
-version_number_to_set = "1.3.0"
-build_number_to_set = number_of_commits.to_s
+$version_number_to_set = "1.3.1"
+$build_number_to_set = number_of_commits.to_s
+$ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
-Target_Folder_Name = "build" #without the trailing / !
-screenshot_output_dir = "#{Target_Folder_Name}/screenshots"
+Target_Folder_Name = "build" 
 
-platform :ios do
-  # before_all do
-  #   ensure_git_status_clean
-  # end
+desc "Runs all the tests"
+lane :test do
+  run_tests(
+    device: "iPhone 7",
+    scheme: Scheme_UnitTests,
+    code_coverage: true
+  )
+end
 
-  desc "Runs all the tests"
-  lane :test do
-    run_tests(
-      device: "iPhone 7",
-      scheme: Scheme_UnitTests,
-      code_coverage: true
+desc "Make screenshots of app"
+lane :screenshots do
+  capture_ios_screenshots(
+    output_directory: "#{Target_Folder_Name}/screenshots",
+    app_identifier: BundleIdentifiers["appStore"]
+  )
+end
+
+def buildApp
+  time_string = Time.new.strftime("%Y.%m.%d")
+  $ipaName = "#{$ipaName}-#{time_string}"
+
+  build_ios_app(
+    scheme: Schemes["appStore"],
+    output_name: $ipaName,
+    output_directory: Target_Folder_Name,
+    clean: true,
+    include_bitcode: false
+  )
+end
+
+desc "Build the appStore app locally"
+lane :build do
+  buildApp
+end
+
+desc "Build and upload the appStore app to TestFlight"
+lane :beta do 
+  increment_build_number(
+    build_number: $build_number_to_set
+  )
+
+  increment_version_number(
+    version_number: $version_number_to_set
+  )
+
+  # commit_version_bump(
+  #   message: "Release version #{version_number_to_set}"
+  # )
+
+  # add_git_tag(tag: version_number_to_set)
+
+  buildApp
+
+  #TODO: check how and if this works
+  #https://github.com/thii/fastlane-plugin-validate_app
+  errors = validate_app(
+    username: "tech@spacepandas.de",
+    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa"
+  )
+
+  if errors.nil?
+    upload_to_testflight(
+      username: "tech@spacepandas.de",
+      ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
+      # changelog: read_changelog, #TODO: test this
+      distribute_external: true,
+      notify_external_testers: true 
     )
-  end
 
-  desc "Make screenshots of app"
-  lane :screenshots do
-    capture_ios_screenshots(
-      output_directory: screenshot_output_dir,
-      app_identifier: BundleIdentifiers["appStore"]
-    )
-  end
+    UI.message "Uploaded to testflight"
 
-  desc "Build the appStore app"
-  lane :build do
-    increment_build_number(
-      build_number: build_number_to_set,
-      xcodeproj: "#{ProjectName}.xcodeproj"
-    )
-
-    increment_version_number(
-      version_number: version_number_to_set
-    )
-
-    time_string = Time.new.strftime("%Y.%m.%d")
-    build_specific_name = "#{version_number_to_set}-#{build_number_to_set}-#{time_string}"
-
-    build_ios_app(
-      scheme: Schemes["appStore"],
-      output_name: "#{ProjectName}-#{build_specific_name}",
-      output_directory: Target_Folder_Name,
-      clean: true,
-      include_bitcode: false
-    )
+    #TODO: update changelog
+    # Stamp Unreleased section with newly released build number
+    # stamp_changelog(section_identifier: "Build #{build_number}")
+  else
+    UI.user_error! "IPA file did not pass validation and could not be uploaded to TestFlight."
   end
 end

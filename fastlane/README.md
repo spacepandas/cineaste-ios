@@ -15,22 +15,26 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## iOS
-### ios test
+### test
 ```
-fastlane ios test
+fastlane test
 ```
 Runs all the tests
-### ios screenshots
+### screenshots
 ```
-fastlane ios screenshots
+fastlane screenshots
 ```
 Make screenshots of app
-### ios build
+### build
 ```
-fastlane ios build
+fastlane build
 ```
-Build the appStore app
+Build the appStore app locally
+### beta
+```
+fastlane beta
+```
+Build and upload the appStore app to TestFlight
 
 ----
 
