@@ -18,7 +18,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
 
         let detailVC = MovieDetailViewController.instantiate()
         detailVC.configure(with: .stored(fetchedResultsManager.movies[path.row]),
-                           type: category == .seen ? .seen : .watchlist,
+                           type: category.detailType,
                            storageManager: storageManager)
         return detailVC
     }

@@ -47,4 +47,13 @@ enum MovieListCategory: String {
             return NSPredicate(format: "watched == %@", NSNumber(value: true))
         }
     }
+
+    var detailType: MovieDetailType {
+        switch self {
+        case .watchlist:
+            return MovieDetailType.watchlist
+        case .seen:
+            return MovieDetailType.seen
+        }
+    }
 }
