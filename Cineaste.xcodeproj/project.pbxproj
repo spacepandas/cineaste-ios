@@ -105,9 +105,7 @@
 		3FF7911F20DE274A007B7D37 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
 		3FF7912020DE274A007B7D37 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EFA4AD1FA13878004F1F94 /* Webservice.swift */; };
 		3FF7912120DE274A007B7D37 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */; };
-		3FF7912520DE274A007B7D37 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
 		3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */; };
-		3FF7912720DE274A007B7D37 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
 		3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F01791020CD32C500600DB4 /* Localizable.strings */; };
 		3FF7912920DE274A007B7D37 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D32F601F9AA20100497ED2 /* apikey.plist */; };
 		3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F1DA161209C64D900AC4D09 /* Settings.bundle */; };
@@ -724,9 +722,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF7912520DE274A007B7D37 /* .swiftlint.yml in Resources */,
 				3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */,
-				3FF7912720DE274A007B7D37 /* cineaste.xcassets in Resources */,
 				3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */,
 				3FF7912920DE274A007B7D37 /* apikey.plist in Resources */,
 				3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */,
