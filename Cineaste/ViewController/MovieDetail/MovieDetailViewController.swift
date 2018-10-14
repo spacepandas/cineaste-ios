@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import SafariServices
 
 //swiftlint:disable type_body_length

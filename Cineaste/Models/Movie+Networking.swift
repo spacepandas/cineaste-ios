@@ -21,7 +21,7 @@ extension Movie {
             "&query=\(escapedQuery)" +
             "&region=\(String.regionIso31661)" +
             "&with_release_type=3" +
-        "&page=\(page)"
+            "&page=\(page)"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
@@ -45,7 +45,7 @@ extension Movie {
             "&release_date.gte=\(oneMonthInPast.formattedForRequest)" +
             "&release_date.lte=\(oneMonthInFuture.formattedForRequest)" +
             "&with_release_type=3" +
-        "&page=\(page)"
+            "&page=\(page)"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
@@ -71,7 +71,7 @@ extension Movie {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&api_key=\(Movie.apiKey)" +
-        "&append_to_response=release_dates"
+            "&append_to_response=release_dates"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
