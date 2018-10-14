@@ -1,7 +1,8 @@
 fastlane_version "2.0.0"
-default_platform :ios
 
 ProjectName = "Cineaste"
+AppIdentifier = "Cineaste App"
+
 Schemes = {
   "dev" => "#{ProjectName} App-Dev",
   "appStore" => "#{ProjectName} App"
@@ -14,54 +15,66 @@ BundleIdentifiers = {
   "appStore" => "de.spacepandas.ios.cineaste"
 }
 
-version_number_to_set = "1.3.0"
-build_number_to_set = number_of_commits.to_s
+$version_number_to_set = "1.3.1"
+$build_number_to_set = number_of_commits.to_s
+$ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
-Target_Folder_Name = "build" #without the trailing / !
-screenshot_output_dir = "#{Target_Folder_Name}/screenshots"
+Target_Folder_Name = "build" 
 
-platform :ios do
-  # before_all do
-  #   ensure_git_status_clean
-  # end
+skip_docs
 
-  desc "Runs all the tests"
-  lane :test do
-    scan(
-      device: "iPhone 7",
-      scheme: Scheme_UnitTests,
-      code_coverage: true
-    )
-  end
+desc "Runs all the tests"
+lane :test do
+  run_tests(
+    device: "iPhone 7",
+    scheme: Scheme_UnitTests,
+    code_coverage: true
+  )
+end
 
-  desc "Make screenshots of app"
-  lane :screenshots do
-    snapshot(
-      output_directory: screenshot_output_dir,
-      app_identifier: BundleIdentifiers["appStore"]
-    )
-  end
+desc "Make screenshots of app"
+lane :screenshots do
+  capture_ios_screenshots(
+    output_directory: "#{Target_Folder_Name}/screenshots",
+    app_identifier: BundleIdentifiers["appStore"]
+  )
+end
 
-  desc "Build the appStore app"
-  lane :build do
-    increment_build_number(
-      build_number: build_number_to_set,
-      xcodeproj: "#{ProjectName}.xcodeproj"
-    )
+def buildApp
+  time_string = Time.new.strftime("%Y.%m.%d")
+  $ipaName = "#{$ipaName}-#{time_string}"
 
-    increment_version_number(
-      version_number: version_number_to_set
-    )
+  build_ios_app(
+    scheme: Schemes["appStore"],
+    output_name: $ipaName,
+    output_directory: Target_Folder_Name,
+    clean: true,
+    include_bitcode: false
+  )
+end
 
-    time_string = Time.new.strftime("%Y.%m.%d")
-    build_specific_name = "#{version_number_to_set}-#{build_number_to_set}-#{time_string}"
+desc "Build the appStore app locally"
+lane :build do
+  buildApp
+end
 
-    gym(
-      scheme: Schemes["appStore"],
-      output_name: "#{ProjectName}-#{build_specific_name}",
-      output_directory: Target_Folder_Name,
-      clean: true,
-      include_bitcode: false
-    )
-  end
+desc "Build and upload the appStore app to TestFlight"
+lane :beta do 
+  increment_build_number(
+    build_number: $build_number_to_set
+  )
+
+  increment_version_number(
+    version_number: $version_number_to_set
+  )
+
+  buildApp
+
+  upload_to_testflight(
+    username: "tech@spacepandas.de",
+    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
+    # changelog: read_changelog, #TODO: test this
+    distribute_external: true,
+    notify_external_testers: true 
+  )
 end
