@@ -9,12 +9,15 @@
 import UIKit
 
 extension MoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           viewControllerForLocation location: CGPoint) -> UIViewController? {
 
         guard let path = tableView.indexPathForRow(at: location),
-            let storageManager = storageManager,
-            fetchedResultsManager.movies.count > path.row
+            let cell = tableView.cellForRow(at: path),
+            let storageManager = storageManager
             else { return nil }
+
+        previewingContext.sourceRect = cell.frame
 
         let detailVC = MovieDetailViewController.instantiate()
         detailVC.configure(with: .stored(fetchedResultsManager.movies[path.row]),
@@ -23,7 +26,9 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         return detailVC
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit,
+                                                 animated: true)
     }
 }
