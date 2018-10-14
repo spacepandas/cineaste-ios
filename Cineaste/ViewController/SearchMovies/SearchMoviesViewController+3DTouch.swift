@@ -13,9 +13,11 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
 
         guard let path = tableView.indexPathForRow(at: location),
-            let storageManager = storageManager,
-            movies.count > path.row
+            let cell = tableView.cellForRow(at: path),
+            let storageManager = storageManager
             else { return nil }
+
+        previewingContext.sourceRect = cell.frame
 
         let detailVC = MovieDetailViewController.instantiate()
         detailVC.configure(with: .network(movies[path.row]),
