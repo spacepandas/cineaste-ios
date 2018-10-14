@@ -74,28 +74,17 @@ lane :beta do
 
   buildApp
 
-  #TODO: check how and if this works
-  #https://github.com/thii/fastlane-plugin-validate_app
-  errors = validate_app(
+  upload_to_testflight(
     username: "tech@spacepandas.de",
-    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa"
+    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
+    # changelog: read_changelog, #TODO: test this
+    distribute_external: true,
+    notify_external_testers: true 
   )
 
-  if errors.nil?
-    upload_to_testflight(
-      username: "tech@spacepandas.de",
-      ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
-      # changelog: read_changelog, #TODO: test this
-      distribute_external: true,
-      notify_external_testers: true 
-    )
+  UI.message "Uploaded to testflight"
 
-    UI.message "Uploaded to testflight"
-
-    #TODO: update changelog
-    # Stamp Unreleased section with newly released build number
-    # stamp_changelog(section_identifier: "Build #{build_number}")
-  else
-    UI.user_error! "IPA file did not pass validation and could not be uploaded to TestFlight."
-  end
+  #TODO: update changelog
+  # Stamp Unreleased section with newly released build number
+  # stamp_changelog(section_identifier: "Build #{build_number}")
 end
