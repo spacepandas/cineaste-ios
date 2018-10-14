@@ -21,6 +21,8 @@ $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 Target_Folder_Name = "build" 
 
+skip_docs
+
 desc "Runs all the tests"
 lane :test do
   run_tests(
