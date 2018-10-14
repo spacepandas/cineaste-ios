@@ -66,12 +66,6 @@ lane :beta do
     version_number: $version_number_to_set
   )
 
-  # commit_version_bump(
-  #   message: "Release version #{version_number_to_set}"
-  # )
-
-  # add_git_tag(tag: version_number_to_set)
-
   buildApp
 
   upload_to_testflight(
@@ -81,10 +75,4 @@ lane :beta do
     distribute_external: true,
     notify_external_testers: true 
   )
-
-  UI.message "Uploaded to testflight"
-
-  #TODO: update changelog
-  # Stamp Unreleased section with newly released build number
-  # stamp_changelog(section_identifier: "Build #{build_number}")
 end
