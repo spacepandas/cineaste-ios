@@ -40,6 +40,9 @@ extension String {
     static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
     static let onDate = NSLocalizedString("onDate", comment: "on a date")
 
+    // MARK: SEARCH VIEWCONTROLLER
+    static let addMovieTitle = NSLocalizedString("searchMovieTitle", comment: "Title for search")
+
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
     static let exportTitle = NSLocalizedString("export", comment: "Title for settings cell exportMovies")
     static let exportDescription = NSLocalizedString("exportDescription", comment: "Description for settings cell exportMovies")

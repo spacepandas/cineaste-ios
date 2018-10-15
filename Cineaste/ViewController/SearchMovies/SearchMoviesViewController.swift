@@ -57,6 +57,8 @@ class SearchMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = String.addMovieTitle
+
         view.backgroundColor = UIColor.basicBackground
 
         if #available(iOS 11.0, *) {

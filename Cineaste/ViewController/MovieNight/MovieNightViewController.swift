@@ -21,6 +21,8 @@ class MovieNightViewController: UIViewController {
 
             tableView.tableFooterView = UIView()
             tableView.backgroundView = searchForFriendsView
+
+            tableView.alwaysBounceVertical = false
         }
     }
 
