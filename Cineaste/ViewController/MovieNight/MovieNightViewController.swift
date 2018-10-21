@@ -9,6 +9,18 @@
 import UIKit
 
 class MovieNightViewController: UITableViewController {
+    enum NearbyPermissionState: Equatable {
+        case nearbyPermissionPending
+        case denied(_ permissions: [Permission])
+        case canUseNearby
+    }
+
+    enum Permission: String {
+        case microphone
+        case bluetooth
+        case nearby
+    }
+
     @IBOutlet private weak var searchForFriendsView: UIView!
     @IBOutlet private weak var searchFriendsLabel: UILabel! {
         didSet {
@@ -16,30 +28,63 @@ class MovieNightViewController: UITableViewController {
             searchFriendsLabel.textColor = .accentTextOnBlack
         }
     }
+    @IBOutlet private weak var permissionDeniedView: UIView!
+    @IBOutlet private weak var permissionDeniedDescription: UILabel! {
+        didSet {
+            permissionDeniedDescription.textColor = .accentTextOnBlack
+        }
+    }
+
+    private var state: NearbyPermissionState = .nearbyPermissionPending {
+        didSet {
+            switch state {
+            //TODO: handle states localized
+            case .nearbyPermissionPending:
+                tableView.backgroundView = permissionDeniedView
+                permissionDeniedDescription.text = "Nearby Permission Pending"
+            case .denied(let permissions):
+                tableView.backgroundView = permissionDeniedView
+                permissionDeniedDescription.text = "\(permissions.map { $0.rawValue }.joined(separator: ", ")) denied"
+            case .canUseNearby:
+                tableView.backgroundView = searchForFriendsView
+                tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
+            }
+        }
+    }
+
+    private lazy var gnsMessageManager: GNSMessageManager =
+        GNSMessageManager(apiKey: ApiKeyStore.nearbyKey) { (params: GNSMessageManagerParams?) in
+            guard let params = params else { return }
+            //Tracking user settings that affect Nearby
+            params.microphonePermissionErrorHandler = self.microphonePermissionErrorHandler ?? { _ in }
+            params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler  ?? { _ in }
+        }
 
     private var storageManager: MovieStorage?
 
-    private lazy var gnsMessageManager: GNSMessageManager =
-        GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
+    private var microphonePermissionErrorHandler: ((Bool) -> Void)?
+    private var bluetoothPowerErrorHandler: ((Bool) -> Void)?
+    private var nearbyPermissionHandler: ((Bool) -> Void)?
+
+    private var currentPermission: GNSPermission?
     private var currentPublication: GNSPublication?
     private var currentSubscription: GNSSubscription?
 
+    private var ownNearbyMessage: NearbyMessage?
     private var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
-
                 self.tableView.reloadData()
             }
         }
     }
 
-    private var ownNearbyMessage: NearbyMessage?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = String.movieNightTitle
+        state = GNSPermission.isGranted() ? .canUseNearby : .nearbyPermissionPending
 
         #if DEBUG
         let tripleTapGestureRecognizer =
@@ -50,6 +95,7 @@ class MovieNightViewController: UITableViewController {
         #endif
 
         configureTableView()
+        configureStateObserver()
     }
 
     func configure(with storageManager: MovieStorage) {
@@ -59,6 +105,7 @@ class MovieNightViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
     }
@@ -68,6 +115,7 @@ class MovieNightViewController: UITableViewController {
 
         currentPublication = nil
         currentSubscription = nil
+        currentPermission = nil
     }
 
     // MARK: - Actions
@@ -117,9 +165,52 @@ class MovieNightViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
 
-        tableView.backgroundView = searchForFriendsView
-
         tableView.alwaysBounceVertical = false
+    }
+
+    private func configureStateObserver() {
+        bluetoothPowerErrorHandler = { hasError in
+            self.state = self.updateState(with: .bluetooth, hasError: hasError)
+        }
+
+        microphonePermissionErrorHandler = { hasError in
+            self.state = self.updateState(with: .microphone, hasError: hasError)
+        }
+
+        nearbyPermissionHandler = { granted in
+            self.state = self.updateState(with: .nearby, hasError: !granted)
+        }
+    }
+
+    private func updateState(with permission: Permission, hasError: Bool) -> NearbyPermissionState {
+        var state = self.state
+        switch state {
+        case .nearbyPermissionPending:
+            if hasError {
+                state = .denied([permission])
+            } else {
+                state = .canUseNearby
+            }
+        case .denied(var permissions):
+            if hasError {
+                if !permissions.contains(permission) {
+                    permissions.append(permission)
+                    state = .denied(permissions)
+                }
+            } else {
+                let newPermissions = permissions.filter { $0 != permission }
+                if newPermissions.isEmpty {
+                    state = .canUseNearby
+                } else {
+                    state = .denied(newPermissions)
+                }
+            }
+        case .canUseNearby:
+            if hasError {
+                state = .denied([permission])
+            }
+        }
+        return state
     }
 
     // MARK: - Navigation
@@ -143,7 +234,7 @@ class MovieNightViewController: UITableViewController {
 
     // MARK: - Nearby
 
-    fileprivate func publishWatchlistMovies() {
+    private func publishWatchlistMovies() {
         guard let storageManager = storageManager,
             let username = UserDefaultsManager.username
             else { return }
@@ -168,7 +259,7 @@ class MovieNightViewController: UITableViewController {
         )
     }
 
-    fileprivate func subscribeToNearbyMessages() {
+    private func subscribeToNearbyMessages() {
         currentSubscription = gnsMessageManager.subscription(
             messageFoundHandler: { message in
                 guard let nearbyMessage = self.convertGNSMessage(from: message)
@@ -199,6 +290,8 @@ class MovieNightViewController: UITableViewController {
             return nil
         }
     }
+
+    // MARK: - TableView
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nearbyMessages.isEmpty ? 0 : nearbyMessages.count + 1

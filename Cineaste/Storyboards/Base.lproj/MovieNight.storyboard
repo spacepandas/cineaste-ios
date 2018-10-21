@@ -175,6 +175,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="permissionDeniedDescription" destination="L2T-Fi-ILZ" id="Y7m-Ei-g4h"/>
+                        <outlet property="permissionDeniedView" destination="dp5-cW-KjM" id="UpY-LK-YxE"/>
                         <outlet property="searchForFriendsView" destination="xvd-NJ-rns" id="nKQ-r4-nVE"/>
                         <outlet property="searchFriendsLabel" destination="Y4p-90-v03" id="Vot-9j-5uS"/>
                         <segue destination="kzI-lr-heh" kind="show" identifier="ShowMovieMatchesSegue" id="OF4-eq-MVB"/>
@@ -216,6 +218,37 @@
                         <constraint firstItem="deO-bN-0TR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DU1-xc-JgK" secondAttribute="top" id="UAY-CS-CdV"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="DU1-xc-JgK"/>
+                </view>
+                <view contentMode="scaleToFill" id="dp5-cW-KjM">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhv-Xy-xmJ">
+                            <rect key="frame" x="0.0" y="11.5" width="375" height="105.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permission denied" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2T-Fi-ILZ">
+                                    <rect key="frame" x="20" y="20" width="335" height="65.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="L2T-Fi-ILZ" firstAttribute="centerX" secondItem="Lhv-Xy-xmJ" secondAttribute="centerX" id="Fs2-kY-TYA"/>
+                                <constraint firstAttribute="height" constant="105.5" id="OG3-1J-c1Y"/>
+                                <constraint firstItem="L2T-Fi-ILZ" firstAttribute="centerY" secondItem="Lhv-Xy-xmJ" secondAttribute="centerY" id="V8a-dg-B1u"/>
+                                <constraint firstItem="L2T-Fi-ILZ" firstAttribute="top" secondItem="Lhv-Xy-xmJ" secondAttribute="top" constant="20" symbolic="YES" id="dtt-Xj-koj"/>
+                                <constraint firstItem="L2T-Fi-ILZ" firstAttribute="leading" secondItem="Lhv-Xy-xmJ" secondAttribute="leading" constant="20" symbolic="YES" id="jYK-E0-ehr"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Lhv-Xy-xmJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9c3-aX-t42" secondAttribute="top" id="AJ5-yH-XoC"/>
+                        <constraint firstItem="Lhv-Xy-xmJ" firstAttribute="centerY" secondItem="9c3-aX-t42" secondAttribute="centerY" priority="999" id="Hho-E3-NR5"/>
+                        <constraint firstItem="9c3-aX-t42" firstAttribute="leading" secondItem="Lhv-Xy-xmJ" secondAttribute="leading" id="bnb-hV-p74"/>
+                        <constraint firstItem="Lhv-Xy-xmJ" firstAttribute="trailing" secondItem="9c3-aX-t42" secondAttribute="trailing" id="eoU-hU-djv"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="9c3-aX-t42"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="655" y="203"/>
