@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MovieMatchTableViewCellDelegate: AnyObject {
-    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?)
+    func movieMatchTableViewCell(didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?)
 }
 
 class MovieMatchCell: UITableViewCell {
@@ -60,8 +60,7 @@ class MovieMatchCell: UITableViewCell {
     func startMovieNightButtonTouched(_ sender: UIButton) {
         guard let nearbyMovie = nearbyMovie else { return }
 
-        delegate?.movieMatchTableViewCell(sender: self,
-                                          didSelectMovie: nearbyMovie,
+        delegate?.movieMatchTableViewCell(didSelectMovie: nearbyMovie,
                                           withPoster: posterImageView.image)
     }
 }

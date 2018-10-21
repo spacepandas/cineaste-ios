@@ -8,26 +8,7 @@
 
 import UIKit
 
-class MovieNightViewController: UIViewController {
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
-            tableView.backgroundColor = UIColor.basicBackground
-
-            tableView.allowsSelection = false
-
-            tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableView.automaticDimension
-
-            tableView.tableFooterView = UIView()
-            tableView.backgroundView = searchForFriendsView
-
-            tableView.alwaysBounceVertical = false
-        }
-    }
-
-    @IBOutlet private weak var startButton: StartMovieNightButton!
-
+class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var searchForFriendsView: UIView!
     @IBOutlet private weak var searchFriendsLabel: UILabel! {
         didSet {
@@ -46,7 +27,6 @@ class MovieNightViewController: UIViewController {
     private var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
-                self.startButton.isEnabled = !self.nearbyMessages.isEmpty
                 self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
 
                 self.tableView.reloadData()
@@ -60,7 +40,6 @@ class MovieNightViewController: UIViewController {
         super.viewDidLoad()
 
         title = String.movieNightTitle
-        startButton.isEnabled = false
 
         #if DEBUG
         let tripleTapGestureRecognizer =
@@ -69,6 +48,8 @@ class MovieNightViewController: UIViewController {
         tripleTapGestureRecognizer.numberOfTapsRequired = 3
         view.addGestureRecognizer(tripleTapGestureRecognizer)
         #endif
+
+        configureTableView()
     }
 
     func configure(with storageManager: MovieStorage) {
@@ -93,11 +74,6 @@ class MovieNightViewController: UIViewController {
 
     @IBAction func cancelMovieNight(_ sender: Any) {
         dismiss(animated: true)
-    }
-
-    @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
-        performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                     sender: nearbyMessages)
     }
 
     @objc
@@ -132,22 +108,33 @@ class MovieNightViewController: UIViewController {
         #endif
     }
 
+    // MARK: - Configuration
+
+    private func configureTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.basicBackground
+
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+
+        tableView.backgroundView = searchForFriendsView
+
+        tableView.alwaysBounceVertical = false
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieMatches?:
             guard
-                let nearbyMessages = sender as? [NearbyMessage],
-                let ownMessage = ownNearbyMessage,
+                let (title, nearbyMessages) = sender as? (String, [NearbyMessage]),
                 let storageManager = storageManager
                 else { return }
 
-            var combinedMessages = nearbyMessages
-            combinedMessages.append(ownMessage)
-
             let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: combinedMessages,
+            vc?.configure(with: title,
+                          messagesToMatch: nearbyMessages,
                           storageManager: storageManager)
         default:
             return
@@ -212,17 +199,48 @@ class MovieNightViewController: UIViewController {
             return nil
         }
     }
-}
 
-extension MovieNightViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyMessages.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nearbyMessages.isEmpty ? 0 : nearbyMessages.count + 1
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
-        cell.configure(with: nearbyMessages[indexPath.row])
+
+        if indexPath.row == 0 {
+            //all lists together
+
+            guard let ownMessage = ownNearbyMessage else { return cell }
+            var combinedMessages = nearbyMessages
+            combinedMessages.append(ownMessage)
+
+            let numberOfAllMovies = combinedMessages
+                .compactMap { $0.movies.count }
+                .reduce(0, +)
+            let names = combinedMessages.map { $0.userName }
+            cell.configureAll(numberOfMovies: numberOfAllMovies,
+                              namesOfFriends: names)
+        } else {
+            let message = nearbyMessages[indexPath.row - 1]
+            cell.configure(userName: message.userName,
+                           numberOfMovies: message.movies.count)
+        }
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            guard let ownMessage = ownNearbyMessage else { return }
+            var combinedMessages = nearbyMessages
+            combinedMessages.append(ownMessage)
+
+            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
+                         sender: ("all", combinedMessages))
+        } else {
+            let nearbyMessage = nearbyMessages[indexPath.row - 1]
+            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
+                         sender: (nearbyMessage.userName, [nearbyMessage]))
+        }
     }
 }
 

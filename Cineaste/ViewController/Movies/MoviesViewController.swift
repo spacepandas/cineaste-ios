@@ -131,7 +131,17 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Configuration
 
-    func configureSearchController() {
+    private func configureTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.basicBackground
+
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+
+        tableView.backgroundView = emptyView
+    }
+
+    private func configureSearchController() {
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultSearchController
             navigationItem.hidesSearchBarWhenScrolling = true
@@ -140,16 +150,6 @@ class MoviesViewController: UITableViewController {
         }
 
         definesPresentationContext = true
-    }
-
-    func configureTableView() {
-        tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.basicBackground
-
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 80
-
-        tableView.backgroundView = emptyView
     }
 
     // MARK: - Custom functions
