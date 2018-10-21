@@ -18,10 +18,8 @@ class MovieNightUserCell: UITableViewCell {
     func configureAll(numberOfMovies: Int, namesOfFriends: [String]) {
         setup()
 
-        //TODO: localize, and use Σ ?
-        allTitle.text = "Alle"
-        //TODO: localize
-        numberOfMoviesLabel.text = "\(numberOfMovies) Filme"
+        allTitle.text = String.allResultsForMovieNight
+        numberOfMoviesLabel.text = String.movies(for: numberOfMovies)
 
         namesOfFriendsLabel.isHidden = false
         namesOfFriendsLabel.text = namesOfFriends.joined(separator: ", ")
@@ -31,8 +29,8 @@ class MovieNightUserCell: UITableViewCell {
         setup()
 
         allTitle.text = userName
-        //TODO: localize
-        numberOfMoviesLabel.text = "\(numberOfMovies) Filme"
+        numberOfMoviesLabel.text = String.movies(for: numberOfMovies)
+
         namesOfFriendsLabel.isHidden = true
     }
 
