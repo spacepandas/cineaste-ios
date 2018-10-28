@@ -91,6 +91,9 @@ extension String {
     static let searchFriendsOnMovieNight = NSLocalizedString("searchFriends", comment: "Search friends on movie night")
     static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")
     static let allResultsForMovieNight = NSLocalizedString("results all together", comment: "All results for movie night")
+    static let enableNearby = NSLocalizedString("enable nearby", comment: "Title for enable nearby button")
+    static let nearbyUsage = NSLocalizedString("nearbyUsage", comment: "Description for usage of nearby")
+    static let nearbyPermissionDenied = NSLocalizedString("nearbyPermissionDenied", comment: "Description for denied nearby permission")
 
     // MARK: IMPORT
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
@@ -106,8 +109,8 @@ extension String {
     static let unknownVoteCount = "-"
     static let unknownVoteAverage = "-"
     static let unknownRuntime = "-"
-    static let unknownTitle = "<Title>" //TODO: localize
-    static let unknownReleaseDate = NSLocalizedString("unknown", comment: "Title for unknown release date")
+    static let unknownTitle = NSLocalizedString("unknown_title", comment: "Title for unknown title")
+    static let unknownReleaseDate = NSLocalizedString("unknown_releaseDate", comment: "Title for unknown release date")
 
     // MARK: Alert messages
 

@@ -154,11 +154,9 @@ class MovieNightViewController: UITableViewController {
 
     private func localizeContent() {
         searchFriendsLabel.text = .searchFriendsOnMovieNight
-
-        //TODO: localize labels / button
-        permissionButton.setTitle("Nearby erlauben", for: .normal)
-        permissionDeniedDescription.text = "Ohne Google Nearby kann nicht nach Geräten in deiner Nähe gesucht werden"
-        usageDescription.text = "Google Nearby benutzt gerade folgende Technologien, um Freunde in der Nähe zu finden"
+        permissionButton.setTitle(String.enableNearby, for: .normal)
+        permissionDeniedDescription.text = String.nearbyPermissionDenied
+        usageDescription.text = String.nearbyUsage
     }
 
     private func configureViews() {
