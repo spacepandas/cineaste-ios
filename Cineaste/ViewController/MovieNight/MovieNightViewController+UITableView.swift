@@ -42,7 +42,7 @@ extension MovieNightViewController {
             combinedMessages.append(ownNearbyMessage)
 
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                         sender: ("all", combinedMessages))
+                         sender: (String.allResultsForMovieNight, combinedMessages))
         } else {
             let nearbyMessage = nearbyMessages[indexPath.row - 1]
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
