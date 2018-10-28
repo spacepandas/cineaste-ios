@@ -8,7 +8,7 @@
 
 import XCTest
 import CoreData
-@testable import Cineaste_App_Dev
+@testable import Cineaste_App
 
 class MoviesViewControllerTests: XCTestCase {
     let moviesVC = MoviesViewController.instantiate()

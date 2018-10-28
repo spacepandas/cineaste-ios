@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "95AE259B1F9531E20067F5F5"
-               BuildableName = "Cineaste App-Dev.app"
-               BlueprintName = "Cineaste App-Dev"
+               BlueprintIdentifier = "3FF790E120DE274A007B7D37"
+               BuildableName = "Cineaste App.app"
+               BlueprintName = "Cineaste App"
                ReferencedContainer = "container:Cineaste.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95AE259B1F9531E20067F5F5"
-            BuildableName = "Cineaste App-Dev.app"
-            BlueprintName = "Cineaste App-Dev"
+            BlueprintIdentifier = "3FF790E120DE274A007B7D37"
+            BuildableName = "Cineaste App.app"
+            BlueprintName = "Cineaste App"
             ReferencedContainer = "container:Cineaste.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,15 +79,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95AE259B1F9531E20067F5F5"
-            BuildableName = "Cineaste App-Dev.app"
-            BlueprintName = "Cineaste App-Dev"
-            ReferencedContainer = "container:Cineaste.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
