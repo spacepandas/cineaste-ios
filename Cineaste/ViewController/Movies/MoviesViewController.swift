@@ -122,7 +122,7 @@ class MoviesViewController: UITableViewController {
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
-        if UserDefaultsManager.username == nil {
+        if UserDefaultsManager.getUsername() == nil {
             askForUsername()
         } else {
             performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)

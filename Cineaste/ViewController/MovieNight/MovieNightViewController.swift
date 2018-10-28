@@ -238,7 +238,7 @@ class MovieNightViewController: UITableViewController {
 
     private func generateOwnNearbyMessage() -> NearbyMessage? {
         guard let storageManager = storageManager,
-            let username = UserDefaultsManager.username
+            let username = UserDefaultsManager.getUsername()
             else { return nil }
 
         let nearbyMovies = storageManager
