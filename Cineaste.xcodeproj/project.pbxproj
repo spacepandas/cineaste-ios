@@ -13,6 +13,10 @@
 		3F1292F11FD7C90D00ED5593 /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292ED1FD7C90C00ED5593 /* MovieDetail.storyboard */; };
 		3F1292F21FD7C90D00ED5593 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1292EF1FD7C90C00ED5593 /* Search.storyboard */; };
 		3F1292FA1FD7CC1100ED5593 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* MovieListCell.swift */; };
+		3F14F3282185D12F00256152 /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14F3272185D12F00256152 /* MovieNightViewController+UITableView.swift */; };
+		3F14F3292185D12F00256152 /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14F3272185D12F00256152 /* MovieNightViewController+UITableView.swift */; };
+		3F14F32B2185D16400256152 /* MovieNightViewController+Nearby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14F32A2185D16400256152 /* MovieNightViewController+Nearby.swift */; };
+		3F14F32C2185D16400256152 /* MovieNightViewController+Nearby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14F32A2185D16400256152 /* MovieNightViewController+Nearby.swift */; };
 		3F1DA162209C64D900AC4D09 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F1DA161209C64D900AC4D09 /* Settings.bundle */; };
 		3F1DA165209DAE4500AC4D09 /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */; };
 		3F1F29EA20B1C4AB00A9282B /* UITableView+GenericDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */; };
@@ -256,6 +260,8 @@
 		3F1292EE1FD7C90C00ED5593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieDetail.storyboard; sourceTree = "<group>"; };
 		3F1292F01FD7C90C00ED5593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		3F1292F91FD7CC1100ED5593 /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
+		3F14F3272185D12F00256152 /* MovieNightViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+UITableView.swift"; sourceTree = "<group>"; };
+		3F14F32A2185D16400256152 /* MovieNightViewController+Nearby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+Nearby.swift"; sourceTree = "<group>"; };
 		3F1DA161209C64D900AC4D09 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
 		3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+GenericDequeue.swift"; sourceTree = "<group>"; };
@@ -526,6 +532,8 @@
 			isa = PBXGroup;
 			children = (
 				3F6C887D2002B5090052BF24 /* MovieNightViewController.swift */,
+				3F14F32A2185D16400256152 /* MovieNightViewController+Nearby.swift */,
+				3F14F3272185D12F00256152 /* MovieNightViewController+UITableView.swift */,
 				953182FA203E212A00A331A0 /* MovieNightUserCell.swift */,
 				9526A70420448940004E08F7 /* MovieMatchViewController.swift */,
 				9526A70620449206004E08F7 /* MovieMatchCell.swift */,
@@ -1125,6 +1133,7 @@
 				3FF790F020DE274A007B7D37 /* MovieNightUserCell.swift in Sources */,
 				3FF790F120DE274A007B7D37 /* MovieListCategory.swift in Sources */,
 				3FF790F220DE274A007B7D37 /* ImportMoviesViewController.swift in Sources */,
+				3F14F32C2185D16400256152 /* MovieNightViewController+Nearby.swift in Sources */,
 				3FDEF4762103368300955129 /* DebugPrint.swift in Sources */,
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
@@ -1176,6 +1185,7 @@
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911920DE274A007B7D37 /* FetchedResultsManager.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
+				3F14F3292185D12F00256152 /* MovieNightViewController+UITableView.swift in Sources */,
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,
 				3FF7911C20DE274A007B7D37 /* String+DateFormatter.swift in Sources */,
@@ -1213,6 +1223,7 @@
 				9528112E201D05AD00F3EC76 /* Result.swift in Sources */,
 				3FC95B90207BF60700B44C84 /* OrangeNavigationController.swift in Sources */,
 				3FA808CF20027AF60036357B /* Button.swift in Sources */,
+				3F14F32B2185D16400256152 /* MovieNightViewController+Nearby.swift in Sources */,
 				3FDEF4752103368300955129 /* DebugPrint.swift in Sources */,
 				3F83BE981FF3BF7000E584E9 /* Segue.swift in Sources */,
 				3F71F685200292B700496E05 /* DescriptionTextView.swift in Sources */,
@@ -1264,6 +1275,7 @@
 				3F9806382055250F00B92A27 /* String+Cineaste.swift in Sources */,
 				3FCC71331FD747D600A47ADF /* FetchedResultsManager.swift in Sources */,
 				3F5E0D8C20308FF700E091BE /* SettingsViewController.swift in Sources */,
+				3F14F3282185D12F00256152 /* MovieNightViewController+UITableView.swift in Sources */,
 				3FE49554209DD33A006CD0D3 /* ImportExportObject.swift in Sources */,
 				3FA48FA520FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */,
 				3F3BC2611FF40387000C7EC7 /* String+DateFormatter.swift in Sources */,

@@ -40,7 +40,11 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
-    private lazy var gnsMessageManager: GNSMessageManager =
+    private var microphonePermissionErrorHandler: ((Bool) -> Void)?
+    private var bluetoothPowerErrorHandler: ((Bool) -> Void)?
+    private var nearbyPermissionHandler: ((Bool) -> Void)?
+
+    lazy var gnsMessageManager: GNSMessageManager =
         GNSMessageManager(apiKey: ApiKeyStore.nearbyKey) { (params: GNSMessageManagerParams?) in
             guard let params = params else { return }
             //Tracking user settings that affect Nearby
@@ -48,19 +52,15 @@ class MovieNightViewController: UITableViewController {
             params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler  ?? { _ in }
         }
 
-    private var storageManager: MovieStorage?
+    lazy var ownNearbyMessage = { generateOwnNearbyMessage() }()
 
-    private var microphonePermissionErrorHandler: ((Bool) -> Void)?
-    private var bluetoothPowerErrorHandler: ((Bool) -> Void)?
-    private var nearbyPermissionHandler: ((Bool) -> Void)?
+    var storageManager: MovieStorage?
 
-    private var currentPermission: GNSPermission?
-    private var currentPublication: GNSPublication?
-    private var currentSubscription: GNSSubscription?
+    var currentPermission: GNSPermission?
+    var currentPublication: GNSPublication?
+    var currentSubscription: GNSSubscription?
 
-    private lazy var ownNearbyMessage = { generateOwnNearbyMessage() }()
-
-    private var nearbyMessages = [NearbyMessage]() {
+    var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
@@ -120,28 +120,20 @@ class MovieNightViewController: UITableViewController {
     func toggleSearchingForFriendsMode() {
         #if DEBUG
         if nearbyMessages.isEmpty {
-            let simulatorMovies = [NearbyMovie(id: 1,
-                                               title: "Film B",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 2,
-                                               title: "Asterix",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 3,
-                                               title: "Film 3",
-                                               posterPath: nil)]
-            let developerMovies = [NearbyMovie(id: 1,
-                                               title: "Film B",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 2,
-                                               title: "Asterix",
-                                               posterPath: nil)]
+            let simulatorMovies = [
+                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
+                NearbyMovie(id: 2, title: "Asterix", posterPath: nil),
+                NearbyMovie(id: 3, title: "Film 3", posterPath: nil)
+            ]
+            let developerMovies = [
+                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
+                NearbyMovie(id: 2, title: "Asterix", posterPath: nil)
+            ]
 
-            nearbyMessages = [NearbyMessage(userName: "Simulator",
-                                            deviceId: "1",
-                                            movies: simulatorMovies),
-                              NearbyMessage(userName: "Developer",
-                                            deviceId: "2",
-                                            movies: developerMovies)]
+            nearbyMessages = [
+                NearbyMessage(userName: "Simulator", deviceId: "1", movies: simulatorMovies),
+                NearbyMessage(userName: "Developer", deviceId: "2", movies: developerMovies)
+            ]
         } else {
             nearbyMessages = []
         }
@@ -212,58 +204,6 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showMovieMatches?:
-            guard
-                let (title, nearbyMessages) = sender as? (String, [NearbyMessage]),
-                let storageManager = storageManager
-                else { return }
-
-            let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: title,
-                          messagesToMatch: nearbyMessages,
-                          storageManager: storageManager)
-        default:
-            return
-        }
-    }
-
-    // MARK: - Nearby
-
-    private func publishWatchlistMovies() {
-        guard let messageData = try? JSONEncoder().encode(ownNearbyMessage)
-            else { return }
-
-        currentPublication = gnsMessageManager.publication(
-            with: GNSMessage(content: messageData)
-        )
-    }
-
-    private func subscribeToNearbyMessages() {
-        currentSubscription = gnsMessageManager.subscription(
-            messageFoundHandler: { message in
-                guard let nearbyMessage = self.convertGNSMessage(from: message)
-                    else { return }
-
-                // add nearbyMessage
-                if !self.nearbyMessages.contains(nearbyMessage) {
-                    self.nearbyMessages.append(nearbyMessage)
-                }
-            },
-            messageLostHandler: { message in
-                guard let nearbyMessage = self.convertGNSMessage(from: message)
-                    else { return }
-
-                // remove nearbyMessage
-                self.nearbyMessages = self.nearbyMessages
-                    .filter { $0 != nearbyMessage }
-            }
-        )
-    }
-
     private func generateOwnNearbyMessage() -> NearbyMessage {
         guard let storageManager = storageManager,
             let username = UserDefaultsManager.getUsername()
@@ -280,56 +220,22 @@ class MovieNightViewController: UITableViewController {
         return NearbyMessage(with: username, movies: nearbyMovies)
     }
 
-    private func convertGNSMessage(from message: GNSMessage?) -> NearbyMessage? {
-        if let data = message?.content,
-            let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
-                                                          from: data) {
-            return nearbyMessage
-        } else {
-            return nil
-        }
-    }
+    // MARK: - Navigation
 
-    // MARK: - TableView
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch Segue(initWith: segue) {
+        case .showMovieMatches?:
+            guard
+                let (title, nearbyMessages) = sender as? (String, [NearbyMessage]),
+                let storageManager = storageManager
+                else { return }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyMessages.isEmpty ? 0 : nearbyMessages.count + 1
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
-
-        if indexPath.row == 0 {
-            //all lists together
-
-            var combinedMessages = nearbyMessages
-            combinedMessages.append(ownNearbyMessage)
-
-            let numberOfAllMovies = combinedMessages
-                .compactMap { $0.movies.count }
-                .reduce(0, +)
-            let names = combinedMessages.map { $0.userName }
-            cell.configureAll(numberOfMovies: numberOfAllMovies,
-                              namesOfFriends: names)
-        } else {
-            let message = nearbyMessages[indexPath.row - 1]
-            cell.configure(userName: message.userName,
-                           numberOfMovies: message.movies.count)
-        }
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            var combinedMessages = nearbyMessages
-            combinedMessages.append(ownNearbyMessage)
-
-            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                         sender: ("all", combinedMessages))
-        } else {
-            let nearbyMessage = nearbyMessages[indexPath.row - 1]
-            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                         sender: (nearbyMessage.userName, [nearbyMessage]))
+            let vc = segue.destination as? MovieMatchViewController
+            vc?.configure(with: title,
+                          messagesToMatch: nearbyMessages,
+                          storageManager: storageManager)
+        default:
+            return
         }
     }
 }
