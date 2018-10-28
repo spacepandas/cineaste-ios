@@ -94,6 +94,7 @@ extension String {
     static let enableNearby = NSLocalizedString("enable nearby", comment: "Title for enable nearby button")
     static let nearbyUsage = NSLocalizedString("nearbyUsage", comment: "Description for usage of nearby")
     static let nearbyPermissionDenied = NSLocalizedString("nearbyPermissionDenied", comment: "Description for denied nearby permission")
+    static let nearbyLink = NSLocalizedString("nearbyLink", comment: "Nearby link")
 
     // MARK: IMPORT
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")

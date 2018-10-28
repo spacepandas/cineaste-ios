@@ -16,11 +16,13 @@ class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var nearbyIcon: UIImageView!
     @IBOutlet private weak var permissionButton: UIButton!
     @IBOutlet private weak var permissionDeniedDescription: UILabel!
+    @IBOutlet private weak var nearbyLinkPermissionDeniedTextView: LinkTextView!
 
     @IBOutlet private weak var footerView: UIView!
     @IBOutlet private weak var usageDescription: UILabel!
     @IBOutlet private weak var microphoneIcon: UIImageView!
     @IBOutlet private weak var bluetoothIcon: UIImageView!
+    @IBOutlet private weak var nearbyLinkUsageDescriptionTextView: LinkTextView!
 
     private var canUseNearby: Bool = true {
         didSet {
@@ -73,6 +75,8 @@ class MovieNightViewController: UITableViewController {
         super.viewDidLoad()
 
         title = String.movieNightTitle
+        nearbyLinkPermissionDeniedTextView.delegate = self
+        nearbyLinkUsageDescriptionTextView.delegate = self
 
         canUseNearby = GNSPermission.isGranted()
         canUseBluetooth = true
@@ -157,6 +161,8 @@ class MovieNightViewController: UITableViewController {
         permissionButton.setTitle(String.enableNearby, for: .normal)
         permissionDeniedDescription.text = String.nearbyPermissionDenied
         usageDescription.text = String.nearbyUsage
+        nearbyLinkPermissionDeniedTextView.text = String.nearbyLink
+        nearbyLinkUsageDescriptionTextView.text = String.nearbyLink
     }
 
     private func configureViews() {
@@ -164,6 +170,16 @@ class MovieNightViewController: UITableViewController {
         nearbyIcon.tintColor = .accentTextOnBlack
         permissionDeniedDescription.textColor = .accentTextOnBlack
         usageDescription.textColor = .accentTextOnBlack
+
+        let nearbyPermissionStyle = nearbyLinkPermissionDeniedTextView.paragraphStyle
+        nearbyPermissionStyle.alignment = .center
+        nearbyPermissionStyle.lineSpacing = 3
+        nearbyLinkPermissionDeniedTextView.paragraphStyle = nearbyPermissionStyle
+
+        let nearbyUsageStyle = nearbyLinkUsageDescriptionTextView.paragraphStyle
+        nearbyUsageStyle.alignment = .left
+        nearbyUsageStyle.lineSpacing = 3
+        nearbyLinkUsageDescriptionTextView.paragraphStyle = nearbyUsageStyle
     }
 
     private func configureTableView() {
@@ -235,6 +251,16 @@ class MovieNightViewController: UITableViewController {
         default:
             return
         }
+    }
+}
+
+extension MovieNightViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+
+        let safariVC = CustomSafariViewController(url: URL)
+        present(safariVC, animated: true)
+
+        return false
     }
 }
 

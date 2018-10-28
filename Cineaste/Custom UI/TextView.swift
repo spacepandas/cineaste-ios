@@ -1,5 +1,5 @@
 //
-//  DescriptionTextView.swift
+//  TextView.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 07.01.18.
@@ -9,7 +9,7 @@
 import UIKit
 
 class TextView: UITextView {
-    let paragraphStyle: NSMutableParagraphStyle = {
+    var paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 7
         return style
@@ -77,11 +77,18 @@ class DescriptionTextView: TextView {
 
 class LinkTextView: TextView {
 
+    override func setup() {
+        super.setup()
+
+        isScrollEnabled = false
+        backgroundColor = .clear
+    }
+
     override func setAttributes() {
         let defaultAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
-            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .footnote),
+            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnBlack
         ]
 
         attributedText = NSAttributedString(string: self.text,

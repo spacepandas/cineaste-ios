@@ -179,6 +179,8 @@
                         <outlet property="footerView" destination="zup-lm-3Ut" id="hsd-dP-HmZ"/>
                         <outlet property="microphoneIcon" destination="jAc-v7-qef" id="GgS-lZ-i4R"/>
                         <outlet property="nearbyIcon" destination="rJL-1Z-TaI" id="G77-GZ-BlC"/>
+                        <outlet property="nearbyLinkPermissionDeniedTextView" destination="lDd-hR-oB9" id="kOh-Gx-gsH"/>
+                        <outlet property="nearbyLinkUsageDescriptionTextView" destination="Qic-ad-jnt" id="R8G-sX-vDb"/>
                         <outlet property="permissionButton" destination="dge-Jh-lVD" id="OKU-UZ-DCq"/>
                         <outlet property="permissionDeniedDescription" destination="L2T-Fi-ILZ" id="Y7m-Ei-g4h"/>
                         <outlet property="permissionDeniedView" destination="dp5-cW-KjM" id="UpY-LK-YxE"/>
@@ -190,46 +192,54 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8S-Hc-MSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="zup-lm-3Ut">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tJ-u5-sBH">
-                            <rect key="frame" x="0.0" y="14.5" width="375" height="84"/>
+                            <rect key="frame" x="0.0" y="20.5" width="375" height="142"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Google Nearby uses:&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vi-zOn">
-                                    <rect key="frame" x="20" y="20" width="335" height="16"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Mw-WVv">
-                                    <rect key="frame" x="20" y="44" width="48" height="20"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ucB-eK-v54">
+                                    <rect key="frame" x="20" y="20" width="335" height="102"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="jAc-v7-qef">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="jAc-v7-qef" secondAttribute="height" id="ODl-dg-VPr"/>
-                                                <constraint firstAttribute="width" constant="20" id="wAp-Yw-qxw"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetooth" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-Ok-ceQ">
-                                            <rect key="frame" x="28" y="0.0" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="ANE-wl-iaA"/>
-                                                <constraint firstAttribute="width" secondItem="Mw7-Ok-ceQ" secondAttribute="height" id="clS-yi-9Oq"/>
-                                            </constraints>
-                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Google Nearby uses:&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vi-zOn">
+                                            <rect key="frame" x="0.0" y="0.0" width="143" height="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Mw-WVv">
+                                            <rect key="frame" x="0.0" y="24" width="48" height="20"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="jAc-v7-qef">
+                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="jAc-v7-qef" secondAttribute="height" id="ODl-dg-VPr"/>
+                                                        <constraint firstAttribute="width" constant="20" id="wAp-Yw-qxw"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetooth" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-Ok-ceQ">
+                                                    <rect key="frame" x="28" y="0.0" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="ANE-wl-iaA"/>
+                                                        <constraint firstAttribute="width" secondItem="Mw7-Ok-ceQ" secondAttribute="height" id="clS-yi-9Oq"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Link&gt;" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qic-ad-jnt" customClass="LinkTextView" customModule="Cineaste_App" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="52" width="240" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="CFb-Vi-zOn" secondAttribute="trailing" constant="20" symbolic="YES" id="1xe-nj-1ad"/>
-                                <constraint firstAttribute="bottom" secondItem="DTo-Mw-WVv" secondAttribute="bottom" constant="20" symbolic="YES" id="4Uk-qo-8ta"/>
-                                <constraint firstItem="DTo-Mw-WVv" firstAttribute="top" secondItem="CFb-Vi-zOn" secondAttribute="bottom" constant="8" symbolic="YES" id="BdP-K8-fxx"/>
-                                <constraint firstItem="CFb-Vi-zOn" firstAttribute="leading" secondItem="1tJ-u5-sBH" secondAttribute="leading" constant="20" symbolic="YES" id="Ebg-VS-DaA"/>
-                                <constraint firstItem="DTo-Mw-WVv" firstAttribute="leading" secondItem="1tJ-u5-sBH" secondAttribute="leading" constant="20" symbolic="YES" id="KRk-EV-e2Y"/>
-                                <constraint firstItem="CFb-Vi-zOn" firstAttribute="top" secondItem="1tJ-u5-sBH" secondAttribute="top" constant="20" symbolic="YES" id="Zhz-GD-kr8"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DTo-Mw-WVv" secondAttribute="trailing" constant="20" symbolic="YES" id="vzD-VK-qbD"/>
+                                <constraint firstItem="ucB-eK-v54" firstAttribute="centerX" secondItem="1tJ-u5-sBH" secondAttribute="centerX" id="ABA-Cd-v1K"/>
+                                <constraint firstItem="ucB-eK-v54" firstAttribute="top" secondItem="1tJ-u5-sBH" secondAttribute="top" constant="20" symbolic="YES" id="YAS-R3-qb7"/>
+                                <constraint firstItem="ucB-eK-v54" firstAttribute="leading" secondItem="1tJ-u5-sBH" secondAttribute="leading" constant="20" symbolic="YES" id="fba-WI-qEw"/>
+                                <constraint firstItem="ucB-eK-v54" firstAttribute="centerY" secondItem="1tJ-u5-sBH" secondAttribute="centerY" id="nPV-LX-S1B"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -277,14 +287,14 @@
                     <viewLayoutGuide key="safeArea" id="DU1-xc-JgK"/>
                 </view>
                 <view contentMode="scaleToFill" id="dp5-cW-KjM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhv-Xy-xmJ">
-                            <rect key="frame" x="0.0" y="13.5" width="375" height="173.5"/>
+                            <rect key="frame" x="0.0" y="3.5" width="375" height="243.5"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-Bn-jFk">
-                                    <rect key="frame" x="65.5" y="20" width="244" height="133.5"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-Bn-jFk">
+                                    <rect key="frame" x="65.5" y="20" width="244" height="203.5"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nearby_black_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-1Z-TaI">
                                             <rect key="frame" x="102" y="0.0" width="40" height="40"/>
@@ -307,6 +317,12 @@
                                                 <action selector="allowNearby:" destination="guU-sO-7DX" eventType="touchUpInside" id="rTI-hz-um6"/>
                                             </connections>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Link&gt;" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="lDd-hR-oB9" customClass="LinkTextView" customModule="Cineaste_App" customModuleProvider="target">
+                                            <rect key="frame" x="2" y="153.5" width="240" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                 </stackView>
                             </subviews>
