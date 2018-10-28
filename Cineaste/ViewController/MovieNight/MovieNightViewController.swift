@@ -9,17 +9,6 @@
 import UIKit
 
 class MovieNightViewController: UITableViewController {
-    enum NearbyPermissionState: Equatable {
-        case nearbyPermissionPending
-        case denied(_ permissions: [Permission])
-        case canUseNearby
-    }
-
-    enum Permission: String {
-        case microphone
-        case bluetooth
-        case nearby
-    }
 
     @IBOutlet private weak var searchForFriendsView: UIView!
     @IBOutlet private weak var searchFriendsLabel: UILabel! {
@@ -34,21 +23,39 @@ class MovieNightViewController: UITableViewController {
             permissionDeniedDescription.textColor = .accentTextOnBlack
         }
     }
-
-    private var state: NearbyPermissionState = .nearbyPermissionPending {
+    @IBOutlet private weak var usageDescription: UILabel! {
         didSet {
-            switch state {
-            //TODO: handle states localized
-            case .nearbyPermissionPending:
-                tableView.backgroundView = permissionDeniedView
-                permissionDeniedDescription.text = "Nearby Permission Pending"
-            case .denied(let permissions):
-                tableView.backgroundView = permissionDeniedView
-                permissionDeniedDescription.text = "\(permissions.map { $0.rawValue }.joined(separator: ", ")) denied"
-            case .canUseNearby:
+            //TODO: localize
+            usageDescription.text = "Google Nearby benutzt gerade folgende Technologien, um Freunde in der Nähe zu finden"
+            usageDescription.textColor = .accentTextOnBlack
+        }
+    }
+    @IBOutlet private weak var microphoneIcon: UIImageView!
+    @IBOutlet private weak var bluetoothIcon: UIImageView!
+    @IBOutlet private weak var footerView: UIView!
+
+    private var canUseNearby: Bool = true {
+        didSet {
+            if canUseNearby {
                 tableView.backgroundView = searchForFriendsView
                 tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
+            } else {
+                //TODO: handle states localized
+                tableView.backgroundView = permissionDeniedView
+                permissionDeniedDescription.text = "Nearby Permission Pending"
             }
+        }
+    }
+
+    private var canUseBluetooth: Bool = true {
+        didSet {
+            bluetoothIcon.tintColor = canUseBluetooth ? .accentTextOnBlack : .accentTextOnWhite
+        }
+    }
+
+    private var canUseMicrophone: Bool = true {
+        didSet {
+            microphoneIcon.tintColor = canUseMicrophone ? .accentTextOnBlack : .accentTextOnWhite
         }
     }
 
@@ -84,7 +91,10 @@ class MovieNightViewController: UITableViewController {
         super.viewDidLoad()
 
         title = String.movieNightTitle
-        state = GNSPermission.isGranted() ? .canUseNearby : .nearbyPermissionPending
+
+        canUseNearby = GNSPermission.isGranted()
+        canUseBluetooth = true
+        canUseMicrophone = true
 
         #if DEBUG
         let tripleTapGestureRecognizer =
@@ -159,7 +169,7 @@ class MovieNightViewController: UITableViewController {
     // MARK: - Configuration
 
     private func configureTableView() {
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = footerView
         tableView.backgroundColor = UIColor.basicBackground
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -170,47 +180,16 @@ class MovieNightViewController: UITableViewController {
 
     private func configureStateObserver() {
         bluetoothPowerErrorHandler = { hasError in
-            self.state = self.updateState(with: .bluetooth, hasError: hasError)
+            self.canUseBluetooth = !hasError
         }
 
         microphonePermissionErrorHandler = { hasError in
-            self.state = self.updateState(with: .microphone, hasError: hasError)
+            self.canUseMicrophone = !hasError
         }
 
         nearbyPermissionHandler = { granted in
-            self.state = self.updateState(with: .nearby, hasError: !granted)
+            self.canUseNearby = granted
         }
-    }
-
-    private func updateState(with permission: Permission, hasError: Bool) -> NearbyPermissionState {
-        var state = self.state
-        switch state {
-        case .nearbyPermissionPending:
-            if hasError {
-                state = .denied([permission])
-            } else {
-                state = .canUseNearby
-            }
-        case .denied(var permissions):
-            if hasError {
-                if !permissions.contains(permission) {
-                    permissions.append(permission)
-                    state = .denied(permissions)
-                }
-            } else {
-                let newPermissions = permissions.filter { $0 != permission }
-                if newPermissions.isEmpty {
-                    state = .canUseNearby
-                } else {
-                    state = .denied(newPermissions)
-                }
-            }
-        case .canUseNearby:
-            if hasError {
-                state = .denied([permission])
-            }
-        }
-        return state
     }
 
     // MARK: - Navigation
