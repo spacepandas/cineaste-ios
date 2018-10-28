@@ -82,6 +82,8 @@ class LinkTextView: TextView {
 
         isScrollEnabled = false
         backgroundColor = .clear
+        textContainerInset = UIEdgeInsets.zero
+        textContainer.lineFragmentPadding = 0
     }
 
     override func setAttributes() {
