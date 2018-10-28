@@ -95,11 +95,12 @@ class StoredMovie: NSManagedObject, Codable {
         voteCount = try container.decode(Double.self, forKey: .voteCount)
         runtime = try container.decode(Int16.self, forKey: .runtime)
 
-        let releaseDateString = try container.decode(String.self, forKey: .releaseDate)
-        guard let releaseDate = releaseDateString.dateFromImportedMoviesString else {
-            throw StoredMovieDecodingError.dateFromString
+        if let releaseDateString = try container.decodeIfPresent(String.self, forKey: .releaseDate) {
+            guard let releaseDate = releaseDateString.dateFromImportedMoviesString else {
+                throw StoredMovieDecodingError.dateFromString
+            }
+            self.releaseDate = releaseDate
         }
-        self.releaseDate = releaseDate
 
         watched = try container.decode(Bool.self, forKey: .watched)
 
