@@ -106,6 +106,7 @@ extension String {
     static let unknownVoteCount = "-"
     static let unknownVoteAverage = "-"
     static let unknownRuntime = "-"
+    static let unknownTitle = "<Title>" //TODO: localize
     static let unknownReleaseDate = NSLocalizedString("unknown", comment: "Title for unknown release date")
 
     // MARK: Alert messages

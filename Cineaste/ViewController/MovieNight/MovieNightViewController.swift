@@ -90,7 +90,10 @@ class MovieNightViewController: UITableViewController {
     private var currentPublication: GNSPublication?
     private var currentSubscription: GNSSubscription?
 
-    private var ownNearbyMessage: NearbyMessage?
+    private lazy var ownNearbyMessage: NearbyMessage = {
+        generateOwnNearbyMessage()
+    }()
+
     private var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
@@ -108,8 +111,6 @@ class MovieNightViewController: UITableViewController {
         canUseNearby = GNSPermission.isGranted()
         canUseBluetooth = true
         canUseMicrophone = true
-
-        ownNearbyMessage = generateOwnNearbyMessage()
 
         configureDebugModeHelper()
         configureTableView()
@@ -236,35 +237,29 @@ class MovieNightViewController: UITableViewController {
 
     // MARK: - Nearby
 
-    private func generateOwnNearbyMessage() -> NearbyMessage? {
+    private func generateOwnNearbyMessage() -> NearbyMessage {
         guard let storageManager = storageManager,
             let username = UserDefaultsManager.getUsername()
-            else { return nil }
+            else { fatalError("ViewController should never be presented without a username") }
 
         let nearbyMovies = storageManager
             .fetchAllWatchlistMovies()
-            .compactMap { storedMovie -> NearbyMovie? in
-                guard let title = storedMovie.title else { return nil }
-                return NearbyMovie(id: storedMovie.id,
-                                   title: title,
-                                   posterPath: storedMovie.posterPath)
+            .compactMap { storedMovie -> NearbyMovie in
+                NearbyMovie(id: storedMovie.id,
+                            title: storedMovie.title ?? .unknownTitle,
+                            posterPath: storedMovie.posterPath)
             }
 
         return NearbyMessage(with: username, movies: nearbyMovies)
     }
 
     private func publishWatchlistMovies() {
-        if ownNearbyMessage == nil {
-            ownNearbyMessage = generateOwnNearbyMessage()
-        }
+        guard let messageData = try? JSONEncoder().encode(ownNearbyMessage)
+            else { return }
 
-        if let nearbyMessage = ownNearbyMessage,
-            let messageData = try? JSONEncoder().encode(nearbyMessage) {
-
-            currentPublication = gnsMessageManager.publication(
-                with: GNSMessage(content: messageData)
-            )
-        }
+        currentPublication = gnsMessageManager.publication(
+            with: GNSMessage(content: messageData)
+        )
     }
 
     private func subscribeToNearbyMessages() {
@@ -311,9 +306,8 @@ class MovieNightViewController: UITableViewController {
         if indexPath.row == 0 {
             //all lists together
 
-            guard let ownMessage = ownNearbyMessage else { return cell }
             var combinedMessages = nearbyMessages
-            combinedMessages.append(ownMessage)
+            combinedMessages.append(ownNearbyMessage)
 
             let numberOfAllMovies = combinedMessages
                 .compactMap { $0.movies.count }
@@ -331,9 +325,8 @@ class MovieNightViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            guard let ownMessage = ownNearbyMessage else { return }
             var combinedMessages = nearbyMessages
-            combinedMessages.append(ownMessage)
+            combinedMessages.append(ownNearbyMessage)
 
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
                          sender: ("all", combinedMessages))
