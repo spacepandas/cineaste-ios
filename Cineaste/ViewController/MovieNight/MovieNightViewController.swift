@@ -9,54 +9,22 @@
 import UIKit
 
 class MovieNightViewController: UITableViewController {
-
     @IBOutlet private weak var searchForFriendsView: UIView!
-    @IBOutlet private weak var searchFriendsLabel: UILabel! {
-        didSet {
-            searchFriendsLabel.text = .searchFriendsOnMovieNight
-            searchFriendsLabel.textColor = .accentTextOnBlack
-        }
-    }
+    @IBOutlet private weak var searchFriendsLabel: UILabel!
+
     @IBOutlet private weak var permissionDeniedView: UIView!
-    @IBOutlet private weak var nearbyIcon: UIImageView! {
-        didSet {
-            nearbyIcon.tintColor = .accentTextOnBlack
-        }
-    }
-    @IBOutlet private weak var permissionButton: UIButton! {
-        didSet {
-            //TODO: localize
-            permissionButton.setTitle("Nearby erlauben", for: .normal)
-        }
-    }
-    @IBOutlet private weak var permissionDeniedDescription: UILabel! {
-        didSet {
-            //TODO: localize
-            permissionDeniedDescription.text = "Ohne Google Nearby kann nicht nach Geräten in deiner Nähe gesucht werden"
-            permissionDeniedDescription.textColor = .accentTextOnBlack
-        }
-    }
-    @IBOutlet private weak var usageDescription: UILabel! {
-        didSet {
-            //TODO: localize
-            usageDescription.text = "Google Nearby benutzt gerade folgende Technologien, um Freunde in der Nähe zu finden"
-            usageDescription.textColor = .accentTextOnBlack
-        }
-    }
+    @IBOutlet private weak var nearbyIcon: UIImageView!
+    @IBOutlet private weak var permissionButton: UIButton!
+    @IBOutlet private weak var permissionDeniedDescription: UILabel!
+
+    @IBOutlet private weak var footerView: UIView!
+    @IBOutlet private weak var usageDescription: UILabel!
     @IBOutlet private weak var microphoneIcon: UIImageView!
     @IBOutlet private weak var bluetoothIcon: UIImageView!
-    @IBOutlet private weak var footerView: UIView!
 
     private var canUseNearby: Bool = true {
         didSet {
-            if canUseNearby {
-                tableView.tableFooterView = footerView
-                tableView.backgroundView = searchForFriendsView
-                tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
-            } else {
-                tableView.tableFooterView = UIView()
-                tableView.backgroundView = permissionDeniedView
-            }
+            updateTableView(with: canUseNearby)
         }
     }
 
@@ -90,9 +58,7 @@ class MovieNightViewController: UITableViewController {
     private var currentPublication: GNSPublication?
     private var currentSubscription: GNSSubscription?
 
-    private lazy var ownNearbyMessage: NearbyMessage = {
-        generateOwnNearbyMessage()
-    }()
+    private lazy var ownNearbyMessage = { generateOwnNearbyMessage() }()
 
     private var nearbyMessages = [NearbyMessage]() {
         didSet {
@@ -111,6 +77,9 @@ class MovieNightViewController: UITableViewController {
         canUseNearby = GNSPermission.isGranted()
         canUseBluetooth = true
         canUseMicrophone = true
+
+        configureViews()
+        localizeContent()
 
         configureDebugModeHelper()
         configureTableView()
@@ -191,6 +160,22 @@ class MovieNightViewController: UITableViewController {
         #endif
     }
 
+    private func localizeContent() {
+        searchFriendsLabel.text = .searchFriendsOnMovieNight
+
+        //TODO: localize labels / button
+        permissionButton.setTitle("Nearby erlauben", for: .normal)
+        permissionDeniedDescription.text = "Ohne Google Nearby kann nicht nach Geräten in deiner Nähe gesucht werden"
+        usageDescription.text = "Google Nearby benutzt gerade folgende Technologien, um Freunde in der Nähe zu finden"
+    }
+
+    private func configureViews() {
+        searchFriendsLabel.textColor = .accentTextOnBlack
+        nearbyIcon.tintColor = .accentTextOnBlack
+        permissionDeniedDescription.textColor = .accentTextOnBlack
+        usageDescription.textColor = .accentTextOnBlack
+    }
+
     private func configureTableView() {
         tableView.backgroundColor = UIColor.basicBackground
 
@@ -216,6 +201,17 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
+    private func updateTableView(with canUseNearby: Bool) {
+        if canUseNearby {
+            tableView.tableFooterView = footerView
+            tableView.backgroundView = searchForFriendsView
+            tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
+        } else {
+            tableView.tableFooterView = UIView()
+            tableView.backgroundView = permissionDeniedView
+        }
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -236,22 +232,6 @@ class MovieNightViewController: UITableViewController {
     }
 
     // MARK: - Nearby
-
-    private func generateOwnNearbyMessage() -> NearbyMessage {
-        guard let storageManager = storageManager,
-            let username = UserDefaultsManager.getUsername()
-            else { fatalError("ViewController should never be presented without a username") }
-
-        let nearbyMovies = storageManager
-            .fetchAllWatchlistMovies()
-            .compactMap { storedMovie -> NearbyMovie in
-                NearbyMovie(id: storedMovie.id,
-                            title: storedMovie.title ?? .unknownTitle,
-                            posterPath: storedMovie.posterPath)
-            }
-
-        return NearbyMessage(with: username, movies: nearbyMovies)
-    }
 
     private func publishWatchlistMovies() {
         guard let messageData = try? JSONEncoder().encode(ownNearbyMessage)
@@ -282,6 +262,22 @@ class MovieNightViewController: UITableViewController {
                     .filter { $0 != nearbyMessage }
             }
         )
+    }
+
+    private func generateOwnNearbyMessage() -> NearbyMessage {
+        guard let storageManager = storageManager,
+            let username = UserDefaultsManager.getUsername()
+            else { fatalError("ViewController should never be presented without a username") }
+
+        let nearbyMovies = storageManager
+            .fetchAllWatchlistMovies()
+            .compactMap { storedMovie -> NearbyMovie in
+                NearbyMovie(id: storedMovie.id,
+                            title: storedMovie.title ?? .unknownTitle,
+                            posterPath: storedMovie.posterPath)
+            }
+
+        return NearbyMessage(with: username, movies: nearbyMovies)
     }
 
     private func convertGNSMessage(from message: GNSMessage?) -> NearbyMessage? {
