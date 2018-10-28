@@ -18,8 +18,21 @@ class MovieNightViewController: UITableViewController {
         }
     }
     @IBOutlet private weak var permissionDeniedView: UIView!
+    @IBOutlet private weak var nearbyIcon: UIImageView! {
+        didSet {
+            nearbyIcon.tintColor = .accentTextOnBlack
+        }
+    }
+    @IBOutlet private weak var permissionButton: UIButton! {
+        didSet {
+            //TODO: localize
+            permissionButton.setTitle("Nearby erlauben", for: .normal)
+        }
+    }
     @IBOutlet private weak var permissionDeniedDescription: UILabel! {
         didSet {
+            //TODO: localize
+            permissionDeniedDescription.text = "Ohne Google Nearby kann nicht nach Geräten in deiner Nähe gesucht werden"
             permissionDeniedDescription.textColor = .accentTextOnBlack
         }
     }
@@ -37,12 +50,12 @@ class MovieNightViewController: UITableViewController {
     private var canUseNearby: Bool = true {
         didSet {
             if canUseNearby {
+                tableView.tableFooterView = footerView
                 tableView.backgroundView = searchForFriendsView
                 tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
             } else {
-                //TODO: handle states localized
+                tableView.tableFooterView = UIView()
                 tableView.backgroundView = permissionDeniedView
-                permissionDeniedDescription.text = "Nearby Permission Pending"
             }
         }
     }
@@ -96,14 +109,9 @@ class MovieNightViewController: UITableViewController {
         canUseBluetooth = true
         canUseMicrophone = true
 
-        #if DEBUG
-        let tripleTapGestureRecognizer =
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(toggleSearchingForFriendsMode))
-        tripleTapGestureRecognizer.numberOfTapsRequired = 3
-        view.addGestureRecognizer(tripleTapGestureRecognizer)
-        #endif
+        ownNearbyMessage = generateOwnNearbyMessage()
 
+        configureDebugModeHelper()
         configureTableView()
         configureStateObserver()
     }
@@ -123,15 +131,19 @@ class MovieNightViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
+        currentPermission = nil
         currentPublication = nil
         currentSubscription = nil
-        currentPermission = nil
     }
 
     // MARK: - Actions
 
     @IBAction func cancelMovieNight(_ sender: Any) {
         dismiss(animated: true)
+    }
+
+    @IBAction func allowNearby(_ sender: UIButton) {
+        GNSPermission.setGranted(true)
     }
 
     @objc
@@ -168,8 +180,17 @@ class MovieNightViewController: UITableViewController {
 
     // MARK: - Configuration
 
+    private func configureDebugModeHelper() {
+        #if DEBUG
+        let tripleTapGestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(toggleSearchingForFriendsMode))
+        tripleTapGestureRecognizer.numberOfTapsRequired = 3
+        view.addGestureRecognizer(tripleTapGestureRecognizer)
+        #endif
+    }
+
     private func configureTableView() {
-        tableView.tableFooterView = footerView
         tableView.backgroundColor = UIColor.basicBackground
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -188,7 +209,9 @@ class MovieNightViewController: UITableViewController {
         }
 
         nearbyPermissionHandler = { granted in
-            self.canUseNearby = granted
+            if self.canUseNearby != granted {
+                self.canUseNearby = granted
+            }
         }
     }
 
@@ -213,10 +236,10 @@ class MovieNightViewController: UITableViewController {
 
     // MARK: - Nearby
 
-    private func publishWatchlistMovies() {
+    private func generateOwnNearbyMessage() -> NearbyMessage? {
         guard let storageManager = storageManager,
             let username = UserDefaultsManager.username
-            else { return }
+            else { return nil }
 
         let nearbyMovies = storageManager
             .fetchAllWatchlistMovies()
@@ -227,15 +250,21 @@ class MovieNightViewController: UITableViewController {
                                    posterPath: storedMovie.posterPath)
             }
 
-        let nearbyMessage = NearbyMessage(with: username, movies: nearbyMovies)
-        ownNearbyMessage = nearbyMessage
+        return NearbyMessage(with: username, movies: nearbyMovies)
+    }
 
-        guard let messageData = try? JSONEncoder().encode(nearbyMessage)
-            else { return }
+    private func publishWatchlistMovies() {
+        if ownNearbyMessage == nil {
+            ownNearbyMessage = generateOwnNearbyMessage()
+        }
 
-        currentPublication = gnsMessageManager.publication(
-            with: GNSMessage(content: messageData)
-        )
+        if let nearbyMessage = ownNearbyMessage,
+            let messageData = try? JSONEncoder().encode(nearbyMessage) {
+
+            currentPublication = gnsMessageManager.publication(
+                with: GNSMessage(content: messageData)
+            )
+        }
     }
 
     private func subscribeToNearbyMessages() {
