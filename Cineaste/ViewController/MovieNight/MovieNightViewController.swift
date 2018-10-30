@@ -247,7 +247,7 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func startTitleAnimation() {
-        timer = Timer(timeInterval: 0.8, repeats: true) { [weak self] _ in
+        timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
             self?.title = self?.animateTitle()
         }
         //swiftlint:disable:next force_unwrapping
