@@ -9,9 +9,6 @@
 import UIKit
 
 class MovieNightViewController: UITableViewController {
-    @IBOutlet private weak var searchForFriendsView: UIView!
-    @IBOutlet private weak var searchFriendsLabel: UILabel!
-
     @IBOutlet private weak var permissionDeniedView: UIView!
     @IBOutlet private weak var nearbyIcon: UIImageView!
     @IBOutlet private weak var permissionButton: UIButton!
@@ -54,9 +51,10 @@ class MovieNightViewController: UITableViewController {
             params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler  ?? { _ in }
         }
 
-    lazy var ownNearbyMessage = { generateOwnNearbyMessage() }()
+    lazy var ownNearbyMessage = generateOwnNearbyMessage()
 
     var storageManager: MovieStorage?
+    var timer: Timer?
 
     var currentPermission: GNSPermission?
     var currentPublication: GNSPublication?
@@ -71,10 +69,21 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
+    deinit {
+        currentPermission = nil
+        currentPublication = nil
+        currentSubscription = nil
+
+        microphonePermissionErrorHandler = nil
+        bluetoothPowerErrorHandler = nil
+        nearbyPermissionHandler = nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = String.movieNightTitle
+
         nearbyLinkPermissionDeniedTextView.delegate = self
         nearbyLinkUsageDescriptionTextView.delegate = self
 
@@ -97,6 +106,16 @@ class MovieNightViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if #available(iOS 11.0, *) {
+            // only for large titles
+            startTitleAnimation()
+        } else {
+            let activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator.startAnimating()
+            let rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+            navigationItem.rightBarButtonItem = rightBarButtonItem
+        }
+
         currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
@@ -105,9 +124,8 @@ class MovieNightViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        currentPermission = nil
-        currentPublication = nil
-        currentSubscription = nil
+        timer?.invalidate()
+        timer = nil
     }
 
     // MARK: - Actions
@@ -157,7 +175,6 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func localizeContent() {
-        searchFriendsLabel.text = .searchFriendsOnMovieNight
         permissionButton.setTitle(String.enableNearby, for: .normal)
         permissionDeniedDescription.text = String.nearbyPermissionDenied
         usageDescription.text = String.nearbyUsage
@@ -166,7 +183,6 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureViews() {
-        searchFriendsLabel.textColor = .accentTextOnBlack
         nearbyIcon.tintColor = .accentTextOnBlack
         permissionDeniedDescription.textColor = .accentTextOnBlack
         usageDescription.textColor = .accentTextOnBlack
@@ -192,30 +208,26 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureStateObserver() {
-        bluetoothPowerErrorHandler = { hasError in
-            self.canUseBluetooth = !hasError
+        bluetoothPowerErrorHandler = { [weak self] hasError in
+            self?.canUseBluetooth = !hasError
         }
 
-        microphonePermissionErrorHandler = { hasError in
-            self.canUseMicrophone = !hasError
+        microphonePermissionErrorHandler = { [weak self] hasError in
+            self?.canUseMicrophone = !hasError
         }
 
-        nearbyPermissionHandler = { granted in
-            if self.canUseNearby != granted {
-                self.canUseNearby = granted
+        nearbyPermissionHandler = { [weak self] granted in
+            if self?.canUseNearby != granted {
+                self?.canUseNearby = granted
             }
         }
     }
 
+    // MARK: - Custom
+
     private func updateTableView(with canUseNearby: Bool) {
-        if canUseNearby {
-            tableView.tableFooterView = footerView
-            tableView.backgroundView = searchForFriendsView
-            tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
-        } else {
-            tableView.tableFooterView = UIView()
-            tableView.backgroundView = permissionDeniedView
-        }
+        tableView.tableFooterView = canUseNearby ? footerView : nil
+        tableView.backgroundView = canUseNearby ? nil : permissionDeniedView
     }
 
     private func generateOwnNearbyMessage() -> NearbyMessage {
@@ -232,6 +244,29 @@ class MovieNightViewController: UITableViewController {
             }
 
         return NearbyMessage(with: username, movies: nearbyMovies)
+    }
+
+    private func startTitleAnimation() {
+        timer = Timer(timeInterval: 0.8, repeats: true) { [weak self] _ in
+            self?.title = self?.animateTitle()
+        }
+        //swiftlint:disable:next force_unwrapping
+        RunLoop.current.add(timer!, forMode: .common)
+    }
+
+    private func animateTitle() -> String {
+        var title = self.title ?? String.movieNightTitle
+
+        if title == "\(String.movieNightTitle)" {
+            title = "\(String.movieNightTitle)."
+        } else if title == "\(String.movieNightTitle)." {
+            title = "\(String.movieNightTitle).."
+        } else if title == "\(String.movieNightTitle).." {
+            title = "\(String.movieNightTitle)..."
+        } else if title == "\(String.movieNightTitle)..." {
+            title = "\(String.movieNightTitle)"
+        }
+        return title
     }
 
     // MARK: - Navigation
