@@ -8,67 +8,95 @@
 
 import UIKit
 
-class MovieNightViewController: UIViewController {
-    @IBOutlet private weak var tableView: UITableView! {
+class MovieNightViewController: UITableViewController {
+    @IBOutlet private weak var permissionDeniedView: UIView!
+    @IBOutlet private weak var nearbyIcon: UIImageView!
+    @IBOutlet private weak var permissionButton: UIButton!
+    @IBOutlet private weak var permissionDeniedDescription: UILabel!
+    @IBOutlet private weak var nearbyLinkPermissionDeniedTextView: LinkTextView!
+
+    @IBOutlet private weak var footerView: UIView!
+    @IBOutlet private weak var usageDescription: UILabel!
+    @IBOutlet private weak var microphoneIcon: UIImageView!
+    @IBOutlet private weak var bluetoothIcon: UIImageView!
+    @IBOutlet private weak var nearbyLinkUsageDescriptionTextView: LinkTextView!
+
+    private var canUseNearby: Bool = true {
         didSet {
-            tableView.dataSource = self
-            tableView.backgroundColor = UIColor.basicBackground
-
-            tableView.allowsSelection = false
-
-            tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableView.automaticDimension
-
-            tableView.tableFooterView = UIView()
-            tableView.backgroundView = searchForFriendsView
-
-            tableView.alwaysBounceVertical = false
+            updateTableView(with: canUseNearby)
         }
     }
 
-    @IBOutlet private weak var startButton: StartMovieNightButton!
-
-    @IBOutlet private weak var searchForFriendsView: UIView!
-    @IBOutlet private weak var searchFriendsLabel: UILabel! {
+    private var canUseBluetooth: Bool = true {
         didSet {
-            searchFriendsLabel.text = .searchFriendsOnMovieNight
-            searchFriendsLabel.textColor = .accentTextOnBlack
+            bluetoothIcon.tintColor = canUseBluetooth ? .accentTextOnBlack : .accentTextOnWhite
         }
     }
 
-    private var storageManager: MovieStorage?
+    private var canUseMicrophone: Bool = true {
+        didSet {
+            microphoneIcon.tintColor = canUseMicrophone ? .accentTextOnBlack : .accentTextOnWhite
+        }
+    }
 
-    private lazy var gnsMessageManager: GNSMessageManager =
-        GNSMessageManager(apiKey: ApiKeyStore.nearbyKey)
-    private var currentPublication: GNSPublication?
-    private var currentSubscription: GNSSubscription?
+    private var microphonePermissionErrorHandler: ((Bool) -> Void)?
+    private var bluetoothPowerErrorHandler: ((Bool) -> Void)?
+    private var nearbyPermissionHandler: ((Bool) -> Void)?
 
-    private var nearbyMessages = [NearbyMessage]() {
+    lazy var gnsMessageManager: GNSMessageManager =
+        GNSMessageManager(apiKey: ApiKeyStore.nearbyKey) { (params: GNSMessageManagerParams?) in
+            guard let params = params else { return }
+            //Tracking user settings that affect Nearby
+            params.microphonePermissionErrorHandler = self.microphonePermissionErrorHandler ?? { _ in }
+            params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler  ?? { _ in }
+        }
+
+    lazy var ownNearbyMessage = generateOwnNearbyMessage()
+
+    var storageManager: MovieStorage?
+    var timer: Timer?
+
+    var currentPermission: GNSPermission?
+    var currentPublication: GNSPublication?
+    var currentSubscription: GNSSubscription?
+
+    var nearbyMessages = [NearbyMessage]() {
         didSet {
             DispatchQueue.main.async {
-                self.startButton.isEnabled = !self.nearbyMessages.isEmpty
                 self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
-
                 self.tableView.reloadData()
             }
         }
     }
 
-    private var ownNearbyMessage: NearbyMessage?
+    deinit {
+        currentPermission = nil
+        currentPublication = nil
+        currentSubscription = nil
+
+        microphonePermissionErrorHandler = nil
+        bluetoothPowerErrorHandler = nil
+        nearbyPermissionHandler = nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = String.movieNightTitle
-        startButton.isEnabled = false
 
-        #if DEBUG
-        let tripleTapGestureRecognizer =
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(toggleSearchingForFriendsMode))
-        tripleTapGestureRecognizer.numberOfTapsRequired = 3
-        view.addGestureRecognizer(tripleTapGestureRecognizer)
-        #endif
+        nearbyLinkPermissionDeniedTextView.delegate = self
+        nearbyLinkUsageDescriptionTextView.delegate = self
+
+        canUseNearby = GNSPermission.isGranted()
+        canUseBluetooth = true
+        canUseMicrophone = true
+
+        configureViews()
+        localizeContent()
+
+        configureDebugModeHelper()
+        configureTableView()
+        configureStateObserver()
     }
 
     func configure(with storageManager: MovieStorage) {
@@ -78,6 +106,17 @@ class MovieNightViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if #available(iOS 11.0, *) {
+            // only for large titles
+            startTitleAnimation()
+        } else {
+            let activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator.startAnimating()
+            let rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+            navigationItem.rightBarButtonItem = rightBarButtonItem
+        }
+
+        currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
     }
@@ -85,8 +124,8 @@ class MovieNightViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        currentPublication = nil
-        currentSubscription = nil
+        timer?.invalidate()
+        timer = nil
     }
 
     // MARK: - Actions
@@ -95,41 +134,139 @@ class MovieNightViewController: UIViewController {
         dismiss(animated: true)
     }
 
-    @IBAction func startMovieNightButtonTouched(_ sender: UIButton) {
-        performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                     sender: nearbyMessages)
+    @IBAction func allowNearby(_ sender: UIButton) {
+        GNSPermission.setGranted(true)
     }
 
     @objc
     func toggleSearchingForFriendsMode() {
         #if DEBUG
         if nearbyMessages.isEmpty {
-            let simulatorMovies = [NearbyMovie(id: 1,
-                                               title: "Film B",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 2,
-                                               title: "Asterix",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 3,
-                                               title: "Film 3",
-                                               posterPath: nil)]
-            let developerMovies = [NearbyMovie(id: 1,
-                                               title: "Film B",
-                                               posterPath: nil),
-                                   NearbyMovie(id: 2,
-                                               title: "Asterix",
-                                               posterPath: nil)]
+            let simulatorMovies = [
+                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
+                NearbyMovie(id: 2, title: "Asterix", posterPath: nil),
+                NearbyMovie(id: 3, title: "Film 3", posterPath: nil)
+            ]
+            let developerMovies = [
+                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
+                NearbyMovie(id: 2, title: "Asterix", posterPath: nil)
+            ]
 
-            nearbyMessages = [NearbyMessage(userName: "Simulator",
-                                            deviceId: "1",
-                                            movies: simulatorMovies),
-                              NearbyMessage(userName: "Developer",
-                                            deviceId: "2",
-                                            movies: developerMovies)]
+            nearbyMessages = [
+                NearbyMessage(userName: "Simulator", deviceId: "1", movies: simulatorMovies),
+                NearbyMessage(userName: "Developer", deviceId: "2", movies: developerMovies)
+            ]
         } else {
             nearbyMessages = []
         }
         #endif
+    }
+
+    // MARK: - Configuration
+
+    private func configureDebugModeHelper() {
+        #if DEBUG
+        let tripleTapGestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(toggleSearchingForFriendsMode))
+        tripleTapGestureRecognizer.numberOfTapsRequired = 3
+        view.addGestureRecognizer(tripleTapGestureRecognizer)
+        #endif
+    }
+
+    private func localizeContent() {
+        permissionButton.setTitle(String.enableNearby, for: .normal)
+        permissionDeniedDescription.text = String.nearbyPermissionDenied
+        usageDescription.text = String.nearbyUsage
+        nearbyLinkPermissionDeniedTextView.text = String.nearbyLink
+        nearbyLinkUsageDescriptionTextView.text = String.nearbyLink
+    }
+
+    private func configureViews() {
+        nearbyIcon.tintColor = .accentTextOnBlack
+        permissionDeniedDescription.textColor = .accentTextOnBlack
+        usageDescription.textColor = .accentTextOnBlack
+
+        let nearbyPermissionStyle = nearbyLinkPermissionDeniedTextView.paragraphStyle
+        nearbyPermissionStyle.alignment = .center
+        nearbyPermissionStyle.lineSpacing = 3
+        nearbyLinkPermissionDeniedTextView.paragraphStyle = nearbyPermissionStyle
+
+        let nearbyUsageStyle = nearbyLinkUsageDescriptionTextView.paragraphStyle
+        nearbyUsageStyle.alignment = .left
+        nearbyUsageStyle.lineSpacing = 3
+        nearbyLinkUsageDescriptionTextView.paragraphStyle = nearbyUsageStyle
+    }
+
+    private func configureTableView() {
+        tableView.backgroundColor = UIColor.basicBackground
+
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+
+        tableView.alwaysBounceVertical = false
+    }
+
+    private func configureStateObserver() {
+        bluetoothPowerErrorHandler = { [weak self] hasError in
+            self?.canUseBluetooth = !hasError
+        }
+
+        microphonePermissionErrorHandler = { [weak self] hasError in
+            self?.canUseMicrophone = !hasError
+        }
+
+        nearbyPermissionHandler = { [weak self] granted in
+            if self?.canUseNearby != granted {
+                self?.canUseNearby = granted
+            }
+        }
+    }
+
+    // MARK: - Custom
+
+    private func updateTableView(with canUseNearby: Bool) {
+        tableView.tableFooterView = canUseNearby ? footerView : nil
+        tableView.backgroundView = canUseNearby ? nil : permissionDeniedView
+    }
+
+    private func generateOwnNearbyMessage() -> NearbyMessage {
+        guard let storageManager = storageManager,
+            let username = UserDefaultsManager.getUsername()
+            else { fatalError("ViewController should never be presented without a username") }
+
+        let nearbyMovies = storageManager
+            .fetchAllWatchlistMovies()
+            .compactMap { storedMovie -> NearbyMovie in
+                NearbyMovie(id: storedMovie.id,
+                            title: storedMovie.title ?? .unknownTitle,
+                            posterPath: storedMovie.posterPath)
+            }
+
+        return NearbyMessage(with: username, movies: nearbyMovies)
+    }
+
+    private func startTitleAnimation() {
+        timer = Timer(timeInterval: 0.8, repeats: true) { [weak self] _ in
+            self?.title = self?.animateTitle()
+        }
+        //swiftlint:disable:next force_unwrapping
+        RunLoop.current.add(timer!, forMode: .common)
+    }
+
+    private func animateTitle() -> String {
+        var title = self.title ?? String.movieNightTitle
+
+        if title == "\(String.movieNightTitle)" {
+            title = "\(String.movieNightTitle)."
+        } else if title == "\(String.movieNightTitle)." {
+            title = "\(String.movieNightTitle).."
+        } else if title == "\(String.movieNightTitle).." {
+            title = "\(String.movieNightTitle)..."
+        } else if title == "\(String.movieNightTitle)..." {
+            title = "\(String.movieNightTitle)"
+        }
+        return title
     }
 
     // MARK: - Navigation
@@ -138,91 +275,27 @@ class MovieNightViewController: UIViewController {
         switch Segue(initWith: segue) {
         case .showMovieMatches?:
             guard
-                let nearbyMessages = sender as? [NearbyMessage],
-                let ownMessage = ownNearbyMessage,
+                let (title, nearbyMessages) = sender as? (String, [NearbyMessage]),
                 let storageManager = storageManager
                 else { return }
 
-            var combinedMessages = nearbyMessages
-            combinedMessages.append(ownMessage)
-
             let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: combinedMessages,
+            vc?.configure(with: title,
+                          messagesToMatch: nearbyMessages,
                           storageManager: storageManager)
         default:
             return
         }
     }
-
-    // MARK: - Nearby
-
-    fileprivate func publishWatchlistMovies() {
-        guard let storageManager = storageManager,
-            let username = UserDefaultsManager.username
-            else { return }
-
-        let nearbyMovies = storageManager
-            .fetchAllWatchlistMovies()
-            .compactMap { storedMovie -> NearbyMovie? in
-                guard let title = storedMovie.title else { return nil }
-                return NearbyMovie(id: storedMovie.id,
-                                   title: title,
-                                   posterPath: storedMovie.posterPath)
-            }
-
-        let nearbyMessage = NearbyMessage(with: username, movies: nearbyMovies)
-        ownNearbyMessage = nearbyMessage
-
-        guard let messageData = try? JSONEncoder().encode(nearbyMessage)
-            else { return }
-
-        currentPublication = gnsMessageManager.publication(
-            with: GNSMessage(content: messageData)
-        )
-    }
-
-    fileprivate func subscribeToNearbyMessages() {
-        currentSubscription = gnsMessageManager.subscription(
-            messageFoundHandler: { message in
-                guard let nearbyMessage = self.convertGNSMessage(from: message)
-                    else { return }
-
-                // add nearbyMessage
-                if !self.nearbyMessages.contains(nearbyMessage) {
-                    self.nearbyMessages.append(nearbyMessage)
-                }
-            },
-            messageLostHandler: { message in
-                guard let nearbyMessage = self.convertGNSMessage(from: message)
-                    else { return }
-
-                // remove nearbyMessage
-                self.nearbyMessages = self.nearbyMessages
-                    .filter { $0 != nearbyMessage }
-            }
-        )
-    }
-
-    private func convertGNSMessage(from message: GNSMessage?) -> NearbyMessage? {
-        if let data = message?.content,
-            let nearbyMessage = try? JSONDecoder().decode(NearbyMessage.self,
-                                                          from: data) {
-            return nearbyMessage
-        } else {
-            return nil
-        }
-    }
 }
 
-extension MovieNightViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyMessages.count
-    }
+extension MovieNightViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
-        cell.configure(with: nearbyMessages[indexPath.row])
-        return cell
+        let safariVC = CustomSafariViewController(url: URL)
+        present(safariVC, animated: true)
+
+        return false
     }
 }
 

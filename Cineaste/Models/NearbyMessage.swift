@@ -15,7 +15,7 @@ struct NearbyMessage: Codable {
 }
 
 extension NearbyMessage {
-    init?(with userName: String, movies: [NearbyMovie]) {
+    init(with userName: String, movies: [NearbyMovie]) {
         guard let deviceId = UIDevice.current.identifierForVendor?.description
             else { fatalError("Unable to get UUID") }
 

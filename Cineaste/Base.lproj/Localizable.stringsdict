@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>%d movie(s)</key>
-        <dict>
-            <key>NSStringLocalizedFormatKey</key>
-            <string>%#@movies@</string>
-            <key>movies</key>
-            <dict>
-                <key>NSStringFormatSpecTypeKey</key>
-                <string>NSStringPluralRuleType</string>
-                <key>NSStringFormatValueTypeKey</key>
-                <string>d</string>
-                <key>zero</key>
-                <string>Keine Filme</string>
-                <key>one</key>
-                <string>Ein Film</string>
-                <key>other</key>
-                <string>%d Filme</string>
-            </dict>
-        </dict>
-        <key>seen.width</key>
-        <dict>
-            <key>NSStringVariableWidthRuleType</key>
-            <dict>
-                <key>1</key>
-                <string>Gesehen</string>
-                <key>30</key>
-                <string>Schon gesehen</string>
-            </dict>
-        </dict>
-        <key>wantToSee.width</key>
-        <dict>
-            <key>NSStringVariableWidthRuleType</key>
-            <dict>
-                <key>1</key>
-                <string>Musst du sehen</string>
-                <key>30</key>
-                <string>Musst du sehen</string>
-            </dict>
-        </dict>
-        <key>delete.width</key>
-        <dict>
-            <key>NSStringVariableWidthRuleType</key>
-            <dict>
-                <key>1</key>
-                <string>Löschen</string>
-                <key>30</key>
-                <string>Von Liste löschen</string>
-            </dict>
-        </dict>
-    </dict>
+<dict>
+	<key>%d movie(s)</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@movies@</string>
+		<key>movies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>Keine Filme</string>
+			<key>one</key>
+			<string>Ein Film</string>
+			<key>other</key>
+			<string>%d Filme</string>
+		</dict>
+	</dict>
+	<key>seen.width</key>
+	<dict>
+		<key>NSStringVariableWidthRuleType</key>
+		<dict>
+			<key>1</key>
+			<string>Gesehen</string>
+			<key>30</key>
+			<string>Schon gesehen</string>
+		</dict>
+	</dict>
+	<key>wantToSee.width</key>
+	<dict>
+		<key>NSStringVariableWidthRuleType</key>
+		<dict>
+			<key>1</key>
+			<string>Musst du sehen</string>
+			<key>30</key>
+			<string>Musst du sehen</string>
+		</dict>
+	</dict>
+	<key>delete.width</key>
+	<dict>
+		<key>NSStringVariableWidthRuleType</key>
+		<dict>
+			<key>1</key>
+			<string>Löschen</string>
+			<key>30</key>
+			<string>Von Liste löschen</string>
+		</dict>
+	</dict>
+</dict>
 </plist>

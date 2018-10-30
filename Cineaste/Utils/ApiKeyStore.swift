@@ -11,7 +11,7 @@ import Foundation
 enum ApiKeyStore {
     static let theMovieDbKey = getValue(forKey: "MOVIEDB_KEY")
 
-    #if DEBUG
+    #if DEBUG && targetEnvironment(simulator)
 
     /// When using the simulator, the API key from Google Nearby
     /// results in crashing the application. Only in DEBUG mode,
