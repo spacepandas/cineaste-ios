@@ -41,17 +41,17 @@
                                                 <constraint firstAttribute="width" constant="5" id="48v-74-x9O"/>
                                             </constraints>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IDz-Ei-9hF">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IDz-Ei-9hF">
                                             <rect key="frame" x="95" y="14" width="260" height="58.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="movieNight.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUc-TW-AeE" customClass="TitleLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LsN-9C-L8d">
-                                                    <rect key="frame" x="0.0" y="28.5" width="260" height="30"/>
+                                                    <rect key="frame" x="0.0" y="28.5" width="189" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVB-9N-36N" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
@@ -60,7 +60,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbh-M0-Qlx" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="74" y="0.0" width="186" height="30"/>
+                                                            <rect key="frame" x="74" y="0.0" width="115" height="30"/>
                                                             <state key="normal" title="movieNight.start"/>
                                                         </button>
                                                     </subviews>

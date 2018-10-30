@@ -29,10 +29,8 @@ class MovieMatchCell: UITableViewCell {
     private var nearbyMovie: NearbyMovie?
     private weak var delegate: MovieMatchTableViewCellDelegate?
 
-    func configure(with movie: NearbyMovie,
-                   numberOfMatches: Int,
-                   amountOfPeople: Int,
-                   delegate: MovieMatchTableViewCellDelegate) {
+    private func setup(with movie: NearbyMovie,
+                       delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
         seenButton.setTitle(.startMovieNight, for: .normal)
@@ -49,9 +47,23 @@ class MovieMatchCell: UITableViewCell {
         } else {
             posterImageView.image = UIImage.posterPlaceholder
         }
+    }
 
+    func configure(with movie: NearbyMovie,
+                   numberOfMatches: Int,
+                   amountOfPeople: Int,
+                   delegate: MovieMatchTableViewCellDelegate) {
+        setup(with: movie, delegate: delegate)
+
+        numberOfMatchesLabel.isHidden = false
         numberOfMatchesLabel.text = String.matches(for: numberOfMatches,
                                                    amountOfPeople: amountOfPeople)
+    }
+
+    func configure(with movie: NearbyMovie,
+                   delegate: MovieMatchTableViewCellDelegate) {
+        setup(with: movie, delegate: delegate)
+        numberOfMatchesLabel.isHidden = true
     }
 
     // MARK: - Actions

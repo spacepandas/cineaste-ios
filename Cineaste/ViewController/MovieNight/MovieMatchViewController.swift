@@ -16,7 +16,7 @@ class MovieMatchViewController: UITableViewController {
         }
     }
     private var totalNumberOfPeople: Int = 0
-
+    private var showAllTogetherMovies: Bool = false
     private var storageManager: MovieStorage?
 
     private lazy var resultSearchController: SearchController = {
@@ -35,6 +35,7 @@ class MovieMatchViewController: UITableViewController {
     func configure(with userName: String, messagesToMatch: [NearbyMessage], storageManager: MovieStorage) {
         title = userName
         totalNumberOfPeople = messagesToMatch.count
+        showAllTogetherMovies = totalNumberOfPeople != 1
         self.storageManager = storageManager
 
         var moviesWithNumberDict: [NearbyMovie: Int] = [:]
@@ -98,10 +99,15 @@ class MovieMatchViewController: UITableViewController {
         let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
 
         let movieWithNumber = filteredMoviesWithNumber[indexPath.row]
-        cell.configure(with: movieWithNumber.0,
-                       numberOfMatches: movieWithNumber.1,
-                       amountOfPeople: totalNumberOfPeople,
-                       delegate: self)
+        if showAllTogetherMovies {
+            cell.configure(with: movieWithNumber.0,
+                           numberOfMatches: movieWithNumber.1,
+                           amountOfPeople: totalNumberOfPeople,
+                           delegate: self)
+        } else {
+            cell.configure(with: movieWithNumber.0,
+                           delegate: self)
+        }
 
         return cell
     }
