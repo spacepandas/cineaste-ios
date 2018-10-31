@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MovieMatchTableViewCellDelegate: AnyObject {
-    func movieMatchTableViewCell(sender: MovieMatchCell, didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?)
+    func movieMatchTableViewCell(didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?)
 }
 
 class MovieMatchCell: UITableViewCell {
@@ -29,10 +29,8 @@ class MovieMatchCell: UITableViewCell {
     private var nearbyMovie: NearbyMovie?
     private weak var delegate: MovieMatchTableViewCellDelegate?
 
-    func configure(with movie: NearbyMovie,
-                   numberOfMatches: Int,
-                   amountOfPeople: Int,
-                   delegate: MovieMatchTableViewCellDelegate) {
+    private func setup(with movie: NearbyMovie,
+                       delegate: MovieMatchTableViewCellDelegate) {
         self.delegate = delegate
 
         seenButton.setTitle(.startMovieNight, for: .normal)
@@ -49,9 +47,23 @@ class MovieMatchCell: UITableViewCell {
         } else {
             posterImageView.image = UIImage.posterPlaceholder
         }
+    }
 
+    func configure(with movie: NearbyMovie,
+                   numberOfMatches: Int,
+                   amountOfPeople: Int,
+                   delegate: MovieMatchTableViewCellDelegate) {
+        setup(with: movie, delegate: delegate)
+
+        numberOfMatchesLabel.isHidden = false
         numberOfMatchesLabel.text = String.matches(for: numberOfMatches,
                                                    amountOfPeople: amountOfPeople)
+    }
+
+    func configure(with movie: NearbyMovie,
+                   delegate: MovieMatchTableViewCellDelegate) {
+        setup(with: movie, delegate: delegate)
+        numberOfMatchesLabel.isHidden = true
     }
 
     // MARK: - Actions
@@ -60,8 +72,7 @@ class MovieMatchCell: UITableViewCell {
     func startMovieNightButtonTouched(_ sender: UIButton) {
         guard let nearbyMovie = nearbyMovie else { return }
 
-        delegate?.movieMatchTableViewCell(sender: self,
-                                          didSelectMovie: nearbyMovie,
+        delegate?.movieMatchTableViewCell(didSelectMovie: nearbyMovie,
                                           withPoster: posterImageView.image)
     }
 }

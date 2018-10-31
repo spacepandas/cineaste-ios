@@ -25,7 +25,7 @@ class Button: UIButton {
 }
 
 class ActionButton: Button {
-    public override func setTitle(_ title: String?, for state: UIControl.State) {
+    override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title?.uppercased(), for: state)
     }
 
@@ -35,35 +35,18 @@ class ActionButton: Button {
     }
 }
 
-class StartMovieNightButton: Button {
-    public override var isEnabled: Bool {
-        didSet {
-            setup()
-        }
-    }
-
-    public override var isHighlighted: Bool {
-        didSet {
-            if isHighlighted {
-                tintColor = UIColor.white
-                layer.borderColor = UIColor.white.cgColor
-            } else {
-                setup()
-            }
-        }
-    }
+class BorderedButton: Button {
 
     override func setup() {
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        tintColor = .primaryOrange
 
-        if isEnabled {
-            tintColor = UIColor.primaryOrange
-            layer.borderColor = UIColor.primaryOrange.cgColor
-            layer.borderWidth = 4
-            layer.cornerRadius = 25
-        } else {
-            tintColor = UIColor.lightGray
-            layer.borderColor = UIColor.lightGray.cgColor
-        }
+        contentEdgeInsets.top = 10
+        contentEdgeInsets.bottom = 10
+        contentEdgeInsets.left = 30
+        contentEdgeInsets.right = 30
+
+        layer.borderColor = UIColor.primaryOrange.cgColor
+        layer.borderWidth = 2
+        layer.cornerRadius = 4
     }
 }

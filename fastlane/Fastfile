@@ -61,6 +61,7 @@ lane :beta do
     username: "tech@spacepandas.de",
     ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
     # changelog: read_changelog, #TODO: test this
+    groups: "Spacepandas",
     distribute_external: true,
     notify_external_testers: true 
   )
