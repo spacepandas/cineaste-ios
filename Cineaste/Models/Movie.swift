@@ -10,13 +10,13 @@ import UIKit
 import CoreData
 
 class Movie: Codable {
-    fileprivate(set) var id: Int64
-    fileprivate(set) var title: String
-    fileprivate(set) var voteAverage: Double
-    fileprivate(set) var voteCount: Double
-    fileprivate(set) var posterPath: String?
-    fileprivate(set) var overview: String
-    fileprivate(set) var runtime: Int16
+    let id: Int64
+    let title: String
+    let voteAverage: Double
+    let voteCount: Double
+    let posterPath: String?
+    let overview: String
+    let runtime: Int16
     var releaseDate: Date?
     var poster: UIImage?
 
@@ -56,9 +56,10 @@ class Movie: Codable {
     init(id: Int64, title: String) {
         self.id = id
         self.title = title
-        self.voteAverage = 0
-        self.voteCount = 0
-        self.overview = ""
-        self.runtime = 0
+        voteAverage = 0
+        voteCount = 0
+        overview = ""
+        runtime = 0
+        posterPath = nil
     }
 }

@@ -107,9 +107,7 @@
 		3FF7911F20DE274A007B7D37 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
 		3FF7912020DE274A007B7D37 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EFA4AD1FA13878004F1F94 /* Webservice.swift */; };
 		3FF7912120DE274A007B7D37 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */; };
-		3FF7912520DE274A007B7D37 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9528112F201D087800F3EC76 /* .swiftlint.yml */; };
 		3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */; };
-		3FF7912720DE274A007B7D37 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
 		3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F01791020CD32C500600DB4 /* Localizable.strings */; };
 		3FF7912920DE274A007B7D37 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D32F601F9AA20100497ED2 /* apikey.plist */; };
 		3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F1DA161209C64D900AC4D09 /* Settings.bundle */; };
@@ -122,6 +120,7 @@
 		3FF7913120DE274A007B7D37 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3FF7913220DE274A007B7D37 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */; };
 		4EABD57C2129C5E2007F20D9 /* NonClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57A2129C49E007F20D9 /* NonClearView.swift */; };
+		4ED734FD218A335500D36421 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
 		9C3BDB744DE426763B3E0F5E /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3BE747735115CE033624A9 /* Pods_CineasteTests.framework */; };
 		E5CBB9F87326CB366AE40342 /* Pods_Cineaste_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182667FFB53442ABDFCF30CB /* Pods_Cineaste_App.framework */; };
 /* End PBXBuildFile section */
@@ -730,14 +729,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF7912520DE274A007B7D37 /* .swiftlint.yml in Resources */,
 				3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */,
-				3FF7912720DE274A007B7D37 /* cineaste.xcassets in Resources */,
 				3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */,
 				3FF7912920DE274A007B7D37 /* apikey.plist in Resources */,
 				3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */,
 				3FF7912B20DE274A007B7D37 /* Main.storyboard in Resources */,
 				3FF7912C20DE274A007B7D37 /* Settings.storyboard in Resources */,
+				4ED734FD218A335500D36421 /* cineaste.xcassets in Resources */,
 				3FF7912D20DE274A007B7D37 /* Search.storyboard in Resources */,
 				3FF7912E20DE274A007B7D37 /* MovieNight.storyboard in Resources */,
 				3FF7912F20DE274A007B7D37 /* MovieDetail.storyboard in Resources */,
