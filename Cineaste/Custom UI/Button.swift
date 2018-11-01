@@ -42,11 +42,13 @@ class BorderedButton: Button {
 
         contentEdgeInsets.top = 10
         contentEdgeInsets.bottom = 10
-        contentEdgeInsets.left = 30
-        contentEdgeInsets.right = 30
+        contentEdgeInsets.left = 20
+        contentEdgeInsets.right = 20
 
         layer.borderColor = UIColor.primaryOrange.cgColor
         layer.borderWidth = 2
         layer.cornerRadius = 4
+
+        titleLabel?.adjustsFontSizeToFitWidth = true
     }
 }

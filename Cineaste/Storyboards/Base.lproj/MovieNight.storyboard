@@ -250,30 +250,30 @@
                     <viewLayoutGuide key="safeArea" id="7yB-Vw-XTW"/>
                 </view>
                 <view contentMode="scaleToFill" id="dp5-cW-KjM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhv-Xy-xmJ">
-                            <rect key="frame" x="0.0" y="3.5" width="375" height="243.5"/>
+                            <rect key="frame" x="0.0" y="28.5" width="375" height="243.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-Bn-jFk">
-                                    <rect key="frame" x="65.5" y="20" width="244" height="203.5"/>
+                                    <rect key="frame" x="56.5" y="20" width="262.5" height="203.5"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nearby_black_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-1Z-TaI">
-                                            <rect key="frame" x="102" y="0.0" width="40" height="40"/>
+                                            <rect key="frame" x="111" y="0.0" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="jqv-SQ-cju"/>
                                                 <constraint firstAttribute="width" secondItem="rJL-1Z-TaI" secondAttribute="height" id="lhI-wM-bhT"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Permission denied&gt;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2T-Fi-ILZ">
-                                            <rect key="frame" x="41.5" y="60" width="161.5" height="20.5"/>
+                                            <rect key="frame" x="50.5" y="60" width="161.5" height="20.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dge-Jh-lVD" customClass="BorderedButton" customModule="Cineaste_App" customModuleProvider="target">
-                                            <rect key="frame" x="56.5" y="100.5" width="131" height="33"/>
+                                            <rect key="frame" x="50.5" y="100.5" width="161.5" height="33"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <state key="normal" title="&lt;Jetzt erlauben&gt;"/>
                                             <connections>
@@ -281,20 +281,22 @@
                                             </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Link&gt;" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="lDd-hR-oB9" customClass="LinkTextView" customModule="Cineaste_App" customModuleProvider="target">
-                                            <rect key="frame" x="2" y="153.5" width="240" height="50"/>
+                                            <rect key="frame" x="18.5" y="153.5" width="225" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dge-Jh-lVD" firstAttribute="width" secondItem="L2T-Fi-ILZ" secondAttribute="width" id="8HX-bq-4dj"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="HnH-Bn-jFk" firstAttribute="width" secondItem="Lhv-Xy-xmJ" secondAttribute="width" multiplier="0.7" id="1SU-mc-G7w"/>
                                 <constraint firstItem="HnH-Bn-jFk" firstAttribute="top" secondItem="Lhv-Xy-xmJ" secondAttribute="top" constant="20" symbolic="YES" id="4uR-tR-snv"/>
-                                <constraint firstItem="HnH-Bn-jFk" firstAttribute="width" secondItem="Lhv-Xy-xmJ" secondAttribute="width" multiplier="0.65" id="AcT-8l-7h0"/>
-                                <constraint firstItem="HnH-Bn-jFk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lhv-Xy-xmJ" secondAttribute="leading" constant="20" symbolic="YES" id="bdF-vU-aMw"/>
                                 <constraint firstItem="HnH-Bn-jFk" firstAttribute="centerX" secondItem="Lhv-Xy-xmJ" secondAttribute="centerX" id="kbl-Yb-lfe"/>
-                                <constraint firstAttribute="bottom" secondItem="HnH-Bn-jFk" secondAttribute="bottom" constant="20" symbolic="YES" id="s1w-dx-rMq"/>
+                                <constraint firstItem="HnH-Bn-jFk" firstAttribute="centerY" secondItem="Lhv-Xy-xmJ" secondAttribute="centerY" id="ux2-yZ-APl"/>
                             </constraints>
                         </view>
                     </subviews>

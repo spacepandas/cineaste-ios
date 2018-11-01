@@ -24,6 +24,8 @@ class MovieNightViewController: UITableViewController {
     private var canUseNearby: Bool = true {
         didSet {
             updateTableView(with: canUseNearby)
+
+            canUseNearby ? startTitleAnimation() : stopTitleAnimation()
         }
     }
 
@@ -106,14 +108,16 @@ class MovieNightViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if #available(iOS 11.0, *) {
-            // only for large titles
-            startTitleAnimation()
-        } else {
-            let activityIndicator = UIActivityIndicatorView(style: .white)
-            activityIndicator.startAnimating()
-            let rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
-            navigationItem.rightBarButtonItem = rightBarButtonItem
+        if canUseNearby {
+            if #available(iOS 11.0, *) {
+                // only for large titles
+                startTitleAnimation()
+            } else {
+                let activityIndicator = UIActivityIndicatorView(style: .white)
+                activityIndicator.startAnimating()
+                let rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+                navigationItem.rightBarButtonItem = rightBarButtonItem
+            }
         }
 
         currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
@@ -124,8 +128,7 @@ class MovieNightViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        timer?.invalidate()
-        timer = nil
+        stopTitleAnimation()
     }
 
     // MARK: - Actions
@@ -226,7 +229,7 @@ class MovieNightViewController: UITableViewController {
     // MARK: - Custom
 
     private func updateTableView(with canUseNearby: Bool) {
-        tableView.tableFooterView = canUseNearby ? footerView : nil
+        tableView.tableFooterView = canUseNearby ? footerView : UIView()
         tableView.backgroundView = canUseNearby ? nil : permissionDeniedView
     }
 
@@ -247,11 +250,20 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func startTitleAnimation() {
-        timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
-            self?.title = self?.animateTitle()
+        if timer == nil {
+            timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
+                self?.title = self?.animateTitle()
+            }
+            //swiftlint:disable:next force_unwrapping
+            RunLoop.current.add(timer!, forMode: .common)
         }
-        //swiftlint:disable:next force_unwrapping
-        RunLoop.current.add(timer!, forMode: .common)
+    }
+
+    private func stopTitleAnimation() {
+        timer?.invalidate()
+        timer = nil
+
+        title = String.movieNightTitle
     }
 
     private func animateTitle() -> String {
