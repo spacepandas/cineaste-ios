@@ -10,30 +10,23 @@ import UIKit
 
 enum Appearance {
     static func setup() {
-        let whiteTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.basicWhite
-        ]
-        let darkTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
-        ]
-
-        let navigationBar = UINavigationBar.appearance()
-        navigationBar.tintColor = .primaryOrange
-
-        if #available(iOS 11.0, *) {
-            navigationBar.largeTitleTextAttributes = whiteTextAttributes
-        }
-
+        // MARK: TabBar
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
         tabBar.tintColor = .basicWhite
         tabBar.barTintColor = .primaryOrange
         tabBar.unselectedItemTintColor = .basicBackground
 
+        // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()
-        tabBarItem.setTitleTextAttributes(whiteTextAttributes, for: .selected)
-        tabBarItem.setTitleTextAttributes(darkTextAttributes, for: .normal)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.basicWhite
+            ], for: .selected)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.basicBackground
+            ], for: .normal)
 
+        // MARK: SearchBar
         let searchBar = UISearchBar.appearance()
         searchBar.tintColor = .basicWhite
         searchBar.barTintColor = .primaryOrange
@@ -43,6 +36,7 @@ enum Appearance {
             .appearance(whenContainedInInstancesOf: [UISearchBar.self])
         searchField.tintColor = .basicBackground
 
+        // MARK: UIAlertController
         //change tint color in UIAlertController
         let alertController = UIView
             .appearance(whenContainedInInstancesOf: [UIAlertController.self])

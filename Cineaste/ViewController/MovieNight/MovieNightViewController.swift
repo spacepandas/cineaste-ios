@@ -84,6 +84,9 @@ class MovieNightViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 11.0, *) {
+            resizeLargeTitle()
+        }
         title = String.movieNightTitle
 
         nearbyLinkPermissionDeniedTextView.delegate = self
@@ -279,6 +282,39 @@ class MovieNightViewController: UITableViewController {
             title = "\(String.movieNightTitle)"
         }
         return title
+    }
+
+    @available(iOS 11.0, *)
+    private func resizeLargeTitle() {
+        guard
+            var largeTitleAttributes = navigationController?.navigationBar
+                .largeTitleTextAttributes
+            else { return }
+
+        let largestPossibleTitle = "\(String.movieNightTitle)..."
+        largeTitleAttributes[.font] = resizedFont(for: largestPossibleTitle)
+
+        navigationController?.navigationBar
+            .largeTitleTextAttributes = largeTitleAttributes
+    }
+
+    // credits: https://stackoverflow.com/a/49082928
+    @available(iOS 11.0, *)
+    private func resizedFont(for title: String) -> UIFont {
+        var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
+        var largeTitleWidth = title.size(withAttributes: [
+            .font: UIFont.systemFont(ofSize: fontSize)
+            ]).width
+
+        let maxWidth = UIScreen.main.bounds.size.width - 60
+        while largeTitleWidth > maxWidth {
+            fontSize -= 1
+            largeTitleWidth = title.size(withAttributes: [
+                .font: UIFont.systemFont(ofSize: fontSize)
+                ]).width
+        }
+
+        return UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
 
     // MARK: - Navigation
