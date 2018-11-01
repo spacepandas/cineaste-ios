@@ -22,6 +22,8 @@ As a result you can see which movie is the most interested one by you and your f
 
 We are using [theMovieDb][theMovieDb] to get access to the big movie data universe.
 
+We are using [Kingfisher][Kingfisher] to load and cache movie posters asynchronously.
+
 To enforce swift style and convention and to constantly check our code style, we use [Swiftlint](https://github.com/realm/SwiftLint), which runs on every build phase.
 
 ## How to build
@@ -52,3 +54,4 @@ Cineaste is released under the **Apache License**. Please see the [LICENSE](http
 
 [nearbyLink]: https://developers.google.com/nearby/messages/overview
 [theMovieDb]: https://www.themoviedb.org/
+[Kingfisher]: https://github.com/onevcat/Kingfisher
