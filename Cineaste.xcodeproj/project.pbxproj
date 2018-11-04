@@ -645,6 +645,7 @@
 			buildConfigurationList = 3FF7913420DE274A007B7D37 /* Build configuration list for PBXNativeTarget "Cineaste App" */;
 			buildPhases = (
 				7DD2F1648F30CC8D41084631 /* [CP] Check Pods Manifest.lock */,
+				3F5AF263218F80F8006717DC /* Check API Keys */,
 				3FF790E420DE274A007B7D37 /* Swift Lint */,
 				3FF790E520DE274A007B7D37 /* Sources */,
 				3FF7912220DE274A007B7D37 /* Frameworks */,
@@ -748,6 +749,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F5AF263218F80F8006717DC /* Check API Keys */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check API Keys";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NEARBY_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :NEARBY_KEY' Cineaste/apikey.plist)\"\nMOVIEDB_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :MOVIEDB_KEY' Cineaste/apikey.plist)\"\nif [[ -z \"$NEARBY_KEY\" ]]; then\necho \"Cineaste/apikey.plist\":1: warning: \"Add a NEARBY_KEY to apikey.plist\"\nfi\nif [[ -z \"$MOVIEDB_KEY\" ]]; then\necho \"Cineaste/apikey.plist\":1: warning: \"Add a MOVIEDB_KEY to apikey.plist\"\nfi\nexit 0\n";
+		};
 		3FF790E420DE274A007B7D37 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
