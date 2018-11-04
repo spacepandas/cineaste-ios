@@ -23,12 +23,10 @@ enum ApiKeyStore {
     #endif
 
     private static func getValue(forKey key: String) -> String {
-        guard let data = NSDataAsset(name: "ApiKeys", bundle: Bundle.main)?.data
-            else { fatalError("No ApiKey data set in assets found") }
-
-        guard let plist = try? PropertyListSerialization
-            .propertyList(from: data, options: [], format: nil) as? NSDictionary
-            else { fatalError("Could not convert data to plist") }
+        guard let data = NSDataAsset(name: "ApiKeys", bundle: Bundle.main)?.data,
+            let plist = try? PropertyListSerialization
+                .propertyList(from: data, options: [], format: nil) as? NSDictionary
+            else { fatalError("ApiKeys data set with plist not found") }
 
         guard let value = plist?.object(forKey: key) as? String,
             !value.isEmpty
