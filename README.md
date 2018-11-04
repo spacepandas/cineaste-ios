@@ -30,7 +30,7 @@ To enforce swift style and convention and to constantly check our code style, we
 
 0. Run `pod install` in cineaste-ios folder to install all used cocoa pods.
 1. Open `Cineaste.xcworkspace` in Xcode.
-2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the `apikey.plist`.
+2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the ApiKeys data set in the asset catalog under the following path: `Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist`.
 
 ```xml 
 <?xml version="1.0" encoding="UTF-8"?>

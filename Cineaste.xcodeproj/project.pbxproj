@@ -109,7 +109,6 @@
 		3FF7912120DE274A007B7D37 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */; };
 		3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A81F9531E20067F5F5 /* LaunchScreen.storyboard */; };
 		3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F01791020CD32C500600DB4 /* Localizable.strings */; };
-		3FF7912920DE274A007B7D37 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D32F601F9AA20100497ED2 /* apikey.plist */; };
 		3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F1DA161209C64D900AC4D09 /* Settings.bundle */; };
 		3FF7912B20DE274A007B7D37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AE25A31F9531E20067F5F5 /* Main.storyboard */; };
 		3FF7912C20DE274A007B7D37 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C887A2002B2FC0052BF24 /* Settings.storyboard */; };
@@ -266,7 +265,6 @@
 		95B24EF41FADDB260070912A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		95B57719201E2C75007BD9F0 /* MovieListCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCategory.swift; sourceTree = "<group>"; };
 		95C679A12033773A0058FC8C /* UIImage+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Cineaste.swift"; sourceTree = "<group>"; };
-		95D32F601F9AA20100497ED2 /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apikey.plist; sourceTree = "<group>"; };
 		95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyStore.swift; sourceTree = "<group>"; };
 		95DC32041F97E1300014E3EA /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
 		95DC320C1F97E5150014E3EA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -502,7 +500,6 @@
 				95DC32001F97E0E20014E3EA /* Storyboards */,
 				95DC31FF1F97E0D80014E3EA /* ViewController */,
 				95DC32031F97E1300014E3EA /* Model.xcdatamodeld */,
-				95D32F601F9AA20100497ED2 /* apikey.plist */,
 				9528112F201D087800F3EC76 /* .swiftlint.yml */,
 				958328991FBB81340084CF80 /* cineaste.xcassets */,
 				951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */,
@@ -732,7 +729,6 @@
 			files = (
 				3FF7912620DE274A007B7D37 /* LaunchScreen.storyboard in Resources */,
 				3FF7912820DE274A007B7D37 /* Localizable.strings in Resources */,
-				3FF7912920DE274A007B7D37 /* apikey.plist in Resources */,
 				3FF7912A20DE274A007B7D37 /* Settings.bundle in Resources */,
 				3FF7912B20DE274A007B7D37 /* Main.storyboard in Resources */,
 				3FF7912C20DE274A007B7D37 /* Settings.storyboard in Resources */,
@@ -779,7 +775,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml\n";
 		};
 		40238161EBEFF89AE9421D57 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

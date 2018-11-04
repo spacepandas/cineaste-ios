@@ -6,7 +6,7 @@
 //  Copyright © 2017 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum ApiKeyStore {
     static let theMovieDbKey = getValue(forKey: "MOVIEDB_KEY")
@@ -23,11 +23,15 @@ enum ApiKeyStore {
     #endif
 
     private static func getValue(forKey key: String) -> String {
-        guard let path = Bundle.main.path(forResource: "apikey", ofType: "plist")
-            else { fatalError("No apikey file") }
+        guard let data = NSDataAsset(name: "ApiKeys", bundle: Bundle.main)?.data
+            else { fatalError("No ApiKey data set in assets found") }
 
-        let plist = NSDictionary(contentsOfFile: path)
-        guard let value = plist?.object(forKey: key) as? String
+        guard let plist = try? PropertyListSerialization
+            .propertyList(from: data, options: [], format: nil) as? NSDictionary
+            else { fatalError("Could not convert data to plist") }
+
+        guard let value = plist?.object(forKey: key) as? String,
+            !value.isEmpty
             else { fatalError("Can't find value for apikey: \(key)") }
 
         return value
