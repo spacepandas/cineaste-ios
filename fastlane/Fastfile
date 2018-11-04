@@ -12,9 +12,9 @@ skip_docs
 desc "Runs all the tests"
 lane :test do
   run_tests(
-    device: "iPhone 7",
+    device: "iPhone X",
     scheme: "Testing",
-    code_coverage: true
+    clean: true
   )
 end
 
