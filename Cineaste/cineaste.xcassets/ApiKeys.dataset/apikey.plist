@@ -4,5 +4,7 @@
 <dict>
 	<key>MOVIEDB_KEY</key>
 	<string></string>
+	<key>NEARBY_KEY</key>
+	<string></string>
 </dict>
 </plist>
