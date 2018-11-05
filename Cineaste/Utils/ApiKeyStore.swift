@@ -28,8 +28,7 @@ enum ApiKeyStore {
                 .propertyList(from: data, options: [], format: nil) as? NSDictionary
             else { fatalError("ApiKeys data set with plist not found") }
 
-        guard let value = plist?.object(forKey: key) as? String,
-            !value.isEmpty
+        guard let value = plist?.object(forKey: key) as? String
             else { fatalError("Can't find value for apikey: \(key)") }
 
         return value
