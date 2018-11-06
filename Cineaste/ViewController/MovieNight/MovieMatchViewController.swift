@@ -70,7 +70,6 @@ class MovieMatchViewController: UITableViewController {
     // MARK: - Configuration
 
     private func configureTableView() {
-        tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.basicBackground
 
@@ -110,6 +109,21 @@ class MovieMatchViewController: UITableViewController {
         }
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
+
+        guard let storageManager = storageManager
+            else { return }
+
+        let vc = MovieDetailViewController.instantiate()
+
+        let networkMovie = Movie(id: nearbyMovie.id, title: nearbyMovie.title)
+        vc.configure(with: .network(networkMovie),
+                     type: .search,
+                     storageManager: storageManager)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

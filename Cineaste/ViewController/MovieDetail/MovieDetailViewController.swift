@@ -17,7 +17,11 @@ class MovieDetailViewController: UIViewController {
         case network(Movie)
     }
 
-    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView! {
+        didSet {
+            updatePosterSize()
+        }
+    }
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: TitleLabel!
 
@@ -42,19 +46,15 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var mustSeeButton: ActionButton!
     @IBOutlet private weak var deleteButton: ActionButton!
 
-    @IBOutlet private weak var descriptionTextView: UITextView! {
-        didSet {
-            descriptionTextView.isEditable = false
-        }
-    }
+    @IBOutlet private weak var descriptionTextView: DescriptionTextView!
+
+    private var storageManager: MovieStorage?
 
     private var type: MovieDetailType = .search {
         didSet {
             updateDetail(for: type)
         }
     }
-
-    private var storageManager: MovieStorage?
 
     private var movie: MovieType? {
         didSet {
@@ -65,17 +65,6 @@ class MovieDetailViewController: UIViewController {
                 setupUI(for: storedMovie)
             case .network(let networkMovie):
                 loadDetails(for: networkMovie)
-            }
-        }
-    }
-
-    private var moviePoster: UIImage? {
-        didSet {
-            DispatchQueue.main.async {
-                guard let poster = self.moviePoster else { return }
-                self.posterImageView.image = poster
-                let aspectRatio = poster.size.height / poster.size.width
-                self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
             }
         }
     }
@@ -201,13 +190,21 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
-    fileprivate func setupLocalization() {
+    private func setupLocalization() {
         seenButton.setTitle(String.seenAction, for: .normal)
         mustSeeButton.setTitle(String.watchlistAction, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
     }
 
-    fileprivate func generateMovieURL() -> URL? {
+    func updatePosterSize() {
+        DispatchQueue.main.async {
+            guard let poster = self.posterImageView.image else { return }
+            let aspectRatio = poster.size.height / poster.size.width
+            self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
+        }
+    }
+
+    private func generateMovieURL() -> URL? {
         var movieUrl = Constants.Backend.shareMovieUrl
 
         guard let movie = movie else { return nil }
@@ -222,7 +219,7 @@ class MovieDetailViewController: UIViewController {
         return URL(string: movieUrl)
     }
 
-    fileprivate func saveMovie(asWatched watched: Bool) {
+    private func saveMovie(asWatched watched: Bool) {
         guard let storageManager = storageManager,
             let movie = movie
             else { return }
@@ -253,7 +250,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func deleteMovie() {
+    private func deleteMovie() {
         guard let storageManager = storageManager,
             let movie = movie,
             case let .stored(storedMovie) = movie
@@ -308,38 +305,50 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func setupUI(for networkMovie: Movie) {
-        moviePoster = networkMovie.poster ?? UIImage.posterPlaceholder
-
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
                 let runtimeLabel = self.runtimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel else { return }
+                let releaseDateLabel = self.releaseDateLabel,
+                let posterImageView = self.posterImageView
+                else { return }
 
             titleLabel.text = networkMovie.title
             descriptionTextView.text = networkMovie.overview
             runtimeLabel.text = networkMovie.formattedRuntime
             votingLabel.text = networkMovie.formattedVoteAverage
             releaseDateLabel.text = networkMovie.formattedReleaseDate
+
+            if let posterPath = networkMovie.posterPath {
+                posterImageView.kf.indicatorType = .activity
+                let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
+                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { image, _, _, _ in
+                    networkMovie.poster = image
+                }
+            } else {
+                posterImageView.image = UIImage.posterPlaceholder
+            }
         }
     }
 
     fileprivate func setupUI(for localMovie: StoredMovie) {
-        moviePoster = localMovie.poster.map(UIImage.init) ?? UIImage.posterPlaceholder
-
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
                 let runtimeLabel = self.runtimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel else { return }
+                let releaseDateLabel = self.releaseDateLabel,
+                let posterImageView = self.posterImageView
+                else { return }
 
             titleLabel.text = localMovie.title
             descriptionTextView.text = localMovie.overview
             runtimeLabel.text = localMovie.formattedRuntime
             votingLabel.text = localMovie.formattedVoteAverage
             releaseDateLabel.text = localMovie.formattedReleaseDate
+            posterImageView.image = localMovie.poster.map(UIImage.init)
+                ?? UIImage.posterPlaceholder
         }
     }
 
