@@ -49,6 +49,8 @@ extension String {
     static let importTitle = NSLocalizedString("import", comment: "Title for settings cell importMovies")
     static let importDescription = NSLocalizedString("importDescription", comment: "Description for settings cell importMovies")
     static let licenseTitle = NSLocalizedString("license", comment: "Title for settings cell licence")
+    static let refreshMoviesTitle = NSLocalizedString("refreshMovies", comment: "Title for settings cell refresh movies")
+    static let refreshMoviesDescription = NSLocalizedString("refreshMoviesDescription", comment: "Description for refresh movies cell")
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
     static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
     static let appStoreTitle = NSLocalizedString("appStore", comment: "Title for settings cell appStore")
