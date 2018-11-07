@@ -100,7 +100,7 @@ class MovieStorage {
             storedMovie.voteCount = movie.voteCount
 
             storedMovie.watched = watched
-            storedMovie.watchedDate = watched ? Date() : nil
+            storedMovie.watchedDate = watched ? movie.watchedDate ?? Date() : nil
             self.save(handler: handler)
         }
     }

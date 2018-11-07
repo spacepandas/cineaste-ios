@@ -6,6 +6,8 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
+import Kingfisher
+
 final class MovieRefresher {
 
     private var refreshMode: RefreshMode
@@ -28,7 +30,11 @@ final class MovieRefresher {
                 if case let .success(movie) = result {
                     let updatedMovie = StoredMovie(withMovie: movie, context: self.storageManager.backgroundContext)
                     updatedMovie.poster = storedMovie.poster
-                    self.storageManager.updateMovieItem(with: updatedMovie, watched: storedMovie.watched)
+                    updatedMovie.watched = storedMovie.watched
+                    updatedMovie.watchedDate = storedMovie.watchedDate
+                    updatedMovie.reloadPosterIfNeeded {
+                        self.storageManager.updateMovieItem(with: updatedMovie, watched: storedMovie.watched)
+                    }
                 }
             }
         }
@@ -48,4 +54,21 @@ final class MovieRefresher {
 
 extension MovieRefresher {
     enum RefreshMode { case never, wifi, always }
+}
+
+private extension StoredMovie {
+
+    func reloadPosterIfNeeded(completion: @escaping () -> Void) {
+        guard poster == nil, let posterPath = posterPath else {
+            completion()
+            return
+        }
+
+        let url = Movie.posterUrl(from: posterPath, for: .small)
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+            self.poster = data
+            completion()
+        }
+        task.resume()
+    }
 }
