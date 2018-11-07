@@ -27,6 +27,7 @@ final class MovieRefresher {
             Webservice.load(resource: networkMovie.get) { result in
                 if case let .success(movie) = result {
                     let updatedMovie = StoredMovie(withMovie: movie, context: self.storageManager.backgroundContext)
+                    updatedMovie.poster = storedMovie.poster
                     self.storageManager.updateMovieItem(with: updatedMovie, watched: storedMovie.watched)
                 }
             }
