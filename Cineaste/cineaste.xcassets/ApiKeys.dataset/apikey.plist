@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>MOVIEDB_KEY</key>
-	<string></string>
-	<key>NEARBY_KEY</key>
-	<string></string>
+    <string>70d13aa57b602bdc61d051925cbfcecb</string>
+    <key>NEARBY_KEY</key>
+    <string></string>
 </dict>
 </plist>
