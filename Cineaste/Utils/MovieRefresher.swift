@@ -10,7 +10,7 @@ import Kingfisher
 
 final class MovieRefresher {
 
-    private var refreshMode: RefreshMode
+    var refreshMode: RefreshMode
     private let fetchedResultsManager = FetchedResultsManager()
     private let storageManager = MovieStorage()
 
@@ -26,6 +26,7 @@ final class MovieRefresher {
         for storedMovie in storedMovies {
             let networkMovie = Movie(id: storedMovie.id, title: "")
 
+            // TODO: Check out the caching situation
             Webservice.load(resource: networkMovie.get) { result in
                 if case let .success(movie) = result {
                     let updatedMovie = StoredMovie(withMovie: movie, context: self.storageManager.backgroundContext)

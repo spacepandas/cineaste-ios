@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                          object: nil)
 
         Appearance.setup()
-        movieRefresher.refreshMoviesInDatabase()
 
         // check if system launched the app with a quick action
         // return false so performActionForShortcutItem: is not called twice
@@ -37,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        movieRefresher.refreshMoviesInDatabase()
     }
 
     // MARK: - Home Quick Actions
