@@ -7,6 +7,7 @@
 //
 
 import Kingfisher
+import Reachability
 
 final class MovieRefresher {
 
@@ -41,7 +42,7 @@ final class MovieRefresher {
         case .never:
             return false
         case .wifi:
-            fatalError("TODO: Find out if the user is on wifi")
+            return Reachability()?.connection == .wifi
         case .always:
             return true
         }

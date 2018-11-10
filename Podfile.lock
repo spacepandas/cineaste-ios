@@ -12,11 +12,13 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilitiesLegacy (~> 1.3)
+  - ReachabilitySwift (4.3.0)
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 4.0)
   - NearbyMessages
+  - ReachabilitySwift
   - SwiftLint
 
 SPEC REPOS:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - GoogleUtilitiesLegacy
     - Kingfisher
     - NearbyMessages
+    - ReachabilitySwift
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -36,8 +39,9 @@ SPEC CHECKSUMS:
   GoogleUtilitiesLegacy: 5501bedec1646bd284286eb5fc9453f7e23a12f4
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 8381c476fc87fdfdc8ae6c229db8085cc8d0c937
+PODFILE CHECKSUM: d7225275b6f2b940992f6579a6413ef0928a0d03
 
 COCOAPODS: 1.5.3
