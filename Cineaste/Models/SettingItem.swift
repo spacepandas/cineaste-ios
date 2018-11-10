@@ -24,7 +24,7 @@ enum SettingItem: CaseIterable {
         case .licence:
             return String.licenseTitle
         case .refreshMovies:
-            return String.refreshMoviesTitle
+            return RefreshMode.default.menuTitle
         case .exportMovies:
             return String.exportTitle
         case .importMovies:
@@ -44,7 +44,7 @@ enum SettingItem: CaseIterable {
              .appStore:
             return nil
         case .refreshMovies:
-            return String.refreshMoviesDescription
+            return RefreshMode.default.menuDescription
         case .exportMovies:
             return String.exportDescription
         case .importMovies:

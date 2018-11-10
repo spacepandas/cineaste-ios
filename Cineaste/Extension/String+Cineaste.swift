@@ -49,11 +49,16 @@ extension String {
     static let importTitle = NSLocalizedString("import", comment: "Title for settings cell importMovies")
     static let importDescription = NSLocalizedString("importDescription", comment: "Description for settings cell importMovies")
     static let licenseTitle = NSLocalizedString("license", comment: "Title for settings cell licence")
-    static let refreshMoviesTitle = NSLocalizedString("refreshMovies", comment: "Title for settings cell refresh movies")
-    static let refreshMoviesDescription = NSLocalizedString("refreshMoviesDescription", comment: "Description for refresh movies cell")
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
     static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
     static let appStoreTitle = NSLocalizedString("appStore", comment: "Title for settings cell appStore")
+
+    static let refreshMoviesTitleNever = NSLocalizedString("refreshMoviesNever", comment: "Title for settings cell refresh movies when in 'never' mode ")
+    static let refreshMoviesDescriptionNever = NSLocalizedString("refreshMoviesDescriptionNever", comment: "Description for refresh movies cell when in 'never' mode ")
+    static let refreshMoviesTitleWifi = NSLocalizedString("refreshMoviesWifi", comment: "Title for settings cell refresh movies when in 'wifi' mode ")
+    static let refreshMoviesDescriptionWifi = NSLocalizedString("refreshMoviesDescriptionWifi", comment: "Description for refresh movies cell when in 'wifi' mode ")
+    static let refreshMoviesTitleAlways = NSLocalizedString("refreshMoviesAlways", comment: "Title for settings cell refresh movies when in 'always' mode ")
+    static let refreshMoviesDescriptionAlways = NSLocalizedString("refreshMoviesDescriptionAlways", comment: "Description for refresh movies cell when in 'always' mode ")
 
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")

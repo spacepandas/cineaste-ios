@@ -38,8 +38,8 @@ extension SettingsViewController {
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
         case .refreshMovies:
-            // TODO: Toggle refresh mode
-            tableView.deselectRow(at: indexPath, animated: true)
+            RefreshMode.default = RefreshMode.default.next
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         case .exportMovies:
             saveMoviesLocally { exportPath in
                 DispatchQueue.main.async {

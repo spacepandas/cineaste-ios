@@ -10,13 +10,8 @@ import Kingfisher
 
 final class MovieRefresher {
 
-    var refreshMode: RefreshMode
     private let fetchedResultsManager = FetchedResultsManager()
     private let storageManager = MovieStorage()
-
-    init(refreshMode: RefreshMode = .wifi) {
-        self.refreshMode = refreshMode
-    }
 
     func refreshMoviesInDatabase() {
         guard shouldRefreshMovies,
@@ -42,7 +37,7 @@ final class MovieRefresher {
     }
 
     private var shouldRefreshMovies: Bool {
-        switch refreshMode {
+        switch RefreshMode.default {
         case .never:
             return false
         case .wifi:
@@ -51,10 +46,6 @@ final class MovieRefresher {
             return true
         }
     }
-}
-
-extension MovieRefresher {
-    enum RefreshMode { case never, wifi, always }
 }
 
 private extension StoredMovie {
