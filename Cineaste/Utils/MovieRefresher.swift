@@ -22,7 +22,6 @@ final class MovieRefresher {
         for storedMovie in storedMovies {
             let networkMovie = Movie(id: storedMovie.id, title: "")
 
-            // TODO: Check out the caching situation
             Webservice.load(resource: networkMovie.get) { result in
                 if case let .success(movie) = result {
                     let updatedMovie = StoredMovie(withMovie: movie, context: self.storageManager.backgroundContext)
