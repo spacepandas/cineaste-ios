@@ -299,6 +299,7 @@ class MovieDetailViewController: UIViewController {
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
+            self.movie = .network(detailedMovie)
             self.setupUI(for: detailedMovie)
         }
     }
