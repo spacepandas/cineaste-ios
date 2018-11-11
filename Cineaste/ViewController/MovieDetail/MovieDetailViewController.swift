@@ -64,10 +64,13 @@ class MovieDetailViewController: UIViewController {
             case .stored(let storedMovie):
                 setupUI(for: storedMovie)
             case .network(let networkMovie):
-                loadDetails(for: networkMovie)
+                if !detailsLoaded {
+                    loadDetails(for: networkMovie)
+                }
             }
         }
     }
+    private var detailsLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -299,6 +302,7 @@ class MovieDetailViewController: UIViewController {
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
+            self.detailsLoaded = true
             self.movie = .network(detailedMovie)
             self.setupUI(for: detailedMovie)
         }
