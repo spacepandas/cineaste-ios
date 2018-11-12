@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.4
+
+* Fixed: We all know smartphones nowadays perform so well! But we don't want to exaggerate it that much, so we fixed an infinite loop which used a bit too much of the memory - with only three lines of code. Yay!
+* Improved: When you start a movie night, you can now see detailed information for a movie from watchlist of a friend as well.
+
 ## 1.3.3
 
 * Fixed: Update the localizable key for unknown release date
