@@ -21,7 +21,7 @@ end
 desc "Make screenshots of app"
 lane :screenshots do
   capture_ios_screenshots(
-    configuration: "Release",
+    configuration: "Debug",
     output_directory: "#{Target_Folder_Name}/screenshots",
     app_identifier: "de.spacepandas.ios.cineaste"
   )

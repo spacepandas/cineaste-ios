@@ -50,10 +50,6 @@ class SettingsViewController: UITableViewController {
             else { return "" }
         var versionInformation = "\(String.versionText): \(version) (\(build))"
 
-        #if DEBUG
-        versionInformation.append(" || Dev")
-        #endif
-
         return versionInformation
     }
 
