@@ -21,7 +21,7 @@ class ScreenshotsUITests: XCTestCase {
 
     func testScreenshots() {
         let app = XCUIApplication()
-        snapshot("01_emptyList")
+        snapshot("emptyList")
 
         let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
         addMovieButton.tap()
@@ -29,25 +29,25 @@ class ScreenshotsUITests: XCTestCase {
 
         let firstMovieCell = app.cells.element(boundBy: 0)
         firstMovieCell.tap()
-        snapshot("03_search_detail")
+        snapshot("search_detail")
 
         let wantToSeeButton = app.buttons["detail.mustsee.button"]
         wantToSeeButton.tap()
-        snapshot("04_wantToSeeList")
+        snapshot("03_wantToSeeList")
 
         let wantToSeeMovie = app.cells.element(boundBy: 0)
         wantToSeeMovie.tap()
-        snapshot("05_wantToSee_detail")
+        snapshot("01_wantToSee_detail")
 
         let seenButton = app.buttons["detail.seen.button"]
         seenButton.tap()
         let seenTab = app.buttons["SeenTab"]
         seenTab.tap()
-        snapshot("06_seenList")
+        snapshot("seenList")
 
         let seenMovie = app.cells.element(boundBy: 0)
         seenMovie.tap()
-        snapshot("07_seen_detail")
+        snapshot("seen_detail")
 
         let back = app.navigationBars.buttons.element(boundBy: 0)
         back.tap()
@@ -57,7 +57,7 @@ class ScreenshotsUITests: XCTestCase {
 
         let usernameAlert = app.alerts.element(boundBy: 0)
         if usernameAlert.exists {
-            snapshot("08_startMovieNight_usernameAlert")
+            snapshot("startMovieNight_usernameAlert")
             let textField = usernameAlert.textFields.element(boundBy: 0)
             textField.tap()
             textField.typeText("Screenshots")
@@ -67,41 +67,41 @@ class ScreenshotsUITests: XCTestCase {
 
         let nearbyAlert = app.alerts.element(boundBy: 0)
         if nearbyAlert.exists {
-            snapshot("09_startMovieNight_nearbyAlert")
+            snapshot("startMovieNight_nearbyAlert")
             let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
             moreInfoButton.tap()
-            snapshot("10_startMovieNight_nearbyAlert_moreInfo")
+            snapshot("startMovieNight_nearbyAlert_moreInfo")
             let allowNearbyButton = app.buttons.element(boundBy: 1)
             allowNearbyButton.tap()
         }
-        snapshot("11_startMovieNight_searching")
+        snapshot("startMovieNight_searching")
 
         //use DEBUG triple tap to test nearby feature
         app.tap()
         app.tap()
         app.tap()
 
-        snapshot("12_startMovieNight_friendsFound")
+        snapshot("04_startMovieNight_friendsFound")
 
         let startButton = app.buttons.element(boundBy: 1)
         startButton.tap()
-        snapshot("13_startMovieNight_results")
+        snapshot("startMovieNight_results")
 
         back.tap()
         back.tap()
 
         let settingsTab = app.buttons["SettingsTab"]
         settingsTab.tap()
-        snapshot("14_settings")
+        snapshot("05_settings")
 
         let aboutTheApp = app.cells.element(boundBy: 0)
         aboutTheApp.tap()
-        snapshot("15_settings_aboutTheApp")
+        snapshot("settings_aboutTheApp")
 
         back.tap()
         let license = app.cells.element(boundBy: 1)
         license.tap()
-        snapshot("16_settings_license")
+        snapshot("settings_license")
     }
 
 }
