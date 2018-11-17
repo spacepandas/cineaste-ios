@@ -36,6 +36,10 @@ opt_in_rules:
   - redundant_set_access_control
   - multiline_function_chains
   - anyobject_protocol
+  - toggle_bool
+  - identical_operands
+  - collection_alignment
+  - static_operator
 
 # Exclude tests, pods and vendor sources
 excluded:
