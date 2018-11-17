@@ -48,9 +48,7 @@ class SettingsViewController: UITableViewController {
             let build = Bundle.main
                 .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return "" }
-        var versionInformation = "\(String.versionText): \(version) (\(build))"
-
-        return versionInformation
+        return "\(String.versionText): \(version) (\(build))"
     }
 
     // MARK: - Navigation
