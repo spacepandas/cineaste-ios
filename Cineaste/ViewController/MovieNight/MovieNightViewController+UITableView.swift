@@ -54,7 +54,7 @@ extension MovieNightViewController {
         default:
             break
         }
-        
+
         return cell
     }
 
