@@ -121,6 +121,8 @@ class MovieNightViewController: UITableViewController {
             }
         }
 
+        nearbyMessages = []
+
         currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
