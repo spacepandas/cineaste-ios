@@ -65,10 +65,7 @@ class MovieNightViewController: UITableViewController {
 
     var nearbyMessages = [NearbyMessage]() {
         didSet {
-            DispatchQueue.main.async {
-                self.tableView.backgroundView?.isHidden = !self.nearbyMessages.isEmpty
-                self.tableView.reloadData()
-            }
+            tableView.reloadData()
         }
     }
 
