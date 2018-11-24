@@ -9,16 +9,35 @@
 import UIKit
 
 extension MovieNightViewController {
+    enum Section: Int, CaseIterable {
+        case allFriends
+        case specificFriend
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard !nearbyMessages.isEmpty else { return 0 }
+
+        return Section.allCases.count
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyMessages.isEmpty ? 0 : nearbyMessages.count + 1
+        guard !nearbyMessages.isEmpty else { return 0 }
+
+        switch Section(rawValue: section) {
+        case .allFriends?:
+            return 1
+        case .specificFriend?:
+            return nearbyMessages.count
+        default:
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieNightUserCell = tableView.dequeueCell(identifier: MovieNightUserCell.identifier)
 
-        if indexPath.row == 0 {
-            //all lists together
-
+        switch Section(rawValue: indexPath.section) {
+        case .allFriends?:
             var combinedMessages = nearbyMessages
             combinedMessages.append(ownNearbyMessage)
 
@@ -28,25 +47,31 @@ extension MovieNightViewController {
             let names = combinedMessages.map { $0.userName }
             cell.configureAll(numberOfMovies: numberOfAllMovies,
                               namesOfFriends: names)
-        } else {
-            let message = nearbyMessages[indexPath.row - 1]
+        case .specificFriend?:
+            let message = nearbyMessages[indexPath.row]
             cell.configure(userName: message.userName,
                            numberOfMovies: message.movies.count)
+        default:
+            break
         }
+
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        switch Section(rawValue: indexPath.section) {
+        case .allFriends?:
             var combinedMessages = nearbyMessages
             combinedMessages.append(ownNearbyMessage)
 
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
                          sender: (String.allResultsForMovieNight, combinedMessages))
-        } else {
-            let nearbyMessage = nearbyMessages[indexPath.row - 1]
+        case .specificFriend?:
+            let nearbyMessage = nearbyMessages[indexPath.row]
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
                          sender: (nearbyMessage.userName, [nearbyMessage]))
+        default:
+            break
         }
     }
 }

@@ -25,8 +25,10 @@ extension MovieNightViewController {
                     else { return }
 
                 // add nearbyMessage
-                if !self.nearbyMessages.contains(nearbyMessage) {
-                    self.nearbyMessages.append(nearbyMessage)
+                DispatchQueue.main.async {
+                    if !self.nearbyMessages.contains(nearbyMessage) {
+                        self.nearbyMessages.append(nearbyMessage)
+                    }
                 }
             },
             messageLostHandler: { message in
@@ -34,8 +36,10 @@ extension MovieNightViewController {
                     else { return }
 
                 // remove nearbyMessage
-                self.nearbyMessages = self.nearbyMessages
-                    .filter { $0 != nearbyMessage }
+                DispatchQueue.main.async {
+                    self.nearbyMessages = self.nearbyMessages
+                        .filter { $0 != nearbyMessage }
+                }
             }
         )
     }
