@@ -35,4 +35,14 @@ enum Constants {
             }
         }
     }
+
+    static var versionNumberInformation: String {
+        guard
+            let version = Bundle.main
+                .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main
+                .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
+            else { return "" }
+        return "\(String.versionText): \(version) (\(build))"
+    }
 }

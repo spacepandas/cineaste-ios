@@ -30,7 +30,7 @@ class SettingsViewController: UITableViewController {
         tableView.backgroundColor = UIColor.basicBackground
         tableView.tableFooterView = footerView
 
-        versionInfo?.text = versionString()
+        versionInfo?.text = Constants.versionNumberInformation
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,16 +39,6 @@ class SettingsViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-    }
-
-    func versionString() -> String {
-        guard
-            let version = Bundle.main
-                .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-            let build = Bundle.main
-                .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
-            else { return "" }
-        return "\(String.versionText): \(version) (\(build))"
     }
 
     // MARK: - Navigation
