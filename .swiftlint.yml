@@ -40,6 +40,9 @@ opt_in_rules:
   - identical_operands
   - collection_alignment
   - static_operator
+  - legacy_random
+  - closure_body_length
+  - inert_defer
 
 # Exclude tests, pods and vendor sources
 excluded:

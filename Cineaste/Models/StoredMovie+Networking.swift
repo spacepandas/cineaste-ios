@@ -25,10 +25,8 @@ extension StoredMovie {
         }
 
         let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-        ImageDownloader.default.downloadImage(with: posterUrl,
-                                              options: [],
-                                              progressBlock: nil) { _, _, _, data in
-                                                completion(data)
+        ImageDownloader.default.downloadImage(with: posterUrl) { result in
+            completion(result.value?.originalData)
         }
     }
 }

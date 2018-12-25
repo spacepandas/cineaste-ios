@@ -66,9 +66,10 @@ class SearchMoviesCell: UITableViewCell {
         if let posterPath = movie.posterPath {
             poster.kf.indicatorType = .activity
             let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-            poster.kf.setImage(with: posterUrl,
-                               placeholder: UIImage.posterPlaceholder) { image, _, _, _ in
-                movie.poster = image
+            poster.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
+                if let image = result.value?.image {
+                    movie.poster = image
+                }
             }
         } else {
             poster.image = UIImage.posterPlaceholder

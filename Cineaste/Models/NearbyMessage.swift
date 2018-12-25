@@ -26,8 +26,9 @@ extension NearbyMessage {
 }
 
 extension NearbyMessage: Hashable {
-    var hashValue: Int {
-        return userName.hashValue ^ deviceId.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(userName)
+        hasher.combine(deviceId)
     }
 }
 

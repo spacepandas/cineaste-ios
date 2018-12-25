@@ -11,8 +11,8 @@ struct NearbyMovie: Hashable {
     let title: String
     let posterPath: String?
 
-    var hashValue: Int {
-        return id.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     static func == (lhs: NearbyMovie, rhs: NearbyMovie) -> Bool {

@@ -315,7 +315,7 @@ class MovieDetailViewController: UIViewController {
                 let runtimeLabel = self.runtimeLabel,
                 let votingLabel = self.votingLabel,
                 let releaseDateLabel = self.releaseDateLabel,
-                let posterImageView = self.posterImageView
+                self.posterImageView != nil
                 else { return }
 
             titleLabel.text = networkMovie.title
@@ -325,13 +325,15 @@ class MovieDetailViewController: UIViewController {
             releaseDateLabel.text = networkMovie.formattedReleaseDate
 
             if let posterPath = networkMovie.posterPath {
-                posterImageView.kf.indicatorType = .activity
+                self.posterImageView.kf.indicatorType = .activity
                 let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { image, _, _, _ in
-                    networkMovie.poster = image
+                self.posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
+                    if let image = result.value?.image {
+                        networkMovie.poster = image
+                    }
                 }
             } else {
-                posterImageView.image = UIImage.posterPlaceholder
+                self.posterImageView.image = UIImage.posterPlaceholder
             }
         }
     }

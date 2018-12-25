@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target 'Cineaste App' do
   pod 'SwiftLint'
   pod 'NearbyMessages'
-  pod 'Kingfisher', '~> 4.0'
+  pod 'Kingfisher'
 
   target 'CineasteTests' do
     inherit! :search_paths
