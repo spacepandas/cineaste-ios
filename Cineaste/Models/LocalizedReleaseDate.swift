@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 // this model will parse the appended release dates from tmdb.org
 // for more information see documentation here:
 // https://developers.themoviedb.org/3/movies/get-movie-release-dates

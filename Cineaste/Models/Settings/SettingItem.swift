@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import UIKit
-
 enum SettingItem: CaseIterable {
     case about
     case licence
