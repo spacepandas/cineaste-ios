@@ -8,15 +8,15 @@
 
 enum ExportError: Error {
     case creatingFileAtPath
-    case writingContentInFile
 }
 
 enum Exporter {
     static var exportPath: String {
-        let documentsDirectory =
-            NSSearchPathForDirectoriesInDomains(.documentDirectory,
-                                                .userDomainMask,
-                                                true)[0]
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory,
+            .userDomainMask,
+            true
+            )[0]
 
         return documentsDirectory + "/" + String.exportMoviesFileName(with: Date().formatted)
     }
@@ -28,21 +28,15 @@ enum Exporter {
         let data = try encoder.encode(ImportExportObject(movies: movies))
         let fileManager = FileManager.default
 
-        // creating a .json file in the Documents folder
         if !fileManager.fileExists(atPath: Exporter.exportPath) {
             guard fileManager.createFile(atPath: Exporter.exportPath,
-                                         contents: nil,
-                                         attributes: nil)
+                                         contents: nil)
                 else {
                     throw(ExportError.creatingFileAtPath)
             }
         }
 
-        // Write that JSON to the file created earlier
-        guard let file = FileHandle(forWritingAtPath: Exporter.exportPath) else {
-            throw(ExportError.writingContentInFile)
-        }
-        file.truncateFile(atOffset: 0)
-        file.write(data)
+        let url = URL(fileURLWithPath: Exporter.exportPath)
+        try data.write(to: url)
     }
 }
