@@ -133,10 +133,6 @@ extension String {
     static let missingFeatureMessage = NSLocalizedString("missingFeature", comment: "Message for missing feature alert")
 
     // import
-    static let askForImportTitle = NSLocalizedString("sure", comment: "Title for asking for import alert")
-    static let askForImportMessage = NSLocalizedString("askForImport", comment: "Message for asking for import alert")
-    static let importSucceededMessage = NSLocalizedString("importSuccessful", comment: "Message for import succeeded alert")
-
     static func importSucceededMessage(with counter: Int) -> String {
         let movies = String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
         let importString = NSLocalizedString("importSuccessfulEnd", comment: "Message for movie import succeeded alert")
