@@ -10,11 +10,7 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     @IBOutlet private weak var footerView: UIView!
-    @IBOutlet private weak var versionInfo: DescriptionLabel! {
-        didSet {
-            versionInfo.textColor = .accentTextOnBlack
-        }
-    }
+    @IBOutlet private weak var versionInfo: DescriptionLabel!
 
     let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
@@ -31,7 +27,8 @@ class SettingsViewController: UITableViewController {
         tableView.backgroundColor = UIColor.basicBackground
         tableView.tableFooterView = footerView
 
-        versionInfo?.text = Constants.versionNumberInformation
+        versionInfo.text = Constants.versionNumberInformation
+        versionInfo.textColor = .accentTextOnBlack
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,14 +53,16 @@ class SettingsViewController: UITableViewController {
             return
         }
     }
+}
 
-    // MARK: - Import and Export
-
+extension SettingsViewController {
     func importMovies() {
         fetchedResultsManager.refetch()
 
-        let documentPickerVC = UIDocumentPickerViewController(documentTypes: [String.exportMoviesFileUTI],
-                                                              in: .import)
+        let documentPickerVC = UIDocumentPickerViewController(
+            documentTypes: [String.exportMoviesFileUTI],
+            in: .import
+        )
         documentPickerVC.delegate = self
 
         if #available(iOS 11.0, *) {
