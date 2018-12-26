@@ -18,19 +18,21 @@ enum Exporter {
             true
             )[0]
 
-        return documentsDirectory + "/" + String.exportMoviesFileName(with: Date().formatted)
+        return documentsDirectory
+            + "/"
+            + String.exportMoviesFileName(with: Date().formatted)
     }
 
     static func saveAsFileToExport(_ movies: [StoredMovie]) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 
-        let data = try encoder.encode(ImportExportObject(movies: movies))
+        let exportObject = ImportExportObject(movies: movies)
+        let data = try encoder.encode(exportObject)
 
         guard FileManager.default
-            .createFile(atPath: Exporter.exportPath, contents: data)
-            else {
-                throw(ExportError.creatingFileAtPath)
-        }
+            .createFile(atPath: Exporter.exportPath,
+                        contents: data)
+            else { throw(ExportError.creatingFileAtPath) }
     }
 }
