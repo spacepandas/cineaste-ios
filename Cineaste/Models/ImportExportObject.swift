@@ -8,10 +8,6 @@
 
 import Foundation
 
-class ImportExportObject: Codable {
+struct ImportExportObject: Codable {
     var movies: [StoredMovie]
-
-    init(with movies: [StoredMovie]) {
-        self.movies = movies
-    }
 }

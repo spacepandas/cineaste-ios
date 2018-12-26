@@ -92,7 +92,7 @@ extension FetchedResultsManager {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 
-        let data = try encoder.encode(ImportExportObject(with: movies))
+        let data = try encoder.encode(ImportExportObject(movies: movies))
         try saveToDocumentsDirectory(data)
         loadMoviesForExport = false
     }
