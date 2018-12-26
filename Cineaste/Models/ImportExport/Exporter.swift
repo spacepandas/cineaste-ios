@@ -26,17 +26,11 @@ enum Exporter {
         encoder.outputFormatting = .prettyPrinted
 
         let data = try encoder.encode(ImportExportObject(movies: movies))
-        let fileManager = FileManager.default
 
-        if !fileManager.fileExists(atPath: Exporter.exportPath) {
-            guard fileManager.createFile(atPath: Exporter.exportPath,
-                                         contents: nil)
-                else {
-                    throw(ExportError.creatingFileAtPath)
-            }
+        guard FileManager.default
+            .createFile(atPath: Exporter.exportPath, contents: data)
+            else {
+                throw(ExportError.creatingFileAtPath)
         }
-
-        let url = URL(fileURLWithPath: Exporter.exportPath)
-        try data.write(to: url)
     }
 }
