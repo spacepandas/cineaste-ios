@@ -21,17 +21,8 @@ final class FetchedResultsManager: NSObject {
 
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         request.predicate = predicate
-
-        if predicate == MovieListCategory.seen.predicate {
-            request.sortDescriptors = [
-                NSSortDescriptor(key: "watchedDate", ascending: false)
-            ]
-        } else {
-            request.sortDescriptors = [
-                NSSortDescriptor(key: "listPosition", ascending: true),
-                NSSortDescriptor(key: "title", ascending: true)
-            ]
-        }
+        request.sortDescriptors = FetchedResultsManager
+            .sortDescriptor(for: predicate)
 
         controller = NSFetchedResultsController<StoredMovie>(
             fetchRequest: request,
@@ -42,22 +33,14 @@ final class FetchedResultsManager: NSObject {
         super.init()
 
         controller.delegate = self
+
         try? controller.performFetch()
     }
 
     func refetch(for predicate: NSPredicate? = nil) {
         controller.fetchRequest.predicate = predicate
-
-        if predicate == MovieListCategory.seen.predicate {
-            controller.fetchRequest.sortDescriptors = [
-                NSSortDescriptor(key: "watchedDate", ascending: false)
-            ]
-        } else {
-            controller.fetchRequest.sortDescriptors = [
-                NSSortDescriptor(key: "listPosition", ascending: true),
-                NSSortDescriptor(key: "title", ascending: true)
-            ]
-        }
+        controller.fetchRequest.sortDescriptors = FetchedResultsManager
+            .sortDescriptor(for: predicate)
 
         try? controller.performFetch()
     }
@@ -89,5 +72,23 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.endUpdate()
+    }
+}
+
+extension FetchedResultsManager {
+    private static func sortDescriptor(for predicate: NSPredicate?) -> [NSSortDescriptor] {
+        var sortDescriptor: [NSSortDescriptor]
+
+        if predicate == MovieListCategory.seen.predicate {
+            sortDescriptor = [
+                NSSortDescriptor(key: "watchedDate", ascending: false)
+            ]
+        } else {
+            sortDescriptor = [
+                NSSortDescriptor(key: "listPosition", ascending: true),
+                NSSortDescriptor(key: "title", ascending: true)
+            ]
+        }
+        return sortDescriptor
     }
 }
