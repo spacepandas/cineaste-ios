@@ -38,8 +38,8 @@ extension SettingsViewController {
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
         case .exportMovies:
-            exportMovies(to: URL(fileURLWithPath: Exporter.exportPath),
-                         on: tableView.rectForRow(at: indexPath))
+            tableView.deselectRow(at: indexPath, animated: true)
+            exportMovies(showUIOn: tableView.rectForRow(at: indexPath))
         case .importMovies:
             tableView.deselectRow(at: indexPath, animated: true)
             importMovies()

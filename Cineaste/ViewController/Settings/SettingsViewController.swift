@@ -73,15 +73,7 @@ class SettingsViewController: UITableViewController {
         present(documentPickerVC, animated: true)
     }
 
-    func exportMovies(to path: URL, on rect: CGRect) {
-        saveMoviesLocally()
-
-        docController = UIDocumentInteractionController(url: path)
-        docController?.uti = String.exportMoviesFileUTI
-        docController?.presentOptionsMenu(from: rect, in: view, animated: true)
-    }
-
-    private func saveMoviesLocally() {
+    func exportMovies(showUIOn rect: CGRect) {
         fetchedResultsManager.refetch()
 
         guard !fetchedResultsManager.movies.isEmpty else {
@@ -91,10 +83,15 @@ class SettingsViewController: UITableViewController {
         }
 
         do {
-            try Exporter.export(fetchedResultsManager.movies)
+            try Exporter.saveForExport(fetchedResultsManager.movies)
         } catch {
             showAlert(withMessage: Alert.exportFailedInfo)
         }
+
+        let path = URL(fileURLWithPath: Exporter.exportPath)
+        docController = UIDocumentInteractionController(url: path)
+        docController?.uti = String.exportMoviesFileUTI
+        docController?.presentOptionsMenu(from: rect, in: view, animated: true)
     }
 }
 
