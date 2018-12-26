@@ -18,7 +18,7 @@ extension StoredMovie {
         return url
     }
 
-    func loadPoster(completionHandler completion: @escaping (_ poster: Data?) -> Void) {
+    func loadPoster(completion: @escaping (_ poster: Data?) -> Void) {
         guard let posterPath = posterPath else {
             completion(nil)
             return

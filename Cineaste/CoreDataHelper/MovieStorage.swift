@@ -36,7 +36,7 @@ class MovieStorage {
                          voteAverage: Double,
                          voteCount: Double,
                          watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = id
@@ -53,13 +53,13 @@ class MovieStorage {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
+            self.save(completion: completion)
         }
     }
 
     func insertMovieItem(with movie: Movie,
                          watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = movie.id
@@ -78,13 +78,13 @@ class MovieStorage {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
+            self.save(completion: completion)
         }
     }
 
     func updateMovieItem(with movie: StoredMovie,
                          watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = movie.id
@@ -101,7 +101,7 @@ class MovieStorage {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
+            self.save(completion: completion)
         }
     }
 
@@ -137,23 +137,23 @@ class MovieStorage {
     }
 
     func remove(_ storedMovie: StoredMovie,
-                handler: ((_ result: Result<Bool>) -> Void)? = nil) {
+                completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             let object = self.backgroundContext.object(with: storedMovie.objectID)
             self.backgroundContext.delete(object)
-            self.save(handler: handler)
+            self.save(completion: completion)
         }
     }
 
-    fileprivate func save(handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        if backgroundContext.hasChanges {
-            do {
-                try backgroundContext.save()
-                handler?(Result.success(true))
-            } catch {
-                print("Save error \(error)")
-                handler?(Result.error(error))
-            }
+    private func save(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+        guard backgroundContext.hasChanges else { return }
+
+        do {
+            try backgroundContext.save()
+            completion?(Result.success(true))
+        } catch {
+            print("Save error \(error)")
+            completion?(Result.error(error))
         }
     }
 }

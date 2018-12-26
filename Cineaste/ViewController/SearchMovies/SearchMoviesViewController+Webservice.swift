@@ -9,7 +9,7 @@
 import UIKit
 
 extension SearchMoviesViewController {
-    func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, completionHandler completion: @escaping ([Movie]) -> Void) {
+    func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, completion: @escaping ([Movie]) -> Void) {
         var pageToLoad = 1
         if let page = currentPage, nextPage {
             pageToLoad = page + 1
@@ -35,7 +35,7 @@ extension SearchMoviesViewController {
         }
     }
 
-    func loadDetails(for movie: Movie, completionHandler completion: @escaping (Movie?) -> Void) {
+    func loadDetails(for movie: Movie, completion: @escaping (Movie?) -> Void) {
         Webservice.load(resource: movie.get) { result in
             switch result {
             case .error:
