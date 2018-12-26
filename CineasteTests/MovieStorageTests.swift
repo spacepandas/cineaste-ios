@@ -12,7 +12,7 @@ import CoreData
 
 class MovieStorageTests: XCTestCase {
     let helper = CoreDataHelper()
-    var storageManager: MovieStorage!
+    var storageManager: MovieStorageManager!
     var mockPersistantContainer: NSPersistentContainer!
 
     override func setUp() {
@@ -22,7 +22,7 @@ class MovieStorageTests: XCTestCase {
 
         helper.initStubs()
 
-        storageManager = MovieStorage(container: mockPersistantContainer)
+        storageManager = MovieStorageManager(container: mockPersistantContainer)
     }
 
     override func tearDown() {

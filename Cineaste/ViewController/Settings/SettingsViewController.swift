@@ -16,7 +16,7 @@ class SettingsViewController: UITableViewController {
     var selectedSetting: SettingItem?
 
     lazy var fetchedResultsManager = FetchedResultsManager()
-    var storageManager: MovieStorage?
+    var storageManager: MovieStorageManager?
     var docController: UIDocumentInteractionController?
 
     override func viewDidLoad() {

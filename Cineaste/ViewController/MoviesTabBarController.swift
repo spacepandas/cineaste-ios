@@ -13,7 +13,7 @@ class MoviesTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let storageManager = MovieStorage()
+        let storageManager = MovieStorageManager()
 
         let watchlistVC = MoviesViewController.instantiate()
         watchlistVC.category = .watchlist

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MovieStorage {
+class MovieStorageManager {
     let persistentContainer: NSPersistentContainer
 
     // MARK: Init with dependency

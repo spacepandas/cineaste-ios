@@ -38,7 +38,7 @@ class SearchMoviesViewController: UIViewController {
     }
 
     var selectedMovie: Movie?
-    var storageManager: MovieStorage?
+    var storageManager: MovieStorageManager?
 
     var currentPage: Int?
     var totalResults: Int?
@@ -73,7 +73,7 @@ class SearchMoviesViewController: UIViewController {
         registerForPreviewing(with: self, sourceView: tableView)
     }
 
-    func configure(with storageManager: MovieStorage) {
+    func configure(with storageManager: MovieStorageManager) {
         self.storageManager = storageManager
     }
 

@@ -13,7 +13,7 @@ enum ImportError: Error {
 }
 
 enum Importer {
-    static func importMovies(from path: URL, storageManager: MovieStorage, completion: @escaping ((Result<Int>) -> Void)) {
+    static func importMovies(from path: URL, storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
         Importer.decodeMovies(from: path, with: storageManager) { result in
             switch result {
             case .error(let error):
@@ -26,7 +26,7 @@ enum Importer {
 }
 
 extension Importer {
-    private static func decodeMovies(from path: URL, with storageManager: MovieStorage, completion: @escaping ((Result<[StoredMovie]>) -> Void)) {
+    private static func decodeMovies(from path: URL, with storageManager: MovieStorageManager, completion: @escaping ((Result<[StoredMovie]>) -> Void)) {
         guard let data = try? Data(contentsOf: path, options: []) else {
             completion(.error(ImportError.noDataAtPath))
             return
@@ -44,7 +44,7 @@ extension Importer {
         }
     }
 
-    private static func save(_ movies: [StoredMovie], with storageManager: MovieStorage, completion: @escaping ((Result<Int>) -> Void)) {
+    private static func save(_ movies: [StoredMovie], with storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
         let dispatchGroup = DispatchGroup()
 
         //load all posters
