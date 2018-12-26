@@ -16,15 +16,7 @@ extension SettingsViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SettingsCell = tableView.dequeueCell(identifier: SettingsCell.identifier)
-
-        if settings[indexPath.row].segue == nil {
-            cell.accessoryType = .none
-        } else {
-            cell.accessoryType = .disclosureIndicator
-        }
-
         cell.configure(with: settings[indexPath.row])
-
         return cell
     }
 

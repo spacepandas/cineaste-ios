@@ -17,6 +17,11 @@ class SettingsCell: UITableViewCell {
     func configure(with settingsItem: SettingItem) {
         title.text = settingsItem.title
 
+        accessoryType =
+            settingsItem.segue == nil
+            ? .none
+            : .disclosureIndicator
+
         if let description = settingsItem.description {
             descriptionLabel.isHidden = false
             descriptionLabel.text = description
