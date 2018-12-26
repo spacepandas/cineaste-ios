@@ -57,8 +57,6 @@ class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     func importMovies() {
-        fetchedResultsManager.refetch()
-
         let documentPickerVC = UIDocumentPickerViewController(
             documentTypes: [String.exportMoviesFileUTI],
             in: .import
@@ -73,16 +71,20 @@ extension SettingsViewController {
     }
 
     func exportMovies(showUIOn rect: CGRect) {
-        fetchedResultsManager.refetch()
+        guard let storageManager = storageManager else {
+            fatalError("No storageManager injected")
+        }
 
-        guard !fetchedResultsManager.movies.isEmpty else {
+        let allMovies = storageManager.fetchAll()
+
+        guard !allMovies.isEmpty else {
             //database is empty, inform user that an export is not useful
             showAlert(withMessage: Alert.exportEmptyData)
             return
         }
 
         do {
-            try Exporter.saveForExport(fetchedResultsManager.movies)
+            try Exporter.saveForExport(allMovies)
         } catch {
             showAlert(withMessage: Alert.exportFailedInfo)
         }

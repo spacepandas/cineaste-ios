@@ -37,7 +37,7 @@ final class FetchedResultsManager: NSObject {
         try? controller.performFetch()
     }
 
-    func refetch(for predicate: NSPredicate? = nil) {
+    func refetch(for predicate: NSPredicate) {
         controller.fetchRequest.predicate = predicate
         controller.fetchRequest.sortDescriptors = FetchedResultsManager
             .sortDescriptor(for: predicate)
