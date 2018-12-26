@@ -38,22 +38,11 @@ extension SettingsViewController {
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
         case .exportMovies:
-            saveMoviesLocally { exportPath in
-                DispatchQueue.main.async {
-                    self.showUIToExportMovies(with: exportPath,
-                                              on: tableView.rectForRow(at: indexPath))
-                }
-            }
+            exportMovies(to: URL(fileURLWithPath: Exporter.exportPath),
+                         on: tableView.rectForRow(at: indexPath))
         case .importMovies:
-            prepareForImport { success in
-                DispatchQueue.main.async {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-
-                    if success {
-                        self.showUIToImportMovies()
-                    }
-                }
-            }
+            tableView.deselectRow(at: indexPath, animated: true)
+            importMovies()
         case .contact:
             if MFMailComposeViewController.canSendMail() {
                 let mailComposeVC = MFMailComposeViewController()

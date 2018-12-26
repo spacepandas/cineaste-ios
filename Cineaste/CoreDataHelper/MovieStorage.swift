@@ -105,6 +105,30 @@ class MovieStorage {
         }
     }
 
+    func updateMovieItems(with movies: [StoredMovie],
+                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+        backgroundContext.perform {
+            for movie in movies {
+                let storedMovie = StoredMovie(context: self.backgroundContext)
+                storedMovie.id = movie.id
+                storedMovie.title = movie.title
+                storedMovie.overview = movie.overview
+
+                storedMovie.posterPath = movie.posterPath
+                storedMovie.poster = movie.poster
+
+                storedMovie.releaseDate = movie.releaseDate
+                storedMovie.runtime = movie.runtime
+                storedMovie.voteAverage = movie.voteAverage
+                storedMovie.voteCount = movie.voteCount
+
+                storedMovie.watched = movie.watched
+                storedMovie.watchedDate = movie.watchedDate
+            }
+            self.save(completion: completion)
+        }
+    }
+
     /// Must be called on main thread because of core data view context
     func fetchAll() -> [StoredMovie] {
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
@@ -118,22 +142,6 @@ class MovieStorage {
         request.predicate = MovieListCategory.watchlist.predicate
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? []
-    }
-
-    func resetCoreData(completion: @escaping (Error?) -> Void) {
-        backgroundContext.perform {
-            do {
-                let entities: [StoredMovie] = try self.backgroundContext
-                    .fetch(StoredMovie.fetchRequest())
-                for entity in entities {
-                    self.backgroundContext.delete(entity)
-                }
-                try self.backgroundContext.save()
-                completion(nil)
-            } catch {
-                completion(error)
-            }
-        }
     }
 
     func remove(_ storedMovie: StoredMovie,

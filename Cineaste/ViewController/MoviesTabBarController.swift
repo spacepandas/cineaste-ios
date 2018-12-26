@@ -38,6 +38,7 @@ class MoviesTabBarController: UITabBarController {
                                              image: UIImage.settingsIcon,
                                              tag: 2)
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
+        settingsVC.storageManager = storageManager
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
         viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]

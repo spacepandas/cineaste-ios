@@ -20,6 +20,7 @@ class SettingsViewController: UITableViewController {
     var selectedSetting: SettingItem?
 
     lazy var fetchedResultsManager = FetchedResultsManager()
+    var storageManager: MovieStorage?
     var docController: UIDocumentInteractionController?
 
     override func viewDidLoad() {
@@ -58,41 +59,9 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Import and Export
 
-    func prepareForImport(completionHandler completion: @escaping (Bool) -> Void) {
+    func importMovies() {
         fetchedResultsManager.refetch()
 
-        if fetchedResultsManager.movies.isEmpty {
-            completion(true)
-        } else {
-            //database is not empty, ask if user is sure to import new data
-            showAlert(withMessage: Alert.askingForImport, defaultActionHandler: {
-                completion(true)
-            }, cancelActionHandler: {
-                completion(false)
-            })
-        }
-    }
-
-    func saveMoviesLocally(completionHandler completion: @escaping (URL) -> Void) {
-        fetchedResultsManager.refetch()
-
-        guard !fetchedResultsManager.movies.isEmpty else {
-            //database is empty, inform user that an export is not useful
-            showAlert(withMessage: Alert.exportEmptyData)
-            return
-        }
-
-        do {
-            try fetchedResultsManager.exportMoviesList()
-            guard let path = fetchedResultsManager.exportMoviesPath
-                else { return }
-            completion(URL(fileURLWithPath: path))
-        } catch {
-            showAlert(withMessage: Alert.exportFailedInfo)
-        }
-    }
-
-    func showUIToImportMovies() {
         let documentPickerVC = UIDocumentPickerViewController(documentTypes: [String.exportMoviesFileUTI],
                                                               in: .import)
         documentPickerVC.delegate = self
@@ -104,13 +73,28 @@ class SettingsViewController: UITableViewController {
         present(documentPickerVC, animated: true)
     }
 
-    func showUIToExportMovies(with path: URL, on rect: CGRect) {
+    func exportMovies(to path: URL, on rect: CGRect) {
+        saveMoviesLocally()
+
         docController = UIDocumentInteractionController(url: path)
         docController?.uti = String.exportMoviesFileUTI
+        docController?.presentOptionsMenu(from: rect, in: view, animated: true)
+    }
 
-        docController?.presentOptionsMenu(from: rect,
-                                          in: self.view,
-                                          animated: true)
+    private func saveMoviesLocally() {
+        fetchedResultsManager.refetch()
+
+        guard !fetchedResultsManager.movies.isEmpty else {
+            //database is empty, inform user that an export is not useful
+            showAlert(withMessage: Alert.exportEmptyData)
+            return
+        }
+
+        do {
+            try Exporter.export(fetchedResultsManager.movies)
+        } catch {
+            showAlert(withMessage: Alert.exportFailedInfo)
+        }
     }
 }
 
