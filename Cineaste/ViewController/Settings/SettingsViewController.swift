@@ -84,7 +84,7 @@ extension SettingsViewController {
         }
 
         do {
-            try Exporter.saveForExport(allMovies)
+            try Exporter.saveAsFileToExport(allMovies)
         } catch {
             showAlert(withMessage: Alert.exportFailedInfo)
         }

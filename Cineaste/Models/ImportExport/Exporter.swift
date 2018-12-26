@@ -21,7 +21,7 @@ enum Exporter {
         return documentsDirectory + "/" + String.exportMoviesFileName(with: Date().formatted)
     }
 
-    static func saveForExport(_ movies: [StoredMovie]) throws {
+    static func saveAsFileToExport(_ movies: [StoredMovie]) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 
