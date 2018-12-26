@@ -129,21 +129,6 @@ class MovieStorageManager {
         }
     }
 
-    /// Must be called on main thread because of core data view context
-    func fetchAll() -> [StoredMovie] {
-        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        let results = try? persistentContainer.viewContext.fetch(request)
-        return results ?? []
-    }
-
-    /// Must be called on main thread because of core data view context
-    func fetchAllWatchlistMovies() -> [StoredMovie] {
-        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        request.predicate = MovieListCategory.watchlist.predicate
-        let results = try? persistentContainer.viewContext.fetch(request)
-        return results ?? []
-    }
-
     func remove(_ storedMovie: StoredMovie,
                 completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
@@ -152,7 +137,30 @@ class MovieStorageManager {
             self.save(completion: completion)
         }
     }
+}
 
+extension MovieStorageManager {
+    func fetchAll() -> [StoredMovie] {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
+    }
+
+    func fetchAllWatchlistMovies() -> [StoredMovie] {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        request.predicate = MovieListCategory.watchlist.predicate
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
+    }
+}
+
+extension MovieStorageManager {
     private func save(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         guard backgroundContext.hasChanges else { return }
 
