@@ -45,6 +45,7 @@
 		3FBDB30221D4F35D00CBE341 /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FD21D4F35C00CBE341 /* Movie.json */; };
 		3FBDB30321D4F35D00CBE341 /* MovieDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FE21D4F35C00CBE341 /* MovieDetail.json */; };
 		3FBDB30421D4F35D00CBE341 /* ReleaseDates.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FF21D4F35D00CBE341 /* ReleaseDates.json */; };
+		3FBDB30621D5334000CBE341 /* ExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDB30521D5334000CBE341 /* ExporterTests.swift */; };
 		3FDEF4762103368300955129 /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF4742103368300955129 /* DebugPrint.swift */; };
 		3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */; };
 		3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */; };
@@ -227,6 +228,7 @@
 		3FBDB2FD21D4F35C00CBE341 /* Movie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
 		3FBDB2FE21D4F35C00CBE341 /* MovieDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MovieDetail.json; sourceTree = "<group>"; };
 		3FBDB2FF21D4F35D00CBE341 /* ReleaseDates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ReleaseDates.json; sourceTree = "<group>"; };
+		3FBDB30521D5334000CBE341 /* ExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExporterTests.swift; sourceTree = "<group>"; };
 		3FC8FCDF204C1E7300370A5B /* MovieDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailType.swift; sourceTree = "<group>"; };
 		3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeNavigationController.swift; sourceTree = "<group>"; };
 		3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */,
 				3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */,
 				3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */,
+				3FBDB30521D5334000CBE341 /* ExporterTests.swift */,
 			);
 			path = CineasteTests;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				3FF0A2F821D3C2BD00BF9E83 /* ImporterTests.swift in Sources */,
 				3F701B43218640F80033562B /* SettingsDetailViewControllerTests.swift in Sources */,
 				3F701B44218640F80033562B /* SettingsViewControllerTests.swift in Sources */,
+				3FBDB30621D5334000CBE341 /* ExporterTests.swift in Sources */,
 				3F701B41218640F80033562B /* SearchMoviesCellTests.swift in Sources */,
 				3F701B42218640F80033562B /* SettingsCellTests.swift in Sources */,
 				3F701B46218640F80033562B /* MovieListCellTests.swift in Sources */,

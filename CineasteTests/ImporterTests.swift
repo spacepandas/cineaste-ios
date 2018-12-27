@@ -34,7 +34,7 @@ class ImporterTests: XCTestCase {
             case .error:
                 XCTFail("Should not result in error")
             case .success(let numberOfMovies):
-                XCTAssertNotEqual(numberOfMovies, 0)
+                XCTAssertNotEqual(numberOfMovies, 4)
             }
             exp.fulfill()
         }
