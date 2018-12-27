@@ -31,7 +31,7 @@ extension String {
         return String.dateFormatter.date(from: self)
     }
 
-    var dateFromImportedMoviesString: Date? {
+    public var dateFromImportedMoviesString: Date? {
         String.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
         return String.dateFormatter.date(from: self)
     }
