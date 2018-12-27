@@ -16,8 +16,6 @@ class ImporterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
-        helper.initStubs()
         storageManager = MovieStorageManager(container: helper.mockPersistantContainer)
     }
 
@@ -28,15 +26,33 @@ class ImporterTests: XCTestCase {
 
     func testImporterShouldImportMoviesFromJson() {
         let exp = expectation(description: "\(#function)\(#line)")
-        
+
+        // Given
+        guard let path = Bundle(for: ImporterTests.self)
+            .path(forResource: "Import", ofType: "json")
+            else {
+                fatalError("Could not load file for resource Import.json")
+        }
+        let urlToImport = URL(fileURLWithPath: path)
+        let movies = storageManager.fetchAll()
+        precondition(movies.isEmpty,
+                     "Test needs an empty database")
+
+        // When
         Importer.importMovies(from: urlToImport, storageManager: storageManager) { result in
-            switch result {
-            case .error:
+            guard case let .success(numberOfMovies) = result else {
                 XCTFail("Should not result in error")
-            case .success(let numberOfMovies):
-                XCTAssertNotEqual(numberOfMovies, 4)
+                return
             }
-            exp.fulfill()
+
+            // Then
+            XCTAssertEqual(numberOfMovies, 2)
+
+            DispatchQueue.main.async {
+                let movies = self.storageManager.fetchAll()
+                XCTAssertEqual(movies.count, 2)
+                exp.fulfill()
+            }
         }
 
         wait(for: [exp], timeout: 1.0)
@@ -45,30 +61,34 @@ class ImporterTests: XCTestCase {
     func testImporterShouldResultInErrorWhenImportingFailingJson() {
         let exp = expectation(description: "\(#function)\(#line)")
 
+        // Given
+        guard let path = Bundle(for: ImporterTests.self)
+            .path(forResource: "FailingImport", ofType: "json")
+            else {
+                fatalError("Could not load file for resource FailingImport.json")
+        }
+        let urlToFailingImport = URL(fileURLWithPath: path)
+        let movies = storageManager.fetchAll()
+        precondition(movies.isEmpty,
+                     "Test needs an empty database")
+
+        // When
         Importer.importMovies(from: urlToFailingImport, storageManager: storageManager) { result in
-            switch result {
-            case .error(let error):
-                XCTAssertNotNil(error)
-            case .success:
+            guard case let .error(error) = result else {
                 XCTFail("Should not result in success")
+                return
             }
-            exp.fulfill()
+
+            // Then
+            XCTAssertNotNil(error)
+
+            DispatchQueue.main.async {
+                let movies = self.storageManager.fetchAll()
+                XCTAssert(movies.isEmpty)
+                exp.fulfill()
+            }
         }
 
         wait(for: [exp], timeout: 1.0)
     }
-
-    private let urlToImport: URL = {
-        guard let path = Bundle(for: ImporterTests.self).path(forResource: "Import", ofType: "json") else {
-            fatalError("Could not load file for resource Import.json")
-        }
-        return URL(fileURLWithPath: path)
-    }()
-
-    private let urlToFailingImport: URL = {
-        guard let path = Bundle(for: ImporterTests.self).path(forResource: "FailingImport", ofType: "json") else {
-            fatalError("Could not load file for resource FailingImport.json")
-        }
-        return URL(fileURLWithPath: path)
-    }()
 }
