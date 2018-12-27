@@ -20,7 +20,7 @@ enum Exporter {
 
         return documentsDirectory
             + "/"
-            + String.exportMoviesFileName(with: Date().formatted)
+            + String.exportMoviesFileName(with: Date().formattedForRequest)
     }
 
     static func saveAsFileToExport(_ movies: [StoredMovie]) throws {
