@@ -27,7 +27,9 @@ enum Exporter {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 
-        let exportObject = ImportExportObject(movies: movies)
+        let exportObject = ImportExportObject(
+            movies: movies.sorted { $0.id < $1.id }
+        )
         let data = try encoder.encode(exportObject)
 
         guard FileManager.default
