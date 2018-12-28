@@ -17,7 +17,7 @@ class MovieMatchViewController: UITableViewController {
     }
     private var totalNumberOfPeople: Int = 0
     private var showAllTogetherMovies: Bool = false
-    private var storageManager: MovieStorage?
+    private var storageManager: MovieStorageManager?
 
     private lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
@@ -32,7 +32,7 @@ class MovieMatchViewController: UITableViewController {
         configureSearchController()
     }
 
-    func configure(with userName: String, messagesToMatch: [NearbyMessage], storageManager: MovieStorage) {
+    func configure(with userName: String, messagesToMatch: [NearbyMessage], storageManager: MovieStorageManager) {
         title = userName
         totalNumberOfPeople = messagesToMatch.count
         showAllTogetherMovies = totalNumberOfPeople != 1

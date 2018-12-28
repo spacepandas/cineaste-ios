@@ -65,8 +65,9 @@ class CoreDataHelper {
                              runtime: Int16,
                              title: String,
                              voteAverage: Double,
+                             voteCount: Double,
                              watched: Bool,
-                             watchedDate: Date,
+                             watchedDate: Date?,
                              listPosition: Int16) {
             let object = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie",
                                                              into: mockPersistantContainer.viewContext)
@@ -78,16 +79,38 @@ class CoreDataHelper {
             object.setValue(runtime, forKey: "runtime")
             object.setValue(title, forKey: "title")
             object.setValue(voteAverage, forKey: "voteAverage")
+            object.setValue(voteCount, forKey: "voteCount")
             object.setValue(watched, forKey: "watched")
             object.setValue(watchedDate, forKey: "watchedDate")
             object.setValue(listPosition, forKey: "listPosition")
         }
 
-        //add 4 movies
-        insertMovieItem(id: 1, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true, watchedDate: Date(), listPosition: 0)
-        insertMovieItem(id: 2, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true, watchedDate: Date(), listPosition: 0)
-        insertMovieItem(id: 3, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true, watchedDate: Date(), listPosition: 0)
-        insertMovieItem(id: 4, overview: "", poster: nil, posterPath: "", releaseDate: Date(), runtime: 1, title: "", voteAverage: 2, watched: true, watchedDate: Date(), listPosition: 0)
+        //add 2 movies
+        insertMovieItem(id: 351286,
+                        overview: "Nach den Ereignissen in dem Themenpark Jurassic World auf der Insel Isla Nublar können die Dinosaurier seit vier Jahren frei leben, bis ein Vulkanausbruch ihre Existenz bedroht. Die frühere Parkmanagerin Claire Dearing hat nun die Dinosaur Protection Group (DPG) gegründet – eine Organisation zum Schutz der Dinosaurier. Sie engagiert Owen Grady, einen ehemaligen Dinosaurier-Trainer, welcher beim Park gearbeitet hatte, um ihr zu helfen, die restlich verbliebenen Dinosaurier von der Insel zu retten. Owen will außerdem Blue ausfindig machen, die letzte Überlebende der vier Raptoren, die er einst trainiert und großgezogen hatte. Außerdem bricht ein neu geschaffener Gen-Hybrid namens Indoraptor aus.",
+                        poster: nil,
+                        posterPath: "/oA2QCC7hIhMRP0TdY91xFNqyVCj.jpg",
+                        releaseDate: "Jun 06, 2018 02:00:00".dateFromImportedMoviesString!,
+                        runtime: 128,
+                        title: "Jurassic World: Das gefallene Königreich",
+                        voteAverage: 6.5,
+                        voteCount: 3108,
+                        watched: true,
+                        watchedDate: "Sep 10, 2018 00:09:46".dateFromImportedMoviesString!,
+                        listPosition: 0)
+
+        insertMovieItem(id: 674,
+                        overview: "Das große Abenteuer beginnt, als der Feuerkelch Harry Potters Namen freigibt und Harry damit Teilnehmer eines gefährlichen Wettbewerbs unter drei ruhmreichen Zauberschulen wird – des Trimagischen Turniers. Wer aber könnte Harrys Namen in den Feuerkelch geworfen haben? Jetzt muss er einen gefährlichen Drachen bezwingen, mit gespenstischen Wasserdämonen kämpfen und einem verzauberten Labyrinth entkommen – nur, um am Ende Dem-dessen-Name-nicht-genannt-werden-darf gegenüberzustehen.",
+                        poster: nil,
+                        posterPath: "/4B1roGv0hprkxn72kX7wWzvYh0w.jpg",
+                        releaseDate: "Nov 16, 2005 00:00:00".dateFromImportedMoviesString!,
+                        runtime: 157,
+                        title: "Harry Potter und der Feuerkelch",
+                        voteAverage: 7.5999999999999996,
+                        voteCount: 8077,
+                        watched: true,
+                        watchedDate: "Jul 03, 2018 07:18:47".dateFromImportedMoviesString!,
+                        listPosition: 0)
 
         do {
             try mockPersistantContainer.viewContext.save()

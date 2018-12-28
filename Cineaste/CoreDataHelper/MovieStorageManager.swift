@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MovieStorage {
+class MovieStorageManager {
     let persistentContainer: NSPersistentContainer
 
     // MARK: Init with dependency
@@ -105,34 +105,27 @@ class MovieStorage {
         }
     }
 
-    /// Must be called on main thread because of core data view context
-    func fetchAll() -> [StoredMovie] {
-        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        let results = try? persistentContainer.viewContext.fetch(request)
-        return results ?? []
-    }
-
-    /// Must be called on main thread because of core data view context
-    func fetchAllWatchlistMovies() -> [StoredMovie] {
-        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        request.predicate = MovieListCategory.watchlist.predicate
-        let results = try? persistentContainer.viewContext.fetch(request)
-        return results ?? []
-    }
-
-    func resetCoreData(completion: @escaping (Error?) -> Void) {
+    func updateMovieItems(with movies: [StoredMovie],
+                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            do {
-                let entities: [StoredMovie] = try self.backgroundContext
-                    .fetch(StoredMovie.fetchRequest())
-                for entity in entities {
-                    self.backgroundContext.delete(entity)
-                }
-                try self.backgroundContext.save()
-                completion(nil)
-            } catch {
-                completion(error)
+            for movie in movies {
+                let storedMovie = StoredMovie(context: self.backgroundContext)
+                storedMovie.id = movie.id
+                storedMovie.title = movie.title
+                storedMovie.overview = movie.overview
+
+                storedMovie.posterPath = movie.posterPath
+                storedMovie.poster = movie.poster
+
+                storedMovie.releaseDate = movie.releaseDate
+                storedMovie.runtime = movie.runtime
+                storedMovie.voteAverage = movie.voteAverage
+                storedMovie.voteCount = movie.voteCount
+
+                storedMovie.watched = movie.watched
+                storedMovie.watchedDate = movie.watchedDate
             }
+            self.save(completion: completion)
         }
     }
 
@@ -144,7 +137,30 @@ class MovieStorage {
             self.save(completion: completion)
         }
     }
+}
 
+extension MovieStorageManager {
+    func fetchAll() -> [StoredMovie] {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
+    }
+
+    func fetchAllWatchlistMovies() -> [StoredMovie] {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        request.predicate = MovieListCategory.watchlist.predicate
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
+    }
+}
+
+extension MovieStorageManager {
     private func save(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         guard backgroundContext.hasChanges else { return }
 

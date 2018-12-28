@@ -1,0 +1,16 @@
+{
+    "movies" : [
+      {
+        "poster_path" : "\/oA2QCC7hIhMRP0TdY91xFNqyVCj.jpg",
+        "release_date" : "Jun 06, 2018 02:00:00",
+        "runtime" : 128,
+        "title" : "Jurassic World: Das gefallene Königreich",
+        "vote_count" : 3108,
+        "watched" : true,
+        "listPosition" : 0,
+        "vote_average" : 6.5,
+        "overview" : "Nach den Ereignissen in dem Themenpark Jurassic World auf der Insel Isla Nublar können die Dinosaurier seit vier Jahren frei leben, bis ein Vulkanausbruch ihre Existenz bedroht. Die frühere Parkmanagerin Claire Dearing hat nun die Dinosaur Protection Group (DPG) gegründet – eine Organisation zum Schutz der Dinosaurier. Sie engagiert Owen Grady, einen ehemaligen Dinosaurier-Trainer, welcher beim Park gearbeitet hatte, um ihr zu helfen, die restlich verbliebenen Dinosaurier von der Insel zu retten. Owen will außerdem Blue ausfindig machen, die letzte Überlebende der vier Raptoren, die er einst trainiert und großgezogen hatte. Außerdem bricht ein neu geschaffener Gen-Hybrid namens Indoraptor aus.",
+        "watchedDate" : "Sep 10, 2018 00:09:46"
+      }
+    ]
+  }

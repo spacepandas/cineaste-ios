@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 struct ImportExportObject: Codable {
     var movies: [StoredMovie]
 }

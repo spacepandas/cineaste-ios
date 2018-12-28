@@ -13,7 +13,7 @@ class MoviesTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let storageManager = MovieStorage()
+        let storageManager = MovieStorageManager()
 
         let watchlistVC = MoviesViewController.instantiate()
         watchlistVC.category = .watchlist
@@ -38,6 +38,7 @@ class MoviesTabBarController: UITabBarController {
                                              image: UIImage.settingsIcon,
                                              tag: 2)
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
+        settingsVC.storageManager = storageManager
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
         viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]

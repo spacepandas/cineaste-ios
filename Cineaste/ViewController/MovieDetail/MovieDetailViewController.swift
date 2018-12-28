@@ -48,7 +48,7 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
-    private var storageManager: MovieStorage?
+    private var storageManager: MovieStorageManager?
 
     private var type: MovieDetailType = .search {
         didSet {
@@ -97,7 +97,7 @@ class MovieDetailViewController: UIViewController {
 
     func configure(with selectedMovie: MovieType,
                    type: MovieDetailType,
-                   storageManager: MovieStorage) {
+                   storageManager: MovieStorageManager) {
         movie = selectedMovie
         self.type = type
         self.storageManager = storageManager

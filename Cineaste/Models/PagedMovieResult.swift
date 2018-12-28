@@ -6,8 +6,6 @@
 //  Copyright © 2017 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 struct PagedMovieResult: Codable {
     let page: Int
     let totalResults: Int

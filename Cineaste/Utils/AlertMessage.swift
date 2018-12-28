@@ -59,16 +59,6 @@ class Alert: AlertMessage {
                      message: .missingFeatureMessage,
                      action: .okAction)
 
-    static let askingForImport =
-        AlertMessage(title: .askForImportTitle,
-                     message: .askForImportMessage,
-                     action: .yesAction,
-                     cancel: .noAction)
-    static let importSucceededInfo =
-        AlertMessage(title: .infoTitle,
-                     message: .importSucceededMessage,
-                     action: .okAction)
-
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
         return AlertMessage(title: .infoTitle,
                             message: .importSucceededMessage(with: counter),

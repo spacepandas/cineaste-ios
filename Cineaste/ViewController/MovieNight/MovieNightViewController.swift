@@ -56,7 +56,7 @@ class MovieNightViewController: UITableViewController {
 
     lazy var ownNearbyMessage = generateOwnNearbyMessage()
 
-    var storageManager: MovieStorage?
+    var storageManager: MovieStorageManager?
     var timer: Timer?
 
     var currentPermission: GNSPermission?
@@ -102,7 +102,7 @@ class MovieNightViewController: UITableViewController {
         configureStateObserver()
     }
 
-    func configure(with storageManager: MovieStorage) {
+    func configure(with storageManager: MovieStorageManager) {
         self.storageManager = storageManager
     }
 

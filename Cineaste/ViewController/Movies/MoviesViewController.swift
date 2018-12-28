@@ -42,7 +42,7 @@ class MoviesViewController: UITableViewController {
 
     let fetchedResultsManager = FetchedResultsManager()
 
-    var storageManager: MovieStorage?
+    var storageManager: MovieStorageManager?
     var selectedMovie: StoredMovie?
     private var saveAction: UIAlertAction?
 
