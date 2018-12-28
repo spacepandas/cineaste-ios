@@ -25,37 +25,11 @@ class ImporterTests: XCTestCase {
     }
 
     func testImportMoviesFromUrlShouldImportMovies() {
-        let exp = expectation(description: "\(#function)\(#line)")
+        cleanImportOfMovies(from: "Import", expectedNumberOfMovies: 2)
+    }
 
-        // Given
-        guard let path = Bundle(for: ImporterTests.self)
-            .path(forResource: "Import", ofType: "json")
-            else {
-                fatalError("Could not load file for resource Import.json")
-        }
-        let urlToImport = URL(fileURLWithPath: path)
-        let movies = storageManager.fetchAll()
-        precondition(movies.isEmpty,
-                     "Test needs an empty database")
-
-        // When
-        Importer.importMovies(from: urlToImport, storageManager: storageManager) { result in
-            guard case let .success(numberOfMovies) = result else {
-                XCTFail("Should not result in error")
-                return
-            }
-
-            // Then
-            XCTAssertEqual(numberOfMovies, 2)
-
-            DispatchQueue.main.async {
-                let movies = self.storageManager.fetchAll()
-                XCTAssertEqual(movies.count, 2)
-                exp.fulfill()
-            }
-        }
-
-        wait(for: [exp], timeout: 1.0)
+    func testImportMoviesFromUrlShouldImportMoviesFromAndroidExport() {
+        cleanImportOfMovies(from: "AndroidExport", expectedNumberOfMovies: 3)
     }
 
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
@@ -91,15 +65,17 @@ class ImporterTests: XCTestCase {
 
         wait(for: [exp], timeout: 1.0)
     }
+}
 
-    func testImportMoviesFromUrlShouldImportMoviesFromAndroidExport() {
+extension ImporterTests {
+    private func cleanImportOfMovies(from file: String, expectedNumberOfMovies: Int) {
         let exp = expectation(description: "\(#function)\(#line)")
 
         // Given
         guard let path = Bundle(for: ImporterTests.self)
-            .path(forResource: "AndroidExport", ofType: "json")
+            .path(forResource: file, ofType: "json")
             else {
-                fatalError("Could not load file for resource AndroidExport.json")
+                fatalError("Could not load file for resource \(file).json")
         }
         let urlToImport = URL(fileURLWithPath: path)
         let movies = storageManager.fetchAll()
@@ -114,11 +90,11 @@ class ImporterTests: XCTestCase {
             }
 
             // Then
-            XCTAssertEqual(numberOfMovies, 3)
+            XCTAssertEqual(numberOfMovies, expectedNumberOfMovies)
 
             DispatchQueue.main.async {
                 let movies = self.storageManager.fetchAll()
-                XCTAssertEqual(movies.count, 3)
+                XCTAssertEqual(movies.count, expectedNumberOfMovies)
                 exp.fulfill()
             }
         }
