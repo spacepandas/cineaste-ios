@@ -24,7 +24,7 @@ class ImporterTests: XCTestCase {
         super.tearDown()
     }
 
-    func testImporterShouldImportMoviesFromJson() {
+    func testImportMoviesFromUrlShouldImportMovies() {
         let exp = expectation(description: "\(#function)\(#line)")
 
         // Given
@@ -58,7 +58,7 @@ class ImporterTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    func testImporterShouldResultInErrorWhenImportingFailingJson() {
+    func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
         let exp = expectation(description: "\(#function)\(#line)")
 
         // Given
@@ -85,6 +85,40 @@ class ImporterTests: XCTestCase {
             DispatchQueue.main.async {
                 let movies = self.storageManager.fetchAll()
                 XCTAssert(movies.isEmpty)
+                exp.fulfill()
+            }
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
+    func testImportMoviesFromUrlShouldImportMoviesFromAndroidExport() {
+        let exp = expectation(description: "\(#function)\(#line)")
+
+        // Given
+        guard let path = Bundle(for: ImporterTests.self)
+            .path(forResource: "AndroidExport", ofType: "json")
+            else {
+                fatalError("Could not load file for resource AndroidExport.json")
+        }
+        let urlToImport = URL(fileURLWithPath: path)
+        let movies = storageManager.fetchAll()
+        precondition(movies.isEmpty,
+                     "Test needs an empty database")
+
+        // When
+        Importer.importMovies(from: urlToImport, storageManager: storageManager) { result in
+            guard case let .success(numberOfMovies) = result else {
+                XCTFail("Should not result in error")
+                return
+            }
+
+            // Then
+            XCTAssertEqual(numberOfMovies, 3)
+
+            DispatchQueue.main.async {
+                let movies = self.storageManager.fetchAll()
+                XCTAssertEqual(movies.count, 3)
                 exp.fulfill()
             }
         }
