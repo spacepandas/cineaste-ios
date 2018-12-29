@@ -55,7 +55,9 @@ final class MovieRefresher {
             }
 
             group.wait()
-            completionHandler()
+            DispatchQueue.main.async {
+                completionHandler()
+            }
         }
     }
 }
