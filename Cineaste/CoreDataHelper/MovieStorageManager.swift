@@ -86,7 +86,10 @@ class MovieStorageManager {
                          watched: Bool,
                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            let storedMovie = StoredMovie(context: self.backgroundContext)
+            guard let storedMovie = self.backgroundContext.object(with: movie.objectID) as? StoredMovie else {
+                fatalError("Object could not be casted to StoredMovie")
+            }
+
             storedMovie.id = movie.id
             storedMovie.title = movie.title
             storedMovie.overview = movie.overview
@@ -109,7 +112,10 @@ class MovieStorageManager {
                           completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             for movie in movies {
-                let storedMovie = StoredMovie(context: self.backgroundContext)
+                guard let storedMovie = self.backgroundContext.object(with: movie.objectID) as? StoredMovie else {
+                    fatalError("Object could not be casted to StoredMovie")
+                }
+
                 storedMovie.id = movie.id
                 storedMovie.title = movie.title
                 storedMovie.overview = movie.overview
