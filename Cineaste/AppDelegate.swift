@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let movieRefresher = MovieRefresher()
+
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter
@@ -24,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                          object: nil)
 
         Appearance.setup()
+        movieRefresher.refreshMoviesInDatabase()
 
         // check if system launched the app with a quick action
         // return false so performActionForShortcutItem: is not called twice
@@ -34,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        movieRefresher.refreshMoviesInDatabase()
     }
 
     // MARK: - Home Quick Actions

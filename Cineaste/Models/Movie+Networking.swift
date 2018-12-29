@@ -67,7 +67,7 @@ extension Movie {
         return url
     }
 
-    var get: Resource<Movie>? {
+    var get: Resource<Movie> {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&api_key=\(Movie.apiKey)" +

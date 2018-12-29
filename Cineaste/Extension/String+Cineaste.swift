@@ -53,6 +53,13 @@ extension String {
     static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
     static let appStoreTitle = NSLocalizedString("appStore", comment: "Title for settings cell appStore")
 
+    static let refreshMoviesTitleNever = NSLocalizedString("refreshMoviesNever", comment: "Title for settings cell refresh movies when in 'never' mode ")
+    static let refreshMoviesDescriptionNever = NSLocalizedString("refreshMoviesDescriptionNever", comment: "Description for refresh movies cell when in 'never' mode ")
+    static let refreshMoviesTitleWifi = NSLocalizedString("refreshMoviesWifi", comment: "Title for settings cell refresh movies when in 'wifi' mode ")
+    static let refreshMoviesDescriptionWifi = NSLocalizedString("refreshMoviesDescriptionWifi", comment: "Description for refresh movies cell when in 'wifi' mode ")
+    static let refreshMoviesTitleAlways = NSLocalizedString("refreshMoviesAlways", comment: "Title for settings cell refresh movies when in 'always' mode ")
+    static let refreshMoviesDescriptionAlways = NSLocalizedString("refreshMoviesDescriptionAlways", comment: "Description for refresh movies cell when in 'always' mode ")
+
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")
 

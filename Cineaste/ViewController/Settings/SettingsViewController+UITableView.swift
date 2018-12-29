@@ -29,6 +29,9 @@ extension SettingsViewController {
         case .about, .licence:
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
+        case .refreshMovies:
+            RefreshMode.default = RefreshMode.default.next
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         case .exportMovies:
             tableView.deselectRow(at: indexPath, animated: true)
             exportMovies(showUIOn: tableView.rectForRow(at: indexPath))
