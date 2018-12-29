@@ -7,7 +7,6 @@
 //
 
 import Kingfisher
-import Reachability
 
 final class MovieRefresher {
     private let storageManager: MovieStorageManager

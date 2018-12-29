@@ -7,7 +7,6 @@ target 'Cineaste App' do
   pod 'SwiftLint'
   pod 'NearbyMessages'
   pod 'Kingfisher'
-  pod 'ReachabilitySwift'
 
   target 'CineasteTests' do
     inherit! :search_paths
