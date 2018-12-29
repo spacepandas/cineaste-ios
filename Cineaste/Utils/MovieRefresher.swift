@@ -10,27 +10,57 @@ import Kingfisher
 import Reachability
 
 final class MovieRefresher {
+    private let storageManager: MovieStorageManager
 
-    private let fetchedResultsManager = FetchedResultsManager()
-    private let storageManager = MovieStorageManager()
+    init(with storageManager: MovieStorageManager) {
+        self.storageManager = storageManager
+    }
 
-    func refreshMoviesInDatabase() {
-        guard let storedMovies = fetchedResultsManager.controller.fetchedObjects
-            else { return }
+    func refresh(movies: [StoredMovie], completionHandler: @escaping () -> Void) {
+        let group = DispatchGroup()
 
-        for storedMovie in storedMovies {
-            let networkMovie = Movie(id: storedMovie.id, title: "")
+        storageManager.backgroundContext.perform {
+            for storedMovie in movies {
+                group.enter()
+                let networkMovie = Movie(id: storedMovie.id, title: "")
 
-            Webservice.load(resource: networkMovie.get) { result in
-                if case let .success(movie) = result {
-                    let updatedMovie = StoredMovie(withMovie: movie, context: self.storageManager.backgroundContext)
-                    updatedMovie.poster = storedMovie.poster
-                    updatedMovie.watched = storedMovie.watched
-                    updatedMovie.watchedDate = storedMovie.watchedDate
-                    updatedMovie.reloadPosterIfNeeded {
-                        self.storageManager.updateMovieItem(with: updatedMovie, watched: storedMovie.watched)
+                Webservice.load(resource: networkMovie.get) { result in
+                    if case let .success(movie) = result {
+                        guard let updatedMovie = self.storageManager
+                            .backgroundContext
+                            .object(with: storedMovie.objectID)
+                            as? StoredMovie
+                            else {
+                                fatalError("Object could not be casted to StoredMovie")
+                        }
+
+                        updatedMovie.id = movie.id
+                        updatedMovie.title = movie.title
+                        updatedMovie.overview = movie.overview
+
+                        updatedMovie.posterPath = movie.posterPath
+
+                        updatedMovie.releaseDate = movie.releaseDate
+                        updatedMovie.runtime = movie.runtime
+                        updatedMovie.voteAverage = movie.voteAverage
+                        updatedMovie.voteCount = movie.voteCount
+
+                        updatedMovie.reloadPosterIfNeeded {
+                            group.leave()
+                        }
+                    } else {
+                        group.leave()
                     }
                 }
+            }
+
+            group.notify(queue: DispatchQueue.main) {
+                do {
+                    try self.storageManager.backgroundContext.save()
+                } catch {
+                    print(error)
+                }
+                completionHandler()
             }
         }
     }

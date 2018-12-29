@@ -138,6 +138,22 @@ class MoviesViewController: UITableViewController {
         tableView.estimatedRowHeight = 80
 
         tableView.backgroundView = emptyView
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshMovies), for: .valueChanged)
+    }
+
+    @objc
+    func refreshMovies() {
+        guard let storageManager = storageManager else {
+            fatalError("No storageManager injected")
+        }
+        let movieRefresher = MovieRefresher(with: storageManager)
+        movieRefresher.refresh(movies: fetchedResultsManager.movies) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 
     private func configureSearchController() {
@@ -267,7 +283,7 @@ extension MoviesViewController: FetchedResultsManagerDelegate {
         tableView.deleteRows(at: index, with: .fade)
     }
     func updateRows(at index: [IndexPath]) {
-        tableView.reloadRows(at: index, with: .fade)
+        tableView.reloadRows(at: index, with: .none)
     }
     func moveRow(at index: IndexPath, to newIndex: IndexPath) {
         tableView.moveRow(at: index, to: newIndex)
