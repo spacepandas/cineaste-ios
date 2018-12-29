@@ -15,8 +15,7 @@ final class MovieRefresher {
     private let storageManager = MovieStorageManager()
 
     func refreshMoviesInDatabase() {
-        guard shouldRefreshMovies,
-            let storedMovies = fetchedResultsManager.controller.fetchedObjects
+        guard let storedMovies = fetchedResultsManager.controller.fetchedObjects
             else { return }
 
         for storedMovie in storedMovies {
@@ -33,17 +32,6 @@ final class MovieRefresher {
                     }
                 }
             }
-        }
-    }
-
-    private var shouldRefreshMovies: Bool {
-        switch RefreshMode.default {
-        case .never:
-            return false
-        case .wifi:
-            return Reachability()?.connection == .wifi
-        case .always:
-            return true
         }
     }
 }

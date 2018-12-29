@@ -9,7 +9,6 @@
 enum SettingItem: CaseIterable {
     case about
     case licence
-    case refreshMovies
     case exportMovies
     case importMovies
     case contact
@@ -21,8 +20,6 @@ enum SettingItem: CaseIterable {
             return String.aboutAppTitle
         case .licence:
             return String.licenseTitle
-        case .refreshMovies:
-            return RefreshMode.default.menuTitle
         case .exportMovies:
             return String.exportTitle
         case .importMovies:
@@ -41,8 +38,6 @@ enum SettingItem: CaseIterable {
              .contact,
              .appStore:
             return nil
-        case .refreshMovies:
-            return RefreshMode.default.menuDescription
         case .exportMovies:
             return String.exportDescription
         case .importMovies:
@@ -56,8 +51,7 @@ enum SettingItem: CaseIterable {
             return .showTextViewFromSettings
         case .licence:
             return .showTextViewFromSettings
-        case .refreshMovies,
-             .exportMovies,
+        case .exportMovies,
              .importMovies,
              .contact,
              .appStore:
