@@ -19,7 +19,7 @@ final class MovieRefresher {
     func refresh(movies: [StoredMovie], completionHandler: @escaping () -> Void) {
         let group = DispatchGroup()
 
-        storageManager.backgroundContext.perform {
+        storageManager.backgroundContext.performChanges {
             for storedMovie in movies {
                 group.enter()
                 let networkMovie = Movie(id: storedMovie.id, title: "")
@@ -54,14 +54,8 @@ final class MovieRefresher {
                 }
             }
 
-            group.notify(queue: DispatchQueue.main) {
-                do {
-                    try self.storageManager.backgroundContext.save()
-                } catch {
-                    print(error)
-                }
-                completionHandler()
-            }
+            group.wait()
+            completionHandler()
         }
     }
 }
