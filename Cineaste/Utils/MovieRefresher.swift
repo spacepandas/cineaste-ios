@@ -25,26 +25,7 @@ final class MovieRefresher {
 
                 Webservice.load(resource: networkMovie.get) { result in
                     if case let .success(movie) = result {
-                        guard let updatedMovie = self.storageManager
-                            .backgroundContext
-                            .object(with: storedMovie.objectID)
-                            as? StoredMovie
-                            else {
-                                fatalError("Object could not be casted to StoredMovie")
-                        }
-
-                        updatedMovie.id = movie.id
-                        updatedMovie.title = movie.title
-                        updatedMovie.overview = movie.overview
-
-                        updatedMovie.posterPath = movie.posterPath
-
-                        updatedMovie.releaseDate = movie.releaseDate
-                        updatedMovie.runtime = movie.runtime
-                        updatedMovie.voteAverage = movie.voteAverage
-                        updatedMovie.voteCount = movie.voteCount
-
-                        updatedMovie.reloadPosterIfNeeded {
+                        self.update(storedMovie, withNew: movie) {
                             group.leave()
                         }
                     } else {
@@ -61,3 +42,29 @@ final class MovieRefresher {
     }
 }
 
+private extension MovieRefresher {
+     func update(_ storedMovie: StoredMovie, withNew movie: Movie, completion: @escaping () -> Void) {
+        guard let updatedMovie = self.storageManager
+            .backgroundContext
+            .object(with: storedMovie.objectID)
+            as? StoredMovie
+            else {
+                fatalError("Object could not be casted to StoredMovie")
+        }
+
+        updatedMovie.id = movie.id
+        updatedMovie.title = movie.title
+        updatedMovie.overview = movie.overview
+
+        updatedMovie.posterPath = movie.posterPath
+
+        updatedMovie.releaseDate = movie.releaseDate
+        updatedMovie.runtime = movie.runtime
+        updatedMovie.voteAverage = movie.voteAverage
+        updatedMovie.voteCount = movie.voteCount
+
+        updatedMovie.reloadPosterIfNeeded {
+            completion()
+        }
+    }
+}
