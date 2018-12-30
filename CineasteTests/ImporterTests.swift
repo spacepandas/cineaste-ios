@@ -16,7 +16,7 @@ class ImporterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        storageManager = MovieStorageManager(container: helper.mockPersistantContainer)
+        storageManager = MovieStorageManager(container: helper.mockPersistantContainer, useViewContext: true)
     }
 
     override func tearDown() {
@@ -34,6 +34,8 @@ class ImporterTests: XCTestCase {
 
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
         let exp = expectation(description: "\(#function)\(#line)")
+
+        assert(storageManager.persistentContainer.viewContext == storageManager.backgroundContext)
 
         // Given
         guard let path = Bundle(for: ImporterTests.self)
@@ -55,15 +57,12 @@ class ImporterTests: XCTestCase {
 
             // Then
             XCTAssertNotNil(error)
-
-            DispatchQueue.main.async {
-                let movies = self.storageManager.fetchAll()
-                XCTAssert(movies.isEmpty)
-                exp.fulfill()
-            }
+            exp.fulfill()
         }
-
         wait(for: [exp], timeout: 1.0)
+
+        let importedMovies = storageManager.fetchAll()
+        XCTAssert(importedMovies.isEmpty)
     }
 }
 
@@ -91,14 +90,11 @@ extension ImporterTests {
 
             // Then
             XCTAssertEqual(numberOfMovies, expectedNumberOfMovies)
-
-            DispatchQueue.main.async {
-                let movies = self.storageManager.fetchAll()
-                XCTAssertEqual(movies.count, expectedNumberOfMovies)
-                exp.fulfill()
-            }
+            exp.fulfill()
         }
-
         wait(for: [exp], timeout: 1.0)
+
+        let importedMovies = self.storageManager.fetchAll()
+        XCTAssertEqual(importedMovies.count, expectedNumberOfMovies)
     }
 }

@@ -31,15 +31,17 @@ extension Importer {
             return
         }
 
-        do {
-            let decoder = JSONDecoder()
-            decoder.userInfo[.context] = storageManager.backgroundContext
+        storageManager.backgroundContext.performChanges {
+            do {
+                let decoder = JSONDecoder()
+                decoder.userInfo[.context] = storageManager.backgroundContext
 
-            let importExportObject = try decoder.decode(ImportExportObject.self,
-                                                        from: data)
-            completion(.success(importExportObject.movies))
-        } catch {
-            completion(.error(ImportError.parsingJsonToStoredMovie))
+                let importExportObject = try decoder.decode(ImportExportObject.self,
+                                                            from: data)
+                completion(.success(importExportObject.movies))
+            } catch {
+                completion(.error(ImportError.parsingJsonToStoredMovie))
+            }
         }
     }
 
