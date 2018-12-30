@@ -53,7 +53,8 @@ class MovieStorageManager {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -78,7 +79,8 @@ class MovieStorageManager {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -92,7 +94,8 @@ class MovieStorageManager {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? storedMovie.watchedDate ?? Date() : nil
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -119,7 +122,8 @@ class MovieStorageManager {
                 storedMovie.watched = movie.watched
                 storedMovie.watchedDate = movie.watchedDate
             }
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -128,7 +132,8 @@ class MovieStorageManager {
         backgroundContext.perform {
             let object = self.backgroundContext.object(with: storedMovie.objectID)
             self.backgroundContext.delete(object)
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 }
@@ -151,19 +156,5 @@ extension MovieStorageManager {
         request.predicate = MovieListCategory.watchlist.predicate
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? []
-    }
-}
-
-extension MovieStorageManager {
-    private func save(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
-        guard backgroundContext.hasChanges else { return }
-
-        do {
-            try backgroundContext.save()
-            completion?(Result.success(true))
-        } catch {
-            print("Save error \(error)")
-            completion?(Result.error(error))
-        }
     }
 }
