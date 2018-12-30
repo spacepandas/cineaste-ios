@@ -19,14 +19,16 @@ class MovieStorageTests: XCTestCase {
         super.setUp()
 
         mockPersistantContainer = helper.mockPersistantContainer
-
-        helper.initStubs()
-
         storageManager = MovieStorageManager(container: mockPersistantContainer)
+
+        assert(storageManager.fetchAll().count == 0, "Database should be empty")
+        helper.initStubs()
     }
 
     override func tearDown() {
         helper.flushData()
+        assert(storageManager.fetchAll().count == 0, "Database should be empty")
+        
         super.tearDown()
     }
 
