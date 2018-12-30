@@ -141,6 +141,15 @@ class MoviesViewController: UITableViewController {
 
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .white
+
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        refreshControl.attributedTitle =
+            NSAttributedString(string: String.refreshMovieData,
+                               attributes: attributes)
+
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshMovies), for: .valueChanged)
     }
