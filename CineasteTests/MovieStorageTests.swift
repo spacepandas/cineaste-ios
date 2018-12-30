@@ -83,8 +83,8 @@ class MovieStorageTests: XCTestCase {
         let newWatchedValue = false
 
         let movies = storageManager.fetchAll()
-        let movie = movies.first!
-        XCTAssertEqual(movie.watched, true)
+        let movie = movies[0]
+        precondition(movie.watched == true)
 
         storageManager.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
             switch result {
@@ -97,7 +97,7 @@ class MovieStorageTests: XCTestCase {
         wait(for: [expc], timeout: 1.0)
 
         let updatedMovies = storageManager.fetchAll()
-        let updatedMovie = updatedMovies.first!
+        let updatedMovie = updatedMovies.first { $0.objectID == movie.objectID }!
 
         XCTAssertEqual(updatedMovie.watched, newWatchedValue)
     }
