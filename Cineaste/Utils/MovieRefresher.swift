@@ -61,19 +61,3 @@ final class MovieRefresher {
     }
 }
 
-private extension StoredMovie {
-
-    func reloadPosterIfNeeded(completion: @escaping () -> Void) {
-        guard poster == nil, let posterPath = posterPath else {
-            completion()
-            return
-        }
-
-        let url = Movie.posterUrl(from: posterPath, for: .small)
-        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
-            self.poster = data
-            completion()
-        }
-        task.resume()
-    }
-}

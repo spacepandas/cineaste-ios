@@ -9,7 +9,6 @@
 enum ImportError: Error {
     case noDataAtPath
     case parsingJsonToStoredMovie
-    case savingNewMovies
 }
 
 enum Importer {
@@ -47,27 +46,19 @@ extension Importer {
     private static func save(_ movies: [StoredMovie], with storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
         let dispatchGroup = DispatchGroup()
 
-        //load all posters
-        for movie in movies {
-            dispatchGroup.enter()
+        storageManager.backgroundContext.performChanges {
+            //load all posters
+            for movie in movies {
+                dispatchGroup.enter()
 
-            movie.loadPoster { poster in
-                if let poster = poster {
-                    movie.poster = poster
+                movie.reloadPosterIfNeeded {
+                    dispatchGroup.leave()
                 }
-
-                dispatchGroup.leave()
             }
-        }
 
-        dispatchGroup.notify(queue: .global()) {
-            storageManager.updateMovieItems(with: movies) { result in
-                switch result {
-                case .success:
-                    completion(.success(movies.count))
-                case .error:
-                    completion(.error(ImportError.savingNewMovies))
-                }
+            dispatchGroup.wait()
+            DispatchQueue.main.async {
+                completion(.success(movies.count))
             }
         }
     }
