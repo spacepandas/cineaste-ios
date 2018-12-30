@@ -82,28 +82,16 @@ class MovieStorageManager {
         }
     }
 
-    func updateMovieItem(with movie: StoredMovie,
+    func updateMovieItem(with objectID: NSManagedObjectID,
                          watched: Bool,
                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            guard let storedMovie = self.backgroundContext.object(with: movie.objectID) as? StoredMovie else {
+            guard let storedMovie = self.backgroundContext.object(with: objectID) as? StoredMovie else {
                 fatalError("Object could not be casted to StoredMovie")
             }
 
-            storedMovie.id = movie.id
-            storedMovie.title = movie.title
-            storedMovie.overview = movie.overview
-
-            storedMovie.posterPath = movie.posterPath
-            storedMovie.poster = movie.poster
-
-            storedMovie.releaseDate = movie.releaseDate
-            storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
-            storedMovie.voteCount = movie.voteCount
-
             storedMovie.watched = watched
-            storedMovie.watchedDate = watched ? movie.watchedDate ?? Date() : nil
+            storedMovie.watchedDate = watched ? storedMovie.watchedDate ?? Date() : nil
             self.save(completion: completion)
         }
     }

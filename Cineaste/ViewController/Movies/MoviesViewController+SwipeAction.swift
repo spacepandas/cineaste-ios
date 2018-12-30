@@ -20,7 +20,7 @@ extension MoviesViewController {
         let newWatchedValue = newCategory == .seen
 
         let action = UITableViewRowAction(style: .normal, title: newCategory.action) { _, _ in
-            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue) { result in
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
@@ -63,7 +63,7 @@ extension MoviesViewController {
 
         let action = UIContextualAction(style: .normal,
                                         title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager?.updateMovieItem(with: movie, watched: newWatchedValue) { result in
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
                 guard case .success = result else {
                     self.showAlert(withMessage: Alert.updateMovieError)
                     return
