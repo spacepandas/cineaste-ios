@@ -46,8 +46,7 @@ opt_in_rules:
 
 # Exclude tests, pods and vendor sources
 excluded:
-  - CineasteTests
-  - CineasteUITests
+  - CineasteUITests/SnapshotHelper.swift
   - Pods
   - Cineaste-Bridging-Header.h
 

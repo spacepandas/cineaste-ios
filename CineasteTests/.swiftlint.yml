@@ -1,0 +1,9 @@
+disabled_rules:
+  - force_cast
+  - force_unwrapping
+  - force_try
+  - type_body_length
+  - implicitly_unwrapped_optional
+  - type_name
+  - weak_delegate
+  - function_parameter_count
