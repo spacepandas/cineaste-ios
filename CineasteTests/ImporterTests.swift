@@ -32,6 +32,41 @@ class ImporterTests: XCTestCase {
         cleanImportOfMovies(from: "AndroidExport", expectedNumberOfMovies: 3)
     }
 
+    //TODO: need to be fixed
+    func disabledtestImportMoviesFromUrlShouldUpdateMovie() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let expectedNumberOfMovies = 2
+
+        // Given
+        guard let path = Bundle(for: ImporterTests.self)
+            .path(forResource: "UpdatedMoviesImport", ofType: "json")
+            else {
+                fatalError("Could not load file for resource UpdatedMoviesImport.json")
+        }
+        let urlToUpdatedMoviesImport = URL(fileURLWithPath: path)
+
+        helper.initStubs()
+        let movies = storageManager.fetchAll()
+        precondition(movies.count == expectedNumberOfMovies,
+                     "Test needs some existing movies")
+
+        // When
+        Importer.importMovies(from: urlToUpdatedMoviesImport, storageManager: storageManager) { result in
+            guard case let .success(numberOfMovies) = result else {
+                XCTFail("Should not result in error")
+                return
+            }
+
+            // Then
+            XCTAssertEqual(numberOfMovies, expectedNumberOfMovies)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+
+        let importedMovies = storageManager.fetchAll()
+        XCTAssertEqual(importedMovies.count, expectedNumberOfMovies)
+    }
+
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
         let exp = expectation(description: "\(#function)\(#line)")
 
