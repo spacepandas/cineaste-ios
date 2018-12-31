@@ -35,8 +35,6 @@ class ImporterTests: XCTestCase {
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
         let exp = expectation(description: "\(#function)\(#line)")
 
-        assert(storageManager.persistentContainer.viewContext == storageManager.backgroundContext)
-
         // Given
         guard let path = Bundle(for: ImporterTests.self)
             .path(forResource: "FailingImport", ofType: "json")
