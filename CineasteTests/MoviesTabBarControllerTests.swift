@@ -24,5 +24,5 @@ class MoviesTabBarControllerTests: XCTestCase {
             XCTAssert(viewController is OrangeNavigationController)
         }
     }
-    
+
 }

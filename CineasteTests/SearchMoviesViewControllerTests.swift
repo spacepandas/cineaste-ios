@@ -25,14 +25,14 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(searchMoviesVC.tableView.delegate)
         XCTAssertNotNil(searchMoviesVC.tableView.dataSource)
     }
-    
+
     func testBackgroundColorShouldBeSetCorrectly() {
         searchMoviesVC.viewDidLoad()
 
         XCTAssertEqual(searchMoviesVC.view.backgroundColor, UIColor.basicBackground)
         XCTAssertEqual(searchMoviesVC.tableView.backgroundColor, UIColor.clear)
     }
-    
+
     func testNumberOfRowsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.tableView.numberOfRows(inSection: 0), 0)
 
@@ -70,7 +70,8 @@ class SearchMoviesViewControllerTests: XCTestCase {
     }
 
     private let movies: [Movie] = {
-        guard let path = Bundle(for: SearchMoviesViewControllerTests.self).path(forResource: "Movie", ofType: "json") else {
+        guard let path = Bundle(for: SearchMoviesViewControllerTests.self)
+            .path(forResource: "Movie", ofType: "json") else {
             fatalError("Could not load file for resource Movie.json")
         }
 

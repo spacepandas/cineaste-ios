@@ -11,7 +11,7 @@ import XCTest
 
 class SearchMoviesCellTests: XCTestCase {
     let cell = SearchMoviesCell()
-    
+
     override func setUp() {
         super.setUp()
 
@@ -39,7 +39,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(mustSee)
         cell.mustSeeButton = mustSee
     }
-    
+
     func testConfigureShouldSetCellTitleAndReleaseDateCorrectly() {
         cell.configure(with: movie)
 
@@ -60,5 +60,5 @@ class SearchMoviesCellTests: XCTestCase {
             fatalError("Error while decoding Movie.json: \(error.localizedDescription)")
         }
     }()
-    
+
 }

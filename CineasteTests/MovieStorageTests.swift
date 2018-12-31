@@ -20,6 +20,7 @@ class MovieStorageTests: XCTestCase {
 
         mockPersistantContainer = helper.mockPersistantContainer
 
+        assert(storageManager.fetchAll().isEmpty, "Database should be empty")
         helper.initStubs()
 
         storageManager = MovieStorageManager(container: mockPersistantContainer)
@@ -27,6 +28,8 @@ class MovieStorageTests: XCTestCase {
 
     override func tearDown() {
         helper.flushData()
+        assert(storageManager.fetchAll().isEmpty, "Database should be empty")
+
         super.tearDown()
     }
 
@@ -42,8 +45,7 @@ class MovieStorageTests: XCTestCase {
                                        title: "",
                                        voteAverage: 2,
                                        voteCount: 1,
-                                       watched: false)
-        { result in
+                                       watched: false) { result in
             switch result {
             case .success:
                 expc.fulfill()
@@ -54,7 +56,7 @@ class MovieStorageTests: XCTestCase {
         wait(for: [expc], timeout: 1)
 
         let storedMovies = storageManager.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == id }).first
+        let storedMovie = storedMovies.first { $0.id == id }
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, id)
     }
@@ -71,7 +73,7 @@ class MovieStorageTests: XCTestCase {
         }
         wait(for: [expc], timeout: 1.0)
         let storedMovies = storageManager.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == movie.id }).first
+        let storedMovie = storedMovies.first { $0.id == movie.id }
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, movie.id)
     }
@@ -122,7 +124,7 @@ class MovieStorageTests: XCTestCase {
         }
 
         wait(for: [expc], timeout: 1.0)
-        XCTAssertEqual(helper.numberOfItemsInPersistentStore(), numberOfMovies-1)
+        XCTAssertEqual(helper.numberOfItemsInPersistentStore(), numberOfMovies - 1)
     }
 
     private let movie: Movie = {
@@ -139,6 +141,4 @@ class MovieStorageTests: XCTestCase {
         }
     }()
 
-
 }
-
