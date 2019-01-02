@@ -13,54 +13,36 @@ enum ImportError: Error {
 
 enum Importer {
     static func importMovies(from path: URL, storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
-        Importer.decodeMovies(from: path, with: storageManager) { result in
-            switch result {
-            case .error(let error):
-                completion(.error(error))
-            case .success(let movies):
-                Importer.save(movies, with: storageManager, completion: completion)
-            }
-        }
-    }
-}
-
-extension Importer {
-    private static func decodeMovies(from path: URL, with storageManager: MovieStorageManager, completion: @escaping ((Result<[StoredMovie]>) -> Void)) {
         guard let data = try? Data(contentsOf: path, options: []) else {
             completion(.error(ImportError.noDataAtPath))
             return
         }
 
-        storageManager.backgroundContext.performChanges {
-            do {
-                let decoder = JSONDecoder()
-                decoder.userInfo[.context] = storageManager.backgroundContext
+        let group = DispatchGroup()
 
-                let importExportObject = try decoder.decode(ImportExportObject.self,
-                                                            from: data)
-                completion(.success(importExportObject.movies))
-            } catch {
-                completion(.error(ImportError.parsingJsonToStoredMovie))
+        storageManager.backgroundContext.performChanges {
+            let decoder = JSONDecoder()
+            decoder.userInfo[.context] = storageManager.backgroundContext
+
+            guard let importExportObject = try? decoder
+                .decode(ImportExportObject.self, from: data)
+                else {
+                    completion(.error(ImportError.parsingJsonToStoredMovie))
+                    return
             }
-        }
-    }
 
-    private static func save(_ movies: [StoredMovie], with storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
-        let dispatchGroup = DispatchGroup()
-
-        storageManager.backgroundContext.performChanges {
             //load all posters
-            for movie in movies {
-                dispatchGroup.enter()
+            for movie in importExportObject.movies {
+                group.enter()
 
                 movie.reloadPosterIfNeeded {
-                    dispatchGroup.leave()
+                    group.leave()
                 }
             }
 
-            dispatchGroup.wait()
+            group.wait()
             DispatchQueue.main.async {
-                completion(.success(movies.count))
+                completion(.success(importExportObject.movies.count))
             }
         }
     }
