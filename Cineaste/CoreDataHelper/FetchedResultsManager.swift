@@ -48,14 +48,11 @@ final class FetchedResultsManager: NSObject {
 
 extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard controller.managedObjectContext.hasChanges else { return }
-
+        print("🔄 Begin UI Update")
         delegate?.beginUpdate()
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard controller.managedObjectContext.hasChanges else { return }
-
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
@@ -75,8 +72,7 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard controller.managedObjectContext.hasChanges else { return }
-
+        print("🔄 End UI Update")
         delegate?.endUpdate()
     }
 }

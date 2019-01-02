@@ -10,6 +10,12 @@ import CoreData
 
 extension NSManagedObjectContext {
     func saveOrRollback(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+        guard hasChanges else {
+            print("💡 No need to save context without changes")
+            completion?(Result.success(true))
+            return
+        }
+
         do {
             try save()
             completion?(Result.success(true))

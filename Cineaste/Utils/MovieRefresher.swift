@@ -50,16 +50,32 @@ private extension MovieRefresher {
                 fatalError("Object could not be casted to StoredMovie")
         }
 
-        updatedMovie.id = movie.id
-        updatedMovie.title = movie.title
-        updatedMovie.overview = movie.overview
+        if updatedMovie.id != movie.id {
+            updatedMovie.id = movie.id
+        }
+        if updatedMovie.title != movie.title {
+            updatedMovie.title = movie.title
+        }
+        if updatedMovie.overview != movie.overview {
+            updatedMovie.overview = movie.overview
+        }
 
-        updatedMovie.posterPath = movie.posterPath
+        if updatedMovie.posterPath != movie.posterPath {
+            updatedMovie.posterPath = movie.posterPath
+        }
 
-        updatedMovie.releaseDate = movie.releaseDate
-        updatedMovie.runtime = movie.runtime
-        updatedMovie.voteAverage = movie.voteAverage
-        updatedMovie.voteCount = movie.voteCount
+        if updatedMovie.releaseDate != movie.releaseDate {
+            updatedMovie.releaseDate = movie.releaseDate
+        }
+        if updatedMovie.runtime != movie.runtime {
+            updatedMovie.runtime = movie.runtime
+        }
+        if updatedMovie.voteAverage != movie.voteAverage {
+            updatedMovie.voteAverage = movie.voteAverage
+        }
+        if updatedMovie.voteCount != movie.voteCount {
+            updatedMovie.voteCount = movie.voteCount
+        }
 
         updatedMovie.reloadPosterIfNeeded {
             completion()

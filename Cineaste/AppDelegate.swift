@@ -74,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc
     func contextDidSave(notification: Notification) {
         AppDelegate.viewContext.perform {
+            print("💾 Saved context: \(notification.description) 💾")
             AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
         }
     }
