@@ -15,7 +15,6 @@ class SettingsViewController: UITableViewController {
     let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
 
-    lazy var fetchedResultsManager = FetchedResultsManager()
     var storageManager: MovieStorageManager?
     var docController: UIDocumentInteractionController?
 
