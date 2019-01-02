@@ -32,7 +32,8 @@ class ImporterTests: XCTestCase {
         cleanImportOfMovies(from: "AndroidExport", expectedNumberOfMovies: 3)
     }
 
-    //TODO: need to be fixed
+    //TODO: needs to be fixed, related to #69
+    // https://github.com/spacepandas/cineaste-ios/issues/69
     func disabledtestImportMoviesFromUrlShouldUpdateMovie() {
         let exp = expectation(description: "\(#function)\(#line)")
         let expectedNumberOfMovies = 2
