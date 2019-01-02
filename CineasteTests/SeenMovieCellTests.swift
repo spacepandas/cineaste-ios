@@ -43,10 +43,7 @@ class SeenMovieCellTests: XCTestCase {
 
     private let storedMovie: StoredMovie = {
         let managedObjectContext = setUpInMemoryManagedObjectContext()
-        let entity = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: managedObjectContext)
-            as! StoredMovie
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie", into: managedObjectContext) as! StoredMovie
         return entity
     }()
 }
