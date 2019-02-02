@@ -43,6 +43,7 @@ opt_in_rules:
   - legacy_random
   - closure_body_length
   - inert_defer
+  - last_where
 
 # Exclude tests, pods and vendor sources
 excluded:
