@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import SwiftMonkeyPaws
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var paws: MonkeyPaws?
 
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -31,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             as? UIApplicationShortcutItem {
             _ = handle(shortCut: shortcutItem)
             return false
+        }
+
+        if CommandLine.arguments.contains("--MonkeyPaws") {
+            // swiftlint:disable:next force_unwrapping
+            paws = MonkeyPaws(view: window!)
         }
 
         return true

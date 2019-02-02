@@ -7,9 +7,15 @@ target 'Cineaste App' do
   pod 'SwiftLint'
   pod 'NearbyMessages'
   pod 'Kingfisher'
+  pod 'SwiftMonkeyPaws', '~> 2.1.0'
 
   target 'CineasteTests' do
     inherit! :search_paths
+  end
+
+  target 'CineasteUITests' do
+    inherit! :search_paths
+    pod 'SwiftMonkey', '~> 2.1.0'
   end
 end
 
