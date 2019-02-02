@@ -10,8 +10,6 @@
 		02311CE137ED503373E03D54 /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FB15B53EC7A9ACC1CA280B /* Pods_CineasteTests.framework */; };
 		3F2408F5203CB88E00EB9141 /* ScreenshotsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2408F4203CB88E00EB9141 /* ScreenshotsUITests.swift */; };
 		3F2408FD203CB96000EB9141 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2408FC203CB96000EB9141 /* SnapshotHelper.swift */; };
-		3F2F5A0321D93F8500168714 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		3F2F5A0421D93F8800168714 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		3F36FAA1218657E10018E25B /* MovieNightViewController+Nearby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */; };
 		3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FAA0218657E10018E25B /* MovieNightViewController+UITableView.swift */; };
 		3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAD61920A6E5EE001A19D2 /* SeenMovieCell.swift */; };
@@ -1023,7 +1021,6 @@
 				3F7ABD5320F5C708004B069E /* StoredMovie+Formatted.swift in Sources */,
 				3FF790EA20DE274A007B7D37 /* FetchedResultsManagerDelegate.swift in Sources */,
 				3FF790EB20DE274A007B7D37 /* UIImage+Cineaste.swift in Sources */,
-				3F2F5A0321D93F8500168714 /* BuildFile in Sources */,
 				3FF790EC20DE274A007B7D37 /* MoviesTabBarController.swift in Sources */,
 				3FF790ED20DE274A007B7D37 /* SettingItem.swift in Sources */,
 				3F7ABD5620F5C71E004B069E /* String+Locale.swift in Sources */,
@@ -1091,7 +1088,6 @@
 				3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */,
 				3FF7911D20DE274A007B7D37 /* MoviesViewController.swift in Sources */,
 				3F701B1221863CDF0033562B /* MovieStorageManager.swift in Sources */,
-				3F2F5A0421D93F8800168714 /* BuildFile in Sources */,
 				3F7ABD5220F5C704004B069E /* StoredMovie+Networking.swift in Sources */,
 				3FF7911E20DE274A007B7D37 /* MovieDetailType.swift in Sources */,
 				3FF7911F20DE274A007B7D37 /* Date+Formatter.swift in Sources */,
