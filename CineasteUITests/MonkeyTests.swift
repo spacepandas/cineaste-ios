@@ -10,13 +10,13 @@ import XCTest
 import SwiftMonkey
 
 class MonkeyTests: XCTestCase {
-    let application = XCUIApplication()
+    let app = XCUIApplication()
 
     override func setUp() {
         super.setUp()
 
-        application.launchArguments = ["--MonkeyPaws"]
-        application.launch()
+        app.launchArguments = ["--MonkeyPaws"]
+        app.launch()
     }
 
     func testMonkey() {
@@ -24,8 +24,8 @@ class MonkeyTests: XCTestCase {
         // frame. Giving an explicit seed will make it generate
         // the same sequence of events on each run, and leaving it
         // out will generate a new sequence on each run.
-        let monkey = Monkey(frame: application.frame)
-        //let monkey = Monkey(seed: 123, frame: application.frame)
+        let monkey = Monkey(frame: app.frame)
+        //let monkey = Monkey(seed: 123, frame: app.frame)
 
         // Add actions for the monkey to perform. We just use a
         // default set of actions for this, which is usually enough.
@@ -38,7 +38,7 @@ class MonkeyTests: XCTestCase {
         // Occasionally, use the regular XCTest functionality
         // to check if an alert is shown, and click a random
         // button on it.
-        monkey.addXCTestTapAlertAction(interval: 100, application: application)
+        monkey.addXCTestTapAlertAction(interval: 100, application: app)
 
         // Run the monkey test indefinitely.
         monkey.monkeyAround()
