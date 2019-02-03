@@ -16,7 +16,7 @@ class ImporterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        storageManager = MovieStorageManager(container: helper.mockPersistantContainer, useViewContext: true)
+        storageManager = MovieStorageManager(container: helper.mockPersistantContainer)
     }
 
     override func tearDown() {
@@ -123,8 +123,10 @@ extension ImporterTests {
             }
 
             // Then
-            XCTAssertEqual(numberOfMovies, expectedNumberOfMovies)
-            exp.fulfill()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                XCTAssertEqual(numberOfMovies, expectedNumberOfMovies)
+                exp.fulfill()
+            }
         }
         wait(for: [exp], timeout: 1.0)
 

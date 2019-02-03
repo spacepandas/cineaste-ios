@@ -11,21 +11,18 @@ import CoreData
 
 class MovieStorageManager {
     let persistentContainer: NSPersistentContainer
-    let backgroundContext: NSManagedObjectContext
 
     // MARK: Init with dependency
-    init(container: NSPersistentContainer = AppDelegate.persistentContainer, useViewContext: Bool = false) {
+    init(container: NSPersistentContainer = AppDelegate.persistentContainer) {
         persistentContainer = container
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-
-        if useViewContext {
-            backgroundContext = persistentContainer.viewContext
-        } else {
-            let context = persistentContainer.newBackgroundContext()
-            context.mergePolicy = NSOverwriteMergePolicy
-            backgroundContext = context
-        }
     }
+
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = self.persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSOverwriteMergePolicy
+        return context
+    }()
 
     // MARK: CRUD
     //swiftlint:disable:next function_parameter_count
