@@ -130,7 +130,7 @@ extension ImporterTests {
         }
         wait(for: [exp], timeout: 1.0)
 
-        let importedMovies = self.storageManager.fetchAll()
+        let importedMovies = storageManager.fetchAll()
         XCTAssertEqual(importedMovies.count, expectedNumberOfMovies)
     }
 }
