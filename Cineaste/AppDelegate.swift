@@ -14,7 +14,10 @@ import SwiftMonkeyPaws
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
+    #if DEBUG
     var paws: MonkeyPaws?
+    #endif
 
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -35,10 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
+        #if DEBUG
         if CommandLine.arguments.contains("--MonkeyPaws") {
             // swiftlint:disable:next force_unwrapping
             paws = MonkeyPaws(view: window!)
         }
+        #endif
 
         return true
     }
