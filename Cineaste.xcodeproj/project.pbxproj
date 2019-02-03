@@ -259,7 +259,7 @@
 		3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		3FF095D3210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+UIDocumentPicker.swift"; sourceTree = "<group>"; };
 		3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
-		3FF7913720DE274A007B7D37 /* Cineaste Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Cineaste Dev.app"; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABD57A2129C49E007F20D9 /* NonClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearView.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearViewTests.swift; sourceTree = "<group>"; };
 		5FA3BD51B994D0B80A90B201 /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -524,7 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				3F2408F2203CB88E00EB9141 /* CineasteUITests.xctest */,
-				3FF7913720DE274A007B7D37 /* Cineaste Dev.app */,
+				3FF7913720DE274A007B7D37 /* Cineaste App.app */,
 				3F701B31218640EE0033562B /* CineasteTests.xctest */,
 			);
 			name = Products;
@@ -709,7 +709,7 @@
 			);
 			name = "Cineaste App";
 			productName = Cineaste;
-			productReference = 3FF7913720DE274A007B7D37 /* Cineaste Dev.app */;
+			productReference = 3FF7913720DE274A007B7D37 /* Cineaste App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
