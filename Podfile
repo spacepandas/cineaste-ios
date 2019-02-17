@@ -12,11 +12,10 @@ target 'Cineaste App' do
   target 'CineasteTests' do
     inherit! :search_paths
   end
+end
 
-  target 'CineasteUITests' do
-    inherit! :search_paths
-    pod 'SwiftMonkey', '~> 2.1.0'
-  end
+target 'CineasteUITests' do
+  pod 'SwiftMonkey', '~> 2.1.0'
 end
 
 post_install do | installer |
