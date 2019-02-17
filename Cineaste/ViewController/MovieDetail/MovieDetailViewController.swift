@@ -240,7 +240,7 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         case .stored(let movie):
-            storageManager.updateMovieItem(with: movie, watched: watched) { result in
+            storageManager.updateMovieItem(with: movie.objectID, watched: watched) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.updateMovieError)

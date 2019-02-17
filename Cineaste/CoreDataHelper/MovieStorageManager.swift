@@ -14,8 +14,8 @@ class MovieStorageManager {
 
     // MARK: Init with dependency
     init(container: NSPersistentContainer = AppDelegate.persistentContainer) {
-        self.persistentContainer = container
-        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer = container
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
 
     lazy var backgroundContext: NSManagedObjectContext = {
@@ -53,7 +53,8 @@ class MovieStorageManager {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -78,30 +79,27 @@ class MovieStorageManager {
 
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
-    func updateMovieItem(with movie: StoredMovie,
+    func updateMovieItem(with objectID: NSManagedObjectID,
                          watched: Bool,
                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            let storedMovie = StoredMovie(context: self.backgroundContext)
-            storedMovie.id = movie.id
-            storedMovie.title = movie.title
-            storedMovie.overview = movie.overview
+            guard let storedMovie = self.backgroundContext.object(with: objectID) as? StoredMovie else {
+                fatalError("Object could not be casted to StoredMovie")
+            }
 
-            storedMovie.posterPath = movie.posterPath
-            storedMovie.poster = movie.poster
+            if storedMovie.watched != watched {
+                storedMovie.watched = watched
+            }
+            if storedMovie.watchedDate != (watched ? storedMovie.watchedDate ?? Date() : nil) {
+                storedMovie.watchedDate = watched ? storedMovie.watchedDate ?? Date() : nil
+            }
 
-            storedMovie.releaseDate = movie.releaseDate
-            storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
-            storedMovie.voteCount = movie.voteCount
-
-            storedMovie.watched = watched
-            storedMovie.watchedDate = watched ? Date() : nil
-            self.save(completion: completion)
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -109,23 +107,24 @@ class MovieStorageManager {
                           completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
             for movie in movies {
-                let storedMovie = StoredMovie(context: self.backgroundContext)
+                guard let storedMovie = self.backgroundContext.object(with: movie.objectID) as? StoredMovie else {
+                    fatalError("Object could not be casted to StoredMovie")
+                }
+
                 storedMovie.id = movie.id
                 storedMovie.title = movie.title
                 storedMovie.overview = movie.overview
-
                 storedMovie.posterPath = movie.posterPath
                 storedMovie.poster = movie.poster
-
                 storedMovie.releaseDate = movie.releaseDate
                 storedMovie.runtime = movie.runtime
                 storedMovie.voteAverage = movie.voteAverage
                 storedMovie.voteCount = movie.voteCount
-
                 storedMovie.watched = movie.watched
                 storedMovie.watchedDate = movie.watchedDate
             }
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 
@@ -134,7 +133,8 @@ class MovieStorageManager {
         backgroundContext.perform {
             let object = self.backgroundContext.object(with: storedMovie.objectID)
             self.backgroundContext.delete(object)
-            self.save(completion: completion)
+
+            self.backgroundContext.saveOrRollback(completion: completion)
         }
     }
 }
@@ -157,19 +157,5 @@ extension MovieStorageManager {
         request.predicate = MovieListCategory.watchlist.predicate
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? []
-    }
-}
-
-extension MovieStorageManager {
-    private func save(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
-        guard backgroundContext.hasChanges else { return }
-
-        do {
-            try backgroundContext.save()
-            completion?(Result.success(true))
-        } catch {
-            print("Save error \(error)")
-            completion?(Result.error(error))
-        }
     }
 }

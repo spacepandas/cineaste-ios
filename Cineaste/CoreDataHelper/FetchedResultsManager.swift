@@ -48,6 +48,7 @@ final class FetchedResultsManager: NSObject {
 
 extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("🔄 Begin UI Update")
         delegate?.beginUpdate()
     }
 
@@ -71,6 +72,7 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("🔄 End UI Update")
         delegate?.endUpdate()
     }
 }

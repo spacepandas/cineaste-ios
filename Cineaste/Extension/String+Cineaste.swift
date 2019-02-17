@@ -147,5 +147,8 @@ extension String {
     static let exportWithEmptyDataMessage = NSLocalizedString("emptyDatabase", comment: "Message for export with empty data alert")
 
     static let noEmailClientMessage = NSLocalizedString("noEmailClient", comment: "Message for no email client alert")
+
+    // refresh movie data
+    static let refreshMovieData = NSLocalizedString("refresh movie data", comment: "Message for refreshing movie data with pull to refresh")
 }
 //swiftlint:enable line_length
