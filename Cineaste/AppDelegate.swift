@@ -8,7 +8,10 @@
 
 import UIKit
 import CoreData
+
+#if DEBUG
 import SwiftMonkeyPaws
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
