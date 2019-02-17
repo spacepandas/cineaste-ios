@@ -33,7 +33,7 @@ func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
 }
 
 class CoreDataHelper {
-    var mockPersistantContainer: NSPersistentContainer = {
+    var mockPersistentContainer: NSPersistentContainer = {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
         let container = NSPersistentContainer(name: "PersistentStoredMovies", managedObjectModel: managedObjectModel)
         let description = NSPersistentStoreDescription()
@@ -56,7 +56,7 @@ class CoreDataHelper {
     //Convenient method for getting the number of data in store now
     func numberOfItemsInPersistentStore() -> Int {
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "StoredMovie")
-        let results = try! mockPersistantContainer.viewContext.fetch(request)
+        let results = try! mockPersistentContainer.viewContext.fetch(request)
         return results.count
     }
 
@@ -74,7 +74,7 @@ class CoreDataHelper {
                              watchedDate: Date?,
                              listPosition: Int16) {
             let object = NSEntityDescription.insertNewObject(forEntityName: "StoredMovie",
-                                                             into: mockPersistantContainer.viewContext)
+                                                             into: mockPersistentContainer.viewContext)
             object.setValue(id, forKey: "id")
             object.setValue(overview, forKey: "overview")
             object.setValue(poster, forKey: "poster")
@@ -119,7 +119,7 @@ class CoreDataHelper {
                         listPosition: 0)
 
         do {
-            try mockPersistantContainer.viewContext.save()
+            try mockPersistentContainer.viewContext.save()
         } catch {
             print("create fakes error \(error)")
         }
@@ -128,10 +128,10 @@ class CoreDataHelper {
     func flushData() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> =
             NSFetchRequest<NSFetchRequestResult>(entityName: "StoredMovie")
-        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
+        let objs = try! mockPersistentContainer.viewContext.fetch(fetchRequest)
         for case let obj as NSManagedObject in objs {
-            mockPersistantContainer.viewContext.delete(obj)
+            mockPersistentContainer.viewContext.delete(obj)
         }
-        try! mockPersistantContainer.viewContext.save()
+        try! mockPersistentContainer.viewContext.save()
     }
 }

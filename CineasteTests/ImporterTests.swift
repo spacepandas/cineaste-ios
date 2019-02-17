@@ -16,7 +16,7 @@ class ImporterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        storageManager = MovieStorageManager(container: helper.mockPersistantContainer)
+        storageManager = MovieStorageManager(container: helper.mockPersistentContainer)
     }
 
     override func tearDown() {

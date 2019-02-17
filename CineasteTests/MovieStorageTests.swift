@@ -17,7 +17,7 @@ class MovieStorageTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        storageManager = MovieStorageManager(container: helper.mockPersistantContainer)
+        storageManager = MovieStorageManager(container: helper.mockPersistentContainer)
 
         assert(storageManager.fetchAll().isEmpty, "Database should be empty")
         helper.initStubs()
