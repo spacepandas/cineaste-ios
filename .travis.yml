@@ -4,7 +4,6 @@ install:
   - bundle install
   - pod repo update
   - pod install
-script:
 jobs:
 include:
   - stage: test
