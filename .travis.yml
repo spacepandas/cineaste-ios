@@ -8,8 +8,8 @@ install:
   - pod repo update
   - pod install
 jobs:
-include:
-  - stage: test
-    script: bundle exec fastlane test
-  - stage: swiftlint
-    script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
+  include:
+    - stage: test
+      script: bundle exec fastlane test
+    - stage: swiftlint
+      script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
