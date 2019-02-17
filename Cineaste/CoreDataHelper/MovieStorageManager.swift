@@ -111,42 +111,17 @@ class MovieStorageManager {
                     fatalError("Object could not be casted to StoredMovie")
                 }
 
-                if storedMovie.id != movie.id {
-                    storedMovie.id = movie.id
-                }
-                if storedMovie.title != movie.title {
-                    storedMovie.title = movie.title
-                }
-                if storedMovie.overview != movie.overview {
-                    storedMovie.overview = movie.overview
-                }
-
-                if storedMovie.posterPath != movie.posterPath {
-                    storedMovie.posterPath = movie.posterPath
-                }
-                if storedMovie.poster != movie.poster {
-                    storedMovie.poster = movie.poster
-                }
-
-                if storedMovie.releaseDate != movie.releaseDate {
-                    storedMovie.releaseDate = movie.releaseDate
-                }
-                if storedMovie.runtime != movie.runtime {
-                    storedMovie.runtime = movie.runtime
-                }
-                if storedMovie.voteAverage != movie.voteAverage {
-                    storedMovie.voteAverage = movie.voteAverage
-                }
-                if storedMovie.voteCount != movie.voteCount {
-                    storedMovie.voteCount = movie.voteCount
-                }
-
-                if storedMovie.watched != movie.watched {
-                    storedMovie.watched = movie.watched
-                }
-                if storedMovie.watchedDate != movie.watchedDate {
-                    storedMovie.watchedDate = movie.watchedDate
-                }
+                storedMovie.id = movie.id
+                storedMovie.title = movie.title
+                storedMovie.overview = movie.overview
+                storedMovie.posterPath = movie.posterPath
+                storedMovie.poster = movie.poster
+                storedMovie.releaseDate = movie.releaseDate
+                storedMovie.runtime = movie.runtime
+                storedMovie.voteAverage = movie.voteAverage
+                storedMovie.voteCount = movie.voteCount
+                storedMovie.watched = movie.watched
+                storedMovie.watchedDate = movie.watchedDate
             }
 
             self.backgroundContext.saveOrRollback(completion: completion)
