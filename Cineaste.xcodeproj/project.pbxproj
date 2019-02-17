@@ -842,7 +842,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CineasteUITests/Pods-CineasteUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CineasteUITests/Pods-CineasteUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SwiftMonkey/SwiftMonkey.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -853,7 +853,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CineasteUITests/Pods-CineasteUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CineasteUITests/Pods-CineasteUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4C8D8FEFFB94E0EA80E03707 /* [CP] Check Pods Manifest.lock */ = {
@@ -886,7 +886,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMonkeyPaws/SwiftMonkeyPaws.framework",
 			);
@@ -899,7 +899,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79285F5FF8560210C9118061 /* [CP] Copy Pods Resources */ = {
@@ -910,7 +910,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-resources.sh",
 				"${PODS_ROOT}/NearbyMessages/Resources/resources/GNSSharedResources.bundle",
 				"${PODS_ROOT}/NearbyMessages/Resources/resources/ic_expand_more.xcassets",
 				"${PODS_ROOT}/NearbyMessages/Resources/resources/ic_nearby_48pt.xcassets",
@@ -924,7 +924,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cineaste App/Pods-Cineaste App-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7CB748BDB012C7FB3787021F /* [CP] Check Pods Manifest.lock */ = {
