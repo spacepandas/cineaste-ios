@@ -37,6 +37,11 @@
                BlueprintName = "CineasteUITests"
                ReferencedContainer = "container:Cineaste.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "MonkeyTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

@@ -9,18 +9,17 @@
 import XCTest
 
 class ScreenshotsUITests: XCTestCase {
+    let app = XCUIApplication()
 
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
 
-        let app: XCUIApplication = XCUIApplication()
         setupSnapshot(app)
         app.launch()
     }
 
     func testScreenshots() {
-        let app = XCUIApplication()
         snapshot("emptyList")
 
         let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
