@@ -1,8 +1,15 @@
 language: swift
 osx_image: xcode10.1
+cache:
+  - bundler
+  - cocoapods
 install:
   - bundle install
   - pod repo update
   - pod install
-script:
-  - bundle exec fastlane test
+jobs:
+  include:
+    - stage: test
+      script: bundle exec fastlane test
+    - stage: swiftlint
+      script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 

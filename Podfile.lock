@@ -6,7 +6,7 @@ PODS:
   - GoogleSymbolUtilities (1.1.2)
   - GoogleUtilitiesLegacy (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
-  - Kingfisher (5.1.0)
+  - Kingfisher (5.1.1)
   - NearbyMessages (1.1.1):
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleNetworkingUtilities (~> 1.2)
@@ -40,12 +40,12 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilitiesLegacy: 5501bedec1646bd284286eb5fc9453f7e23a12f4
-  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   SwiftMonkey: aea6f2707a4b7ab5277b4d2fd2f0723a083997b1
   SwiftMonkeyPaws: 655524bb402df5ac2be836f9f604aca1068fbde6
 
-PODFILE CHECKSUM: ddf8f24e8a8d316f366df3526c8cc9d82d229a90
+PODFILE CHECKSUM: bfe3f337cd6014fe1bd115326109ab544a58c044
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0
