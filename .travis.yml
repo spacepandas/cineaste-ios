@@ -9,4 +9,4 @@ include:
   - stage: test
     script: bundle exec fastlane test
   - stage: swiftlint
-    script: bundle exec swiftlint lint --config .swiftlint.yml
+    script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
