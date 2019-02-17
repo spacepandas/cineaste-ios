@@ -1,5 +1,8 @@
 language: swift
 osx_image: xcode10.1
+cache:
+  - bundler
+  - cocoapods
 install:
   - bundle install
   - pod repo update
