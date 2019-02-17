@@ -13,13 +13,11 @@ import CoreData
 class MovieStorageTests: XCTestCase {
     let helper = CoreDataHelper()
     var storageManager: MovieStorageManager!
-    var mockPersistantContainer: NSPersistentContainer!
 
     override func setUp() {
         super.setUp()
 
-        mockPersistantContainer = helper.mockPersistantContainer
-        storageManager = MovieStorageManager(container: mockPersistantContainer)
+        storageManager = MovieStorageManager(container: helper.mockPersistentContainer)
 
         assert(storageManager.fetchAll().isEmpty, "Database should be empty")
         helper.initStubs()
@@ -71,6 +69,7 @@ class MovieStorageTests: XCTestCase {
             }
         }
         wait(for: [expc], timeout: 1.0)
+
         let storedMovies = storageManager.fetchAll()
         let storedMovie = storedMovies.first { $0.id == movie.id }
         XCTAssertNotNil(storedMovie)
@@ -82,13 +81,15 @@ class MovieStorageTests: XCTestCase {
         let newWatchedValue = false
 
         let movies = storageManager.fetchAll()
-        let movie = movies.first!
-        XCTAssertEqual(movie.watched, true)
+        let movie = movies[0]
+        precondition(movie.watched == true)
 
-        storageManager.updateMovieItem(with: movie, watched: newWatchedValue) { result in
+        storageManager.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
             switch result {
             case .success:
-                expc.fulfill()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    expc.fulfill()
+                }
             case .error:
                 break
             }
@@ -96,8 +97,7 @@ class MovieStorageTests: XCTestCase {
         wait(for: [expc], timeout: 1.0)
 
         let updatedMovies = storageManager.fetchAll()
-        let updatedMovie = updatedMovies.first!
-
+        let updatedMovie = updatedMovies.first { $0.objectID == movie.objectID }!
         XCTAssertEqual(updatedMovie.watched, newWatchedValue)
     }
 

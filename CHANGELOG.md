@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0
+
+* New: Reload Movie Details with Pull To Refresh on Movie Lists
+
 ## 1.3.4
 
 * Fixed: We all know smartphones nowadays perform so well! But we don't want to exaggerate it that much, so we fixed an infinite loop which used a bit too much of the memory - with only three lines of code. Yay!

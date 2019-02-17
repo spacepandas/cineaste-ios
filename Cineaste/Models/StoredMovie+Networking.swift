@@ -10,23 +10,17 @@ import UIKit
 import Kingfisher
 
 extension StoredMovie {
-    static func posterUrl(from posterPath: String, for size: Constants.PosterSize) -> URL {
-        let urlAsString = "\(size.address)\(posterPath)?api_key=\(ApiKeyStore.theMovieDbKey)"
-        guard let url = URL(string: urlAsString) else {
-            fatalError("Could not create url for poster download")
-        }
-        return url
-    }
-
-    func loadPoster(completion: @escaping (_ poster: Data?) -> Void) {
-        guard let posterPath = posterPath else {
-            completion(nil)
+    func reloadPosterIfNeeded(completion: @escaping () -> Void) {
+        guard poster == nil, let posterPath = posterPath else {
+            completion()
             return
         }
 
-        let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-        ImageDownloader.default.downloadImage(with: posterUrl) { result in
-            completion(result.value?.originalData)
+        let url = Movie.posterUrl(from: posterPath, for: .small)
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+            self.poster = data
+            completion()
         }
+        task.resume()
     }
 }

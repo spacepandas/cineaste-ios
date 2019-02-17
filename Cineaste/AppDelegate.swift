@@ -8,7 +8,10 @@
 
 import UIKit
 import CoreData
+
+#if DEBUG
 import SwiftMonkeyPaws
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -86,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc
     func contextDidSave(notification: Notification) {
         AppDelegate.viewContext.perform {
+            print("💾 Saved context: \(notification.description) 💾")
             AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
         }
     }
