@@ -26,6 +26,8 @@ We are using [Kingfisher][Kingfisher] to load and cache movie posters asynchrono
 
 To enforce swift style and convention and to constantly check our code style, we use [Swiftlint](https://github.com/realm/SwiftLint), which runs on every build phase.
 
+A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/spacepandas/cineaste-ios/blob/master/DEPENDENCIES.md).
+
 ## How to build
 
 0. Run `pod install` in cineaste-ios folder to install all used cocoa pods.
