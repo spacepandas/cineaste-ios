@@ -50,7 +50,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-Yw-HoJ">
                                                             <rect key="frame" x="0.0" y="28.5" width="145" height="13"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="mfC-2L-nBk">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seen" translatesAutoresizingMaskIntoConstraints="NO" id="mfC-2L-nBk">
                                                                     <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="mfC-2L-nBk" secondAttribute="height" id="6Kh-da-qeS"/>
@@ -83,7 +83,7 @@
                                                 <constraint firstAttribute="width" secondItem="Lqp-of-e97" secondAttribute="height" multiplier="0.7" id="rhr-z8-Vaj"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GE-UA-Hy3" customClass="NonClearView" customModule="Cineaste_App" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GE-UA-Hy3" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
                                             <rect key="frame" x="70" y="0.0" width="5" height="99.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -208,7 +208,7 @@
                                                 <constraint firstAttribute="width" secondItem="mrt-l2-SPo" secondAttribute="height" multiplier="0.7" id="ysr-Cf-3mU"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-RV-Bhu" customClass="NonClearView" customModule="Cineaste_App" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-RV-Bhu" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
                                             <rect key="frame" x="70" y="0.0" width="5" height="99.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -347,10 +347,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_checkmark" width="50" height="50"/>
         <image name="ic_release" width="32" height="34"/>
         <image name="ic_runtime" width="32" height="32"/>
         <image name="ic_vote" width="32" height="32"/>
         <image name="movieNight" width="23" height="23"/>
+        <image name="seen" width="30" height="30"/>
     </resources>
 </document>

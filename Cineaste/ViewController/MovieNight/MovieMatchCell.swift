@@ -16,11 +16,7 @@ class MovieMatchCell: UITableViewCell {
     static let identifier = "MovieMatchTableViewCell"
 
     @IBOutlet private weak var posterImageView: UIImageView!
-    @IBOutlet private weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
+    @IBOutlet private weak var separatorView: UIView!
 
     @IBOutlet private weak var movieTitelLabel: TitleLabel!
     @IBOutlet private weak var numberOfMatchesLabel: DescriptionLabel!

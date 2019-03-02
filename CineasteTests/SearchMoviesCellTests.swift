@@ -10,7 +10,7 @@ import XCTest
 @testable import Cineaste_App
 
 class SearchMoviesCellTests: XCTestCase {
-    let cell = SearchMoviesCell()
+    let cell = OldSearchMoviesCell()
 
     override func setUp() {
         super.setUp()

@@ -147,6 +147,7 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: SearchMoviesCellDelegate {
+    //TODO: change to swipe actions
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
         guard let storageManager = storageManager else { return }
 

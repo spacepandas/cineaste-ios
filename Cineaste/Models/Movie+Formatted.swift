@@ -24,6 +24,14 @@ extension Movie {
         }
     }
 
+    var formattedReleaseYear: String {
+        if let release = releaseDate {
+            return release.formattedOnlyYear
+        } else {
+            return String.unknownReleaseDate
+        }
+    }
+
     var formattedRuntime: String {
         if runtime != 0 {
             return "\(runtime.formatted ?? String.unknownRuntime) min"

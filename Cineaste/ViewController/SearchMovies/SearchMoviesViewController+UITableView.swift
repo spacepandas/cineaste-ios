@@ -41,14 +41,19 @@ extension SearchMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
-        cell.movie = movies[indexPath.row]
+
+        let movie = movies[indexPath.row]
+        if let movie = storageManager?.fetchMovie(for: movie.id) {
+            cell.configure(with: movies[indexPath.row], state: movie.watched ? .seen : .watchlist)
+        } else {
+            cell.configure(with: movie, state: .normal)
+        }
 
         if let numberOfMovies = totalResults,
             indexPath.isLast(of: numberOfMovies) {
             tableView.tableFooterView = UIView()
         }
 
-        cell.delegate = self
         return cell
     }
 }

@@ -1,67 +1,47 @@
 //
-//  SearchMoviesTableViewCell.swift
-//  Cineaste
+//  SearchMoviesCell.swift
+//  Cineaste App
 //
-//  Created by Christian Braun on 02.11.17.
-//  Copyright © 2017 notimeforthat.org. All rights reserved.
+//  Created by Felizia Bernutz on 02.03.19.
+//  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
 import UIKit
 
-protocol SearchMoviesCellDelegate: AnyObject {
-    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
-}
-
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    weak var delegate: SearchMoviesCellDelegate?
-
-    var movie: Movie? {
-        didSet {
-            if let movie = movie {
-                configure(with: movie)
-            }
-        }
+    enum WatchState {
+        case normal
+        case seen
+        case watchlist
     }
 
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
-
-    @IBOutlet weak var releaseDate: DescriptionLabel!
-
-    @IBOutlet weak var seenButton: ActionButton! {
-        didSet {
-            seenButton.setTitle(String.seenAction, for: .normal)
-        }
-    }
-
-    @IBOutlet weak var mustSeeButton: ActionButton! {
-        didSet {
-            mustSeeButton.setTitle(String.watchlistAction, for: .normal)
-        }
-    }
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var detailLabel: DescriptionLabel!
+    @IBOutlet weak var stateImageView: UIImageView!
 
     // MARK: - Actions
 
-    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
-    }
-
-    @IBAction func seenButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: true)
-    }
-
-    func configure(with movie: Movie) {
+    func configure(with movie: Movie, state: WatchState) {
         title.text = movie.title
-        releaseDate.text = movie.formattedReleaseDate
+        detailLabel.text = movie.formattedReleaseYear
+        //TODO: load runtime for movies
+//            + " ∙ "
+//            + movie.formattedRuntime
+
+        switch state {
+        case .normal:
+            stateImageView.isHidden = true
+        case .seen:
+            stateImageView.isHidden = false
+            stateImageView.image = #imageLiteral(resourceName: "seen-badge")
+        case .watchlist:
+            stateImageView.isHidden = false
+            stateImageView.image = #imageLiteral(resourceName: "watchlist-badge")
+        }
 
         if let posterPath = movie.posterPath {
             poster.kf.indicatorType = .activity

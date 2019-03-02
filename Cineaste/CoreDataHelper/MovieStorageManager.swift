@@ -158,4 +158,14 @@ extension MovieStorageManager {
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? []
     }
+
+    func fetchMovie(for id: Int64) -> StoredMovie? {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %i", id)
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results?.first
+    }
 }

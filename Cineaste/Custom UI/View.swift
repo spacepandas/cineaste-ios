@@ -59,3 +59,17 @@ class ShadowView: View {
         layer.shadowRadius = shadowRadius
     }
 }
+
+class SeparatorView: View {
+    override func setup() {
+        backgroundColor = UIColor.primaryOrange
+    }
+
+    override var backgroundColor: UIColor? {
+        didSet {
+            if backgroundColor?.cgColor.alpha == 0 {
+                backgroundColor = oldValue
+            }
+        }
+    }
+}

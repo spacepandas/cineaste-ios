@@ -13,7 +13,7 @@ class NonClearViewTests: XCTestCase {
 
     func testNonClearViewShouldNotAcceptClearColor() {
         // Given
-        let view = NonClearView()
+        let view = SeparatorView()
         let initialColor = UIColor.red
         view.backgroundColor = initialColor
 
@@ -26,7 +26,7 @@ class NonClearViewTests: XCTestCase {
 
     func testNonClearViewShouldAcceptColorsAboveZeroAlpha() {
         // Given
-        let view = NonClearView()
+        let view = SeparatorView()
         let notTotallyTransparentColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
 
         // When
