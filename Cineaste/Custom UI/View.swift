@@ -27,7 +27,7 @@ class View: UIView {
 class VoteView: View {
     override func setup() {
         clipsToBounds = true
-        layer.cornerRadius = self.frame.height / 2
+        layer.cornerRadius = frame.height / 2
 
         backgroundColor = UIColor.basicYellow
 
@@ -71,5 +71,41 @@ class SeparatorView: View {
                 backgroundColor = oldValue
             }
         }
+    }
+}
+
+class HintView: View {
+    var content: String = "" {
+        didSet {
+            hintLabel.text = content
+        }
+    }
+
+    private let hintLabel = HintLabel()
+
+    override func setup() {
+        clipsToBounds = true
+
+        backgroundColor = UIColor.groupTableViewBackground
+
+        layer.cornerRadius = 2
+
+        hintLabel.numberOfLines = 0
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(hintLabel)
+
+        let horizontalConstant: CGFloat = 4
+        let verticalConstant: CGFloat = 2
+
+        NSLayoutConstraint.activate([
+            hintLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                               constant: horizontalConstant),
+            hintLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                constant: -horizontalConstant),
+            hintLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                              constant: -verticalConstant),
+            hintLabel.topAnchor.constraint(equalTo: topAnchor,
+                                           constant: verticalConstant)
+            ])
     }
 }

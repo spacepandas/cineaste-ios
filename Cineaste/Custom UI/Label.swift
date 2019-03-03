@@ -47,3 +47,10 @@ class HeaderLabel: Label {
         adjustsFontForContentSizeCategory = true
     }
 }
+
+class HintLabel: Label {
+    override func setup() {
+        font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        textColor = UIColor.basicBackground
+    }
+}

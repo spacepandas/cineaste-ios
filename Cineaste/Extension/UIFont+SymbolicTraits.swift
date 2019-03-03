@@ -19,4 +19,8 @@ extension UIFont {
     func condensed() -> UIFont {
         return withTraits(traits: .traitCondensed)
     }
+
+    func italic() -> UIFont {
+        return withTraits(traits: .traitItalic)
+    }
 }

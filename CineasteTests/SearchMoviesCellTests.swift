@@ -34,6 +34,10 @@ class SearchMoviesCellTests: XCTestCase {
         let watchedStateImageView = UIImageView()
         cell.addSubview(watchedStateImageView)
         cell.stateImageView = watchedStateImageView
+
+        let soonReleaseView = HintView()
+        cell.addSubview(soonReleaseView)
+        cell.soonHint = soonReleaseView
     }
 
     func testConfigureShouldSetCellTitleAndDetailsCorrectly() {
@@ -41,6 +45,7 @@ class SearchMoviesCellTests: XCTestCase {
 
         XCTAssertEqual(cell.title.text, movie.title)
         XCTAssertEqual(cell.detailLabel.text, "2017 ∙ 6.9 / 10")
+        XCTAssert(cell.soonHint.isHidden)
     }
 
     func testConfigureShouldSetStateImageForSeen() {

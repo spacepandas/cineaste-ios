@@ -39,4 +39,13 @@ extension Movie {
             return "\(String.unknownRuntime) min"
         }
     }
+
+    var soonAvailable: Bool {
+        if let release = releaseDate,
+            release > Date() {
+            return true
+        } else {
+            return false
+        }
+    }
 }

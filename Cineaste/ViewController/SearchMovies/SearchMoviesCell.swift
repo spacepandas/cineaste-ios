@@ -22,6 +22,7 @@ class SearchMoviesCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var detailLabel: DescriptionLabel!
     @IBOutlet weak var stateImageView: UIImageView!
+    @IBOutlet weak var soonHint: HintView!
 
     // MARK: - Actions
 
@@ -31,6 +32,9 @@ class SearchMoviesCell: UITableViewCell {
             + " ∙ "
             + movie.formattedVoteAverage
             + " / 10"
+
+        soonHint.content = .soonReleaseInformation
+        soonHint.isHidden = !movie.soonAvailable
 
         switch state {
         case .normal:

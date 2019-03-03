@@ -42,6 +42,7 @@ extension String {
 
     // MARK: SEARCH VIEWCONTROLLER
     static let addMovieTitle = NSLocalizedString("searchMovieTitle", comment: "Title for search")
+    static let soonReleaseInformation = NSLocalizedString("soonRelease", comment: "Information about release")
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
     static let exportTitle = NSLocalizedString("export", comment: "Title for settings cell exportMovies")
