@@ -19,7 +19,7 @@ class MoviesTabBarController: UITabBarController {
         watchlistVC.category = .watchlist
         watchlistVC.tabBarItem = UITabBarItem(
             title: String.watchlist,
-            image: MovieListCategory.watchlist.image,
+            image: UIImage.watchlistIcon,
             tag: 0)
         watchlistVC.tabBarItem.accessibilityIdentifier = "WatchlistTab"
         watchlistVC.storageManager = storageManager
@@ -29,7 +29,7 @@ class MoviesTabBarController: UITabBarController {
         seenVC.category = .seen
         seenVC.tabBarItem = UITabBarItem(
             title: String.seen,
-            image: MovieListCategory.seen.image,
+            image: UIImage.seenIcon,
             tag: 1)
         seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
         seenVC.storageManager = storageManager

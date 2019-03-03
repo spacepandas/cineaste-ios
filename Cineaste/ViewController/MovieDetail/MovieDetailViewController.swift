@@ -259,7 +259,7 @@ class MovieDetailViewController: UIViewController {
             case let .stored(storedMovie) = movie
             else { return }
 
-        storageManager.remove(storedMovie) { result in
+        storageManager.remove(with: storedMovie.objectID) { result in
             switch result {
             case .error:
                 self.showAlert(withMessage: Alert.deleteMovieError)

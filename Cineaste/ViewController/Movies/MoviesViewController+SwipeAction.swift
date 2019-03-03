@@ -19,13 +19,15 @@ extension MoviesViewController {
                 : .seen
         let newWatchedValue = newCategory == .seen
 
-        let action = UITableViewRowAction(style: .normal, title: newCategory.action) { _, _ in
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
+        let action = UITableViewRowAction(
+            style: .normal,
+            title: newCategory.action) { _, _ in
+                self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
+                    guard case .success = result else {
+                        self.showAlert(withMessage: Alert.updateMovieError)
+                        return
+                    }
                 }
-            }
         }
         action.backgroundColor = UIColor.basicYellow
 
@@ -38,13 +40,15 @@ extension MoviesViewController {
 
         let categoryAction: UITableViewRowAction = action(for: category, with: movie)
 
-        let deleteAction = UITableViewRowAction(style: .destructive, title: String.deleteAction) { _, _ in
-            self.storageManager?.remove(movie) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
+        let deleteAction = UITableViewRowAction(
+            style: .destructive,
+            title: String.deleteAction) { _, _ in
+                self.storageManager?.remove(with: movie.objectID) { result in
+                    guard case .success = result else {
+                        self.showAlert(withMessage: Alert.deleteMovieError)
+                        return
+                    }
                 }
-            }
         }
         deleteAction.backgroundColor = UIColor.primaryOrange
 
@@ -61,18 +65,19 @@ extension MoviesViewController {
                 : .seen
         let newWatchedValue = newCategory == .seen
 
-        let action = UIContextualAction(style: .normal,
-                                        title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
+        let action = UIContextualAction(
+            style: .normal,
+            title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
+                self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
+                    guard case .success = result else {
+                        self.showAlert(withMessage: Alert.updateMovieError)
+                        return
+                    }
 
-                DispatchQueue.main.async {
-                    success(true)
+                    DispatchQueue.main.async {
+                        success(true)
+                    }
                 }
-            }
         }
 
         action.image = newCategory.image
@@ -91,18 +96,19 @@ extension MoviesViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = fetchedResultsManager.movies[indexPath.row]
 
-        let deleteAction = UIContextualAction(style: .destructive,
-                                              title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in
-            self.storageManager?.remove(movie) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
+        let deleteAction = UIContextualAction(
+            style: .destructive,
+            title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in
+                self.storageManager?.remove(with: movie.objectID) { result in
+                    guard case .success = result else {
+                        self.showAlert(withMessage: Alert.deleteMovieError)
+                        return
+                    }
 
-                DispatchQueue.main.async {
-                    success(true)
+                    DispatchQueue.main.async {
+                        success(true)
+                    }
                 }
-            }
         }
 
         deleteAction.backgroundColor = UIColor.primaryOrange

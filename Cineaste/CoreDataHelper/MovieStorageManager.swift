@@ -128,26 +128,52 @@ class MovieStorageManager {
         }
     }
 
-    func save(_ movie: Movie, watched: Bool, completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+    func save(_ movie: Movie, state: WatchState, completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         DispatchQueue.main.async {
             if let movie = self.fetchMovie(for: movie.id) {
-                self.updateMovieItem(
-                    with: movie.objectID,
-                    watched: watched,
-                    completion: completion)
+                switch state {
+                case .undefined:
+                    self.remove(with: movie.objectID,
+                                completion: completion)
+                case .seen:
+                    self.updateMovieItem(
+                        with: movie.objectID,
+                        watched: true,
+                        completion: completion)
+                case .watchlist:
+                    self.updateMovieItem(
+                        with: movie.objectID,
+                        watched: false,
+                        completion: completion)
+                }
             } else {
                 self.insertMovieItem(
                     with: movie,
-                    watched: watched,
+                    watched: state == .seen,
                     completion: completion)
             }
         }
     }
 
-    func remove(_ storedMovie: StoredMovie,
+    func currentState(for movie: Movie) -> WatchState {
+        let currentState: WatchState
+
+        if let movie = fetchMovie(for: movie.id) {
+            if movie.watched {
+                currentState = .seen
+            } else {
+                currentState = .watchlist
+            }
+        } else {
+            currentState = .undefined
+        }
+        return currentState
+    }
+
+    func remove(with objectID: NSManagedObjectID,
                 completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            let object = self.backgroundContext.object(with: storedMovie.objectID)
+            let object = self.backgroundContext.object(with: objectID)
             self.backgroundContext.delete(object)
 
             self.backgroundContext.saveOrRollback(completion: completion)

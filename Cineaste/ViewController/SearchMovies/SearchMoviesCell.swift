@@ -11,12 +11,6 @@ import UIKit
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    enum WatchState {
-        case normal
-        case seen
-        case watchlist
-    }
-
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
     @IBOutlet weak var separatorView: UIView!
@@ -37,7 +31,7 @@ class SearchMoviesCell: UITableViewCell {
         soonHint.isHidden = !movie.soonAvailable
 
         switch state {
-        case .normal:
+        case .undefined:
             stateImageView.isHidden = true
         case .seen:
             stateImageView.isHidden = false

@@ -12,67 +12,98 @@ extension SearchMoviesViewController {
 
     // MARK: - iOS 10 functions
 
-    func action(for category: MovieListCategory, with movie: Movie) -> UITableViewRowAction {
-        let newCategory: MovieListCategory =
-            category == .seen
-                ? .watchlist
-                : .seen
-        let newWatchedValue = newCategory == .seen
+    // swiftlint:disable discouraged_optional_collection
+    func actions(for movie: Movie) -> [UITableViewRowAction]? {
+        let currentState = storageManager?.currentState(for: movie)
+        let actions: [UITableViewRowAction]?
 
-        let action = UITableViewRowAction(
-        style: .normal,
-        title: newCategory.action) { _, _ in
-            self.shouldMark(movie: movie, watched: newWatchedValue)
+        let seenAction = UITableViewRowAction(
+            style: .normal,
+            title: "Seen") { _, _ in
+                self.shouldMark(movie: movie, state: .seen)
         }
-        action.backgroundColor = UIColor.basicYellow
+        seenAction.backgroundColor = UIColor.primaryOrange
 
-        return action
+        let watchlistAction = UITableViewRowAction(
+            style: .normal,
+            title: "Watchlist") { _, _ in
+                self.shouldMark(movie: movie, state: .watchlist)
+        }
+        watchlistAction.backgroundColor = UIColor.basicYellow
+
+        let removeAction = UITableViewRowAction(
+            style: .normal,
+            title: "Remove") { _, _ in
+                self.shouldMark(movie: movie, state: .undefined)
+        }
+
+        switch currentState {
+        case .undefined?:
+            actions = [seenAction, watchlistAction]
+        case .seen?:
+            actions = [removeAction, watchlistAction]
+        case .watchlist?:
+            actions = [removeAction, seenAction]
+        default:
+            actions = nil
+        }
+
+        return actions
     }
 
-    // swiftlint:disable:next discouraged_optional_collection
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let movie = movies[editActionsForRowAt.row]
-
-        let seenAction: UITableViewRowAction = action(for: .seen, with: movie)
-        let watchlistAction: UITableViewRowAction = action(for: .watchlist, with: movie)
-        return [seenAction, watchlistAction]
+        return actions(for: movie)
     }
+    // swiftlint:enable discouraged_optional_collection
 
     // MARK: - iOS 11 functions
 
     @available(iOS 11.0, *)
-    func action(for category: MovieListCategory, with movie: Movie) -> UIContextualAction {
-        let newCategory: MovieListCategory =
-            category == .seen
-                ? .watchlist
-                : .seen
-        let newWatchedValue = newCategory == .seen
+    func actionConfiguration(for movie: Movie) -> UISwipeActionsConfiguration? {
+        guard let currentState = storageManager?.currentState(for: movie)
+            else { return nil }
+        let actions: [UIContextualAction]
 
-        let action = UIContextualAction(
+        let seenAction = UIContextualAction(
             style: .normal,
-            title: newCategory.action) { (_, _, _: @escaping (Bool) -> Void) in
-                self.shouldMark(movie: movie, watched: newWatchedValue)
+            title: nil) { _, _, _  in
+                self.shouldMark(movie: movie, state: .seen)
+        }
+        seenAction.backgroundColor = WatchState.seen.actionBackgroundColor
+        seenAction.image = WatchState.seen.actionImage
+
+        let watchlistAction = UIContextualAction(
+            style: .normal,
+            title: nil) { _, _, _  in
+                self.shouldMark(movie: movie, state: .watchlist)
+        }
+        watchlistAction.backgroundColor = WatchState.watchlist.actionBackgroundColor
+        watchlistAction.image = WatchState.watchlist.actionImage
+
+        let removeAction = UIContextualAction(
+            style: .normal,
+            title: WatchState.undefined.actionTitle) { _, _, _  in
+                self.shouldMark(movie: movie, state: .undefined)
         }
 
-        action.image = newCategory.image
-        action.backgroundColor = UIColor.basicYellow
+        switch currentState {
+        case .undefined:
+            actions = [seenAction, watchlistAction]
+        case .seen:
+            actions = [removeAction, watchlistAction]
+        case .watchlist:
+            actions = [removeAction, seenAction]
+        }
 
-        return action
-    }
-
-    @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = movies[indexPath.row]
-
-        let watchlistAction: UIContextualAction = action(for: .watchlist, with: movie)
-        return UISwipeActionsConfiguration(actions: [watchlistAction])
+        let configuration = UISwipeActionsConfiguration(actions: actions)
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
 
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-
-        let seenAction: UIContextualAction = action(for: .seen, with: movie)
-        return UISwipeActionsConfiguration(actions: [seenAction])
+        return actionConfiguration(for: movie)
     }
 }

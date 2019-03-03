@@ -46,7 +46,7 @@ extension SearchMoviesViewController: UITableViewDataSource {
         if let movie = storageManager?.fetchMovie(for: movie.id) {
             cell.configure(with: movies[indexPath.row], state: movie.watched ? .seen : .watchlist)
         } else {
-            cell.configure(with: movie, state: .normal)
+            cell.configure(with: movie, state: .undefined)
         }
 
         if let numberOfMovies = totalResults,

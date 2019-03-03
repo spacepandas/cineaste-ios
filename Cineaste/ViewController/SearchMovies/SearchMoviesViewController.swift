@@ -149,13 +149,13 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
-    func shouldMark(movie: Movie, watched: Bool) {
+    func shouldMark(movie: Movie, state: WatchState) {
         guard let storageManager = storageManager else { return }
 
         loadDetails(for: movie) { detailedMovie in
             guard let detailedMovie = detailedMovie else { return }
 
-            storageManager.save(detailedMovie, watched: watched) { result in
+            storageManager.save(detailedMovie, state: state) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .error:
