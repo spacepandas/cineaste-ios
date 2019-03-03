@@ -28,7 +28,7 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie, state: WatchState) {
         title.text = movie.title
-        detailLabel.text = movie.formattedReleaseYear
+        detailLabel.text = movie.formattedRelativeReleaseInformation
             + " ∙ "
             + movie.formattedVoteAverage
             + " / 10"

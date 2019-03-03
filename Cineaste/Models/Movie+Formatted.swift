@@ -24,9 +24,14 @@ extension Movie {
         }
     }
 
-    var formattedReleaseYear: String {
+    var formattedRelativeReleaseInformation: String {
         if let release = releaseDate {
-            return release.formattedOnlyYear
+            let currentYear = release.formattedOnlyYear == Date().formattedOnlyYear
+            if currentYear {
+                return release.formatted
+            } else {
+                return release.formattedOnlyYear
+            }
         } else {
             return String.unknownReleaseDate
         }
