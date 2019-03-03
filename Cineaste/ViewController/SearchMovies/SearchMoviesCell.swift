@@ -28,9 +28,9 @@ class SearchMoviesCell: UITableViewCell {
     func configure(with movie: Movie, state: WatchState) {
         title.text = movie.title
         detailLabel.text = movie.formattedReleaseYear
-        //TODO: load runtime for movies
-//            + " ∙ "
-//            + movie.formattedRuntime
+            + " ∙ "
+            + movie.formattedVoteAverage
+            + " / 10"
 
         switch state {
         case .normal:
