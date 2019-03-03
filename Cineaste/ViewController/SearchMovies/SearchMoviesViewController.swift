@@ -157,10 +157,6 @@ class SearchMoviesViewController: UIViewController {
 
             storageManager.save(detailedMovie, watched: watched) { result in
                 DispatchQueue.main.async {
-                    if self.resultSearchController.isActive {
-                        self.resultSearchController.isActive = false
-                    }
-
                     switch result {
                     case .error:
                         self.showAlert(withMessage: Alert.insertMovieError)
