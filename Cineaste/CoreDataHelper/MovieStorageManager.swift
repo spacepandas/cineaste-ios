@@ -128,6 +128,22 @@ class MovieStorageManager {
         }
     }
 
+    func save(_ movie: Movie, watched: Bool, completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+        DispatchQueue.main.async {
+            if let movie = self.fetchMovie(for: movie.id) {
+                self.updateMovieItem(
+                    with: movie.objectID,
+                    watched: watched,
+                    completion: completion)
+            } else {
+                self.insertMovieItem(
+                    with: movie,
+                    watched: watched,
+                    completion: completion)
+            }
+        }
+    }
+
     func remove(_ storedMovie: StoredMovie,
                 completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {

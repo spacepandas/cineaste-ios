@@ -155,7 +155,7 @@ class SearchMoviesViewController: UIViewController {
         loadDetails(for: movie) { detailedMovie in
             guard let detailedMovie = detailedMovie else { return }
 
-            storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
+            storageManager.save(detailedMovie, watched: watched) { result in
                 DispatchQueue.main.async {
                     if self.resultSearchController.isActive {
                         self.resultSearchController.isActive = false
