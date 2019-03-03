@@ -45,7 +45,7 @@ class SearchMoviesCellTests: XCTestCase {
 
     func testConfigureShouldSetStateImageForSeen() {
         cell.configure(with: movie, state: .seen)
-        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "seen-badge.pdf"))
+        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "seen-badge"))
         XCTAssertFalse(cell.stateImageView.isHidden)
     }
 

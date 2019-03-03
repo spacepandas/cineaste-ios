@@ -21,7 +21,7 @@
 		3F701B3B218640F80033562B /* ReleaseDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */; };
 		3F701B3C218640F80033562B /* SearchMoviesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE8D1FF3B29100E584E9 /* SearchMoviesViewControllerTests.swift */; };
 		3F701B3D218640F80033562B /* SeenMovieCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21729820A6F92A0005D056 /* SeenMovieCellTests.swift */; };
-		3F701B3E218640F80033562B /* NonClearViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */; };
+		3F701B3E218640F80033562B /* SeparatorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */; };
 		3F701B3F218640F80033562B /* MoviesTabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8644B01FFA95190046114A /* MoviesTabBarControllerTests.swift */; };
 		3F701B40218640F80033562B /* MoviesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */; };
 		3F701B41218640F80033562B /* SearchMoviesCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE8F1FF3B29D00E584E9 /* SearchMoviesCellTests.swift */; };
@@ -268,7 +268,7 @@
 		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47EF4B0EA8EF0D037B6F58EB /* Pods-CineasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.release.xcconfig"; path = "Target Support Files/Pods-CineasteTests/Pods-CineasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		49711C1CE3332F03A703FA73 /* Pods-CineasteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteUITests.debug.xcconfig"; path = "Target Support Files/Pods-CineasteUITests/Pods-CineasteUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearViewTests.swift; sourceTree = "<group>"; };
+		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
 		55805DFA47CEEC9459716C34 /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B93D77FBDDD84CFC605799D /* Pods-Cineaste App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.release.xcconfig"; path = "Target Support Files/Pods-Cineaste App/Pods-Cineaste App.release.xcconfig"; sourceTree = "<group>"; };
 		5C321393D9A2355944476EC1 /* Pods_Cineaste_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cineaste_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,7 +415,7 @@
 				3F8644B01FFA95190046114A /* MoviesTabBarControllerTests.swift */,
 				3F8C569D1FFACB2600F09A82 /* MovieStorageTests.swift */,
 				3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */,
-				4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */,
+				4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */,
 				3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */,
 				3F83BE8F1FF3B29D00E584E9 /* SearchMoviesCellTests.swift */,
 				3F83BE8D1FF3B29100E584E9 /* SearchMoviesViewControllerTests.swift */,
@@ -1005,7 +1005,7 @@
 				3F701B45218640F80033562B /* MovieStorageTests.swift in Sources */,
 				3F701B3C218640F80033562B /* SearchMoviesViewControllerTests.swift in Sources */,
 				3F98A026218645AA00D451EE /* CoreDataHelper.swift in Sources */,
-				3F701B3E218640F80033562B /* NonClearViewTests.swift in Sources */,
+				3F701B3E218640F80033562B /* SeparatorViewTests.swift in Sources */,
 				3F701B40218640F80033562B /* MoviesViewControllerTests.swift in Sources */,
 				3F701B3F218640F80033562B /* MoviesTabBarControllerTests.swift in Sources */,
 				3F701B3B218640F80033562B /* ReleaseDatesTests.swift in Sources */,

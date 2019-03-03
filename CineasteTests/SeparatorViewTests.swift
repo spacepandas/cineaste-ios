@@ -1,5 +1,5 @@
 //
-//  NonClearViewTests.swift
+//  SeparatorViewTests.swift
 //  CineasteTests
 //
 //  Created by Xaver Lohmüller on 19.08.18.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import Cineaste_App
 
-class NonClearViewTests: XCTestCase {
+class SeparatorViewTests: XCTestCase {
 
-    func testNonClearViewShouldNotAcceptClearColor() {
+    func testSeparatorViewShouldNotAcceptClearColor() {
         // Given
         let view = SeparatorView()
         let initialColor = UIColor.red
@@ -24,7 +24,7 @@ class NonClearViewTests: XCTestCase {
         XCTAssertEqual(view.backgroundColor, initialColor)
     }
 
-    func testNonClearViewShouldAcceptColorsAboveZeroAlpha() {
+    func testSeparatorViewShouldAcceptColorsAboveZeroAlpha() {
         // Given
         let view = SeparatorView()
         let notTotallyTransparentColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
