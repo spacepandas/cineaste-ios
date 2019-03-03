@@ -98,14 +98,18 @@ class HintView: View {
         let verticalConstant: CGFloat = 2
 
         NSLayoutConstraint.activate([
-            hintLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                               constant: horizontalConstant),
-            hintLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                constant: -horizontalConstant),
-            hintLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                              constant: -verticalConstant),
-            hintLabel.topAnchor.constraint(equalTo: topAnchor,
-                                           constant: verticalConstant)
+            hintLabel.leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: horizontalConstant),
+            hintLabel.trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -horizontalConstant),
+            hintLabel.bottomAnchor
+                .constraint(equalTo: bottomAnchor,
+                            constant: -verticalConstant),
+            hintLabel.topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: verticalConstant)
             ])
     }
 }
