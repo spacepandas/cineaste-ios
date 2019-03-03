@@ -10,29 +10,12 @@ import UIKit
 
 class SearchMoviesViewController: UIViewController {
     @IBOutlet weak var loadingIndicatorView: UIView!
-
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
-            tableView.prefetchDataSource = self
-            tableView.delegate = self
-
-            tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableView.automaticDimension
-
-            tableView.backgroundColor = UIColor.clear
-            tableView.tableFooterView = loadingIndicatorView
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
 
     var movies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
-
-                if self.movies.isEmpty {
-                    self.tableView.tableFooterView = UIView()
-                }
+                self.updateUI()
             }
         }
     }
@@ -69,6 +52,7 @@ class SearchMoviesViewController: UIViewController {
             self?.movies = movies
         }
 
+        configureTableViewController()
         configureSearchController()
         registerForPreviewing(with: self, sourceView: tableView)
     }
@@ -121,6 +105,18 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Configuration
 
+    func configureTableViewController() {
+        tableView.dataSource = self
+        tableView.prefetchDataSource = self
+        tableView.delegate = self
+
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+
+        tableView.backgroundColor = UIColor.clear
+        tableView.tableFooterView = loadingIndicatorView
+    }
+
     func configureSearchController() {
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultSearchController
@@ -134,6 +130,14 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Custom functions
 
+    func updateUI() {
+        tableView.reloadData()
+
+        if movies.isEmpty {
+            tableView.tableFooterView = UIView()
+        }
+    }
+
     func scrollToTopCell(withAnimation: Bool) {
         guard !movies.isEmpty else { return }
 
@@ -144,11 +148,8 @@ class SearchMoviesViewController: UIViewController {
                                        animated: withAnimation)
         }
     }
-}
 
-extension SearchMoviesViewController: SearchMoviesCellDelegate {
-    //TODO: change to swipe actions
-    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
+    func shouldMark(movie: Movie, watched: Bool) {
         guard let storageManager = storageManager else { return }
 
         loadDetails(for: movie) { detailedMovie in
@@ -164,7 +165,7 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
                     case .error:
                         self.showAlert(withMessage: Alert.insertMovieError)
                     case .success:
-                        self.dismiss(animated: true)
+                        self.updateUI()
                     }
                 }
             }

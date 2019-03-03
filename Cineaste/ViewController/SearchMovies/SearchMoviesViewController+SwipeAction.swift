@@ -22,12 +22,7 @@ extension SearchMoviesViewController {
         let action = UITableViewRowAction(
         style: .normal,
         title: newCategory.action) { _, _ in
-            self.storageManager?.insertMovieItem(with: movie, watched: newWatchedValue) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
+            self.shouldMark(movie: movie, watched: newWatchedValue)
         }
         action.backgroundColor = UIColor.basicYellow
 
@@ -55,17 +50,8 @@ extension SearchMoviesViewController {
 
         let action = UIContextualAction(
             style: .normal,
-            title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
-                self.storageManager?.insertMovieItem(with: movie, watched: newWatchedValue) { result in
-                    guard case .success = result else {
-                        self.showAlert(withMessage: Alert.updateMovieError)
-                        return
-                    }
-
-                    DispatchQueue.main.async {
-                        success(true)
-                    }
-                }
+            title: newCategory.action) { (_, _, _: @escaping (Bool) -> Void) in
+                self.shouldMark(movie: movie, watched: newWatchedValue)
         }
 
         action.image = newCategory.image
