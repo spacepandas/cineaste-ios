@@ -54,6 +54,7 @@
 		3FCFB10F21D676DC006E2F91 /* AndroidExport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB10E21D676DB006E2F91 /* AndroidExport.json */; };
 		3FCFB11121D678A0006E2F91 /* UpdatedMoviesImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB11021D678A0006E2F91 /* UpdatedMoviesImport.json */; };
 		3FDEF4762103368300955129 /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF4742103368300955129 /* DebugPrint.swift */; };
+		3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */; };
 		3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */; };
 		3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */; };
 		3FF095BD2103223200ADFB86 /* SearchMoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B7210321D300ADFB86 /* SearchMoviesViewController+3DTouch.swift */; };
@@ -253,6 +254,7 @@
 		3FDB14532025B80F0063E980 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		3FDEF4742103368300955129 /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
 		3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportObject.swift; sourceTree = "<group>"; };
+		3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SwipeAction.swift"; sourceTree = "<group>"; };
 		3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
 		3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellTests.swift; sourceTree = "<group>"; };
 		3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cineaste.swift"; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				959E8B761FABC6F50004E8C3 /* SearchMoviesViewController.swift */,
 				3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */,
 				3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */,
+				3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */,
 				3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */,
 				3FF095B7210321D300ADFB86 /* SearchMoviesViewController+3DTouch.swift */,
 				959E8B781FABC99D0004E8C3 /* OldSearchMoviesCell.swift */,
@@ -1068,6 +1071,7 @@
 				3FF095BD2103223200ADFB86 /* SearchMoviesViewController+3DTouch.swift in Sources */,
 				3FF095D22103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift in Sources */,
 				3FF7910920DE274A007B7D37 /* MoviesViewController+SwipeAction.swift in Sources */,
+				3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */,
 				3FF7910A20DE274A007B7D37 /* Movie.swift in Sources */,
 				3FF7910B20DE274A007B7D37 /* PosterViewController.swift in Sources */,
 				3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */,

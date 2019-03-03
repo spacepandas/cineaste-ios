@@ -181,7 +181,7 @@
                                             <outlet property="detailLabel" destination="3wf-WH-u9P" id="CHy-bg-r8H"/>
                                             <outlet property="poster" destination="zZg-aQ-7uo" id="89O-4d-cOY"/>
                                             <outlet property="separatorView" destination="bg5-Zb-czx" id="rlM-hu-YIJ"/>
-                                            <outlet property="stateImageView" destination="upX-fI-55Z" id="lnv-71-wP7"/>
+                                            <outlet property="stateImageView" destination="upX-fI-55Z" id="x9m-hW-8Oq"/>
                                             <outlet property="title" destination="AYE-99-Bh1" id="Z9y-W7-ZXm"/>
                                         </connections>
                                     </tableViewCell>
