@@ -10,7 +10,7 @@ import XCTest
 @testable import Cineaste_App
 
 class SearchMoviesCellTests: XCTestCase {
-    let cell = OldSearchMoviesCell()
+    let cell = SearchMoviesCell()
 
     override func setUp() {
         super.setUp()
@@ -29,22 +29,35 @@ class SearchMoviesCellTests: XCTestCase {
 
         let description = DescriptionLabel()
         cell.addSubview(description)
-        cell.releaseDate = description
+        cell.detailLabel = description
 
-        let seen = ActionButton()
-        cell.addSubview(seen)
-        cell.seenButton = seen
-
-        let mustSee = ActionButton()
-        cell.addSubview(mustSee)
-        cell.mustSeeButton = mustSee
+        let watchedStateImageView = UIImageView()
+        cell.addSubview(watchedStateImageView)
+        cell.stateImageView = watchedStateImageView
     }
 
-    func testConfigureShouldSetCellTitleAndReleaseDateCorrectly() {
-        cell.configure(with: movie)
+    func testConfigureShouldSetCellTitleAndDetailsCorrectly() {
+        cell.configure(with: movie, state: .seen)
 
         XCTAssertEqual(cell.title.text, movie.title)
-        XCTAssertEqual(cell.releaseDate.text, movie.formattedReleaseDate)
+        XCTAssertEqual(cell.detailLabel.text, "2017 ∙ 6.9 / 10")
+    }
+
+    func testConfigureShouldSetStateImageForSeen() {
+        cell.configure(with: movie, state: .seen)
+        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "seen-badge.pdf"))
+        XCTAssertFalse(cell.stateImageView.isHidden)
+    }
+
+    func testConfigureShouldSetStateImageForWatchlist() {
+        cell.configure(with: movie, state: .watchlist)
+        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "watchlist-badge"))
+        XCTAssertFalse(cell.stateImageView.isHidden)
+    }
+
+    func testConfigureShouldSetStateImageForNormal() {
+        cell.configure(with: movie, state: .normal)
+        XCTAssertTrue(cell.stateImageView.isHidden)
     }
 
     private let movie: Movie = {
@@ -60,5 +73,4 @@ class SearchMoviesCellTests: XCTestCase {
             fatalError("Error while decoding Movie.json: \(error.localizedDescription)")
         }
     }()
-
 }

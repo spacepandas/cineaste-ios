@@ -23,100 +23,8 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OldSearchMoviesCell" rowHeight="100" id="duv-TH-vzJ" customClass="OldSearchMoviesCell" customModule="Cineaste_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duv-TH-vzJ" id="FUh-ZM-Ge8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-Io-6Ie">
-                                                    <rect key="frame" x="95" y="10" width="260" height="79.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMc-8F-ocU" customClass="TitleLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="huN-Vb-l1b">
-                                                            <rect key="frame" x="0.0" y="28.5" width="260" height="13"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_release" translatesAutoresizingMaskIntoConstraints="NO" id="7Gc-kU-MAP">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="7Gc-kU-MAP" secondAttribute="height" id="0bQ-t6-7eO"/>
-                                                                        <constraint firstAttribute="width" constant="13" id="hgw-PK-4cD"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-il-h2d" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="21" y="0.0" width="239" height="13"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
-                                                            <rect key="frame" x="0.0" y="49.5" width="260" height="30"/>
-                                                            <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-dZ-m0S" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
-                                                                    <state key="normal" title="search.mustsee"/>
-                                                                    <connections>
-                                                                        <action selector="mustSeeButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="0cc-rD-MSK"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnp-Tu-JeS" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="176" y="0.0" width="84" height="30"/>
-                                                                    <state key="normal" title="search.seen"/>
-                                                                    <connections>
-                                                                        <action selector="seenButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="WMr-Ij-BiF"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="blM-l6-VJr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="5PZ-v6-Ia9"/>
-                                                        <constraint firstAttribute="width" secondItem="blM-l6-VJr" secondAttribute="height" multiplier="0.7" id="G7p-YU-o20"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drj-Pn-RyL" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="70" y="0.0" width="5" height="99.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="5" id="AqJ-9f-DaV"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="blM-l6-VJr" firstAttribute="leading" secondItem="FUh-ZM-Ge8" secondAttribute="leading" id="35W-sH-rLH"/>
-                                                <constraint firstItem="Drj-Pn-RyL" firstAttribute="leading" secondItem="blM-l6-VJr" secondAttribute="trailing" id="5ay-7z-et9"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FUh-ZM-Ge8" secondAttribute="top" constant="5" id="6Kn-pN-aDv"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="centerY" secondItem="FUh-ZM-Ge8" secondAttribute="centerY" id="A00-GZ-fj0"/>
-                                                <constraint firstAttribute="trailing" secondItem="8TH-Io-6Ie" secondAttribute="trailing" constant="20" id="FQA-MW-fd4"/>
-                                                <constraint firstItem="Drj-Pn-RyL" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="R0e-sf-pl1"/>
-                                                <constraint firstAttribute="bottom" secondItem="blM-l6-VJr" secondAttribute="bottom" priority="750" id="RfZ-Qs-w09"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="leading" secondItem="Drj-Pn-RyL" secondAttribute="trailing" constant="20" id="ZMH-KV-IqS"/>
-                                                <constraint firstItem="blM-l6-VJr" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="f7U-us-KVo"/>
-                                                <constraint firstAttribute="bottom" secondItem="Drj-Pn-RyL" secondAttribute="bottom" id="xVO-lX-xKL"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="mustSeeButton" destination="sZ3-dZ-m0S" id="OCR-px-Fl3"/>
-                                            <outlet property="poster" destination="blM-l6-VJr" id="KCC-wa-aln"/>
-                                            <outlet property="releaseDate" destination="Wuq-il-h2d" id="g3F-2i-Fj0"/>
-                                            <outlet property="seenButton" destination="Gnp-Tu-JeS" id="LF8-KS-Ggq"/>
-                                            <outlet property="separatorView" destination="Drj-Pn-RyL" id="kvk-gr-ZUj"/>
-                                            <outlet property="title" destination="XMc-8F-ocU" id="7hi-ys-7CC"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesCell" rowHeight="120" id="Hcz-p6-NGe" customClass="SearchMoviesCell" customModule="Cineaste_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hcz-p6-NGe" id="ZO4-PF-mws">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
@@ -257,7 +165,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_release" width="32" height="34"/>
         <image name="seen-badge" width="400" height="400"/>
     </resources>
 </document>
