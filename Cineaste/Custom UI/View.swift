@@ -83,6 +83,14 @@ class HintView: View {
 
     private let hintLabel = HintLabel()
 
+    override var backgroundColor: UIColor? {
+        didSet {
+            if backgroundColor?.cgColor.alpha == 0 {
+                backgroundColor = oldValue
+            }
+        }
+    }
+
     override func setup() {
         clipsToBounds = true
 
