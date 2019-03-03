@@ -28,7 +28,7 @@ class Label: UILabel {
 
 class DescriptionLabel: Label {
     override func setup() {
-        font = UIFont.systemFont(ofSize: 13.0)
+        font = UIFont.preferredFont(forTextStyle: .footnote)
         textColor = UIColor.accentTextOnWhite
     }
 }
@@ -37,5 +37,13 @@ class TitleLabel: Label {
     override func setup() {
         font = UIFont.systemFont(ofSize: 18.0)
         textColor = UIColor.black
+    }
+}
+
+class HeaderLabel: Label {
+    override func setup() {
+        font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+        textColor = UIColor.basicBlack
+        adjustsFontForContentSizeCategory = true
     }
 }

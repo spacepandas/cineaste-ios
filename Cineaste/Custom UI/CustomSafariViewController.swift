@@ -24,7 +24,7 @@ class CustomSafariViewController: SFSafariViewController {
     }
 
     private func setup() {
-        preferredBarTintColor = .safariBarTint
+        preferredBarTintColor = .basicBlack
         preferredControlTintColor = .basicWhite
     }
 }
