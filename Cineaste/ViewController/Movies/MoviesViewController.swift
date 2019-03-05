@@ -226,7 +226,7 @@ class MoviesViewController: UITableViewController {
 
         //initially instantiate shortcuts
         if shortcuts.isEmpty {
-            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
+            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "watchlist")
             let watchlistShortcut =
                 UIApplicationShortcutItem(type: ShortcutIdentifier.watchlist.rawValue,
                                           localizedTitle: String.watchlist,
@@ -234,7 +234,7 @@ class MoviesViewController: UITableViewController {
                                           icon: watchlistIcon,
                                           userInfo: nil)
 
-            let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
+            let seenIcon = UIApplicationShortcutIcon(templateImageName: "seen")
             let seenShortcut =
                 UIApplicationShortcutItem(type: ShortcutIdentifier.seen.rawValue,
                                           localizedTitle: String.seen,
