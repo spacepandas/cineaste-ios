@@ -81,23 +81,16 @@ extension SearchMoviesViewController {
         watchlistAction.backgroundColor = WatchState.watchlist.actionBackgroundColor
         watchlistAction.image = WatchState.watchlist.actionImage
 
-        let removeAction = UIContextualAction(
-            style: .normal,
-            title: WatchState.undefined.actionTitle) { _, _, _  in
-                self.shouldMark(movie: movie, state: .undefined)
-        }
-
         switch currentState {
         case .undefined:
-            actions = [seenAction, watchlistAction]
+            actions = [watchlistAction, seenAction]
         case .seen:
-            actions = [removeAction, watchlistAction]
+            actions = [watchlistAction]
         case .watchlist:
-            actions = [removeAction, seenAction]
+            actions = [seenAction]
         }
 
         let configuration = UISwipeActionsConfiguration(actions: actions)
-        configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
 
@@ -105,5 +98,29 @@ extension SearchMoviesViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
         return actionConfiguration(for: movie)
+    }
+
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let movie = movies[indexPath.row]
+        guard let currentState = storageManager?.currentState(for: movie)
+            else { return nil }
+        let actions: [UIContextualAction]
+
+        let removeAction = UIContextualAction(
+            style: .normal,
+            title: WatchState.undefined.actionTitle) { _, _, _  in
+                self.shouldMark(movie: movie, state: .undefined)
+        }
+        removeAction.backgroundColor = UIColor.primaryOrange
+
+        if currentState == .undefined {
+            actions = []
+        } else {
+            actions = [removeAction]
+        }
+
+        let configuration = UISwipeActionsConfiguration(actions: actions)
+        return configuration
     }
 }
