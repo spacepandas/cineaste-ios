@@ -254,7 +254,7 @@
                             </barButtonItem>
                             <barButtonItem image="movieNight" id="zmW-ZQ-pyd">
                                 <connections>
-                                    <action selector="movieNightButtonTouched:" destination="Uku-M8-iEE" id="dtX-8y-Bn4"/>
+                                    <action selector="movieNightButtonTouched" destination="Uku-M8-iEE" id="uf8-ij-JI8"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

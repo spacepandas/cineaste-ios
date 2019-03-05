@@ -120,7 +120,7 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Action
 
-    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
+    @IBAction func movieNightButtonTouched() {
         if UserDefaultsManager.getUsername() == nil {
             askForUsername()
         } else {
