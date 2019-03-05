@@ -17,11 +17,14 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
             let storageManager = storageManager
             else { return nil }
 
+        let movie = movies[path.row]
+        let currentState = storageManager.currentState(for: movie)
+
         previewingContext.sourceRect = cell.frame
 
         let detailVC = MovieDetailViewController.instantiate()
-        detailVC.configure(with: .network(movies[path.row]),
-                           type: .search,
+        detailVC.configure(with: .network(movie),
+                           state: currentState,
                            storageManager: storageManager)
         return detailVC
     }

@@ -88,9 +88,11 @@ class SearchMoviesViewController: UIViewController {
                 let storageManager = storageManager
                 else { return }
 
+            let currentState = storageManager.currentState(for: selectedMovie)
+
             let vc = segue.destination as? MovieDetailViewController
             vc?.configure(with: .network(selectedMovie),
-                          type: .search,
+                          state: currentState,
                           storageManager: storageManager)
         default:
             return

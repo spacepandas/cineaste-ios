@@ -48,12 +48,12 @@ enum MovieListCategory: String {
         }
     }
 
-    var detailType: MovieDetailType {
+    var state: WatchState {
         switch self {
         case .watchlist:
-            return MovieDetailType.watchlist
+            return .watchlist
         case .seen:
-            return MovieDetailType.seen
+            return .seen
         }
     }
 }

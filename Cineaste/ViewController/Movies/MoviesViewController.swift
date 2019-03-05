@@ -107,7 +107,7 @@ class MoviesViewController: UITableViewController {
 
             let vc = segue.destination as? MovieDetailViewController
             vc?.configure(with: .stored(selectedMovie),
-                          type: category.detailType,
+                          state: category.state,
                           storageManager: storageManager)
         case .showMovieNight?:
             let navigationVC = segue.destination as? UINavigationController

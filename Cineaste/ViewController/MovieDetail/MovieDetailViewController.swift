@@ -50,9 +50,9 @@ class MovieDetailViewController: UIViewController {
 
     private var storageManager: MovieStorageManager?
 
-    private var type: MovieDetailType = .search {
+    private var state: WatchState = .undefined {
         didSet {
-            updateDetail(for: type)
+            updateDetail(for: state)
         }
     }
 
@@ -79,7 +79,7 @@ class MovieDetailViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        updateDetail(for: type)
+        updateDetail(for: state)
         setupLocalization()
 
         navigationItem.rightBarButtonItem =
@@ -96,10 +96,10 @@ class MovieDetailViewController: UIViewController {
     }
 
     func configure(with selectedMovie: MovieType,
-                   type: MovieDetailType,
+                   state: WatchState,
                    storageManager: MovieStorageManager) {
         movie = selectedMovie
-        self.type = type
+        self.state = state
         self.storageManager = storageManager
     }
 
@@ -229,7 +229,8 @@ class MovieDetailViewController: UIViewController {
 
         switch movie {
         case .network(let movie):
-            storageManager.insertMovieItem(with: movie, watched: watched) { result in
+            let newState: WatchState = watched ? .seen : .watchlist
+            storageManager.save(movie, state: newState) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.insertMovieError)
@@ -271,7 +272,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    private func updateDetail(for type: MovieDetailType) {
+    private func updateDetail(for type: WatchState) {
         guard let mustSeeButton = mustSeeButton,
             let seenButton = seenButton,
             let deleteButton = deleteButton else {
@@ -287,7 +288,7 @@ class MovieDetailViewController: UIViewController {
             mustSeeButton.isHidden = true
             seenButton.isHidden = false
             deleteButton.isHidden = false
-        case .search:
+        case .undefined:
             mustSeeButton.isHidden = false
             seenButton.isHidden = false
             deleteButton.isHidden = true
@@ -376,12 +377,12 @@ class MovieDetailViewController: UIViewController {
             self.deleteMovie()
         }
 
-        switch type {
+        switch state {
         case .seen:
             return [watchlistAction, deleteAction]
         case .watchlist:
             return [seenAction, deleteAction]
-        case .search:
+        case .undefined:
             return [watchlistAction, seenAction]
         }
 
