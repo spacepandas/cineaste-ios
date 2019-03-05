@@ -77,6 +77,8 @@ class SearchMoviesViewController: UIViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+
+        updateUI()
     }
 
     // MARK: - Navigation

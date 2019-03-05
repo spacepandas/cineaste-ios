@@ -236,7 +236,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
@@ -256,17 +256,30 @@ class MovieDetailViewController: UIViewController {
 
     private func deleteMovie() {
         guard let storageManager = storageManager,
-            let movie = movie,
-            case let .stored(storedMovie) = movie
+            let movie = movie
             else { return }
 
-        storageManager.remove(with: storedMovie.objectID) { result in
-            switch result {
-            case .error:
-                self.showAlert(withMessage: Alert.deleteMovieError)
-            case .success:
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
+        switch movie {
+        case .network(let movie):
+            storageManager.save(movie, state: .undefined) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.insertMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        case .stored(let movie):
+            storageManager.remove(with: movie.objectID) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
