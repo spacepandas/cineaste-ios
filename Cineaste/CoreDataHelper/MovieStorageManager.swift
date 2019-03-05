@@ -201,7 +201,7 @@ extension MovieStorageManager {
         return results ?? []
     }
 
-    func fetchMovie(for id: Int64) -> StoredMovie? {
+    private func fetchMovie(for id: Int64) -> StoredMovie? {
         assert(Thread.isMainThread,
                "Must be called on main thread because of core data view context")
 

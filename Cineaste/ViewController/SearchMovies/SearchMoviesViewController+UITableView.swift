@@ -43,11 +43,9 @@ extension SearchMoviesViewController: UITableViewDataSource {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
         let movie = movies[indexPath.row]
-        if let movie = storageManager?.fetchMovie(for: movie.id) {
-            cell.configure(with: movies[indexPath.row], state: movie.watched ? .seen : .watchlist)
-        } else {
-            cell.configure(with: movie, state: .undefined)
-        }
+        let currentState = storageManager?.currentState(for: movie) ?? .undefined
+
+        cell.configure(with: movies[indexPath.row], state: currentState)
 
         if let numberOfMovies = totalResults,
             indexPath.isLast(of: numberOfMovies) {
