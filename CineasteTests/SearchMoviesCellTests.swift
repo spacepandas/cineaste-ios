@@ -61,7 +61,7 @@ class SearchMoviesCellTests: XCTestCase {
     }
 
     func testConfigureShouldSetStateImageForNormal() {
-        cell.configure(with: movie, state: .normal)
+        cell.configure(with: movie, state: .undefined)
         XCTAssertTrue(cell.stateImageView.isHidden)
     }
 

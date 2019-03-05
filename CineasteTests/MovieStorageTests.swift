@@ -113,7 +113,7 @@ class MovieStorageTests: XCTestCase {
 
         let numberOfMovies = movies.count
 
-        storageManager.remove(movie) { result in
+        storageManager.remove(with: movie.objectID) { result in
             switch result {
             case .success:
                 expc.fulfill()
