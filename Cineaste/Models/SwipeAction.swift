@@ -40,7 +40,7 @@ private extension SwipeAction {
     var backgroundColor: UIColor? {
         switch self {
         case .delete:
-            return nil
+            return .superLightGray
         case .moveToWatchlist:
             return .basicYellow
         case .moveToSeen:
