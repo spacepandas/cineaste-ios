@@ -12,5 +12,5 @@ extension UIImage {
     static let posterPlaceholder = #imageLiteral(resourceName: "placeholder_poster")
     static let watchlistIcon = #imageLiteral(resourceName: "watchlist")
     static let seenIcon = #imageLiteral(resourceName: "seen")
-    static let settingsIcon = #imageLiteral(resourceName: "ic_settings")
+    static let moreIcon = #imageLiteral(resourceName: "more")
 }

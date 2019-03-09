@@ -37,8 +37,8 @@ class MoviesTabBarController: UITabBarController {
 
         let settingsVC = SettingsViewController.instantiate()
         settingsVC.tabBarItem = UITabBarItem(
-            title: String.settingsTitle,
-            image: UIImage.settingsIcon,
+            title: String.moreTitle,
+            image: UIImage.moreIcon,
             tag: 2)
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         settingsVC.storageManager = storageManager

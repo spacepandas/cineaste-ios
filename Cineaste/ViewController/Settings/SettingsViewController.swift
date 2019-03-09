@@ -21,7 +21,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = String.settingsTitle
+        title = String.moreTitle
 
         tableView.backgroundColor = UIColor.basicBackground
         tableView.tableFooterView = footerView

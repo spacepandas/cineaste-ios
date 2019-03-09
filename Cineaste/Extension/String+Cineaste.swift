@@ -30,7 +30,7 @@ extension String {
     static let watchlist = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
     static let seen = NSLocalizedString("history", comment: "Title for seen movie list")
     static let movieNightTitle = NSLocalizedString("movieNight", comment: "Title for movie night viewController")
-    static let settingsTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
+    static let moreTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
 
     // MARK: MOVIES VIEWCONTROLLER
     static func title(for category: MovieListCategory) -> String {
