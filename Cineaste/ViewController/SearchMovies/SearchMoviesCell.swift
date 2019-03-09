@@ -16,6 +16,7 @@ class SearchMoviesCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var detailLabel: DescriptionLabel!
     @IBOutlet weak var stateImageView: UIImageView!
+    @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var soonHint: HintView!
 
     // MARK: - Actions
@@ -29,6 +30,7 @@ class SearchMoviesCell: UITableViewCell {
 
         soonHint.content = .soonReleaseInformation
         soonHint.isHidden = !movie.soonAvailable
+        placeholderView.isHidden = !movie.soonAvailable
 
         switch state {
         case .undefined:

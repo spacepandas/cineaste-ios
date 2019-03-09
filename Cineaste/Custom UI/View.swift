@@ -105,6 +105,11 @@ class HintView: View {
         let horizontalConstant: CGFloat = 4
         let verticalConstant: CGFloat = 2
 
+        let bottomConstraint = hintLabel.bottomAnchor
+            .constraint(equalTo: bottomAnchor,
+                        constant: -verticalConstant)
+        bottomConstraint.priority = UILayoutPriority(rawValue: 999)
+
         NSLayoutConstraint.activate([
             hintLabel.leadingAnchor
                 .constraint(equalTo: leadingAnchor,
@@ -112,12 +117,14 @@ class HintView: View {
             hintLabel.trailingAnchor
                 .constraint(equalTo: trailingAnchor,
                             constant: -horizontalConstant),
-            hintLabel.bottomAnchor
-                .constraint(equalTo: bottomAnchor,
-                            constant: -verticalConstant),
+            bottomConstraint,
             hintLabel.topAnchor
                 .constraint(equalTo: topAnchor,
                             constant: verticalConstant)
             ])
+
+        hintLabel
+            .setContentCompressionResistancePriority(.required,
+                                                     for: .vertical)
     }
 }
