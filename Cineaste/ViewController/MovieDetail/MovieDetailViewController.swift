@@ -195,7 +195,7 @@ class MovieDetailViewController: UIViewController {
 
     private func setupLocalization() {
         seenButton.setTitle(String.seenAction, for: .normal)
-        mustSeeButton.setTitle(String.watchlistAction, for: .normal)
+        mustSeeButton.setTitle(String.watchlistActionLong, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
     }
 
