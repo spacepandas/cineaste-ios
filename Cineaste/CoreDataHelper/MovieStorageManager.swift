@@ -133,17 +133,14 @@ class MovieStorageManager {
             if let movie = self.fetchMovie(for: movie.id) {
                 switch state {
                 case .undefined:
-                    self.remove(with: movie.objectID,
-                                completion: completion)
-                case .seen:
-                    self.updateMovieItem(
+                    self.remove(
                         with: movie.objectID,
-                        watched: true,
                         completion: completion)
-                case .watchlist:
+                case .seen,
+                     .watchlist:
                     self.updateMovieItem(
                         with: movie.objectID,
-                        watched: false,
+                        watched: state == .seen,
                         completion: completion)
                 }
             } else {
