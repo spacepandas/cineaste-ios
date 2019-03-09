@@ -35,6 +35,10 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(watchedStateImageView)
         cell.stateImageView = watchedStateImageView
 
+        let placeholderView = UIView()
+        cell.addSubview(placeholderView)
+        cell.placeholderView = placeholderView
+
         let soonReleaseView = HintView()
         cell.addSubview(soonReleaseView)
         cell.soonHint = soonReleaseView
