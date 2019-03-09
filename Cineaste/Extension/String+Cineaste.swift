@@ -20,7 +20,7 @@ extension String {
     static let errorTitle = NSLocalizedString("error", comment: "Title for error alert")
 
     // MARK: ACTION BUTTONS
-    static let watchlistAction = NSLocalizedString("wantToSee.width", comment: "Title for must see movie button").forWidth
+    static let watchlistAction = NSLocalizedString("watchlistAction", comment: "Title for must see movie button")
     static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
