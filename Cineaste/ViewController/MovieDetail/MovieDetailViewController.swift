@@ -390,14 +390,21 @@ class MovieDetailViewController: UIViewController {
             self.deleteMovie()
         }
 
+        guard case .stored? = movie else {
+            // no preview actions in search
+            return []
+        }
+
+        let actions: [UIPreviewActionItem]
         switch state {
         case .seen:
-            return [watchlistAction, deleteAction]
+            actions = [watchlistAction, deleteAction]
         case .watchlist:
-            return [seenAction, deleteAction]
+            actions = [seenAction, deleteAction]
         case .undefined:
-            return [watchlistAction, seenAction]
+            actions = []
         }
+        return actions
     }
 }
 
