@@ -398,7 +398,6 @@ class MovieDetailViewController: UIViewController {
         case .undefined:
             return [watchlistAction, seenAction]
         }
-
     }
 }
 

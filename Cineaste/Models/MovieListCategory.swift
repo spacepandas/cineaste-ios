@@ -21,24 +21,6 @@ enum MovieListCategory: String {
         }
     }
 
-    var image: UIImage {
-        switch self {
-        case .watchlist:
-            return UIImage.watchlistIcon
-        case .seen:
-            return UIImage.seenIcon
-        }
-    }
-
-    var action: String {
-        switch self {
-        case .watchlist:
-            return String.watchlistAction
-        case .seen:
-            return String.seenAction
-        }
-    }
-
     var predicate: NSPredicate {
         switch self {
         case .watchlist:

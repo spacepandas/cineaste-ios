@@ -12,107 +12,102 @@ extension MoviesViewController {
 
     // MARK: - iOS 10 functions
 
-    func action(for category: MovieListCategory, with movie: StoredMovie) -> UITableViewRowAction {
-        let newCategory: MovieListCategory =
-            category == .seen
-                ? .watchlist
-                : .seen
-        let newWatchedValue = newCategory == .seen
-
-        let action = UITableViewRowAction(
-            style: .normal,
-            title: newCategory.action) { _, _ in
-                self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
-                    guard case .success = result else {
-                        self.showAlert(withMessage: Alert.updateMovieError)
-                        return
-                    }
-                }
-        }
-        action.backgroundColor = UIColor.basicYellow
-
-        return action
-    }
-
     // swiftlint:disable:next discouraged_optional_collection
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let movie = fetchedResultsManager.movies[editActionsForRowAt.row]
 
-        let categoryAction: UITableViewRowAction = action(for: category, with: movie)
+        let currentState = category.state
 
-        let deleteAction = UITableViewRowAction(
-            style: .destructive,
-            title: String.deleteAction) { _, _ in
-                self.storageManager?.remove(with: movie.objectID) { result in
-                    guard case .success = result else {
-                        self.showAlert(withMessage: Alert.deleteMovieError)
-                        return
-                    }
+        let seenAction = SwipeAction.moveToSeen.rowAction {
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: true) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.updateMovieError)
+                    return
                 }
+            }
         }
-        deleteAction.backgroundColor = UIColor.primaryOrange
 
-        return [deleteAction, categoryAction]
+        let watchlistAction = SwipeAction.moveToWatchlist.rowAction {
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: false) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.updateMovieError)
+                    return
+                }
+            }
+        }
+
+        let removeAction = SwipeAction.delete.rowAction {
+            self.storageManager?.remove(with: movie.objectID) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                    return
+                }
+            }
+        }
+
+        switch currentState {
+        case .undefined:
+            return []
+        case .seen:
+            return [removeAction, watchlistAction]
+        case .watchlist:
+            return [removeAction, seenAction]
+        }
     }
 
     // MARK: - iOS 11 functions
 
     @available(iOS 11.0, *)
-    func action(for category: MovieListCategory, with movie: StoredMovie) -> UISwipeActionsConfiguration {
-        let newCategory: MovieListCategory =
-            category == .seen
-                ? .watchlist
-                : .seen
-        let newWatchedValue = newCategory == .seen
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let movie = fetchedResultsManager.movies[indexPath.row]
 
-        let action = UIContextualAction(
-            style: .normal,
-            title: newCategory.action) { (_, _, success: @escaping (Bool) -> Void) in
-                self.storageManager?.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
-                    guard case .success = result else {
-                        self.showAlert(withMessage: Alert.updateMovieError)
-                        return
-                    }
+        let currentState = category.state
 
-                    DispatchQueue.main.async {
-                        success(true)
-                    }
+        let seenAction = SwipeAction.moveToSeen.contextualAction {
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: true) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.updateMovieError)
+                    return
                 }
+            }
         }
 
-        action.image = newCategory.image
-        action.backgroundColor = UIColor.basicYellow
+        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
+            self.storageManager?.updateMovieItem(with: movie.objectID, watched: false) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.updateMovieError)
+                    return
+                }
+            }
+        }
 
-        return UISwipeActionsConfiguration(actions: [action])
+        let actions: [UIContextualAction]
+
+        switch currentState {
+        case .undefined:
+            actions = []
+        case .seen:
+            actions = [watchlistAction]
+        case .watchlist:
+            actions = [seenAction]
+        }
+
+        return UISwipeActionsConfiguration(actions: actions)
     }
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = fetchedResultsManager.movies[indexPath.row]
-        return action(for: category, with: movie)
-    }
 
-    @available(iOS 11.0, *)
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = fetchedResultsManager.movies[indexPath.row]
-
-        let deleteAction = UIContextualAction(
-            style: .destructive,
-            title: String.deleteAction) { (_, _, success: @escaping (Bool) -> Void) in
-                self.storageManager?.remove(with: movie.objectID) { result in
-                    guard case .success = result else {
-                        self.showAlert(withMessage: Alert.deleteMovieError)
-                        return
-                    }
-
-                    DispatchQueue.main.async {
-                        success(true)
-                    }
+        let removeAction = SwipeAction.delete.contextualAction {
+            self.storageManager?.remove(with: movie.objectID) { result in
+                guard case .success = result else {
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                    return
                 }
+            }
         }
 
-        deleteAction.backgroundColor = UIColor.primaryOrange
-
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
 }
