@@ -17,9 +17,18 @@ class ScreenshotsUITests: XCTestCase {
 
         setupSnapshot(app)
         app.launch()
+
+        resetMovies()
+    }
+
+    override func tearDown() {
+        resetMovies()
+
+        super.tearDown()
     }
 
     func testScreenshots() {
+        XCTAssertEqual(app.cells.count, 0)
         snapshot("emptyList")
 
         let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
@@ -32,11 +41,17 @@ class ScreenshotsUITests: XCTestCase {
 
         let wantToSeeButton = app.buttons["detail.mustsee.button"]
         wantToSeeButton.tap()
-        snapshot("03_wantToSeeList")
+        snapshot("search_marked_as_mustsee")
+
+        let back = app.navigationBars.buttons.element(boundBy: 0)
+        back.tap()
+
+        XCTAssertEqual(app.cells.count, 1)
+        snapshot("03_watchlist")
 
         let wantToSeeMovie = app.cells.element(boundBy: 0)
         wantToSeeMovie.tap()
-        snapshot("01_wantToSee_detail")
+        snapshot("01_watchlist_detail")
 
         let seenButton = app.buttons["detail.seen.button"]
         seenButton.tap()
@@ -48,7 +63,6 @@ class ScreenshotsUITests: XCTestCase {
         seenMovie.tap()
         snapshot("seen_detail")
 
-        let back = app.navigationBars.buttons.element(boundBy: 0)
         back.tap()
 
         let startMovieNightButton = app.navigationBars.buttons.element(boundBy: 0)
@@ -101,6 +115,22 @@ class ScreenshotsUITests: XCTestCase {
         let license = app.cells.element(boundBy: 1)
         license.tap()
         snapshot("settings_license")
+    }
+
+    private func resetMovies() {
+        app.buttons["SeenTab"].tap()
+        if app.cells.count > 0 {
+            app.cells.element(boundBy: 0).tap()
+            app.buttons["detail.delete.button"].tap()
+        }
+        XCTAssertEqual(app.cells.count, 0)
+
+        app.buttons["WatchlistTab"].tap()
+        if app.cells.count > 0 {
+            app.cells.element(boundBy: 0).tap()
+            app.buttons["detail.delete.button"].tap()
+        }
+        XCTAssertEqual(app.cells.count, 0)
     }
 
 }
