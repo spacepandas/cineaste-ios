@@ -50,9 +50,9 @@ class MovieDetailViewController: UIViewController {
 
     private var storageManager: MovieStorageManager?
 
-    private var type: MovieDetailType = .search {
+    private var state: WatchState = .undefined {
         didSet {
-            updateDetail(for: type)
+            updateDetail(for: state)
         }
     }
 
@@ -79,7 +79,7 @@ class MovieDetailViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        updateDetail(for: type)
+        updateDetail(for: state)
         setupLocalization()
 
         navigationItem.rightBarButtonItem =
@@ -96,10 +96,10 @@ class MovieDetailViewController: UIViewController {
     }
 
     func configure(with selectedMovie: MovieType,
-                   type: MovieDetailType,
+                   state: WatchState,
                    storageManager: MovieStorageManager) {
         movie = selectedMovie
-        self.type = type
+        self.state = state
         self.storageManager = storageManager
     }
 
@@ -195,7 +195,7 @@ class MovieDetailViewController: UIViewController {
 
     private func setupLocalization() {
         seenButton.setTitle(String.seenAction, for: .normal)
-        mustSeeButton.setTitle(String.watchlistAction, for: .normal)
+        mustSeeButton.setTitle(String.watchlistActionLong, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
     }
 
@@ -229,13 +229,14 @@ class MovieDetailViewController: UIViewController {
 
         switch movie {
         case .network(let movie):
-            storageManager.insertMovieItem(with: movie, watched: watched) { result in
+            let newState: WatchState = watched ? .seen : .watchlist
+            storageManager.save(movie, state: newState) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
@@ -255,23 +256,36 @@ class MovieDetailViewController: UIViewController {
 
     private func deleteMovie() {
         guard let storageManager = storageManager,
-            let movie = movie,
-            case let .stored(storedMovie) = movie
+            let movie = movie
             else { return }
 
-        storageManager.remove(storedMovie) { result in
-            switch result {
-            case .error:
-                self.showAlert(withMessage: Alert.deleteMovieError)
-            case .success:
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
+        switch movie {
+        case .network(let movie):
+            storageManager.save(movie, state: .undefined) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.insertMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        case .stored(let movie):
+            storageManager.remove(with: movie.objectID) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
     }
 
-    private func updateDetail(for type: MovieDetailType) {
+    private func updateDetail(for type: WatchState) {
         guard let mustSeeButton = mustSeeButton,
             let seenButton = seenButton,
             let deleteButton = deleteButton else {
@@ -287,7 +301,7 @@ class MovieDetailViewController: UIViewController {
             mustSeeButton.isHidden = true
             seenButton.isHidden = false
             deleteButton.isHidden = false
-        case .search:
+        case .undefined:
             mustSeeButton.isHidden = false
             seenButton.isHidden = false
             deleteButton.isHidden = true
@@ -376,15 +390,21 @@ class MovieDetailViewController: UIViewController {
             self.deleteMovie()
         }
 
-        switch type {
-        case .seen:
-            return [watchlistAction, deleteAction]
-        case .watchlist:
-            return [seenAction, deleteAction]
-        case .search:
-            return [watchlistAction, seenAction]
+        guard case .stored? = movie else {
+            // no preview actions in search
+            return []
         }
 
+        let actions: [UIPreviewActionItem]
+        switch state {
+        case .seen:
+            actions = [watchlistAction, deleteAction]
+        case .watchlist:
+            actions = [seenAction, deleteAction]
+        case .undefined:
+            actions = []
+        }
+        return actions
     }
 }
 

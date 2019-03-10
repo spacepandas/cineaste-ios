@@ -6,7 +6,7 @@ devices([
   "iPhone 6",
   "iPhone 6 Plus",
   "iPhone X",
-  "iPhone XS Max"
+  "iPhone Xs Max"
   # "iPad Pro (12.9-inch)",
   # "iPad Pro (9.7-inch)",
   # "Apple TV 1080p"
@@ -24,7 +24,7 @@ scheme "Snapshot"
 
 concurrent_simulators true
 reinstall_app true
-# number_of_retries 2
+number_of_retries 0
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"

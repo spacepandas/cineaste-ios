@@ -20,7 +20,8 @@ extension String {
     static let errorTitle = NSLocalizedString("error", comment: "Title for error alert")
 
     // MARK: ACTION BUTTONS
-    static let watchlistAction = NSLocalizedString("wantToSee.width", comment: "Title for must see movie button").forWidth
+    static let watchlistActionLong = NSLocalizedString("watchlistActionLong", comment: "Title for long must see movie button")
+    static let watchlistAction = NSLocalizedString("watchlistAction", comment: "Title for must see movie button")
     static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
@@ -30,7 +31,7 @@ extension String {
     static let watchlist = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
     static let seen = NSLocalizedString("history", comment: "Title for seen movie list")
     static let movieNightTitle = NSLocalizedString("movieNight", comment: "Title for movie night viewController")
-    static let settingsTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
+    static let moreTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
 
     // MARK: MOVIES VIEWCONTROLLER
     static func title(for category: MovieListCategory) -> String {
@@ -42,6 +43,23 @@ extension String {
 
     // MARK: SEARCH VIEWCONTROLLER
     static let addMovieTitle = NSLocalizedString("searchMovieTitle", comment: "Title for search")
+    static let soonReleaseInformation = NSLocalizedString("soonRelease", comment: "Information about release")
+    static let soonReleaseInformationLong = NSLocalizedString("soonReleaseLong", comment: "Information about release long")
+
+    static func state(for watchState: WatchState) -> String? {
+        switch watchState {
+        case .undefined:
+            return nil
+        case .seen:
+            return NSLocalizedString("watchStateSeen", comment: "Information watchstate seen")
+        case .watchlist:
+            return NSLocalizedString("watchStateWatchlist", comment: "Information watchstate watchlist")
+        }
+    }
+
+    static func voting(for vote: String) -> String {
+        return String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
+    }
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
     static let exportTitle = NSLocalizedString("export", comment: "Title for settings cell exportMovies")

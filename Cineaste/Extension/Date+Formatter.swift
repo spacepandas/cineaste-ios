@@ -13,6 +13,11 @@ extension Date {
         DateFormatter()
     }()
 
+    var formattedOnlyYear: String {
+        Date.dateFormatter.dateFormat = "yyyy"
+        return Date.dateFormatter.string(from: self)
+    }
+
     var formatted: String {
         Date.dateFormatter.locale = Locale.current
         Date.dateFormatter.dateStyle = .medium

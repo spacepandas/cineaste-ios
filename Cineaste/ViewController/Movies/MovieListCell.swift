@@ -13,11 +13,7 @@ class MovieListCell: UITableViewCell {
 
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
+    @IBOutlet weak var separatorView: UIView!
 
     @IBOutlet weak var votes: DescriptionLabel!
     @IBOutlet weak var runtime: DescriptionLabel!

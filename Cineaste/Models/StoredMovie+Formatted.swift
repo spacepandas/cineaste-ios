@@ -8,33 +8,35 @@
 
 extension StoredMovie {
     var formattedVoteAverage: String {
-        if voteCount != 0,
-            voteAverage != 0 {
-            return voteAverage.formattedWithOneFractionDigit
-                ?? String.unknownVoteAverage
-        } else {
+        guard voteCount != 0 && voteAverage != 0 else {
             return String.unknownVoteAverage
         }
+
+        return voteAverage.formattedWithOneFractionDigit
+            ?? String.unknownVoteAverage
     }
 
     var formattedReleaseDate: String {
-        if let release = releaseDate {
-            return release.formatted
-        } else {
+        guard let release = releaseDate else {
             return String.unknownReleaseDate
         }
+
+        return release.formatted
     }
 
     var formattedRuntime: String {
-        if runtime != 0 {
-            return "\(runtime.formatted ?? String.unknownRuntime) min"
-        } else {
+        guard runtime != 0 else {
             return "\(String.unknownRuntime) min"
         }
+
+        return "\(runtime.formatted ?? String.unknownRuntime) min"
     }
 
     var formattedWatchedDate: String? {
-        guard let watchedDate = watchedDate else { return nil }
+        guard let watchedDate = watchedDate else {
+            return nil
+        }
+
         return "\(String.onDate) \(watchedDate.formattedWithTime)"
     }
 }

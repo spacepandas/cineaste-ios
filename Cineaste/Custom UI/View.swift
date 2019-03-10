@@ -27,7 +27,7 @@ class View: UIView {
 class VoteView: View {
     override func setup() {
         clipsToBounds = true
-        layer.cornerRadius = self.frame.height / 2
+        layer.cornerRadius = frame.height / 2
 
         backgroundColor = UIColor.basicYellow
 
@@ -57,5 +57,74 @@ class ShadowView: View {
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = shadowRadius
+    }
+}
+
+class SeparatorView: View {
+    override func setup() {
+        backgroundColor = UIColor.primaryOrange
+    }
+
+    override var backgroundColor: UIColor? {
+        didSet {
+            if backgroundColor?.cgColor.alpha == 0 {
+                backgroundColor = oldValue
+            }
+        }
+    }
+}
+
+class HintView: View {
+    var content: String = "" {
+        didSet {
+            hintLabel.text = content
+        }
+    }
+
+    private let hintLabel = HintLabel()
+
+    override var backgroundColor: UIColor? {
+        didSet {
+            if backgroundColor?.cgColor.alpha == 0 {
+                backgroundColor = oldValue
+            }
+        }
+    }
+
+    override func setup() {
+        clipsToBounds = true
+
+        backgroundColor = UIColor.groupTableViewBackground
+
+        layer.cornerRadius = 2
+
+        hintLabel.numberOfLines = 0
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(hintLabel)
+
+        let horizontalConstant: CGFloat = 4
+        let verticalConstant: CGFloat = 2
+
+        let bottomConstraint = hintLabel.bottomAnchor
+            .constraint(equalTo: bottomAnchor,
+                        constant: -verticalConstant)
+        bottomConstraint.priority = UILayoutPriority(rawValue: 999)
+
+        NSLayoutConstraint.activate([
+            hintLabel.leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: horizontalConstant),
+            hintLabel.trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -horizontalConstant),
+            bottomConstraint,
+            hintLabel.topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: verticalConstant)
+            ])
+
+        hintLabel
+            .setContentCompressionResistancePriority(.required,
+                                                     for: .vertical)
     }
 }

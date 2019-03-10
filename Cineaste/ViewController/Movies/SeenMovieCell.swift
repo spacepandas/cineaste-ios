@@ -13,11 +13,7 @@ class SeenMovieCell: UITableViewCell {
 
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
+    @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var watched: DescriptionLabel!
     @IBOutlet weak var watchedIcon: UIImageView! {
         didSet {

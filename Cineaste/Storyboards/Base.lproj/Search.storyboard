@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,103 +15,109 @@
             <objects>
                 <viewController storyboardIdentifier="SearchMoviesViewController" id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnV-3h-HdW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ghd-3W-lPW">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ghd-3W-lPW">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesCell" rowHeight="100" id="duv-TH-vzJ" userLabel="MyMovieListCell" customClass="SearchMoviesCell" customModule="Cineaste_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesCell" rowHeight="100" id="Hcz-p6-NGe" customClass="SearchMoviesCell" customModule="Cineaste_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duv-TH-vzJ" id="FUh-ZM-Ge8">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hcz-p6-NGe" id="ZO4-PF-mws">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-Io-6Ie">
-                                                    <rect key="frame" x="95" y="10" width="260" height="79.5"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thc-MB-8du">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMc-8F-ocU" customClass="TitleLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="huN-Vb-l1b">
-                                                            <rect key="frame" x="0.0" y="28.5" width="260" height="13"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="seen-badge" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fI-55Z">
+                                                            <rect key="frame" x="330" y="0.0" width="45" height="45"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
+                                                            <rect key="frame" x="107.5" y="5" width="227.5" height="89.5"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_release" translatesAutoresizingMaskIntoConstraints="NO" id="7Gc-kU-MAP">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="7Gc-kU-MAP" secondAttribute="height" id="0bQ-t6-7eO"/>
-                                                                        <constraint firstAttribute="width" constant="13" id="hgw-PK-4cD"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-il-h2d" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="21" y="0.0" width="239" height="13"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="147.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYE-99-Bh1" customClass="HeaderLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="22.5" width="84.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kdq-BS-9up">
+                                                                    <rect key="frame" x="0.0" y="45" width="154.5" height="22.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" priority="750" constant="4" id="7au-W6-niS"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="HXP-vX-B0r" customClass="HintView" customModule="Cineaste_App" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="69.5" width="70" height="20"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-uo-pc2">
-                                                            <rect key="frame" x="0.0" y="49.5" width="260" height="30"/>
-                                                            <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-dZ-m0S" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
-                                                                    <state key="normal" title="search.mustsee"/>
-                                                                    <connections>
-                                                                        <action selector="mustSeeButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="0cc-rD-MSK"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnp-Tu-JeS" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="176" y="0.0" width="84" height="30"/>
-                                                                    <state key="normal" title="search.seen"/>
-                                                                    <connections>
-                                                                        <action selector="seenButtonTouched:" destination="duv-TH-vzJ" eventType="touchUpInside" id="WMr-Ij-BiF"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zZg-aQ-7uo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="99.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="zZg-aQ-7uo" secondAttribute="height" multiplier="0.7" priority="999" id="mii-Yc-fTi"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg5-Zb-czx" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
+                                                            <rect key="frame" x="82.5" y="0.0" width="5" height="99.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="5" id="1b0-An-ztY"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
-                                                </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="blM-l6-VJr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="5PZ-v6-Ia9"/>
-                                                        <constraint firstAttribute="width" secondItem="blM-l6-VJr" secondAttribute="height" multiplier="0.7" id="G7p-YU-o20"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drj-Pn-RyL" customClass="NonClearView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="70" y="0.0" width="5" height="99.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="5" id="AqJ-9f-DaV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="upX-fI-55Z" secondAttribute="trailing" id="6Ca-jz-n1E"/>
+                                                        <constraint firstItem="zZg-aQ-7uo" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.22" id="7sr-Gn-Esr"/>
+                                                        <constraint firstItem="MJ6-6z-POh" firstAttribute="leading" secondItem="bg5-Zb-czx" secondAttribute="trailing" constant="20" id="9kf-Mg-1sn"/>
+                                                        <constraint firstItem="bg5-Zb-czx" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="NKj-DT-WNi"/>
+                                                        <constraint firstItem="upX-fI-55Z" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="ORp-xc-cD2"/>
+                                                        <constraint firstItem="zZg-aQ-7uo" firstAttribute="leading" secondItem="thc-MB-8du" secondAttribute="leading" id="RUO-a6-LER"/>
+                                                        <constraint firstItem="MJ6-6z-POh" firstAttribute="centerY" secondItem="thc-MB-8du" secondAttribute="centerY" id="SC4-Bb-NxN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MJ6-6z-POh" secondAttribute="trailing" constant="40" id="Vhv-eV-Aeh"/>
+                                                        <constraint firstItem="zZg-aQ-7uo" firstAttribute="bottom" secondItem="thc-MB-8du" secondAttribute="bottom" id="Zfe-m3-Dqs"/>
+                                                        <constraint firstItem="MJ6-6z-POh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="thc-MB-8du" secondAttribute="top" constant="5" id="fFE-oy-zby"/>
+                                                        <constraint firstAttribute="bottom" secondItem="bg5-Zb-czx" secondAttribute="bottom" id="lJl-rf-ZMG"/>
+                                                        <constraint firstItem="upX-fI-55Z" firstAttribute="height" secondItem="thc-MB-8du" secondAttribute="height" multiplier="0.45" id="sb0-Mb-OUN"/>
+                                                        <constraint firstItem="zZg-aQ-7uo" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="yzy-5D-vzy"/>
+                                                        <constraint firstItem="bg5-Zb-czx" firstAttribute="leading" secondItem="zZg-aQ-7uo" secondAttribute="trailing" id="zW4-TJ-7uG"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="blM-l6-VJr" firstAttribute="leading" secondItem="FUh-ZM-Ge8" secondAttribute="leading" id="35W-sH-rLH"/>
-                                                <constraint firstItem="Drj-Pn-RyL" firstAttribute="leading" secondItem="blM-l6-VJr" secondAttribute="trailing" id="5ay-7z-et9"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FUh-ZM-Ge8" secondAttribute="top" constant="5" id="6Kn-pN-aDv"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="centerY" secondItem="FUh-ZM-Ge8" secondAttribute="centerY" id="A00-GZ-fj0"/>
-                                                <constraint firstAttribute="trailing" secondItem="8TH-Io-6Ie" secondAttribute="trailing" constant="20" id="FQA-MW-fd4"/>
-                                                <constraint firstItem="Drj-Pn-RyL" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="R0e-sf-pl1"/>
-                                                <constraint firstAttribute="bottom" secondItem="blM-l6-VJr" secondAttribute="bottom" priority="750" id="RfZ-Qs-w09"/>
-                                                <constraint firstItem="8TH-Io-6Ie" firstAttribute="leading" secondItem="Drj-Pn-RyL" secondAttribute="trailing" constant="20" id="ZMH-KV-IqS"/>
-                                                <constraint firstItem="blM-l6-VJr" firstAttribute="top" secondItem="FUh-ZM-Ge8" secondAttribute="top" id="f7U-us-KVo"/>
-                                                <constraint firstAttribute="bottom" secondItem="Drj-Pn-RyL" secondAttribute="bottom" id="xVO-lX-xKL"/>
+                                                <constraint firstAttribute="trailing" secondItem="thc-MB-8du" secondAttribute="trailing" id="6af-fb-ed1"/>
+                                                <constraint firstItem="thc-MB-8du" firstAttribute="top" secondItem="ZO4-PF-mws" secondAttribute="top" id="9v9-Fy-zUe"/>
+                                                <constraint firstItem="thc-MB-8du" firstAttribute="leading" secondItem="ZO4-PF-mws" secondAttribute="leading" id="CsR-tM-181"/>
+                                                <constraint firstAttribute="bottom" secondItem="thc-MB-8du" secondAttribute="bottom" id="W5v-8E-RAb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="mustSeeButton" destination="sZ3-dZ-m0S" id="OCR-px-Fl3"/>
-                                            <outlet property="poster" destination="blM-l6-VJr" id="KCC-wa-aln"/>
-                                            <outlet property="releaseDate" destination="Wuq-il-h2d" id="g3F-2i-Fj0"/>
-                                            <outlet property="seenButton" destination="Gnp-Tu-JeS" id="LF8-KS-Ggq"/>
-                                            <outlet property="separatorView" destination="Drj-Pn-RyL" id="kvk-gr-ZUj"/>
-                                            <outlet property="title" destination="XMc-8F-ocU" id="7hi-ys-7CC"/>
+                                            <outlet property="detailLabel" destination="3wf-WH-u9P" id="CHy-bg-r8H"/>
+                                            <outlet property="placeholderView" destination="kdq-BS-9up" id="08w-u9-y0a"/>
+                                            <outlet property="poster" destination="zZg-aQ-7uo" id="89O-4d-cOY"/>
+                                            <outlet property="separatorView" destination="bg5-Zb-czx" id="rlM-hu-YIJ"/>
+                                            <outlet property="soonHint" destination="HXP-vX-B0r" id="Tg5-f1-Is5"/>
+                                            <outlet property="stateImageView" destination="upX-fI-55Z" id="x9m-hW-8Oq"/>
+                                            <outlet property="title" destination="AYE-99-Bh1" id="Z9y-W7-ZXm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -153,7 +162,7 @@
                     <viewLayoutGuide key="safeArea" id="7FF-lZ-CXt"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="4876" y="6.6502463054187197"/>
+            <point key="canvasLocation" x="4876" y="5.8470764617691158"/>
         </scene>
         <!--Orange Navigation Controller-->
         <scene sceneID="nqO-6w-fBm">
@@ -183,6 +192,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_release" width="16" height="17"/>
+        <image name="seen-badge" width="100" height="100"/>
     </resources>
 </document>

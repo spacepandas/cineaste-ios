@@ -128,10 +128,49 @@ class MovieStorageManager {
         }
     }
 
-    func remove(_ storedMovie: StoredMovie,
+    func save(_ movie: Movie, state: WatchState, completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+        DispatchQueue.main.async {
+            if let movie = self.fetchMovie(for: movie.id) {
+                switch state {
+                case .undefined:
+                    self.remove(
+                        with: movie.objectID,
+                        completion: completion)
+                case .seen,
+                     .watchlist:
+                    self.updateMovieItem(
+                        with: movie.objectID,
+                        watched: state == .seen,
+                        completion: completion)
+                }
+            } else {
+                self.insertMovieItem(
+                    with: movie,
+                    watched: state == .seen,
+                    completion: completion)
+            }
+        }
+    }
+
+    func currentState(for movie: Movie) -> WatchState {
+        let currentState: WatchState
+
+        if let movie = fetchMovie(for: movie.id) {
+            if movie.watched {
+                currentState = .seen
+            } else {
+                currentState = .watchlist
+            }
+        } else {
+            currentState = .undefined
+        }
+        return currentState
+    }
+
+    func remove(with objectID: NSManagedObjectID,
                 completion: ((_ result: Result<Bool>) -> Void)? = nil) {
         backgroundContext.perform {
-            let object = self.backgroundContext.object(with: storedMovie.objectID)
+            let object = self.backgroundContext.object(with: objectID)
             self.backgroundContext.delete(object)
 
             self.backgroundContext.saveOrRollback(completion: completion)
@@ -157,5 +196,15 @@ extension MovieStorageManager {
         request.predicate = MovieListCategory.watchlist.predicate
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? []
+    }
+
+    private func fetchMovie(for id: Int64) -> StoredMovie? {
+        assert(Thread.isMainThread,
+               "Must be called on main thread because of core data view context")
+
+        let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %i", id)
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results?.first
     }
 }

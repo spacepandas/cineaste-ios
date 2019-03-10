@@ -8,27 +8,49 @@
 
 extension Movie {
     var formattedVoteAverage: String {
-        if voteCount != 0 && voteAverage != 0 {
-            return voteAverage.formattedWithOneFractionDigit
-                ?? String.unknownVoteAverage
-        } else {
+        guard voteCount != 0 && voteAverage != 0 else {
             return String.unknownVoteAverage
         }
+
+        return voteAverage.formattedWithOneFractionDigit
+            ?? String.unknownVoteAverage
     }
 
     var formattedReleaseDate: String {
-        if let release = releaseDate {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        return release.formatted
+    }
+
+    var formattedRelativeReleaseInformation: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        let isCurrentYear = release.formattedOnlyYear == Date().formattedOnlyYear
+        if isCurrentYear {
             return release.formatted
         } else {
-            return String.unknownReleaseDate
+            return release.formattedOnlyYear
         }
     }
 
     var formattedRuntime: String {
-        if runtime != 0 {
-            return "\(runtime.formatted ?? String.unknownRuntime) min"
-        } else {
+        guard runtime != 0 else {
             return "\(String.unknownRuntime) min"
         }
+
+        return "\(runtime.formatted ?? String.unknownRuntime) min"
+    }
+
+    var soonAvailable: Bool {
+        guard let release = releaseDate,
+            release > Date() else {
+                return false
+        }
+
+        return true
     }
 }

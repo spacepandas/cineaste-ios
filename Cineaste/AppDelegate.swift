@@ -77,8 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let moviesVC = tabBarVC.selectedViewController?
                     .children.first as? MoviesViewController
                 else { return false }
-
-            moviesVC.movieNightButtonTouched(UIBarButtonItem())
+            moviesVC.movieNightButtonTouched()
             return true
         }
 

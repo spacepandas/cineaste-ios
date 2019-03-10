@@ -30,16 +30,6 @@
 			<string>Already seen</string>
 		</dict>
 	</dict>
-	<key>wantToSee.width</key>
-	<dict>
-		<key>NSStringVariableWidthRuleType</key>
-		<dict>
-			<key>1</key>
-			<string>Want to see</string>
-			<key>30</key>
-			<string>Want to see</string>
-		</dict>
-	</dict>
 	<key>delete.width</key>
 	<dict>
 		<key>NSStringVariableWidthRuleType</key>

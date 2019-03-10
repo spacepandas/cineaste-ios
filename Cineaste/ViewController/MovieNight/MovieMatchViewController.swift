@@ -121,7 +121,7 @@ class MovieMatchViewController: UITableViewController {
 
         let networkMovie = Movie(id: nearbyMovie.id, title: nearbyMovie.title)
         vc.configure(with: .network(networkMovie),
-                     type: .search,
+                     state: .undefined,
                      storageManager: storageManager)
         navigationController?.pushViewController(vc, animated: true)
     }

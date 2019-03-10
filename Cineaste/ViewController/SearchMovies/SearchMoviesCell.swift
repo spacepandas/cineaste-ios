@@ -1,67 +1,47 @@
 //
-//  SearchMoviesTableViewCell.swift
-//  Cineaste
+//  SearchMoviesCell.swift
+//  Cineaste App
 //
-//  Created by Christian Braun on 02.11.17.
-//  Copyright © 2017 notimeforthat.org. All rights reserved.
+//  Created by Felizia Bernutz on 02.03.19.
+//  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
 import UIKit
 
-protocol SearchMoviesCellDelegate: AnyObject {
-    func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool)
-}
-
 class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
-    weak var delegate: SearchMoviesCellDelegate?
-
-    var movie: Movie? {
-        didSet {
-            if let movie = movie {
-                configure(with: movie)
-            }
-        }
-    }
-
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
-
-    @IBOutlet weak var releaseDate: DescriptionLabel!
-
-    @IBOutlet weak var seenButton: ActionButton! {
-        didSet {
-            seenButton.setTitle(String.seenAction, for: .normal)
-        }
-    }
-
-    @IBOutlet weak var mustSeeButton: ActionButton! {
-        didSet {
-            mustSeeButton.setTitle(String.watchlistAction, for: .normal)
-        }
-    }
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var detailLabel: DescriptionLabel!
+    @IBOutlet weak var stateImageView: UIImageView!
+    @IBOutlet weak var placeholderView: UIView!
+    @IBOutlet weak var soonHint: HintView!
 
     // MARK: - Actions
 
-    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: false)
-    }
-
-    @IBAction func seenButtonTouched(_ sender: UIButton) {
-        guard let movie = movie else { return }
-        delegate?.searchMoviesCell(didTriggerActionButtonFor: movie, watched: true)
-    }
-
-    func configure(with movie: Movie) {
+    func configure(with movie: Movie, state: WatchState) {
         title.text = movie.title
-        releaseDate.text = movie.formattedReleaseDate
+        detailLabel.text = movie.formattedRelativeReleaseInformation
+            + " ∙ "
+            + movie.formattedVoteAverage
+            + " / 10"
+
+        soonHint.content = .soonReleaseInformation
+        soonHint.isHidden = !movie.soonAvailable
+        placeholderView.isHidden = !movie.soonAvailable
+
+        switch state {
+        case .undefined:
+            stateImageView.isHidden = true
+        case .seen:
+            stateImageView.isHidden = false
+            stateImageView.image = #imageLiteral(resourceName: "seen-badge")
+        case .watchlist:
+            stateImageView.isHidden = false
+            stateImageView.image = #imageLiteral(resourceName: "watchlist-badge")
+        }
 
         if let posterPath = movie.posterPath {
             poster.kf.indicatorType = .activity
@@ -74,5 +54,22 @@ class SearchMoviesCell: UITableViewCell {
         } else {
             poster.image = UIImage.posterPlaceholder
         }
+
+        applyAccessibility(with: movie, for: state)
+    }
+
+    private func applyAccessibility(with movie: Movie, for state: WatchState) {
+        let isSoonAvailable = !soonHint.isHidden
+        let voting = String.voting(for: movie.formattedVoteAverage)
+
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+        if let state = String.state(for: state) {
+            accessibilityLabel?.append(", \(state)")
+        }
+        accessibilityLabel?.append(", \(voting)")
+        accessibilityLabel?.append(isSoonAvailable ? ", \(String.soonReleaseInformationLong)" : "")
+        accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
     }
 }

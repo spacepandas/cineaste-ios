@@ -107,7 +107,7 @@ class MoviesViewController: UITableViewController {
 
             let vc = segue.destination as? MovieDetailViewController
             vc?.configure(with: .stored(selectedMovie),
-                          type: category.detailType,
+                          state: category.state,
                           storageManager: storageManager)
         case .showMovieNight?:
             let navigationVC = segue.destination as? UINavigationController
@@ -120,7 +120,7 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Action
 
-    @IBAction func movieNightButtonTouched(_ sender: UIBarButtonItem) {
+    @IBAction func movieNightButtonTouched() {
         if UserDefaultsManager.getUsername() == nil {
             askForUsername()
         } else {
@@ -226,7 +226,7 @@ class MoviesViewController: UITableViewController {
 
         //initially instantiate shortcuts
         if shortcuts.isEmpty {
-            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchlist")
+            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "watchlist")
             let watchlistShortcut =
                 UIApplicationShortcutItem(type: ShortcutIdentifier.watchlist.rawValue,
                                           localizedTitle: String.watchlist,
@@ -234,7 +234,7 @@ class MoviesViewController: UITableViewController {
                                           icon: watchlistIcon,
                                           userInfo: nil)
 
-            let seenIcon = UIApplicationShortcutIcon(templateImageName: "add_to_watchedlist")
+            let seenIcon = UIApplicationShortcutIcon(templateImageName: "seen")
             let seenShortcut =
                 UIApplicationShortcutItem(type: ShortcutIdentifier.seen.rawValue,
                                           localizedTitle: String.seen,

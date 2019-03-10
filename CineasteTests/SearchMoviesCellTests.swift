@@ -29,22 +29,44 @@ class SearchMoviesCellTests: XCTestCase {
 
         let description = DescriptionLabel()
         cell.addSubview(description)
-        cell.releaseDate = description
+        cell.detailLabel = description
 
-        let seen = ActionButton()
-        cell.addSubview(seen)
-        cell.seenButton = seen
+        let watchedStateImageView = UIImageView()
+        cell.addSubview(watchedStateImageView)
+        cell.stateImageView = watchedStateImageView
 
-        let mustSee = ActionButton()
-        cell.addSubview(mustSee)
-        cell.mustSeeButton = mustSee
+        let placeholderView = UIView()
+        cell.addSubview(placeholderView)
+        cell.placeholderView = placeholderView
+
+        let soonReleaseView = HintView()
+        cell.addSubview(soonReleaseView)
+        cell.soonHint = soonReleaseView
     }
 
-    func testConfigureShouldSetCellTitleAndReleaseDateCorrectly() {
-        cell.configure(with: movie)
+    func testConfigureShouldSetCellTitleAndDetailsCorrectly() {
+        cell.configure(with: movie, state: .seen)
 
         XCTAssertEqual(cell.title.text, movie.title)
-        XCTAssertEqual(cell.releaseDate.text, movie.formattedReleaseDate)
+        XCTAssertEqual(cell.detailLabel.text, "2017 ∙ 6.9 / 10")
+        XCTAssert(cell.soonHint.isHidden)
+    }
+
+    func testConfigureShouldSetStateImageForSeen() {
+        cell.configure(with: movie, state: .seen)
+        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "seen-badge"))
+        XCTAssertFalse(cell.stateImageView.isHidden)
+    }
+
+    func testConfigureShouldSetStateImageForWatchlist() {
+        cell.configure(with: movie, state: .watchlist)
+        XCTAssertEqual(cell.stateImageView.image, #imageLiteral(resourceName: "watchlist-badge"))
+        XCTAssertFalse(cell.stateImageView.isHidden)
+    }
+
+    func testConfigureShouldSetStateImageForNormal() {
+        cell.configure(with: movie, state: .undefined)
+        XCTAssertTrue(cell.stateImageView.isHidden)
     }
 
     private let movie: Movie = {
@@ -60,5 +82,4 @@ class SearchMoviesCellTests: XCTestCase {
             fatalError("Error while decoding Movie.json: \(error.localizedDescription)")
         }
     }()
-
 }

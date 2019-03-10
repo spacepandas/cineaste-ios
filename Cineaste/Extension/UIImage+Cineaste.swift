@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     static let posterPlaceholder = #imageLiteral(resourceName: "placeholder_poster")
-    static let watchlistIcon = #imageLiteral(resourceName: "add_to_watchlist")
-    static let seenIcon = #imageLiteral(resourceName: "add_to_watchedlist")
-    static let settingsIcon = #imageLiteral(resourceName: "ic_settings")
+    static let watchlistIcon = #imageLiteral(resourceName: "watchlist")
+    static let seenIcon = #imageLiteral(resourceName: "seen")
+    static let moreIcon = #imageLiteral(resourceName: "more")
 }
