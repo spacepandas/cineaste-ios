@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 
+
+* New: Update Search with a new layout, like an indicator about a movies watch state.
+
 ## 1.4.0
 
 * New: Reload Movie Details with Pull To Refresh on Movie Lists
