@@ -44,6 +44,22 @@ extension String {
     // MARK: SEARCH VIEWCONTROLLER
     static let addMovieTitle = NSLocalizedString("searchMovieTitle", comment: "Title for search")
     static let soonReleaseInformation = NSLocalizedString("soonRelease", comment: "Information about release")
+    static let soonReleaseInformationLong = NSLocalizedString("soonReleaseLong", comment: "Information about release long")
+
+    static func state(for watchState: WatchState) -> String? {
+        switch watchState {
+        case .undefined:
+            return nil
+        case .seen:
+            return NSLocalizedString("watchStateSeen", comment: "Information watchstate seen")
+        case .watchlist:
+            return NSLocalizedString("watchStateWatchlist", comment: "Information watchstate watchlist")
+        }
+    }
+
+    static func voting(for vote: String) -> String {
+        return String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
+    }
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
     static let exportTitle = NSLocalizedString("export", comment: "Title for settings cell exportMovies")

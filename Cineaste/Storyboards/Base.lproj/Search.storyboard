@@ -43,12 +43,18 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="147.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYE-99-Bh1" customClass="HeaderLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="22.5" width="84.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>

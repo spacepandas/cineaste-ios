@@ -54,5 +54,22 @@ class SearchMoviesCell: UITableViewCell {
         } else {
             poster.image = UIImage.posterPlaceholder
         }
+
+        applyAccessibility(with: movie, for: state)
+    }
+
+    private func applyAccessibility(with movie: Movie, for state: WatchState) {
+        let isSoonAvailable = !soonHint.isHidden
+        let voting = String.voting(for: movie.formattedVoteAverage)
+
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+        if let state = String.state(for: state) {
+            accessibilityLabel?.append(", \(state)")
+        }
+        accessibilityLabel?.append(", \(voting)")
+        accessibilityLabel?.append(isSoonAvailable ? ", \(String.soonReleaseInformationLong)" : "")
+        accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
     }
 }
