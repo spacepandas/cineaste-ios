@@ -53,6 +53,26 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        #if swift(>=4.2)
+        switch type {
+        case .insert:
+            guard let indexPath = newIndexPath else { return }
+            delegate?.insertRows(at: [indexPath])
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            delegate?.deleteRows(at: [indexPath])
+        case .update:
+            guard let indexPath = newIndexPath else { return }
+            delegate?.updateRows(at: [indexPath])
+        case .move:
+            guard let indexPath = indexPath,
+                let newIndexPath = newIndexPath
+                else { return }
+            delegate?.moveRow(at: indexPath, to: newIndexPath)
+        @unknown default:
+            return
+        }
+        #elseif swift(>=4.1)
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
@@ -69,6 +89,7 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
                 else { return }
             delegate?.moveRow(at: indexPath, to: newIndexPath)
         }
+        #endif
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

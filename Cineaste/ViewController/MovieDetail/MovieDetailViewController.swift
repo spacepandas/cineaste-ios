@@ -342,7 +342,7 @@ class MovieDetailViewController: UIViewController {
                 self.posterImageView.kf.indicatorType = .activity
                 let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
                 self.posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
-                    if let image = result.value?.image {
+                    if let image = try? result.get().image {
                         networkMovie.poster = image
                     }
                 }
