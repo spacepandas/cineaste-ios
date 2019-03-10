@@ -15,15 +15,15 @@ class ScreenshotsUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
 
-        setupSnapshot(app)
-        app.launch()
-
-        resetMoviesIfNeeded()
-
         if let domain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: domain)
             UserDefaults.standard.synchronize()
         }
+
+        setupSnapshot(app)
+        app.launch()
+
+        resetMoviesIfNeeded()
     }
 
     override func tearDown() {
@@ -45,7 +45,7 @@ class ScreenshotsUITests: XCTestCase {
         snapshot("search_detail")
 
         let wantToSeeButton = app.buttons["detail.mustsee.button"]
-        wantToSeeButton.tap()
+        wantToSeeButton.swipeDownToElement().tap()
         snapshot("search_marked_as_mustsee")
 
         let back = app.navigationBars.buttons.element(boundBy: 0)
@@ -59,9 +59,15 @@ class ScreenshotsUITests: XCTestCase {
         snapshot("01_watchlist_detail")
 
         let seenButton = app.buttons["detail.seen.button"]
-        seenButton.tap()
+        seenButton.swipeDownToElement().tap()
+
         let seenTab = app.buttons["SeenTab"]
+        guard seenTab.waitForExistence(timeout: 1) else {
+            XCTFail("Could not navigate to Seen Tab")
+            return
+        }
         seenTab.tap()
+        XCTAssertEqual(app.cells.count, 1)
         snapshot("seenList")
 
         let seenMovie = app.cells.element(boundBy: 0)
@@ -126,16 +132,25 @@ class ScreenshotsUITests: XCTestCase {
         app.buttons["SeenTab"].tap()
         if app.cells.count > 0 {
             app.cells.element(boundBy: 0).tap()
-            app.buttons["detail.delete.button"].tap()
+            app.buttons["detail.delete.button"].swipeDownToElement().tap()
         }
         XCTAssertEqual(app.cells.count, 0)
 
         app.buttons["WatchlistTab"].tap()
         if app.cells.count > 0 {
             app.cells.element(boundBy: 0).tap()
-            app.buttons["detail.delete.button"].tap()
+            app.buttons["detail.delete.button"].swipeDownToElement().tap()
         }
         XCTAssertEqual(app.cells.count, 0)
     }
 
+}
+
+extension XCUIElement {
+    func swipeDownToElement() -> XCUIElement {
+        while !self.isHittable {
+            XCUIApplication().swipeDown()
+        }
+        return self
+    }
 }
