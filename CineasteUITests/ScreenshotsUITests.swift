@@ -18,11 +18,16 @@ class ScreenshotsUITests: XCTestCase {
         setupSnapshot(app)
         app.launch()
 
-        resetMovies()
+        resetMoviesIfNeeded()
+
+        if let domain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+            UserDefaults.standard.synchronize()
+        }
     }
 
     override func tearDown() {
-        resetMovies()
+        resetMoviesIfNeeded()
 
         super.tearDown()
     }
@@ -117,7 +122,7 @@ class ScreenshotsUITests: XCTestCase {
         snapshot("settings_license")
     }
 
-    private func resetMovies() {
+    private func resetMoviesIfNeeded() {
         app.buttons["SeenTab"].tap()
         if app.cells.count > 0 {
             app.cells.element(boundBy: 0).tap()
