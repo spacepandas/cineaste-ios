@@ -18,8 +18,18 @@ class SearchMoviesCell: UITableViewCell {
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var soonHint: HintView!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    @IBOutlet weak var swipeHintView: UIView! {
+        didSet {
+            swipeHintView.backgroundColor = SwipeAction.moveToWatchlist.backgroundColor
+        }
+    }
 
     // MARK: - Actions
+
+    func animateSwipeHint() {
+        cellBackgroundView.slideIn(from: .trailing)
+    }
 
     func configure(with movie: Movie, state: WatchState) {
         title.text = movie.title

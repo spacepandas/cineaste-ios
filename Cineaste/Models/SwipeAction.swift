@@ -34,9 +34,7 @@ enum SwipeAction {
         action.image = image
         return action
     }
-}
 
-private extension SwipeAction {
     var backgroundColor: UIColor? {
         switch self {
         case .delete:
@@ -47,7 +45,9 @@ private extension SwipeAction {
             return .primaryOrange
         }
     }
+}
 
+private extension SwipeAction {
     var image: UIImage? {
         switch self {
         case .delete:
