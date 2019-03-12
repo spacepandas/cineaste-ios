@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0
+
+* New: Show a hint for swipe actions in search
+
 ## 1.5.0 
 
 * New: Update Search with a new layout, like an indicator about a movies watch state.
