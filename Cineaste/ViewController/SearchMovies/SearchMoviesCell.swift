@@ -32,11 +32,12 @@ class SearchMoviesCell: UITableViewCell {
     }
 
     func configure(with movie: Movie, state: WatchState) {
+        let nonbreakingSpace = "\u{00a0}"
         title.text = movie.title
         detailLabel.text = movie.formattedRelativeReleaseInformation
             + " ∙ "
             + movie.formattedVoteAverage
-            + " / 10"
+            + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
         soonHint.content = .soonReleaseInformation
         soonHint.isHidden = !movie.soonAvailable
