@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.1
+
+* Fixed: Allow shrinking of Hint Label
+* Fixed: Use nonbreaking Space in voting information
+
 ## 1.6.0
 
 * New: Show a hint for swipe actions in search
