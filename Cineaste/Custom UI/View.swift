@@ -99,6 +99,8 @@ class HintView: View {
         layer.cornerRadius = 2
 
         hintLabel.numberOfLines = 0
+        hintLabel.adjustsFontSizeToFitWidth = true
+        hintLabel.minimumScaleFactor = 0.5
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(hintLabel)
 
