@@ -143,7 +143,7 @@ class MoviesViewController: UITableViewController {
         refreshControl.tintColor = .white
 
         let attributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .callout),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         refreshControl.attributedTitle =
