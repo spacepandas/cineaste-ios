@@ -44,16 +44,40 @@ class TitleLabel: Label {
 
 class HeaderLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setCondensedSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setCondensedSymbolicTrait()
+
         textColor = UIColor.basicBlack
-        adjustsFontForContentSizeCategory = true
     }
 }
 
 class HintLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setItalicSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setItalicSymbolicTrait()
+
         textColor = UIColor.basicBackground
-        adjustsFontForContentSizeCategory = true
+    }
+}
+
+extension Label {
+    @objc
+    func setCondensedSymbolicTrait() {
+        font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+    }
+
+    @objc
+    func setItalicSymbolicTrait() {
+        font = UIFont.preferredFont(forTextStyle: .subheadline).italic()
     }
 }
