@@ -15,8 +15,6 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var releaseAndRuntimeLabel: UILabel!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var voteView: UIView!
-    @IBOutlet weak var categoryLabel: UILabel!
 
     func configure(with movie: StoredMovie) {
         if let moviePoster = movie.poster {
@@ -30,13 +28,6 @@ class WatchlistMovieCell: UITableViewCell {
             + movie.formattedRuntime
 
         title.text = movie.title
-
-        //TODO: add voteView
-        voteView.isHidden = true
-
-        //TODO: add category
-        categoryLabel.isHidden = true
-//        categoryLabel.text = movie.category
 
         applyAccessibility(with: movie)
     }
