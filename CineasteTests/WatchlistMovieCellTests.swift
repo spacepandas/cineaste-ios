@@ -31,6 +31,10 @@ class WatchlistMovieCellTests: XCTestCase {
         let title = UILabel()
         cell.addSubview(title)
         cell.title = title
+
+        let voteView = VoteView()
+        cell.addSubview(voteView)
+        cell.voteView = voteView
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
@@ -41,6 +45,11 @@ class WatchlistMovieCellTests: XCTestCase {
             + " ∙ "
             + storedMovie.formattedRuntime)
         XCTAssertEqual(cell.title.text, storedMovie.title)
+
+        let nonbreakingSpace = "\u{00a0}"
+        XCTAssertEqual(cell.voteView.content,
+                       storedMovie.formattedVoteAverage
+                        + "\(nonbreakingSpace)/\(nonbreakingSpace)10")
     }
 
     private let storedMovie: StoredMovie = {
