@@ -31,14 +31,6 @@ class WatchlistMovieCellTests: XCTestCase {
         let title = UILabel()
         cell.addSubview(title)
         cell.title = title
-
-        let voteView = UIView()
-        cell.addSubview(voteView)
-        cell.voteView = voteView
-
-        let category = UILabel()
-        cell.addSubview(category)
-        cell.categoryLabel = category
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
