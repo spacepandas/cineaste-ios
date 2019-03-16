@@ -44,7 +44,7 @@
                                                                 <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
                                                             <rect key="frame" x="107.5" y="5" width="227.5" height="89.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
@@ -57,7 +57,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYE-99-Bh1" customClass="HeaderLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="22.5" width="84.5" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="24.5" width="84.5" height="20.5"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
@@ -66,7 +66,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kdq-BS-9up">
-                                                                    <rect key="frame" x="0.0" y="45" width="154.5" height="22.5"/>
+                                                                    <rect key="frame" x="0.0" y="49" width="154.5" height="16.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" priority="750" constant="4" id="7au-W6-niS"/>
                                                                     </constraints>

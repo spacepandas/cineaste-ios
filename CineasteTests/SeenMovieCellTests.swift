@@ -20,7 +20,7 @@ class SeenMovieCellTests: XCTestCase {
         cell.addSubview(poster)
         cell.poster = poster
 
-        let title = TitleLabel()
+        let title = UILabel()
         cell.addSubview(title)
         cell.title = title
 
@@ -28,9 +28,9 @@ class SeenMovieCellTests: XCTestCase {
         cell.addSubview(separatorView)
         cell.separatorView = separatorView
 
-        let watchedDate = DescriptionLabel()
+        let watchedDate = UILabel()
         cell.addSubview(watchedDate)
-        cell.watched = watchedDate
+        cell.watchedDateLabel = watchedDate
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
@@ -38,7 +38,7 @@ class SeenMovieCellTests: XCTestCase {
 
         XCTAssertEqual(cell.poster.image, UIImage.posterPlaceholder)
         XCTAssertEqual(cell.title.text, storedMovie.title)
-        XCTAssertEqual(cell.watched.text, storedMovie.formattedWatchedDate)
+        XCTAssertEqual(cell.watchedDateLabel.text, storedMovie.formattedWatchedDate)
     }
 
     private let storedMovie: StoredMovie = {

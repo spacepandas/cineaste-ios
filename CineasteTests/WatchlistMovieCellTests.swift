@@ -10,8 +10,8 @@ import XCTest
 import CoreData
 @testable import Cineaste_App
 
-class MovieListCellTests: XCTestCase {
-    let cell = MovieListCell()
+class WatchlistMovieCellTests: XCTestCase {
+    let cell = WatchlistMovieCell()
 
     override func setUp() {
         super.setUp()
@@ -20,35 +20,27 @@ class MovieListCellTests: XCTestCase {
         cell.addSubview(poster)
         cell.poster = poster
 
-        let title = TitleLabel()
-        cell.addSubview(title)
-        cell.title = title
-
         let separatorView = UIView()
         cell.addSubview(separatorView)
         cell.separatorView = separatorView
 
-        let votes = DescriptionLabel()
-        cell.addSubview(votes)
-        cell.votes = votes
+        let releaseAndRuntime = UILabel()
+        cell.addSubview(releaseAndRuntime)
+        cell.releaseAndRuntimeLabel = releaseAndRuntime
 
-        let runtime = DescriptionLabel()
-        cell.addSubview(runtime)
-        cell.runtime = runtime
-
-        let releaseDate = DescriptionLabel()
-        cell.addSubview(releaseDate)
-        cell.releaseDate = releaseDate
+        let title = UILabel()
+        cell.addSubview(title)
+        cell.title = title
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
         cell.configure(with: storedMovie)
 
         XCTAssertEqual(cell.poster.image, UIImage.posterPlaceholder)
+        XCTAssertEqual(cell.releaseAndRuntimeLabel.text, storedMovie.formattedRelativeReleaseInformation
+            + " ∙ "
+            + storedMovie.formattedRuntime)
         XCTAssertEqual(cell.title.text, storedMovie.title)
-        XCTAssertEqual(cell.votes.text, storedMovie.formattedVoteAverage)
-        XCTAssertEqual(cell.runtime.text, storedMovie.formattedRuntime)
-        XCTAssertEqual(cell.releaseDate.text, storedMovie.formattedReleaseDate)
     }
 
     private let storedMovie: StoredMovie = {

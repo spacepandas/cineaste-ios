@@ -12,14 +12,9 @@ class SeenMovieCell: UITableViewCell {
     static let identifier = "SeenMovieCell"
 
     @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var watched: DescriptionLabel!
-    @IBOutlet weak var watchedIcon: UIImageView! {
-        didSet {
-            watchedIcon.tintColor = UIColor.accentTextOnWhite
-        }
-    }
+    @IBOutlet weak var watchedDateLabel: UILabel!
 
     func configure(with movie: StoredMovie) {
         if let moviePoster = movie.poster {
@@ -29,6 +24,17 @@ class SeenMovieCell: UITableViewCell {
         }
 
         title.text = movie.title
-        watched.text = movie.formattedWatchedDate
+        watchedDateLabel.text = movie.formattedWatchedDate
+
+        applyAccessibility(with: movie)
+    }
+
+    private func applyAccessibility(with movie: StoredMovie) {
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+        if let watchedDate = movie.formattedWatchedDate {
+            accessibilityLabel?.append(", \(watchedDate)")
+        }
     }
 }

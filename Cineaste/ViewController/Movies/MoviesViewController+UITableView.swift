@@ -16,7 +16,7 @@ extension MoviesViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch category {
         case .watchlist:
-            let cell: MovieListCell = tableView.dequeueCell(identifier: MovieListCell.identifier)
+            let cell: WatchlistMovieCell = tableView.dequeueCell(identifier: WatchlistMovieCell.identifier)
             cell.configure(with: fetchedResultsManager.movies[indexPath.row])
             return cell
         case .seen:
