@@ -41,6 +41,10 @@ class WatchlistMovieCell: UITableViewCell {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title
+
+        let voting = String.voting(for: movie.formattedVoteAverage)
+        accessibilityLabel?.append(", \(voting)")
+
         accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
         accessibilityLabel?.append(", \(movie.formattedRuntime)")
     }
