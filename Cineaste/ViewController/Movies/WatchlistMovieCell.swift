@@ -37,5 +37,15 @@ class WatchlistMovieCell: UITableViewCell {
         //TODO: add category
         categoryLabel.isHidden = true
 //        categoryLabel.text = movie.category
+
+        applyAccessibility(with: movie)
+    }
+
+    private func applyAccessibility(with movie: StoredMovie) {
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+        accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
+        accessibilityLabel?.append(", \(movie.formattedRuntime)")
     }
 }

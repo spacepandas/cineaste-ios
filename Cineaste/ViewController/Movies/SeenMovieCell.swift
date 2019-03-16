@@ -25,5 +25,16 @@ class SeenMovieCell: UITableViewCell {
 
         title.text = movie.title
         watchedDateLabel.text = movie.formattedWatchedDate
+
+        applyAccessibility(with: movie)
+    }
+
+    private func applyAccessibility(with movie: StoredMovie) {
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+        if let watchedDate = movie.formattedWatchedDate {
+            accessibilityLabel?.append(", \(watchedDate)")
+        }
     }
 }
