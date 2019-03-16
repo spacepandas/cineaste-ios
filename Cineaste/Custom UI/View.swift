@@ -24,7 +24,7 @@ class View: UIView {
     }
 }
 
-class VoteView: View {
+class VoteCircleView: View {
     override func setup() {
         clipsToBounds = true
         layer.cornerRadius = frame.height / 2
@@ -126,6 +126,66 @@ class HintView: View {
             ])
 
         hintLabel
+            .setContentCompressionResistancePriority(.required,
+                                                     for: .vertical)
+    }
+}
+
+class VoteView: View {
+    var content: String = "" {
+        didSet {
+            voteLabel.text = content
+        }
+    }
+
+    private let voteLabel = DescriptionLabel()
+
+    override func setup() {
+        clipsToBounds = true
+
+        layer.cornerRadius = frame.height / 3
+
+        let borderWidth: CGFloat
+        switch voteLabel.font.pointSize {
+        case ...20:
+            borderWidth = 1
+        case 20..<25:
+            borderWidth = 2
+        default:
+            borderWidth = 3
+        }
+        layer.borderWidth = borderWidth
+
+        layer.borderColor = UIColor.primaryOrange.cgColor
+
+        voteLabel.textColor = .primaryOrange
+        voteLabel.adjustsFontSizeToFitWidth = true
+        voteLabel.minimumScaleFactor = 0.5
+        voteLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(voteLabel)
+
+        let horizontalConstant: CGFloat = 8
+        let verticalConstant: CGFloat = 4
+
+        let bottomConstraint = voteLabel.bottomAnchor
+            .constraint(equalTo: bottomAnchor,
+                        constant: -verticalConstant)
+        bottomConstraint.priority = UILayoutPriority(rawValue: 999)
+
+        NSLayoutConstraint.activate([
+            voteLabel.leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: horizontalConstant),
+            voteLabel.trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -horizontalConstant),
+            bottomConstraint,
+            voteLabel.topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: verticalConstant)
+            ])
+
+        voteLabel
             .setContentCompressionResistancePriority(.required,
                                                      for: .vertical)
     }
