@@ -15,8 +15,11 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var releaseAndRuntimeLabel: UILabel!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var voteView: VoteView!
 
     func configure(with movie: StoredMovie) {
+        let nonbreakingSpace = "\u{00a0}"
+
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {
@@ -28,6 +31,8 @@ class WatchlistMovieCell: UITableViewCell {
             + movie.formattedRuntime
 
         title.text = movie.title
+        voteView.content = movie.formattedVoteAverage
+            + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
         applyAccessibility(with: movie)
     }

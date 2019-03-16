@@ -44,7 +44,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="D4O-sx-IJ1">
-                                                    <rect key="frame" x="107.5" y="37.5" width="247.5" height="45"/>
+                                                    <rect key="frame" x="107.5" y="8" width="247.5" height="103.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="watchlist.releaseAndRuntime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-GG-yAO" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="221.5" height="20.5"/>
@@ -64,6 +64,16 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zXA-9K-AVC">
+                                                            <rect key="frame" x="0.0" y="49" width="154.5" height="30.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" priority="750" constant="4" id="T1a-eR-MC2"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-sK-hhJ" customClass="VoteView" customModule="Cineaste_App" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="83.5" width="70" height="20"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-Z0-7D4">
@@ -111,6 +121,7 @@
                                     <outlet property="releaseAndRuntimeLabel" destination="Gqs-GG-yAO" id="R9j-Na-KNS"/>
                                     <outlet property="separatorView" destination="Krj-Xu-Ja7" id="jKX-E6-WSc"/>
                                     <outlet property="title" destination="TaQ-oj-JrC" id="zHd-f7-gHs"/>
+                                    <outlet property="voteView" destination="bb3-sK-hhJ" id="eCa-3o-TZS"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeenMovieCell" rowHeight="100" id="Hys-Ew-Zb3" customClass="SeenMovieCell" customModule="Cineaste_App" customModuleProvider="target">
