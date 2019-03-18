@@ -47,7 +47,7 @@ class DescriptionTextView: TextView {
     override func setAttributes() {
         let defaultAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
             NSAttributedString.Key.foregroundColor: UIColor.basicBackground
         ]
 
@@ -58,13 +58,13 @@ class DescriptionTextView: TextView {
     func setup(with type: TextViewType) {
         let titleAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
             NSAttributedString.Key.foregroundColor: UIColor.basicBackground
         ]
 
         let paragraphAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
             NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
         ]
 
