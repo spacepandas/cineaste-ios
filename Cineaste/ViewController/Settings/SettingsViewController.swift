@@ -37,6 +37,7 @@ class SettingsViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
