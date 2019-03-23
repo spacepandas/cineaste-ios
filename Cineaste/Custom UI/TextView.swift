@@ -21,6 +21,12 @@ class TextView: UITextView {
         linkTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.primaryOrange
         ]
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setDynamicType),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
     }
 
     func setAttributes() {
@@ -39,6 +45,11 @@ class TextView: UITextView {
             setup()
             setAttributes()
         }
+    }
+
+    @objc
+    func setDynamicType() {
+        setAttributes()
     }
 }
 

@@ -10,18 +10,8 @@ import UIKit
 import SafariServices
 
 class SettingsDetailViewController: UIViewController {
-    @IBOutlet weak var settingsDetailTextView: DescriptionTextView! {
-        didSet {
-            settingsDetailTextView.delegate = self
-            update(textViewContent)
-        }
-    }
-
-    @IBOutlet private weak var movieDBImageView: UIImageView! {
-        didSet {
-            movieDBImageView.isHidden = true
-        }
-    }
+    @IBOutlet weak var settingsDetailTextView: DescriptionTextView!
+    @IBOutlet private weak var movieDBImageView: UIImageView!
 
     private var textViewContent: TextViewType = .imprint {
         didSet {
@@ -37,6 +27,10 @@ class SettingsDetailViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
+
+        settingsDetailTextView.delegate = self
+        movieDBImageView.isHidden = true
+        update(textViewContent)
     }
 
     func configure(with title: String, textViewContent: TextViewType) {
