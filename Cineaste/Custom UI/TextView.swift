@@ -51,7 +51,7 @@ class DescriptionTextView: TextView {
             NSAttributedString.Key.foregroundColor: UIColor.basicBackground
         ]
 
-        attributedText = NSAttributedString(string: self.text,
+        attributedText = NSAttributedString(string: text,
                                             attributes: defaultAttributes)
     }
 
@@ -93,7 +93,7 @@ class LinkTextView: TextView {
             NSAttributedString.Key.foregroundColor: UIColor.accentTextOnBlack
         ]
 
-        attributedText = NSAttributedString(string: self.text,
+        attributedText = NSAttributedString(string: text,
                                             attributes: defaultAttributes)
     }
 }
