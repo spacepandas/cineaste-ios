@@ -31,7 +31,24 @@ class ActionButton: Button {
 
     override func setup() {
         setTitleColor(UIColor.primaryDarkOrange, for: .normal)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setBoldSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        titleLabel?.adjustsFontForContentSizeCategory = true
+        titleLabel?.numberOfLines = 0
+        titleLabel?.lineBreakMode = .byWordWrapping
+        titleLabel?.textAlignment = .left
+
+        setBoldSymbolicTrait()
+    }
+
+    @objc
+    func setBoldSymbolicTrait() {
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout).bold()
     }
 }
 
