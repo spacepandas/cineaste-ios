@@ -11,9 +11,9 @@ import UIKit
 class MovieNightUserCell: UITableViewCell {
     static let identifier = "MovieNightUserTableViewCell"
 
-    @IBOutlet private weak var allTitle: TitleLabel!
-    @IBOutlet private weak var namesOfFriendsLabel: DescriptionLabel!
-    @IBOutlet private weak var numberOfMoviesLabel: DescriptionLabel!
+    @IBOutlet private weak var allTitle: UILabel!
+    @IBOutlet private weak var namesOfFriendsLabel: UILabel!
+    @IBOutlet private weak var numberOfMoviesLabel: UILabel!
 
     func configureAll(numberOfMovies: Int, namesOfFriends: [String]) {
         setup()
