@@ -11,8 +11,8 @@ import UIKit
 class SettingsCell: UITableViewCell {
     static let identifier = "SettingsCell"
 
-    @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var descriptionLabel: DescriptionLabel!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 
     func configure(with settingsItem: SettingItem) {
         title.text = settingsItem.title

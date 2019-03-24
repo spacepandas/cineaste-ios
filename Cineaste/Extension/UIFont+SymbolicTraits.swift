@@ -16,6 +16,10 @@ extension UIFont {
         return UIFont(descriptor: descriptor, size: 0)
     }
 
+    func bold() -> UIFont {
+        return withTraits(traits: .traitBold)
+    }
+
     func condensed() -> UIFont {
         return withTraits(traits: .traitCondensed)
     }

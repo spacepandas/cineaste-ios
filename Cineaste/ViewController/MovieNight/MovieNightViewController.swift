@@ -51,7 +51,7 @@ class MovieNightViewController: UITableViewController {
             guard let params = params else { return }
             //Tracking user settings that affect Nearby
             params.microphonePermissionErrorHandler = self.microphonePermissionErrorHandler ?? { _ in }
-            params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler  ?? { _ in }
+            params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler ?? { _ in }
         }
 
     lazy var ownNearbyMessage = generateOwnNearbyMessage()

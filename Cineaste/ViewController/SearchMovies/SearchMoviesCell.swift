@@ -12,9 +12,9 @@ class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
     @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var detailLabel: DescriptionLabel!
+    @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var soonHint: HintView!

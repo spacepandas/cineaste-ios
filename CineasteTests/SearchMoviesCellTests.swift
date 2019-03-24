@@ -19,7 +19,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(imageView)
         cell.poster = imageView
 
-        let title = TitleLabel()
+        let title = UILabel()
         cell.addSubview(title)
         cell.title = title
 
@@ -27,7 +27,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(view)
         cell.separatorView = view
 
-        let description = DescriptionLabel()
+        let description = UILabel()
         cell.addSubview(description)
         cell.detailLabel = description
 

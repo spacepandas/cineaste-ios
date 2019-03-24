@@ -141,21 +141,16 @@ class VoteView: View {
     private let voteLabel = DescriptionLabel()
 
     override func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setBorderWidth),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
         clipsToBounds = true
 
+        setBorderWidth()
         layer.cornerRadius = frame.height / 3
-
-        let borderWidth: CGFloat
-        switch voteLabel.font.pointSize {
-        case ...20:
-            borderWidth = 1
-        case 20..<25:
-            borderWidth = 2
-        default:
-            borderWidth = 3
-        }
-        layer.borderWidth = borderWidth
-
         layer.borderColor = UIColor.primaryOrange.cgColor
 
         voteLabel.textColor = .primaryOrange
@@ -188,5 +183,36 @@ class VoteView: View {
         voteLabel
             .setContentCompressionResistancePriority(.required,
                                                      for: .vertical)
+    }
+
+    @objc
+    func setBorderWidth() {
+        let borderWidth: CGFloat
+
+        if #available(iOS 11.0, *) {
+            borderWidth = UIFontMetrics.default.scaledValue(for: 1)
+        } else {
+            switch UIApplication.shared.preferredContentSizeCategory {
+            case .extraSmall,
+                 .small,
+                 .medium,
+                 .large,
+                 .extraLarge:
+                borderWidth = 1
+            case .extraExtraLarge,
+                 .extraExtraExtraLarge,
+                 .accessibilityMedium,
+                 .accessibilityLarge:
+                borderWidth = 2
+            case .accessibilityExtraLarge,
+                 .accessibilityExtraExtraLarge,
+                 .accessibilityExtraExtraExtraLarge:
+                borderWidth = 3
+            default:
+                borderWidth = 1
+            }
+        }
+
+        layer.borderWidth = borderWidth
     }
 }

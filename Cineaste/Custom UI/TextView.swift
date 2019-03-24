@@ -21,6 +21,12 @@ class TextView: UITextView {
         linkTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.primaryOrange
         ]
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setDynamicType),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
     }
 
     func setAttributes() {
@@ -40,39 +46,49 @@ class TextView: UITextView {
             setAttributes()
         }
     }
+
+    @objc
+    func setDynamicType() {
+        setAttributes()
+    }
 }
 
 class DescriptionTextView: TextView {
+    var type: TextViewType? {
+        didSet {
+            setAttributes()
+        }
+    }
 
     override func setAttributes() {
-        let defaultAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
-        ]
+        if let type = type {
+            let titleAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBlack
+            ]
 
-        attributedText = NSAttributedString(string: self.text,
-                                            attributes: defaultAttributes)
+            let paragraphAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+            ]
+
+            attributedText = type
+                .chainContent(titleAttributes: titleAttributes,
+                              paragraphAttributes: paragraphAttributes)
+        } else {
+            let defaultAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+            ]
+
+            attributedText = NSAttributedString(string: text,
+                                                attributes: defaultAttributes)
+        }
     }
 
-    func setup(with type: TextViewType) {
-        let titleAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
-            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
-        ]
-
-        let paragraphAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
-        ]
-
-        let chain = type.chainContent(titleAttributes: titleAttributes,
-                                      paragraphAttributes: paragraphAttributes)
-
-        attributedText = chain
-    }
 }
 
 class LinkTextView: TextView {
@@ -93,7 +109,7 @@ class LinkTextView: TextView {
             NSAttributedString.Key.foregroundColor: UIColor.accentTextOnBlack
         ]
 
-        attributedText = NSAttributedString(string: self.text,
+        attributedText = NSAttributedString(string: text,
                                             attributes: defaultAttributes)
     }
 }

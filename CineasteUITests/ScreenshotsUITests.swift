@@ -149,7 +149,7 @@ class ScreenshotsUITests: XCTestCase {
 extension XCUIElement {
     func swipeDownToElement() -> XCUIElement {
         while !self.isHittable {
-            XCUIApplication().swipeDown()
+            XCUIApplication().swipeUp()
         }
         return self
     }

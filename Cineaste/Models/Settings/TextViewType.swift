@@ -39,24 +39,24 @@ enum TextViewType {
                     return []
             }
 
-            var contentArray = [ContentBlock]()
+            var contentBlocks: [ContentBlock] = []
 
             for element in array {
                 if let title = element["Title"],
                     let paragraph = element["FooterText"] {
-                    contentArray.append(ContentBlock(title: title,
-                                                     paragraph: paragraph))
+                    contentBlocks.append(ContentBlock(title: title,
+                                                      paragraph: paragraph))
                 }
             }
 
-            return contentArray
+            return contentBlocks
         }
     }
 
     func chainContent(titleAttributes: [NSAttributedString.Key: NSObject],
                       paragraphAttributes: [NSAttributedString.Key: NSObject]) -> NSMutableAttributedString {
         let chain = NSMutableAttributedString(string: "")
-        for block in self.content {
+        for block in content {
             if let title = block.title,
                 !title.isEmpty {
                 let titleBlock = "\(title)\n"
@@ -69,10 +69,9 @@ enum TextViewType {
             }
 
             var paragraphBlock = "\(block.paragraph)"
-            if let last = self.content.last {
-                if block != last {
-                    paragraphBlock.append("\n\n")
-                }
+            if let last = content.last,
+                block != last {
+                paragraphBlock.append("\n\n")
             }
 
             chain.append(NSAttributedString(string: paragraphBlock))
