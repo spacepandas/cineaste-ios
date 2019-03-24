@@ -70,6 +70,14 @@ class HintLabel: Label {
     }
 }
 
+class FootnoteLabel: Label {
+    override func setup() {
+        font = UIFont.preferredFont(forTextStyle: .footnote)
+        textColor = UIColor.accentTextOnBlack
+        adjustsFontForContentSizeCategory = true
+    }
+}
+
 extension Label {
     @objc
     func setCondensedSymbolicTrait() {
