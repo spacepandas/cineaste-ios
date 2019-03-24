@@ -11,37 +11,35 @@ import SafariServices
 
 //swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
-
     enum MovieType {
         case stored(StoredMovie)
         case network(Movie)
     }
 
+    @IBOutlet private weak var detailScrollView: UIScrollView!
+
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
-            updatePosterSize()
-        }
-    }
-    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
-    @IBOutlet private weak var titleLabel: TitleLabel!
+            guard let poster = posterImageView.image
+                else { return }
 
-    @IBOutlet private var descriptionLabels: [DescriptionLabel]! {
-        didSet {
-            for label in descriptionLabels {
-                label.textColor = UIColor.basicBackground
+            DispatchQueue.main.async {
+                let aspectRatio = poster.size.height / poster.size.width
+                self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
             }
         }
     }
-    @IBOutlet private weak var detailScrollView: UIScrollView!
-    @IBOutlet private weak var releaseDateLabel: DescriptionLabel!
-    @IBOutlet private weak var runtimeLabel: DescriptionLabel!
-    @IBOutlet private weak var votingLabel: DescriptionLabel! {
-        didSet {
-            votingLabel.textColor = UIColor.black
-        }
-    }
+    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+
+    @IBOutlet private weak var votingLabel: UILabel!
+
+    @IBOutlet private weak var titleLabel: TitleLabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var releaseDateAndRuntimeLabel: UILabel!
 
     @IBOutlet private weak var moreInformationButton: ActionButton!
+    @IBOutlet private weak var buttonInfoLabel: UILabel!
+
     @IBOutlet private weak var seenButton: ActionButton!
     @IBOutlet private weak var mustSeeButton: ActionButton!
     @IBOutlet private weak var deleteButton: ActionButton!
@@ -52,7 +50,7 @@ class MovieDetailViewController: UIViewController {
 
     private var state: WatchState = .undefined {
         didSet {
-            updateDetail(for: state)
+            setupActionButtons(for: state)
         }
     }
 
@@ -79,20 +77,14 @@ class MovieDetailViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        updateDetail(for: state)
-        setupLocalization()
-
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(barButtonSystemItem: .action,
                             target: self,
                             action: #selector(shareMovie))
 
-        let gestureRecognizer = UITapGestureRecognizer(target: self,
-                                                       action: #selector(showPoster))
-        posterImageView.isUserInteractionEnabled = true
-        posterImageView.addGestureRecognizer(gestureRecognizer)
-
-        moreInformationButton.setTitle(String.moreInformation, for: .normal)
+        setupActionButtons(for: state)
+        setupLocalization()
+        configureElements()
     }
 
     func configure(with selectedMovie: MovieType,
@@ -193,18 +185,24 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Private
 
+    private func configureElements() {
+        categoryLabel.isHidden = true
+        votingLabel.textColor = UIColor.black
+        buttonInfoLabel.textColor = UIColor.basicBackground
+
+        posterImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self,
+                                                       action: #selector(showPoster))
+        posterImageView.addGestureRecognizer(gestureRecognizer)
+    }
+
     private func setupLocalization() {
+        moreInformationButton.setTitle(String.moreInformation, for: .normal)
+        buttonInfoLabel.text = "(on themoviedb.org)"
+
         seenButton.setTitle(String.seenAction, for: .normal)
         mustSeeButton.setTitle(String.watchlistActionLong, for: .normal)
         deleteButton.setTitle(String.deleteActionLong, for: .normal)
-    }
-
-    func updatePosterSize() {
-        DispatchQueue.main.async {
-            guard let poster = self.posterImageView.image else { return }
-            let aspectRatio = poster.size.height / poster.size.width
-            self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
-        }
     }
 
     private func generateMovieURL() -> URL? {
@@ -285,7 +283,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    private func updateDetail(for type: WatchState) {
+    private func setupActionButtons(for type: WatchState) {
         guard let mustSeeButton = mustSeeButton,
             let seenButton = seenButton,
             let deleteButton = deleteButton else {
@@ -326,17 +324,19 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
-                let runtimeLabel = self.runtimeLabel,
+                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel,
                 self.posterImageView != nil
                 else { return }
 
             titleLabel.text = networkMovie.title
-            descriptionTextView.text = networkMovie.overview
-            runtimeLabel.text = networkMovie.formattedRuntime
+            releaseDateAndRuntimeLabel.text = networkMovie.formattedReleaseDate
+                + " ∙ "
+                + networkMovie.formattedRuntime
+
             votingLabel.text = networkMovie.formattedVoteAverage
-            releaseDateLabel.text = networkMovie.formattedReleaseDate
+
+            descriptionTextView.text = networkMovie.overview
 
             if let posterPath = networkMovie.posterPath {
                 self.posterImageView.kf.indicatorType = .activity
@@ -356,17 +356,18 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
-                let runtimeLabel = self.runtimeLabel,
+                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel,
                 let posterImageView = self.posterImageView
                 else { return }
 
             titleLabel.text = localMovie.title
             descriptionTextView.text = localMovie.overview
-            runtimeLabel.text = localMovie.formattedRuntime
+            releaseDateAndRuntimeLabel.text = localMovie.formattedReleaseDate
+                + " ∙ "
+                + localMovie.formattedRuntime
+
             votingLabel.text = localMovie.formattedVoteAverage
-            releaseDateLabel.text = localMovie.formattedReleaseDate
             posterImageView.image = localMovie.poster.map(UIImage.init)
                 ?? UIImage.posterPlaceholder
         }

@@ -72,7 +72,7 @@ class HintLabel: Label {
 
 class FootnoteLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .footnote)
+        font = UIFont.preferredFont(forTextStyle: .caption1)
         textColor = UIColor.accentTextOnBlack
         adjustsFontForContentSizeCategory = true
     }

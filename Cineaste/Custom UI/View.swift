@@ -27,10 +27,11 @@ class View: UIView {
 class VoteCircleView: View {
     override func setup() {
         clipsToBounds = true
-        layer.cornerRadius = frame.height / 2
 
         backgroundColor = UIColor.basicYellow
 
+        layer.cornerRadius = bounds.size.width / 2
+        layer.masksToBounds = true
         layer.shadowColor = UIColor.accentTextOnWhite.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
