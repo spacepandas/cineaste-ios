@@ -54,36 +54,41 @@ class TextView: UITextView {
 }
 
 class DescriptionTextView: TextView {
+    var type: TextViewType? {
+        didSet {
+            setAttributes()
+        }
+    }
 
     override func setAttributes() {
-        let defaultAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
-        ]
+        if let type = type {
+            let titleAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+            ]
 
-        attributedText = NSAttributedString(string: text,
-                                            attributes: defaultAttributes)
+            let paragraphAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
+            ]
+
+            attributedText = type
+                .chainContent(titleAttributes: titleAttributes,
+                              paragraphAttributes: paragraphAttributes)
+        } else {
+            let defaultAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+            ]
+
+            attributedText = NSAttributedString(string: text,
+                                                attributes: defaultAttributes)
+        }
     }
 
-    func setup(with type: TextViewType) {
-        let titleAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
-            NSAttributedString.Key.foregroundColor: UIColor.basicBackground
-        ]
-
-        let paragraphAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
-        ]
-
-        let chain = type.chainContent(titleAttributes: titleAttributes,
-                                      paragraphAttributes: paragraphAttributes)
-
-        attributedText = chain
-    }
 }
 
 class LinkTextView: TextView {

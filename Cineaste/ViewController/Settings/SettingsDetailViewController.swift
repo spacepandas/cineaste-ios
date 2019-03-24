@@ -43,7 +43,7 @@ class SettingsDetailViewController: UIViewController {
             let imageView = movieDBImageView
             else { return }
 
-        textView.setup(with: type)
+        textView.type = type
 
         if textViewContent == .imprint {
             imageView.isHidden = false
