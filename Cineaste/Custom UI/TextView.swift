@@ -65,13 +65,13 @@ class DescriptionTextView: TextView {
             let titleAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
-                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+                NSAttributedString.Key.foregroundColor: UIColor.basicBlack
             ]
 
             let paragraphAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-                NSAttributedString.Key.foregroundColor: UIColor.accentTextOnWhite
+                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
             ]
 
             attributedText = type
