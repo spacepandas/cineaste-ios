@@ -30,6 +30,7 @@ class DescriptionLabel: Label {
     override func setup() {
         font = UIFont.preferredFont(forTextStyle: .subheadline)
         textColor = UIColor.basicBackground
+        adjustsFontForContentSizeCategory = true
     }
 }
 
@@ -37,6 +38,7 @@ class TitleLabel: Label {
     override func setup() {
         font = UIFont.preferredFont(forTextStyle: .headline)
         textColor = UIColor.basicBlack
+        adjustsFontForContentSizeCategory = true
     }
 }
 
