@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0
+
+* Improved: Update app to support Accessibility Features like Dynamic Type and Voice Over.
+
 ## 1.6.1
 
 * Fixed: Allow shrinking of Hint Label
