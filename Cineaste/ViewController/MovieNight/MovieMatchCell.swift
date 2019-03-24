@@ -52,14 +52,30 @@ class MovieMatchCell: UITableViewCell {
         setup(with: movie, delegate: delegate)
 
         numberOfMatchesLabel.isHidden = false
-        numberOfMatchesLabel.text = String.matches(for: numberOfMatches,
-                                                   amountOfPeople: amountOfPeople)
+        let matches = String.matches(for: numberOfMatches,
+                                     amountOfPeople: amountOfPeople)
+        numberOfMatchesLabel.text = matches
+
+        applyAccessibility(for: movie, numberOfMatches: matches)
     }
 
     func configure(with movie: NearbyMovie,
                    delegate: MovieMatchTableViewCellDelegate) {
         setup(with: movie, delegate: delegate)
+
         numberOfMatchesLabel.isHidden = true
+
+        applyAccessibility(for: movie, numberOfMatches: nil)
+    }
+
+    private func applyAccessibility(for movie: NearbyMovie, numberOfMatches: String?) {
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+
+        if let matches = numberOfMatches {
+            accessibilityLabel?.append(", \(matches)")
+        }
     }
 
     // MARK: - Actions
