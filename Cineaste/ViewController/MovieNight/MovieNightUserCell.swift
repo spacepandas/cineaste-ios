@@ -38,7 +38,7 @@ class MovieNightUserCell: UITableViewCell {
     private func setup() {
         accessoryType = .disclosureIndicator
 
-        let contentSizeCategory = UIScreen.main.traitCollection.preferredContentSizeCategory
+        let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
 
         if #available(iOS 11.0, *) {
             contentSizeCategory.isAccessibilityCategory
