@@ -38,10 +38,14 @@ class ActionButton: Button {
             name: UIContentSizeCategory.didChangeNotification,
             object: nil)
 
-        titleLabel?.adjustsFontForContentSizeCategory = true
-        titleLabel?.numberOfLines = 0
-        titleLabel?.lineBreakMode = .byWordWrapping
-        titleLabel?.textAlignment = .left
+        //TODO: fix layout issues when using dynamic size
+//        titleLabel?.adjustsFontForContentSizeCategory = true
+//        titleLabel?.numberOfLines = 0
+//        titleLabel?.lineBreakMode = .byWordWrapping
+//        titleLabel?.textAlignment = .left
+
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.2
 
         setBoldSymbolicTrait()
     }
