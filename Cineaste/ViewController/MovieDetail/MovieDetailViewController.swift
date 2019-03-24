@@ -40,6 +40,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var moreInformationButton: ActionButton!
     @IBOutlet private weak var buttonInfoLabel: UILabel!
 
+    @IBOutlet weak var movieStateSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var seenButton: ActionButton!
     @IBOutlet private weak var mustSeeButton: ActionButton!
     @IBOutlet private weak var deleteButton: ActionButton!
@@ -189,11 +190,29 @@ class MovieDetailViewController: UIViewController {
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.basicBackground
+        movieStateSegmentedControl.tintColor = UIColor.primaryOrange
 
         posterImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self,
                                                        action: #selector(showPoster))
         posterImageView.addGestureRecognizer(gestureRecognizer)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateNonAutomaticDynamicFonts),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        updateNonAutomaticDynamicFonts()
+    }
+
+    @objc
+    func updateNonAutomaticDynamicFonts() {
+        let titleAttributes = [
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)
+        ]
+        movieStateSegmentedControl.setTitleTextAttributes(titleAttributes,
+                                                          for: .normal)
     }
 
     private func setupLocalization() {
