@@ -38,7 +38,8 @@ class ActionButton: Button {
             name: UIContentSizeCategory.didChangeNotification,
             object: nil)
 
-        //TODO: fix layout issues when using dynamic size
+        // TODO: fix layout issues when using dynamic size, related to #80
+        // https://github.com/spacepandas/cineaste-ios/issues/80
 //        titleLabel?.adjustsFontForContentSizeCategory = true
 //        titleLabel?.numberOfLines = 0
 //        titleLabel?.lineBreakMode = .byWordWrapping
