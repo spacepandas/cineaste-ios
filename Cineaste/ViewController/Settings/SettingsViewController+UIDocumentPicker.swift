@@ -22,7 +22,7 @@ extension SettingsViewController: UIDocumentPickerDelegate {
                 DispatchQueue.main.async {
                     self.navigationController?.dismiss(animated: true) {
                         switch result {
-                        case .error:
+                        case .failure:
                             self.showAlert(withMessage: Alert.importFailedInfo)
                         case .success(let counter):
                             self.showAlert(withMessage: Alert.importSucceededInfo(with: counter))

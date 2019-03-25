@@ -156,14 +156,14 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
                         }
 
                         switch result {
-                        case .error:
+                        case .failure:
                             self.showAlert(withMessage: Alert.insertMovieError)
                         case .success:
                             self.dismiss(animated: true)
                         }
                     }
                 }
-            case .error:
+            case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)
             }
         }

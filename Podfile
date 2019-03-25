@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target 'Cineaste App' do
   pod 'SwiftLint'
   pod 'NearbyMessages'
-  pod 'Kingfisher', '~> 5.1.0'
+  pod 'Kingfisher'
   pod 'SwiftMonkeyPaws', '~> 2.1.0', :configuration => 'Debug'
 
   target 'CineasteTests' do

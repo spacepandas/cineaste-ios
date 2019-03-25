@@ -1,7 +1,7 @@
 # Cineaste App (iOS)
 
 [![Build Status](https://travis-ci.com/spacepandas/cineaste-ios.svg?branch=master)](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
 [![platform](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)
 [![languages](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)
@@ -31,7 +31,7 @@ A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/
 ## How to build
 
 0. Run `pod install` in cineaste-ios folder to install all used cocoa pods.
-1. Open `Cineaste.xcworkspace` in Xcode.
+1. Open `Cineaste.xcworkspace` in Xcode (10.2).
 2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the ApiKeys data set in the asset catalog under the following path: `Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist`.
 
 ```xml 

@@ -46,7 +46,7 @@ class MovieStorageTests: XCTestCase {
             switch result {
             case .success:
                 expc.fulfill()
-            case .error:
+            case .failure:
                 break
             }
         }
@@ -64,7 +64,7 @@ class MovieStorageTests: XCTestCase {
             switch result {
             case .success:
                 expc.fulfill()
-            case .error:
+            case .failure:
                 break
             }
         }
@@ -90,7 +90,7 @@ class MovieStorageTests: XCTestCase {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     expc.fulfill()
                 }
-            case .error:
+            case .failure:
                 break
             }
         }
@@ -117,7 +117,7 @@ class MovieStorageTests: XCTestCase {
             switch result {
             case .success:
                 expc.fulfill()
-            case .error:
+            case .failure:
                 break
             }
         }

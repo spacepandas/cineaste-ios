@@ -24,7 +24,7 @@ extension SearchMoviesViewController {
 
         Webservice.load(resource: resource) { result in
             switch result {
-            case .error:
+            case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)
                 completion([])
             case .success(let result):
@@ -38,7 +38,7 @@ extension SearchMoviesViewController {
     func loadDetails(for movie: Movie, completion: @escaping (Movie?) -> Void) {
         Webservice.load(resource: movie.get) { result in
             switch result {
-            case .error:
+            case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)
                 completion(nil)
             case .success(let detailedMovie):
