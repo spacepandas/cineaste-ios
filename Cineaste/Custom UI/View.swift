@@ -28,14 +28,30 @@ class VoteCircleView: View {
     override func setup() {
         clipsToBounds = true
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setCornerRadius),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
         backgroundColor = UIColor.basicYellow
 
-        layer.cornerRadius = bounds.size.width / 2
         layer.masksToBounds = true
         layer.shadowColor = UIColor.accentTextOnWhite.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = 3
+    }
+
+    @objc
+    func setCornerRadius() {
+        layer.cornerRadius = bounds.size.width / 2
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        setCornerRadius()
     }
 }
 
