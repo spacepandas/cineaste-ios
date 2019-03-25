@@ -36,7 +36,7 @@ class MovieStorageManager {
                          voteAverage: Double,
                          voteCount: Double,
                          watched: Bool,
-                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = id
@@ -60,7 +60,7 @@ class MovieStorageManager {
 
     func insertMovieItem(with movie: Movie,
                          watched: Bool,
-                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         backgroundContext.perform {
             let storedMovie = StoredMovie(context: self.backgroundContext)
             storedMovie.id = movie.id
@@ -86,7 +86,7 @@ class MovieStorageManager {
 
     func updateMovieItem(with objectID: NSManagedObjectID,
                          watched: Bool,
-                         completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+                         completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         backgroundContext.perform {
             guard let storedMovie = self.backgroundContext.object(with: objectID) as? StoredMovie else {
                 fatalError("Object could not be casted to StoredMovie")
@@ -104,7 +104,7 @@ class MovieStorageManager {
     }
 
     func updateMovieItems(with movies: [StoredMovie],
-                          completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+                          completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         backgroundContext.perform {
             for movie in movies {
                 guard let storedMovie = self.backgroundContext.object(with: movie.objectID) as? StoredMovie else {
@@ -128,7 +128,7 @@ class MovieStorageManager {
         }
     }
 
-    func save(_ movie: Movie, state: WatchState, completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+    func save(_ movie: Movie, state: WatchState, completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         DispatchQueue.main.async {
             if let movie = self.fetchMovie(for: movie.id) {
                 switch state {
@@ -168,7 +168,7 @@ class MovieStorageManager {
     }
 
     func remove(with objectID: NSManagedObjectID,
-                completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+                completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         backgroundContext.perform {
             let object = self.backgroundContext.object(with: objectID)
             self.backgroundContext.delete(object)

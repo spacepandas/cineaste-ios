@@ -84,7 +84,7 @@ class ImporterTests: XCTestCase {
 
         // When
         Importer.importMovies(from: urlToFailingImport, storageManager: storageManager) { result in
-            guard case let .error(error) = result else {
+            guard case let .failure(error) = result else {
                 XCTFail("Should not result in success")
                 return
             }

@@ -12,9 +12,9 @@ enum ImportError: Error {
 }
 
 enum Importer {
-    static func importMovies(from path: URL, storageManager: MovieStorageManager, completion: @escaping ((Result<Int>) -> Void)) {
+    static func importMovies(from path: URL, storageManager: MovieStorageManager, completion: @escaping ((Result<Int, Error>) -> Void)) {
         guard let data = try? Data(contentsOf: path, options: []) else {
-            completion(.error(ImportError.noDataAtPath))
+            completion(.failure(ImportError.noDataAtPath))
             return
         }
 
@@ -27,7 +27,7 @@ enum Importer {
             guard let importExportObject = try? decoder
                 .decode(ImportExportObject.self, from: data)
                 else {
-                    completion(.error(ImportError.parsingJsonToStoredMovie))
+                    completion(.failure(ImportError.parsingJsonToStoredMovie))
                     return
             }
 

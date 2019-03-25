@@ -232,7 +232,7 @@ class MovieDetailViewController: UIViewController {
             let newState: WatchState = watched ? .seen : .watchlist
             storageManager.save(movie, state: newState) { result in
                 switch result {
-                case .error:
+                case .failure:
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
@@ -243,7 +243,7 @@ class MovieDetailViewController: UIViewController {
         case .stored(let movie):
             storageManager.updateMovieItem(with: movie.objectID, watched: watched) { result in
                 switch result {
-                case .error:
+                case .failure:
                     self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
@@ -263,7 +263,7 @@ class MovieDetailViewController: UIViewController {
         case .network(let movie):
             storageManager.save(movie, state: .undefined) { result in
                 switch result {
-                case .error:
+                case .failure:
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
@@ -274,7 +274,7 @@ class MovieDetailViewController: UIViewController {
         case .stored(let movie):
             storageManager.remove(with: movie.objectID) { result in
                 switch result {
-                case .error:
+                case .failure:
                     self.showAlert(withMessage: Alert.deleteMovieError)
                 case .success:
                     DispatchQueue.main.async {

@@ -26,13 +26,13 @@ enum Webservice {
     }
 
     @discardableResult
-    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A>) -> Void) -> URLSessionTask? {
+    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A, Error>) -> Void) -> URLSessionTask? {
         guard let resource = resource else {
-            completion(Result.error(NetworkError.emptyResource))
+            completion(.failure(NetworkError.emptyResource))
             return nil
         }
         guard let url = URL(string: resource.url) else {
-            completion(Result.error(NetworkError.parseUrl))
+            completion(.failure(NetworkError.parseUrl))
             return nil
         }
         var request = URLRequest(url: url)
@@ -45,14 +45,14 @@ enum Webservice {
 
             guard error == nil, let data = data else {
                 // swiftlint:disable:next force_unwrapping
-                completion(Result.error(error!))
+                completion(.failure(error!))
                 return
             }
             guard let result = resource.parse(data) else {
-                completion(Result.error(NetworkError.parseData))
+                completion(.failure(NetworkError.parseData))
                 return
             }
-            completion(Result.success(result))
+            completion(.success(result))
         }
 
         task.resume()

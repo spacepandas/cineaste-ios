@@ -9,13 +9,13 @@
 import CoreData
 
 extension NSManagedObjectContext {
-    func saveOrRollback(completion: ((_ result: Result<Bool>) -> Void)? = nil) {
+    func saveOrRollback(completion: ((_ result: Result<Bool, Error>) -> Void)? = nil) {
         do {
             try save()
-            completion?(Result.success(true))
+            completion?(.success(true))
         } catch {
             rollback()
-            completion?(Result.error(error))
+            completion?(.failure(error))
         }
     }
 
