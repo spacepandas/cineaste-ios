@@ -40,10 +40,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var moreInformationButton: ActionButton!
     @IBOutlet private weak var buttonInfoLabel: UILabel!
 
-    @IBOutlet weak var movieStateSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var seenButton: ActionButton!
-    @IBOutlet private weak var mustSeeButton: ActionButton!
-    @IBOutlet private weak var deleteButton: ActionButton!
+    @IBOutlet private weak var movieStateSegmentedControl: UISegmentedControl!
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
@@ -51,7 +48,7 @@ class MovieDetailViewController: UIViewController {
 
     private var state: WatchState = .undefined {
         didSet {
-            setupActionButtons(for: state)
+            updateSegmentedControl(for: state)
         }
     }
 
@@ -83,7 +80,6 @@ class MovieDetailViewController: UIViewController {
                             target: self,
                             action: #selector(shareMovie))
 
-        setupActionButtons(for: state)
         setupLocalization()
         configureElements()
     }
@@ -98,6 +94,7 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Actions
 
+    //TODO: add action on segmented control
     @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
         saveMovie(asWatched: false)
     }
@@ -197,31 +194,28 @@ class MovieDetailViewController: UIViewController {
                                                        action: #selector(showPoster))
         posterImageView.addGestureRecognizer(gestureRecognizer)
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateNonAutomaticDynamicFonts),
-            name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
-
-        updateNonAutomaticDynamicFonts()
-    }
-
-    @objc
-    func updateNonAutomaticDynamicFonts() {
-        let titleAttributes = [
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)
-        ]
-        movieStateSegmentedControl.setTitleTextAttributes(titleAttributes,
-                                                          for: .normal)
+        updateSegmentedControl(for: state)
     }
 
     private func setupLocalization() {
         moreInformationButton.setTitle(String.moreInformation, for: .normal)
-        buttonInfoLabel.text = "(on themoviedb.org)"
+        buttonInfoLabel.text = String.onTMDB
 
-        seenButton.setTitle(String.seenAction, for: .normal)
-        mustSeeButton.setTitle(String.watchlistActionLong, for: .normal)
-        deleteButton.setTitle(String.deleteActionLong, for: .normal)
+        movieStateSegmentedControl.setTitle(.watchStateWatchlist, forSegmentAt: 0)
+        movieStateSegmentedControl.setTitle(.watchStateSeen, forSegmentAt: 1)
+    }
+
+    private func updateSegmentedControl(for state: WatchState) {
+        guard let control = movieStateSegmentedControl else { return }
+
+        switch state {
+        case .undefined:
+            control.selectedSegmentIndex = UISegmentedControl.noSegment
+        case .seen:
+            control.selectedSegmentIndex = 1
+        case .watchlist:
+            control.selectedSegmentIndex = 0
+        }
     }
 
     private func generateMovieURL() -> URL? {
@@ -299,29 +293,6 @@ class MovieDetailViewController: UIViewController {
                     }
                 }
             }
-        }
-    }
-
-    private func setupActionButtons(for type: WatchState) {
-        guard let mustSeeButton = mustSeeButton,
-            let seenButton = seenButton,
-            let deleteButton = deleteButton else {
-                return
-        }
-
-        switch type {
-        case .seen:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = true
-            deleteButton.isHidden = false
-        case .watchlist:
-            mustSeeButton.isHidden = true
-            seenButton.isHidden = false
-            deleteButton.isHidden = false
-        case .undefined:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = false
-            deleteButton.isHidden = true
         }
     }
 

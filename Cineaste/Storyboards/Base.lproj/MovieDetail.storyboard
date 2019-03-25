@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drp-du-gIo">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="585.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548.5"/>
                                         <subviews>
                                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82I-FK-pt6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
@@ -66,10 +66,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="104.5" width="375" height="481"/>
+                                                <rect key="frame" x="0.0" y="104.5" width="375" height="444"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
-                                                        <rect key="frame" x="20" y="20" width="335" height="176"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
+                                                        <rect key="frame" x="20" y="20" width="335" height="404"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-vC-dyb">
                                                                 <rect key="frame" x="0.0" y="0.0" width="231.5" height="65.5"/>
@@ -95,7 +95,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-mi-hDX">
-                                                                <rect key="frame" x="0.0" y="81.5" width="127" height="50.5"/>
+                                                                <rect key="frame" x="0.0" y="85.5" width="127" height="50.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
@@ -113,67 +113,31 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8ZH-5d-sun">
-                                                                <rect key="frame" x="0.0" y="148" width="335" height="29"/>
+                                                                <rect key="frame" x="0.0" y="156" width="335" height="29"/>
                                                                 <segments>
                                                                     <segment title="First"/>
                                                                     <segment title="Second"/>
                                                                 </segments>
                                                             </segmentedControl>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="204" width="334.5" height="200"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="8ZH-5d-sun" firstAttribute="width" secondItem="fS9-v7-x6n" secondAttribute="width" id="G8e-gx-cWZ"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xav-KJ-l14">
-                                                        <rect key="frame" x="16" y="216" width="343" height="30"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sct-hl-B1B" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.mustsee.button"/>
-                                                                <state key="normal" title="detail.mustsee"/>
-                                                                <connections>
-                                                                    <action selector="mustSeeButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="UIR-Qi-4BF"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c62-By-W4W" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="121" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.seen.button"/>
-                                                                <state key="normal" title="detail.seen"/>
-                                                                <connections>
-                                                                    <action selector="seenButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="44h-oA-42n"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUn-AI-5yg" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="242" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.delete.button"/>
-                                                                <state key="normal" title="detail.delete"/>
-                                                                <connections>
-                                                                    <action selector="deleteButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="y4D-e8-hKf"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="261" width="335" height="200"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="I2y-N4-pSw" firstAttribute="top" secondItem="xav-KJ-l14" secondAttribute="bottom" constant="15" id="6gg-9c-JCQ"/>
-                                                    <constraint firstItem="I2y-N4-pSw" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" symbolic="YES" id="C6I-F6-naL"/>
-                                                    <constraint firstAttribute="bottom" secondItem="I2y-N4-pSw" secondAttribute="bottom" constant="20" symbolic="YES" id="DYR-dv-tWh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="7En-Dr-R7L"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="20" id="HPY-9S-e33"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Ocw-Y9-jRG"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Vmt-OM-DJL"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" id="efa-Jc-AJF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="I2y-N4-pSw" secondAttribute="trailing" constant="20" symbolic="YES" id="fxG-nO-8Rw"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="4" id="lt3-SR-J1C"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xav-KJ-l14" secondAttribute="trailing" constant="4" id="xeW-US-KRe"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="top" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="zBJ-SB-Xdr"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9X-DY-NTW" userLabel="GuidelineView">
@@ -282,7 +246,7 @@
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="gkH-6H-peu"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="jGQ-wv-mAI"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
-                            <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
+                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="pJx-0l-1Fj"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="zG8-Sd-FDc"/>
                         </constraints>
@@ -292,16 +256,13 @@
                     <connections>
                         <outlet property="buttonInfoLabel" destination="Mqk-di-L0I" id="lHX-8K-DyP"/>
                         <outlet property="categoryLabel" destination="ie5-XZ-DyV" id="nzt-Pd-VsZ"/>
-                        <outlet property="deleteButton" destination="NUn-AI-5yg" id="B3B-Y4-UBd"/>
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
                         <outlet property="detailScrollView" destination="82I-FK-pt6" id="Bib-Ky-b0z"/>
                         <outlet property="moreInformationButton" destination="M6U-dL-Xho" id="NeM-qE-MWU"/>
                         <outlet property="movieStateSegmentedControl" destination="8ZH-5d-sun" id="dv1-SZ-5DP"/>
-                        <outlet property="mustSeeButton" destination="sct-hl-B1B" id="dyA-w3-osL"/>
                         <outlet property="posterHeight" destination="pfa-lB-wsn" id="Zit-yK-Qah"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
                         <outlet property="releaseDateAndRuntimeLabel" destination="BDx-pl-gqc" id="KxI-aF-E6L"/>
-                        <outlet property="seenButton" destination="c62-By-W4W" id="Y8j-1L-yME"/>
                         <outlet property="titleLabel" destination="qT7-RW-EIo" id="2gO-KI-Y91"/>
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
                         <segue destination="zXD-4l-9EK" kind="presentation" identifier="showPosterFromMovieDetail" id="YDm-H6-cJS"/>

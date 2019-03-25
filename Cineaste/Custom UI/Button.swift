@@ -60,7 +60,7 @@ class LinkButton: Button {
     }
 
     override func setup() {
-        setTitleColor(UIColor.primaryDarkOrange, for: .normal)
+        setTitleColor(UIColor.primaryOrange, for: .normal)
         setTitleColor(UIColor.primaryOrange, for: .highlighted)
 
         NotificationCenter.default.addObserver(
