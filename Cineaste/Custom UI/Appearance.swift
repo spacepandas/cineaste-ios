@@ -41,5 +41,9 @@ enum Appearance {
         let alertController = UIView
             .appearance(whenContainedInInstancesOf: [UIAlertController.self])
         alertController.tintColor = .primaryOrange
+
+        // MARK: UIToolBar
+        let toolBar = UIToolbar.appearance()
+        toolBar.tintColor = .primaryOrange
     }
 }

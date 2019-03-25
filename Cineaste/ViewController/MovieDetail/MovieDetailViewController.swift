@@ -75,11 +75,6 @@ class MovieDetailViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(barButtonSystemItem: .action,
-                            target: self,
-                            action: #selector(shareMovie))
-
         setupLocalization()
         configureElements()
     }
@@ -94,24 +89,78 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Actions
 
-    //TODO: add action on segmented control
-    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        saveMovie(asWatched: false)
-    }
-
-    @IBAction func seenButtonTouched(_ sender: UIButton) {
-        saveMovie(asWatched: true)
-    }
-
-    @IBAction func deleteButtonTouched(_ sender: UIButton) {
-        deleteMovie()
-    }
-
-    @IBAction func showMoreInformation(_ sender: UIButton) {
+    @IBAction func showMoreInformation() {
         guard let url = generateMovieURL() else { return }
 
         let safariVC = CustomSafariViewController(url: url)
         present(safariVC, animated: true)
+    }
+
+    @IBAction func updateWatchState() {
+        if movieStateSegmentedControl.selectedSegmentIndex == 0 {
+            saveMovie(asWatched: false)
+        } else if movieStateSegmentedControl.selectedSegmentIndex == 1 {
+            saveMovie(asWatched: true)
+        }
+    }
+
+    @IBAction func deleteMovie() {
+        guard let storageManager = storageManager,
+            let movie = movie
+            else { return }
+
+        switch movie {
+        case .network(let movie):
+            storageManager.save(movie, state: .undefined) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.insertMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.updateSegmentedControl(for: .undefined)
+                    }
+                }
+            }
+        case .stored(let movie):
+            storageManager.remove(with: movie.objectID) { result in
+                switch result {
+                case .error:
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.updateSegmentedControl(for: .undefined)
+                    }
+                }
+            }
+        }
+    }
+
+    @IBAction func shareMovie() {
+        var title: String?
+        guard let movie = movie else { return }
+
+        switch movie {
+        case .network(let movie):
+            title = movie.title
+        case .stored(let movie):
+            title = movie.title
+        }
+
+        var items = [Any]()
+
+        if let title = title {
+            items.append(title)
+        }
+
+        if let url = generateMovieURL() {
+            items.append(url)
+        }
+
+        let activityController =
+            UIActivityViewController(activityItems: items,
+                                     applicationActivities: nil)
+
+        present(activityController, animated: true)
     }
 
     // MARK: - Navigation
@@ -150,35 +199,6 @@ class MovieDetailViewController: UIViewController {
     func showPoster() {
         guard posterImageView.image != UIImage.posterPlaceholder else { return }
         perform(segue: .showPosterFromMovieDetail, sender: nil)
-    }
-
-    @objc
-    func shareMovie(_ sender: UIBarButtonItem) {
-        var title: String?
-        guard let movie = movie else { return }
-
-        switch movie {
-        case .network(let movie):
-            title = movie.title
-        case .stored(let movie):
-            title = movie.title
-        }
-
-        var items = [Any]()
-
-        if let title = title {
-            items.append(title)
-        }
-
-        if let url = generateMovieURL() {
-            items.append(url)
-        }
-
-        let activityController =
-            UIActivityViewController(activityItems: items,
-                                     applicationActivities: nil)
-
-        present(activityController, animated: true)
     }
 
     // MARK: - Private
@@ -247,49 +267,19 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        self.updateSegmentedControl(for: newState)
                     }
                 }
             }
         case .stored(let movie):
+            let newState: WatchState = watched ? .seen : .watchlist
             storageManager.updateMovieItem(with: movie.objectID, watched: watched) { result in
                 switch result {
                 case .error:
                     self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-            }
-        }
-    }
-
-    private func deleteMovie() {
-        guard let storageManager = storageManager,
-            let movie = movie
-            else { return }
-
-        switch movie {
-        case .network(let movie):
-            storageManager.save(movie, state: .undefined) { result in
-                switch result {
-                case .error:
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-            }
-        case .stored(let movie):
-            storageManager.remove(with: movie.objectID) { result in
-                switch result {
-                case .error:
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        self.updateSegmentedControl(for: newState)
                     }
                 }
             }
