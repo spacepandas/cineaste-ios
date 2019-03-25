@@ -11,9 +11,10 @@ import UIKit
 class MovieNightUserCell: UITableViewCell {
     static let identifier = "MovieNightUserTableViewCell"
 
-    @IBOutlet private weak var allTitle: TitleLabel!
-    @IBOutlet private weak var namesOfFriendsLabel: DescriptionLabel!
-    @IBOutlet private weak var numberOfMoviesLabel: DescriptionLabel!
+    @IBOutlet private weak var allTitle: UILabel!
+    @IBOutlet private weak var namesOfFriendsLabel: UILabel!
+    @IBOutlet private weak var numberOfMoviesLabel: UILabel!
+    @IBOutlet weak var contentStackView: UIStackView!
 
     func configureAll(numberOfMovies: Int, namesOfFriends: [String]) {
         setup()
@@ -36,5 +37,35 @@ class MovieNightUserCell: UITableViewCell {
 
     private func setup() {
         accessoryType = .disclosureIndicator
+
+        let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
+
+        if #available(iOS 11.0, *) {
+            contentSizeCategory.isAccessibilityCategory
+                ? updateToVerticalLayout()
+                : updateToHorizontalLayout()
+        } else {
+            if contentSizeCategory == .accessibilityMedium
+                || contentSizeCategory == .accessibilityLarge
+                || contentSizeCategory == .accessibilityExtraLarge
+                || contentSizeCategory == .accessibilityExtraExtraLarge
+                || contentSizeCategory == .accessibilityExtraExtraExtraLarge {
+                updateToVerticalLayout()
+            } else {
+                updateToHorizontalLayout()
+            }
+        }
+    }
+
+    private func updateToVerticalLayout() {
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .leading
+        numberOfMoviesLabel.textAlignment = .left
+    }
+
+    private func updateToHorizontalLayout() {
+        contentStackView.axis = .horizontal
+        contentStackView.alignment = .center
+        numberOfMoviesLabel.textAlignment = .right
     }
 }

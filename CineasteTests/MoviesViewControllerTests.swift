@@ -61,7 +61,7 @@ class MoviesViewControllerTests: XCTestCase {
         // returns nil, when the tableView can not dequeue a reusable cell,
         // with dequeueReusableCell:withIdentifier:indexPath it would simply
         // crash at this point
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieListCell.identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: WatchlistMovieCell.identifier)
         XCTAssertNotNil(cell)
 
         let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.7.0
+
+* Improved: Update app to support Accessibility Features like Dynamic Type and Voice Over.
+
+## 1.6.1
+
+* Fixed: Allow shrinking of Hint Label
+* Fixed: Use nonbreaking Space in voting information
+
+## 1.6.0
+
+* New: Show a hint for swipe actions in search
+
 ## 1.5.0 
 
 * New: Update Search with a new layout, like an indicator about a movies watch state.

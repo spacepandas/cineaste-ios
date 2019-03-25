@@ -51,7 +51,8 @@ class SettingsViewControllerTests: XCTestCase {
     func testCellForRowShouldBeOfTypeSettingsCell() {
         for row in 0..<settingsVC.settings.count {
             let path = IndexPath(row: row, section: 0)
-            let cell = settingsVC.tableView.cellForRow(at: path)
+            let cell = settingsVC.tableView.dataSource?
+                .tableView(settingsVC.tableView, cellForRowAt: path)
 
             XCTAssert(cell is SettingsCell)
         }

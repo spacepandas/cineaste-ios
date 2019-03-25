@@ -38,6 +38,22 @@ class SettingsViewController: UITableViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let footerView = tableView.tableFooterView else { return }
+        let height = footerView
+            .systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            .height
+        var footerFrame = footerView.frame
+
+        if height != footerFrame.size.height {
+            footerFrame.size.height = height
+            footerView.frame = footerFrame
+            tableView.tableFooterView = footerView
+        }
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

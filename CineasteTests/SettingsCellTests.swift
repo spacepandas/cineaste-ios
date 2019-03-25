@@ -15,11 +15,11 @@ class SettingsCellTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let title = TitleLabel()
+        let title = UILabel()
         cell.addSubview(title)
         cell.title = title
 
-        let description = DescriptionLabel()
+        let description = UILabel()
         cell.addSubview(description)
         cell.descriptionLabel = description
     }

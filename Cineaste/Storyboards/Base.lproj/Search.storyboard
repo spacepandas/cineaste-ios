@@ -29,6 +29,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-Qe-vDf">
+                                                    <rect key="frame" x="275.5" y="0.0" width="99.5" height="99.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="h0d-Qe-vDf" secondAttribute="height" id="r30-EK-2pK"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thc-MB-8du">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                                     <subviews>
@@ -38,7 +44,7 @@
                                                                 <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
                                                             <rect key="frame" x="107.5" y="5" width="227.5" height="89.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
@@ -51,7 +57,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYE-99-Bh1" customClass="HeaderLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="22.5" width="84.5" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="24.5" width="84.5" height="20.5"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
@@ -60,7 +66,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kdq-BS-9up">
-                                                                    <rect key="frame" x="0.0" y="45" width="154.5" height="22.5"/>
+                                                                    <rect key="frame" x="0.0" y="49" width="154.5" height="16.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" priority="750" constant="4" id="7au-W6-niS"/>
                                                                     </constraints>
@@ -85,6 +91,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="upX-fI-55Z" secondAttribute="trailing" id="6Ca-jz-n1E"/>
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.22" id="7sr-Gn-Esr"/>
@@ -106,17 +113,22 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="thc-MB-8du" secondAttribute="trailing" id="6af-fb-ed1"/>
                                                 <constraint firstItem="thc-MB-8du" firstAttribute="top" secondItem="ZO4-PF-mws" secondAttribute="top" id="9v9-Fy-zUe"/>
+                                                <constraint firstAttribute="trailing" secondItem="h0d-Qe-vDf" secondAttribute="trailing" id="AuS-hq-DEL"/>
                                                 <constraint firstItem="thc-MB-8du" firstAttribute="leading" secondItem="ZO4-PF-mws" secondAttribute="leading" id="CsR-tM-181"/>
+                                                <constraint firstItem="h0d-Qe-vDf" firstAttribute="top" secondItem="ZO4-PF-mws" secondAttribute="top" id="HRs-Mn-KTp"/>
                                                 <constraint firstAttribute="bottom" secondItem="thc-MB-8du" secondAttribute="bottom" id="W5v-8E-RAb"/>
+                                                <constraint firstAttribute="bottom" secondItem="h0d-Qe-vDf" secondAttribute="bottom" id="yVL-dp-LUE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cellBackgroundView" destination="thc-MB-8du" id="FK2-Yn-cJf"/>
                                             <outlet property="detailLabel" destination="3wf-WH-u9P" id="CHy-bg-r8H"/>
                                             <outlet property="placeholderView" destination="kdq-BS-9up" id="08w-u9-y0a"/>
                                             <outlet property="poster" destination="zZg-aQ-7uo" id="89O-4d-cOY"/>
                                             <outlet property="separatorView" destination="bg5-Zb-czx" id="rlM-hu-YIJ"/>
                                             <outlet property="soonHint" destination="HXP-vX-B0r" id="Tg5-f1-Is5"/>
                                             <outlet property="stateImageView" destination="upX-fI-55Z" id="x9m-hW-8Oq"/>
+                                            <outlet property="swipeHintView" destination="h0d-Qe-vDf" id="EYm-dq-HGL"/>
                                             <outlet property="title" destination="AYE-99-Bh1" id="Z9y-W7-ZXm"/>
                                         </connections>
                                     </tableViewCell>

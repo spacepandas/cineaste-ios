@@ -31,7 +31,29 @@ class ActionButton: Button {
 
     override func setup() {
         setTitleColor(UIColor.primaryDarkOrange, for: .normal)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setBoldSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        // TODO: fix layout issues when using dynamic size, related to #80
+        // https://github.com/spacepandas/cineaste-ios/issues/80
+//        titleLabel?.adjustsFontForContentSizeCategory = true
+//        titleLabel?.numberOfLines = 0
+//        titleLabel?.lineBreakMode = .byWordWrapping
+//        titleLabel?.textAlignment = .left
+
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.2
+
+        setBoldSymbolicTrait()
+    }
+
+    @objc
+    func setBoldSymbolicTrait() {
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout).bold()
     }
 }
 

@@ -10,17 +10,8 @@ import UIKit
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
-    @IBOutlet private weak var empyListTitle: UILabel! {
-        didSet {
-            empyListTitle.textColor = .accentTextOnBlack
-            empyListTitle.text = .noContentTitle
-        }
-    }
-    @IBOutlet private weak var emptyListLabel: UILabel! {
-        didSet {
-            emptyListLabel.textColor = .accentTextOnBlack
-        }
-    }
+    @IBOutlet private weak var empyListTitle: UILabel!
+    @IBOutlet private weak var emptyListLabel: UILabel!
 
     var category: MovieListCategory = .watchlist {
         didSet {
@@ -50,6 +41,10 @@ class MoviesViewController: UITableViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.basicBackground
+
+        emptyListLabel.textColor = .accentTextOnBlack
+        empyListTitle.textColor = .accentTextOnBlack
+        empyListTitle.text = .noContentTitle
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.refetch(for: category.predicate)
@@ -143,7 +138,7 @@ class MoviesViewController: UITableViewController {
         refreshControl.tintColor = .white
 
         let attributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .callout),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         refreshControl.attributedTitle =

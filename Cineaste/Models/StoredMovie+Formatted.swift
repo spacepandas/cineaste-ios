@@ -24,12 +24,27 @@ extension StoredMovie {
         return release.formatted
     }
 
-    var formattedRuntime: String {
-        guard runtime != 0 else {
-            return "\(String.unknownRuntime) min"
+    var formattedRelativeReleaseInformation: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
         }
 
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
+        let isCurrentYear = release.formattedOnlyYear == Date().formattedOnlyYear
+        if isCurrentYear {
+            return release.formatted
+        } else {
+            return release.formattedOnlyYear
+        }
+    }
+
+    var formattedRuntime: String {
+        let nonbreakingSpace = "\u{00a0}"
+
+        guard runtime != 0 else {
+            return "\(String.unknownRuntime)\(nonbreakingSpace)min"
+        }
+
+        return "\(runtime.formatted ?? String.unknownRuntime)\(nonbreakingSpace)min"
     }
 
     var formattedWatchedDate: String? {

@@ -10,7 +10,7 @@ import UIKit
 
 class MovieMatchViewController: UITableViewController {
     private var moviesWithNumber: [(NearbyMovie, Int)] = []
-    private var filteredMoviesWithNumber: [(NearbyMovie, Int)] = [] {
+    private var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -99,12 +99,12 @@ class MovieMatchViewController: UITableViewController {
 
         let movieWithNumber = filteredMoviesWithNumber[indexPath.row]
         if showAllTogetherMovies {
-            cell.configure(with: movieWithNumber.0,
-                           numberOfMatches: movieWithNumber.1,
+            cell.configure(with: movieWithNumber.movie,
+                           numberOfMatches: movieWithNumber.number,
                            amountOfPeople: totalNumberOfPeople,
                            delegate: self)
         } else {
-            cell.configure(with: movieWithNumber.0,
+            cell.configure(with: movieWithNumber.movie,
                            delegate: self)
         }
 

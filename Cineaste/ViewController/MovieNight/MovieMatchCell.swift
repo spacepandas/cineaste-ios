@@ -13,14 +13,14 @@ protocol MovieMatchTableViewCellDelegate: AnyObject {
 }
 
 class MovieMatchCell: UITableViewCell {
-    static let identifier = "MovieMatchTableViewCell"
+    static let identifier = "MovieMatchCell"
 
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var separatorView: UIView!
 
-    @IBOutlet private weak var movieTitelLabel: TitleLabel!
-    @IBOutlet private weak var numberOfMatchesLabel: DescriptionLabel!
-    @IBOutlet private weak var seenButton: ActionButton!
+    @IBOutlet private weak var movieTitelLabel: UILabel!
+    @IBOutlet private weak var numberOfMatchesLabel: UILabel!
+    @IBOutlet private weak var seenButton: UIButton!
 
     private var nearbyMovie: NearbyMovie?
     private weak var delegate: MovieMatchTableViewCellDelegate?
@@ -33,7 +33,7 @@ class MovieMatchCell: UITableViewCell {
         nearbyMovie = movie
         movieTitelLabel.text = movie.title
         seenButton.addTarget(self,
-                             action: #selector(startMovieNightButtonTouched(_:)),
+                             action: #selector(startMovieNightButtonTouched),
                              for: .touchUpInside)
 
         if let posterPath = movie.posterPath {
@@ -52,20 +52,36 @@ class MovieMatchCell: UITableViewCell {
         setup(with: movie, delegate: delegate)
 
         numberOfMatchesLabel.isHidden = false
-        numberOfMatchesLabel.text = String.matches(for: numberOfMatches,
-                                                   amountOfPeople: amountOfPeople)
+        let matches = String.matches(for: numberOfMatches,
+                                     amountOfPeople: amountOfPeople)
+        numberOfMatchesLabel.text = matches
+
+        applyAccessibility(for: movie, numberOfMatches: matches)
     }
 
     func configure(with movie: NearbyMovie,
                    delegate: MovieMatchTableViewCellDelegate) {
         setup(with: movie, delegate: delegate)
+
         numberOfMatchesLabel.isHidden = true
+
+        applyAccessibility(for: movie, numberOfMatches: nil)
+    }
+
+    private func applyAccessibility(for movie: NearbyMovie, numberOfMatches: String?) {
+        isAccessibilityElement = true
+
+        accessibilityLabel = movie.title
+
+        if let matches = numberOfMatches {
+            accessibilityLabel?.append(", \(matches)")
+        }
     }
 
     // MARK: - Actions
 
     @objc
-    func startMovieNightButtonTouched(_ sender: UIButton) {
+    func startMovieNightButtonTouched() {
         guard let nearbyMovie = nearbyMovie else { return }
 
         delegate?.movieMatchTableViewCell(didSelectMovie: nearbyMovie,

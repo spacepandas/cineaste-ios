@@ -12,21 +12,32 @@ class SearchMoviesCell: UITableViewCell {
     static let identifier = "SearchMoviesCell"
 
     @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var title: TitleLabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var detailLabel: DescriptionLabel!
+    @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var soonHint: HintView!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    @IBOutlet weak var swipeHintView: UIView! {
+        didSet {
+            swipeHintView.backgroundColor = SwipeAction.moveToWatchlist.backgroundColor
+        }
+    }
 
     // MARK: - Actions
 
+    func animateSwipeHint() {
+        cellBackgroundView.slideIn(from: .trailing)
+    }
+
     func configure(with movie: Movie, state: WatchState) {
+        let nonbreakingSpace = "\u{00a0}"
         title.text = movie.title
         detailLabel.text = movie.formattedRelativeReleaseInformation
             + " ∙ "
             + movie.formattedVoteAverage
-            + " / 10"
+            + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
         soonHint.content = .soonReleaseInformation
         soonHint.isHidden = !movie.soonAvailable

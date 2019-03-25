@@ -81,6 +81,14 @@ class SearchMoviesViewController: UIViewController {
         updateUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let cell = tableView.visibleCells.first as? SearchMoviesCell {
+            cell.animateSwipeHint()
+        }
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -24,7 +24,7 @@ class View: UIView {
     }
 }
 
-class VoteView: View {
+class VoteCircleView: View {
     override func setup() {
         clipsToBounds = true
         layer.cornerRadius = frame.height / 2
@@ -99,6 +99,8 @@ class HintView: View {
         layer.cornerRadius = 2
 
         hintLabel.numberOfLines = 0
+        hintLabel.adjustsFontSizeToFitWidth = true
+        hintLabel.minimumScaleFactor = 0.5
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(hintLabel)
 
@@ -126,5 +128,91 @@ class HintView: View {
         hintLabel
             .setContentCompressionResistancePriority(.required,
                                                      for: .vertical)
+    }
+}
+
+class VoteView: View {
+    var content: String = "" {
+        didSet {
+            voteLabel.text = content
+        }
+    }
+
+    private let voteLabel = DescriptionLabel()
+
+    override func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setBorderWidth),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        clipsToBounds = true
+
+        setBorderWidth()
+        layer.cornerRadius = frame.height / 3
+        layer.borderColor = UIColor.primaryOrange.cgColor
+
+        voteLabel.textColor = .primaryOrange
+        voteLabel.adjustsFontSizeToFitWidth = true
+        voteLabel.minimumScaleFactor = 0.5
+        voteLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(voteLabel)
+
+        let horizontalConstant: CGFloat = 8
+        let verticalConstant: CGFloat = 4
+
+        let bottomConstraint = voteLabel.bottomAnchor
+            .constraint(equalTo: bottomAnchor,
+                        constant: -verticalConstant)
+        bottomConstraint.priority = UILayoutPriority(rawValue: 999)
+
+        NSLayoutConstraint.activate([
+            voteLabel.leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: horizontalConstant),
+            voteLabel.trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -horizontalConstant),
+            bottomConstraint,
+            voteLabel.topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: verticalConstant)
+            ])
+
+        voteLabel
+            .setContentCompressionResistancePriority(.required,
+                                                     for: .vertical)
+    }
+
+    @objc
+    func setBorderWidth() {
+        let borderWidth: CGFloat
+
+        if #available(iOS 11.0, *) {
+            borderWidth = UIFontMetrics.default.scaledValue(for: 1)
+        } else {
+            switch UIApplication.shared.preferredContentSizeCategory {
+            case .extraSmall,
+                 .small,
+                 .medium,
+                 .large,
+                 .extraLarge:
+                borderWidth = 1
+            case .extraExtraLarge,
+                 .extraExtraExtraLarge,
+                 .accessibilityMedium,
+                 .accessibilityLarge:
+                borderWidth = 2
+            case .accessibilityExtraLarge,
+                 .accessibilityExtraExtraLarge,
+                 .accessibilityExtraExtraExtraLarge:
+                borderWidth = 3
+            default:
+                borderWidth = 1
+            }
+        }
+
+        layer.borderWidth = borderWidth
     }
 }

@@ -19,7 +19,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(imageView)
         cell.poster = imageView
 
-        let title = TitleLabel()
+        let title = UILabel()
         cell.addSubview(title)
         cell.title = title
 
@@ -27,7 +27,7 @@ class SearchMoviesCellTests: XCTestCase {
         cell.addSubview(view)
         cell.separatorView = view
 
-        let description = DescriptionLabel()
+        let description = UILabel()
         cell.addSubview(description)
         cell.detailLabel = description
 
@@ -45,10 +45,11 @@ class SearchMoviesCellTests: XCTestCase {
     }
 
     func testConfigureShouldSetCellTitleAndDetailsCorrectly() {
+        let nonbreakingSpace = "\u{00a0}"
         cell.configure(with: movie, state: .seen)
 
         XCTAssertEqual(cell.title.text, movie.title)
-        XCTAssertEqual(cell.detailLabel.text, "2017 ∙ 6.9 / 10")
+        XCTAssertEqual(cell.detailLabel.text, "2017 ∙ 6.9\(nonbreakingSpace)/\(nonbreakingSpace)10")
         XCTAssert(cell.soonHint.isHidden)
     }
 

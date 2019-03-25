@@ -28,30 +28,64 @@ class Label: UILabel {
 
 class DescriptionLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .footnote)
-        textColor = UIColor.accentTextOnWhite
+        font = UIFont.preferredFont(forTextStyle: .subheadline)
+        textColor = UIColor.basicBackground
+        adjustsFontForContentSizeCategory = true
     }
 }
 
 class TitleLabel: Label {
     override func setup() {
-        font = UIFont.systemFont(ofSize: 18.0)
-        textColor = UIColor.black
-    }
-}
-
-class HeaderLabel: Label {
-    override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+        font = UIFont.preferredFont(forTextStyle: .headline)
         textColor = UIColor.basicBlack
         adjustsFontForContentSizeCategory = true
     }
 }
 
+class HeaderLabel: Label {
+    override func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setCondensedSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setCondensedSymbolicTrait()
+
+        textColor = UIColor.basicBlack
+    }
+}
+
 class HintLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setItalicSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setItalicSymbolicTrait()
+
         textColor = UIColor.basicBackground
+    }
+}
+
+class FootnoteLabel: Label {
+    override func setup() {
+        font = UIFont.preferredFont(forTextStyle: .footnote)
+        textColor = UIColor.accentTextOnBlack
         adjustsFontForContentSizeCategory = true
+    }
+}
+
+extension Label {
+    @objc
+    func setCondensedSymbolicTrait() {
+        font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+    }
+
+    @objc
+    func setItalicSymbolicTrait() {
+        font = UIFont.preferredFont(forTextStyle: .subheadline).italic()
     }
 }
