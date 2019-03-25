@@ -80,7 +80,6 @@
 		3FF790F220DE274A007B7D37 /* ImportMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F449DC22073FA4E00C5F5B8 /* ImportMoviesViewController.swift */; };
 		3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552262C1FAFB5D300323982 /* StoredMovie.swift */; };
 		3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAA3BBB20826B1D00726DE2 /* Int16+Formatter.swift */; };
-		3FF790F520DE274A007B7D37 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528112D201D05AD00F3EC76 /* Result.swift */; };
 		3FF790F620DE274A007B7D37 /* OrangeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */; };
 		3FF790F720DE274A007B7D37 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FF790F820DE274A007B7D37 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE971FF3BF7000E584E9 /* Segue.swift */; };
@@ -282,7 +281,6 @@
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
 		9526A70420448940004E08F7 /* MovieMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchViewController.swift; sourceTree = "<group>"; };
 		9526A70620449206004E08F7 /* MovieMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchCell.swift; sourceTree = "<group>"; };
-		9528112D201D05AD00F3EC76 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		953182F6203E17AF00A331A0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		953182F8203E19A000A331A0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -582,7 +580,6 @@
 				3F83BE771FF39DFC00E584E9 /* Instantiable.swift */,
 				3F83BE791FF39E1B00E584E9 /* Storyboard.swift */,
 				3F83BE971FF3BF7000E584E9 /* Segue.swift */,
-				9528112D201D05AD00F3EC76 /* Result.swift */,
 				3FDB14532025B80F0063E980 /* AlertMessage.swift */,
 				953182F6203E17AF00A331A0 /* Constants.swift */,
 				953182F8203E19A000A331A0 /* UserDefaultsManager.swift */,
@@ -739,15 +736,18 @@
 				TargetAttributes = {
 					3F2408F1203CB88E00EB9141 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3FF790E120DE274A007B7D37;
 					};
 					3F701B30218640EE0033562B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3FF790E120DE274A007B7D37;
 					};
 					3FF790E120DE274A007B7D37 = {
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1048,7 +1048,6 @@
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3F1EE5952219FD1B00F6E6E2 /* MovieRefresher.swift in Sources */,
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
-				3FF790F520DE274A007B7D37 /* Result.swift in Sources */,
 				3FF790F620DE274A007B7D37 /* OrangeNavigationController.swift in Sources */,
 				3FF790F720DE274A007B7D37 /* Button.swift in Sources */,
 				3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */,
@@ -1235,7 +1234,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.CineasteUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Cineaste App";
 			};
@@ -1253,7 +1252,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.notimeforthat.CineasteUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Cineaste App";
 			};
@@ -1274,7 +1273,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.adorsys.ios.CineasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cineaste App.app/Cineaste App";
 			};
@@ -1294,7 +1293,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.adorsys.ios.CineasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cineaste App.app/Cineaste App";
 			};
@@ -1319,7 +1318,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cineaste/Cineaste-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1342,7 +1341,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cineaste/Cineaste-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

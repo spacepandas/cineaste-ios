@@ -171,7 +171,7 @@ class SearchMoviesViewController: UIViewController {
             storageManager.save(detailedMovie, state: state) { result in
                 DispatchQueue.main.async {
                     switch result {
-                    case .error:
+                    case .failure:
                         self.showAlert(withMessage: Alert.insertMovieError)
                     case .success:
                         self.updateUI()

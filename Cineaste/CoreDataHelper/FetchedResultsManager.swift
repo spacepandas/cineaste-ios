@@ -68,6 +68,8 @@ extension FetchedResultsManager: NSFetchedResultsControllerDelegate {
                 let newIndexPath = newIndexPath
                 else { return }
             delegate?.moveRow(at: indexPath, to: newIndexPath)
+        @unknown default:
+            return
         }
     }
 
