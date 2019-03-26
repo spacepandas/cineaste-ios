@@ -46,11 +46,14 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet private var deleteButton: UIBarButtonItem!
+
     private var storageManager: MovieStorageManager?
 
     private var state: WatchState = .undefined {
         didSet {
-            updateSegmentedControl(for: state)
+            updateElements(for: state)
         }
     }
 
@@ -119,7 +122,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.updateSegmentedControl(for: .undefined)
+                        self.updateElements(for: .undefined)
                     }
                 }
             }
@@ -130,7 +133,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.updateSegmentedControl(for: .undefined)
+                        self.updateElements(for: .undefined)
                     }
                 }
             }
@@ -220,7 +223,7 @@ class MovieDetailViewController: UIViewController {
                                                        action: #selector(showPoster))
         posterImageView.addGestureRecognizer(gestureRecognizer)
 
-        updateSegmentedControl(for: state)
+        updateElements(for: state)
     }
 
     private func setupLocalization() {
@@ -231,16 +234,33 @@ class MovieDetailViewController: UIViewController {
         movieStateSegmentedControl.setTitle(.watchStateSeen, forSegmentAt: 1)
     }
 
-    private func updateSegmentedControl(for state: WatchState) {
-        guard let control = movieStateSegmentedControl else { return }
+    private func updateElements(for state: WatchState) {
+        guard let control = movieStateSegmentedControl,
+            let toolBar = toolBar
+            else { return }
+
+        func addDeleteButtonToToolbar() {
+            if !(toolBar.items?.contains(deleteButton) ?? false) {
+                toolBar.items?.insert(deleteButton, at: 0)
+                toolBar.setItems(toolBar.items, animated: true)
+            }
+        }
 
         switch state {
         case .undefined:
             control.selectedSegmentIndex = UISegmentedControl.noSegment
+
+            var movieToolbarItems = toolBar.items
+            movieToolbarItems?.removeAll { $0 == deleteButton }
+            toolBar.setItems(movieToolbarItems, animated: true)
         case .seen:
             control.selectedSegmentIndex = 1
+
+            addDeleteButtonToToolbar()
         case .watchlist:
             control.selectedSegmentIndex = 0
+
+            addDeleteButtonToToolbar()
         }
     }
 
@@ -273,7 +293,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.updateSegmentedControl(for: newState)
+                        self.updateElements(for: newState)
                     }
                 }
             }
@@ -285,7 +305,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.updateSegmentedControl(for: newState)
+                        self.updateElements(for: newState)
                     }
                 }
             }

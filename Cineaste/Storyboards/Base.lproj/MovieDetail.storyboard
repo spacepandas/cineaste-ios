@@ -273,6 +273,7 @@
                         <outlet property="buttonInfoLabel" destination="Mqk-di-L0I" id="lHX-8K-DyP"/>
                         <outlet property="categoryLabel" destination="ie5-XZ-DyV" id="nzt-Pd-VsZ"/>
                         <outlet property="contentStackView" destination="fS9-v7-x6n" id="qJb-9z-JPa"/>
+                        <outlet property="deleteButton" destination="aOf-le-iom" id="Puc-qM-YxT"/>
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
                         <outlet property="detailScrollView" destination="82I-FK-pt6" id="Bib-Ky-b0z"/>
                         <outlet property="moreInformationButton" destination="M6U-dL-Xho" id="NeM-qE-MWU"/>
@@ -282,6 +283,7 @@
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
                         <outlet property="releaseDateAndRuntimeLabel" destination="BDx-pl-gqc" id="KxI-aF-E6L"/>
                         <outlet property="titleLabel" destination="qT7-RW-EIo" id="2gO-KI-Y91"/>
+                        <outlet property="toolBar" destination="ZuN-8j-AgR" id="mIH-pZ-Eeq"/>
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
                         <segue destination="zXD-4l-9EK" kind="presentation" identifier="showPosterFromMovieDetail" id="YDm-H6-cJS"/>
                     </connections>
