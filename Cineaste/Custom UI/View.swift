@@ -98,7 +98,7 @@ class HintView: View {
         }
     }
 
-    private let hintLabel = HintLabel()
+    private let hintLabel = SubheadlineItalicLabel()
 
     override var backgroundColor: UIColor? {
         didSet {

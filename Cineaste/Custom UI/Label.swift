@@ -42,21 +42,35 @@ class TitleLabel: Label {
     }
 }
 
-class HeaderLabel: Label {
+class Title1CondensedLabel: Label {
     override func setup() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(setCondensedSymbolicTrait),
+            selector: #selector(setCondensedTitle1SymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
             object: nil)
 
-        setCondensedSymbolicTrait()
+        setCondensedTitle1SymbolicTrait()
 
         textColor = UIColor.basicBlack
     }
 }
 
-class HintLabel: Label {
+class Title2CondensedLabel: Label {
+    override func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setCondensedTitle2SymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setCondensedTitle2SymbolicTrait()
+
+        textColor = UIColor.basicBlack
+    }
+}
+
+class SubheadlineItalicLabel: Label {
     override func setup() {
         NotificationCenter.default.addObserver(
             self,
@@ -80,8 +94,13 @@ class FootnoteLabel: Label {
 
 extension Label {
     @objc
-    func setCondensedSymbolicTrait() {
+    func setCondensedTitle2SymbolicTrait() {
         font = UIFont.preferredFont(forTextStyle: .title2).condensed()
+    }
+
+    @objc
+    func setCondensedTitle1SymbolicTrait() {
+        font = UIFont.preferredFont(forTextStyle: .title1).condensed()
     }
 
     @objc

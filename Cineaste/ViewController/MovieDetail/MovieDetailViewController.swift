@@ -17,6 +17,8 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBOutlet private weak var detailScrollView: UIScrollView!
+    @IBOutlet private weak var contentStackView: UIStackView!
+    @IBOutlet private weak var moreInformationStackView: UIStackView!
 
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
@@ -204,6 +206,10 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private
 
     private func configureElements() {
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(30, after: moreInformationStackView)
+        }
+
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.basicBackground
