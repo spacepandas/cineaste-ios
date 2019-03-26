@@ -50,10 +50,29 @@ class ActionButton: Button {
 
         setBoldSymbolicTrait()
     }
+}
 
-    @objc
-    func setBoldSymbolicTrait() {
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout).bold()
+class LinkButton: Button {
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        guard let title = title else { return }
+
+        super.setTitle("▶︎ " + title, for: state)
+    }
+
+    override func setup() {
+        setTitleColor(UIColor.primaryOrange, for: .normal)
+        setTitleColor(UIColor.primaryOrange, for: .highlighted)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setBoldSymbolicTrait),
+            name: UIContentSizeCategory.didChangeNotification,
+            object: nil)
+
+        setBoldSymbolicTrait()
+
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.2
     }
 }
 
@@ -72,5 +91,12 @@ class BorderedButton: Button {
         layer.cornerRadius = 4
 
         titleLabel?.adjustsFontSizeToFitWidth = true
+    }
+}
+
+extension Button {
+    @objc
+    func setBoldSymbolicTrait() {
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout).bold()
     }
 }

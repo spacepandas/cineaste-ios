@@ -19,6 +19,11 @@ extension String {
     static let noAction = NSLocalizedString("no", comment: "Title for no action")
     static let errorTitle = NSLocalizedString("error", comment: "Title for error alert")
 
+    // MARK: MOVIE DETAIL
+    static let watchStateSeen = NSLocalizedString("watchStateSeen", comment: "Information watchstate seen")
+    static let watchStateWatchlist = NSLocalizedString("watchStateWatchlist", comment: "Information watchstate watchlist")
+    static let onTMDB = NSLocalizedString("onTMDB", comment: "Hint for more information on TMDB")
+
     // MARK: ACTION BUTTONS
     static let watchlistActionLong = NSLocalizedString("watchlistActionLong", comment: "Title for long must see movie button")
     static let watchlistAction = NSLocalizedString("watchlistAction", comment: "Title for must see movie button")
@@ -51,7 +56,7 @@ extension String {
         case .undefined:
             return nil
         case .seen:
-            return NSLocalizedString("watchStateSeen", comment: "Information watchstate seen")
+            return NSLocalizedString("watchStateSeenVoiceOver", comment: "Information watchstate seen")
         case .watchlist:
             return NSLocalizedString("watchStateWatchlist", comment: "Information watchstate watchlist")
         }

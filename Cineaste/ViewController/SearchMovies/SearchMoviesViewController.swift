@@ -104,6 +104,7 @@ class SearchMoviesViewController: UIViewController {
             vc?.configure(with: .network(selectedMovie),
                           state: currentState,
                           storageManager: storageManager)
+            vc?.hidesBottomBarWhenPushed = true
         default:
             return
         }

@@ -26,6 +26,7 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
         detailVC.configure(with: .network(movie),
                            state: currentState,
                            storageManager: storageManager)
+        detailVC.hidesBottomBarWhenPushed = true
         return detailVC
     }
 

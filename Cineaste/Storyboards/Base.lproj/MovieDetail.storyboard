@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H5Q-aj-Qxh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H5Q-aj-Qxh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drp-du-gIo">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="513"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="536.5"/>
                                         <subviews>
                                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82I-FK-pt6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
@@ -66,127 +66,135 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="104.5" width="375" height="408.5"/>
+                                                <rect key="frame" x="0.0" y="104.5" width="375" height="432"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
-                                                        <rect key="frame" x="20" y="20" width="335" height="103.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
+                                                        <rect key="frame" x="20" y="20" width="335" height="392"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT7-RW-EIo" customClass="HeaderLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="130" y="0.0" width="75" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.releaseDate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-pl-gqc" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="98.5" y="24.5" width="138" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.runtime" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-90-udk" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="115" y="49" width="105" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="144.5" y="73.5" width="46" height="30"/>
-                                                                <state key="normal" title="Button"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-vC-dyb">
+                                                                <rect key="frame" x="0.0" y="0.0" width="231.5" height="65.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.releaseDateAndRuntime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-pl-gqc" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="231.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qT7-RW-EIo" customClass="Title1CondensedLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="22.5" width="75" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.category" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ie5-XZ-DyV" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="45" width="114" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-mi-hDX">
+                                                                <rect key="frame" x="0.0" y="81.5" width="127" height="50.5"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
+                                                                        <state key="normal" title="detail.trailerButton"/>
+                                                                        <connections>
+                                                                            <action selector="showMoreInformation" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="mlo-h4-2Uf"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.buttonInfo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqk-di-L0I" customClass="FootnoteLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="30" width="127" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8ZH-5d-sun">
+                                                                <rect key="frame" x="0.0" y="148" width="335" height="29"/>
+                                                                <segments>
+                                                                    <segment title="First"/>
+                                                                    <segment title="Second"/>
+                                                                </segments>
                                                                 <connections>
-                                                                    <action selector="showMoreInformation:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="DtS-D9-IpO"/>
+                                                                    <action selector="updateWatchState" destination="H5Q-aj-Qxh" eventType="valueChanged" id="RMd-5T-WJc"/>
                                                                 </connections>
-                                                            </button>
+                                                            </segmentedControl>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="192" width="334.5" height="200"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="8ZH-5d-sun" firstAttribute="width" secondItem="fS9-v7-x6n" secondAttribute="width" id="G8e-gx-cWZ"/>
+                                                        </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xav-KJ-l14">
-                                                        <rect key="frame" x="16" y="143.5" width="343" height="30"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sct-hl-B1B" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.mustsee.button"/>
-                                                                <state key="normal" title="detail.mustsee"/>
-                                                                <connections>
-                                                                    <action selector="mustSeeButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="UIR-Qi-4BF"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c62-By-W4W" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="121" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.seen.button"/>
-                                                                <state key="normal" title="detail.seen"/>
-                                                                <connections>
-                                                                    <action selector="seenButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="44h-oA-42n"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUn-AI-5yg" customClass="ActionButton" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="242" y="0.0" width="101" height="30"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="detail.delete.button"/>
-                                                                <state key="normal" title="detail.delete"/>
-                                                                <connections>
-                                                                    <action selector="deleteButtonTouched:" destination="H5Q-aj-Qxh" eventType="touchUpInside" id="y4D-e8-hKf"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="188.5" width="335" height="200"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="I2y-N4-pSw" firstAttribute="top" secondItem="xav-KJ-l14" secondAttribute="bottom" constant="15" id="6gg-9c-JCQ"/>
-                                                    <constraint firstItem="I2y-N4-pSw" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" symbolic="YES" id="C6I-F6-naL"/>
-                                                    <constraint firstAttribute="bottom" secondItem="I2y-N4-pSw" secondAttribute="bottom" constant="20" symbolic="YES" id="DYR-dv-tWh"/>
-                                                    <constraint firstItem="fS9-v7-x6n" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="20" id="HPY-9S-e33"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="7En-Dr-R7L"/>
+                                                    <constraint firstItem="fS9-v7-x6n" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="20" symbolic="YES" id="HPY-9S-e33"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Ocw-Y9-jRG"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Vmt-OM-DJL"/>
-                                                    <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" symbolic="YES" id="efa-Jc-AJF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="I2y-N4-pSw" secondAttribute="trailing" constant="20" symbolic="YES" id="fxG-nO-8Rw"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="4" id="lt3-SR-J1C"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xav-KJ-l14" secondAttribute="trailing" constant="4" id="xeW-US-KRe"/>
-                                                    <constraint firstItem="xav-KJ-l14" firstAttribute="top" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="zBJ-SB-Xdr"/>
+                                                    <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" id="efa-Jc-AJF"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9X-DY-NTW" userLabel="GuidelineView">
+                                                <rect key="frame" x="300" y="104.5" width="75" height="0.0"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" id="0go-zI-YD1"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdq-Gq-LIm" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
-                                                <rect key="frame" x="280" y="60.5" width="50" height="50"/>
+                                                <rect key="frame" x="268" y="54.5" width="64" height="64"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBZ-3T-p4o" customClass="VoteCircleView" customModule="Cineaste_App" customModuleProvider="target">
-                                                        <rect key="frame" x="2" y="2" width="46" height="46"/>
+                                                        <rect key="frame" x="4" y="4" width="56" height="56"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cinema" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-fA-ZQh">
-                                                                <rect key="frame" x="12.5" y="5.5" width="21" height="9"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-nK-1kN">
+                                                                <rect key="frame" x="11.5" y="10" width="33" height="36"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-fA-ZQh">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="13.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="WI4-fA-ZQh" secondAttribute="height" multiplier="56:23" id="VSH-hd-461"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="6.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-B3-KML" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                                                        <rect key="frame" x="4.5" y="15.5" width="24.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="WI4-fA-ZQh" secondAttribute="height" multiplier="64:28" id="VSH-hd-461"/>
+                                                                    <constraint firstItem="WI4-fA-ZQh" firstAttribute="width" secondItem="DgD-B3-KML" secondAttribute="width" multiplier="1.35" id="UJ8-G6-OG2"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-B3-KML" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="3" y="15.5" width="40" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="DgD-B3-KML" secondAttribute="trailing" constant="3" id="5u6-2B-5eJ"/>
-                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="7JQ-0e-da5"/>
-                                                            <constraint firstItem="WI4-fA-ZQh" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="UyD-z8-dip"/>
-                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="centerY" secondItem="IBZ-3T-p4o" secondAttribute="centerY" constant="3" id="YxN-jE-gjS"/>
-                                                            <constraint firstItem="DgD-B3-KML" firstAttribute="top" secondItem="WI4-fA-ZQh" secondAttribute="bottom" constant="1" id="r62-hQ-SWK"/>
-                                                            <constraint firstItem="WI4-fA-ZQh" firstAttribute="width" secondItem="IBZ-3T-p4o" secondAttribute="width" multiplier="0.45" id="sXg-pc-6d2"/>
+                                                            <constraint firstItem="9Av-nK-1kN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IBZ-3T-p4o" secondAttribute="leading" constant="10" id="6gC-9c-p3r"/>
+                                                            <constraint firstItem="9Av-nK-1kN" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="KKX-Lc-bQd"/>
+                                                            <constraint firstItem="9Av-nK-1kN" firstAttribute="top" secondItem="IBZ-3T-p4o" secondAttribute="top" constant="10" id="Uaq-en-MTc"/>
+                                                            <constraint firstAttribute="width" secondItem="IBZ-3T-p4o" secondAttribute="height" id="fgy-V2-xlG"/>
+                                                            <constraint firstItem="9Av-nK-1kN" firstAttribute="centerY" secondItem="IBZ-3T-p4o" secondAttribute="centerY" id="zpt-Xg-Akt"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="top" secondItem="Bdq-Gq-LIm" secondAttribute="top" constant="2" id="40o-gL-Pm4"/>
-                                                    <constraint firstAttribute="width" secondItem="Bdq-Gq-LIm" secondAttribute="height" id="fHJ-WL-ZEb"/>
-                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="leading" secondItem="Bdq-Gq-LIm" secondAttribute="leading" constant="2" id="fbR-Z4-NzX"/>
-                                                    <constraint firstAttribute="bottom" secondItem="IBZ-3T-p4o" secondAttribute="bottom" constant="2" id="lhP-Ps-kZF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="IBZ-3T-p4o" secondAttribute="trailing" constant="2" id="mvw-4s-U74"/>
-                                                    <constraint firstAttribute="height" constant="50" id="ygK-AL-mes"/>
+                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="top" secondItem="Bdq-Gq-LIm" secondAttribute="top" constant="4" id="40o-gL-Pm4"/>
+                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="leading" secondItem="Bdq-Gq-LIm" secondAttribute="leading" constant="4" id="fbR-Z4-NzX"/>
+                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="centerX" secondItem="Bdq-Gq-LIm" secondAttribute="centerX" id="fnl-T7-PzG"/>
+                                                    <constraint firstItem="IBZ-3T-p4o" firstAttribute="centerY" secondItem="Bdq-Gq-LIm" secondAttribute="centerY" id="lb7-XI-fTc"/>
+                                                    <constraint firstAttribute="width" secondItem="Bdq-Gq-LIm" secondAttribute="height" id="vBU-Ah-iZH"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -200,16 +208,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="9Av-nK-1kN" firstAttribute="bottom" secondItem="D9X-DY-NTW" secondAttribute="bottom" id="5J9-xe-tdT"/>
+                                            <constraint firstItem="D9X-DY-NTW" firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" id="Aqa-og-AF6"/>
                                             <constraint firstAttribute="trailing" secondItem="cDP-XA-M1C" secondAttribute="trailing" id="CAP-l1-494"/>
                                             <constraint firstItem="I40-Pc-bfk" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="Hcg-Vd-gik"/>
                                             <constraint firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="bottom" id="JYo-8D-mWc"/>
                                             <constraint firstItem="I40-Pc-bfk" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="OJX-kY-zx7"/>
+                                            <constraint firstItem="D9X-DY-NTW" firstAttribute="width" secondItem="Omu-gQ-AJU" secondAttribute="width" multiplier="0.2" id="T8q-ye-OoZ"/>
+                                            <constraint firstItem="D9X-DY-NTW" firstAttribute="leading" secondItem="Bdq-Gq-LIm" secondAttribute="centerX" id="WTb-zP-lRG"/>
                                             <constraint firstItem="cDP-XA-M1C" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="XOT-HB-cSg"/>
                                             <constraint firstItem="cDP-XA-M1C" firstAttribute="top" secondItem="I40-Pc-bfk" secondAttribute="bottom" id="a8T-cD-pMx"/>
                                             <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="fgn-P1-JNr"/>
-                                            <constraint firstAttribute="trailing" secondItem="Bdq-Gq-LIm" secondAttribute="trailing" constant="45" id="fq5-g8-76Q"/>
                                             <constraint firstAttribute="trailing" secondItem="I40-Pc-bfk" secondAttribute="trailing" id="oUP-10-aGF"/>
-                                            <constraint firstItem="Bdq-Gq-LIm" firstAttribute="bottom" secondItem="I40-Pc-bfk" secondAttribute="bottom" constant="6" id="pdk-mD-CO7"/>
+                                            <constraint firstAttribute="trailing" secondItem="D9X-DY-NTW" secondAttribute="trailing" id="pkL-fa-vxz"/>
                                             <constraint firstAttribute="trailing" secondItem="82I-FK-pt6" secondAttribute="trailing" id="qO6-CS-KJi"/>
                                             <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="qyY-0O-4aa"/>
                                             <constraint firstItem="82I-FK-pt6" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="tC7-Ix-750"/>
@@ -227,33 +238,53 @@
                                     <outlet property="delegate" destination="H5Q-aj-Qxh" id="QHe-Re-4r7"/>
                                 </connections>
                             </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuN-8j-AgR">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="aOf-le-iom">
+                                        <connections>
+                                            <action selector="deleteMovie" destination="H5Q-aj-Qxh" id="D3J-kC-jFe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="C09-bA-4Zs"/>
+                                    <barButtonItem systemItem="action" id="hyd-RZ-KdO">
+                                        <connections>
+                                            <action selector="shareMovie" destination="H5Q-aj-Qxh" id="IFz-7m-wHa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
+                            <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="ZuN-8j-AgR" secondAttribute="bottom" id="ZgR-yL-GXk"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="gkH-6H-peu"/>
+                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="jGQ-wv-mAI"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
-                            <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
+                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="pJx-0l-1Fj"/>
+                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="zG8-Sd-FDc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C1U-CL-dSb"/>
                     </view>
                     <navigationItem key="navigationItem" id="I07-cP-vJB"/>
                     <connections>
-                        <outlet property="deleteButton" destination="NUn-AI-5yg" id="B3B-Y4-UBd"/>
+                        <outlet property="buttonInfoLabel" destination="Mqk-di-L0I" id="lHX-8K-DyP"/>
+                        <outlet property="categoryLabel" destination="ie5-XZ-DyV" id="nzt-Pd-VsZ"/>
+                        <outlet property="contentStackView" destination="fS9-v7-x6n" id="qJb-9z-JPa"/>
+                        <outlet property="deleteButton" destination="aOf-le-iom" id="Puc-qM-YxT"/>
                         <outlet property="descriptionTextView" destination="I2y-N4-pSw" id="rPH-P6-uYm"/>
                         <outlet property="detailScrollView" destination="82I-FK-pt6" id="Bib-Ky-b0z"/>
                         <outlet property="moreInformationButton" destination="M6U-dL-Xho" id="NeM-qE-MWU"/>
-                        <outlet property="mustSeeButton" destination="sct-hl-B1B" id="dyA-w3-osL"/>
+                        <outlet property="moreInformationStackView" destination="EZK-mi-hDX" id="5jH-Rq-Cgt"/>
+                        <outlet property="movieStateSegmentedControl" destination="8ZH-5d-sun" id="dv1-SZ-5DP"/>
                         <outlet property="posterHeight" destination="pfa-lB-wsn" id="Zit-yK-Qah"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
-                        <outlet property="releaseDateLabel" destination="BDx-pl-gqc" id="AHZ-60-SF8"/>
-                        <outlet property="runtimeLabel" destination="OTM-90-udk" id="A1S-fP-VbP"/>
-                        <outlet property="seenButton" destination="c62-By-W4W" id="Y8j-1L-yME"/>
+                        <outlet property="releaseDateAndRuntimeLabel" destination="BDx-pl-gqc" id="KxI-aF-E6L"/>
                         <outlet property="titleLabel" destination="qT7-RW-EIo" id="2gO-KI-Y91"/>
+                        <outlet property="toolBar" destination="ZuN-8j-AgR" id="mIH-pZ-Eeq"/>
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
-                        <outletCollection property="descriptionLabels" destination="BDx-pl-gqc" collectionClass="NSMutableArray" id="aJG-ve-0PW"/>
-                        <outletCollection property="descriptionLabels" destination="OTM-90-udk" collectionClass="NSMutableArray" id="qw0-gW-UWp"/>
                         <segue destination="zXD-4l-9EK" kind="presentation" identifier="showPosterFromMovieDetail" id="YDm-H6-cJS"/>
                     </connections>
                 </viewController>
@@ -350,8 +381,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cineaste_detail_flaeche" width="300" height="100"/>
-        <image name="cinema" width="64" height="28"/>
-        <image name="placeholder_poster" width="222" height="334"/>
+        <image name="cineaste_detail_flaeche" width="150" height="50"/>
+        <image name="placeholder_poster" width="111" height="167"/>
+        <image name="stars" width="57" height="24"/>
     </resources>
 </document>

@@ -11,48 +11,49 @@ import SafariServices
 
 //swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
-
     enum MovieType {
         case stored(StoredMovie)
         case network(Movie)
     }
 
+    @IBOutlet private weak var detailScrollView: UIScrollView!
+    @IBOutlet private weak var contentStackView: UIStackView!
+    @IBOutlet private weak var moreInformationStackView: UIStackView!
+
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
-            updatePosterSize()
-        }
-    }
-    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
-    @IBOutlet private weak var titleLabel: TitleLabel!
+            guard let poster = posterImageView.image
+                else { return }
 
-    @IBOutlet private var descriptionLabels: [DescriptionLabel]! {
-        didSet {
-            for label in descriptionLabels {
-                label.textColor = UIColor.basicBackground
+            DispatchQueue.main.async {
+                let aspectRatio = poster.size.height / poster.size.width
+                self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
             }
         }
     }
-    @IBOutlet private weak var detailScrollView: UIScrollView!
-    @IBOutlet private weak var releaseDateLabel: DescriptionLabel!
-    @IBOutlet private weak var runtimeLabel: DescriptionLabel!
-    @IBOutlet private weak var votingLabel: DescriptionLabel! {
-        didSet {
-            votingLabel.textColor = UIColor.black
-        }
-    }
+    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+
+    @IBOutlet private weak var votingLabel: UILabel!
+
+    @IBOutlet private weak var titleLabel: TitleLabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var releaseDateAndRuntimeLabel: UILabel!
 
     @IBOutlet private weak var moreInformationButton: ActionButton!
-    @IBOutlet private weak var seenButton: ActionButton!
-    @IBOutlet private weak var mustSeeButton: ActionButton!
-    @IBOutlet private weak var deleteButton: ActionButton!
+    @IBOutlet private weak var buttonInfoLabel: UILabel!
+
+    @IBOutlet private weak var movieStateSegmentedControl: UISegmentedControl!
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
+
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet private var deleteButton: UIBarButtonItem!
 
     private var storageManager: MovieStorageManager?
 
     private var state: WatchState = .undefined {
         didSet {
-            updateDetail(for: state)
+            updateElements(for: state)
         }
     }
 
@@ -79,20 +80,8 @@ class MovieDetailViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        updateDetail(for: state)
         setupLocalization()
-
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(barButtonSystemItem: .action,
-                            target: self,
-                            action: #selector(shareMovie))
-
-        let gestureRecognizer = UITapGestureRecognizer(target: self,
-                                                       action: #selector(showPoster))
-        posterImageView.isUserInteractionEnabled = true
-        posterImageView.addGestureRecognizer(gestureRecognizer)
-
-        moreInformationButton.setTitle(String.moreInformation, for: .normal)
+        configureElements()
     }
 
     func configure(with selectedMovie: MovieType,
@@ -105,23 +94,78 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: - Actions
 
-    @IBAction func mustSeeButtonTouched(_ sender: UIButton) {
-        saveMovie(asWatched: false)
-    }
-
-    @IBAction func seenButtonTouched(_ sender: UIButton) {
-        saveMovie(asWatched: true)
-    }
-
-    @IBAction func deleteButtonTouched(_ sender: UIButton) {
-        deleteMovie()
-    }
-
-    @IBAction func showMoreInformation(_ sender: UIButton) {
+    @IBAction func showMoreInformation() {
         guard let url = generateMovieURL() else { return }
 
         let safariVC = CustomSafariViewController(url: url)
         present(safariVC, animated: true)
+    }
+
+    @IBAction func updateWatchState() {
+        if movieStateSegmentedControl.selectedSegmentIndex == 0 {
+            saveMovie(asWatched: false)
+        } else if movieStateSegmentedControl.selectedSegmentIndex == 1 {
+            saveMovie(asWatched: true)
+        }
+    }
+
+    @IBAction func deleteMovie() {
+        guard let storageManager = storageManager,
+            let movie = movie
+            else { return }
+
+        switch movie {
+        case .network(let movie):
+            storageManager.save(movie, state: .undefined) { result in
+                switch result {
+                case .failure:
+                    self.showAlert(withMessage: Alert.insertMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.updateElements(for: .undefined)
+                    }
+                }
+            }
+        case .stored(let movie):
+            storageManager.remove(with: movie.objectID) { result in
+                switch result {
+                case .failure:
+                    self.showAlert(withMessage: Alert.deleteMovieError)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.updateElements(for: .undefined)
+                    }
+                }
+            }
+        }
+    }
+
+    @IBAction func shareMovie() {
+        var title: String?
+        guard let movie = movie else { return }
+
+        switch movie {
+        case .network(let movie):
+            title = movie.title
+        case .stored(let movie):
+            title = movie.title
+        }
+
+        var items = [Any]()
+
+        if let title = title {
+            items.append(title)
+        }
+
+        if let url = generateMovieURL() {
+            items.append(url)
+        }
+
+        let activityController =
+            UIActivityViewController(activityItems: items,
+                                     applicationActivities: nil)
+
+        present(activityController, animated: true)
     }
 
     // MARK: - Navigation
@@ -162,48 +206,61 @@ class MovieDetailViewController: UIViewController {
         perform(segue: .showPosterFromMovieDetail, sender: nil)
     }
 
-    @objc
-    func shareMovie(_ sender: UIBarButtonItem) {
-        var title: String?
-        guard let movie = movie else { return }
-
-        switch movie {
-        case .network(let movie):
-            title = movie.title
-        case .stored(let movie):
-            title = movie.title
-        }
-
-        var items = [Any]()
-
-        if let title = title {
-            items.append(title)
-        }
-
-        if let url = generateMovieURL() {
-            items.append(url)
-        }
-
-        let activityController =
-            UIActivityViewController(activityItems: items,
-                                     applicationActivities: nil)
-
-        present(activityController, animated: true)
-    }
-
     // MARK: - Private
 
-    private func setupLocalization() {
-        seenButton.setTitle(String.seenAction, for: .normal)
-        mustSeeButton.setTitle(String.watchlistActionLong, for: .normal)
-        deleteButton.setTitle(String.deleteActionLong, for: .normal)
+    private func configureElements() {
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(30, after: moreInformationStackView)
+        }
+
+        categoryLabel.isHidden = true
+        votingLabel.textColor = UIColor.black
+        buttonInfoLabel.textColor = UIColor.basicBackground
+        movieStateSegmentedControl.tintColor = UIColor.primaryOrange
+
+        posterImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self,
+                                                       action: #selector(showPoster))
+        posterImageView.addGestureRecognizer(gestureRecognizer)
+
+        updateElements(for: state)
     }
 
-    func updatePosterSize() {
-        DispatchQueue.main.async {
-            guard let poster = self.posterImageView.image else { return }
-            let aspectRatio = poster.size.height / poster.size.width
-            self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
+    private func setupLocalization() {
+        moreInformationButton.setTitle(String.moreInformation, for: .normal)
+        buttonInfoLabel.text = String.onTMDB
+
+        movieStateSegmentedControl.setTitle(.watchStateWatchlist, forSegmentAt: 0)
+        movieStateSegmentedControl.setTitle(.watchStateSeen, forSegmentAt: 1)
+    }
+
+    private func updateElements(for state: WatchState) {
+        guard let control = movieStateSegmentedControl,
+            let toolBar = toolBar
+            else { return }
+
+        func addDeleteButtonToToolbar() {
+            if !(toolBar.items?.contains(deleteButton) ?? false) {
+                toolBar.items?.insert(deleteButton, at: 0)
+                toolBar.setItems(toolBar.items, animated: true)
+            }
+        }
+
+        switch state {
+        case .undefined:
+            control.selectedSegmentIndex = UISegmentedControl.noSegment
+
+            var movieToolbarItems = toolBar.items
+            movieToolbarItems?.removeAll { $0 == deleteButton }
+            toolBar.setItems(movieToolbarItems, animated: true)
+        case .seen:
+            control.selectedSegmentIndex = 1
+
+            addDeleteButtonToToolbar()
+        case .watchlist:
+            control.selectedSegmentIndex = 0
+
+            addDeleteButtonToToolbar()
         }
     }
 
@@ -236,75 +293,22 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.insertMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        self.updateElements(for: newState)
                     }
                 }
             }
         case .stored(let movie):
+            let newState: WatchState = watched ? .seen : .watchlist
             storageManager.updateMovieItem(with: movie.objectID, watched: watched) { result in
                 switch result {
                 case .failure:
                     self.showAlert(withMessage: Alert.updateMovieError)
                 case .success:
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        self.updateElements(for: newState)
                     }
                 }
             }
-        }
-    }
-
-    private func deleteMovie() {
-        guard let storageManager = storageManager,
-            let movie = movie
-            else { return }
-
-        switch movie {
-        case .network(let movie):
-            storageManager.save(movie, state: .undefined) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-            }
-        case .stored(let movie):
-            storageManager.remove(with: movie.objectID) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-            }
-        }
-    }
-
-    private func updateDetail(for type: WatchState) {
-        guard let mustSeeButton = mustSeeButton,
-            let seenButton = seenButton,
-            let deleteButton = deleteButton else {
-                return
-        }
-
-        switch type {
-        case .seen:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = true
-            deleteButton.isHidden = false
-        case .watchlist:
-            mustSeeButton.isHidden = true
-            seenButton.isHidden = false
-            deleteButton.isHidden = false
-        case .undefined:
-            mustSeeButton.isHidden = false
-            seenButton.isHidden = false
-            deleteButton.isHidden = true
         }
     }
 
@@ -326,17 +330,19 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
-                let runtimeLabel = self.runtimeLabel,
+                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel,
                 self.posterImageView != nil
                 else { return }
 
             titleLabel.text = networkMovie.title
-            descriptionTextView.text = networkMovie.overview
-            runtimeLabel.text = networkMovie.formattedRuntime
+            releaseDateAndRuntimeLabel.text = networkMovie.formattedReleaseDate
+                + " ∙ "
+                + networkMovie.formattedRuntime
+
             votingLabel.text = networkMovie.formattedVoteAverage
-            releaseDateLabel.text = networkMovie.formattedReleaseDate
+
+            descriptionTextView.text = networkMovie.overview
 
             if let posterPath = networkMovie.posterPath {
                 self.posterImageView.kf.indicatorType = .activity
@@ -356,17 +362,18 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
-                let runtimeLabel = self.runtimeLabel,
+                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
                 let votingLabel = self.votingLabel,
-                let releaseDateLabel = self.releaseDateLabel,
                 let posterImageView = self.posterImageView
                 else { return }
 
             titleLabel.text = localMovie.title
             descriptionTextView.text = localMovie.overview
-            runtimeLabel.text = localMovie.formattedRuntime
+            releaseDateAndRuntimeLabel.text = localMovie.formattedReleaseDate
+                + " ∙ "
+                + localMovie.formattedRuntime
+
             votingLabel.text = localMovie.formattedVoteAverage
-            releaseDateLabel.text = localMovie.formattedReleaseDate
             posterImageView.image = localMovie.poster.map(UIImage.init)
                 ?? UIImage.posterPlaceholder
         }

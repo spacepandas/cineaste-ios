@@ -44,11 +44,12 @@ class ScreenshotsUITests: XCTestCase {
         firstMovieCell.tap()
         snapshot("search_detail")
 
-        let wantToSeeButton = app.buttons["detail.mustsee.button"]
+        let wantToSeeButton = app.segmentedControls.buttons.element(boundBy: 0)
         wantToSeeButton.swipeDownToElement().tap()
         snapshot("search_marked_as_mustsee")
 
         let back = app.navigationBars.buttons.element(boundBy: 0)
+        back.tap()
         back.tap()
 
         XCTAssertEqual(app.cells.count, 1)
@@ -58,8 +59,10 @@ class ScreenshotsUITests: XCTestCase {
         wantToSeeMovie.tap()
         snapshot("01_watchlist_detail")
 
-        let seenButton = app.buttons["detail.seen.button"]
+        let seenButton = app.segmentedControls.buttons.element(boundBy: 1)
         seenButton.swipeDownToElement().tap()
+
+        back.tap()
 
         let seenTab = app.buttons["SeenTab"]
         guard seenTab.waitForExistence(timeout: 1) else {
@@ -129,17 +132,21 @@ class ScreenshotsUITests: XCTestCase {
     }
 
     private func resetMoviesIfNeeded() {
+        let back = app.navigationBars.buttons.element(boundBy: 0)
+
         app.buttons["SeenTab"].tap()
         if app.cells.count > 0 {
             app.cells.element(boundBy: 0).tap()
-            app.buttons["detail.delete.button"].swipeDownToElement().tap()
+            app.toolbars.buttons.element(boundBy: 0).tap()
+            back.tap()
         }
         XCTAssertEqual(app.cells.count, 0)
 
         app.buttons["WatchlistTab"].tap()
         if app.cells.count > 0 {
             app.cells.element(boundBy: 0).tap()
-            app.buttons["detail.delete.button"].swipeDownToElement().tap()
+            app.toolbars.buttons.element(boundBy: 0).tap()
+            back.tap()
         }
         XCTAssertEqual(app.cells.count, 0)
     }

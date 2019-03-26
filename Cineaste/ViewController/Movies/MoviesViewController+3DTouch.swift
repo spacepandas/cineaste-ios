@@ -23,6 +23,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         detailVC.configure(with: .stored(fetchedResultsManager.movies[path.row]),
                            state: category.state,
                            storageManager: storageManager)
+        detailVC.hidesBottomBarWhenPushed = true
         return detailVC
     }
 

@@ -104,6 +104,7 @@ class MoviesViewController: UITableViewController {
             vc?.configure(with: .stored(selectedMovie),
                           state: category.state,
                           storageManager: storageManager)
+            vc?.hidesBottomBarWhenPushed = true
         case .showMovieNight?:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? MovieNightViewController
