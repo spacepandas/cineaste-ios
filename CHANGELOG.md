@@ -1,23 +1,40 @@
 # Changelog
 
+## 1.8.0
+
+[PR #82](https://github.com/spacepandas/cineaste-ios/pull/82)
+
+* Improved: Renew Layout in Movie Detail
+* Fixed: Let voting information resize correctly in Movie Detail
+
 ## 1.7.0
+
+[PR #79](https://github.com/spacepandas/cineaste-ios/pull/79)
 
 * Improved: Update app to support Accessibility Features like Dynamic Type and Voice Over.
 
 ## 1.6.1
+
+[PR #76](https://github.com/spacepandas/cineaste-ios/pull/76)
 
 * Fixed: Allow shrinking of Hint Label
 * Fixed: Use nonbreaking Space in voting information
 
 ## 1.6.0
 
+[PR #75](https://github.com/spacepandas/cineaste-ios/pull/75)
+
 * New: Show a hint for swipe actions in search
 
 ## 1.5.0 
 
+[PR #74](https://github.com/spacepandas/cineaste-ios/pull/74)
+
 * New: Update Search with a new layout, like an indicator about a movies watch state.
 
 ## 1.4.0
+
+[PR #67](https://github.com/spacepandas/cineaste-ios/pull/67)
 
 * New: Reload Movie Details with Pull To Refresh on Movie Lists
 

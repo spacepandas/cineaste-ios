@@ -3,7 +3,7 @@ fastlane_version "2.0.0"
 ProjectName = "Cineaste"
 Target_Folder_Name = "build" 
 
-$version_number_to_set = "1.7.0"
+$version_number_to_set = "1.8.0"
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
@@ -34,9 +34,7 @@ def buildApp
   build_ios_app(
     scheme: "#{ProjectName} App",
     output_name: $ipaName,
-    output_directory: Target_Folder_Name,
-    clean: true,
-    include_bitcode: false
+    output_directory: Target_Folder_Name
   )
 end
 
