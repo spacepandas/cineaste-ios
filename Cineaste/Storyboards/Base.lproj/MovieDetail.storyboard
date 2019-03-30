@@ -45,7 +45,7 @@
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I40-Pc-bfk" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="54.5" width="375" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineaste_detail_flaeche" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                     </imageView>
                                                 </subviews>
@@ -381,8 +381,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cineaste_detail_flaeche" width="150" height="50"/>
         <image name="placeholder_poster" width="111" height="167"/>
         <image name="stars" width="57" height="24"/>
+        <image name="triangle" width="60" height="20"/>
     </resources>
 </document>
