@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                          name: NSNotification.Name.NSManagedObjectContextDidSave,
                          object: nil)
 
+        handleLaunchArguments()
         Appearance.setup()
 
         // check if system launched the app with a quick action
@@ -40,13 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = handle(shortCut: shortcutItem)
             return false
         }
-
-        #if DEBUG
-        if CommandLine.arguments.contains("--MonkeyPaws") {
-            // swiftlint:disable:next force_unwrapping
-            paws = MonkeyPaws(view: window!)
-        }
-        #endif
 
         return true
     }
@@ -123,5 +117,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var viewContext: NSManagedObjectContext {
         return AppDelegate.persistentContainer.viewContext
+    }
+
+    private func handleLaunchArguments() {
+        #if DEBUG
+        let arguments = ProcessInfo().arguments
+
+        if arguments.contains("SKIP_ANIMATIONS") {
+            UIView.setAnimationsEnabled(false)
+        }
+
+        if arguments.contains("--MonkeyPaws") {
+            // swiftlint:disable:next force_unwrapping
+            paws = MonkeyPaws(view: window!)
+        }
+        #endif
     }
 }

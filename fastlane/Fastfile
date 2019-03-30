@@ -1,49 +1,63 @@
-fastlane_version "2.0.0"
+fastlane_version '2.0.0'
 
-ProjectName = "Cineaste"
-Target_Folder_Name = "build" 
+ProjectName = 'Cineaste'
+Target_Folder_Name = 'build' 
+DerivedDataPath = 'DerivedData'
 
-$version_number_to_set = "1.8.0"
+Scheme = 'Cineaste App'
+Scheme_UnitTests = 'Testing'
+Scheme_UITests = 'Snapshot'
+
+$version_number_to_set = '1.8.0'
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 skip_docs
 
-desc "Runs all the tests"
+desc 'Runs all the tests'
 lane :test do
   run_tests(
-    device: "iPhone 7",
-    scheme: "Testing",
+    device: 'iPhone 7',
+    scheme: Scheme_UnitTests,
     code_coverage: true
   )
 end
 
-desc "Make screenshots of app"
+desc 'Make screenshots of app'
 lane :screenshots do
+  run_tests(
+    build_for_testing: true,
+    derived_data_path: DerivedDataPath,
+    scheme: Scheme
+  )
+
   capture_ios_screenshots(
-    configuration: "Debug",
+    app_identifier: 'de.spacepandas.ios.cineaste',
+    configuration: 'Debug',
+    derived_data_path: DerivedDataPath,
     output_directory: "#{Target_Folder_Name}/screenshots",
-    app_identifier: "de.spacepandas.ios.cineaste"
+    scheme: Scheme_UITests,
+    test_without_building: true
   )
 end
 
 def buildApp
-  time_string = Time.new.strftime("%Y.%m.%d")
+  time_string = Time.new.strftime('%Y.%m.%d')
   $ipaName = "#{$ipaName}-#{time_string}"
 
   build_ios_app(
-    scheme: "#{ProjectName} App",
+    scheme: Scheme,
     output_name: $ipaName,
     output_directory: Target_Folder_Name
   )
 end
 
-desc "Build the release app locally"
+desc 'Build the release app locally'
 lane :build do
   buildApp
 end
 
-desc "Build and upload the release app to TestFlight"
+desc 'Build and upload the release app to TestFlight'
 lane :beta do 
   increment_build_number(
     build_number: $build_number_to_set
@@ -56,12 +70,11 @@ lane :beta do
   buildApp
 
   upload_to_testflight(
-    username: "tech@spacepandas.de",
-    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
-    # changelog: read_changelog, #TODO: test this
-    groups: "Spacepandas",
     distribute_external: true,
-    notify_external_testers: true 
+    groups: 'Spacepandas',
+    ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
+    notify_external_testers: true,
+    username: 'tech@spacepandas.de'
   )
 
   sh("git commit -a -m \"Release version #{$version_number_to_set}\"")
