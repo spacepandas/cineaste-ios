@@ -4,6 +4,7 @@ cache:
   - bundler
 install:
   - bundle install
+  - pod install
 jobs:
   include:
     - stage: test
