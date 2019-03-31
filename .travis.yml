@@ -4,7 +4,7 @@ cache:
   - bundler
 install:
   - bundle install
-  - pod install
+  - pod install --repo-update
 jobs:
   include:
     - stage: test
