@@ -8,5 +8,6 @@ install:
 jobs:
   include:
       - script: bundle exec fastlane test
+        name: "Unit Tests"
       - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
         name: "SwiftLint"
