@@ -2,11 +2,8 @@ language: swift
 osx_image: xcode10.2
 cache:
   - bundler
-  - cocoapods
 install:
   - bundle install
-  - pod repo update
-  - pod install
 jobs:
   include:
     - stage: test
