@@ -7,7 +7,7 @@ install:
   - pod install --repo-update
 jobs:
   include:
-      - script: bundle exec fastlane test
-        name: "Unit Tests"
-      - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
-        name: "SwiftLint"
+    - script: bundle exec fastlane test
+      name: "Unit Tests"
+    - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
+      name: "SwiftLint"
