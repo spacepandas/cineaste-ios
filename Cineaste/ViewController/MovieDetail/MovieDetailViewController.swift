@@ -133,6 +133,7 @@ class MovieDetailViewController: UIViewController {
                     self.showAlert(withMessage: Alert.deleteMovieError)
                 case .success:
                     DispatchQueue.main.async {
+                        self.movie = .network(Movie(id: movie.id, title: movie.title ?? ""))
                         self.updateElements(for: .undefined)
                     }
                 }
