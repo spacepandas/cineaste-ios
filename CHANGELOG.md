@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.8.1
+
+* Fixed: Correct behaviour when deleting a movie in Movie Detail
+
 ## 1.8.0
 
 [PR #82](https://github.com/spacepandas/cineaste-ios/pull/82)

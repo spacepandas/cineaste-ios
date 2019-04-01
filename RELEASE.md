@@ -4,8 +4,8 @@
 
 * Update `CHANGELOG.md` with keywords `Fixed, New, Improved`
 * Update version number in `Fastfile` 
-* Set update text in `Fastfile`
 * Run `bundle exec fastlane beta`
+* Set update text in console
 * Push latest commit to origin
 
 ## AppStore
