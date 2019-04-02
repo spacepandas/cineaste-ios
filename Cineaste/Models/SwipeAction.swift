@@ -27,8 +27,9 @@ enum SwipeAction {
     func contextualAction(with completion: @escaping () -> Void) -> UIContextualAction {
         let action = UIContextualAction(
             style: .normal,
-            title: title) { _, _, _  in
+            title: title) { _, _, success in
                 completion()
+                success(true)
         }
         action.backgroundColor = backgroundColor
         action.image = image
