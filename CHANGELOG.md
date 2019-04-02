@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.8.2
+
+* Fixed: Correctly complete Swipe Action after a swipe
+
 # 1.8.1
 
 * Fixed: Correct behaviour when deleting a movie in Movie Detail
