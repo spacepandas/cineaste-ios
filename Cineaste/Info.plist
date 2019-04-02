@@ -24,6 +24,10 @@
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Bluetooth</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone</string>
 	<key>UIApplicationShortcutItems</key>
