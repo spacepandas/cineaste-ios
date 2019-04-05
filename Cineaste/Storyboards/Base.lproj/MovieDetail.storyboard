@@ -164,6 +164,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-fA-ZQh">
                                                                         <rect key="frame" x="0.0" y="0.0" width="33" height="13.5"/>
                                                                         <constraints>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="3jF-d0-K86"/>
                                                                             <constraint firstAttribute="width" secondItem="WI4-fA-ZQh" secondAttribute="height" multiplier="56:23" id="VSH-hd-461"/>
                                                                         </constraints>
                                                                     </imageView>
