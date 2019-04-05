@@ -872,7 +872,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "NEARBY_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :NEARBY_KEY' Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist)\"\nMOVIEDB_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :MOVIEDB_KEY' Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist)\"\nif [[ -z \"$NEARBY_KEY\" ]]; then\necho \"Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a NEARBY_KEY to apikey.plist\"\nfi\nif [[ -z \"$MOVIEDB_KEY\" ]]; then\necho \"Cineaste/cineaste.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a MOVIEDB_KEY to apikey.plist\"\nfi\nexit 0\n";
+			shellScript = "NEARBY_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :NEARBY_KEY' Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist)\"\nMOVIEDB_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :MOVIEDB_KEY' Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist)\"\nif [[ -z \"$NEARBY_KEY\" ]]; then\necho \"Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a NEARBY_KEY to apikey.plist\"\nfi\nif [[ -z \"$MOVIEDB_KEY\" ]]; then\necho \"Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a MOVIEDB_KEY to apikey.plist\"\nfi\nexit 0\n";
 		};
 		3FF790E420DE274A007B7D37 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
