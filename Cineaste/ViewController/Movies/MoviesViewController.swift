@@ -13,6 +13,8 @@ class MoviesViewController: UITableViewController {
     @IBOutlet private weak var empyListTitle: UILabel!
     @IBOutlet private weak var emptyListLabel: UILabel!
 
+    @IBOutlet private weak var startMovieNightButton: UIBarButtonItem!
+
     var category: MovieListCategory = .watchlist {
         didSet {
             title = category.title
@@ -45,6 +47,8 @@ class MoviesViewController: UITableViewController {
         emptyListLabel.textColor = .accentTextOnBlack
         empyListTitle.textColor = .accentTextOnBlack
         empyListTitle.text = .noContentTitle
+
+        startMovieNightButton.title = .startMovieNight
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.refetch(for: category.predicate)

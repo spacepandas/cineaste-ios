@@ -30,6 +30,7 @@ extension String {
     static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
+    static let watchNow = NSLocalizedString("watchNow", comment: "Title for watch now button")
     static let moreInformation = NSLocalizedString("moreInformation", comment: "Title for the more information button")
 
     // MARK: VIEWCONTROLLER TITLE

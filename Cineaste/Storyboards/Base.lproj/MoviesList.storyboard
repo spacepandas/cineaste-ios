@@ -235,6 +235,7 @@
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
                         <outlet property="empyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
+                        <outlet property="startMovieNightButton" destination="zmW-ZQ-pyd" id="M4t-Vb-bEi"/>
                         <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="STR-IZ-FeX"/>
                         <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="4q7-oo-2Gh"/>
                     </connections>
