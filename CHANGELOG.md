@@ -1,5 +1,10 @@
 # Changelog
 
+# 1.8.3
+
+* Improved: Update some wording
+* Improved: Add minimum width for vote view
+
 # 1.8.2
 
 * Fixed: Correctly complete Swipe Action after a swipe
