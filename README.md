@@ -15,6 +15,13 @@ Check out the [Android client](https://github.com/spacepandas/cineaste-android) 
 
 <a href='https://play.google.com/store/apps/details?id=de.cineaste.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png' height="45px"/></a>
 
+## Screenshots
+
+| Movie Detail      | Search      | Watchlist      | History   | Movie Night      |
+|:-----------------:|:-----------:|:--------------:|:---------:|:----------------:|
+| All the information you need | Discover new movies | Add movies you want to see to your watchlist | Remember movies you have seen | Find a movie for your movie night with your friends |
+| ![movie-detail][] | ![search][] | ![watchlist][] | ![seen][] | ![movie-night][] |
+
 ## Dependencies
 
 You can start a movie night via [Nearby][nearbyLink]. Nearby searches for nearby devices and matches their watchlist with yours.
@@ -57,3 +64,8 @@ Cineaste is released under the **Apache License**. Please see the [LICENSE](http
 [nearbyLink]: https://developers.google.com/nearby/messages/overview
 [theMovieDb]: https://www.themoviedb.org/
 [Kingfisher]: https://github.com/onevcat/Kingfisher
+[movie-detail]: /assets/iPhone%20X-01_watchlist_detail.png
+[search]: /assets/iPhone%20X-02_search.png
+[watchlist]: /assets/iPhone%20X-03_watchlist.png
+[seen]: /assets/iPhone%20X-04_seenList.png
+[movie-night]: /assets/iPhone%20X-05_startMovieNight_friendsFound.png
