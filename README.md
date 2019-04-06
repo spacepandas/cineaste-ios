@@ -69,4 +69,3 @@ Cineaste is released under the **Apache License**. Please see the [LICENSE](http
 [watchlist]: /assets/iPhoneX-03_watchlist.png
 [seen]: /assets/iPhoneX-seenList.png
 [movie-night]: /assets/iPhoneX-04_startMovieNight_friendsFound.png
-[more]: /assets/iPhoneX-05_settings.png
