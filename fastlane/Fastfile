@@ -29,7 +29,13 @@ lane :test do
 
   run_tests(
     derived_data_path: DerivedDataPath,
-    devices: ['iPhone 7 (11.4)', 'iPhone 7'],
+    device: 'iPhone 7 (11.4)',
+    scheme: Scheme_UnitTests,
+    test_without_building: true
+  )
+  run_tests(
+    derived_data_path: DerivedDataPath,
+    device: 'iPhone 7',
     scheme: Scheme_UnitTests,
     test_without_building: true
   )
