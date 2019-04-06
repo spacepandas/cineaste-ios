@@ -10,8 +10,12 @@ import UIKit
 
 class MoviesTabBarController: UITabBarController {
 
+    private weak var lastViewController: UIViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        delegate = self
 
         let storageManager = MovieStorageManager()
 
@@ -45,6 +49,23 @@ class MoviesTabBarController: UITabBarController {
         let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
 
         viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
+    }
+}
+
+extension MoviesTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        lastViewController = tabBarController.selectedViewController
+        return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard lastViewController == viewController,
+            let navi = viewController as? UINavigationController,
+            let tvc = navi.topViewController as? UITableViewController,
+            !tvc.tableView.visibleCells.isEmpty
+            else { return }
+
+        tvc.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
 
