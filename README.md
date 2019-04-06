@@ -17,7 +17,7 @@ Check out the [Android client](https://github.com/spacepandas/cineaste-android) 
 
 ## Screenshots
 
-| Movie Detail      | Search      | Watchlist      | Seen      | Movie Night      |
+| Movie Detail      | Search      | Watchlist      | History   | Movie Night      |
 |-------------------|-------------|----------------|-----------|------------------|
 | All movie information you need | Explore and find new movies | Add movies you want to see to your watchlist | Remember movies you have seen | Find a movie for your movie night with your friends |
 | ![movie-detail][] | ![search][] | ![watchlist][] | ![seen][] | ![movie-night][] |
