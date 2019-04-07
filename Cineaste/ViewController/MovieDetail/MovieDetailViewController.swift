@@ -318,7 +318,7 @@ class MovieDetailViewController: UIViewController {
         setupUI(for: movie)
 
         Webservice.load(resource: movie.get) { result in
-            guard case let .success(detailedMovie) = result else { return }
+            guard case var .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster
             self.detailsLoaded = true
@@ -328,6 +328,7 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func setupUI(for networkMovie: Movie) {
+        var networkMovie = networkMovie
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,

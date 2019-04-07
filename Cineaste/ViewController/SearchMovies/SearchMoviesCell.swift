@@ -32,6 +32,7 @@ class SearchMoviesCell: UITableViewCell {
     }
 
     func configure(with movie: Movie, state: WatchState) {
+        var movie = movie
         let nonbreakingSpace = "\u{00a0}"
         title.text = movie.title
         detailLabel.text = movie.formattedRelativeReleaseInformation

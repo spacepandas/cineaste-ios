@@ -145,7 +145,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
                                     title: movie.title)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
-            case .success(let movie):
+            case .success(var movie):
                 movie.poster = poster ?? movie.poster
 
                 guard let storageManager = self.storageManager else { return }

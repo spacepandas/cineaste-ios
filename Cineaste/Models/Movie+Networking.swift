@@ -76,7 +76,7 @@ extension Movie {
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let decoder = JSONDecoder()
-                let movie = try decoder.decode(Movie.self, from: data)
+                var movie = try decoder.decode(Movie.self, from: data)
 
                 let release = try? decoder.decode(LocalizedReleaseDate.self,
                                                   from: data)

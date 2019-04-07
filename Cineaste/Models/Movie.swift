@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class Movie: Codable {
+struct Movie: Codable {
     let id: Int64
     let title: String
     let voteAverage: Double
@@ -19,6 +19,11 @@ class Movie: Codable {
     let runtime: Int16
     var releaseDate: Date?
     var poster: UIImage?
+
+    var watched: Bool = false
+    var watchedDate: Date?
+
+    var listPosition: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,7 +36,7 @@ class Movie: Codable {
         case releaseDate = "release_date"
     }
 
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int64.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
@@ -61,5 +66,11 @@ class Movie: Codable {
         overview = ""
         runtime = 0
         posterPath = nil
+    }
+}
+
+extension Movie: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
