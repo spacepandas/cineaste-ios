@@ -26,4 +26,8 @@ for the Monkey Test in the UI Test Target
 - _Only UI Test Target_: Added for running Monkey Tests
 - License: [MIT](https://github.com/zalando/SwiftMonkey/blob/master/LICENSE)
 
+### ReSwift
+- For easy and testable State Management
+- License: [MIT](https://github.com/ReSwift/ReSwift/blob/master/LICENSE.md)
+
 _[Idea for this file is from: [blog.mazur.me/DEPENDENCIES.md](https://blog.mazur.me/DEPENDENCIES.md)]_
