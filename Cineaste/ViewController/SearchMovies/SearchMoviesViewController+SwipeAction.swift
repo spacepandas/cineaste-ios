@@ -45,8 +45,7 @@ extension SearchMoviesViewController {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        guard let currentState = storageManager?.currentState(for: movie)
-            else { return nil }
+        let currentState = watchStates[movie] ?? .undefined
 
         let seenAction = SwipeAction.moveToSeen.contextualAction {
             self.shouldMark(movie: movie, state: .seen)

@@ -10,7 +10,7 @@ struct PagedMovieResult: Codable {
     let page: Int
     let totalResults: Int
     let totalPages: Int
-    let results: [Movie]
+    let results: Set<Movie>
 
     enum CodingKeys: String, CodingKey {
         case page

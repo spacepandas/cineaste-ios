@@ -11,16 +11,16 @@ import UIKit
 extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard
-            indexPaths.first(where: { $0.isLast(of: movies.count) }) != nil,
+            indexPaths.first(where: { $0.isLast(of: watchStates.count) }) != nil,
             let total = totalResults
             else { return }
 
-        if total > movies.count && !isLoadingNextPage {
+        if total > watchStates.count && !isLoadingNextPage {
             tableView.tableFooterView = loadingIndicatorView
             isLoadingNextPage = true
 
             loadMovies(forQuery: resultSearchController.searchBar.text, nextPage: true) { movies in
-                self.movies += movies
+                self.moviesFromNetworking.formUnion(movies)
                 self.isLoadingNextPage = false
             }
         }
@@ -36,14 +36,14 @@ extension SearchMoviesViewController: UITableViewDelegate {
 
 extension SearchMoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return watchStates.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
         let movie = movies[indexPath.row]
-        let currentState = storageManager?.currentState(for: movie) ?? .undefined
+        let currentState = watchStates[movie] ?? .undefined
 
         cell.configure(with: movies[indexPath.row], state: currentState)
 

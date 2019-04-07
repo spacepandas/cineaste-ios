@@ -9,7 +9,7 @@
 import UIKit
 
 extension SearchMoviesViewController {
-    func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, completion: @escaping ([Movie]) -> Void) {
+    func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, completion: @escaping (Set<Movie>) -> Void) {
         var pageToLoad = 1
         if let page = currentPage, nextPage {
             pageToLoad = page + 1

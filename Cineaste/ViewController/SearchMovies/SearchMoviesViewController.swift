@@ -7,16 +7,43 @@
 //
 
 import UIKit
+import ReSwift
 
 class SearchMoviesViewController: UIViewController {
     @IBOutlet weak var loadingIndicatorView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
-    var movies: [Movie] = [] {
+    var movies: [Movie] {
+        return watchStates.keys
+            .sorted { $0.popularity > $1.popularity }
+    }
+
+    var watchStates: [Movie: WatchState] = [:]
+
+    private var storedIDs: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64]) = ([], []) {
         didSet {
-            DispatchQueue.main.async {
-                self.updateUI()
+            updateMovies()
+        }
+    }
+
+    var moviesFromNetworking: Set<Movie> = [] {
+        didSet {
+            updateMovies()
+        }
+    }
+
+    func updateMovies() {
+        for movie in moviesFromNetworking {
+            if storedIDs.watchListMovieIDs.contains(movie.id) {
+                watchStates[movie] = .watchlist
+            } else if storedIDs.seenMovieIDs.contains(movie.id) {
+                watchStates[movie] = .seen
+            } else {
+                watchStates[movie] = .undefined
             }
+        }
+        DispatchQueue.main.async {
+            self.updateUI()
         }
     }
 
@@ -49,7 +76,7 @@ class SearchMoviesViewController: UIViewController {
         }
 
         loadMovies { [weak self] movies in
-            self?.movies = movies
+            self?.moviesFromNetworking = movies
         }
 
         configureTableViewController()
@@ -78,7 +105,12 @@ class SearchMoviesViewController: UIViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
 
-        updateUI()
+        store.subscribe(self) { subscription in
+            subscription.select { state in
+                (state.movies.filter { !$0.watched }.map { $0.id },
+                 state.movies.filter { $0.watched }.map { $0.id })
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +119,11 @@ class SearchMoviesViewController: UIViewController {
         if let cell = tableView.visibleCells.first as? SearchMoviesCell {
             cell.animateSwipeHint()
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        store.unsubscribe(self)
     }
 
     // MARK: - Navigation
@@ -146,13 +183,13 @@ class SearchMoviesViewController: UIViewController {
     func updateUI() {
         tableView.reloadData()
 
-        if movies.isEmpty {
+        if watchStates.isEmpty {
             tableView.tableFooterView = UIView()
         }
     }
 
     func scrollToTopCell(withAnimation: Bool) {
-        guard !movies.isEmpty else { return }
+        guard !watchStates.isEmpty else { return }
 
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: 0, section: 0)
@@ -163,22 +200,25 @@ class SearchMoviesViewController: UIViewController {
     }
 
     func shouldMark(movie: Movie, state: WatchState) {
-        guard let storageManager = storageManager else { return }
-
         loadDetails(for: movie) { detailedMovie in
-            guard let detailedMovie = detailedMovie else { return }
+            guard var detailedMovie = detailedMovie else { return }
 
-            storageManager.save(detailedMovie, state: state) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .failure:
-                        self.showAlert(withMessage: Alert.insertMovieError)
-                    case .success:
-                        self.updateUI()
-                    }
-                }
+            switch state {
+            case .undefined:
+                break
+            case .seen:
+                detailedMovie.watched = true
+            case .watchlist:
+                detailedMovie.watched = false
             }
+            store.dispatch(MovieAction.update(movie: detailedMovie))
         }
+    }
+}
+
+extension SearchMoviesViewController: StoreSubscriber {
+    func newState(state: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64])) {
+        storedIDs = state
     }
 }
 

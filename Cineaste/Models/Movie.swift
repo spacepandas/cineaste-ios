@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-struct Movie: Codable {
+struct Movie: Codable, Equatable {
     let id: Int64
     let title: String
     let voteAverage: Double
@@ -25,6 +25,8 @@ struct Movie: Codable {
 
     var listPosition: Int = 0
 
+    let popularity: Double
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -34,6 +36,7 @@ struct Movie: Codable {
         case overview
         case runtime
         case releaseDate = "release_date"
+        case popularity
     }
 
     init(from decoder: Decoder) throws {
@@ -55,6 +58,8 @@ struct Movie: Codable {
 
         let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
         releaseDate = dateString?.dateFromString
+
+        popularity = try container.decode(Double.self, forKey: .popularity)
     }
 
     // This is only for creating a movie to use it with the webservice
@@ -66,12 +71,7 @@ struct Movie: Codable {
         overview = ""
         runtime = 0
         posterPath = nil
-    }
-}
-
-extension Movie: Equatable {
-    static func == (lhs: Movie, rhs: Movie) -> Bool {
-        return lhs.id == rhs.id
+        popularity = 0
     }
 }
 

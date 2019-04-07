@@ -8,6 +8,6 @@
 
 import ReSwift
 
-struct AppState: StateType {
+struct AppState: StateType, Equatable {
     var movies: Set<Movie> = []
 }
