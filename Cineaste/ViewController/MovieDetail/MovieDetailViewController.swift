@@ -85,11 +85,9 @@ class MovieDetailViewController: UIViewController {
     }
 
     func configure(with selectedMovie: MovieType,
-                   state: WatchState,
-                   storageManager: MovieStorageManager) {
+                   state: WatchState) {
         movie = selectedMovie
         self.state = state
-        self.storageManager = storageManager
     }
 
     // MARK: - Actions

@@ -15,8 +15,7 @@ extension SearchMoviesViewController {
     // swiftlint:disable:next discouraged_optional_collection
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let movie = movies[editActionsForRowAt.row]
-        guard let currentState = storageManager?.currentState(for: movie)
-            else { return nil }
+        let currentState = watchStates[movie] ?? .undefined
 
         let seenAction = SwipeAction.moveToSeen.rowAction {
             self.shouldMark(movie: movie, state: .seen)
@@ -72,8 +71,7 @@ extension SearchMoviesViewController {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        guard let currentState = storageManager?.currentState(for: movie)
-            else { return nil }
+        let currentState = watchStates[movie] ?? .undefined
 
         let removeAction = SwipeAction.delete.contextualAction {
             self.shouldMark(movie: movie, state: .undefined)

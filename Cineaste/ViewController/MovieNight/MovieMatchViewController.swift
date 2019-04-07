@@ -114,15 +114,11 @@ class MovieMatchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
 
-        guard let storageManager = storageManager
-            else { return }
-
         let vc = MovieDetailViewController.instantiate()
 
         let networkMovie = Movie(id: nearbyMovie.id, title: nearbyMovie.title)
         vc.configure(with: .network(networkMovie),
-                     state: .undefined,
-                     storageManager: storageManager)
+                     state: .undefined)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

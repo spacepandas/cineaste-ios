@@ -48,7 +48,6 @@ class SearchMoviesViewController: UIViewController {
     }
 
     var selectedMovie: Movie?
-    var storageManager: MovieStorageManager?
 
     var currentPage: Int?
     var totalResults: Int?
@@ -82,10 +81,6 @@ class SearchMoviesViewController: UIViewController {
         configureTableViewController()
         configureSearchController()
         registerForPreviewing(with: self, sourceView: tableView)
-    }
-
-    func configure(with storageManager: MovieStorageManager) {
-        self.storageManager = storageManager
     }
 
     override func viewDidLayoutSubviews() {
@@ -131,16 +126,14 @@ class SearchMoviesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie,
-                let storageManager = storageManager
+            guard let selectedMovie = selectedMovie
                 else { return }
 
-            let currentState = storageManager.currentState(for: selectedMovie)
+            let currentState = watchStates[selectedMovie] ?? .undefined
 
             let vc = segue.destination as? MovieDetailViewController
             vc?.configure(with: .network(selectedMovie),
-                          state: currentState,
-                          storageManager: storageManager)
+                          state: currentState)
             vc?.hidesBottomBarWhenPushed = true
         default:
             return
