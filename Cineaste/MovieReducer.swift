@@ -17,6 +17,7 @@ func movieReducer(action: Action, state: AppState?) -> AppState {
 
     switch action {
     case .load(let movies):
+        assert(state.movies.isEmpty)
         state.movies = movies
     case .add(let movie),
          .update(let movie):
