@@ -14,22 +14,30 @@ $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 skip_docs
 
+def prepareTests
+  run_tests(
+    clean: true,
+    build_for_testing: true,
+    derived_data_path: DerivedDataPath,
+    scheme: Scheme
+  )
+end
+
 desc 'Runs all the tests'
 lane :test do
+  prepareTests
+  
   run_tests(
+    derived_data_path: DerivedDataPath,
     device: 'iPhone 7',
     scheme: Scheme_UnitTests,
-    code_coverage: true
+    test_without_building: true
   )
 end
 
 desc 'Make screenshots of app'
 lane :screenshots do
-  run_tests(
-    build_for_testing: true,
-    derived_data_path: DerivedDataPath,
-    scheme: Scheme
-  )
+  prepareTests
 
   capture_ios_screenshots(
     app_identifier: 'de.spacepandas.ios.cineaste',

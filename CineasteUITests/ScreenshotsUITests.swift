@@ -26,13 +26,13 @@ class ScreenshotsUITests: XCTestCase {
             // to test dynamic type without running `fastlane screenshot`
             // but when running UITests with Xcode.
 
-//            "-UIPreferredContentSizeCategoryName",
-//            "UICTContentSizeCategoryAccessibilityL"
-//            "-UIPreferredContentSizeCategoryName",
-//            "UICTContentSizeCategoryL"
+            //            "-UIPreferredContentSizeCategoryName",
+            //            "UICTContentSizeCategoryAccessibilityL"
+            //            "-UIPreferredContentSizeCategoryName",
+            //            "UICTContentSizeCategoryL"
         ]
 
-        setupSnapshot(app)
+        setupSnapshot(app, waitForAnimations: false)
         app.launch()
 
         resetMoviesIfNeeded()
@@ -40,122 +40,136 @@ class ScreenshotsUITests: XCTestCase {
 
     func testScreenshots() {
         XCTAssertEqual(app.cells.count, 0)
-        namedSnapshot("emptyList")
+        namedSnapshot("emptyWatchlist")
 
-        // MARK: Search
-        let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
-            .firstMatch
-        addMovieButton.tap()
-        namedSnapshot("search_without_marker")
+        let backButton = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
-        // Add first movie to watchlist
-        app.cells.element(boundBy: 0).firstMatch.tap()
-        namedSnapshot("search_detail")
-
-        let wantToSeeButton = app.segmentedControls.buttons.element(boundBy: 0)
-            .firstMatch
-        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
-        wantToSeeButton.tap()
-
-        let back = app.navigationBars.buttons.element(boundBy: 0).firstMatch
-        back.tap()
-
-        // Mark third movie as watched
-        app.cells.element(boundBy: 1).firstMatch.tap()
-        let seenButton = app.segmentedControls.buttons.element(boundBy: 1)
-            .firstMatch
-        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
-        seenButton.tap()
-        back.tap()
-
-        // Mark fourth movie as watched
-        app.cells.element(boundBy: 3).firstMatch.tap()
-        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
-        seenButton.tap()
-        back.tap()
-
-        namedSnapshot("02_search")
-        back.tap()
-
-        // MARK: Watchlist
-        XCTAssertEqual(app.cells.count, 1)
-        namedSnapshot("03_watchlist")
-
-        let wantToSeeMovie = app.cells.element(boundBy: 0).firstMatch
-        wantToSeeMovie.tap()
-        namedSnapshot("01_watchlist_detail")
-        back.tap()
-
-        // MARK: Seen
-        let seenTab = app.buttons["SeenTab"].firstMatch
-        seenTab.tap()
-        XCTAssertEqual(app.cells.count, 2)
-        namedSnapshot("04_seenList")
-
-        let seenMovie = app.cells.element(boundBy: 0).firstMatch
-        seenMovie.tap()
-        namedSnapshot("seen_detail")
-
-        back.tap()
-
-        // MARK: Movie Night
-        let startMovieNightButton = app.navigationBars.buttons
-            .element(boundBy: 0).firstMatch
-        startMovieNightButton.tap()
-
-        let usernameAlert = app.alerts.element(boundBy: 0)
-        if usernameAlert.exists {
-            namedSnapshot("startMovieNight_usernameAlert")
-            let textField = usernameAlert.textFields.element(boundBy: 0)
-                .firstMatch
-            textField.tap()
-            textField.typeText("Screenshots")
-            let saveButton = usernameAlert.buttons.element(boundBy: 1)
-                .firstMatch
-            saveButton.tap()
+        XCTContext.runActivity(named: "Search for Movies") { _ in
+            app.navigationBars.buttons.element(boundBy: 1).firstMatch.tap()
+            _ = app.cells.element(boundBy: 0).waitForExistence(timeout: 1.0)
+            namedSnapshot("search_withoutMarker")
         }
 
-        let nearbyAlert = app.alerts.element(boundBy: 0)
-        if nearbyAlert.exists {
-            namedSnapshot("startMovieNight_nearbyAlert")
-            let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
-                .firstMatch
-            moreInfoButton.tap()
-            namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
-            let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
-            allowNearbyButton.tap()
+        XCTContext.runActivity(named: "Add first Movie to Watchlist") { _ in
+            app.cells.element(boundBy: 0).firstMatch.tap()
+            namedSnapshot("search_detail")
+
+            app.scrollDownToElement(element: app.segmentedControls.firstMatch)
+            app.segmentedControls.buttons.element(boundBy: 0).firstMatch.tap()
+            backButton.tap()
         }
-        namedSnapshot("startMovieNight_searching")
 
-        //use DEBUG triple tap to test nearby feature
-        app.tap()
-        app.tap()
-        app.tap()
+        XCTContext.runActivity(named: "Mark third Movie as watched") { _ in
+            app.cells.element(boundBy: 1).firstMatch.tap()
+            app.scrollDownToElement(element: app.segmentedControls.firstMatch)
+            app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
+            backButton.tap()
+        }
 
-        namedSnapshot("05_startMovieNight_friendsFound")
+        XCTContext.runActivity(named: "Mark fourth Movie as watched") { _ in
+            app.cells.element(boundBy: 3).firstMatch.tap()
+            app.scrollDownToElement(element: app.segmentedControls.firstMatch)
+            app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
+            backButton.tap()
+        }
 
-        let startButton = app.buttons.element(boundBy: 1).firstMatch
-        startButton.tap()
-        namedSnapshot("startMovieNight_results")
+        XCTContext.runActivity(named: "See Search with marked Movies") { _ in
+            namedSnapshot("02_search")
+            backButton.tap()
+        }
 
-        back.tap()
-        back.tap()
+        XCTContext.runActivity(named: "See Watchlist") { _ in
+            XCTAssertEqual(app.cells.count, 1)
+            namedSnapshot("03_watchlist")
 
-        // MARK: Settings
-        let settingsTab = app.buttons["SettingsTab"].firstMatch
-        settingsTab.tap()
-        namedSnapshot("06_settings")
+            let wantToSeeMovie = app.cells.element(boundBy: 0).firstMatch
+            wantToSeeMovie.tap()
+            namedSnapshot("01_watchlist_detail")
+            backButton.tap()
+        }
 
-        let aboutTheApp = app.cells.element(boundBy: 0).firstMatch
-        aboutTheApp.tap()
-        namedSnapshot("settings_aboutTheApp")
+        XCTContext.runActivity(named: "See Seen List") { _ in
+            app.buttons["SeenTab"].firstMatch.tap()
+            XCTAssertEqual(app.cells.count, 2)
+            namedSnapshot("04_seenList")
 
-        back.tap()
-        let license = app.cells.element(boundBy: 1).firstMatch
-        license.tap()
-        namedSnapshot("settings_license")
+            let seenMovie = app.cells.element(boundBy: 0).firstMatch
+            seenMovie.tap()
+            namedSnapshot("seen_detail")
+            backButton.tap()
+        }
+
+        XCTContext.runActivity(named: "Start Movie Night") { _ in
+            let startMovieNightButton = app.navigationBars.buttons
+                .element(boundBy: 0).firstMatch
+            startMovieNightButton.tap()
+        }
+
+        XCTContext.runActivity(named: "Ask for Username") { _ in
+            let usernameAlert = app.alerts.element(boundBy: 0)
+            if usernameAlert.exists {
+                namedSnapshot("startMovieNight_usernameAlert")
+                let textField = usernameAlert.textFields.element(boundBy: 0)
+                    .firstMatch
+                textField.tap()
+                textField.typeText("Screenshots")
+                let saveButton = usernameAlert.buttons.element(boundBy: 1)
+                    .firstMatch
+                saveButton.tap()
+            }
+        }
+
+        XCTContext.runActivity(named: "Ask for Nearby Permission (if needed)") { _ in
+            let nearbyAlert = app.alerts.element(boundBy: 0)
+            if nearbyAlert.exists {
+                namedSnapshot("startMovieNight_nearbyAlert")
+                let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
+                    .firstMatch
+                moreInfoButton.tap()
+                namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
+                let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
+                allowNearbyButton.tap()
+            }
+        }
+
+        XCTContext.runActivity(named: "Search for Nearby Friends") { _ in
+            namedSnapshot("startMovieNight_searching")
+
+            //use DEBUG triple tap to test nearby feature
+            app.tap()
+            app.tap()
+            app.tap()
+
+            namedSnapshot("05_startMovieNight_friendsFound")
+        }
+
+        XCTContext.runActivity(named: "See Movie Night Results") { _ in
+            let startButton = app.buttons.element(boundBy: 1).firstMatch
+            startButton.tap()
+            namedSnapshot("startMovieNight_results")
+
+            backButton.tap()
+            backButton.tap()
+        }
+
+        XCTContext.runActivity(named: "See More Content") { _ in
+            let settingsTab = app.buttons["SettingsTab"].firstMatch
+            settingsTab.tap()
+            namedSnapshot("06_settings")
+
+            let aboutTheApp = app.cells.element(boundBy: 0).firstMatch
+            aboutTheApp.tap()
+            namedSnapshot("settings_aboutTheApp")
+
+            backButton.tap()
+            let license = app.cells.element(boundBy: 1).firstMatch
+            license.tap()
+            namedSnapshot("settings_license")
+        }
     }
+}
 
+extension ScreenshotsUITests {
     private func resetMoviesIfNeeded() {
         let back = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
