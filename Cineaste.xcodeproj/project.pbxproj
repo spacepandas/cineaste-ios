@@ -1306,6 +1306,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMonkeyPaws/SwiftMonkeyPaws.framework/Headers\"",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/NearbyMessages\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReSwift/ReSwift.framework/Headers\"",
 				);
 				INFOPLIST_FILE = CineasteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1332,6 +1333,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers\"",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/NearbyMessages\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReSwift/ReSwift.framework/Headers\"",
 				);
 				INFOPLIST_FILE = CineasteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
