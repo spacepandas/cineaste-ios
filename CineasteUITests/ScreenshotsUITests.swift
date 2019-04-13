@@ -46,21 +46,35 @@ class ScreenshotsUITests: XCTestCase {
         let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
             .firstMatch
         addMovieButton.tap()
-        namedSnapshot("02_search")
+        namedSnapshot("search_without_marker")
 
-        let firstMovieCell = app.cells.element(boundBy: 0).firstMatch
-        firstMovieCell.tap()
+        // Add first movie to watchlist
+        app.cells.element(boundBy: 0).firstMatch.tap()
         namedSnapshot("search_detail")
 
         let wantToSeeButton = app.segmentedControls.buttons.element(boundBy: 0)
             .firstMatch
         app.scrollDownToElement(element: app.segmentedControls.firstMatch)
         wantToSeeButton.tap()
-        app.scrollToTop()
-        namedSnapshot("search_marked_as_mustsee")
 
         let back = app.navigationBars.buttons.element(boundBy: 0).firstMatch
         back.tap()
+
+        // Mark third movie as watched
+        app.cells.element(boundBy: 1).firstMatch.tap()
+        let seenButton = app.segmentedControls.buttons.element(boundBy: 1)
+            .firstMatch
+        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
+        seenButton.tap()
+        back.tap()
+
+        // Mark fourth movie as watched
+        app.cells.element(boundBy: 3).firstMatch.tap()
+        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
+        seenButton.tap()
+        back.tap()
+
+        namedSnapshot("02_search")
         back.tap()
 
         // MARK: Watchlist
@@ -70,19 +84,13 @@ class ScreenshotsUITests: XCTestCase {
         let wantToSeeMovie = app.cells.element(boundBy: 0).firstMatch
         wantToSeeMovie.tap()
         namedSnapshot("01_watchlist_detail")
-
-        let seenButton = app.segmentedControls.buttons.element(boundBy: 1)
-            .firstMatch
-        app.scrollDownToElement(element: app.segmentedControls.firstMatch)
-        seenButton.tap()
-
         back.tap()
 
         // MARK: Seen
         let seenTab = app.buttons["SeenTab"].firstMatch
         seenTab.tap()
-        XCTAssertEqual(app.cells.count, 1)
-        namedSnapshot("seenList")
+        XCTAssertEqual(app.cells.count, 2)
+        namedSnapshot("04_seenList")
 
         let seenMovie = app.cells.element(boundBy: 0).firstMatch
         seenMovie.tap()
@@ -124,7 +132,7 @@ class ScreenshotsUITests: XCTestCase {
         app.tap()
         app.tap()
 
-        namedSnapshot("04_startMovieNight_friendsFound")
+        namedSnapshot("05_startMovieNight_friendsFound")
 
         let startButton = app.buttons.element(boundBy: 1).firstMatch
         startButton.tap()
@@ -136,7 +144,7 @@ class ScreenshotsUITests: XCTestCase {
         // MARK: Settings
         let settingsTab = app.buttons["SettingsTab"].firstMatch
         settingsTab.tap()
-        namedSnapshot("05_settings")
+        namedSnapshot("06_settings")
 
         let aboutTheApp = app.cells.element(boundBy: 0).firstMatch
         aboutTheApp.tap()
