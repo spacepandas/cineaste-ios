@@ -32,7 +32,7 @@ class ScreenshotsUITests: XCTestCase {
 //            "UICTContentSizeCategoryL"
         ]
 
-        setupSnapshot(app)
+        setupSnapshot(app, waitForAnimations: false)
         app.launch()
 
         resetMoviesIfNeeded()
@@ -46,6 +46,7 @@ class ScreenshotsUITests: XCTestCase {
         let addMovieButton = app.navigationBars.buttons.element(boundBy: 1)
             .firstMatch
         addMovieButton.tap()
+        _ = app.cells.element(boundBy: 0).waitForExistence(timeout: 1.0)
         namedSnapshot("search_without_marker")
 
         // Add first movie to watchlist

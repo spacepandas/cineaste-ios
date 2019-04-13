@@ -39,16 +39,3 @@ extension XCUIApplication {
             .press(forDuration: 0.01, thenDragTo: screenTopCoordinate)
     }
 }
-
-extension XCUIElement {
-    func scrollToTop() {
-        let topCoordinate = XCUIApplication().screenTopCoordinate
-        let elementCoordinate = coordinate(withNormalizedOffset: .zero)
-
-        let delta = topCoordinate.screenPoint.x - elementCoordinate.screenPoint.x
-        let deltaVector = CGVector(dx: delta, dy: 0.0)
-
-        elementCoordinate.withOffset(deltaVector)
-            .press(forDuration: 0.01, thenDragTo: topCoordinate)
-    }
-}
