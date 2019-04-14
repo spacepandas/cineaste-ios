@@ -106,13 +106,6 @@ class MoviesViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
-        case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie,
-                let movie = store.state.movies
-                    .first(where: { $0.id == selectedMovie.id })
-                else { return }
-
-            store.dispatch(MovieAction.select(movie: movie))
         case .showMovieNight?:
             guard let storageManager = storageManager else { return }
             let navigationVC = segue.destination as? UINavigationController

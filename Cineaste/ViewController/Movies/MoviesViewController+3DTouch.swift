@@ -22,7 +22,6 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         let detailVC = MovieDetailViewController.instantiate()
 //        detailVC.configure(with: fetchedResultsManager.movies[path.row],
 //                           state: category.state)
-//        detailVC.hidesBottomBarWhenPushed = true
         return detailVC
     }
 
