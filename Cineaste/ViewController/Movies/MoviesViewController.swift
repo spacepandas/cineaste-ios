@@ -29,9 +29,11 @@ class MoviesViewController: UITableViewController {
 
     var movies: [Movie] = [] {
         didSet {
-            tableView.reloadData()
-            showEmptyState(movies.isEmpty)
-            updateShortcutItems()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.showEmptyState()
+                self.updateShortcutItems()
+            }
         }
     }
 
@@ -54,8 +56,6 @@ class MoviesViewController: UITableViewController {
 
         startMovieNightButton.title = .startMovieNight
 
-        showEmptyState(movies.isEmpty)
-
         registerForPreviewing(with: self, sourceView: tableView)
 
         configureTableView()
@@ -70,12 +70,6 @@ class MoviesViewController: UITableViewController {
         }
 
         store.subscribe(self)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        showEmptyState(movies.isEmpty)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -156,17 +150,13 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Custom functions
 
-    func showEmptyState(_ emptyState: Bool, completion: (() -> Void)? = nil) {
-        let isEmpty = emptyState
-
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
-            }, completion: { _ in
-                self.tableView.backgroundView?.isHidden = !isEmpty
-                completion?()
-            })
-        }
+    func showEmptyState(completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.tableView.backgroundView?.alpha = self.movies.isEmpty ? 1 : 0
+        }, completion: { _ in
+            self.tableView.backgroundView?.isHidden = !self.movies.isEmpty
+            completion?()
+        })
     }
 
     private func askForUsername() {
