@@ -14,24 +14,13 @@ extension MoviesViewController {
 
     // swiftlint:disable:next discouraged_optional_collection
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        var movie = movies[editActionsForRowAt.row]
+        let movie = movies[editActionsForRowAt.row]
+
+        let seenAction = SwipeAction.moveToSeen.rowAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.rowAction(for: movie)
+        let removeAction = SwipeAction.delete.rowAction(for: movie)
 
         let currentState = category.state
-
-        let seenAction = SwipeAction.moveToSeen.rowAction {
-            movie.watched = true
-            store.dispatch(MovieAction.update(movie: movie))
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.rowAction {
-            movie.watched = false
-            store.dispatch(MovieAction.update(movie: movie))
-        }
-
-        let removeAction = SwipeAction.delete.rowAction {
-            store.dispatch(MovieAction.delete(movie: movie))
-        }
-
         switch currentState {
         case .undefined:
             return []
@@ -46,22 +35,14 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        var movie = movies[indexPath.row]
+        let movie = movies[indexPath.row]
 
-        let currentState = category.state
-
-        let seenAction = SwipeAction.moveToSeen.contextualAction {
-            movie.watched = true
-            store.dispatch(MovieAction.update(movie: movie))
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
-            movie.watched = false
-            store.dispatch(MovieAction.update(movie: movie))
-        }
+        let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = category.state
         switch currentState {
         case .undefined:
             actions = []
@@ -77,10 +58,7 @@ extension MoviesViewController {
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-
-        let removeAction = SwipeAction.delete.contextualAction {
-            store.dispatch(MovieAction.delete(movie: movie))
-        }
+        let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         return UISwipeActionsConfiguration(actions: [removeAction])
     }

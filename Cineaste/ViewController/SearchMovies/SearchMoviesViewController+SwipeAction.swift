@@ -15,20 +15,12 @@ extension SearchMoviesViewController {
     // swiftlint:disable:next discouraged_optional_collection
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let movie = movies[editActionsForRowAt.row]
+
+        let seenAction = SwipeAction.moveToSeen.rowAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.rowAction(for: movie)
+        let removeAction = SwipeAction.delete.rowAction(for: movie)
+
         let currentState = watchStates[movie] ?? .undefined
-
-        let seenAction = SwipeAction.moveToSeen.rowAction {
-            self.shouldMark(movie: movie, state: .seen)
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.rowAction {
-            self.shouldMark(movie: movie, state: .watchlist)
-        }
-
-        let removeAction = SwipeAction.delete.rowAction {
-            self.shouldMark(movie: movie, state: .undefined)
-        }
-
         switch currentState {
         case .undefined:
             return [seenAction, watchlistAction]
@@ -44,18 +36,13 @@ extension SearchMoviesViewController {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        let currentState = watchStates[movie] ?? .undefined
 
-        let seenAction = SwipeAction.moveToSeen.contextualAction {
-            self.shouldMark(movie: movie, state: .seen)
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
-            self.shouldMark(movie: movie, state: .watchlist)
-        }
+        let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = watchStates[movie] ?? .undefined
         switch currentState {
         case .undefined:
             actions = [watchlistAction, seenAction]
@@ -71,14 +58,11 @@ extension SearchMoviesViewController {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        let currentState = watchStates[movie] ?? .undefined
-
-        let removeAction = SwipeAction.delete.contextualAction {
-            self.shouldMark(movie: movie, state: .undefined)
-        }
+        let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = watchStates[movie] ?? .undefined
         if currentState == .undefined {
             actions = []
         } else {

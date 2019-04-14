@@ -30,6 +30,7 @@ class MoviesViewController: UITableViewController {
     var movies: [Movie] = [] {
         didSet {
             tableView.reloadData()
+            showEmptyState(movies.isEmpty)
             updateShortcutItems()
         }
     }

@@ -188,22 +188,6 @@ class SearchMoviesViewController: UIViewController {
                                        animated: withAnimation)
         }
     }
-
-    func shouldMark(movie: Movie, state: WatchState) {
-        loadDetails(for: movie) { detailedMovie in
-            guard var detailedMovie = detailedMovie else { return }
-
-            switch state {
-            case .undefined:
-                break
-            case .seen:
-                detailedMovie.watched = true
-            case .watchlist:
-                detailedMovie.watched = false
-            }
-            store.dispatch(MovieAction.update(movie: detailedMovie))
-        }
-    }
 }
 
 extension SearchMoviesViewController: StoreSubscriber {
