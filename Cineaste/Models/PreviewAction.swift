@@ -27,6 +27,7 @@ enum PreviewAction {
                     store.dispatch(MovieAction.update(movie: movie))
                 case .moveToSeen:
                     movie.watched = true
+                    movie.watchedDate = Date()
                     store.dispatch(MovieAction.update(movie: movie))
                 }
         }

@@ -99,6 +99,10 @@ class MovieDetailViewController: UIViewController {
         let watched = movieStateSegmentedControl.selectedSegmentIndex == 1
         movie.watched = watched
 
+        if watched {
+            movie.watchedDate = Date()
+        }
+
         store.dispatch(MovieAction.update(movie: movie))
     }
 

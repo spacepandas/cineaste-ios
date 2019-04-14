@@ -138,6 +138,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
             case .success(var movie):
                 movie.poster = poster ?? movie.poster
                 movie.watched = true
+                movie.watchedDate = Date()
                 store.dispatch(MovieAction.add(movie: movie))
 
                 DispatchQueue.main.async {
