@@ -41,7 +41,12 @@ extension String {
 
     // MARK: MOVIES VIEWCONTROLLER
     static func title(for category: MovieListCategory) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("noMoviesOnList %@", comment: "Description for empty movie list"), category.title)
+        switch category {
+        case .watchlist:
+            return NSLocalizedString("noMoviesOnWatchlist", comment: "Description for empty watchlist")
+        case .seen:
+            return NSLocalizedString("noMoviesOnSeenList", comment: "Description for empty seen list")
+        }
     }
 
     static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
