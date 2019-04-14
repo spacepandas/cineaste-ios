@@ -18,10 +18,11 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
 
         previewingContext.sourceRect = cell.frame
 
+        //TODO:
         let detailVC = MovieDetailViewController.instantiate()
-        detailVC.configure(with: .stored(fetchedResultsManager.movies[path.row]),
-                           state: category.state)
-        detailVC.hidesBottomBarWhenPushed = true
+//        detailVC.configure(with: fetchedResultsManager.movies[path.row],
+//                           state: category.state)
+//        detailVC.hidesBottomBarWhenPushed = true
         return detailVC
     }
 

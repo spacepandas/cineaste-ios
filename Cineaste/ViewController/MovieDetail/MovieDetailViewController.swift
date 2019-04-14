@@ -7,15 +7,10 @@
 //
 
 import UIKit
+import ReSwift
 import SafariServices
 
-//swiftlint:disable type_body_length
 class MovieDetailViewController: UIViewController {
-    enum MovieType {
-        case stored(StoredMovie)
-        case network(Movie)
-    }
-
     @IBOutlet private weak var detailScrollView: UIScrollView!
     @IBOutlet private weak var contentStackView: UIStackView!
     @IBOutlet private weak var moreInformationStackView: UIStackView!
@@ -46,10 +41,8 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
-    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private var deleteButton: UIBarButtonItem!
-
-    private var storageManager: MovieStorageManager?
 
     private var state: WatchState = .undefined {
         didSet {
@@ -57,17 +50,12 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    private var movie: MovieType? {
+    private var movie: Movie? {
         didSet {
             guard let movie = movie else { return }
 
-            switch movie {
-            case .stored(let storedMovie):
-                setupUI(for: storedMovie)
-            case .network(let networkMovie):
-                if !detailsLoaded {
-                    loadDetails(for: networkMovie)
-                }
+            if !detailsLoaded {
+                loadDetails(for: movie)
             }
         }
     }
@@ -84,10 +72,16 @@ class MovieDetailViewController: UIViewController {
         configureElements()
     }
 
-    func configure(with selectedMovie: MovieType,
-                   state: WatchState) {
-        movie = selectedMovie
-        self.state = state
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        store.subscribe(self)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
     }
 
     // MARK: - Actions
@@ -100,61 +94,26 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBAction func updateWatchState() {
-        if movieStateSegmentedControl.selectedSegmentIndex == 0 {
-            saveMovie(asWatched: false)
-        } else if movieStateSegmentedControl.selectedSegmentIndex == 1 {
-            saveMovie(asWatched: true)
-        }
+        guard var movie = movie else { return }
+
+        let watched = movieStateSegmentedControl.selectedSegmentIndex == 1
+        movie.watched = watched
+
+        store.dispatch(MovieAction.update(movie: movie))
     }
 
     @IBAction func deleteMovie() {
-        guard let storageManager = storageManager,
-            let movie = movie
-            else { return }
+        guard let movie = movie else { return }
 
-        switch movie {
-        case .network(let movie):
-            storageManager.save(movie, state: .undefined) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.updateElements(for: .undefined)
-                    }
-                }
-            }
-        case .stored(let movie):
-            storageManager.remove(with: movie.objectID) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.movie = .network(Movie(id: movie.id, title: movie.title ?? ""))
-                        self.updateElements(for: .undefined)
-                    }
-                }
-            }
-        }
+        store.dispatch(MovieAction.delete(movie: movie))
     }
 
     @IBAction func shareMovie() {
-        var title: String?
         guard let movie = movie else { return }
-
-        switch movie {
-        case .network(let movie):
-            title = movie.title
-        case .stored(let movie):
-            title = movie.title
-        }
 
         var items = [Any]()
 
-        if let title = title {
-            items.append(title)
-        }
+        items.append(movie.title)
 
         if let url = generateMovieURL() {
             items.append(url)
@@ -172,26 +131,14 @@ class MovieDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
-            guard let movie = movie else { return }
+            guard
+                let poster = movie?.poster,
+                let posterPath = movie?.posterPath
+                else { return }
 
             let posterVC = segue.destination as? PosterViewController
-            switch movie {
-            case .network(let movie):
-                guard let poster = movie.poster,
-                    let posterPath = movie.posterPath
-                    else { return }
-
-                posterVC?.configure(with: poster,
-                                    posterPath: posterPath)
-            case .stored(let movie):
-                guard let poster = movie.poster,
-                    let image = UIImage(data: poster),
-                    let posterPath = movie.posterPath
-                    else { return }
-
-                posterVC?.configure(with: image,
-                                    posterPath: posterPath)
-            }
+            posterVC?.configure(with: poster,
+                                posterPath: posterPath)
         default:
             break
         }
@@ -264,51 +211,10 @@ class MovieDetailViewController: UIViewController {
     }
 
     private func generateMovieURL() -> URL? {
-        var movieUrl = Constants.Backend.shareMovieUrl
-
         guard let movie = movie else { return nil }
 
-        switch movie {
-        case .network(let movie):
-            movieUrl += "\(movie.id)"
-        case .stored(let movie):
-            movieUrl += "\(movie.id)"
-        }
-
+        let movieUrl = Constants.Backend.shareMovieUrl + "\(movie.id)"
         return URL(string: movieUrl)
-    }
-
-    private func saveMovie(asWatched watched: Bool) {
-        guard let storageManager = storageManager,
-            let movie = movie
-            else { return }
-
-        switch movie {
-        case .network(let movie):
-            let newState: WatchState = watched ? .seen : .watchlist
-            storageManager.save(movie, state: newState) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.insertMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.updateElements(for: newState)
-                    }
-                }
-            }
-        case .stored(let movie):
-            let newState: WatchState = watched ? .seen : .watchlist
-            storageManager.updateMovieItem(with: movie.objectID, watched: watched) { result in
-                switch result {
-                case .failure:
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.updateElements(for: newState)
-                    }
-                }
-            }
-        }
     }
 
     fileprivate func loadDetails(for movie: Movie) {
@@ -320,13 +226,13 @@ class MovieDetailViewController: UIViewController {
 
             detailedMovie.poster = movie.poster
             self.detailsLoaded = true
-            self.movie = .network(detailedMovie)
+            self.movie = detailedMovie
             self.setupUI(for: detailedMovie)
         }
     }
 
-    fileprivate func setupUI(for networkMovie: Movie) {
-        var networkMovie = networkMovie
+    fileprivate func setupUI(for movie: Movie) {
+        var movie = movie
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
@@ -335,21 +241,21 @@ class MovieDetailViewController: UIViewController {
                 self.posterImageView != nil
                 else { return }
 
-            titleLabel.text = networkMovie.title
-            releaseDateAndRuntimeLabel.text = networkMovie.formattedReleaseDate
+            titleLabel.text = movie.title
+            releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
                 + " ∙ "
-                + networkMovie.formattedRuntime
+                + movie.formattedRuntime
 
-            votingLabel.text = networkMovie.formattedVoteAverage
+            votingLabel.text = movie.formattedVoteAverage
 
-            descriptionTextView.text = networkMovie.overview
+            descriptionTextView.text = movie.overview
 
-            if let posterPath = networkMovie.posterPath {
+            if let posterPath = movie.posterPath {
                 self.posterImageView.kf.indicatorType = .activity
                 let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
                 self.posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
                     if let image = try? result.get().image {
-                        networkMovie.poster = image
+                        movie.poster = image
                     }
                 }
             } else {
@@ -358,48 +264,28 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func setupUI(for localMovie: StoredMovie) {
-        DispatchQueue.main.async {
-            guard let titleLabel = self.titleLabel,
-                let descriptionTextView = self.descriptionTextView,
-                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
-                let votingLabel = self.votingLabel,
-                let posterImageView = self.posterImageView
-                else { return }
-
-            titleLabel.text = localMovie.title
-            descriptionTextView.text = localMovie.overview
-            releaseDateAndRuntimeLabel.text = localMovie.formattedReleaseDate
-                + " ∙ "
-                + localMovie.formattedRuntime
-
-            votingLabel.text = localMovie.formattedVoteAverage
-            posterImageView.image = localMovie.poster.map(UIImage.init)
-                ?? UIImage.posterPlaceholder
-        }
-    }
-
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let watchlistAction = UIPreviewAction(title: String.watchlistAction,
-                                              style: .default) { _, _ -> Void in
-            self.saveMovie(asWatched: false)
+        let watchlistAction = UIPreviewAction(
+            title: String.watchlistAction,
+            style: .default) { _, _ -> Void in
+                guard var movie = self.movie else { return }
+                movie.watched = false
+                store.dispatch(MovieAction.update(movie: movie))
         }
 
-        let seenAction = UIPreviewAction(title: String.seenAction,
-                                         style: .default) { _, _ -> Void in
-            self.saveMovie(asWatched: true)
+        let seenAction = UIPreviewAction(
+            title: String.seenAction,
+            style: .default) { _, _ -> Void in
+                guard var movie = self.movie else { return }
+                movie.watched = true
+                store.dispatch(MovieAction.update(movie: movie))
         }
 
         let deleteAction = UIPreviewAction(title: String.deleteActionLong,
                                            style: .destructive) { _, _ -> Void in
             self.deleteMovie()
-        }
-
-        guard case .stored? = movie else {
-            // no preview actions in search
-            return []
         }
 
         let actions: [UIPreviewActionItem]
@@ -430,8 +316,27 @@ extension MovieDetailViewController: UIScrollViewDelegate {
     }
 }
 
+extension MovieDetailViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        guard let selectedMovieId = state.selectedMovieId else { return }
+
+        if let movie = state.movies.first(where: { $0.id == selectedMovieId }) {
+            self.movie = movie
+        } else {
+            movie = Movie(id: selectedMovieId)
+        }
+
+        let state: WatchState
+        if let watched = movie?.watched {
+            state = watched ? .seen : .watchlist
+        } else {
+            state = .undefined
+        }
+        self.state = state
+    }
+}
+
 extension MovieDetailViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "MovieDetailViewController" }
 }
-//swiftlint:enable type_body_length

@@ -102,8 +102,10 @@ class SearchMoviesViewController: UIViewController {
 
         store.subscribe(self) { subscription in
             subscription.select { state in
-                (state.movies.filter { !$0.watched }.map { $0.id },
-                 state.movies.filter { $0.watched }.map { $0.id })
+                //swiftlint:disable:next force_unwrapping
+                (state.movies.filter { !$0.watched! }.map { $0.id },
+                 //swiftlint:disable:next force_unwrapping
+                 state.movies.filter { $0.watched! }.map { $0.id })
             }
         }
     }
@@ -126,15 +128,9 @@ class SearchMoviesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie
-                else { return }
+            guard let selectedMovie = selectedMovie else { return }
 
-            let currentState = watchStates[selectedMovie] ?? .undefined
-
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.configure(with: .network(selectedMovie),
-                          state: currentState)
-            vc?.hidesBottomBarWhenPushed = true
+            store.dispatch(MovieAction.select(movie: selectedMovie))
         default:
             return
         }

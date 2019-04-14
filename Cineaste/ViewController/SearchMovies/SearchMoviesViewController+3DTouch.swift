@@ -16,16 +16,10 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
             let cell = tableView.cellForRow(at: path)
             else { return nil }
 
-        let movie = movies[path.row]
-        let currentState = watchStates[movie] ?? .undefined
-
         previewingContext.sourceRect = cell.frame
 
-        let detailVC = MovieDetailViewController.instantiate()
-        detailVC.configure(with: .network(movie),
-                           state: currentState)
-        detailVC.hidesBottomBarWhenPushed = true
-        return detailVC
+        store.dispatch(MovieAction.select(movie: movies[path.row]))
+        return MovieDetailViewController.instantiate()
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,

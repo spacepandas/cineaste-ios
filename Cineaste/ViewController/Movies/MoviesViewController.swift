@@ -94,17 +94,22 @@ class MoviesViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let storageManager = storageManager else { return }
 
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie else { return }
+            guard let selectedMovie = selectedMovie,
+                let movie = store.state.movies
+                    .first(where: { $0.id == selectedMovie.id })
+                else { return }
 
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.configure(with: .stored(selectedMovie),
-                          state: category.state)
-            vc?.hidesBottomBarWhenPushed = true
+            store.dispatch(MovieAction.select(movie: movie))
+
+//            let vc = segue.destination as? MovieDetailViewController
+//            vc?.configure(with: .stored(selectedMovie),
+//                          state: category.state)
+//            vc?.hidesBottomBarWhenPushed = true
         case .showMovieNight?:
+            guard let storageManager = storageManager else { return }
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? MovieNightViewController
             vc?.configure(with: storageManager)

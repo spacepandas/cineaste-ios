@@ -20,7 +20,8 @@ struct Movie: Codable, Equatable {
     var releaseDate: Date?
     var poster: UIImage?
 
-    var watched: Bool = false
+    //swiftlint:disable:next discouraged_optional_boolean
+    var watched: Bool?
     var watchedDate: Date?
 
     var listPosition: Int = 0
