@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class SettingsViewController: UITableViewController {
     @IBOutlet private weak var footerView: UIView!
@@ -14,8 +15,8 @@ class SettingsViewController: UITableViewController {
 
     let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
+    var movies: [Movie] = []
 
-    var storageManager: MovieStorageManager?
     var docController: UIDocumentInteractionController?
 
     override func viewDidLoad() {
@@ -36,6 +37,14 @@ class SettingsViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+
+        store.subscribe(self)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -86,20 +95,14 @@ extension SettingsViewController {
     }
 
     func exportMovies(showUIOn rect: CGRect) {
-        guard let storageManager = storageManager else {
-            fatalError("No storageManager injected")
-        }
-
-        let allMovies = storageManager.fetchAll()
-
-        guard !allMovies.isEmpty else {
+        guard !movies.isEmpty else {
             //database is empty, inform user that an export is not useful
             showAlert(withMessage: Alert.exportEmptyData)
             return
         }
 
         do {
-            try Exporter.saveAsFileToExport(allMovies)
+            try Exporter.saveAsFileToExport(movies)
         } catch {
             showAlert(withMessage: Alert.exportFailedInfo)
         }
@@ -108,6 +111,13 @@ extension SettingsViewController {
         docController = UIDocumentInteractionController(url: path)
         docController?.uti = String.exportMoviesFileUTI
         docController?.presentOptionsMenu(from: rect, in: view, animated: true)
+    }
+}
+
+extension SettingsViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        movies = state.movies
+            .sorted(by: SortDescriptor.sortByTitle)
     }
 }
 

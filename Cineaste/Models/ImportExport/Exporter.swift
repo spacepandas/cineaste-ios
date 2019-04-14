@@ -23,7 +23,7 @@ enum Exporter {
             + String.exportMoviesFileName(with: Date().formattedForRequest)
     }
 
-    static func saveAsFileToExport(_ movies: [StoredMovie]) throws {
+    static func saveAsFileToExport(_ movies: [Movie]) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 

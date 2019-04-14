@@ -41,7 +41,6 @@ class MoviesViewController: UITableViewController {
         return resultSearchController
     }()
 
-    var storageManager: MovieStorageManager?
     var selectedMovie: StoredMovie?
     private var saveAction: UIAlertAction?
 
@@ -141,9 +140,6 @@ class MoviesViewController: UITableViewController {
     @objc
     func refreshMovies() {
         //TODO:
-//        guard let storageManager = storageManager else {
-//            fatalError("No storageManager injected")
-//        }
 //        let movieRefresher = MovieRefresher(with: storageManager)
 //        movieRefresher.refresh(movies: movies) {
 //            self.tableView.refreshControl?.endRefreshing()

@@ -11,14 +11,11 @@ import UIKit
 extension SettingsViewController: UIDocumentPickerDelegate {
     //selected json with movies to import
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        guard let storageManager = storageManager else {
-            fatalError("No storageManager injected")
-        }
+        let importMoviesVC = ImportMoviesViewController.instantiate()
 
         //display simple UI when importing new data
-        let importMoviesVC = ImportMoviesViewController.instantiate()
         present(importMoviesVC, animated: true) {
-            Importer.importMovies(from: url, storageManager: storageManager) { result in
+            Importer.importMovies(from: url) { result in
                 DispatchQueue.main.async {
                     self.navigationController?.dismiss(animated: true) {
                         switch result {
