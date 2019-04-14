@@ -31,16 +31,28 @@ class MoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(moviesVC.title, wantToSeeTitle)
     }
 
-    func testEmptyListShouldHideTableView() {
+    func testTableViewShouldHideWhenListIsEmpty() {
         XCTAssertNotNil(tableView.backgroundView)
+        let exp = expectation(description: "\(#function)\(#line)")
 
         moviesVC.showEmptyState(true) {
-            XCTAssertFalse(self.tableView.backgroundView!.isHidden)
+            exp.fulfill()
         }
 
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertFalse(tableView.backgroundView!.isHidden)
+    }
+
+    func testTableViewShouldNotHideWhenListIsNotEmpty() {
+        XCTAssertNotNil(tableView.backgroundView)
+        let exp = expectation(description: "\(#function)\(#line)")
+
         moviesVC.showEmptyState(false) {
-            XCTAssertTrue(self.tableView.backgroundView!.isHidden)
+            exp.fulfill()
         }
+
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertTrue(tableView.backgroundView!.isHidden)
     }
 
     func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {

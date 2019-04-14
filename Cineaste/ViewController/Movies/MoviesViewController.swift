@@ -31,7 +31,7 @@ class MoviesViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.showEmptyState()
+                self.showEmptyState(self.movies.isEmpty)
                 self.updateShortcutItems()
             }
         }
@@ -150,11 +150,11 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Custom functions
 
-    func showEmptyState(completion: (() -> Void)? = nil) {
+    func showEmptyState(_ emptyState: Bool, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.2, animations: {
-            self.tableView.backgroundView?.alpha = self.movies.isEmpty ? 1 : 0
+            self.tableView.backgroundView?.alpha = emptyState ? 1 : 0
         }, completion: { _ in
-            self.tableView.backgroundView?.isHidden = !self.movies.isEmpty
+            self.tableView.backgroundView?.isHidden = !emptyState
             completion?()
         })
     }
