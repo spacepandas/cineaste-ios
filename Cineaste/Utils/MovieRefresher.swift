@@ -7,78 +7,51 @@
 //
 
 final class MovieRefresher {
-    private let storageManager: MovieStorageManager
-
-    init(with storageManager: MovieStorageManager) {
-        self.storageManager = storageManager
-    }
-
-    func refresh(movies: [StoredMovie], completionHandler: @escaping () -> Void) {
+    func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
         let group = DispatchGroup()
 
-        storageManager.backgroundContext.performChanges {
-            for storedMovie in movies {
-                group.enter()
-                let networkMovie = Movie(id: storedMovie.id)
+        for movieToUpdate in movies {
+            group.enter()
+            let networkMovie = Movie(id: movieToUpdate.id)
 
-                Webservice.load(resource: networkMovie.get) { result in
-                    if case let .success(movie) = result {
-                        self.update(storedMovie, withNew: movie) {
-                            group.leave()
-                        }
-                    } else {
+            Webservice.load(resource: networkMovie.get) { result in
+                if case let .success(movie) = result {
+                    self.update(movieToUpdate, withNew: movie) { updatedMovie in
+                        store.dispatch(MovieAction.update(movie: updatedMovie))
                         group.leave()
                     }
+                } else {
+                    group.leave()
                 }
             }
+        }
 
-            group.wait()
-            DispatchQueue.main.async {
-                completionHandler()
-            }
+        group.wait()
+        DispatchQueue.main.async {
+            completionHandler()
         }
     }
 }
 
 private extension MovieRefresher {
-     func update(_ storedMovie: StoredMovie, withNew movie: Movie, completion: @escaping () -> Void) {
-        guard let updatedMovie = self.storageManager
-            .backgroundContext
-            .object(with: storedMovie.objectID)
-            as? StoredMovie
-            else {
-                fatalError("Object could not be casted to StoredMovie")
-        }
+    func update(_ movieToUpdate: Movie, withNew movie: Movie, completion: @escaping (Movie) -> Void) {
+        var updatedMovie = Movie(
+            id: movie.id,
+            title: movie.title,
+            voteAverage: movie.voteAverage,
+            voteCount: movie.voteCount,
+            posterPath: movie.posterPath,
+            overview: movie.overview,
+            runtime: movie.runtime,
+            releaseDate: movie.releaseDate,
+            poster: movieToUpdate.poster,
+            watched: movieToUpdate.watched,
+            watchedDate: movieToUpdate.watchedDate,
+            popularity: movie.popularity)
 
-        if updatedMovie.id != movie.id {
-            updatedMovie.id = movie.id
-        }
-        if updatedMovie.title != movie.title {
-            updatedMovie.title = movie.title
-        }
-        if updatedMovie.overview != movie.overview {
-            updatedMovie.overview = movie.overview
-        }
-
-        if updatedMovie.posterPath != movie.posterPath {
-            updatedMovie.posterPath = movie.posterPath
-        }
-
-        if updatedMovie.releaseDate != movie.releaseDate {
-            updatedMovie.releaseDate = movie.releaseDate
-        }
-        if updatedMovie.runtime != movie.runtime {
-            updatedMovie.runtime = movie.runtime
-        }
-        if updatedMovie.voteAverage != movie.voteAverage {
-            updatedMovie.voteAverage = movie.voteAverage
-        }
-        if updatedMovie.voteCount != movie.voteCount {
-            updatedMovie.voteCount = movie.voteCount
-        }
-
-        updatedMovie.reloadPosterIfNeeded {
-            completion()
+        updatedMovie.reloadPosterIfNeeded { image in
+            updatedMovie.poster = image
+            completion(updatedMovie)
         }
     }
 }

@@ -41,7 +41,6 @@ class MoviesViewController: UITableViewController {
         return resultSearchController
     }()
 
-    var selectedMovie: StoredMovie?
     private var saveAction: UIAlertAction?
 
     override func viewDidLoad() {
@@ -139,11 +138,9 @@ class MoviesViewController: UITableViewController {
 
     @objc
     func refreshMovies() {
-        //TODO:
-//        let movieRefresher = MovieRefresher(with: storageManager)
-//        movieRefresher.refresh(movies: movies) {
-//            self.tableView.refreshControl?.endRefreshing()
-//        }
+        MovieRefresher().refresh(movies: movies) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 
     private func configureSearchController() {

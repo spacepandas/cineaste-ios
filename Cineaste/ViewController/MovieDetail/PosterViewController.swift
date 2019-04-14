@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PosterViewController: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!

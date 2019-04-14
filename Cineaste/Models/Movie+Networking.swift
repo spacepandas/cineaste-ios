@@ -89,4 +89,21 @@ extension Movie {
             }
         }
     }
+
+    func reloadPosterIfNeeded(completion: @escaping (UIImage?) -> Void) {
+        guard poster == nil, let posterPath = posterPath else {
+            completion(nil)
+            return
+        }
+
+        let url = Movie.posterUrl(from: posterPath, for: .small)
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data {
+                let image = UIImage(data: data)
+                completion(image)
+            }
+        }
+        task.resume()
+    }
+
 }
