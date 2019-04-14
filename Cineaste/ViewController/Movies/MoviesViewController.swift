@@ -268,7 +268,9 @@ extension MoviesViewController: StoreSubscriber {
     func newState(state: AppState) {
         movies = state.movies
             .filter { $0.watched == category.watched }
-            .sorted { $0.title > $1.title }
+            .sorted(by: category.watched
+                ? SortDescriptor.sortByWatchedDate
+                : SortDescriptor.sortByListPositionAndTitle)
     }
 }
 
