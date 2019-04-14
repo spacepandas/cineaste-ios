@@ -267,26 +267,11 @@ class MovieDetailViewController: UIViewController {
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
-        let watchlistAction = UIPreviewAction(
-            title: String.watchlistAction,
-            style: .default) { _, _ -> Void in
-                guard var movie = self.movie else { return }
-                movie.watched = false
-                store.dispatch(MovieAction.update(movie: movie))
-        }
+        guard let movie = movie else { return [] }
 
-        let seenAction = UIPreviewAction(
-            title: String.seenAction,
-            style: .default) { _, _ -> Void in
-                guard var movie = self.movie else { return }
-                movie.watched = true
-                store.dispatch(MovieAction.update(movie: movie))
-        }
-
-        let deleteAction = UIPreviewAction(title: String.deleteActionLong,
-                                           style: .destructive) { _, _ -> Void in
-            self.deleteMovie()
-        }
+        let watchlistAction = PreviewAction.moveToWatchlist.previewAction(for: movie)
+        let seenAction = PreviewAction.moveToSeen.previewAction(for: movie)
+        let deleteAction = PreviewAction.delete.previewAction(for: movie)
 
         let actions: [UIPreviewActionItem]
         switch state {

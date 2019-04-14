@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2961C93CE647815071C72D51 /* Pods_CineasteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB7FF005B20377AED9C2192 /* Pods_CineasteUITests.framework */; };
 		3F187F8F22632DC000B7A9CF /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F187F8E22632DC000B7A9CF /* Movie+Testing.swift */; };
+		3F187F9222633E5400B7A9CF /* PreviewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F187F9022633E5000B7A9CF /* PreviewAction.swift */; };
 		3F1EE5952219FD1B00F6E6E2 /* MovieRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE5942219FD1A00F6E6E2 /* MovieRefresher.swift */; };
 		3F1EE5972219FD3B00F6E6E2 /* NSManagedObjectContext+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE5962219FD3A00F6E6E2 /* NSManagedObjectContext+Save.swift */; };
 		3F22920C225A3B5C001D4358 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22920B225A3B5C001D4358 /* AppState.swift */; };
@@ -176,6 +177,7 @@
 		3F1292F01FD7C90C00ED5593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		3F1292F91FD7CC1100ED5593 /* WatchlistMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistMovieCell.swift; sourceTree = "<group>"; };
 		3F187F8E22632DC000B7A9CF /* Movie+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Testing.swift"; sourceTree = "<group>"; };
+		3F187F9022633E5000B7A9CF /* PreviewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAction.swift; sourceTree = "<group>"; };
 		3F1DA161209C64D900AC4D09 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
 		3F1EE5942219FD1A00F6E6E2 /* MovieRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRefresher.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				3F941B7420F52949008A4407 /* StoredMovie+Formatted.swift */,
 				3F941B7220F52905008A4407 /* StoredMovie+Networking.swift */,
 				3F4F4D542233D3C40093CDEF /* SwipeAction.swift */,
+				3F187F9022633E5000B7A9CF /* PreviewAction.swift */,
 				3FBD9F70222C7A6200DD9248 /* WatchState.swift */,
 				3F50A41D21D3A44B00DB259E /* ImportExport */,
 				3F50A41E21D3A47800DB259E /* Settings */,
@@ -1107,6 +1110,7 @@
 				3FF790FF20DE274A007B7D37 /* Resource.swift in Sources */,
 				3FF7910020DE274A007B7D37 /* ApiKeyStore.swift in Sources */,
 				3FF7910120DE274A007B7D37 /* MovieMatchViewController.swift in Sources */,
+				3F187F9222633E5400B7A9CF /* PreviewAction.swift in Sources */,
 				3FF095D5210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift in Sources */,
 				3FF7910220DE274A007B7D37 /* SettingsCell.swift in Sources */,
 				3FF7910420DE274A007B7D37 /* SettingsDetailViewController.swift in Sources */,
