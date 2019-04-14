@@ -26,7 +26,7 @@ struct Movie: Equatable {
 
     var listPosition: Int = 0
 
-    let popularity: Double
+    let popularity: Double?
 
     // This is only for creating a movie to use it with the webservice
     init(id: Int64) {
@@ -53,7 +53,7 @@ struct Movie: Equatable {
          watched: Bool?,
          watchedDate: Date?,
          listPosition: Int = 0,
-         popularity: Double) {
+         popularity: Double?) {
         self.id = id
         self.title = title
         self.voteAverage = voteAverage
@@ -74,7 +74,6 @@ struct Movie: Equatable {
 }
 
 extension Movie: Codable {
-
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -84,6 +83,12 @@ extension Movie: Codable {
         case overview
         case runtime
         case releaseDate = "release_date"
+
+        case watched
+        case watchedDate
+
+        case listPosition
+
         case popularity
     }
 
@@ -104,10 +109,27 @@ extension Movie: Codable {
         runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime)
             ?? 0
 
-        let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
-        releaseDate = dateString?.dateFromString
+        if let releaseDateString = try container.decodeIfPresent(String.self, forKey: .releaseDate) {
+            if let releaseDate = releaseDateString.dateFromImportedMoviesString {
+                self.releaseDate = releaseDate
+            } else if let releaseDate = releaseDateString.dateFromString {
+                self.releaseDate = releaseDate
+            }
+        }
 
-        popularity = try container.decode(Double.self, forKey: .popularity)
+        watched = try container.decodeIfPresent(Bool.self, forKey: .watched)
+
+        if let watchedDateString = try container.decodeIfPresent(String.self, forKey: .watchedDate) {
+            guard let watchedDate = watchedDateString.dateFromImportedMoviesString else {
+                throw StoredMovieDecodingError.dateFromString
+            }
+            self.watchedDate = watchedDate
+        }
+
+        listPosition = try container.decodeIfPresent(Int.self, forKey: .listPosition)
+            ?? 0
+
+        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity)
     }
 }
 

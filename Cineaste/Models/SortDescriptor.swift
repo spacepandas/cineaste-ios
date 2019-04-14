@@ -23,6 +23,14 @@ enum SortDescriptor {
     }
 
     static let sortByTitle: SortDescriptor<Movie> = { $0.title < $1.title }
+    static let sortByPopularity: SortDescriptor<Movie> = {
+        if let popularity1 = $0.popularity,
+            let popularity2 = $1.popularity {
+            return popularity1 > popularity2
+        } else {
+            return $0.title < $1.title
+        }
+    }
     static let sortByListPosition: SortDescriptor<Movie> = { $0.listPosition < $1.listPosition }
     static let sortByWatchedDate: SortDescriptor<Movie> = {
         if let date1 = $0.watchedDate,

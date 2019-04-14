@@ -242,7 +242,7 @@ class MovieDetailViewController: UIViewController {
                 let descriptionTextView = self.descriptionTextView,
                 let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
                 let votingLabel = self.votingLabel,
-                self.posterImageView != nil
+                let posterImageView = self.posterImageView
                 else { return }
 
             titleLabel.text = movie.title
@@ -254,16 +254,18 @@ class MovieDetailViewController: UIViewController {
 
             descriptionTextView.text = movie.overview
 
-            if let posterPath = movie.posterPath {
-                self.posterImageView.kf.indicatorType = .activity
+            if let poster = movie.poster {
+                posterImageView.image = poster
+            } else if let posterPath = movie.posterPath {
+                posterImageView.kf.indicatorType = .activity
                 let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-                self.posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
+                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
                     if let image = try? result.get().image {
                         movie.poster = image
                     }
                 }
             } else {
-                self.posterImageView.image = UIImage.posterPlaceholder
+                posterImageView.image = UIImage.posterPlaceholder
             }
         }
     }

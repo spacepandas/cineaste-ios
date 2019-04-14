@@ -15,7 +15,7 @@ class SearchMoviesViewController: UIViewController {
 
     var movies: [Movie] {
         return watchStates.keys
-            .sorted { $0.popularity > $1.popularity }
+            .sorted(by: SortDescriptor.sortByPopularity)
     }
 
     var watchStates: [Movie: WatchState] = [:]
@@ -102,10 +102,8 @@ class SearchMoviesViewController: UIViewController {
 
         store.subscribe(self) { subscription in
             subscription.select { state in
-                //swiftlint:disable:next force_unwrapping
-                (state.movies.filter { !$0.watched! }.map { $0.id },
-                 //swiftlint:disable:next force_unwrapping
-                 state.movies.filter { $0.watched! }.map { $0.id })
+                (state.movies.filter { !($0.watched ?? false) }.map { $0.id },
+                 state.movies.filter { ($0.watched ?? true) }.map { $0.id })
             }
         }
     }

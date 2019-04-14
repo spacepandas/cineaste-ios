@@ -20,7 +20,13 @@ func movieReducer(action: Action, state: AppState?) -> AppState {
         assert(state.movies.isEmpty)
         state.movies = movies
     case .add(let movie):
-        state.movies.insert(movie)
+        if !state.movies.filter({ $0.id == movie.id }).isEmpty {
+            state.movies = state.movies
+                .filter { $0.id != movie.id }
+                .union([movie])
+        } else {
+            state.movies.insert(movie)
+        }
     case .update(let movie):
         state.movies = state.movies
             .filter { $0.id != movie.id }
