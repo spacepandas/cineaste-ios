@@ -102,20 +102,6 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showMovieNight?:
-            guard let storageManager = storageManager else { return }
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
-            vc?.configure(with: storageManager)
-        default:
-            break
-        }
-    }
-
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched() {

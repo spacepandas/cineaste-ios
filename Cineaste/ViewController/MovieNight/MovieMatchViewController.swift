@@ -17,7 +17,6 @@ class MovieMatchViewController: UITableViewController {
     }
     private var totalNumberOfPeople: Int = 0
     private var showAllTogetherMovies: Bool = false
-    private var storageManager: MovieStorageManager?
 
     private lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
@@ -32,11 +31,10 @@ class MovieMatchViewController: UITableViewController {
         configureSearchController()
     }
 
-    func configure(with userName: String, messagesToMatch: [NearbyMessage], storageManager: MovieStorageManager) {
+    func configure(with userName: String, messagesToMatch: [NearbyMessage]) {
         title = userName
         totalNumberOfPeople = messagesToMatch.count
         showAllTogetherMovies = totalNumberOfPeople != 1
-        self.storageManager = storageManager
 
         var moviesWithNumberDict: [NearbyMovie: Int] = [:]
 
@@ -139,21 +137,15 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
             switch result {
             case .success(var movie):
                 movie.poster = poster ?? movie.poster
+                movie.watched = true
+                store.dispatch(MovieAction.add(movie: movie))
 
-                guard let storageManager = self.storageManager else { return }
-                storageManager.insertMovieItem(with: movie, watched: true) { result in
-                    DispatchQueue.main.async {
-                        if self.resultSearchController.isActive {
-                            self.resultSearchController.isActive = false
-                        }
-
-                        switch result {
-                        case .failure:
-                            self.showAlert(withMessage: Alert.insertMovieError)
-                        case .success:
-                            self.dismiss(animated: true)
-                        }
+                DispatchQueue.main.async {
+                    if self.resultSearchController.isActive {
+                        self.resultSearchController.isActive = false
                     }
+
+                    self.dismiss(animated: true)
                 }
             case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)
