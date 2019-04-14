@@ -18,11 +18,8 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
 
         previewingContext.sourceRect = cell.frame
 
-        //TODO:
-        let detailVC = MovieDetailViewController.instantiate()
-//        detailVC.configure(with: fetchedResultsManager.movies[path.row],
-//                           state: category.state)
-        return detailVC
+        store.dispatch(MovieAction.select(movie: movies[path.row]))
+        return MovieDetailViewController.instantiate()
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
