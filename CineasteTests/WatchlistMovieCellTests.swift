@@ -38,27 +38,18 @@ class WatchlistMovieCellTests: XCTestCase {
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
-        cell.configure(with: storedMovie)
+        let movie = Movie.testing
+        cell.configure(with: movie)
 
         XCTAssertEqual(cell.poster.image, UIImage.posterPlaceholder)
-        XCTAssertEqual(cell.releaseAndRuntimeLabel.text, storedMovie.formattedRelativeReleaseInformation
+        XCTAssertEqual(cell.releaseAndRuntimeLabel.text, movie.formattedRelativeReleaseInformation
             + " ∙ "
-            + storedMovie.formattedRuntime)
-        XCTAssertEqual(cell.title.text, storedMovie.title)
+            + movie.formattedRuntime)
+        XCTAssertEqual(cell.title.text, movie.title)
 
         let nonbreakingSpace = "\u{00a0}"
         XCTAssertEqual(cell.voteView.content,
-                       storedMovie.formattedVoteAverage
+                       movie.formattedVoteAverage
                         + "\(nonbreakingSpace)/\(nonbreakingSpace)10")
     }
-
-    private let storedMovie: StoredMovie = {
-        let managedObjectContext = setUpInMemoryManagedObjectContext()
-        let entity = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: managedObjectContext)
-            as! StoredMovie
-        return entity
-    }()
-
 }

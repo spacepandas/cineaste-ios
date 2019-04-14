@@ -34,19 +34,12 @@ class SeenMovieCellTests: XCTestCase {
     }
 
     func testConfigureShouldSetCellTitleAndVotesCorrectly() {
-        cell.configure(with: storedMovie)
+        let movie = Movie.testing
+
+        cell.configure(with: movie)
 
         XCTAssertEqual(cell.poster.image, UIImage.posterPlaceholder)
-        XCTAssertEqual(cell.title.text, storedMovie.title)
-        XCTAssertEqual(cell.watchedDateLabel.text, storedMovie.formattedWatchedDate)
+        XCTAssertEqual(cell.title.text, movie.title)
+        XCTAssertEqual(cell.watchedDateLabel.text, movie.formattedWatchedDate)
     }
-
-    private let storedMovie: StoredMovie = {
-        let managedObjectContext = setUpInMemoryManagedObjectContext()
-        let entity = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: managedObjectContext)
-            as! StoredMovie
-        return entity
-    }()
 }

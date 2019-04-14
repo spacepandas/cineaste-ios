@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-struct Movie: Codable, Equatable {
+struct Movie: Equatable {
     let id: Int64
     let title: String
     let voteAverage: Double
@@ -27,6 +27,53 @@ struct Movie: Codable, Equatable {
     var listPosition: Int = 0
 
     let popularity: Double
+
+    // This is only for creating a movie to use it with the webservice
+    init(id: Int64) {
+        self.id = id
+        self.title = ""
+        voteAverage = 0
+        voteCount = 0
+        overview = ""
+        runtime = 0
+        posterPath = nil
+        popularity = 0
+    }
+
+    init(id: Int64,
+         title: String,
+         voteAverage: Double,
+         voteCount: Double,
+         posterPath: String?,
+         overview: String,
+         runtime: Int16,
+         releaseDate: Date?,
+         poster: UIImage?,
+         //swiftlint:disable:next discouraged_optional_boolean
+         watched: Bool?,
+         watchedDate: Date?,
+         listPosition: Int = 0,
+         popularity: Double) {
+        self.id = id
+        self.title = title
+        self.voteAverage = voteAverage
+        self.voteCount = voteCount
+        self.posterPath = posterPath
+        self.overview = overview
+        self.runtime = runtime
+        self.releaseDate = releaseDate
+        self.poster = poster
+
+        self.watched = watched
+        self.watchedDate = watchedDate
+
+        self.listPosition = listPosition
+
+        self.popularity = popularity
+    }
+}
+
+extension Movie: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -61,18 +108,6 @@ struct Movie: Codable, Equatable {
         releaseDate = dateString?.dateFromString
 
         popularity = try container.decode(Double.self, forKey: .popularity)
-    }
-
-    // This is only for creating a movie to use it with the webservice
-    init(id: Int64) {
-        self.id = id
-        self.title = ""
-        voteAverage = 0
-        voteCount = 0
-        overview = ""
-        runtime = 0
-        posterPath = nil
-        popularity = 0
     }
 }
 

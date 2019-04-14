@@ -15,7 +15,7 @@ class MovieReducerTests: XCTestCase {
     func testLoadMovieActionShouldPopulateState() {
         // Given
         let before = AppState()
-        let movie = Movie(id: 0, title: "Dirty Dancing")
+        let movie = Movie(id: 0)
         let action = MovieAction.load(movies: [movie])
 
         // When
@@ -28,10 +28,10 @@ class MovieReducerTests: XCTestCase {
 
     func testAddMovieActionShouldInsertMovie() {
         // Given
-        let movie = Movie(id: 0, title: "Free Solo")
+        let movie = Movie(id: 0)
         let before = AppState(movies: [movie], selectedMovieId: nil)
 
-        let movieToInsert = Movie(id: 1, title: "Dirty Dancing")
+        let movieToInsert = Movie(id: 1)
         let action = MovieAction.add(movie: movieToInsert)
 
         // When
@@ -45,7 +45,7 @@ class MovieReducerTests: XCTestCase {
 
     func testUpdateMovieActionShouldUpdateExistingMovie() {
         // Given
-        var movie = Movie(id: 0, title: "Free Solo")
+        var movie = Movie(id: 0)
         movie.watched = false
         let before = AppState(movies: [movie], selectedMovieId: nil)
 
@@ -57,13 +57,13 @@ class MovieReducerTests: XCTestCase {
 
         // Then
         XCTAssertEqual(after.movies.count, 1)
-        XCTAssert(after.movies.first!.watched)
+        XCTAssert(after.movies.first!.watched!)
     }
 
     func testDeleteMovieActionShouldDeleteExistingMovie() {
         // Given
-        let movie = Movie(id: 0, title: "Free Solo")
-        let movie2 = Movie(id: 1, title: "Shoplifters")
+        let movie = Movie(id: 0)
+        let movie2 = Movie(id: 1)
         let before = AppState(movies: [movie, movie2], selectedMovieId: nil)
 
         let action = MovieAction.delete(movie: movie2)
@@ -79,7 +79,7 @@ class MovieReducerTests: XCTestCase {
 
     func testSelectMovieActionShouldSelectMovie() {
         // Given
-        let movie = Movie(id: 0, title: "Free Solo")
+        let movie = Movie(id: 0)
         let before = AppState(movies: [movie], selectedMovieId: nil)
         XCTAssertNil(before.selectedMovieId)
 
