@@ -29,7 +29,7 @@ class MovieReducerTests: XCTestCase {
     func testAddMovieActionShouldInsertMovie() {
         // Given
         let movie = Movie(id: 0, title: "Free Solo")
-        let before = AppState(movies: [movie])
+        let before = AppState(movies: [movie], selectedMovieId: nil)
 
         let movieToInsert = Movie(id: 1, title: "Dirty Dancing")
         let action = MovieAction.add(movie: movieToInsert)
@@ -47,7 +47,7 @@ class MovieReducerTests: XCTestCase {
         // Given
         var movie = Movie(id: 0, title: "Free Solo")
         movie.watched = false
-        let before = AppState(movies: [movie])
+        let before = AppState(movies: [movie], selectedMovieId: nil)
 
         movie.watched = true
         let action = MovieAction.update(movie: movie)
@@ -64,7 +64,7 @@ class MovieReducerTests: XCTestCase {
         // Given
         let movie = Movie(id: 0, title: "Free Solo")
         let movie2 = Movie(id: 1, title: "Shoplifters")
-        let before = AppState(movies: [movie, movie2])
+        let before = AppState(movies: [movie, movie2], selectedMovieId: nil)
 
         let action = MovieAction.delete(movie: movie2)
 
@@ -75,6 +75,22 @@ class MovieReducerTests: XCTestCase {
         XCTAssertEqual(after.movies.count, 1)
         XCTAssert(after.movies.contains(movie))
         XCTAssertFalse(after.movies.contains(movie2))
+    }
+
+    func testSelectMovieActionShouldSelectMovie() {
+        // Given
+        let movie = Movie(id: 0, title: "Free Solo")
+        let before = AppState(movies: [movie], selectedMovieId: nil)
+        XCTAssertNil(before.selectedMovieId)
+
+        let action = MovieAction.select(movie: movie)
+
+        // When
+        let after = movieReducer(action: action, state: before)
+
+        // Then
+        XCTAssertNotNil(after.selectedMovieId)
+        XCTAssertEqual(after.selectedMovieId, movie.id)
     }
 
 }

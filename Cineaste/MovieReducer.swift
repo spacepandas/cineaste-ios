@@ -27,6 +27,8 @@ func movieReducer(action: Action, state: AppState?) -> AppState {
             .union([movie])
     case .delete(let movie):
         state.movies.remove(movie)
+    case .select(let movie):
+        state.selectedMovieId = movie.id
     }
     return state
 }

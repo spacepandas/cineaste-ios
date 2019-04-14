@@ -10,4 +10,5 @@ import ReSwift
 
 struct AppState: StateType, Equatable {
     var movies: Set<Movie> = []
+    var selectedMovieId: Int64?
 }

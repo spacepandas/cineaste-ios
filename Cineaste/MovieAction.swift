@@ -13,4 +13,5 @@ enum MovieAction: Action {
     case add(movie: Movie)
     case update(movie: Movie)
     case delete(movie: Movie)
+    case select(movie: Movie)
 }
