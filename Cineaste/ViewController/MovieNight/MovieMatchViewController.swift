@@ -113,13 +113,10 @@ class MovieMatchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
+        let movieDetailVC = MovieDetailViewController.instantiate()
 
-        let vc = MovieDetailViewController.instantiate()
-
-        let networkMovie = Movie(id: nearbyMovie.id, title: nearbyMovie.title)
-        vc.configure(with: .network(networkMovie),
-                     state: .undefined)
-        navigationController?.pushViewController(vc, animated: true)
+        store.dispatch(MovieAction.select(movie: Movie(id: nearbyMovie.id)))
+        navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 
@@ -137,8 +134,7 @@ extension MovieMatchViewController: UISearchResultsUpdating {
 
 extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
     func movieMatchTableViewCell(didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?) {
-        let movieForRequest = Movie(id: movie.id,
-                                    title: movie.title)
+        let movieForRequest = Movie(id: movie.id)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
             case .success(var movie):

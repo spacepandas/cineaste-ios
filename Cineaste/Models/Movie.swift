@@ -63,9 +63,9 @@ struct Movie: Codable, Equatable {
     }
 
     // This is only for creating a movie to use it with the webservice
-    init(id: Int64, title: String) {
+    init(id: Int64) {
         self.id = id
-        self.title = title
+        self.title = ""
         voteAverage = 0
         voteCount = 0
         overview = ""

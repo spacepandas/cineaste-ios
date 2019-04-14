@@ -19,7 +19,7 @@ final class MovieRefresher {
         storageManager.backgroundContext.performChanges {
             for storedMovie in movies {
                 group.enter()
-                let networkMovie = Movie(id: storedMovie.id, title: "")
+                let networkMovie = Movie(id: storedMovie.id)
 
                 Webservice.load(resource: networkMovie.get) { result in
                     if case let .success(movie) = result {
