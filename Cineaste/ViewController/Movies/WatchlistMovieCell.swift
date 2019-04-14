@@ -17,11 +17,11 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var voteView: VoteView!
 
-    func configure(with movie: StoredMovie) {
+    func configure(with movie: Movie) {
         let nonbreakingSpace = "\u{00a0}"
 
         if let moviePoster = movie.poster {
-            poster.image = UIImage(data: moviePoster)
+            poster.image = moviePoster
         } else {
             poster.image = UIImage.posterPlaceholder
         }
@@ -37,7 +37,7 @@ class WatchlistMovieCell: UITableViewCell {
         applyAccessibility(with: movie)
     }
 
-    private func applyAccessibility(with movie: StoredMovie) {
+    private func applyAccessibility(with movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title

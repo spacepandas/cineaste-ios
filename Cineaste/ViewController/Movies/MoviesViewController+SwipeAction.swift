@@ -14,35 +14,22 @@ extension MoviesViewController {
 
     // swiftlint:disable:next discouraged_optional_collection
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let movie = fetchedResultsManager.movies[editActionsForRowAt.row]
+        var movie = movies[editActionsForRowAt.row]
 
         let currentState = category.state
 
         let seenAction = SwipeAction.moveToSeen.rowAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: true) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
+            movie.watched = true
+            store.dispatch(MovieAction.update(movie: movie))
         }
 
         let watchlistAction = SwipeAction.moveToWatchlist.rowAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: false) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
+            movie.watched = false
+            store.dispatch(MovieAction.update(movie: movie))
         }
 
         let removeAction = SwipeAction.delete.rowAction {
-            self.storageManager?.remove(with: movie.objectID) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
-            }
+            store.dispatch(MovieAction.delete(movie: movie))
         }
 
         switch currentState {
@@ -59,26 +46,18 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = fetchedResultsManager.movies[indexPath.row]
+        var movie = movies[indexPath.row]
 
         let currentState = category.state
 
         let seenAction = SwipeAction.moveToSeen.contextualAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: true) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
+            movie.watched = true
+            store.dispatch(MovieAction.update(movie: movie))
         }
 
         let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: false) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
+            movie.watched = false
+            store.dispatch(MovieAction.update(movie: movie))
         }
 
         let actions: [UIContextualAction]
@@ -97,15 +76,10 @@ extension MoviesViewController {
 
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = fetchedResultsManager.movies[indexPath.row]
+        let movie = movies[indexPath.row]
 
         let removeAction = SwipeAction.delete.contextualAction {
-            self.storageManager?.remove(with: movie.objectID) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
-            }
+            store.dispatch(MovieAction.delete(movie: movie))
         }
 
         return UISwipeActionsConfiguration(actions: [removeAction])

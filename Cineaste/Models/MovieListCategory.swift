@@ -30,6 +30,15 @@ enum MovieListCategory: String {
         }
     }
 
+    var watched: Bool {
+        switch self {
+        case .watchlist:
+            return false
+        case .seen:
+            return true
+        }
+    }
+
     var state: WatchState {
         switch self {
         case .watchlist:

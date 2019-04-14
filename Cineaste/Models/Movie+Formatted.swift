@@ -53,4 +53,12 @@ extension Movie {
 
         return true
     }
+
+    var formattedWatchedDate: String? {
+        guard let watchedDate = watchedDate else {
+            return nil
+        }
+
+        return "\(String.onDate) \(watchedDate.formattedWithTime)"
+    }
 }

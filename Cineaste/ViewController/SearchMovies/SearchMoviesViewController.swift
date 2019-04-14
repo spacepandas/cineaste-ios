@@ -120,6 +120,7 @@ class SearchMoviesViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         store.unsubscribe(self)
     }
 

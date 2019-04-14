@@ -16,9 +16,9 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var watchedDateLabel: UILabel!
 
-    func configure(with movie: StoredMovie) {
+    func configure(with movie: Movie) {
         if let moviePoster = movie.poster {
-            poster.image = UIImage(data: moviePoster)
+            poster.image = moviePoster
         } else {
             poster.image = UIImage.posterPlaceholder
         }
@@ -29,7 +29,7 @@ class SeenMovieCell: UITableViewCell {
         applyAccessibility(with: movie)
     }
 
-    private func applyAccessibility(with movie: StoredMovie) {
+    private func applyAccessibility(with movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title

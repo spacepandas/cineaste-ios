@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
@@ -20,10 +21,16 @@ class MoviesViewController: UITableViewController {
             title = category.title
             emptyListLabel.text = String.title(for: category)
 
-            let changedCategory = oldValue != category
-            guard changedCategory else { return }
-            fetchedResultsManager.refetch(for: category.predicate)
+            guard oldValue != category else { return }
+
+            movies = movies.filter { $0.watched == category.watched }
+        }
+    }
+
+    var movies: [Movie] = [] {
+        didSet {
             tableView.reloadData()
+            updateShortcutItems()
         }
     }
 
@@ -32,8 +39,6 @@ class MoviesViewController: UITableViewController {
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
     }()
-
-    let fetchedResultsManager = FetchedResultsManager()
 
     var storageManager: MovieStorageManager?
     var selectedMovie: StoredMovie?
@@ -50,9 +55,7 @@ class MoviesViewController: UITableViewController {
 
         startMovieNightButton.title = .startMovieNight
 
-        fetchedResultsManager.delegate = self
-        fetchedResultsManager.refetch(for: category.predicate)
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
+        showEmptyState(movies.isEmpty)
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -66,19 +69,26 @@ class MoviesViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+
+        store.subscribe(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
+        showEmptyState(movies.isEmpty)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        fetchedResultsManager.refetch(for: category.predicate)
         resultSearchController.isActive = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -94,7 +104,6 @@ class MoviesViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
             guard let selectedMovie = selectedMovie,
@@ -103,11 +112,6 @@ class MoviesViewController: UITableViewController {
                 else { return }
 
             store.dispatch(MovieAction.select(movie: movie))
-
-//            let vc = segue.destination as? MovieDetailViewController
-//            vc?.configure(with: .stored(selectedMovie),
-//                          state: category.state)
-//            vc?.hidesBottomBarWhenPushed = true
         case .showMovieNight?:
             guard let storageManager = storageManager else { return }
             let navigationVC = segue.destination as? UINavigationController
@@ -156,13 +160,14 @@ class MoviesViewController: UITableViewController {
 
     @objc
     func refreshMovies() {
-        guard let storageManager = storageManager else {
-            fatalError("No storageManager injected")
-        }
-        let movieRefresher = MovieRefresher(with: storageManager)
-        movieRefresher.refresh(movies: fetchedResultsManager.movies) {
-            self.tableView.refreshControl?.endRefreshing()
-        }
+        //TODO:
+//        guard let storageManager = storageManager else {
+//            fatalError("No storageManager injected")
+//        }
+//        let movieRefresher = MovieRefresher(with: storageManager)
+//        movieRefresher.refresh(movies: movies) {
+//            self.tableView.refreshControl?.endRefreshing()
+//        }
     }
 
     private func configureSearchController() {
@@ -251,9 +256,9 @@ class MoviesViewController: UITableViewController {
 
         //only update if value changed
         let newShortcutSubtitle =
-            fetchedResultsManager.movies.isEmpty
+            movies.isEmpty
             ? nil
-            : String.movies(for: fetchedResultsManager.movies.count)
+            : String.movies(for: movies.count)
         if existingItem.localizedSubtitle != newShortcutSubtitle {
             //swiftlint:disable:next force_cast
             let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
@@ -279,28 +284,11 @@ extension MoviesViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - FetchedResultsManagerDelegate
-
-extension MoviesViewController: FetchedResultsManagerDelegate {
-    func beginUpdate() {
-        tableView.beginUpdates()
-    }
-    func insertRows(at index: [IndexPath]) {
-        tableView.insertRows(at: index, with: .fade)
-    }
-    func deleteRows(at index: [IndexPath]) {
-        tableView.deleteRows(at: index, with: .fade)
-    }
-    func updateRows(at index: [IndexPath]) {
-        tableView.reloadRows(at: index, with: .none)
-    }
-    func moveRow(at index: IndexPath, to newIndex: IndexPath) {
-        tableView.moveRow(at: index, to: newIndex)
-    }
-    func endUpdate() {
-        tableView.endUpdates()
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
-        updateShortcutItems()
+extension MoviesViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        movies = state.movies
+            .filter { $0.watched == category.watched }
+            .sorted { $0.title > $1.title }
     }
 }
 
