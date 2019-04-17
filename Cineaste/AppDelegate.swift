@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
+        migrateCoreData()
+
         return true
     }
 
@@ -132,5 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             paws = MonkeyPaws(view: window!)
         }
         #endif
+    }
+
+    private func migrateCoreData() {
+        let migrator = CoreDataMigrator()
+        let movies = migrator.coreDataMovies
+        store.dispatch(MovieAction.load(movies: movies))
+        // TODO: Uncomment this when ReSwift Persistence is implemented
+//        try? migrator.clearCoreData()
     }
 }
