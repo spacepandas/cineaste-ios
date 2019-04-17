@@ -140,6 +140,8 @@
 		3FF798442205A98A0055CCBB /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */; };
 		4ED2FC7D22666D89007BDE06 /* CoreDataMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */; };
 		4ED2FC7F2266DF93007BDE06 /* CoreDataMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */; };
+		4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC802266F353007BDE06 /* Persistence.swift */; };
+		4ED2FC832266F586007BDE06 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC822266F586007BDE06 /* PersistenceTests.swift */; };
 		4ED734FD218A335500D36421 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* Assets.xcassets */; };
 		50183B46F42FFA0BC913F91B /* Pods_CineasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F3F6E9F756DE04E128014C /* Pods_CineasteTests.framework */; };
 		DC2ABEF4FAAF155B7408A571 /* Pods_Cineaste_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC89C8622DA9BE04A623D37 /* Pods_Cineaste_App.framework */; };
@@ -288,6 +290,8 @@
 		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
 		4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrator.swift; sourceTree = "<group>"; };
 		4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigratorTests.swift; sourceTree = "<group>"; };
+		4ED2FC802266F353007BDE06 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		4ED2FC822266F586007BDE06 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		7CC89C8622DA9BE04A623D37 /* Pods_Cineaste_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cineaste_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DA73CB12960B6234FA1575 /* Pods-Cineaste App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.debug.xcconfig"; path = "Target Support Files/Pods-Cineaste App/Pods-Cineaste App.debug.xcconfig"; sourceTree = "<group>"; };
 		8BB7FF005B20377AED9C2192 /* Pods_CineasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -429,23 +433,24 @@
 		3F701B32218640EE0033562B /* CineasteTests */ = {
 			isa = PBXGroup;
 			children = (
-				3F39D5DF20833DD400B29F48 /* Helper */,
 				3F701B35218640EE0033562B /* Info.plist */,
-				3F83BE811FF3AE3700E584E9 /* WatchlistMovieCellTests.swift */,
+				4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */,
+				3FBDB30521D5334000CBE341 /* ExporterTests.swift */,
+				3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */,
+				3F229213225A41F6001D4358 /* MovieReducerTests.swift */,
 				3F8644B01FFA95190046114A /* MoviesTabBarControllerTests.swift */,
 				3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */,
-				4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */,
+				4ED2FC822266F586007BDE06 /* PersistenceTests.swift */,
 				3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */,
 				3F83BE8F1FF3B29D00E584E9 /* SearchMoviesCellTests.swift */,
 				3F83BE8D1FF3B29100E584E9 /* SearchMoviesViewControllerTests.swift */,
 				3F21729820A6F92A0005D056 /* SeenMovieCellTests.swift */,
+				4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */,
 				3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */,
 				3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */,
 				3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */,
-				3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */,
-				3FBDB30521D5334000CBE341 /* ExporterTests.swift */,
-				3F229213225A41F6001D4358 /* MovieReducerTests.swift */,
-				4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */,
+				3F83BE811FF3AE3700E584E9 /* WatchlistMovieCellTests.swift */,
+				3F39D5DF20833DD400B29F48 /* Helper */,
 			);
 			path = CineasteTests;
 			sourceTree = "<group>";
@@ -453,9 +458,10 @@
 		3F8644AC1FFA8F590046114A /* CoreDataHelper */ = {
 			isa = PBXGroup;
 			children = (
-				3F1EE5962219FD3A00F6E6E2 /* NSManagedObjectContext+Save.swift */,
-				3F8C569B1FFACAFF00F09A82 /* MovieStorageManager.swift */,
 				4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */,
+				3F8C569B1FFACAFF00F09A82 /* MovieStorageManager.swift */,
+				3F1EE5962219FD3A00F6E6E2 /* NSManagedObjectContext+Save.swift */,
+				4ED2FC802266F353007BDE06 /* Persistence.swift */,
 			);
 			path = CoreDataHelper;
 			sourceTree = "<group>";
@@ -1051,6 +1057,7 @@
 				3F701B40218640F80033562B /* MoviesViewControllerTests.swift in Sources */,
 				3F187F8F22632DC000B7A9CF /* Movie+Testing.swift in Sources */,
 				3F701B3F218640F80033562B /* MoviesTabBarControllerTests.swift in Sources */,
+				4ED2FC832266F586007BDE06 /* PersistenceTests.swift in Sources */,
 				3F701B3B218640F80033562B /* ReleaseDatesTests.swift in Sources */,
 				3F229214225A41F6001D4358 /* MovieReducerTests.swift in Sources */,
 			);
@@ -1090,6 +1097,7 @@
 				3F229210225A3CDE001D4358 /* MovieReducer.swift in Sources */,
 				3F22920E225A3C4B001D4358 /* MovieAction.swift in Sources */,
 				3FF790F820DE274A007B7D37 /* Segue.swift in Sources */,
+				4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */,
 				3FF095C02103227F00ADFB86 /* MoviesViewController+UITableView.swift in Sources */,
 				3FF095C32103236400ADFB86 /* UIView+BlurEffect.swift in Sources */,
 				3FF790F920DE274A007B7D37 /* TextView.swift in Sources */,
