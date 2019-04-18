@@ -8,35 +8,33 @@
 
 import ReSwift
 
-func movieReducer(action: Action, state: AppState?) -> AppState {
-    var state = state ?? AppState()
+func movieReducer(action: Action, state: Set<Movie>?) -> Set<Movie> {
 
-    guard let action = action as? MovieAction else {
-        return state
+    if action is ReSwiftInit {
+        return Persistence.loadMovies()
     }
 
-    switch action {
-    case .load(let movies):
-        assert(state.movies.isEmpty)
-        state.movies = movies
-    case .add(let movie):
-        if !state.movies.filter({ $0.id == movie.id }).isEmpty {
-            state.movies = state.movies
+    var state = state ?? []
+
+    switch action as? MovieAction {
+    case .add(let movie)?:
+        if !state.filter({ $0.id == movie.id }).isEmpty {
+            state = state
                 .filter { $0.id != movie.id }
                 .union([movie])
         } else {
-            state.movies.insert(movie)
+            state.insert(movie)
         }
-    case .update(let movie):
-        state.movies = state.movies
+    case .update(let movie)?:
+        state = state
             .filter { $0.id != movie.id }
             .union([movie])
-    case .delete(let movie):
-        state.movies = state.movies.subtracting(
-            state.movies.filter { $0.id == movie.id }
+    case .delete(let movie)?:
+        state = state.subtracting(
+            state.filter { $0.id == movie.id }
         )
-    case .select(let movie):
-        state.selectedMovieId = movie.id
+    case nil:
+        break
     }
     return state
 }

@@ -27,7 +27,7 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        store.dispatch(MovieAction.select(movie: movies[indexPath.row]))
+        store.dispatch(SelectionAction.select(movie: movies[indexPath.row]))
         perform(segue: .showMovieDetail, sender: nil)
     }
 }

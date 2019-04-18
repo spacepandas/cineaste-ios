@@ -129,7 +129,7 @@ class SearchMoviesViewController: UIViewController {
         case .showMovieDetail?:
             guard let selectedMovie = selectedMovie else { return }
 
-            store.dispatch(MovieAction.select(movie: selectedMovie))
+            store.dispatch(SelectionAction.select(movie: selectedMovie))
         default:
             return
         }

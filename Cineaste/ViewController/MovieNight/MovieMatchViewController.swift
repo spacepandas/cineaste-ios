@@ -113,7 +113,7 @@ class MovieMatchViewController: UITableViewController {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
         let movieDetailVC = MovieDetailViewController.instantiate()
 
-        store.dispatch(MovieAction.select(movie: Movie(id: nearbyMovie.id)))
+        store.dispatch(SelectionAction.select(movie: Movie(id: nearbyMovie.id)))
         navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }

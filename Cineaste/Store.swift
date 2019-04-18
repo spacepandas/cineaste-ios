@@ -9,6 +9,6 @@
 import ReSwift
 
 let store = Store<AppState>(
-    reducer: movieReducer,
+    reducer: appReducer,
     state: nil
 )

@@ -9,9 +9,11 @@
 import ReSwift
 
 enum MovieAction: Action {
-    case load(movies: Set<Movie>)
     case add(movie: Movie)
     case update(movie: Movie)
     case delete(movie: Movie)
+}
+
+enum SelectionAction: Action {
     case select(movie: Movie)
 }
