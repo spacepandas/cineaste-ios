@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let persistenceSubscriber = PersistenceSubscriber()
+
     #if DEBUG
     var paws: MonkeyPaws?
     #endif
@@ -40,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             as? UIApplicationShortcutItem {
             _ = handle(shortCut: shortcutItem)
             return false
+        }
+
+        store.subscribe(persistenceSubscriber) { subscription in
+            subscription.select { $0.movies }
         }
 
         migrateCoreData()
@@ -137,9 +143,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func migrateCoreData() {
-        let migrator = CoreDataMigrator()
-        let movies = migrator.coreDataMovies
-        store.dispatch(MovieAction.load(movies: movies))
+//        let migrator = CoreDataMigrator()
+//        let movies = migrator.coreDataMovies
+//        try? Persistence.saveMovies(movies)
+//        store.dispatch(MovieAction.load(movies: movies))
         // TODO: Uncomment this when ReSwift Persistence is implemented
 //        try? migrator.clearCoreData()
     }

@@ -138,6 +138,7 @@
 		3FF798422205A9830055CCBB /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D90203090C300E091BE /* SettingItem.swift */; };
 		3FF798432205A9870055CCBB /* TextViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D922030988E00E091BE /* TextViewType.swift */; };
 		3FF798442205A98A0055CCBB /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */; };
+		4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */; };
 		4ED2FC7D22666D89007BDE06 /* CoreDataMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */; };
 		4ED2FC7F2266DF93007BDE06 /* CoreDataMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */; };
 		4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC802266F353007BDE06 /* Persistence.swift */; };
@@ -287,6 +288,7 @@
 		3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5C8FF8059F452B1F75E483 /* Pods-Cineaste App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.release.xcconfig"; path = "Target Support Files/Pods-Cineaste App/Pods-Cineaste App.release.xcconfig"; sourceTree = "<group>"; };
+		4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceSubscriber.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
 		4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrator.swift; sourceTree = "<group>"; };
 		4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigratorTests.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				3F8C569B1FFACAFF00F09A82 /* MovieStorageManager.swift */,
 				3F1EE5962219FD3A00F6E6E2 /* NSManagedObjectContext+Save.swift */,
 				4ED2FC802266F353007BDE06 /* Persistence.swift */,
+				4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */,
 			);
 			path = CoreDataHelper;
 			sourceTree = "<group>";
@@ -1142,6 +1145,7 @@
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,
 				3FF7911720DE274A007B7D37 /* View.swift in Sources */,
+				4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */,
 				3FF7911820DE274A007B7D37 /* String+Cineaste.swift in Sources */,
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
