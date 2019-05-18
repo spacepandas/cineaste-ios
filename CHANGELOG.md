@@ -1,5 +1,18 @@
 # Changelog
 
+# 1.8.4
+
+* Improved: Make description in movie lists bigger
+* Improved: Higher contrast in tab bar
+* Improved: Update wording in...
+    * empty lists
+    * import and export description
+    * button in MovieMatch View Controller
+    * permissions
+    * ask for username alert
+* Improved: Fix scrolling in settings
+* Improved: Add configuration for username input textfield
+
 # 1.8.3
 
 * Improved: Update some wording
