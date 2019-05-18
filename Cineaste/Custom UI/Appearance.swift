@@ -15,7 +15,7 @@ enum Appearance {
         tabBar.isTranslucent = false
         tabBar.tintColor = .basicWhite
         tabBar.barTintColor = .primaryOrange
-        tabBar.unselectedItemTintColor = .basicBackground
+        tabBar.unselectedItemTintColor = .basicBlack
 
         // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()

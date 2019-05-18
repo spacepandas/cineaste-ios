@@ -184,6 +184,10 @@ class MoviesViewController: UITableViewController {
         alert.addTextField { textField in
             textField.placeholder = String.usernamePlaceholder
             textField.delegate = self
+            textField.autocorrectionType = .default
+            textField.autocapitalizationType = .words
+            textField.textContentType = .givenName
+            textField.clearButtonMode = .whileEditing
         }
 
         present(alert, animated: true)

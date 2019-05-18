@@ -7,6 +7,7 @@
 * Run `bundle exec fastlane beta`
 * Set update text in console
 * Push latest commit to origin
+* Manually make a Github Release and add changelog information
 
 ## AppStore
 

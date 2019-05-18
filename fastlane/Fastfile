@@ -49,6 +49,13 @@ lane :screenshots do
   )
 end
 
+desc 'Frame Screenshots'
+lane :frame do
+  frame_screenshots(
+    path: "#{Target_Folder_Name}/screenshots"
+  )
+end
+
 def buildApp
   time_string = Time.new.strftime('%Y.%m.%d')
   $ipaName = "#{$ipaName}-#{time_string}"

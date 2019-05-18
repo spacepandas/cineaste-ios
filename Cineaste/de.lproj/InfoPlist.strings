@@ -10,8 +10,7 @@
 StartMovieNightTitle = "Filmnacht starten";
 
 //Permissions
-NSMicrophoneUsageDescription = "Beim Starten einer Filmnacht wird das Mikrofon nur dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-NSBluetoothPeripheralUsageDescription = "Beim Starten einer Filmnacht wird Bluetooth nur dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-NSLocationAlwaysUsageDescription = "Dein Standort wird nur dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-NSLocationAlwaysAndWhenInUseUsageDescription = "Beim Starten einer Filmnacht wird dein Standort nur dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-
+NSMicrophoneUsageDescription = "Das Mikrofon kann ergänzend zum WLAN und Bluetooth benutzt werden, um Geräte in deiner Nähe schneller und zuverlässiger zu finden";
+NSBluetoothPeripheralUsageDescription = "Beim Starten einer Filmnacht wird Bluetooth dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
+NSLocationAlwaysUsageDescription = "Mit der Freigabe deines Standorts können Geräte in deiner Nähe gefunden werden, mit denen du deine Filmlisten vergleichen kannst";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Mit der Freigabe deines Standorts können Geräte in deiner Nähe gefunden werden, mit denen du deine Filmlisten vergleichen kannst";
