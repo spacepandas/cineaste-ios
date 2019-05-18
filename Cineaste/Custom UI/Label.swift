@@ -28,7 +28,7 @@ class Label: UILabel {
 
 class DescriptionLabel: Label {
     override func setup() {
-        font = UIFont.preferredFont(forTextStyle: .subheadline)
+        font = UIFont.preferredFont(forTextStyle: .body)
         textColor = UIColor.basicBackground
         adjustsFontForContentSizeCategory = true
     }

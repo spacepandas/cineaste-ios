@@ -30,7 +30,7 @@ extension String {
     static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
-    static let watchNow = NSLocalizedString("watchNow", comment: "Title for watch now button")
+    static let chooseMovie = NSLocalizedString("chooseMovie", comment: "Title for choose movie button")
     static let moreInformation = NSLocalizedString("moreInformation", comment: "Title for the more information button")
 
     // MARK: VIEWCONTROLLER TITLE
@@ -41,7 +41,12 @@ extension String {
 
     // MARK: MOVIES VIEWCONTROLLER
     static func title(for category: MovieListCategory) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("noMoviesOnList %@", comment: "Description for empty movie list"), category.title)
+        switch category {
+        case .watchlist:
+            return NSLocalizedString("noMoviesOnWatchlist", comment: "Description for empty watchlist")
+        case .seen:
+            return NSLocalizedString("noMoviesOnSeenList", comment: "Description for empty seen list")
+        }
     }
 
     static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
