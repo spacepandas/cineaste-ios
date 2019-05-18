@@ -29,15 +29,11 @@ As a result you can see which movie is the most interested one by you and your f
 
 We are using [theMovieDb][theMovieDb] to get access to the big movie data universe.
 
-We are using [Kingfisher][Kingfisher] to load and cache movie posters asynchronously.
-
-To enforce swift style and convention and to constantly check our code style, we use [Swiftlint](https://github.com/realm/SwiftLint), which runs on every build phase.
-
 A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/spacepandas/cineaste-ios/blob/master/DEPENDENCIES.md).
 
 ## How to build
 
-0. Run `pod install` in cineaste-ios folder to install all used cocoa pods.
+0. Run `pod install` in cineaste-ios folder to install all used CocoaPods.
 1. Open `Cineaste.xcworkspace` in Xcode (10.2).
 2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the ApiKeys data set in the asset catalog under the following path: `Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist`.
 
