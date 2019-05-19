@@ -12,23 +12,18 @@ enum ImportError: Error {
 }
 
 enum Importer {
-    static func importMovies(from path: URL, completion: @escaping ((Result<Int, Error>) -> Void)) {
-        guard let data = try? Data(contentsOf: path, options: []) else {
-            completion(.failure(ImportError.noDataAtPath))
-            return
-        }
+    static func importMovies(from url: URL) throws -> Int {
+        guard let data = try? Data(contentsOf: url, options: [])
+            else { throw ImportError.noDataAtPath }
 
         guard let importExportObject = try? JSONDecoder.tmdbDecoder
             .decode(ImportExportObject.self, from: data)
-            else {
-                completion(.failure(ImportError.parsingJsonToStoredMovie))
-                return
-        }
+            else { throw ImportError.parsingJsonToStoredMovie }
 
         for movie in importExportObject.movies {
             store.dispatch(MovieAction.add(movie: movie))
         }
 
-        completion(.success(importExportObject.movies.count))
+        return importExportObject.movies.count
     }
 }

@@ -13,16 +13,16 @@ import ReSwift
 class ImporterTests: XCTestCase {
 
     func testImportMoviesFromUrlShouldImportMovies() {
-        cleanImportOfMovies(from: "Import", expectedNumberOfMovies: 2)
+        XCTAssertNoThrow(try cleanImportOfMovies(from: "Import",
+                                                 expectedNumberOfMovies: 2))
     }
 
     func testImportMoviesFromUrlShouldImportMoviesFromAndroidExport() {
-        cleanImportOfMovies(from: "AndroidExport", expectedNumberOfMovies: 3)
+        XCTAssertNoThrow(try cleanImportOfMovies(from: "AndroidExport",
+                                                 expectedNumberOfMovies: 3))
     }
 
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {
-        let exp = expectation(description: "\(#function)\(#line)")
-
         // Given
         guard let path = Bundle(for: ImporterTests.self)
             .path(forResource: "FailingImport", ofType: "json")
@@ -38,17 +38,7 @@ class ImporterTests: XCTestCase {
         }
 
         // When
-        Importer.importMovies(from: urlToFailingImport) { result in
-            guard case let .failure(error) = result else {
-                XCTFail("Should not result in success")
-                return
-            }
-
-            // Then
-            XCTAssertNotNil(error)
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        XCTAssertThrowsError(try Importer.importMovies(from: urlToFailingImport))
 
         // Then
         XCTAssertEqual(actions.count, 0)
@@ -56,9 +46,7 @@ class ImporterTests: XCTestCase {
 }
 
 extension ImporterTests {
-    private func cleanImportOfMovies(from file: String, expectedNumberOfMovies: Int) {
-        let exp = expectation(description: "\(#function)\(#line)")
-
+    private func cleanImportOfMovies(from file: String, expectedNumberOfMovies: Int) throws {
         // Given
         guard let path = Bundle(for: ImporterTests.self)
             .path(forResource: file, ofType: "json")
@@ -74,17 +62,10 @@ extension ImporterTests {
         }
 
         // When
-        Importer.importMovies(from: urlToImport) { result in
-            guard case .success = result else {
-                XCTFail("Should not result in error")
-                return
-            }
-
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        let amountOfImportedMovies = try Importer.importMovies(from: urlToImport)
 
         // Then
         XCTAssertEqual(actions.count, expectedNumberOfMovies)
+        XCTAssertEqual(amountOfImportedMovies, expectedNumberOfMovies)
     }
 }
