@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var paws: MonkeyPaws?
     #endif
 
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 
         // IMPORTANT: Call this before the ReSwift Store is initialized
         // (before ReSwiftInit is dispatched)
