@@ -9,22 +9,15 @@
 import UIKit
 
 extension SettingsViewController: UIDocumentPickerDelegate {
-    //selected json with movies to import
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        let importMoviesVC = ImportMoviesViewController.instantiate()
 
-        //display simple UI when importing new data
-        present(importMoviesVC, animated: true) {
-            Importer.importMovies(from: url) { result in
-                DispatchQueue.main.async {
-                    self.navigationController?.dismiss(animated: true) {
-                        switch result {
-                        case .failure:
-                            self.showAlert(withMessage: Alert.importFailedInfo)
-                        case .success(let counter):
-                            self.showAlert(withMessage: Alert.importSucceededInfo(with: counter))
-                        }
-                    }
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        Importer.importMovies(from: url) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    self.showAlert(withMessage: Alert.importFailedInfo)
+                case .success(let counter):
+                    self.showAlert(withMessage: Alert.importSucceededInfo(with: counter))
                 }
             }
         }

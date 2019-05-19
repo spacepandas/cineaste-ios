@@ -11,58 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Import Movies View Controller-->
-        <scene sceneID="pPD-b2-Cki">
-            <objects>
-                <viewController storyboardIdentifier="ImportMoviesViewController" id="N4i-Bf-6jF" customClass="ImportMoviesViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Yek-VV-hdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-sS-sSy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wg7-qa-Gah">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-1J-bB0">
-                                            <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                        </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhH-xA-nyL" customClass="TitleLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                            <rect key="frame" x="186" y="474.5" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Lor-1J-bB0" firstAttribute="centerY" secondItem="wg7-qa-Gah" secondAttribute="centerY" id="AKz-RX-BGT"/>
-                                        <constraint firstItem="Lor-1J-bB0" firstAttribute="centerX" secondItem="wg7-qa-Gah" secondAttribute="centerX" id="ZMF-s7-Fle"/>
-                                        <constraint firstItem="fhH-xA-nyL" firstAttribute="top" secondItem="Lor-1J-bB0" secondAttribute="bottom" constant="8" symbolic="YES" id="cu7-FD-31T"/>
-                                        <constraint firstItem="fhH-xA-nyL" firstAttribute="centerX" secondItem="wg7-qa-Gah" secondAttribute="centerX" id="fue-9V-CrC"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="hkX-sS-sSy" firstAttribute="top" secondItem="Yek-VV-hdC" secondAttribute="top" id="MHm-fZ-Zfx"/>
-                            <constraint firstAttribute="bottom" secondItem="hkX-sS-sSy" secondAttribute="bottom" id="ZNh-Wx-eUC"/>
-                            <constraint firstAttribute="trailing" secondItem="hkX-sS-sSy" secondAttribute="trailing" id="Zxx-w3-2Z1"/>
-                            <constraint firstItem="hkX-sS-sSy" firstAttribute="leading" secondItem="Yek-VV-hdC" secondAttribute="leading" id="uVJ-C5-9HC"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="5cQ-uT-yE9"/>
-                    </view>
-                    <connections>
-                        <outlet property="importActivityIndicator" destination="Lor-1J-bB0" id="OI6-Hg-T69"/>
-                        <outlet property="importStateLabel" destination="fhH-xA-nyL" id="YmF-se-8jv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ilO-1i-d5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-68" y="-683"/>
-        </scene>
         <!--Settings View Controller-->
         <scene sceneID="yeH-m6-9Mr">
             <objects>
