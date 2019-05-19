@@ -152,6 +152,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let migrator = CoreDataMigrator()
         let movies = migrator.coreDataMovies
 
+        guard !movies.isEmpty else { return }
+
         try? Persistence.saveMovies(movies)
         try? migrator.clearCoreData()
     }
