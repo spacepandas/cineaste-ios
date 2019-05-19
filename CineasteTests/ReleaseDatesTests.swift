@@ -28,8 +28,7 @@ class ReleaseDatesTests: XCTestCase {
             let data = try Data(contentsOf: URL(fileURLWithPath: path),
                                 options: .alwaysMapped)
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+            let decoder = JSONDecoder.tmdbDecoder
             let releaseDates = try? decoder.decode(LocalizedReleaseDate.self,
                                                    from: data)
             XCTAssertNotNil(releaseDates)

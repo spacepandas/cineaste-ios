@@ -73,7 +73,7 @@ class MovieStorageManager {
             }
 
             storedMovie.releaseDate = movie.releaseDate
-            storedMovie.runtime = movie.runtime
+            storedMovie.runtime = movie.runtime ?? 0
             storedMovie.voteAverage = movie.voteAverage
             storedMovie.voteCount = movie.voteCount
 

@@ -11,9 +11,9 @@ import UIKit
 extension Movie {
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey
 
-    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult>? {
+    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult> {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return nil
+            return latestReleases(page: page)
         }
         let urlAsString = "\(Constants.Backend.url)/search/movie" +
             "?language=\(String.languageFormattedForTMDb)" +
@@ -25,7 +25,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder()
+                let paginatedMovies = try JSONDecoder.tmdbDecoder
                     .decode(PagedMovieResult.self, from: data)
                 return paginatedMovies
             } catch {
@@ -35,7 +35,7 @@ extension Movie {
         }
     }
 
-    static func latestReleases(page: Int) -> Resource<PagedMovieResult>? {
+    static func latestReleases(page: Int) -> Resource<PagedMovieResult> {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString = "\(Constants.Backend.url)/discover/movie" +
@@ -49,7 +49,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder()
+                let paginatedMovies = try JSONDecoder.tmdbDecoder
                     .decode(PagedMovieResult.self, from: data)
                 return paginatedMovies
             } catch {
@@ -75,7 +75,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let decoder = JSONDecoder()
+                let decoder = JSONDecoder.tmdbDecoder
                 var movie = try decoder.decode(Movie.self, from: data)
 
                 let release = try? decoder.decode(LocalizedReleaseDate.self,

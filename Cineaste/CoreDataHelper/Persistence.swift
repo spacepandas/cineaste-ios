@@ -12,13 +12,13 @@ private let movieUrl = FileManager.default.documentsDirectory.appendingPathCompo
 
 enum Persistence {
     static func saveMovies(_ movies: Set<Movie>) throws {
-        let data = try JSONEncoder().encode(movies)
+        let data = try JSONEncoder.tmdbEncoder.encode(movies)
         try data.write(to: movieUrl)
     }
 
     static func loadMovies() -> Set<Movie> {
         guard let data = try? Data(contentsOf: movieUrl) else { return [] }
-        let movies = try? JSONDecoder().decode(Set<Movie>.self, from: data)
+        let movies = try? JSONDecoder.tmdbDecoder.decode(Set<Movie>.self, from: data)
         return movies ?? []
     }
 }

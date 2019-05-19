@@ -24,8 +24,7 @@ enum Exporter {
     }
 
     static func saveAsFileToExport(_ movies: [Movie]) throws {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
+        let encoder = JSONEncoder.tmdbEncoder
 
         let exportObject = ImportExportObject(
             movies: movies.sorted { $0.id < $1.id }

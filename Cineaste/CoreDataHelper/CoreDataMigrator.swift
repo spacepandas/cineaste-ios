@@ -15,7 +15,7 @@ struct CoreDataMigrator {
     init(container: NSPersistentContainer = .migrationContainer) {
         self.container = container
     }
- 
+
     var coreDataMovies: Set<Movie> {
         assert(Thread.isMainThread,
                "Must be called on main thread because of core data view context")

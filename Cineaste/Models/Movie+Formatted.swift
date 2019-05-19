@@ -42,7 +42,7 @@ extension Movie {
             return "\(String.unknownRuntime) min"
         }
 
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
+        return "\(runtime?.formatted ?? String.unknownRuntime) min"
     }
 
     var soonAvailable: Bool {

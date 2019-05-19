@@ -37,7 +37,7 @@ class StoredMovie: NSManagedObject, Codable {
         voteAverage = movie.voteAverage
         voteCount = movie.voteCount
 
-        runtime = movie.runtime
+        runtime = movie.runtime ?? 0
         releaseDate = movie.releaseDate
 
         watched = false

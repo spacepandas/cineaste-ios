@@ -77,7 +77,7 @@ class SearchMoviesCellTests: XCTestCase {
 
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-            let movie = try! JSONDecoder().decode(Movie.self, from: data)
+            let movie = try! JSONDecoder.tmdbDecoder.decode(Movie.self, from: data)
             return movie
         } catch let error {
             fatalError("Error while decoding Movie.json: \(error.localizedDescription)")

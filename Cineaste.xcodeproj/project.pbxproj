@@ -142,6 +142,7 @@
 		4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E779FC022690151007B278D /* SelectionReducerTests.swift */; };
 		4EB512022268B07600CBDC7E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512012268B07600CBDC7E /* AppReducer.swift */; };
 		4EB512042268B1FD00CBDC7E /* SelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */; };
+		4EB512062268BAEA00CBDC7E /* JSONCoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512052268BAEA00CBDC7E /* JSONCoders.swift */; };
 		4ED2FC7D22666D89007BDE06 /* CoreDataMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */; };
 		4ED2FC7F2266DF93007BDE06 /* CoreDataMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */; };
 		4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC802266F353007BDE06 /* Persistence.swift */; };
@@ -296,6 +297,7 @@
 		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
 		4EB512012268B07600CBDC7E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionReducer.swift; sourceTree = "<group>"; };
+		4EB512052268BAEA00CBDC7E /* JSONCoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCoders.swift; sourceTree = "<group>"; };
 		4ED2FC7C22666D89007BDE06 /* CoreDataMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrator.swift; sourceTree = "<group>"; };
 		4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigratorTests.swift; sourceTree = "<group>"; };
 		4ED2FC802266F353007BDE06 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				95DC320C1F97E5150014E3EA /* Movie.swift */,
 				3F941B7620F5295D008A4407 /* Movie+Formatted.swift */,
 				3F941B7020F528BA008A4407 /* Movie+Networking.swift */,
+				4EB512052268BAEA00CBDC7E /* JSONCoders.swift */,
 				95B57719201E2C75007BD9F0 /* MovieListCategory.swift */,
 				955C1382203CCBA2009D8337 /* NearbyMessage.swift */,
 				955C1384203CCF61009D8337 /* NearbyMovie.swift */,
@@ -1165,6 +1168,7 @@
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,
 				3FF7911C20DE274A007B7D37 /* String+DateFormatter.swift in Sources */,
+				4EB512062268BAEA00CBDC7E /* JSONCoders.swift in Sources */,
 				3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */,
 				3FF7911D20DE274A007B7D37 /* MoviesViewController.swift in Sources */,
 				3FEEE8E9222BE94C00EB1649 /* UIFont+SymbolicTraits.swift in Sources */,

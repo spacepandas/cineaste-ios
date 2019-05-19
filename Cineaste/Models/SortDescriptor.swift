@@ -31,7 +31,7 @@ enum SortDescriptor {
             return $0.title < $1.title
         }
     }
-    static let sortByListPosition: SortDescriptor<Movie> = { $0.listPosition < $1.listPosition }
+    static let sortByListPosition: SortDescriptor<Movie> = { $0.listPosition ?? 0 < $1.listPosition ?? 0 }
     static let sortByWatchedDate: SortDescriptor<Movie> = {
         if let date1 = $0.watchedDate,
             let date2 = $1.watchedDate {

@@ -20,7 +20,7 @@ enum Importer {
 
         let group = DispatchGroup()
 
-        guard let importExportObject = try? JSONDecoder()
+        guard let importExportObject = try? JSONDecoder.tmdbDecoder
             .decode(ImportExportObject.self, from: data)
             else {
                 completion(.failure(ImportError.parsingJsonToStoredMovie))
