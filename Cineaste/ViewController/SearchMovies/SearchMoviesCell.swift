@@ -32,7 +32,6 @@ class SearchMoviesCell: UITableViewCell {
     }
 
     func configure(with movie: Movie, state: WatchState) {
-        var movie = movie
         let nonbreakingSpace = "\u{00a0}"
         title.text = movie.title
         detailLabel.text = movie.formattedRelativeReleaseInformation
@@ -58,11 +57,7 @@ class SearchMoviesCell: UITableViewCell {
         if let posterPath = movie.posterPath {
             poster.kf.indicatorType = .activity
             let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-            poster.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
-                if let image = try? result.get().image {
-                    movie.poster = image
-                }
-            }
+            poster.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder)
         } else {
             poster.image = UIImage.posterPlaceholder
         }

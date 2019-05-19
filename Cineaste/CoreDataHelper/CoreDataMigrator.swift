@@ -56,7 +56,6 @@ private extension Movie {
             overview: storedMovie.overview ?? "",
             runtime: storedMovie.runtime,
             releaseDate: storedMovie.releaseDate,
-            poster: UIImage(data: storedMovie.poster ?? Data()),
             watched: storedMovie.watched,
             watchedDate: storedMovie.watchedDate,
             listPosition: Int(storedMovie.listPosition),

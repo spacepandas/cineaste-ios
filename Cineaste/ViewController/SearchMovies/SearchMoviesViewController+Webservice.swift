@@ -41,8 +41,7 @@ extension SearchMoviesViewController {
             case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)
                 completion(nil)
-            case .success(var detailedMovie):
-                detailedMovie.poster = movie.poster
+            case .success(let detailedMovie):
                 completion(detailedMovie)
             }
         }

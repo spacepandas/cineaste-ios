@@ -35,7 +35,7 @@ final class MovieRefresher {
 
 private extension MovieRefresher {
     func update(_ movieToUpdate: Movie, withNew movie: Movie, completion: @escaping (Movie) -> Void) {
-        var updatedMovie = Movie(
+        let updatedMovie = Movie(
             id: movie.id,
             title: movie.title,
             voteAverage: movie.voteAverage,
@@ -44,14 +44,10 @@ private extension MovieRefresher {
             overview: movie.overview,
             runtime: movie.runtime,
             releaseDate: movie.releaseDate,
-            poster: movieToUpdate.poster,
             watched: movieToUpdate.watched,
             watchedDate: movieToUpdate.watchedDate,
             popularity: movie.popularity)
 
-        updatedMovie.reloadPosterIfNeeded { image in
-            updatedMovie.poster = image
-            completion(updatedMovie)
-        }
+        completion(updatedMovie)
     }
 }

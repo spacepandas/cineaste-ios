@@ -18,7 +18,6 @@ struct Movie: Codable, Equatable {
     let overview: String
     let runtime: Int16?
     var releaseDate: Date?
-//    var poster: UIImage?
 
     //swiftlint:disable:next discouraged_optional_boolean
     var watched: Bool?
@@ -48,7 +47,6 @@ struct Movie: Codable, Equatable {
          overview: String,
          runtime: Int16?,
          releaseDate: Date?,
-         poster: UIImage?,
          //swiftlint:disable:next discouraged_optional_boolean
          watched: Bool?,
          watchedDate: Date?,
@@ -66,18 +64,11 @@ struct Movie: Codable, Equatable {
         self.watchedDate = watchedDate
         self.listPosition = listPosition
         self.popularity = popularity
-
-        self.poster = poster
     }
 }
 
 extension Movie: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-    }
-
-    var poster: UIImage? {
-        get { return nil }
-        set { }
     }
 }

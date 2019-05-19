@@ -136,13 +136,11 @@ class MovieDetailViewController: UIViewController {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
             guard
-                let poster = movie?.poster,
                 let posterPath = movie?.posterPath
                 else { return }
 
             let posterVC = segue.destination as? PosterViewController
-            posterVC?.configure(with: poster,
-                                posterPath: posterPath)
+            posterVC?.configure(with: posterPath)
         default:
             break
         }
@@ -226,9 +224,8 @@ class MovieDetailViewController: UIViewController {
         setupUI(for: movie)
 
         Webservice.load(resource: movie.get) { result in
-            guard case var .success(detailedMovie) = result else { return }
+            guard case let .success(detailedMovie) = result else { return }
 
-            detailedMovie.poster = movie.poster
             self.detailsLoaded = true
             self.movie = detailedMovie
             self.setupUI(for: detailedMovie)
@@ -236,7 +233,6 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func setupUI(for movie: Movie) {
-        var movie = movie
         DispatchQueue.main.async {
             guard let titleLabel = self.titleLabel,
                 let descriptionTextView = self.descriptionTextView,
@@ -254,16 +250,10 @@ class MovieDetailViewController: UIViewController {
 
             descriptionTextView.text = movie.overview
 
-            if let poster = movie.poster {
-                posterImageView.image = poster
-            } else if let posterPath = movie.posterPath {
+            if let posterPath = movie.posterPath {
                 posterImageView.kf.indicatorType = .activity
-                let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder) { result in
-                    if let image = try? result.get().image {
-                        movie.poster = image
-                    }
-                }
+                let posterUrl = Movie.posterUrl(from: posterPath, for: .original)
+                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder)
             } else {
                 posterImageView.image = UIImage.posterPlaceholder
             }

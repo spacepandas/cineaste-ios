@@ -28,7 +28,6 @@ class PosterViewController: UIViewController {
         }
     }
 
-    private var image: UIImage?
     private var posterPath: String?
 
     private var originalPosition: CGPoint?
@@ -40,7 +39,12 @@ class PosterViewController: UIViewController {
         toolbarBackgroundView.backgroundColor = .transparentBlack
         toolbarBackgroundView.addBlurEffect(with: .dark)
 
-        blurredBackgroundImage.image = image
+        if let posterPath = posterPath {
+            blurredBackgroundImage.kf
+                .setImage(with: Movie.posterUrl(from: posterPath, for: .original))
+            imageView.kf
+                .setImage(with: Movie.posterUrl(from: posterPath, for: .original))
+        }
         blurredBackgroundImage.addBlurEffect(with: .dark)
 
         imageView.isUserInteractionEnabled = true
@@ -70,19 +74,9 @@ class PosterViewController: UIViewController {
         panGestureRecognizer.delegate = self
         scrollView.addGestureRecognizer(panGestureRecognizer)
 
-        if let posterPath = posterPath {
-            imageView.kf.indicatorType = .activity
-            imageView.kf.setImage(with: Movie.posterUrl(from: posterPath,
-                                                        for: .original),
-                                  placeholder: image)
-        } else {
-            imageView.image = image
-        }
-
     }
 
-    func configure(with image: UIImage, posterPath: String) {
-        self.image = image
+    func configure(with posterPath: String) {
         self.posterPath = posterPath
     }
 

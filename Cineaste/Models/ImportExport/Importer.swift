@@ -18,8 +18,6 @@ enum Importer {
             return
         }
 
-        let group = DispatchGroup()
-
         guard let importExportObject = try? JSONDecoder.tmdbDecoder
             .decode(ImportExportObject.self, from: data)
             else {
@@ -27,18 +25,10 @@ enum Importer {
                 return
         }
 
-        for var movie in importExportObject.movies {
-            group.enter()
-
-            movie.reloadPosterIfNeeded { poster in
-                movie.poster = poster
-                store.dispatch(MovieAction.add(movie: movie))
-                group.leave()
-            }
+        for movie in importExportObject.movies {
+            store.dispatch(MovieAction.add(movie: movie))
         }
 
-        group.notify(queue: DispatchQueue.main) {
-            completion(.success(importExportObject.movies.count))
-        }
+        completion(.success(importExportObject.movies.count))
     }
 }

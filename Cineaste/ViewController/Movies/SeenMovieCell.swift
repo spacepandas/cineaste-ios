@@ -17,8 +17,10 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var watchedDateLabel: UILabel!
 
     func configure(with movie: Movie) {
-        if let moviePoster = movie.poster {
-            poster.image = moviePoster
+        if let posterPath = movie.posterPath {
+            poster.kf.indicatorType = .activity
+            let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
+            poster.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder)
         } else {
             poster.image = UIImage.posterPlaceholder
         }
