@@ -21,12 +21,31 @@ enum Persistence {
         let movies = try? JSONDecoder.tmdbDecoder.decode(Set<Movie>.self, from: data)
         return movies ?? []
     }
+
+    static func urlForMovieExport() throws -> URL {
+        let movies = loadMovies()
+        let url = FileManager.default
+            .cachesDirectory
+            .appendingPathComponent(String.exportMoviesFileName)
+        let data = try JSONEncoder.tmdbEncoder.encode(ImportExportObject(movies: movies))
+        try data.write(to: url)
+
+        return url
+    }
 }
 
 private extension FileManager {
     var documentsDirectory: URL {
         // swiftlint:disable:next force_try
         return try! url(for: .documentDirectory,
+                        in: .userDomainMask,
+                        appropriateFor: nil,
+                        create: false)
+    }
+
+    var cachesDirectory: URL {
+        // swiftlint:disable:next force_try
+        return try! url(for: .cachesDirectory,
                         in: .userDomainMask,
                         appropriateFor: nil,
                         create: false)

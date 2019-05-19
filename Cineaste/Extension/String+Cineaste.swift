@@ -129,7 +129,8 @@ extension String {
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
 
     // MARK: EXPORT
-    static func exportMoviesFileName(with date: String) -> String {
+    static var exportMoviesFileName: String {
+        let date = Date().formattedForRequest
         return String.localizedStringWithFormat(NSLocalizedString("cineaste-\(date).json", comment: "export movies json name"), date)
     }
 

@@ -23,23 +23,23 @@ class PersistenceTests: XCTestCase {
 
     func testStoringMoviesShouldWriteJSONToTheDocumentsDirectory() throws {
         // Given
-        let fm = FileManager.default
-        let jsonUrl = fm.documentsDirectory.appendingPathComponent("movies.json")
-        XCTAssertFalse(fm.fileExists(atPath: jsonUrl.path))
+        let fileManager = FileManager.default
+        let jsonUrl = fileManager.documentsDirectory.appendingPathComponent("movies.json")
+        XCTAssertFalse(fileManager.fileExists(atPath: jsonUrl.path))
         let movies: Set<Movie> = [Movie(id: 1)]
 
         // When
         try Persistence.saveMovies(movies)
 
         // Then
-        XCTAssert(fm.fileExists(atPath: jsonUrl.path))
+        XCTAssert(fileManager.fileExists(atPath: jsonUrl.path))
     }
 
     func testLoadingMoviesShouldLoadMoviesFromJSON() throws {
         // Given
-        let fm = FileManager.default
-        let jsonUrl = fm.documentsDirectory.appendingPathComponent("movies.json")
-        XCTAssertFalse(fm.fileExists(atPath: jsonUrl.path))
+        let fileManager = FileManager.default
+        let jsonUrl = fileManager.documentsDirectory.appendingPathComponent("movies.json")
+        XCTAssertFalse(fileManager.fileExists(atPath: jsonUrl.path))
         try Persistence.saveMovies([Movie(id: 1)])
 
         // When
@@ -50,10 +50,10 @@ class PersistenceTests: XCTestCase {
     }
 
     private func cleanup() throws {
-        let fm = FileManager.default
-        for content in try fm.contentsOfDirectory(atPath: fm.documentsDirectory.path) {
-            let url = fm.documentsDirectory.appendingPathComponent(content)
-            try fm.removeItem(at: url)
+        let fileManager = FileManager.default
+        for content in try fileManager.contentsOfDirectory(atPath: fileManager.documentsDirectory.path) {
+            let url = fileManager.documentsDirectory.appendingPathComponent(content)
+            try fileManager.removeItem(at: url)
         }
     }
 }

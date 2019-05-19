@@ -95,20 +95,10 @@ extension SettingsViewController {
     }
 
     func exportMovies(showUIOn rect: CGRect) {
-        guard !movies.isEmpty else {
-            //database is empty, inform user that an export is not useful
-            showAlert(withMessage: Alert.exportEmptyData)
-            return
-        }
+        guard let url = try? Persistence.urlForMovieExport()
+            else { return showAlert(withMessage: Alert.exportFailedInfo) }
 
-        do {
-            try Exporter.saveAsFileToExport(movies)
-        } catch {
-            showAlert(withMessage: Alert.exportFailedInfo)
-        }
-
-        let path = URL(fileURLWithPath: Exporter.exportPath)
-        docController = UIDocumentInteractionController(url: path)
+        docController = UIDocumentInteractionController(url: url)
         docController?.uti = String.exportMoviesFileUTI
         docController?.presentOptionsMenu(from: rect, in: view, animated: true)
     }
