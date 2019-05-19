@@ -18,7 +18,6 @@ extension Movie {
         overview: "String",
         runtime: 180,
         releaseDate: nil,
-        poster: nil,
         watched: nil,
         watchedDate: nil,
         popularity: 444
