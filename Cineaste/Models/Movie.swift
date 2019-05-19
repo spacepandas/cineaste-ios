@@ -75,6 +75,7 @@ extension Movie: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+
     var poster: UIImage? {
         get { return nil }
         set { }
