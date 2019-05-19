@@ -17,7 +17,16 @@ private let formatter: DateFormatter = {
 extension JSONDecoder {
     static let tmdbDecoder: JSONDecoder = {
         $0.keyDecodingStrategy = .convertFromSnakeCase
-        $0.dateDecodingStrategy = .formatted(formatter)
+        $0.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            if let date = formatter.date(from: dateString) {
+                return date
+            } else {
+                //TODO: maybe fix this at some time?
+                return Date.distantFuture
+            }
+        }
         return $0
     }(JSONDecoder())
 }
