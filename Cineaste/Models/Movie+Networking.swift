@@ -49,9 +49,8 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder.tmdbDecoder
+                return try JSONDecoder.tmdbDecoder
                     .decode(PagedMovieResult.self, from: data)
-                return paginatedMovies
             } catch {
                 print(error)
                 return nil
@@ -70,19 +69,12 @@ extension Movie {
     var get: Resource<Movie> {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
-            "&api_key=\(Movie.apiKey)" +
-            "&append_to_response=release_dates"
+            "&region=\(String.regionIso31661)" +
+            "&api_key=\(Movie.apiKey)"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let decoder = JSONDecoder.tmdbDecoder
-                var movie = try decoder.decode(Movie.self, from: data)
-
-                let release = try? decoder.decode(LocalizedReleaseDate.self,
-                                                  from: data)
-                movie.releaseDate = release?.date
-
-                return movie
+                return try JSONDecoder.tmdbDecoder.decode(Movie.self, from: data)
             } catch {
                 print(error)
                 return nil
