@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import CoreData
 @testable import Cineaste_App
 
 class SeenMovieCellTests: XCTestCase {

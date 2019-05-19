@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 struct Movie: Codable, Equatable {
     let id: Int64
