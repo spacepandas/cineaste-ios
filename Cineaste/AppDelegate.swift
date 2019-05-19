@@ -24,6 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var paws: MonkeyPaws?
     #endif
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
+        // IMPORTANT: Call this before the ReSwift Store is initialized
+        // (before ReSwiftInit is dispatched)
+        migrateCoreData()
+
+        return true
+    }
+
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter
@@ -39,8 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         store.subscribe(persistenceSubscriber) { subscription in
             subscription.select { $0.movies }
         }
-
-        migrateCoreData()
 
         // check if system launched the app with a quick action
         // return false so performActionForShortcutItem: is not called twice
@@ -142,11 +149,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func migrateCoreData() {
-//        let migrator = CoreDataMigrator()
-//        let movies = migrator.coreDataMovies
-//        try? Persistence.saveMovies(movies)
-//        store.dispatch(MovieAction.load(movies: movies))
-        // TODO: Uncomment this when ReSwift Persistence is implemented
-//        try? migrator.clearCoreData()
+        let migrator = CoreDataMigrator()
+        let movies = migrator.coreDataMovies
+
+        try? Persistence.saveMovies(movies)
+        try? migrator.clearCoreData()
     }
 }
