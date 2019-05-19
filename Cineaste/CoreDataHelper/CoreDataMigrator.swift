@@ -15,7 +15,7 @@ struct CoreDataMigrator {
     init(container: NSPersistentContainer = .migrationContainer) {
         self.container = container
     }
-
+ 
     var coreDataMovies: Set<Movie> {
         assert(Thread.isMainThread,
                "Must be called on main thread because of core data view context")
@@ -29,9 +29,10 @@ struct CoreDataMigrator {
         let coordinator = container.persistentStoreCoordinator
         for store in coordinator.persistentStores {
             try coordinator.remove(store)
-            let fm = FileManager.default
-            if let url = store.url, fm.isDeletableFile(atPath: url.path) {
-                try fm.removeItem(at: url)
+            let fileManager = FileManager.default
+            if let url = store.url,
+                fileManager.isDeletableFile(atPath: url.path) {
+                try fileManager.removeItem(at: url)
             }
         }
     }
