@@ -36,19 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         handleLaunchArguments()
         Appearance.setup()
 
-        // check if system launched the app with a quick action
-        // return false so performActionForShortcutItem: is not called twice
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem]
-            as? UIApplicationShortcutItem {
-            _ = handle(shortCut: shortcutItem)
-            return false
-        }
-
         store.subscribe(persistenceSubscriber) { subscription in
             subscription.select { $0.movies }
         }
 
         migrateCoreData()
+
+        // check if system launched the app with a quick action
+        // return false so performActionForShortcutItem: is not called twice
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem]
+            as? UIApplicationShortcutItem {
+            handle(shortCut: shortcutItem)
+            return false
+        }
 
         return true
     }
