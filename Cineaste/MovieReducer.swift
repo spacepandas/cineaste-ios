@@ -8,6 +8,7 @@
 
 import ReSwift
 
+// swiftlint:disable:next discouraged_optional_collection
 func movieReducer(action: Action, state: Set<Movie>?) -> Set<Movie> {
 
     if action is ReSwiftInit {
