@@ -8,10 +8,10 @@ target 'Cineaste App' do
   pod 'Kingfisher'
   pod 'ReSwift'
   pod 'SwiftMonkeyPaws', '~> 2.1.0', :configuration => 'Debug'
-end
 
-target 'CineasteTests' do
-  inherit! :search_paths
+  target 'CineasteTests' do
+    inherit! :search_paths
+  end
 end
 
 target 'CineasteUITests' do
