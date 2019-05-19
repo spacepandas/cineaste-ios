@@ -10,6 +10,7 @@ import XCTest
 import CoreData
 @testable import Cineaste_App
 
+@available(*, deprecated)
 class CoreDataMigratorTests: XCTestCase {
 
     func testCoreDataMigratorShouldLoadMoviesFromCoreData() throws {

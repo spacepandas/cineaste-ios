@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var paws: MonkeyPaws?
     #endif
 
+    // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 
         // IMPORTANT: Call this before the ReSwift Store is initialized

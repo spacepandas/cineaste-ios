@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  JSONCoders.swift
 //  Cineaste App
