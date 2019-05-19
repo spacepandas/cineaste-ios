@@ -69,7 +69,7 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
-    var movies: [Movie] = [] {
+    private(set) var movies: [Movie] = [] {
         didSet {
             ownNearbyMessage = generateOwnNearbyMessage()
             tableView.reloadData()
