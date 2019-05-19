@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(handle(shortCut: shortcutItem))
     }
 
+    @discardableResult
     private func handle(shortCut shortcutItem: UIApplicationShortcutItem) -> Bool {
         let shortcutType = shortcutItem.type
         guard let shortcutIdentifier = ShortcutIdentifier(rawValue: shortcutType),
@@ -70,19 +71,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutIdentifier {
         case .watchlist:
             tabBarVC.selectedIndex = 0
-            return true
         case .seen:
             tabBarVC.selectedIndex = 1
-            return true
         case .startMovieNight:
             guard
                 let moviesVC = tabBarVC.selectedViewController?
                     .children.first as? MoviesViewController
                 else { return false }
             moviesVC.movieNightButtonTouched()
-            return true
         }
 
+        return true
     }
 
     // MARK: - Core Data
