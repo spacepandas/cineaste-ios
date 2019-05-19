@@ -33,6 +33,7 @@ class SearchMoviesViewController: UIViewController {
     }
 
     func updateMovies() {
+        watchStates = [:]
         for movie in moviesFromNetworking {
             if storedIDs.watchListMovieIDs.contains(movie.id) {
                 watchStates[movie] = .watchlist
