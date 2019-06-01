@@ -129,6 +129,8 @@
 		3FF798422205A9830055CCBB /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D90203090C300E091BE /* SettingItem.swift */; };
 		3FF798432205A9870055CCBB /* TextViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0D922030988E00E091BE /* TextViewType.swift */; };
 		3FF798442205A98A0055CCBB /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1DA164209DAE4500AC4D09 /* ContentBlock.swift */; };
+		4E0816C522A31BC800DD919D /* Data+SanitizeReleaseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0816C422A31BC800DD919D /* Data+SanitizeReleaseDate.swift */; };
+		4E0816C922A31D1C00DD919D /* DataSanitizeReleaseDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0816C822A31D1C00DD919D /* DataSanitizeReleaseDateTests.swift */; };
 		4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */; };
 		4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E779FC022690151007B278D /* SelectionReducerTests.swift */; };
 		4EB512022268B07600CBDC7E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512012268B07600CBDC7E /* AppReducer.swift */; };
@@ -276,6 +278,8 @@
 		3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40AC9D77FAA4202A641E96A9 /* Pods_CineasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E0816C422A31BC800DD919D /* Data+SanitizeReleaseDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+SanitizeReleaseDate.swift"; sourceTree = "<group>"; };
+		4E0816C822A31D1C00DD919D /* DataSanitizeReleaseDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSanitizeReleaseDateTests.swift; sourceTree = "<group>"; };
 		4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceSubscriber.swift; sourceTree = "<group>"; };
 		4E779FC022690151007B278D /* SelectionReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionReducerTests.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
@@ -426,15 +430,16 @@
 			children = (
 				3F701B35218640EE0033562B /* Info.plist */,
 				4ED2FC7E2266DF93007BDE06 /* CoreDataMigratorTests.swift */,
+				4E0816C822A31D1C00DD919D /* DataSanitizeReleaseDateTests.swift */,
 				3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */,
 				3F229213225A41F6001D4358 /* MovieReducerTests.swift */,
-				4E779FC022690151007B278D /* SelectionReducerTests.swift */,
 				3F8644B01FFA95190046114A /* MoviesTabBarControllerTests.swift */,
 				3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */,
 				4ED2FC822266F586007BDE06 /* PersistenceTests.swift */,
 				3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */,
 				3F83BE8F1FF3B29D00E584E9 /* SearchMoviesCellTests.swift */,
 				3F21729820A6F92A0005D056 /* SeenMovieCellTests.swift */,
+				4E779FC022690151007B278D /* SelectionReducerTests.swift */,
 				4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */,
 				3FEF5C4A2030B28D00EFCAA2 /* SettingsCellTests.swift */,
 				3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */,
@@ -466,20 +471,21 @@
 		3FBD8F931FF3FC6400AD5F02 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E0816C422A31BC800DD919D /* Data+SanitizeReleaseDate.swift */,
 				3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */,
-				3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */,
 				3FAA3BB92082668900726DE2 /* Double+Formatter.swift */,
+				3F85488821039778007A322E /* IndexPath+Last.swift */,
 				3FAA3BBB20826B1D00726DE2 /* Int16+Formatter.swift */,
-				3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */,
-				3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */,
-				3F941B6C20F527E5008A4407 /* String+Locale.swift */,
-				95C679A12033773A0058FC8C /* UIImage+Cineaste.swift */,
 				3F9806372055250F00B92A27 /* String+Cineaste.swift */,
+				3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */,
+				3F941B6C20F527E5008A4407 /* String+Locale.swift */,
+				3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */,
 				3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */,
+				3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */,
+				95C679A12033773A0058FC8C /* UIImage+Cineaste.swift */,
+				3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */,
 				3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */,
 				3F80F27122359E5C007E03C5 /* UIView+SlideIn.swift */,
-				3F85488821039778007A322E /* IndexPath+Last.swift */,
-				3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1021,6 +1027,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0816C922A31D1C00DD919D /* DataSanitizeReleaseDateTests.swift in Sources */,
 				3F701B3D218640F80033562B /* SeenMovieCellTests.swift in Sources */,
 				3FF0A2F821D3C2BD00BF9E83 /* ImporterTests.swift in Sources */,
 				4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */,
@@ -1111,6 +1118,7 @@
 				3FF798422205A9830055CCBB /* SettingItem.swift in Sources */,
 				3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */,
 				3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */,
+				4E0816C522A31BC800DD919D /* Data+SanitizeReleaseDate.swift in Sources */,
 				3FF095CF2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */,
 				3FF7911320DE274A007B7D37 /* Storyboard.swift in Sources */,
 				3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */,

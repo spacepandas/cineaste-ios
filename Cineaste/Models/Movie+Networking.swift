@@ -74,7 +74,8 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                return try JSONDecoder.tmdbDecoder.decode(Movie.self, from: data)
+                let sanitized = data.sanitizingReleaseDates()
+                return try JSONDecoder.tmdbDecoder.decode(Movie.self, from: sanitized)
             } catch {
                 print(error)
                 return nil
