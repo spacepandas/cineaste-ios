@@ -67,16 +67,3 @@ extension SettingsViewController {
         }
     }
 }
-
-// MARK: - UITextFieldDelegate
-
-extension SettingsViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-
-        let entryLength = text.count + string.count - range.length
-        UsernameAlert.saveAction?.isEnabled = entryLength > 0
-
-        return true
-    }
-}
