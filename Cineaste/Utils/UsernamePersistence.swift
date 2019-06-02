@@ -12,7 +12,10 @@ enum UsernamePersistence {
     private static let usernameKey = "cineaste-username"
 
     static var username: String? {
-        get { return UserDefaults.standard.string(forKey: usernameKey) }
+        get {
+            let username = UserDefaults.standard.string(forKey: usernameKey) ?? ""
+            return username.isEmpty ? nil : username
+        }
         set { UserDefaults.standard.set(newValue, forKey: usernameKey) }
     }
 }
