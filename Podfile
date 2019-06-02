@@ -7,15 +7,10 @@ target 'Cineaste App' do
   pod 'NearbyMessages'
   pod 'Kingfisher'
   pod 'ReSwift'
-  pod 'SwiftMonkeyPaws', '~> 2.1.0', :configuration => 'Debug'
 
   target 'CineasteTests' do
     inherit! :search_paths
   end
-end
-
-target 'CineasteUITests' do
-  pod 'SwiftMonkey', '~> 2.1.0'
 end
 
 post_install do | installer |

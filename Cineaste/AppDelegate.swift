@@ -8,20 +8,12 @@
 
 import UIKit
 
-#if DEBUG
-import SwiftMonkeyPaws
-#endif
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     let persistenceSubscriber = PersistenceSubscriber()
-
-    #if DEBUG
-    var paws: MonkeyPaws?
-    #endif
 
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -91,11 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if arguments.contains("SKIP_ANIMATIONS") {
             UIView.setAnimationsEnabled(false)
-        }
-
-        if arguments.contains("--MonkeyPaws") {
-            // swiftlint:disable:next force_unwrapping
-            paws = MonkeyPaws(view: window!)
         }
         #endif
     }
