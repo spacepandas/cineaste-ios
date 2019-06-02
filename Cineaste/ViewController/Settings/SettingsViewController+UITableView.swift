@@ -71,12 +71,12 @@ extension SettingsViewController {
                 let username = textField.text
                 else { return }
 
-            UserDefaultsManager.username = username
+            UsernamePersistence.username = username
             completionHandler()
         }
 
         if let saveAction = saveAction {
-            saveAction.isEnabled = UserDefaultsManager.username != nil
+            saveAction.isEnabled = UsernamePersistence.username != nil
             alert.addAction(saveAction)
         }
 
@@ -88,7 +88,7 @@ extension SettingsViewController {
         }
 
         alert.addTextField { textField in
-            textField.text = UserDefaultsManager.username
+            textField.text = UsernamePersistence.username
             textField.placeholder = String.username
             textField.delegate = self
             textField.autocorrectionType = .default

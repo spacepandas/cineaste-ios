@@ -1,5 +1,5 @@
 //
-//  UserDefaultsManager.swift
+//  UsernamePersistence.swift
 //  Cineaste
 //
 //  Created by Christian Braun on 21.02.18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UserDefaultsManager {
+enum UsernamePersistence {
     static let usernameKey = "cineaste-username"
 
     static var username: String? {

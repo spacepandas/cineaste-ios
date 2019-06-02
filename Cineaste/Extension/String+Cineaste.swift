@@ -159,7 +159,7 @@ extension String {
     static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
 
     static var usernameDescription: String {
-        if let name = UserDefaultsManager.username, !name.isEmpty {
+        if let name = UsernamePersistence.username, !name.isEmpty {
             return .changeUsernameDescription
         } else {
             return .insertUsernameDescription

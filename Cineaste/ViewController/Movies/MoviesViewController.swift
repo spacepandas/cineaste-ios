@@ -121,7 +121,7 @@ class MoviesViewController: UITableViewController {
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched() {
-        if UserDefaultsManager.username == nil {
+        if UsernamePersistence.username == nil {
             askForUsername()
         } else {
             performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
@@ -199,7 +199,7 @@ class MoviesViewController: UITableViewController {
             guard let textField = alert.textFields?[0], let username = textField.text else {
                 return
             }
-            UserDefaultsManager.username = username
+            UsernamePersistence.username = username
             self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
         }
 
