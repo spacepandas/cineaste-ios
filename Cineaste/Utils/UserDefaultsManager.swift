@@ -9,7 +9,7 @@
 import Foundation
 
 enum UsernamePersistence {
-    static let usernameKey = "cineaste-username"
+    private static let usernameKey = "cineaste-username"
 
     static var username: String? {
         get {
