@@ -46,7 +46,9 @@ enum SettingItem: CaseIterable {
              .appStore:
             return nil
         case .name:
-            return .usernameDescription
+            return UsernamePersistence.username != nil
+                ? .changeUsernameDescription
+                : .insertUsernameDescription
         case .exportMovies:
             return .exportDescription
         case .importMovies:

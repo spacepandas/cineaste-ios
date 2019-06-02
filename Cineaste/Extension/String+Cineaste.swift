@@ -158,14 +158,6 @@ extension String {
     static let insertUsernameDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
     static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
 
-    static var usernameDescription: String {
-        if let name = UsernamePersistence.username, !name.isEmpty {
-            return .changeUsernameDescription
-        } else {
-            return .insertUsernameDescription
-        }
-    }
-
     // missing feature
     static let missingFeatureMessage = NSLocalizedString("missingFeature", comment: "Message for missing feature alert")
 
