@@ -34,7 +34,9 @@ enum UsernameAlert {
                 let username = textField.text
                 else { return }
 
-            UsernamePersistence.username = username
+            let trimmedName = username.trimmingCharacters(in: .whitespaces)
+            UsernamePersistence.username = trimmedName
+
             saveAction = nil
 
             onSave()
