@@ -57,6 +57,7 @@
 		3FBDB30621D5334000CBE341 /* ExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDB30521D5334000CBE341 /* ExporterTests.swift */; };
 		3FCFB10F21D676DC006E2F91 /* AndroidExport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB10E21D676DB006E2F91 /* AndroidExport.json */; };
 		3FCFB11121D678A0006E2F91 /* UpdatedMoviesImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB11021D678A0006E2F91 /* UpdatedMoviesImport.json */; };
+		3FDEE3EE22A3CD1700CFB2C7 /* UsernameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */; };
 		3FDEF4762103368300955129 /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF4742103368300955129 /* DebugPrint.swift */; };
 		3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */; };
 		3FEEE8E9222BE94C00EB1649 /* UIFont+SymbolicTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */; };
@@ -260,6 +261,7 @@
 		3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+Webservice.swift"; sourceTree = "<group>"; };
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		3FDB14532025B80F0063E980 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
+		3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAlert.swift; sourceTree = "<group>"; };
 		3FDEF4742103368300955129 /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
 		3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportObject.swift; sourceTree = "<group>"; };
 		3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SwipeAction.swift"; sourceTree = "<group>"; };
@@ -589,6 +591,7 @@
 				953182F8203E19A000A331A0 /* UsernamePersistence.swift */,
 				3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */,
 				3FDEF4742103368300955129 /* DebugPrint.swift */,
+				3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 				3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */,
 				3FF790F020DE274A007B7D37 /* MovieNightUserCell.swift in Sources */,
 				3FF790F120DE274A007B7D37 /* MovieListCategory.swift in Sources */,
+				3FDEE3EE22A3CD1700CFB2C7 /* UsernameAlert.swift in Sources */,
 				3FF790F220DE274A007B7D37 /* ImportMoviesViewController.swift in Sources */,
 				3FDEF4762103368300955129 /* DebugPrint.swift in Sources */,
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
