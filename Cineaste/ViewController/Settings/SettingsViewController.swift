@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController {
 
     let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
+    var saveAction: UIAlertAction?
 
     var storageManager: MovieStorageManager?
     var docController: UIDocumentInteractionController?

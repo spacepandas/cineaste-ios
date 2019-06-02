@@ -48,9 +48,9 @@ class Alert: AlertMessage {
                      message: .insertMovieErrorMessage,
                      action: .okAction)
 
-    static let insertUsername =
-        AlertMessage(title: .firstMovieNightTitle,
-                     message: .explainMovieNightDescription,
+    static let username =
+        AlertMessage(title: .username,
+                     message: .usernameDescription(),
                      action: .saveAction,
                      cancel: .cancelAction)
 

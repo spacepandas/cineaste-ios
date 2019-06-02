@@ -192,10 +192,10 @@ class MoviesViewController: UITableViewController {
     }
 
     private func askForUsername() {
-        let alert = UIAlertController(title: Alert.insertUsername.title,
-                                      message: Alert.insertUsername.message,
+        let alert = UIAlertController(title: Alert.username.title,
+                                      message: Alert.username.message,
                                       preferredStyle: .alert)
-        saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
+        saveAction = UIAlertAction(title: Alert.username.action, style: .default) { _ in
             guard let textField = alert.textFields?[0], let username = textField.text else {
                 return
             }
@@ -208,13 +208,13 @@ class MoviesViewController: UITableViewController {
             alert.addAction(saveAction)
         }
 
-        if let cancelTitle = Alert.insertUsername.cancel {
+        if let cancelTitle = Alert.username.cancel {
             let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
             alert.addAction(cancelAction)
         }
 
         alert.addTextField { textField in
-            textField.placeholder = String.usernamePlaceholder
+            textField.placeholder = String.username
             textField.delegate = self
             textField.autocorrectionType = .default
             textField.autocapitalizationType = .words
@@ -277,7 +277,7 @@ extension MoviesViewController: UITextFieldDelegate {
         guard let text = textField.text else { return true }
 
         let entryLength = text.count + string.count - range.length
-        saveAction?.isEnabled = entryLength > 0 ? true : false
+        saveAction?.isEnabled = entryLength > 0
 
         return true
     }
