@@ -16,10 +16,6 @@ enum Constants {
 
     static let appStoreUrl = "https://itunes.apple.com/app/id1402748020"
 
-    enum UserDefaults {
-        static let usernameKey = "cineaste-username"
-    }
-
     enum PosterSize {
         case small
         case original

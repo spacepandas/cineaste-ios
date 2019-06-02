@@ -9,14 +9,14 @@
 import Foundation
 
 enum UserDefaultsManager {
+    static let usernameKey = "cineaste-username"
+
     static var username: String? {
         get {
-            return UserDefaults.standard
-                .string(forKey: Constants.UserDefaults.usernameKey)
+            return UserDefaults.standard.string(forKey: usernameKey)
         }
         set {
-            UserDefaults.standard
-                .set(newValue, forKey: Constants.UserDefaults.usernameKey)
+            UserDefaults.standard.set(newValue, forKey: usernameKey)
         }
     }
 }
