@@ -50,7 +50,7 @@ class Alert: AlertMessage {
 
     static let username =
         AlertMessage(title: .username,
-                     message: .usernameDescription(),
+                     message: .usernameDescription,
                      action: .saveAction,
                      cancel: .cancelAction)
 

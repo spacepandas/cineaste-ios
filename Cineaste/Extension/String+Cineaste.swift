@@ -158,8 +158,8 @@ extension String {
     static let insertUsernameDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
     static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
 
-    static func usernameDescription() -> String {
-        if let name = UserDefaultsManager.getUsername(), !name.isEmpty {
+    static var usernameDescription: String {
+        if let name = UserDefaultsManager.username, !name.isEmpty {
             return .changeUsernameDescription
         } else {
             return .insertUsernameDescription

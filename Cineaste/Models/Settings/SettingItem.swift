@@ -22,7 +22,7 @@ enum SettingItem: CaseIterable {
         case .licence:
             return .licenseTitle
         case .name:
-            if let name = UserDefaultsManager.getUsername(), !name.isEmpty {
+            if let name = UserDefaultsManager.username, !name.isEmpty {
                 return .username + " (\(name))"
             } else {
                 return .username
@@ -46,7 +46,7 @@ enum SettingItem: CaseIterable {
              .appStore:
             return nil
         case .name:
-            return .usernameDescription()
+            return .usernameDescription
         case .exportMovies:
             return .exportDescription
         case .importMovies:
