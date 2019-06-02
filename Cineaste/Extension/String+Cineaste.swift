@@ -155,9 +155,9 @@ extension String {
     static let insertMovieErrorMessage = NSLocalizedString("couldNotAddMovie", comment: "Message for insert movie error alert")
 
     // enter username for movie night
-    static let usernamePlaceholder = NSLocalizedString("username", comment: "Enter username title")
-    static let firstMovieNightTitle = NSLocalizedString("firstMovieNight", comment: "Start first movie night title")
-    static let explainMovieNightDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
+    static let username = NSLocalizedString("username", comment: "Enter username title")
+    static let insertUsernameDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
+    static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
 
     // missing feature
     static let missingFeatureMessage = NSLocalizedString("missingFeature", comment: "Message for missing feature alert")

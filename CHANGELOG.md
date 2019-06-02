@@ -1,5 +1,10 @@
 # Changelog
 
+# 1.9.0
+
+* New: Update your username in the settings
+* Fixed: Display movie titles in search in full length and not trimmed when they are too long. 
+
 # 1.8.4
 
 * Improved: Make description in movie lists bigger

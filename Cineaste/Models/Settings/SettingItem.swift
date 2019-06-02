@@ -9,6 +9,7 @@
 enum SettingItem: CaseIterable {
     case about
     case licence
+    case name
     case exportMovies
     case importMovies
     case contact
@@ -17,17 +18,23 @@ enum SettingItem: CaseIterable {
     var title: String {
         switch self {
         case .about:
-            return String.aboutAppTitle
+            return .aboutAppTitle
         case .licence:
-            return String.licenseTitle
+            return .licenseTitle
+        case .name:
+            if let name = UsernamePersistence.username {
+                return .username + ": \(name)"
+            } else {
+                return .username
+            }
         case .exportMovies:
-            return String.exportTitle
+            return .exportTitle
         case .importMovies:
-            return String.importTitle
+            return .importTitle
         case .contact:
-            return String.contactTitle
+            return .contactTitle
         case .appStore:
-            return String.appStoreTitle
+            return .appStoreTitle
         }
     }
 
@@ -38,10 +45,14 @@ enum SettingItem: CaseIterable {
              .contact,
              .appStore:
             return nil
+        case .name:
+            return UsernamePersistence.username != nil
+                ? .changeUsernameDescription
+                : .insertUsernameDescription
         case .exportMovies:
-            return String.exportDescription
+            return .exportDescription
         case .importMovies:
-            return String.importDescription
+            return .importDescription
         }
     }
 
@@ -51,7 +62,8 @@ enum SettingItem: CaseIterable {
             return .showTextViewFromSettings
         case .licence:
             return .showTextViewFromSettings
-        case .exportMovies,
+        case .name,
+             .exportMovies,
              .importMovies,
              .contact,
              .appStore:

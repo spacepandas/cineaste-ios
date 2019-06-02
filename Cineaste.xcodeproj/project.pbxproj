@@ -54,6 +54,7 @@
 		3FBDB30421D4F35D00CBE341 /* ReleaseDates.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FF21D4F35D00CBE341 /* ReleaseDates.json */; };
 		3FCFB10F21D676DC006E2F91 /* AndroidExport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB10E21D676DB006E2F91 /* AndroidExport.json */; };
 		3FCFB11121D678A0006E2F91 /* UpdatedMoviesImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB11021D678A0006E2F91 /* UpdatedMoviesImport.json */; };
+		3FDEE3EE22A3CD1700CFB2C7 /* UsernameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */; };
 		3FDEF4762103368300955129 /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF4742103368300955129 /* DebugPrint.swift */; };
 		3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */; };
 		3FEEE8E9222BE94C00EB1649 /* UIFont+SymbolicTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */; };
@@ -98,7 +99,7 @@
 		3FF7910B20DE274A007B7D37 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD4FF8220B74C6500538BA3 /* PosterViewController.swift */; };
 		3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */; };
 		3FF7910D20DE274A007B7D37 /* NearbyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955C1382203CCBA2009D8337 /* NearbyMessage.swift */; };
-		3FF7910E20DE274A007B7D37 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F8203E19A000A331A0 /* UserDefaultsManager.swift */; };
+		3FF7910E20DE274A007B7D37 /* UsernamePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F8203E19A000A331A0 /* UsernamePersistence.swift */; };
 		3FF7910F20DE274A007B7D37 /* WatchlistMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* WatchlistMovieCell.swift */; };
 		3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */; };
 		3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E8B761FABC6F50004E8C3 /* SearchMoviesViewController.swift */; };
@@ -261,6 +262,7 @@
 		3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+Webservice.swift"; sourceTree = "<group>"; };
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		3FDB14532025B80F0063E980 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
+		3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAlert.swift; sourceTree = "<group>"; };
 		3FDEF4742103368300955129 /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
 		3FE49553209DD33A006CD0D3 /* ImportExportObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportObject.swift; sourceTree = "<group>"; };
 		3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SwipeAction.swift"; sourceTree = "<group>"; };
@@ -297,7 +299,7 @@
 		9526A70620449206004E08F7 /* MovieMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchCell.swift; sourceTree = "<group>"; };
 		9528112F201D087800F3EC76 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		953182F6203E17AF00A331A0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		953182F8203E19A000A331A0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		953182F8203E19A000A331A0 /* UsernamePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernamePersistence.swift; sourceTree = "<group>"; };
 		953182FA203E212A00A331A0 /* MovieNightUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightUserCell.swift; sourceTree = "<group>"; };
 		9552262C1FAFB5D300323982 /* StoredMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredMovie.swift; sourceTree = "<group>"; };
 		955C1382203CCBA2009D8337 /* NearbyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMessage.swift; sourceTree = "<group>"; };
@@ -614,8 +616,10 @@
 				3F83BE971FF3BF7000E584E9 /* Segue.swift */,
 				3FDB14532025B80F0063E980 /* AlertMessage.swift */,
 				953182F6203E17AF00A331A0 /* Constants.swift */,
-				953182F8203E19A000A331A0 /* UserDefaultsManager.swift */,
+				953182F8203E19A000A331A0 /* UsernamePersistence.swift */,
+				3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */,
 				3FDEF4742103368300955129 /* DebugPrint.swift */,
+				3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1067,6 +1071,7 @@
 				3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */,
 				3FF790F020DE274A007B7D37 /* MovieNightUserCell.swift in Sources */,
 				3FF790F120DE274A007B7D37 /* MovieListCategory.swift in Sources */,
+				3FDEE3EE22A3CD1700CFB2C7 /* UsernameAlert.swift in Sources */,
 				3FDEF4762103368300955129 /* DebugPrint.swift in Sources */,
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3F1EE5952219FD1B00F6E6E2 /* MovieRefresher.swift in Sources */,
@@ -1113,7 +1118,7 @@
 				3FF7910B20DE274A007B7D37 /* PosterViewController.swift in Sources */,
 				3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */,
 				3FF7910D20DE274A007B7D37 /* NearbyMessage.swift in Sources */,
-				3FF7910E20DE274A007B7D37 /* UserDefaultsManager.swift in Sources */,
+				3FF7910E20DE274A007B7D37 /* UsernamePersistence.swift in Sources */,
 				3FF7910F20DE274A007B7D37 /* WatchlistMovieCell.swift in Sources */,
 				3FF798422205A9830055CCBB /* SettingItem.swift in Sources */,
 				3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */,
@@ -1348,7 +1353,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 438;
+				CURRENT_PROJECT_VERSION = 442;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1371,7 +1376,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 438;
+				CURRENT_PROJECT_VERSION = 442;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
