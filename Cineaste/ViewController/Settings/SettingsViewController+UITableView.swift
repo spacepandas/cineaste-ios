@@ -29,6 +29,16 @@ extension SettingsViewController {
         case .about, .licence:
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
+        case .name:
+            let alert = UsernameAlert.askForUsernameAlertController(
+                presenter: self,
+                onSave: {
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                },
+                onCancel: {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                })
+            present(alert, animated: true)
         case .exportMovies:
             tableView.deselectRow(at: indexPath, animated: true)
             exportMovies(showUIOn: tableView.rectForRow(at: indexPath))

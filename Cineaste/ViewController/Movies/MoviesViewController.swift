@@ -37,7 +37,6 @@ class MoviesViewController: UITableViewController {
 
     var storageManager: MovieStorageManager?
     var selectedMovie: StoredMovie?
-    private var saveAction: UIAlertAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,8 +120,12 @@ class MoviesViewController: UITableViewController {
     // MARK: - Action
 
     @IBAction func movieNightButtonTouched() {
-        if UserDefaultsManager.getUsername() == nil {
-            askForUsername()
+        if UsernamePersistence.username == nil {
+            let alert = UsernameAlert.askForUsernameAlertController(presenter: self, onSave: {
+                self.performSegue(withIdentifier: Segue.showMovieNight.rawValue,
+                                  sender: nil)
+            }, onCancel: nil)
+            present(alert, animated: true)
         } else {
             performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
         }
@@ -191,40 +194,6 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    private func askForUsername() {
-        let alert = UIAlertController(title: Alert.insertUsername.title,
-                                      message: Alert.insertUsername.message,
-                                      preferredStyle: .alert)
-        saveAction = UIAlertAction(title: Alert.insertUsername.action, style: .default) { _ in
-            guard let textField = alert.textFields?[0], let username = textField.text else {
-                return
-            }
-            UserDefaultsManager.setUsername(username)
-            self.performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-        }
-
-        if let saveAction = saveAction {
-            saveAction.isEnabled = false
-            alert.addAction(saveAction)
-        }
-
-        if let cancelTitle = Alert.insertUsername.cancel {
-            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
-            alert.addAction(cancelAction)
-        }
-
-        alert.addTextField { textField in
-            textField.placeholder = String.usernamePlaceholder
-            textField.delegate = self
-            textField.autocorrectionType = .default
-            textField.autocapitalizationType = .words
-            textField.textContentType = .givenName
-            textField.clearButtonMode = .whileEditing
-        }
-
-        present(alert, animated: true)
-    }
-
     private func updateShortcutItems() {
         var shortcuts = UIApplication.shared.shortcutItems ?? []
 
@@ -277,8 +246,13 @@ extension MoviesViewController: UITextFieldDelegate {
         guard let text = textField.text else { return true }
 
         let entryLength = text.count + string.count - range.length
-        saveAction?.isEnabled = entryLength > 0 ? true : false
+        UsernameAlert.saveAction?.isEnabled = entryLength > 0
 
+        return true
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        UsernameAlert.saveAction?.isEnabled = false
         return true
     }
 }
