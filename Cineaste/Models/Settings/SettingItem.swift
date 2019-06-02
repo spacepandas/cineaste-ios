@@ -23,7 +23,7 @@ enum SettingItem: CaseIterable {
             return .licenseTitle
         case .name:
             if let name = UsernamePersistence.username {
-                return .username + " (\(name))"
+                return .username + ": \(name)"
             } else {
                 return .username
             }
