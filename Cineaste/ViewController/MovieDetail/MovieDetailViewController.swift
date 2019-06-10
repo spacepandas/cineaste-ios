@@ -295,6 +295,10 @@ class MovieDetailViewController: UIViewController {
                 case .success:
                     DispatchQueue.main.async {
                         self.updateElements(for: newState)
+
+                        if #available(iOS 10.3, *) {
+                            AppStoreReview.requestReview()
+                        }
                     }
                 }
             }
@@ -307,6 +311,10 @@ class MovieDetailViewController: UIViewController {
                 case .success:
                     DispatchQueue.main.async {
                         self.updateElements(for: newState)
+
+                        if #available(iOS 10.3, *) {
+                            AppStoreReview.requestReview()
+                        }
                     }
                 }
             }

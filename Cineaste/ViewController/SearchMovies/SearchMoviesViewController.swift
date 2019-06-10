@@ -175,6 +175,10 @@ class SearchMoviesViewController: UIViewController {
                         self.showAlert(withMessage: Alert.insertMovieError)
                     case .success:
                         self.updateUI()
+
+                        if #available(iOS 10.3, *) {
+                            AppStoreReview.requestReview()
+                        }
                     }
                 }
             }
