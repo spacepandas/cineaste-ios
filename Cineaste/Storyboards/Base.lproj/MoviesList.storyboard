@@ -232,6 +232,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addMovieButton" destination="TBD-6U-fPP" id="7bc-IZ-bEe"/>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
                         <outlet property="empyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
