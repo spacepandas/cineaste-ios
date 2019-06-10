@@ -1,5 +1,11 @@
 # Changelog
 
+# 1.10.0
+
+* New: Add "Add Movie" Button in empty lists
+* Improved: Make TextViews selectable to use accessibility features like "Speak" or "Look up"
+* Improved: Add two missing accessibility labels
+
 # 1.9.0
 
 * New: Update your username in the settings
