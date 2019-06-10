@@ -17,6 +17,7 @@ class TextView: UITextView {
 
     func setup() {
         isEditable = false
+        isSelectable = true
         dataDetectorTypes = .link
         linkTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.primaryOrange

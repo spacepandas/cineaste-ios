@@ -13,8 +13,11 @@ class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
     @IBOutlet private weak var empyListTitle: UILabel!
     @IBOutlet private weak var emptyListLabel: UILabel!
+    @IBOutlet weak var emptyListAddMovieButton: UIButton!
+    @IBOutlet weak var emptyViewStackView: UIStackView!
 
     @IBOutlet private weak var startMovieNightButton: UIBarButtonItem!
+    @IBOutlet private weak var addMovieButton: UIBarButtonItem!
 
     var category: MovieListCategory = .watchlist {
         didSet {
@@ -51,8 +54,16 @@ class MoviesViewController: UITableViewController {
         emptyListLabel.textColor = .accentTextOnBlack
         empyListTitle.textColor = .accentTextOnBlack
         empyListTitle.text = .noContentTitle
+        emptyListAddMovieButton.backgroundColor = .primaryOrange
+        emptyListAddMovieButton.setTitleColor(.white, for: .normal)
+        emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
 
-        startMovieNightButton.title = .startMovieNight
+        if #available(iOS 11.0, *) {
+            emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
+        }
+
+        startMovieNightButton.accessibilityLabel = .startMovieNight
+        addMovieButton.accessibilityLabel = .addMovieTitle
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -93,6 +104,10 @@ class MoviesViewController: UITableViewController {
     }
 
     // MARK: - Action
+
+    @IBAction func addMovieButtonTouched(_ sender: Any) {
+        performSegue(withIdentifier: Segue.showSearchFromMovieList.rawValue, sender: nil)
+    }
 
     @IBAction func movieNightButtonTouched() {
         if UsernamePersistence.username == nil {

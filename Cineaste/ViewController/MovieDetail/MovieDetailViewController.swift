@@ -104,6 +104,10 @@ class MovieDetailViewController: UIViewController {
         }
 
         store.dispatch(MovieAction.update(movie: movie))
+
+        if #available(iOS 10.3, *) {
+            AppStoreReview.requestReview()
+        }
     }
 
     @IBAction func deleteMovie() {

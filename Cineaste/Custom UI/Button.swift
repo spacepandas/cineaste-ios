@@ -83,8 +83,8 @@ class BorderedButton: Button {
 
         contentEdgeInsets.top = 10
         contentEdgeInsets.bottom = 10
-        contentEdgeInsets.left = 20
-        contentEdgeInsets.right = 20
+        contentEdgeInsets.left = 25
+        contentEdgeInsets.right = 25
 
         layer.borderColor = UIColor.primaryOrange.cgColor
         layer.borderWidth = 2

@@ -30,6 +30,10 @@ enum SwipeAction {
                     movie.watchedDate = Date()
                     store.dispatch(MovieAction.update(movie: movie))
                 }
+
+                if #available(iOS 10.3, *) {
+                    AppStoreReview.requestReview()
+                }
         }
         action.backgroundColor = backgroundColor
         return action
@@ -53,6 +57,9 @@ enum SwipeAction {
                     movie.watchedDate = Date()
                     store.dispatch(MovieAction.update(movie: movie))
                 }
+
+                AppStoreReview.requestReview()
+
                 success(true)
         }
         action.backgroundColor = backgroundColor
