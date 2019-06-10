@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -233,8 +234,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addMovieButton" destination="TBD-6U-fPP" id="7bc-IZ-bEe"/>
+                        <outlet property="emptyListAddMovieButton" destination="rdZ-uo-jTo" id="dWK-Ku-MSZ"/>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
+                        <outlet property="emptyViewStackView" destination="aWh-Vg-TKc" id="Te2-An-8zx"/>
                         <outlet property="empyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
                         <outlet property="startMovieNightButton" destination="zmW-ZQ-pyd" id="M4t-Vb-bEi"/>
                         <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="STR-IZ-FeX"/>
@@ -247,29 +250,38 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9X-dn-fBg">
-                            <rect key="frame" x="0.0" y="48" width="357" height="94"/>
+                            <rect key="frame" x="0.0" y="64" width="357" height="132"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJB-VM-6sj" customClass="Title2CondensedLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="20" width="317" height="25.5"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-kG-Gg1" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="53.5" width="317" height="20.5"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aWh-Vg-TKc">
+                                    <rect key="frame" x="20" y="20" width="317" height="92"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJB-VM-6sj" customClass="Title2CondensedLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                            <rect key="frame" x="131.5" y="0.0" width="54" height="25.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-kG-Gg1" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
+                                            <rect key="frame" x="137.5" y="33.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdZ-uo-jTo" customClass="BorderedButton" customModule="Cineaste_App" customModuleProvider="target">
+                                            <rect key="frame" x="135.5" y="62" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="addMovieButtonTouched:" destination="Uku-M8-iEE" eventType="touchUpInside" id="b3T-g8-are"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="bGK-kG-Gg1" secondAttribute="bottom" constant="20" symbolic="YES" id="0wJ-UO-1fK"/>
-                                <constraint firstItem="gJB-VM-6sj" firstAttribute="leading" secondItem="U9X-dn-fBg" secondAttribute="leading" constant="20" symbolic="YES" id="26i-vw-zWA"/>
-                                <constraint firstItem="gJB-VM-6sj" firstAttribute="top" secondItem="U9X-dn-fBg" secondAttribute="top" constant="20" symbolic="YES" id="BoZ-Gs-cwC"/>
-                                <constraint firstAttribute="trailing" secondItem="bGK-kG-Gg1" secondAttribute="trailing" constant="20" symbolic="YES" id="H73-3t-zTg"/>
-                                <constraint firstItem="bGK-kG-Gg1" firstAttribute="leading" secondItem="U9X-dn-fBg" secondAttribute="leading" constant="20" symbolic="YES" id="JZ5-bS-cTQ"/>
-                                <constraint firstItem="bGK-kG-Gg1" firstAttribute="top" secondItem="gJB-VM-6sj" secondAttribute="bottom" constant="8" symbolic="YES" id="eSs-i2-n0O"/>
-                                <constraint firstAttribute="trailing" secondItem="gJB-VM-6sj" secondAttribute="trailing" constant="20" symbolic="YES" id="gAB-HB-XZc"/>
+                                <constraint firstItem="aWh-Vg-TKc" firstAttribute="top" secondItem="U9X-dn-fBg" secondAttribute="top" constant="20" symbolic="YES" id="2Hv-co-lNz"/>
+                                <constraint firstAttribute="trailing" secondItem="aWh-Vg-TKc" secondAttribute="trailing" constant="20" symbolic="YES" id="5HI-Fu-pFV"/>
+                                <constraint firstAttribute="bottom" secondItem="aWh-Vg-TKc" secondAttribute="bottom" constant="20" symbolic="YES" id="DFZ-MF-u87"/>
+                                <constraint firstItem="aWh-Vg-TKc" firstAttribute="leading" secondItem="U9X-dn-fBg" secondAttribute="leading" constant="20" symbolic="YES" id="dhX-eg-7sS"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -277,7 +289,7 @@
                         <constraint firstItem="U9X-dn-fBg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CT1-LR-5rS" secondAttribute="top" id="MDl-Jt-kgF"/>
                         <constraint firstItem="CT1-LR-5rS" firstAttribute="leading" secondItem="U9X-dn-fBg" secondAttribute="leading" id="fef-c2-uaI"/>
                         <constraint firstItem="U9X-dn-fBg" firstAttribute="trailing" secondItem="CT1-LR-5rS" secondAttribute="trailing" id="vr2-jA-4jp"/>
-                        <constraint firstItem="U9X-dn-fBg" firstAttribute="centerY" secondItem="CT1-LR-5rS" secondAttribute="centerY" priority="999" constant="20" id="yTc-wf-WoB"/>
+                        <constraint firstItem="U9X-dn-fBg" firstAttribute="centerY" secondItem="CT1-LR-5rS" secondAttribute="centerY" priority="999" constant="55" id="yTc-wf-WoB"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="CT1-LR-5rS"/>
                 </view>
