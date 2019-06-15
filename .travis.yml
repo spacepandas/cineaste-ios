@@ -1,10 +1,10 @@
 language: swift
 osx_image: xcode10.2
 cache:
-- bundler
+  - bundler
 install:
-- bundle install
-- pod install --repo-update
+  - bundle install
+  - pod install --repo-update
 
 addons:
   sonarcloud:
@@ -14,9 +14,7 @@ addons:
 
 jobs:
   include:
-  - script: bundle exec fastlane test
-    name: Unit Tests
-  - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
-    name: SwiftLint
-  - script: sonar-scanner
-    name: Sonar
+    - script: ./tests.sh
+      name: Unit Tests
+    - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
+      name: SwiftLint
