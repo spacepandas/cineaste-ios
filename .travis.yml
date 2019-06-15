@@ -9,7 +9,6 @@ install:
 addons:
   sonarcloud:
     organization: spacepandas
-    token: $SONAR
 
 jobs:
   include:
