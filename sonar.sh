@@ -10,6 +10,7 @@ sonar-scanner \
   -Dsonar.projectName=cineaste-ios \
   -Dsonar.organization=spacepandas \
   -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=$SONAR \
   -Dsonar.sourceEncoding=UTF-8 \
   -Dsonar.language=swift \
   -Dsonar.inclusions=**.swift \
