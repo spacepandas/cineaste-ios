@@ -36,7 +36,6 @@ extension SearchMoviesViewController {
         return UISwipeActionsConfiguration(actions: actions)
     }
 
-    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
         guard let currentState = storageManager?.currentState(for: movie)

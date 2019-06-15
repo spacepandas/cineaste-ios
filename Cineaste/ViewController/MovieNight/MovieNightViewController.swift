@@ -275,7 +275,6 @@ class MovieNightViewController: UITableViewController {
         return title
     }
 
-    @available(iOS 11.0, *)
     private func resizeLargeTitle() {
         guard
             var largeTitleAttributes = navigationController?.navigationBar
@@ -290,7 +289,6 @@ class MovieNightViewController: UITableViewController {
     }
 
     // credits: https://stackoverflow.com/a/49082928
-    @available(iOS 11.0, *)
     private func resizedFont(for title: String) -> UIFont {
         var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
         var largeTitleWidth = title.size(withAttributes: [

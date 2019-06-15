@@ -13,17 +13,6 @@ enum SwipeAction {
     case moveToWatchlist
     case moveToSeen
 
-    func rowAction(with completion: @escaping () -> Void) -> UITableViewRowAction {
-        let action = UITableViewRowAction(
-            style: .normal,
-            title: title) { _, _ in
-                completion()
-        }
-        action.backgroundColor = backgroundColor
-        return action
-    }
-
-    @available(iOS 11.0, *)
     func contextualAction(with completion: @escaping () -> Void) -> UIContextualAction {
         let action = UIContextualAction(
             style: .normal,
