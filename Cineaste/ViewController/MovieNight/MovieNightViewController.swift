@@ -82,9 +82,8 @@ class MovieNightViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            resizeLargeTitle()
-        }
+        resizeLargeTitle()
+
         title = String.movieNightTitle
 
         nearbyLinkPermissionDeniedTextView.delegate = self
@@ -110,15 +109,7 @@ class MovieNightViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         if canUseNearby {
-            if #available(iOS 11.0, *) {
-                // only for large titles
-                startTitleAnimation()
-            } else {
-                let activityIndicator = UIActivityIndicatorView(style: .white)
-                activityIndicator.startAnimating()
-                let rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
-                navigationItem.rightBarButtonItem = rightBarButtonItem
-            }
+            startTitleAnimation()
         }
 
         nearbyMessages = []
@@ -284,7 +275,6 @@ class MovieNightViewController: UITableViewController {
         return title
     }
 
-    @available(iOS 11.0, *)
     private func resizeLargeTitle() {
         guard
             var largeTitleAttributes = navigationController?.navigationBar
@@ -299,7 +289,6 @@ class MovieNightViewController: UITableViewController {
     }
 
     // credits: https://stackoverflow.com/a/49082928
-    @available(iOS 11.0, *)
     private func resizedFont(for title: String) -> UIFont {
         var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
         var largeTitleWidth = title.size(withAttributes: [

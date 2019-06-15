@@ -44,9 +44,7 @@ class SearchMoviesViewController: UIViewController {
 
         view.backgroundColor = UIColor.basicBackground
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-        }
+        navigationItem.largeTitleDisplayMode = .never
 
         loadMovies { [weak self] movies in
             self?.movies = movies
@@ -59,16 +57,6 @@ class SearchMoviesViewController: UIViewController {
 
     func configure(with storageManager: MovieStorageManager) {
         self.storageManager = storageManager
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if #available(iOS 11.0, *) {
-            return
-        } else {
-            resultSearchController.searchBar.sizeToFit()
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -131,12 +119,8 @@ class SearchMoviesViewController: UIViewController {
     }
 
     func configureSearchController() {
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = resultSearchController
-            navigationItem.hidesSearchBarWhenScrolling = false
-        } else {
-            tableView.tableHeaderView = resultSearchController.searchBar
-        }
+        navigationItem.searchController = resultSearchController
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         definesPresentationContext = true
     }
@@ -176,9 +160,7 @@ class SearchMoviesViewController: UIViewController {
                     case .success:
                         self.updateUI()
 
-                        if #available(iOS 10.3, *) {
-                            AppStoreReview.requestReview()
-                        }
+                        AppStoreReview.requestReview()
                     }
                 }
             }

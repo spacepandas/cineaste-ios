@@ -28,14 +28,12 @@ class SearchController: UISearchController {
         isActive = false
         searchBar.sizeToFit()
 
-        if #available(iOS 11.0, *) {
-            guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
-                let backgroundview = textfield.subviews.first
-                else { return }
-            backgroundview.backgroundColor = .basicWhite
-            backgroundview.layer.cornerRadius = 10
-            backgroundview.clipsToBounds = true
-        }
+        guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
+            let backgroundview = textfield.subviews.first
+            else { return }
+        backgroundview.backgroundColor = .basicWhite
+        backgroundview.layer.cornerRadius = 10
+        backgroundview.clipsToBounds = true
     }
 
 }

@@ -22,13 +22,11 @@ class OrangeNavigationController: UINavigationController {
             .foregroundColor: UIColor.basicWhite
         ]
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .automatic
-            navigationBar.prefersLargeTitles = true
-            navigationBar.largeTitleTextAttributes = [
-                .foregroundColor: UIColor.basicWhite
-            ]
-        }
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.prefersLargeTitles = true
+        navigationBar.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.basicWhite
+        ]
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

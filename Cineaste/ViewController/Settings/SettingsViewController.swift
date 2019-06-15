@@ -85,10 +85,7 @@ extension SettingsViewController {
             in: .import
         )
         documentPickerVC.delegate = self
-
-        if #available(iOS 11.0, *) {
-            documentPickerVC.allowsMultipleSelection = false
-        }
+        documentPickerVC.allowsMultipleSelection = false
 
         present(documentPickerVC, animated: true)
     }

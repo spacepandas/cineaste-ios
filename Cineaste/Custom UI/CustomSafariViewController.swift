@@ -10,20 +10,9 @@ import UIKit
 import SafariServices
 
 class CustomSafariViewController: SFSafariViewController {
-    @available(iOS 11.0, *)
-    override init(url URL: URL, configuration: SFSafariViewController.Configuration) {
-        super.init(url: URL, configuration: configuration)
+    init(url: URL) {
+        super.init(url: url, configuration: .init())
 
-        setup()
-    }
-
-    override init(url URL: URL, entersReaderIfAvailable: Bool) {
-        super.init(url: URL, entersReaderIfAvailable: entersReaderIfAvailable)
-
-        setup()
-    }
-
-    private func setup() {
         preferredBarTintColor = .basicBlack
         preferredControlTintColor = .basicWhite
     }

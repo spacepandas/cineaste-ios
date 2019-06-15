@@ -57,16 +57,6 @@ class MovieMatchViewController: UITableViewController {
         filteredMoviesWithNumber = moviesWithNumber
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if #available(iOS 11.0, *) {
-            return
-        } else {
-            resultSearchController.searchBar.sizeToFit()
-        }
-    }
-
     // MARK: - Configuration
 
     private func configureTableView() {
@@ -78,12 +68,8 @@ class MovieMatchViewController: UITableViewController {
     }
 
     private func configureSearchController() {
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = resultSearchController
-            navigationItem.hidesSearchBarWhenScrolling = true
-        } else {
-            tableView.tableHeaderView = resultSearchController.searchBar
-        }
+        navigationItem.searchController = resultSearchController
+        navigationItem.hidesSearchBarWhenScrolling = true
 
         definesPresentationContext = true
     }
