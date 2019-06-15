@@ -1,13 +1,22 @@
 language: swift
 osx_image: xcode10.2
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
-  - pod install --repo-update
+- bundle install
+- pod install --repo-update
+
+addons:
+  sonarcloud:
+    organization: spacepandas
+    token:
+      secure: KUjw6TwuCRf5AkvosqLqgvlBS4O/v3Bc1YyQ8ufdHveJHlkwKZer870ckWcS2anAQmRs0uny/fTS5Mz1DLdZDIdesdYEiwe5OA5qT05QbelKSuaZ9+2HoNmaFre7Ar35yK0EVcKREDuOODj2jyfVAC9o4i9+zzAKyPyU7SD3YNi5hHLC/1ehRxK/OeT2iDuwvtdCZW8lQwzUB9objFxx7pgKA9DG5do8tdDD1B/Zoznoqwa71T2wtZnPDlGaCuOIvDr9Kwe2tjRif5hVaolKftEWPRpUoduLwlWqRB3U34VIgz+Vag6Y4KaoGoLO6vEQb4zDlwvynfSqGyiETAs7LnDb3isQuRtW5ZmtfPoEAurfCGQyYgaIkcCVjIi2tTWBZ7CxVtfb0VqJq2jULtBwPw7jGytTGZNPl3vJfswDJ5QdkB7X4vOl33lDh1DffAa1vmqkCDcY8BtyHIg6Pwn6UDsn7cEoaiou1CaWDT6+i3Y+ecp1PdlZurduA+JIf6U16B0vG7ZcXGuprN3yYRxON1xg98Bdiu96qN+XRY70rMzYtHIZlvP/l27inaY4Gwt/mHMaZy2w61HHE3VAyu/jkr/TH/zlYbK2CoiGYV21M3LjOW3QjCe/RQXecUNRyRvrt+iwN1j9dvJJWB0C16C0gz5xq/krV9I5VsOCo30Ja6o=
+
 jobs:
   include:
-    - script: bundle exec fastlane test
-      name: "Unit Tests"
-    - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
-      name: "SwiftLint"
+  - script: bundle exec fastlane test
+    name: Unit Tests
+  - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
+    name: SwiftLint
+  - script: sonar-scanner
+    name: Sonar
