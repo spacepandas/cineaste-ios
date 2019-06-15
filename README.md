@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/spacepandas/cineaste-ios.svg?branch=master)](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
-[![platform](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_10+-lightgrey.svg)
+[![platform](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)
 [![languages](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)
 
 An iOS (and Android) application to manage movies you would like to see and movies you have seen.

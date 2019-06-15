@@ -17,12 +17,8 @@ extension String {
 
     private static let iso8601Formatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
-        if #available(iOS 11.0, *) {
-            formatter.formatOptions = [.withInternetDateTime,
-                                       .withFractionalSeconds]
-        } else {
-            formatter.formatOptions = [.withInternetDateTime]
-        }
+        formatter.formatOptions = [.withInternetDateTime,
+                                   .withFractionalSeconds]
         return formatter
     }()
 

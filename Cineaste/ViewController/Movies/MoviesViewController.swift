@@ -53,9 +53,7 @@ class MoviesViewController: UITableViewController {
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
         emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
 
-        if #available(iOS 11.0, *) {
-            emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
-        }
+        emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
 
         startMovieNightButton.accessibilityLabel = .startMovieNight
         addMovieButton.accessibilityLabel = .addMovieTitle
@@ -89,16 +87,6 @@ class MoviesViewController: UITableViewController {
 
         fetchedResultsManager.refetch(for: category.predicate)
         resultSearchController.isActive = false
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if #available(iOS 11.0, *) {
-            return
-        } else {
-            resultSearchController.searchBar.sizeToFit()
-        }
     }
 
     // MARK: - Navigation
@@ -184,12 +172,8 @@ class MoviesViewController: UITableViewController {
     }
 
     private func configureSearchController() {
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = resultSearchController
-            navigationItem.hidesSearchBarWhenScrolling = true
-        } else {
-            tableView.tableHeaderView = resultSearchController.searchBar
-        }
+        navigationItem.searchController = resultSearchController
+        navigationItem.hidesSearchBarWhenScrolling = true
 
         definesPresentationContext = true
     }

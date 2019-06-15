@@ -40,21 +40,9 @@ class MovieNightUserCell: UITableViewCell {
 
         let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
 
-        if #available(iOS 11.0, *) {
-            contentSizeCategory.isAccessibilityCategory
-                ? updateToVerticalLayout()
-                : updateToHorizontalLayout()
-        } else {
-            if contentSizeCategory == .accessibilityMedium
-                || contentSizeCategory == .accessibilityLarge
-                || contentSizeCategory == .accessibilityExtraLarge
-                || contentSizeCategory == .accessibilityExtraExtraLarge
-                || contentSizeCategory == .accessibilityExtraExtraExtraLarge {
-                updateToVerticalLayout()
-            } else {
-                updateToHorizontalLayout()
-            }
-        }
+        contentSizeCategory.isAccessibilityCategory
+            ? updateToVerticalLayout()
+            : updateToHorizontalLayout()
     }
 
     private func updateToVerticalLayout() {

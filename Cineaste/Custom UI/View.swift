@@ -204,32 +204,6 @@ class VoteView: View {
 
     @objc
     func setBorderWidth() {
-        let borderWidth: CGFloat
-
-        if #available(iOS 11.0, *) {
-            borderWidth = UIFontMetrics.default.scaledValue(for: 1)
-        } else {
-            switch UIApplication.shared.preferredContentSizeCategory {
-            case .extraSmall,
-                 .small,
-                 .medium,
-                 .large,
-                 .extraLarge:
-                borderWidth = 1
-            case .extraExtraLarge,
-                 .extraExtraExtraLarge,
-                 .accessibilityMedium,
-                 .accessibilityLarge:
-                borderWidth = 2
-            case .accessibilityExtraLarge,
-                 .accessibilityExtraExtraLarge,
-                 .accessibilityExtraExtraExtraLarge:
-                borderWidth = 3
-            default:
-                borderWidth = 1
-            }
-        }
-
-        layer.borderWidth = borderWidth
+        layer.borderWidth = UIFontMetrics.default.scaledValue(for: 1)
     }
 }
