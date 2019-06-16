@@ -5,9 +5,14 @@ cache:
 install:
   - bundle install
   - pod install --repo-update
+
+addons:
+  sonarcloud:
+    organization: spacepandas
+
 jobs:
   include:
-    - script: bundle exec fastlane test
-      name: "Unit Tests"
-    - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml 
-      name: "SwiftLint"
+    - script: ./tests.sh
+      name: Unit Tests
+    - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
+      name: SwiftLint
