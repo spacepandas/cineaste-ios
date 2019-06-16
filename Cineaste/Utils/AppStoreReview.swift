@@ -22,7 +22,6 @@ enum AppStoreReview {
         return count
     }
 
-    @available(iOS 10.3, *)
     static func requestReview() {
         guard let currentBuildVersion = Bundle.main
             .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String

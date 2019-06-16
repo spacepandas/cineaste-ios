@@ -64,9 +64,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-        }
+        navigationItem.largeTitleDisplayMode = .never
 
         setupLocalization()
         configureElements()
@@ -105,9 +103,7 @@ class MovieDetailViewController: UIViewController {
 
         store.dispatch(MovieAction.update(movie: movie))
 
-        if #available(iOS 10.3, *) {
-            AppStoreReview.requestReview()
-        }
+        AppStoreReview.requestReview()
     }
 
     @IBAction func deleteMovie() {
@@ -161,9 +157,7 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private
 
     private func configureElements() {
-        if #available(iOS 11.0, *) {
-            contentStackView.setCustomSpacing(30, after: moreInformationStackView)
-        }
+        contentStackView.setCustomSpacing(30, after: moreInformationStackView)
 
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black

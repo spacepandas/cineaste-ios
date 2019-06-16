@@ -13,33 +13,6 @@ enum SwipeAction {
     case moveToWatchlist
     case moveToSeen
 
-    func rowAction(for movie: Movie) -> UITableViewRowAction {
-        let action = UITableViewRowAction(
-            style: .normal,
-            title: title) { _, _ in
-                var movie = movie
-
-                switch self {
-                case .delete:
-                    store.dispatch(MovieAction.delete(movie: movie))
-                case .moveToWatchlist:
-                    movie.watched = false
-                    store.dispatch(MovieAction.update(movie: movie))
-                case .moveToSeen:
-                    movie.watched = true
-                    movie.watchedDate = Date()
-                    store.dispatch(MovieAction.update(movie: movie))
-                }
-
-                if #available(iOS 10.3, *) {
-                    AppStoreReview.requestReview()
-                }
-        }
-        action.backgroundColor = backgroundColor
-        return action
-    }
-
-    @available(iOS 11.0, *)
     func contextualAction(for movie: Movie) -> UIContextualAction {
         let action = UIContextualAction(
             style: .normal,
