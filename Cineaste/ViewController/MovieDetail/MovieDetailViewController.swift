@@ -248,13 +248,7 @@ class MovieDetailViewController: UIViewController {
 
             descriptionTextView.text = movie.overview
 
-            if let posterPath = movie.posterPath {
-                posterImageView.kf.indicatorType = .activity
-                let posterUrl = Movie.posterUrl(from: posterPath, for: .original)
-                posterImageView.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder)
-            } else {
-                posterImageView.image = UIImage.posterPlaceholder
-            }
+            posterImageView.loadingImage(from: movie.posterPath, in: .original)
         }
     }
 

@@ -36,13 +36,7 @@ class MovieMatchCell: UITableViewCell {
                              action: #selector(startMovieNightButtonTouched),
                              for: .touchUpInside)
 
-        if let posterPath = movie.posterPath {
-            let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-            posterImageView.kf.setImage(with: posterUrl,
-                                        placeholder: UIImage.posterPlaceholder)
-        } else {
-            posterImageView.image = UIImage.posterPlaceholder
-        }
+        posterImageView.loadingImage(from: movie.posterPath, in: .small)
     }
 
     func configure(with movie: NearbyMovie,

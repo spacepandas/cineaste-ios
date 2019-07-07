@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class PosterViewController: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -73,7 +72,6 @@ class PosterViewController: UIViewController {
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.delegate = self
         scrollView.addGestureRecognizer(panGestureRecognizer)
-
     }
 
     func configure(with posterPath: String) {

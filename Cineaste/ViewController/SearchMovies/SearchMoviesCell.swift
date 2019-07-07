@@ -54,13 +54,7 @@ class SearchMoviesCell: UITableViewCell {
             stateImageView.image = #imageLiteral(resourceName: "watchlist-badge")
         }
 
-        if let posterPath = movie.posterPath {
-            poster.kf.indicatorType = .activity
-            let posterUrl = Movie.posterUrl(from: posterPath, for: .small)
-            poster.kf.setImage(with: posterUrl, placeholder: UIImage.posterPlaceholder)
-        } else {
-            poster.image = UIImage.posterPlaceholder
-        }
+        poster.loadingImage(from: movie.posterPath, in: .small)
 
         applyAccessibility(with: movie, for: state)
     }
