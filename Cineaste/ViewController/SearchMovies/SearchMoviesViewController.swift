@@ -20,7 +20,7 @@ class SearchMoviesViewController: UIViewController {
 
     var watchStates: [Movie: WatchState] = [:]
 
-    private var storedIDs: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64]) = ([], []) {
+    private var storedIDs = StoredMovieIDs(watchListMovieIDs: [], seenMovieIDs: []) {
         didSet {
             updateMovies()
         }
@@ -92,6 +92,7 @@ class SearchMoviesViewController: UIViewController {
         store.subscribe(self) { subscription in
             subscription
                 .select(SearchMoviesViewController.select)
+                .skipRepeats()
         }
     }
 
@@ -172,15 +173,12 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: StoreSubscriber {
-    struct State {
-        let storedIDs: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64])
+    struct State: Equatable {
+        let storedIDs: StoredMovieIDs
     }
 
     private static func select(state: AppState) -> State {
-        return .init(
-            storedIDs: (state.movies.filter { !($0.watched ?? false) }.map { $0.id },
-                        state.movies.filter { ($0.watched ?? true) }.map { $0.id })
-        )
+        return .init(storedIDs: state.storedIDs)
     }
 
     func newState(state: State) {
