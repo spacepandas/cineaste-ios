@@ -349,4 +349,3 @@ extension MovieNightViewController: Instantiable {
     static var storyboard: Storyboard { return .movieNight }
     static var storyboardID: String? { return "MovieNightViewController" }
 }
-//swiftlint:enable type_body_length
