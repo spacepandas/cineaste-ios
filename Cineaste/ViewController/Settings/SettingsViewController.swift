@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReSwift
 
 class SettingsViewController: UITableViewController {
     @IBOutlet private weak var footerView: UIView!
@@ -15,7 +14,6 @@ class SettingsViewController: UITableViewController {
 
     let settings = SettingItem.allCases
     var selectedSetting: SettingItem?
-    var movies: [Movie] = []
 
     var docController: UIDocumentInteractionController?
 
@@ -37,14 +35,6 @@ class SettingsViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-
-        store.subscribe(self)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        store.unsubscribe(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -119,13 +109,6 @@ extension SettingsViewController: UITextFieldDelegate {
         UsernameAlert.saveAction?.isEnabled = entryLength > 0
 
         return true
-    }
-}
-
-extension SettingsViewController: StoreSubscriber {
-    func newState(state: AppState) {
-        movies = state.movies
-            .sorted(by: SortDescriptor.sortByTitle)
     }
 }
 

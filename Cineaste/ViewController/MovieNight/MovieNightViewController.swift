@@ -121,7 +121,11 @@ class MovieNightViewController: UITableViewController {
         publishWatchlistMovies()
         subscribeToNearbyMessages()
 
-        store.subscribe(self)
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MovieNightViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -338,7 +342,15 @@ extension MovieNightViewController: UITextViewDelegate {
 }
 
 extension MovieNightViewController: StoreSubscriber {
-    func newState(state: AppState) {
+    struct State: Equatable {
+        let movies: Set<Movie>
+    }
+
+    private static func select(state: AppState) -> State {
+        return .init(movies: state.movies)
+    }
+
+    func newState(state: State) {
         movies = state.movies
             .filter { !($0.watched ?? false) }
             .sorted { $0.title > $1.title }

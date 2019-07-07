@@ -73,7 +73,11 @@ class MovieDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        store.subscribe(self)
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MovieDetailViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -290,7 +294,19 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 }
 
 extension MovieDetailViewController: StoreSubscriber {
-    func newState(state: AppState) {
+    struct State: Equatable {
+        let selectedMovieId: Int64?
+        let movies: Set<Movie>
+    }
+
+    private static func select(state: AppState) -> State {
+        return .init(
+            selectedMovieId: state.selectedMovieId,
+            movies: state.movies
+        )
+    }
+
+    func newState(state: State) {
         guard let selectedMovieId = state.selectedMovieId else { return }
 
         if let movie = state.movies.first(where: { $0.id == selectedMovieId }) {

@@ -76,7 +76,11 @@ class MoviesViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
 
-        store.subscribe(self)
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MoviesViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -228,7 +232,15 @@ extension MoviesViewController: UITextFieldDelegate {
 }
 
 extension MoviesViewController: StoreSubscriber {
-    func newState(state: AppState) {
+    struct State: Equatable {
+        let movies: Set<Movie>
+    }
+
+    private static func select(state: AppState) -> State {
+        return .init(movies: state.movies)
+    }
+
+    func newState(state: State) {
         movies = state.movies
             .filter { $0.watched == category.watched }
             .sorted(by: category.watched

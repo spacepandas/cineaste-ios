@@ -90,10 +90,8 @@ class SearchMoviesViewController: UIViewController {
         }
 
         store.subscribe(self) { subscription in
-            subscription.select { state in
-                (state.movies.filter { !($0.watched ?? false) }.map { $0.id },
-                 state.movies.filter { ($0.watched ?? true) }.map { $0.id })
-            }
+            subscription
+                .select(SearchMoviesViewController.select)
         }
     }
 
@@ -174,8 +172,19 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: StoreSubscriber {
-    func newState(state: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64])) {
-        storedIDs = state
+    struct State {
+        let storedIDs: (watchListMovieIDs: [Int64], seenMovieIDs: [Int64])
+    }
+
+    private static func select(state: AppState) -> State {
+        return .init(
+            storedIDs: (state.movies.filter { !($0.watched ?? false) }.map { $0.id },
+                        state.movies.filter { ($0.watched ?? true) }.map { $0.id })
+        )
+    }
+
+    func newState(state: State) {
+        storedIDs = state.storedIDs
     }
 }
 
