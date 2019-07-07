@@ -51,8 +51,8 @@ class CoreDataMigratorTests: XCTestCase {
         try CoreDataMigrator(container: container).clearCoreData()
 
         // Then
-        let fr: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
-        XCTAssertThrowsError(try fr.execute())
+        let fetchRequest: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
+        XCTAssertThrowsError(try fetchRequest.execute())
         XCTAssert(container.persistentStoreCoordinator.persistentStores.isEmpty)
     }
 }
