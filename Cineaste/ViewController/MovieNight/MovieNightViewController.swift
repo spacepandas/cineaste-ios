@@ -8,7 +8,6 @@
 
 import UIKit
 
-//swiftlint:disable type_body_length
 class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var permissionDeniedView: UIView!
     @IBOutlet private weak var nearbyIcon: UIImageView!
@@ -340,4 +339,3 @@ extension MovieNightViewController: Instantiable {
     static var storyboard: Storyboard { return .movieNight }
     static var storyboardID: String? { return "MovieNightViewController" }
 }
-//swiftlint:enable type_body_length
