@@ -14,7 +14,7 @@ enum Constants {
         static let shareMovieUrl = "https://www.themoviedb.org/movie/"
     }
 
-    static let appStoreUrl = "https://itunes.apple.com/app/id1402748020"
+    static let appStoreUrl = "https://apps.apple.com/app/id1402748020"
 
     enum PosterSize {
         case small
