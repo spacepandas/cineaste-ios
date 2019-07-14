@@ -10,8 +10,8 @@ import UIKit
 
 extension SearchMoviesViewController {
     func animateSwipeActionHint() {
-        if let cell = tableView.visibleCells.first as? SearchMoviesCell {
-            cell.animateSwipeHint()
-        }
+        guard let cell = tableView.visibleCells.first as? SearchMoviesCell else { return }
+
+        cell.animateSwipeHint()
     }
 }
