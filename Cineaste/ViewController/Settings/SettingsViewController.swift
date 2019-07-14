@@ -78,9 +78,15 @@ class SettingsViewController: UITableViewController {
 
 extension SettingsViewController {
     func reloadUsernameCell() {
-        guard let rowForUsername = settings.firstIndex(of: SettingItem.name) else { return }
-        let indexPath = IndexPath(row: rowForUsername, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .none)
+        UIView.performWithoutAnimation {
+            let tableViewOffset = tableView.contentOffset
+
+            guard let rowForUsername = settings.firstIndex(of: SettingItem.name) else { return }
+            let indexPath = IndexPath(row: rowForUsername, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+
+            tableView.contentOffset = tableViewOffset
+        }
     }
 
     func importMovies() {
