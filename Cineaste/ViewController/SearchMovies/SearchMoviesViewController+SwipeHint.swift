@@ -9,6 +9,7 @@
 import UIKit
 
 extension SearchMoviesViewController {
+    /// Shows a hint for the swipe actions of the table view cells.
     func animateSwipeActionHint() {
         guard let cell = tableView.visibleCells.first as? SearchMoviesCell else { return }
 
