@@ -96,6 +96,10 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     // MARK: - Actions
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {

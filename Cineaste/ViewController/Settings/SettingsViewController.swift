@@ -41,9 +41,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        guard let rowForUsername = settings.firstIndex(of: SettingItem.name) else { return }
-        let indexPath = IndexPath(row: rowForUsername, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .none)
+        reloadUsernameCell()
     }
 
     override func viewDidLayoutSubviews() {
@@ -79,6 +77,14 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
+    func reloadUsernameCell() {
+        UIView.performWithoutAnimation {
+            guard let rowForUsername = settings.firstIndex(of: SettingItem.name) else { return }
+            let indexPath = IndexPath(row: rowForUsername, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+
     func importMovies() {
         let documentPickerVC = UIDocumentPickerViewController(
             documentTypes: [String.exportMoviesFileUTI],

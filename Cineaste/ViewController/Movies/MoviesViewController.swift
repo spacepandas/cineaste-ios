@@ -89,6 +89,10 @@ class MoviesViewController: UITableViewController {
         resultSearchController.isActive = false
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
