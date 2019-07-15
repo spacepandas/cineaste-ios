@@ -20,23 +20,17 @@ extension SearchMoviesViewController {
         rememberThatSwipeActionHintWasAnimated()
     }
 
-    /// MARK: Persistency
-
-    private var swipeActionHintShowCountKey: String {
-        return "cineaste-swipeActionHintShowCount"
-    }
-
     /// Determines whether the swipe action hint should be animated.
     private var shouldAnimateShowSwipeActionHint: Bool {
         let maximumNumberOfTimesToShowHint = 3
-        let numberOfTimesHintWasShown = UserDefaults.standard.integer(forKey: swipeActionHintShowCountKey)
+        let numberOfTimesHintWasShown = SwipeActionHintShowCountPersistence.swipeActionHintShowCount
 
         return numberOfTimesHintWasShown < maximumNumberOfTimesToShowHint
     }
 
     private func rememberThatSwipeActionHintWasAnimated() {
-        let numberOfTimesHintWasShown = UserDefaults.standard.integer(forKey: swipeActionHintShowCountKey)
+        let numberOfTimesHintWasShown = SwipeActionHintShowCountPersistence.swipeActionHintShowCount
 
-        UserDefaults.standard.set(numberOfTimesHintWasShown + 1, forKey: swipeActionHintShowCountKey)
+        SwipeActionHintShowCountPersistence.swipeActionHintShowCount = numberOfTimesHintWasShown + 1
     }
 }
