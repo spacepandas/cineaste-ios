@@ -33,7 +33,7 @@ extension SettingsViewController {
             let alert = UsernameAlert.askForUsernameAlertController(
                 presenter: self,
                 onSave: {
-                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                    self.reloadUsernameCell()
                 },
                 onCancel: {
                     tableView.deselectRow(at: indexPath, animated: true)
