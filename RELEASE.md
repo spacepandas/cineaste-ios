@@ -2,7 +2,7 @@
 
 ## TestFlight
 
-* Update `CHANGELOG.md` with keywords `Fixed, New, Improved`
+* Update `CHANGELOG.md` with keywords `New, Fixed, Improved`
 * Update version number in `Fastfile` 
 * Run `bundle exec fastlane beta`
 * Set update text in console

@@ -1,128 +1,211 @@
 # Changelog
 
+# 1.11.0
+
+## Fixed
+
+* Don't change status bar style when tapping "Search" key ([#101](https://github.com/spacepandas/cineaste-ios/pull/101) by @wtimme)
+* Disable Smart Quotes in Search Bar ([#102](https://github.com/spacepandas/cineaste-ios/pull/102) by @wtimme)
+* Reload Username Row without Animation ([#106](https://github.com/spacepandas/cineaste-ios/pull/106) by @wtimme)
+
+## Improved
+
+* Show "Swipe Action" Hint only three times ([#104](https://github.com/spacepandas/cineaste-ios/pull/104) by @wtimme)
+* Reword to indicate a Movie was added, not "watched" ([#108](https://github.com/spacepandas/cineaste-ios/pull/108) by @wtimme)
+
 # 1.10.0
 
-* New: Add "Add Movie" Button in empty lists
-* Improved: Make TextViews selectable to use accessibility features like "Speak" or "Look up"
-* Improved: Add two missing accessibility labels
+## New
+
+* Add "Add Movie" Button in empty lists
+
+## Improved
+
+* Make TextViews selectable to use accessibility features like "Speak" or "Look up"
+* Add two missing accessibility labels
 
 # 1.9.0
 
-* New: Update your username in the settings
-* Fixed: Display movie titles in search in full length and not trimmed when they are too long. 
+## New
+
+* Update your username in the settings
+
+## Fixed
+
+* Display movie titles in search in full length and not trimmed when they are too long
 
 # 1.8.4
 
-* Improved: Make description in movie lists bigger
-* Improved: Higher contrast in tab bar
-* Improved: Update wording in...
+## Fixed
+
+* Scroll table view to top when tapping on the tab bar ([#84](https://github.com/spacepandas/cineaste-ios/pull/84) by @xavierLowmiller)
+
+## Improved
+
+* Make description in movie lists bigger
+* Higher contrast in tab bar
+* Update wording in...
     * empty lists
     * import and export description
     * button in MovieMatch View Controller
     * permissions
     * ask for username alert
-* Improved: Fix scrolling in settings
-* Improved: Add configuration for username input textfield
+* Fix scrolling in settings
+* Add configuration for username input textfield
 
 # 1.8.3
 
-* Improved: Update some wording
-* Improved: Add minimum width for vote view
+## Improved
+
+* Update some wording
+* Add minimum width for vote view
 
 # 1.8.2
 
-* Fixed: Correctly complete Swipe Action after a swipe
+## Fixed
+
+* Correctly complete Swipe Action after a swipe
 
 # 1.8.1
 
-* Fixed: Correct behaviour when deleting a movie in Movie Detail
+## Fixed
 
-## 1.8.0
+* Correct behaviour when deleting a movie in Movie Detail
 
-[PR #82](https://github.com/spacepandas/cineaste-ios/pull/82)
+# 1.8.0
 
-* Improved: Renew Layout in Movie Detail
-* Fixed: Let voting information resize correctly in Movie Detail
+## Fixed 
 
-## 1.7.0
+* Let voting information resize correctly in Movie Detail
 
-[PR #79](https://github.com/spacepandas/cineaste-ios/pull/79)
+## Improved
 
-* Improved: Update app to support Accessibility Features like Dynamic Type and Voice Over.
+* Renew Layout in Movie Detail ([#82](https://github.com/spacepandas/cineaste-ios/pull/82))
 
-## 1.6.1
+# 1.7.0
 
-[PR #76](https://github.com/spacepandas/cineaste-ios/pull/76)
+## Improved
 
-* Fixed: Allow shrinking of Hint Label
-* Fixed: Use nonbreaking Space in voting information
+* Update app to support Accessibility Features like Dynamic Type and Voice Over ([#79](https://github.com/spacepandas/cineaste-ios/pull/79))
 
-## 1.6.0
+# 1.6.1
 
-[PR #75](https://github.com/spacepandas/cineaste-ios/pull/75)
+## Fixed
 
-* New: Show a hint for swipe actions in search
+* Allow shrinking of Hint Label and use nonbreaking Space in voting information ([#76](https://github.com/spacepandas/cineaste-ios/pull/76))
 
-## 1.5.0 
+# 1.6.0
 
-[PR #74](https://github.com/spacepandas/cineaste-ios/pull/74)
+## New
 
-* New: Update Search with a new layout, like an indicator about a movies watch state.
+* Show a hint for swipe actions in search ([#75](https://github.com/spacepandas/cineaste-ios/pull/75))
 
-## 1.4.0
+# 1.5.0 
 
-[PR #67](https://github.com/spacepandas/cineaste-ios/pull/67)
+## New
 
-* New: Reload Movie Details with Pull To Refresh on Movie Lists
+* Update Search with a new layout, like an indicator about a movies watch state([#74](https://github.com/spacepandas/cineaste-ios/pull/74))
 
-## 1.3.4
+# 1.4.0
 
-* Fixed: We all know smartphones nowadays perform so well! But we don't want to exaggerate it that much, so we fixed an infinite loop which used a bit too much of the memory - with only three lines of code. Yay!
-* Improved: When you start a movie night, you can now see detailed information for a movie from watchlist of a friend as well.
+## New
 
-## 1.3.3
+* Reload Movie Details with Pull To Refresh on Movie Lists 
+([#67](https://github.com/spacepandas/cineaste-ios/pull/67))
 
-* Fixed: Update the localizable key for unknown release date
-* Fixed: Layout on smaller devices when nearby permission is denied
-* Fixed: Update localized description when nearby permission is denied
-* Improved: Only animate title when nearby permission is granted
-* Improved: Resize large title in MovieNightVC
+# 1.3.4
 
-## 1.3.2
+## Fixed
 
-* Fixed: An error when importing a movie without a release date 
-* Improved: Movie night screens, like handling permission of nearby and displaying a live update of used resources of nearby
+* We all know smartphones nowadays perform so well! But we don't want to exaggerate it that much, so we fixed an infinite loop which used a bit too much of the memory - with only three lines of code. Yay!
 
-## 1.3.1
+## Improved
 
-* Fixed: Fix 3D touch preview in search
-* Improved: Layout, icons, colors, wording
+* When you start a movie night, you can now see detailed information for a movie from watchlist of a friend as well.
 
-## 1.3.0
+# 1.3.3
 
-* New: The poster can now be dismissed with a swipe
-* New: You can hide and show the toolbar with a tap in the poster view
-* Improved: When highlighting a cell the orange separator won't change its color anymore.
+## Fixed
 
-## 1.2.1 
+* Update the localizable key for unknown release date
+* Layout on smaller devices when nearby permission is denied
+* Update localized description when nearby permission is denied
 
-* Improved: Add shadow in poster mask in movie detail, especially useful for posters with large white areas
+## Improved
 
-## 1.2.0
+* Only animate title when nearby permission is granted
+* Resize large title in MovieNightVC
 
-* Fixed: When you pressed very hard on a movie in your search results, you could see a preview of the first movie of the list. This now works as expected. So you see the preview of the movie, on which you pressed very hard. Watch out, this is only available for Force Touch compatible iPhones. ;)
-* New: You can search for a specific movie in your movie lists. 
-* New: There is a link in the settings tab, where you can rate the app on the App Store.
-* Improved: Without searching for a specific movie, you now see more movies, which you can discover in the search, this is due to "pagination".
+# 1.3.2
 
-## 1.1.0
+## Fixed
 
-* Fixed: A crash is fixed, when more than one friend left the list of members for a movie night.
-* New: The release date of the movies is now customized to the region your phone is set to.
-* Improved: The poster in the movie detail is now displayed in original size
-* Improved: The correct poster will be displayed within the search controller even with bad network connection.
-* Improved: When starting a movie night for the first time, there is now an explanation about what is happening.
+* An error when importing a movie without a release date 
 
-## 1.0.0
+## Improved
 
-* New: Everything - First release
+* Movie night screens, like handling permission of nearby and displaying a live update of used resources of nearby
+
+# 1.3.1
+
+## Fixed
+
+* Fix 3D touch preview in search
+
+## Improved
+
+* Layout, icons, colors, wording
+
+# 1.3.0
+
+## New
+
+* The poster can now be dismissed with a swipe
+* You can hide and show the toolbar with a tap in the poster view
+
+## Improved
+
+* When highlighting a cell the orange separator won't change its color anymore.
+
+# 1.2.1 
+
+## Improved
+
+* Add shadow in poster mask in movie detail, especially useful for posters with large white areas
+
+# 1.2.0
+
+## New
+
+* You can search for a specific movie in your movie lists. 
+* There is a link in the settings tab, where you can rate the app on the App Store.
+
+## Fixed
+
+* When you pressed very hard on a movie in your search results, you could see a preview of the first movie of the list. This now works as expected. So you see the preview of the movie, on which you pressed very hard. Watch out, this is only available for Force Touch compatible iPhones. ;)
+
+## Improved
+
+* Without searching for a specific movie, you now see more movies, which you can discover in the search, this is due to "pagination".
+
+# 1.1.0
+
+## New
+
+* The release date of the movies is now customized to the region your phone is set to.
+
+## Fixed
+
+* A crash is fixed, when more than one friend left the list of members for a movie night.
+
+## Improved
+
+* The poster in the movie detail is now displayed in original size
+* The correct poster will be displayed within the search controller even with bad network connection.
+* When starting a movie night for the first time, there is now an explanation about what is happening.
+
+# 1.0.0
+
+## New
+
+* Everything - First release
