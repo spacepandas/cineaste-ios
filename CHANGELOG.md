@@ -1,5 +1,16 @@
 # Changelog
 
+# Upcoming Release
+
+## New
+* 
+
+## Fixed
+* 
+
+## Improved
+* 
+
 # 1.11.0
 
 ## Fixed
