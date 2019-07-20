@@ -99,9 +99,7 @@ class SearchMoviesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let cell = tableView.visibleCells.first as? SearchMoviesCell {
-            cell.animateSwipeHint()
-        }
+        animateSwipeActionHint()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -121,6 +119,10 @@ class SearchMoviesViewController: UIViewController {
         default:
             return
         }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     // MARK: - Actions

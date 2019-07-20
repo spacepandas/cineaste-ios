@@ -34,6 +34,8 @@ class SearchController: UISearchController {
         backgroundview.backgroundColor = .basicWhite
         backgroundview.layer.cornerRadius = 10
         backgroundview.clipsToBounds = true
+
+        searchBar.smartQuotesType = .no
     }
 
 }

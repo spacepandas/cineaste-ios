@@ -95,6 +95,10 @@ class MoviesViewController: UITableViewController {
         store.unsubscribe(self)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     // MARK: - Action
 
     @IBAction func addMovieButtonTouched(_ sender: Any) {
