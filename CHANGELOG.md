@@ -9,6 +9,11 @@
 * 
 
 ## Improved
+* 
+
+# 1.12.0
+
+## Improved
 * Update for iOS 13 ([#112](https://github.com/spacepandas/cineaste-ios/pull/112))
 
 # 1.11.0
