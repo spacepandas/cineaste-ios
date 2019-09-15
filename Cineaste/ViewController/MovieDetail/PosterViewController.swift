@@ -62,12 +62,14 @@ class PosterViewController: UIViewController {
         doubleTapGestureRecognizer.delegate = self
         scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
 
-        let panGestureRecognizer =
-            UIPanGestureRecognizer(target: self,
-                                   action: #selector(handlePanGesture(recognizer:)))
-        panGestureRecognizer.maximumNumberOfTouches = 1
-        panGestureRecognizer.delegate = self
-        scrollView.addGestureRecognizer(panGestureRecognizer)
+        if #available(iOS 13.0, *) {} else {
+            let panGestureRecognizer =
+                UIPanGestureRecognizer(target: self,
+                                       action: #selector(handlePanGesture(recognizer:)))
+            panGestureRecognizer.maximumNumberOfTouches = 1
+            panGestureRecognizer.delegate = self
+            scrollView.addGestureRecognizer(panGestureRecognizer)
+        }
 
         if let posterPath = posterPath {
             imageView.kf.indicatorType = .activity
