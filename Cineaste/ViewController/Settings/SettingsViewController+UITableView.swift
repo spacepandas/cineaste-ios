@@ -20,6 +20,7 @@ extension SettingsViewController {
         return cell
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSetting = settings[indexPath.row]
 
@@ -29,6 +30,12 @@ extension SettingsViewController {
         case .about, .licence:
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
+        case .language:
+            tableView.deselectRow(at: indexPath, animated: true)
+
+            guard let url = URL(string: UIApplication.openSettingsURLString)
+                else { fatalError("Expected a valid URL") }
+            UIApplication.shared.open(url, options: [:])
         case .name:
             let alert = UsernameAlert.askForUsernameAlertController(
                 presenter: self,
