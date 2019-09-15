@@ -179,7 +179,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" name="basicWhite"/>
+                                                        <color key="backgroundColor" name="basicYellow"/>
                                                         <constraints>
                                                             <constraint firstItem="9Av-nK-1kN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IBZ-3T-p4o" secondAttribute="leading" constant="10" id="6gC-9c-p3r"/>
                                                             <constraint firstItem="9Av-nK-1kN" firstAttribute="centerX" secondItem="IBZ-3T-p4o" secondAttribute="centerX" id="KKX-Lc-bQd"/>
@@ -386,6 +386,9 @@
         <image name="triangle" width="60" height="20"/>
         <namedColor name="basicWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="basicYellow">
+            <color red="0.98431372549019602" green="0.88627450980392153" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
