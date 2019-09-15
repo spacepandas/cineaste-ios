@@ -15,18 +15,34 @@ class OrangeNavigationController: UINavigationController {
 
         view.backgroundColor = .basicWhite
 
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.prefersLargeTitles = true
         navigationBar.isTranslucent = false
         navigationBar.barTintColor = .primaryOrange
         navigationBar.tintColor = .basicWhite
-        navigationBar.titleTextAttributes = [
+
+        let titleTextAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.basicWhite
+        ]
+        let largeTitleTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.basicWhite
         ]
 
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationBar.prefersLargeTitles = true
-        navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.basicWhite
-        ]
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithDefaultBackground()
+            navBarAppearance.backgroundColor = .primaryOrange
+
+            navBarAppearance.titleTextAttributes = titleTextAttributes
+            navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes
+
+            navigationBar.standardAppearance = navBarAppearance
+            navigationBar.compactAppearance = navBarAppearance
+            navigationBar.scrollEdgeAppearance = navBarAppearance
+        } else {
+            navigationBar.titleTextAttributes = titleTextAttributes
+            navigationBar.largeTitleTextAttributes = largeTitleTextAttributes
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
