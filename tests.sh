@@ -2,4 +2,4 @@
 set -euo pipefail
 
 bundle exec fastlane test
-# ./sonar.sh
+./sonar.sh
