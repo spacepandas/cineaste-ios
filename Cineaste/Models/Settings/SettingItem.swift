@@ -9,6 +9,7 @@
 enum SettingItem: CaseIterable {
     case about
     case licence
+    case language
     case name
     case exportMovies
     case importMovies
@@ -21,6 +22,8 @@ enum SettingItem: CaseIterable {
             return .aboutAppTitle
         case .licence:
             return .licenseTitle
+        case .language:
+            return .languageTitle
         case .name:
             if let name = UsernamePersistence.username {
                 return .username + ": \(name)"
@@ -40,8 +43,9 @@ enum SettingItem: CaseIterable {
 
     var description: String? {
         switch self {
-        case .licence,
-             .about,
+        case .about,
+             .licence,
+             .language,
              .contact,
              .appStore:
             return nil
@@ -62,7 +66,8 @@ enum SettingItem: CaseIterable {
             return .showTextViewFromSettings
         case .licence:
             return .showTextViewFromSettings
-        case .name,
+        case .language,
+             .name,
              .exportMovies,
              .importMovies,
              .contact,
@@ -70,4 +75,15 @@ enum SettingItem: CaseIterable {
             return nil
         }
     }
+
+    // Setting "Change Language" is not available pre iOS 13
+    static let allCasesForPreIOS13: [SettingItem] = [
+        .about,
+        .licence,
+        .name,
+        .exportMovies,
+        .importMovies,
+        .contact,
+        .appStore
+    ]
 }

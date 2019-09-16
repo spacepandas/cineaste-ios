@@ -8,7 +8,7 @@ Scheme = 'Cineaste App'
 Scheme_UnitTests = 'Testing'
 Scheme_UITests = 'Snapshot'
 
-$version_number_to_set = '1.11.0'
+$version_number_to_set = '1.12.0'
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
@@ -16,6 +16,7 @@ skip_docs
 
 desc 'Runs all the tests'
 lane :test do
+  xcversion(version: "11.0")
   run_tests(
     code_coverage: true,
     derived_data_path: DerivedDataPath,
@@ -26,6 +27,7 @@ end
 
 desc 'Make screenshots of app'
 lane :screenshots do
+  xcversion(version: "11.0")
   run_tests(
     clean: true,
     build_for_testing: true,
@@ -45,6 +47,7 @@ end
 
 desc 'Frame Screenshots'
 lane :frame do
+  xcversion(version: "11.0")
   frame_screenshots(
     path: "#{Target_Folder_Name}/screenshots"
   )
@@ -63,11 +66,13 @@ end
 
 desc 'Build the release app locally'
 lane :build do
+  xcversion(version: "11.0")
   buildApp
 end
 
 desc 'Build and upload the release app to TestFlight'
 lane :beta do 
+  xcversion(version: "11.0")
   increment_build_number(
     build_number: $build_number_to_set
   )
