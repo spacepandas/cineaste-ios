@@ -11,6 +11,12 @@
 ## Improved
 * 
 
+# 1.12.1
+
+## Fixed
+* Fix Crash when starting Movie Night: Add Bluetooth Permission Description
+* Add Spacing between Disclosure Indicator and Text in Movie Night Screen
+
 # 1.12.0
 
 ## Improved
