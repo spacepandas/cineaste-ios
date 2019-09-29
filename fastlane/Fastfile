@@ -16,7 +16,6 @@ skip_docs
 
 desc 'Runs all the tests'
 lane :test do
-  xcversion(version: "11.0")
   run_tests(
     code_coverage: true,
     derived_data_path: DerivedDataPath,
@@ -27,7 +26,6 @@ end
 
 desc 'Make screenshots of app'
 lane :screenshots do
-  xcversion(version: "11.0")
   run_tests(
     clean: true,
     build_for_testing: true,
@@ -47,7 +45,6 @@ end
 
 desc 'Frame Screenshots'
 lane :frame do
-  xcversion(version: "11.0")
   frame_screenshots(
     path: "#{Target_Folder_Name}/screenshots"
   )
@@ -66,13 +63,11 @@ end
 
 desc 'Build the release app locally'
 lane :build do
-  xcversion(version: "11.0")
   buildApp
 end
 
 desc 'Build and upload the release app to TestFlight'
 lane :beta do 
-  xcversion(version: "11.0")
   increment_build_number(
     build_number: $build_number_to_set
   )
@@ -94,5 +89,4 @@ lane :beta do
   sh("git commit -a -m \"Release version #{$version_number_to_set}\"")
 
   add_git_tag(tag: $version_number_to_set)
-
 end
