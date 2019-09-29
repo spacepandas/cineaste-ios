@@ -51,7 +51,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "Add first Movie to Watchlist") { _ in
-            app.cells.element(boundBy: 0).firstMatch.tap()
+            app.tables.element(boundBy: 1).cells.element(boundBy: 0).firstMatch.tap()
             namedSnapshot("search_detail")
 
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
@@ -60,14 +60,14 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "Mark third Movie as watched") { _ in
-            app.cells.element(boundBy: 1).firstMatch.tap()
+            app.tables.element(boundBy: 1).cells.element(boundBy: 1).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
         }
 
         XCTContext.runActivity(named: "Mark fourth Movie as watched") { _ in
-            app.cells.element(boundBy: 3).firstMatch.tap()
+            app.tables.element(boundBy: 1).cells.element(boundBy: 3).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
