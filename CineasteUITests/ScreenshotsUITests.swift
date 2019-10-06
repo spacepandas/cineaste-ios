@@ -96,7 +96,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See Seen List") { _ in
-            app.buttons["SeenTab"].firstMatch.tap()
+            app.tabBars.buttons["SeenTab"].firstMatch.tap()
             XCTAssertEqual(app.cells.count, 2)
             namedSnapshot("04_seenList")
 
@@ -160,7 +160,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See More Content") { _ in
-            let settingsTab = app.buttons["SettingsTab"].firstMatch
+            let settingsTab = app.tabBars.buttons["SettingsTab"].firstMatch
             settingsTab.tap()
             namedSnapshot("06_settings")
 
@@ -180,7 +180,7 @@ extension ScreenshotsUITests {
     private func resetMoviesIfNeeded() {
         let back = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
-        app.buttons["SeenTab"].firstMatch.tap()
+        app.tabBars.buttons["SeenTab"].firstMatch.tap()
         for _ in 0..<app.cells.count {
             app.cells.element(boundBy: 0).firstMatch.tap()
             app.toolbars.buttons.element(boundBy: 0).firstMatch.tap()
@@ -188,7 +188,7 @@ extension ScreenshotsUITests {
         }
         XCTAssertEqual(app.cells.count, 0)
 
-        app.buttons["WatchlistTab"].firstMatch.tap()
+        app.tabBars.buttons["WatchlistTab"].firstMatch.tap()
         for _ in 0..<app.cells.count {
             app.cells.element(boundBy: 0).firstMatch.tap()
             app.toolbars.buttons.element(boundBy: 0).firstMatch.tap()
