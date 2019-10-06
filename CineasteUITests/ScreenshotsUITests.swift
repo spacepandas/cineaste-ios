@@ -13,6 +13,7 @@ class ScreenshotsUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        continueAfterFailure = false
 
         if let domain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: domain)
