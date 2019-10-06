@@ -1,6 +1,7 @@
 fastlane_version '2.0.0'
 
 ProjectName = 'Cineaste'
+AppIdentifier = 'de.spacepandas.ios.cineaste'
 Target_Folder_Name = 'build' 
 DerivedDataPath = 'DerivedData'
 
@@ -14,7 +15,7 @@ $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 skip_docs
 
-desc 'Runs all the tests'
+desc 'Runs all unit tests'
 lane :test do
   run_tests(
     code_coverage: true,
@@ -34,12 +35,24 @@ lane :screenshots do
   )
 
   capture_ios_screenshots(
-    app_identifier: 'de.spacepandas.ios.cineaste',
+    app_identifier: AppIdentifier,
     configuration: 'Debug',
     derived_data_path: DerivedDataPath,
     output_directory: "#{Target_Folder_Name}/screenshots",
     scheme: Scheme_UITests,
     test_without_building: true
+  )
+end
+
+desc 'Make screenshots in English on iPhone 8'
+lane :screenshots_limited do
+  capture_ios_screenshots(
+    app_identifier: AppIdentifier,
+    configuration: 'Debug',
+    output_directory: "#{Target_Folder_Name}/screenshots",
+    scheme: Scheme_UITests,
+    languages: [ "en-US" ],
+    devices: [ "iPhone 8" ]
   )
 end
 
