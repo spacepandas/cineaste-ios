@@ -151,7 +151,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See Movie Night Results") { _ in
-            let startButton = app.buttons.element(boundBy: 1).firstMatch
+            let startButton = app.buttons["Choose.Movie.Button"].firstMatch
             startButton.tap()
             namedSnapshot("startMovieNight_results")
 

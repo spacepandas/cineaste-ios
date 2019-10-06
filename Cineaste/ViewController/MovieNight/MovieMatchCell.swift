@@ -30,6 +30,7 @@ class MovieMatchCell: UITableViewCell {
         self.delegate = delegate
 
         seenButton.setTitle(.chooseMovie, for: .normal)
+        seenButton.accessibilityIdentifier = "Choose.Movie.Button"
         nearbyMovie = movie
         movieTitelLabel.text = movie.title
         seenButton.addTarget(self,
