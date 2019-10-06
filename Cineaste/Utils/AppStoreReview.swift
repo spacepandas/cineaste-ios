@@ -32,10 +32,13 @@ enum AppStoreReview {
 
         if canShowRequest {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                #if RELEASE
-                SKStoreReviewController.requestReview()
+                #if DEBUG
+                    // do not ask for appStore Review in DEBUG mode
+                    // this is a problem for UITests and it has no value
+                #else
+                    SKStoreReviewController.requestReview()
+                    PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
                 #endif
-                PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
             }
         }
     }
