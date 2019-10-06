@@ -134,7 +134,7 @@ class ScreenshotsUITests: XCTestCase {
                     .firstMatch
                 moreInfoButton.tap()
                 namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
-                let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
+                let allowNearbyButton = app.buttons["Allow"].firstMatch
                 allowNearbyButton.tap()
             }
         }
@@ -151,6 +151,9 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See Movie Night Results") { _ in
+            let firstCell = app.cells.staticTexts["Simulator"]
+            firstCell.tap()
+
             let startButton = app.buttons["Choose.Movie.Button"].firstMatch
             startButton.tap()
             namedSnapshot("startMovieNight_results")
