@@ -59,6 +59,7 @@ class ScreenshotsUITests: XCTestCase {
 
         XCTContext.runActivity(named: "Add first Movie to Watchlist") { _ in
             app.tables.element(boundBy: 1).cells.element(boundBy: 0).firstMatch.tap()
+            sleep(1)
             namedSnapshot("search_detail")
 
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
@@ -91,6 +92,7 @@ class ScreenshotsUITests: XCTestCase {
 
             let wantToSeeMovie = app.cells.element(boundBy: 0).firstMatch
             wantToSeeMovie.tap()
+            sleep(1)
             namedSnapshot("01_watchlist_detail")
             backButton.tap()
         }
@@ -102,6 +104,7 @@ class ScreenshotsUITests: XCTestCase {
 
             let seenMovie = app.cells.element(boundBy: 0).firstMatch
             seenMovie.tap()
+            sleep(1)
             namedSnapshot("seen_detail")
             backButton.tap()
         }
