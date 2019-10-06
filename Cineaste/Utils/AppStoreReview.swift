@@ -32,7 +32,9 @@ enum AppStoreReview {
 
         if canShowRequest {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                #if RELEASE
                 SKStoreReviewController.requestReview()
+                #endif
                 PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
             }
         }
