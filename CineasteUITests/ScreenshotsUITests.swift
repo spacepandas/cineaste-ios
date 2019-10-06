@@ -37,6 +37,12 @@ class ScreenshotsUITests: XCTestCase {
         app.launch()
 
         resetMoviesIfNeeded()
+
+        addUIInterruptionMonitor(withDescription: "Allow bluetooth permissions") { alert in
+            alert.buttons["Allow"].tap()
+            return true
+        }
+        app.tap()
     }
 
     func testScreenshots() {
