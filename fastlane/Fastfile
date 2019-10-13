@@ -36,11 +36,30 @@ lane :screenshots do
 
   capture_ios_screenshots(
     app_identifier: AppIdentifier,
+    clear_previous_screenshots: true,
     configuration: 'Debug',
     derived_data_path: DerivedDataPath,
+    devices: [
+      "iPhone SE",
+      "iPhone 8",
+      "iPhone 8 Plus",
+      "iPhone 11",
+      "iPhone 11 Pro"
+    ],
+    languages: [
+      "en-US",
+      "de-DE"
+    ], 
     output_directory: "#{Target_Folder_Name}/screenshots",
     scheme: Scheme_UITests,
     test_without_building: true
+    
+# Enable the following launch arguments to test dynamic type 
+# , launch_arguments: [
+#   "-UIPreferredContentSizeCategoryName UICTContentSizeCategoryAccessibilityL",
+#   "-UIPreferredContentSizeCategoryName UICTContentSizeCategoryL"
+# ]
+
   )
 end
 
