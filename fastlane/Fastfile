@@ -52,7 +52,8 @@ lane :screenshots_limited do
     output_directory: "#{Target_Folder_Name}/screenshots",
     scheme: Scheme_UITests,
     languages: [ "en-US" ],
-    devices: [ "iPhone 8" ]
+    devices: [ "iPhone 8" ],
+    stop_after_first_error: true
   )
 end
 
