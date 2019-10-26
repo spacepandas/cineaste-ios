@@ -6,8 +6,8 @@ Target_Folder_Name = 'build'
 DerivedDataPath = 'DerivedData'
 
 Scheme = 'Cineaste App'
-Scheme_UnitTests = 'Testing'
-Scheme_UITests = 'Snapshot'
+Scheme_UnitTests = 'UnitTests'
+Scheme_UITests = 'UITests'
 
 $version_number_to_set = '1.12.1'
 $build_number_to_set = number_of_commits.to_s
