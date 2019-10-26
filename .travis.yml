@@ -20,5 +20,5 @@ jobs:
       if: fork = false
     - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
       name: SwiftLint
-    - script: bundle exec fastlane screenshots_limited
+    - script: bundle exec fastlane uitest
       name: UI Test
