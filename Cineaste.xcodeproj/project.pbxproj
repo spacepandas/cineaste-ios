@@ -17,6 +17,7 @@
 		3F3E6BE9222B0C5500F317E8 /* SearchMoviesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6BE8222B0C5500F317E8 /* SearchMoviesCell.swift */; };
 		3F4C9660232E1FB8002692D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4C965F232E1FB8002692D0 /* Colors.xcassets */; };
 		3F4F4D552233D3C40093CDEF /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F4D542233D3C40093CDEF /* SwipeAction.swift */; };
+		3F5FF0B423642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5FF0B323642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift */; };
 		3F630C6322AEA32E0070A4B6 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */; };
 		3F630C6522AEA35B0070A4B6 /* PromtForReviewPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6422AEA35B0070A4B6 /* PromtForReviewPersistence.swift */; };
 		3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAD61920A6E5EE001A19D2 /* SeenMovieCell.swift */; };
@@ -197,6 +198,7 @@
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3F5E0D90203090C300E091BE /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		3F5E0D922030988E00E091BE /* TextViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewType.swift; sourceTree = "<group>"; };
+		3F5FF0B323642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchPerformanceUITests.swift; sourceTree = "<group>"; };
 		3F61B2FC1FFAD680007A0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MoviesList.storyboard; sourceTree = "<group>"; };
 		3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
 		3F630C6422AEA35B0070A4B6 /* PromtForReviewPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromtForReviewPersistence.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				3F2408F6203CB88E00EB9141 /* Info.plist */,
+				3F5FF0B323642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift */,
 				3F2408F4203CB88E00EB9141 /* ScreenshotsUITests.swift */,
 				3F2408FC203CB96000EB9141 /* SnapshotHelper.swift */,
 				3F8CEBF12250A2C1001916BD /* Extensions */,
@@ -952,6 +955,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8CEBEE2250A229001916BD /* Screenshots+ScrollToElement.swift in Sources */,
+				3F5FF0B423642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift in Sources */,
 				3F2408F5203CB88E00EB9141 /* ScreenshotsUITests.swift in Sources */,
 				3F2408FD203CB96000EB9141 /* SnapshotHelper.swift in Sources */,
 			);
