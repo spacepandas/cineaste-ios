@@ -52,13 +52,20 @@ class ScreenshotsUITests: XCTestCase {
         let backButton = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
         XCTContext.runActivity(named: "Search for Movies") { _ in
-            app.navigationBars.buttons.element(boundBy: 1).firstMatch.tap()
-            _ = app.cells.element(boundBy: 0).waitForExistence(timeout: 1.0)
+            app.navigationBars.buttons["AddMovie.Button"].firstMatch.tap()
+
+            let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
+            let exists = NSPredicate(format: "exists == true")
+            expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
+            waitForExpectations(timeout: 2, handler: nil)
+            XCTAssert(firstCellInSearch.exists)
+
             namedSnapshot("search_withoutMarker")
         }
 
         XCTContext.runActivity(named: "Add first Movie to Watchlist") { _ in
-            app.tables.element(boundBy: 1).cells.element(boundBy: 0).firstMatch.tap()
+            let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
+            firstCellInSearch.tap()
             sleep(1)
             namedSnapshot("search_detail")
 
@@ -68,14 +75,14 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "Mark third Movie as watched") { _ in
-            app.tables.element(boundBy: 1).cells.element(boundBy: 1).firstMatch.tap()
+            app.tables["Search.TableView"].cells.element(boundBy: 1).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
         }
 
         XCTContext.runActivity(named: "Mark fourth Movie as watched") { _ in
-            app.tables.element(boundBy: 1).cells.element(boundBy: 3).firstMatch.tap()
+            app.tables["Search.TableView"].cells.element(boundBy: 3).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
@@ -110,9 +117,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "Start Movie Night") { _ in
-            let startMovieNightButton = app.navigationBars.buttons
-                .element(boundBy: 0).firstMatch
-            startMovieNightButton.tap()
+            app.navigationBars.buttons["StartMovieNight.Button"].firstMatch.tap()
         }
 
         XCTContext.runActivity(named: "Ask for Username") { _ in

@@ -118,6 +118,8 @@ class SearchMoviesViewController: UIViewController {
 
         tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = loadingIndicatorView
+
+        tableView.accessibilityIdentifier = "Search.TableView"
     }
 
     func configureSearchController() {

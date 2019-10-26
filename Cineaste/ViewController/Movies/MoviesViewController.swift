@@ -56,7 +56,9 @@ class MoviesViewController: UITableViewController {
         emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
 
         startMovieNightButton.accessibilityLabel = .startMovieNight
+        startMovieNightButton.accessibilityIdentifier = "StartMovieNight.Button"
         addMovieButton.accessibilityLabel = .addMovieTitle
+        addMovieButton.accessibilityIdentifier = "AddMovie.Button"
 
         fetchedResultsManager.delegate = self
         fetchedResultsManager.refetch(for: category.predicate)
