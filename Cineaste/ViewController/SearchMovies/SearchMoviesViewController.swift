@@ -45,6 +45,7 @@ class SearchMoviesViewController: UIViewController {
         view.backgroundColor = UIColor.basicBackground
 
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
 
         loadMovies { [weak self] movies in
             self?.movies = movies
@@ -118,6 +119,8 @@ class SearchMoviesViewController: UIViewController {
 
         tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = loadingIndicatorView
+
+        tableView.accessibilityIdentifier = "Search.TableView"
     }
 
     func configureSearchController() {
