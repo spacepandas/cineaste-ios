@@ -74,7 +74,7 @@ class ScreenshotsUITests: XCTestCase {
 
             let exists = NSPredicate(format: "exists == true")
             expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
-            waitForExpectations(timeout: 2, handler: nil)
+            waitForExpectations(timeout: 5, handler: nil)
             XCTAssert(firstCellInSearch.exists)
 
             namedSnapshot("search_withoutMarker")
