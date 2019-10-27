@@ -59,23 +59,9 @@ class ScreenshotsUITests: XCTestCase {
             app.navigationBars.element(boundBy: 0).buttons["AddMovie.Button"].firstMatch.tap()
 
             let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
-            sleep(1)
-
-            if !firstCellInSearch.exists {
-                // Workaround for CI:
-                // there are no movies displayed when opening the search initially
-                // Searching for "A" and cancel the search, will display the initial search results
-                let modalNavigationBar = app.navigationBars["Search.NavigationBar"]
-                let searchField = modalNavigationBar.searchFields.element(boundBy: 0).firstMatch
-                searchField.tap()
-                searchField.typeText("A")
-                let cancelButton = modalNavigationBar.buttons.element(boundBy: 0)
-                cancelButton.tap()
-            }
-
             let exists = NSPredicate(format: "exists == true")
             expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
-            waitForExpectations(timeout: 5, handler: nil)
+            waitForExpectations(timeout: 2, handler: nil)
             XCTAssert(firstCellInSearch.exists)
 
             namedSnapshot("search_withoutMarker")
