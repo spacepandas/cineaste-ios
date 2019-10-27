@@ -156,7 +156,7 @@ class ScreenshotsUITests: XCTestCase {
                     .firstMatch
                 moreInfoButton.tap()
                 namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
-                let allowNearbyButton = app.buttons["Allow"].firstMatch
+                let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
                 allowNearbyButton.tap()
             }
         }
