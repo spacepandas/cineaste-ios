@@ -435,6 +435,9 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         if offset < 0 {
             detailScrollView.contentOffset.y = -scrollView.contentOffset.y
         } else {
+            // disable parallax effect when reduce motion is enabled
+            guard !UIAccessibility.isReduceMotionEnabled else { return }
+
             detailScrollView.contentOffset.y = offset
         }
     }
