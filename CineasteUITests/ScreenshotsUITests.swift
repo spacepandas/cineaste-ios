@@ -59,6 +59,7 @@ class ScreenshotsUITests: XCTestCase {
             app.navigationBars.element(boundBy: 0).buttons["AddMovie.Button"].firstMatch.tap()
 
             let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
+            sleep(1)
 
             if !firstCellInSearch.exists {
                 // Workaround for CI:
