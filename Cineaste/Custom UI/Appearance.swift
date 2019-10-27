@@ -13,14 +13,14 @@ enum Appearance {
         // MARK: TabBar
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
-        tabBar.tintColor = .basicWhite
+        tabBar.tintColor = .white
         tabBar.barTintColor = .primaryOrange
         tabBar.unselectedItemTintColor = .basicBlack
 
         // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.basicWhite
+            .foregroundColor: UIColor.white
             ], for: .selected)
         tabBarItem.setTitleTextAttributes([
             .foregroundColor: UIColor.basicBackground
@@ -28,7 +28,7 @@ enum Appearance {
 
         // MARK: SearchBar
         let searchBar = UISearchBar.appearance()
-        searchBar.tintColor = .basicWhite
+        searchBar.tintColor = .white
         searchBar.barTintColor = .primaryOrange
 
         //change color of cursor

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -72,7 +72,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-sK-hhJ" customClass="VoteView" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="84" width="70" height="20"/>
-                                                            <color key="backgroundColor" name="basicWhite"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
@@ -90,7 +90,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" name="basicWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="3f3-Z0-7D4" firstAttribute="leading" secondItem="zEp-L3-aTQ" secondAttribute="leading" id="2uh-KK-eGJ"/>
                                                 <constraint firstItem="3f3-Z0-7D4" firstAttribute="width" secondItem="zEp-L3-aTQ" secondAttribute="width" multiplier="0.22" id="6DD-Nf-oCb"/>
@@ -177,7 +177,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" name="basicWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="rt5-PR-Cjl" firstAttribute="bottom" secondItem="xAG-UI-3Kr" secondAttribute="bottom" id="0G9-pj-pHG"/>
                                                 <constraint firstItem="rt5-PR-Cjl" firstAttribute="leading" secondItem="xAG-UI-3Kr" secondAttribute="leading" id="DDz-EM-rqF"/>
@@ -333,9 +333,6 @@
     </scenes>
     <resources>
         <image name="movieNight" width="23" height="23"/>
-        <namedColor name="basicWhite">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="primaryOrange">
             <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

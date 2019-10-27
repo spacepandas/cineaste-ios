@@ -16,7 +16,6 @@ extension UIColor {
     static let primaryDarkOrange = UIColor(named: "primaryDarkOrange") ?? .lightGray
 
     static let basicYellow = UIColor(named: "basicYellow") ?? .lightGray
-    static let basicWhite = UIColor(named: "basicWhite") ?? .lightGray
 
     static let basicBackground = UIColor(named: "basicBackground") ?? .lightGray
     static let basicBlack = UIColor(named: "basicBlack") ?? .lightGray

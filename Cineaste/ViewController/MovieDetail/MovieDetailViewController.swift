@@ -217,7 +217,7 @@ class MovieDetailViewController: UIViewController {
         if #available(iOS 13.0, *) {
             movieStateSegmentedControl.selectedSegmentTintColor = UIColor.primaryOrange
             let whiteText: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.basicWhite
+                .foregroundColor: UIColor.white
             ]
             movieStateSegmentedControl.setTitleTextAttributes(whiteText, for: .selected)
         } else {
