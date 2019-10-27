@@ -45,6 +45,7 @@ class SearchMoviesViewController: UIViewController {
         view.backgroundColor = UIColor.basicBackground
 
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
 
         loadMovies { [weak self] movies in
             self?.movies = movies
