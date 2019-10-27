@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="haa-vZ-2Dy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="haa-vZ-2Dy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -123,11 +123,11 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C5d-Fe-M1X" id="WS0-pF-oL6">
-                                    <rect key="frame" x="0.0" y="0.0" width="382.5" height="103"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7VC-WV-SPK">
-                                            <rect key="frame" x="20" y="20" width="356.5" height="63"/>
+                                            <rect key="frame" x="20" y="20" width="357" height="63"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7df-PS-md0">
                                                     <rect key="frame" x="0.0" y="7" width="170.5" height="49"/>
@@ -147,7 +147,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numberOfMovies" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivj-ul-Krb" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="178.5" y="21.5" width="178" height="20.5"/>
+                                                    <rect key="frame" x="178.5" y="21.5" width="178.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -235,7 +235,6 @@
                                         </stackView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Link&gt;" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qic-ad-jnt" customClass="LinkTextView" customModule="Cineaste_App" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="56.5" width="240" height="50"/>
-                                            <color key="backgroundColor" name="basicWhite"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -291,7 +290,6 @@
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Link&gt;" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="lDd-hR-oB9" customClass="LinkTextView" customModule="Cineaste_App" customModuleProvider="target">
                                             <rect key="frame" x="18.5" y="153" width="225" height="50"/>
-                                            <color key="backgroundColor" name="basicWhite"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
