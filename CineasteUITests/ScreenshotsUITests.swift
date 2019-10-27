@@ -41,13 +41,14 @@ class ScreenshotsUITests: XCTestCase {
         addUIInterruptionMonitor(withDescription: "Allow bluetooth permissions") { alert in
             if alert.label.contains("Nearby") {
                 alert.buttons["Allow"].tap()
+                return true
+            } else {
+                return false
             }
-            return true
         }
         app.tap()
     }
 
-    // swiftlint:disable:next function_body_length
     func testScreenshots() {
         XCTAssertEqual(app.cells.count, 0)
         namedSnapshot("emptyWatchlist")
