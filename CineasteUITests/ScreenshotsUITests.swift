@@ -56,9 +56,6 @@ class ScreenshotsUITests: XCTestCase {
             app.navigationBars.element(boundBy: 0).buttons["AddMovie.Button"].firstMatch.tap()
 
             let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
-            let exists = NSPredicate(format: "exists == true")
-            expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
-            waitForExpectations(timeout: 2, handler: nil)
 
             if !firstCellInSearch.exists {
                 // Workaround for CI:
@@ -72,6 +69,9 @@ class ScreenshotsUITests: XCTestCase {
                 cancelButton.tap()
             }
 
+            let exists = NSPredicate(format: "exists == true")
+            expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
+            waitForExpectations(timeout: 2, handler: nil)
             XCTAssert(firstCellInSearch.exists)
 
             namedSnapshot("search_withoutMarker")
