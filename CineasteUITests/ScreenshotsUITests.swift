@@ -39,7 +39,9 @@ class ScreenshotsUITests: XCTestCase {
         resetMoviesIfNeeded()
 
         addUIInterruptionMonitor(withDescription: "Allow bluetooth permissions") { alert in
-            alert.buttons["Allow"].tap()
+            if alert.label.contains("Nearby") {
+                alert.buttons["Allow"].tap()
+            }
             return true
         }
         app.tap()
@@ -145,19 +147,6 @@ class ScreenshotsUITests: XCTestCase {
                 let saveButton = usernameAlert.buttons.element(boundBy: 1)
                     .firstMatch
                 saveButton.tap()
-            }
-        }
-
-        XCTContext.runActivity(named: "Ask for Nearby Permission (if needed)") { _ in
-            let nearbyAlert = app.alerts.element(boundBy: 0)
-            if nearbyAlert.exists {
-                namedSnapshot("startMovieNight_nearbyAlert")
-                let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
-                    .firstMatch
-                moreInfoButton.tap()
-                namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
-                let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
-                allowNearbyButton.tap()
             }
         }
 
