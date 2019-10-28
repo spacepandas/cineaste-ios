@@ -15,6 +15,7 @@ class SettingsCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
 
     func configure(with settingsItem: SettingItem) {
+        backgroundColor = .cineCellBackground
         title.text = settingsItem.title
 
         accessoryType =

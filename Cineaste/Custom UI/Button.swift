@@ -60,8 +60,8 @@ class LinkButton: Button {
     }
 
     override func setup() {
-        setTitleColor(UIColor.primaryOrange, for: .normal)
-        setTitleColor(UIColor.primaryOrange, for: .highlighted)
+        setTitleColor(UIColor.cineLink, for: .normal)
+        setTitleColor(UIColor.cineLink, for: .highlighted)
 
         NotificationCenter.default.addObserver(
             self,
@@ -79,14 +79,14 @@ class LinkButton: Button {
 class BorderedButton: Button {
 
     override func setup() {
-        tintColor = .primaryOrange
+        tintColor = .cineButton
 
         contentEdgeInsets.top = 10
         contentEdgeInsets.bottom = 10
         contentEdgeInsets.left = 25
         contentEdgeInsets.right = 25
 
-        layer.borderColor = UIColor.primaryOrange.cgColor
+        layer.borderColor = UIColor.cineButton.cgColor
         layer.borderWidth = 2
         layer.cornerRadius = 4
 

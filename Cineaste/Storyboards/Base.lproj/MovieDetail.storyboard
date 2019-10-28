@@ -270,6 +270,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="I07-cP-vJB"/>
                     <connections>
+                        <outlet property="background" destination="cDP-XA-M1C" id="hwo-tI-sTo"/>
                         <outlet property="buttonInfoLabel" destination="Mqk-di-L0I" id="lHX-8K-DyP"/>
                         <outlet property="categoryLabel" destination="ie5-XZ-DyV" id="nzt-Pd-VsZ"/>
                         <outlet property="contentStackView" destination="fS9-v7-x6n" id="qJb-9z-JPa"/>
@@ -284,6 +285,7 @@
                         <outlet property="releaseDateAndRuntimeLabel" destination="BDx-pl-gqc" id="KxI-aF-E6L"/>
                         <outlet property="titleLabel" destination="qT7-RW-EIo" id="2gO-KI-Y91"/>
                         <outlet property="toolBar" destination="ZuN-8j-AgR" id="mIH-pZ-Eeq"/>
+                        <outlet property="triangleImageView" destination="vGg-FL-9Xo" id="ZVp-1t-NuC"/>
                         <outlet property="votingLabel" destination="DgD-B3-KML" id="FNc-7P-rKr"/>
                         <segue destination="zXD-4l-9EK" kind="presentation" identifier="showPosterFromMovieDetail" modalPresentationStyle="automatic" id="YDm-H6-cJS"/>
                     </connections>

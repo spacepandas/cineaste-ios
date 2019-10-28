@@ -179,9 +179,9 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureViews() {
-        nearbyIcon.tintColor = .accentTextOnBlack
-        permissionDeniedDescription.textColor = .accentTextOnBlack
-        usageDescription.textColor = .accentTextOnBlack
+        nearbyIcon.tintColor = .cineDescription
+        permissionDeniedDescription.textColor = .cineDescription
+        usageDescription.textColor = .cineDescription
 
         let nearbyPermissionStyle = nearbyLinkPermissionDeniedTextView.paragraphStyle
         nearbyPermissionStyle.alignment = .center
@@ -195,7 +195,7 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.backgroundColor = UIColor.basicBackground
+        tableView.backgroundColor = UIColor.cineListBackground
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80

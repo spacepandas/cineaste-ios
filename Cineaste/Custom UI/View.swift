@@ -34,7 +34,7 @@ class VoteCircleView: View {
             name: UIContentSizeCategory.didChangeNotification,
             object: nil)
 
-        backgroundColor = UIColor.basicYellow
+        backgroundColor = UIColor.cineVoteCircle
 
         layer.masksToBounds = true
         layer.shadowColor = UIColor.accentTextOnWhite.cgColor
@@ -79,7 +79,7 @@ class ShadowView: View {
 
 class SeparatorView: View {
     override func setup() {
-        backgroundColor = UIColor.primaryOrange
+        backgroundColor = UIColor.cineSeparator
     }
 
     override var backgroundColor: UIColor? {
@@ -165,12 +165,13 @@ class VoteView: View {
             object: nil)
 
         clipsToBounds = true
+        backgroundColor = .clear
 
         setBorderWidth()
         layer.cornerRadius = frame.height / 3
-        layer.borderColor = UIColor.primaryOrange.cgColor
+        layer.borderColor = UIColor.cineVoteRectangle.cgColor
 
-        voteLabel.textColor = .primaryOrange
+        voteLabel.textColor = .cineVoteRectangle
         voteLabel.adjustsFontSizeToFitWidth = true
         voteLabel.minimumScaleFactor = 0.5
         voteLabel.translatesAutoresizingMaskIntoConstraints = false

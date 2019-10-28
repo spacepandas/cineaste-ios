@@ -33,7 +33,9 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
 
+    @IBOutlet weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
+    @IBOutlet weak var background: UIView!
 
     @IBOutlet private weak var titleLabel: TitleLabel!
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -209,19 +211,24 @@ class MovieDetailViewController: UIViewController {
 
     private func configureElements() {
         contentStackView.setCustomSpacing(30, after: moreInformationStackView)
+        view.backgroundColor = .cineContentBackground
+        triangleImageView.tintColor = .cineContentBackground
+        background.backgroundColor = .cineContentBackground
 
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.basicBackground
 
         if #available(iOS 13.0, *) {
-            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.primaryOrange
-            let whiteText: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.white
-            ]
-            movieStateSegmentedControl.setTitleTextAttributes(whiteText, for: .selected)
+            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.white
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.white],
+                for: .selected)
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlNormal],
+                for: .normal)
         } else {
-            movieStateSegmentedControl.tintColor = UIColor.primaryOrange
+            movieStateSegmentedControl.tintColor = UIColor.cineSegmentedControlSelected
         }
 
         posterImageView.isUserInteractionEnabled = true

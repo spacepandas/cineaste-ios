@@ -117,6 +117,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="background" destination="zEp-L3-aTQ" id="6IU-Ci-SHa"/>
                                     <outlet property="poster" destination="3f3-Z0-7D4" id="v2r-3t-UXU"/>
                                     <outlet property="releaseAndRuntimeLabel" destination="Gqs-GG-yAO" id="R9j-Na-KNS"/>
                                     <outlet property="separatorView" destination="Krj-Xu-Ja7" id="jKX-E6-WSc"/>
@@ -204,6 +205,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="background" destination="xAG-UI-3Kr" id="56g-aC-Sh9"/>
                                     <outlet property="poster" destination="rt5-PR-Cjl" id="ZBw-j9-i0m"/>
                                     <outlet property="separatorView" destination="CAr-CO-u39" id="ElX-Eg-adp"/>
                                     <outlet property="title" destination="osR-E3-RkD" id="hqJ-WN-ElQ"/>

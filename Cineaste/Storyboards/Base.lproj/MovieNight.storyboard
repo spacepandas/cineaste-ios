@@ -91,6 +91,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="background" destination="k8B-XY-me3" id="2aR-7W-rck"/>
                                     <outlet property="movieTitelLabel" destination="bF4-9e-xhK" id="7Gs-sn-MQ9"/>
                                     <outlet property="numberOfMatchesLabel" destination="F7H-gb-4WR" id="hp9-wi-Lql"/>
                                     <outlet property="posterImageView" destination="hph-NR-PkQ" id="yRg-6Y-QY9"/>

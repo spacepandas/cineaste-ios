@@ -26,4 +26,28 @@ extension UIColor {
     static let accentTextOnBlack = UIColor(named: "accentTextOnBlack") ?? .lightGray
 
     static let transparentBlack = UIColor(named: "transparentBlack") ?? .lightGray
+
+    // new
+    static let cineNavBar = UIColor(named: "navBar") ?? .lightGray
+    static let cineNavBarTint = UIColor(named: "navBarTint") ?? .lightGray
+    static let cineNavBarTitle = UIColor(named: "navBarTitle") ?? .lightGray
+
+    static let cineTabBar = UIColor(named: "tabBar") ?? .lightGray
+    static let cineTabBarSelected = UIColor(named: "tabBarSelected") ?? .lightGray
+    static let cineTabBarNormal = UIColor(named: "tabBarNormal") ?? .lightGray
+
+    static let cineSegmentedControlSelected = UIColor(named: "segmentedControlSelected") ?? .lightGray
+    static let cineSegmentedControlNormal = UIColor(named: "segmentedControlNormal") ?? .lightGray
+
+    static let cineListBackground = UIColor(named: "listBackground") ?? .lightGray
+    static let cineSeparator = UIColor(named: "separator") ?? .lightGray
+    static let cineCellBackground = UIColor(named: "cellBackground") ?? .lightGray
+    static let cineContentBackground = UIColor(named: "cellBackground") ?? .lightGray
+    static let cineVoteCircle = UIColor(named: "voteCircle") ?? .lightGray
+    static let cineVoteRectangle = UIColor(named: "voteRectangle") ?? .lightGray
+    static let cineButton = UIColor(named: "button") ?? .lightGray
+
+    static let cineTitle = UIColor(named: "title") ?? .lightGray
+    static let cineDescription = UIColor(named: "description") ?? .lightGray
+    static let cineLink = UIColor(named: "link") ?? .lightGray
 }

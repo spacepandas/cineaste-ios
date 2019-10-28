@@ -13,17 +13,17 @@ enum Appearance {
         // MARK: TabBar
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
-        tabBar.tintColor = .white
-        tabBar.barTintColor = .primaryOrange
-        tabBar.unselectedItemTintColor = .basicBlack
+        tabBar.tintColor = .cineTabBarSelected
+        tabBar.barTintColor = .cineTabBar
+        tabBar.unselectedItemTintColor = .cineTabBarNormal
 
         // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.cineTabBarSelected
             ], for: .selected)
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.basicBackground
+            .foregroundColor: UIColor.cineTabBarNormal
             ], for: .normal)
 
         // MARK: SearchBar

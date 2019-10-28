@@ -23,7 +23,7 @@ class SettingsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .cineContentBackground
         navigationItem.largeTitleDisplayMode = .never
 
         settingsDetailTextView.delegate = self

@@ -42,7 +42,7 @@ class SearchMoviesViewController: UIViewController {
 
         title = String.addMovieTitle
 
-        view.backgroundColor = UIColor.basicBackground
+        view.backgroundColor = UIColor.cineListBackground
 
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
