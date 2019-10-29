@@ -30,7 +30,7 @@ class ActionButton: Button {
     }
 
     override func setup() {
-        setTitleColor(UIColor.primaryDarkOrange, for: .normal)
+        setTitleColor(UIColor.cineButtonDark, for: .normal)
 
         NotificationCenter.default.addObserver(
             self,

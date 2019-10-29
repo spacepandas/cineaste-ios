@@ -12,8 +12,6 @@ import UIKit
 // (Force unwrapping fails in Interface Builder)
 
 extension UIColor {
-    static let primaryDarkOrange = UIColor(named: "primaryDarkOrange") ?? .lightGray
-
     static let basicYellow = UIColor(named: "basicYellow") ?? .lightGray
 
     static let basicBackground = UIColor(named: "basicBackground") ?? .lightGray
@@ -43,6 +41,7 @@ extension UIColor {
     static let cineVoteCircle = UIColor(named: "voteCircle") ?? .lightGray
     static let cineVoteRectangle = UIColor(named: "voteRectangle") ?? .lightGray
     static let cineButton = UIColor(named: "button") ?? .lightGray
+    static let cineButtonDark = UIColor(named: "buttonDark") ?? .lightGray
 
     static let cineTitle = UIColor(named: "title") ?? .lightGray
     static let cineDescription = UIColor(named: "description") ?? .lightGray
