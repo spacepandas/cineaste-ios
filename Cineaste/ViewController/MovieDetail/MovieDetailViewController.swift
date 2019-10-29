@@ -217,7 +217,7 @@ class MovieDetailViewController: UIViewController {
 
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
-        buttonInfoLabel.textColor = UIColor.basicBackground
+        buttonInfoLabel.textColor = UIColor.cineDescription
 
         if #available(iOS 13.0, *) {
             movieStateSegmentedControl.selectedSegmentTintColor = UIColor.cineSegmentedControlSelected

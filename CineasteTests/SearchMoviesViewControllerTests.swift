@@ -29,7 +29,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
     func testBackgroundColorShouldBeSetCorrectly() {
         searchMoviesVC.viewDidLoad()
 
-        XCTAssertEqual(searchMoviesVC.view.backgroundColor, UIColor.basicBackground)
+        XCTAssertEqual(searchMoviesVC.view.backgroundColor, UIColor.cineDescription)
         XCTAssertEqual(searchMoviesVC.tableView.backgroundColor, UIColor.clear)
     }
 
