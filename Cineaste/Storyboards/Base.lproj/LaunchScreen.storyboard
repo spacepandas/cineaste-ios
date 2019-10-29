@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-N8-1DR">
-                                <rect key="frame" x="0.0" y="675" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="641" width="375" height="83"/>
                                 <items/>
                                 <color key="tintColor" name="tabBarSelected"/>
                                 <color key="barTintColor" name="tabBar"/>

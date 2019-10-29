@@ -85,7 +85,7 @@
 		3FF790F220DE274A007B7D37 /* ImportMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F449DC22073FA4E00C5F5B8 /* ImportMoviesViewController.swift */; };
 		3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552262C1FAFB5D300323982 /* StoredMovie.swift */; };
 		3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAA3BBB20826B1D00726DE2 /* Int16+Formatter.swift */; };
-		3FF790F620DE274A007B7D37 /* OrangeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */; };
+		3FF790F620DE274A007B7D37 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC95B8F207BF60700B44C84 /* NavigationController.swift */; };
 		3FF790F720DE274A007B7D37 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA808CE20027AF60036357B /* Button.swift */; };
 		3FF790F820DE274A007B7D37 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE971FF3BF7000E584E9 /* Segue.swift */; };
 		3FF790F920DE274A007B7D37 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F71F684200292B700496E05 /* TextView.swift */; };
@@ -254,7 +254,7 @@
 		3FBDB2FE21D4F35C00CBE341 /* MovieDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MovieDetail.json; sourceTree = "<group>"; };
 		3FBDB2FF21D4F35D00CBE341 /* ReleaseDates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ReleaseDates.json; sourceTree = "<group>"; };
 		3FBDB30521D5334000CBE341 /* ExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExporterTests.swift; sourceTree = "<group>"; };
-		3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeNavigationController.swift; sourceTree = "<group>"; };
+		3FC95B8F207BF60700B44C84 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
 		3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManagerDelegate.swift; sourceTree = "<group>"; };
 		3FCFB10E21D676DB006E2F91 /* AndroidExport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AndroidExport.json; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 				3FD886451FF2C46400A86ACF /* Appearance.swift */,
 				3FA808CE20027AF60036357B /* Button.swift */,
 				3F059D461FF3FA8B00D5576B /* Label.swift */,
-				3FC95B8F207BF60700B44C84 /* OrangeNavigationController.swift */,
+				3FC95B8F207BF60700B44C84 /* NavigationController.swift */,
 				3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */,
 				3FA48F9E20FA7C14002F7665 /* SearchController.swift */,
 				3F71F684200292B700496E05 /* TextView.swift */,
@@ -1011,7 +1011,7 @@
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3F1EE5952219FD1B00F6E6E2 /* MovieRefresher.swift in Sources */,
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
-				3FF790F620DE274A007B7D37 /* OrangeNavigationController.swift in Sources */,
+				3FF790F620DE274A007B7D37 /* NavigationController.swift in Sources */,
 				3FF790F720DE274A007B7D37 /* Button.swift in Sources */,
 				3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */,
 				3FF790F820DE274A007B7D37 /* Segue.swift in Sources */,

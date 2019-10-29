@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrangeNavigationController: UINavigationController {
+class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

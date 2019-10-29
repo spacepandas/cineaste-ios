@@ -21,7 +21,7 @@ class MoviesTabBarControllerTests: XCTestCase {
         tabBarController.viewDidLoad()
 
         for viewController in tabBarController.viewControllers! {
-            XCTAssert(viewController is OrangeNavigationController)
+            XCTAssert(viewController is NavigationController)
         }
     }
 
