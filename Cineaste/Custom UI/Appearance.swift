@@ -28,13 +28,13 @@ enum Appearance {
 
         // MARK: SearchBar
         let searchBar = UISearchBar.appearance()
-        searchBar.tintColor = .white
-        searchBar.barTintColor = .primaryOrange
+        searchBar.tintColor = .cineSearchTint
+        searchBar.barTintColor = .cineSearchBackground
 
         //change color of cursor
         let searchField = UITextField
             .appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        searchField.tintColor = .basicBackground
+        searchField.tintColor = .cineSearchInput
 
         // MARK: UIAlertController
         //change tint color in UIAlertController

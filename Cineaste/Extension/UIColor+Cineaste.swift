@@ -50,4 +50,9 @@ extension UIColor {
     static let cineTitle = UIColor(named: "title") ?? .lightGray
     static let cineDescription = UIColor(named: "description") ?? .lightGray
     static let cineLink = UIColor(named: "link") ?? .lightGray
+
+    static let cineSearchBackground = UIColor(named: "searchBackground") ?? .lightGray
+    static let cineSearchTint = UIColor(named: "searchTint") ?? .lightGray
+    static let cineSearchInput = UIColor(named: "searchInput") ?? .lightGray
+    static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
 }

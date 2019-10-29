@@ -32,14 +32,14 @@ class SearchController: UISearchController {
 
         if #available(iOS 13.0, *) {
             let searchField = searchBar.searchTextField
-            searchField.backgroundColor = .white
+            searchField.backgroundColor = .cineSearchBackground
             searchField.layer.cornerRadius = 10
             searchField.clipsToBounds = true
         } else {
             guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
                 let backgroundview = textfield.subviews.first
                 else { return }
-            backgroundview.backgroundColor = .white
+            backgroundview.backgroundColor = .cineSearchBackground
             backgroundview.layer.cornerRadius = 10
             backgroundview.clipsToBounds = true
         }
