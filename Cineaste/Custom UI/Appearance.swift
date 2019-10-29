@@ -37,10 +37,9 @@ enum Appearance {
         searchField.tintColor = .cineSearchInput
 
         // MARK: UIAlertController
-        //change tint color in UIAlertController
         let alertController = UIView
             .appearance(whenContainedInInstancesOf: [UIAlertController.self])
-        alertController.tintColor = .primaryOrange
+        alertController.tintColor = .cineAlertTint
 
         // MARK: UIToolBar
         let toolBar = UIToolbar.appearance()
