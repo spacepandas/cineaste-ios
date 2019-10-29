@@ -12,7 +12,6 @@ import UIKit
 // (Force unwrapping fails in Interface Builder)
 
 extension UIColor {
-    static let primaryOrange = UIColor(named: "primaryOrange") ?? .lightGray
     static let primaryDarkOrange = UIColor(named: "primaryDarkOrange") ?? .lightGray
 
     static let basicYellow = UIColor(named: "basicYellow") ?? .lightGray

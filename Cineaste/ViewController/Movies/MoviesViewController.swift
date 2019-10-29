@@ -49,7 +49,7 @@ class MoviesViewController: UITableViewController {
         emptyListLabel.textColor = .accentTextOnBlack
         empyListTitle.textColor = .accentTextOnBlack
         empyListTitle.text = .noContentTitle
-        emptyListAddMovieButton.backgroundColor = .primaryOrange
+        emptyListAddMovieButton.backgroundColor = .cineButton
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
         emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
 
