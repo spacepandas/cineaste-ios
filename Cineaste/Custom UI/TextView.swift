@@ -108,7 +108,7 @@ class LinkTextView: TextView {
         let defaultAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline),
-            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnBlack
+            NSAttributedString.Key.foregroundColor: UIColor.cineFooter
         ]
 
         attributedText = NSAttributedString(string: text,

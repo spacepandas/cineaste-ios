@@ -183,9 +183,9 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureViews() {
-        nearbyIcon.tintColor = .cineDescription
-        permissionDeniedDescription.textColor = .cineDescription
-        usageDescription.textColor = .cineDescription
+        nearbyIcon.tintColor = .cineFooter
+        permissionDeniedDescription.textColor = .cineFooter
+        usageDescription.textColor = .cineFooter
 
         let nearbyPermissionStyle = nearbyLinkPermissionDeniedTextView.paragraphStyle
         nearbyPermissionStyle.alignment = .center
