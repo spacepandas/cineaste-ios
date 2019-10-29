@@ -26,16 +26,6 @@ enum Appearance {
             .foregroundColor: UIColor.cineTabBarNormal
             ], for: .normal)
 
-        // MARK: SearchBar
-        let searchBar = UISearchBar.appearance()
-        searchBar.tintColor = .cineSearchTint
-        searchBar.barTintColor = .cineSearchBackground
-
-        //change color of cursor
-        let searchField = UITextField
-            .appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        searchField.tintColor = .cineSearchInput
-
         // MARK: UIAlertController
         let alertController = UIView
             .appearance(whenContainedInInstancesOf: [UIAlertController.self])

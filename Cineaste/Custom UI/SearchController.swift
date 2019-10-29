@@ -29,9 +29,12 @@ class SearchController: UISearchController {
         searchBar.sizeToFit()
 
         searchBar.smartQuotesType = .no
+        searchBar.tintColor = .cineSearchTint
+        searchBar.barTintColor = .cineSearchBackground
 
         if #available(iOS 13.0, *) {
             let searchField = searchBar.searchTextField
+            searchField.tintColor = .cineSearchInput
             searchField.backgroundColor = .cineSearchBackground
             searchField.layer.cornerRadius = 10
             searchField.clipsToBounds = true
@@ -39,6 +42,7 @@ class SearchController: UISearchController {
             guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
                 let backgroundview = textfield.subviews.first
                 else { return }
+            textfield.tintColor = .cineSearchInput
             backgroundview.backgroundColor = .cineSearchBackground
             backgroundview.layer.cornerRadius = 10
             backgroundview.clipsToBounds = true
