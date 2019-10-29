@@ -12,21 +12,41 @@ import UIKit
 // (Force unwrapping fails in Interface Builder)
 
 extension UIColor {
-    static let accentTextOnBlack = UIColor(named: "accentTextOnBlack") ?? .lightGray
-
-    // new
+    // MARK: NavBar
     static let cineNavBar = UIColor(named: "navBar") ?? .lightGray
     static let cineNavBarTint = UIColor(named: "navBarTint") ?? .lightGray
     static let cineNavBarTitle = UIColor(named: "navBarTitle") ?? .lightGray
 
+    // MARK: TabBar
     static let cineTabBar = UIColor(named: "tabBar") ?? .lightGray
     static let cineTabBarSelected = UIColor(named: "tabBarSelected") ?? .lightGray
     static let cineTabBarNormal = UIColor(named: "tabBarNormal") ?? .lightGray
 
+    // MARK: SegmentedControl
     static let cineSegmentedControlSelected = UIColor(named: "segmentedControlSelected") ?? .lightGray
     static let cineSegmentedControlNormal = UIColor(named: "segmentedControlNormal") ?? .lightGray
     static let cineSegmentedControlTint = UIColor(named: "segmentedControlTint") ?? .lightGray
 
+    // MARK: Search TextField
+    static let cineSearchBackground = UIColor(named: "searchBackground") ?? .lightGray
+    static let cineSearchTint = UIColor(named: "searchTint") ?? .lightGray
+    static let cineSearchInput = UIColor(named: "searchInput") ?? .lightGray
+    static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
+
+    // MARK: ToolBar
+    static let cineToolBarBackground = UIColor(named: "toolBarBackground") ?? .lightGray
+    static let cineToolBarTint = UIColor(named: "toolBarTint") ?? .lightGray
+
+    // MARK: Safari
+    static let cineSafariBackground = UIColor(named: "safariBackground") ?? .lightGray
+    static let cineSafariTint = UIColor(named: "safariTint") ?? .lightGray
+
+    // MARK: SwipeAction
+    static let cineSwipeSeen = UIColor(named: "swipeSeen") ?? .lightGray
+    static let cineSwipeWatchlist = UIColor(named: "swipeWatchlist") ?? .lightGray
+    static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
+
+    // MARK: More...
     static let cineListBackground = UIColor(named: "listBackground") ?? .lightGray
     static let cineSeparator = UIColor(named: "separator") ?? .lightGray
     static let cineCellBackground = UIColor(named: "cellBackground") ?? .lightGray
@@ -35,33 +55,14 @@ extension UIColor {
     static let cineVoteRectangle = UIColor(named: "voteRectangle") ?? .lightGray
     static let cineButton = UIColor(named: "button") ?? .lightGray
     static let cineButtonDark = UIColor(named: "buttonDark") ?? .lightGray
-
     static let cineTitle = UIColor(named: "title") ?? .lightGray
     static let cineDescription = UIColor(named: "description") ?? .lightGray
     static let cineLink = UIColor(named: "link") ?? .lightGray
-
-    static let cineSearchBackground = UIColor(named: "searchBackground") ?? .lightGray
-    static let cineSearchTint = UIColor(named: "searchTint") ?? .lightGray
-    static let cineSearchInput = UIColor(named: "searchInput") ?? .lightGray
-    static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
-
     static let cineImageTint = UIColor(named: "imageTint") ?? .lightGray
     static let cineAlertTint = UIColor(named: "alertTint") ?? .lightGray
-
-    static let cineToolBarBackground = UIColor(named: "toolBarBackground") ?? .lightGray
-    static let cineToolBarTint = UIColor(named: "toolBarTint") ?? .lightGray
-
-    static let cineSafariBackground = UIColor(named: "safariBackground") ?? .lightGray
-    static let cineSafariTint = UIColor(named: "safariTint") ?? .lightGray
-
-    static let cineSwipeSeen = UIColor(named: "swipeSeen") ?? .lightGray
-    static let cineSwipeWatchlist = UIColor(named: "swipeWatchlist") ?? .lightGray
-    static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
-
     static let cineShadow = UIColor(named: "shadow") ?? .lightGray
     static let cineFooter = UIColor(named: "footer") ?? .lightGray
     static let cineEmptyListDescription = UIColor(named: "emptyListDescription") ?? .lightGray
-
     static let cineUsageActive = UIColor(named: "usageActive") ?? .lightGray
     static let cineUsageInactive = UIColor(named: "usageInactive") ?? .lightGray
 }
