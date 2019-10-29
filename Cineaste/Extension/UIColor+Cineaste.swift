@@ -60,6 +60,7 @@ extension UIColor {
 
     static let cineShadow = UIColor(named: "shadow") ?? .lightGray
     static let cineFooter = UIColor(named: "footer") ?? .lightGray
+    static let cineEmptyListDescription = UIColor(named: "emptyListDescription") ?? .lightGray
 
     static let cineUsageActive = UIColor(named: "usageActive") ?? .lightGray
     static let cineUsageInactive = UIColor(named: "usageInactive") ?? .lightGray
