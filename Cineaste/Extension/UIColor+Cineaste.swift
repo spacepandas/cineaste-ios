@@ -18,14 +18,11 @@ extension UIColor {
     static let basicYellow = UIColor(named: "basicYellow") ?? .lightGray
 
     static let basicBackground = UIColor(named: "basicBackground") ?? .lightGray
-    static let basicBlack = UIColor(named: "basicBlack") ?? .lightGray
 
     static let superLightGray = UIColor(named: "superLightGray") ?? .lightGray
 
     static let accentTextOnWhite = UIColor(named: "accentTextOnWhite") ?? .lightGray
     static let accentTextOnBlack = UIColor(named: "accentTextOnBlack") ?? .lightGray
-
-    static let transparentBlack = UIColor(named: "transparentBlack") ?? .lightGray
 
     // new
     static let cineNavBar = UIColor(named: "navBar") ?? .lightGray
