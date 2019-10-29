@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length file_length
 class MovieDetailViewController: UIViewController {
     enum MovieType {
         case stored(StoredMovie)
@@ -454,4 +454,3 @@ extension MovieDetailViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "MovieDetailViewController" }
 }
-//swiftlint:enable type_body_length

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// swiftlint:disable:next type_body_length
 class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var permissionDeniedView: UIView!
     @IBOutlet private weak var nearbyIcon: UIImageView!
