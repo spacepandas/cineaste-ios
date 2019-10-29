@@ -62,4 +62,8 @@ extension UIColor {
 
     static let cineSafariBackground = UIColor(named: "safariBackground") ?? .lightGray
     static let cineSafariTint = UIColor(named: "safariTint") ?? .lightGray
+
+    static let cineSwipeSeen = UIColor(named: "swipeSeen") ?? .lightGray
+    static let cineSwipeWatchlist = UIColor(named: "swipeWatchlist") ?? .lightGray
+    static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
 }
