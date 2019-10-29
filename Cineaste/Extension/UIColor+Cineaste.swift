@@ -12,7 +12,6 @@ import UIKit
 // (Force unwrapping fails in Interface Builder)
 
 extension UIColor {
-    static let accentTextOnWhite = UIColor(named: "accentTextOnWhite") ?? .lightGray
     static let accentTextOnBlack = UIColor(named: "accentTextOnBlack") ?? .lightGray
 
     // new
@@ -60,4 +59,7 @@ extension UIColor {
     static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
 
     static let cineShadow = UIColor(named: "shadow") ?? .lightGray
+
+    static let cineUsageActive = UIColor(named: "usageActive") ?? .lightGray
+    static let cineUsageInactive = UIColor(named: "usageInactive") ?? .lightGray
 }

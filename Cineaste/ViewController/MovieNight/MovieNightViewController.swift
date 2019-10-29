@@ -31,13 +31,17 @@ class MovieNightViewController: UITableViewController {
 
     private var canUseBluetooth: Bool = true {
         didSet {
-            bluetoothIcon.tintColor = canUseBluetooth ? .accentTextOnBlack : .accentTextOnWhite
+            bluetoothIcon.tintColor = canUseBluetooth
+                ? .cineUsageActive
+                : .cineUsageInactive
         }
     }
 
     private var canUseMicrophone: Bool = true {
         didSet {
-            microphoneIcon.tintColor = canUseMicrophone ? .accentTextOnBlack : .accentTextOnWhite
+            microphoneIcon.tintColor = canUseMicrophone
+            ? .cineUsageActive
+            : .cineUsageInactive
         }
     }
 
