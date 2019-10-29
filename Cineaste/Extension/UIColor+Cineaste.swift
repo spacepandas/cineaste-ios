@@ -62,4 +62,7 @@ extension UIColor {
 
     static let cineToolBarBackground = UIColor(named: "toolBarBackground") ?? .lightGray
     static let cineToolBarTint = UIColor(named: "toolBarTint") ?? .lightGray
+
+    static let cineSafariBackground = UIColor(named: "safariBackground") ?? .lightGray
+    static let cineSafariTint = UIColor(named: "safariTint") ?? .lightGray
 }
