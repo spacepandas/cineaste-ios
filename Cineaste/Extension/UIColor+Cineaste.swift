@@ -56,4 +56,6 @@ extension UIColor {
     static let cineSearchTint = UIColor(named: "searchTint") ?? .lightGray
     static let cineSearchInput = UIColor(named: "searchInput") ?? .lightGray
     static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
+
+    static let cineImageTint = UIColor(named: "imageTint") ?? .lightGray
 }

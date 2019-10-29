@@ -45,7 +45,18 @@ class SettingsDetailViewController: UIViewController {
 
         if textViewContent == .imprint {
             imageView.isHidden = false
+            updateAssetForUserInterfaceStyle()
         }
+    }
+
+    private func updateAssetForUserInterfaceStyle() {
+        movieDBImageView?.tintColor = .cineImageTint
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        updateAssetForUserInterfaceStyle()
     }
 
 }
