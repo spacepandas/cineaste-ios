@@ -34,7 +34,7 @@ class SettingsViewController: UITableViewController {
         tableView.tableFooterView = footerView
 
         versionInfo.text = Constants.versionNumberInformation
-        versionInfo.textColor = .cineDescription
+        versionInfo.textColor = .cineFooter
     }
 
     override func viewWillAppear(_ animated: Bool) {
