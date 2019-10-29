@@ -37,7 +37,7 @@ class VoteCircleView: View {
         backgroundColor = UIColor.cineVoteCircle
 
         layer.masksToBounds = true
-        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
+        layer.shadowColor = UIColor.cineShadow.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = 3
@@ -70,7 +70,7 @@ class ShadowView: View {
     }
 
     override func setup() {
-        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
+        layer.shadowColor = UIColor.cineShadow.cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = shadowRadius

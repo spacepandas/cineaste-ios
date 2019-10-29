@@ -58,4 +58,6 @@ extension UIColor {
     static let cineSwipeSeen = UIColor(named: "swipeSeen") ?? .lightGray
     static let cineSwipeWatchlist = UIColor(named: "swipeWatchlist") ?? .lightGray
     static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
+
+    static let cineShadow = UIColor(named: "shadow") ?? .lightGray
 }
