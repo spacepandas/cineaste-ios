@@ -38,6 +38,7 @@ extension UIColor {
 
     static let cineSegmentedControlSelected = UIColor(named: "segmentedControlSelected") ?? .lightGray
     static let cineSegmentedControlNormal = UIColor(named: "segmentedControlNormal") ?? .lightGray
+    static let cineSegmentedControlTint = UIColor(named: "segmentedControlTint") ?? .lightGray
 
     static let cineListBackground = UIColor(named: "listBackground") ?? .lightGray
     static let cineSeparator = UIColor(named: "separator") ?? .lightGray

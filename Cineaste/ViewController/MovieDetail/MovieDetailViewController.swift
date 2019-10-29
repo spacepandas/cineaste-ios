@@ -220,9 +220,9 @@ class MovieDetailViewController: UIViewController {
         buttonInfoLabel.textColor = UIColor.basicBackground
 
         if #available(iOS 13.0, *) {
-            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.white
+            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.cineSegmentedControlSelected
             movieStateSegmentedControl.setTitleTextAttributes(
-                [NSAttributedString.Key.foregroundColor: UIColor.white],
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlTint],
                 for: .selected)
             movieStateSegmentedControl.setTitleTextAttributes(
                 [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlNormal],
