@@ -44,6 +44,6 @@ enum Appearance {
 
         // MARK: UIToolBar
         let toolBar = UIToolbar.appearance()
-        toolBar.tintColor = .primaryOrange
+        toolBar.tintColor = .cineToolBarTint
     }
 }

@@ -58,4 +58,7 @@ extension UIColor {
     static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
 
     static let cineImageTint = UIColor(named: "imageTint") ?? .lightGray
+
+    static let cineToolBarBackground = UIColor(named: "toolBarBackground") ?? .lightGray
+    static let cineToolBarTint = UIColor(named: "toolBarTint") ?? .lightGray
 }

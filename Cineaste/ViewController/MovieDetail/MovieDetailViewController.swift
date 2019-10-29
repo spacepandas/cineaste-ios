@@ -33,9 +33,9 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
 
-    @IBOutlet weak var triangleImageView: UIImageView!
+    @IBOutlet private weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
-    @IBOutlet weak var background: UIView!
+    @IBOutlet private weak var background: UIView!
 
     @IBOutlet private weak var titleLabel: TitleLabel!
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -48,8 +48,8 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
-    @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet private var deleteButton: UIBarButtonItem!
+    @IBOutlet private weak var toolBar: UIToolbar!
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
 
     private var storageManager: MovieStorageManager?
 
