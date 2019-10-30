@@ -23,7 +23,6 @@ class PosterViewController: UIViewController {
             toolbar.backgroundColor = .clear
             toolbar.setShadowImage(UIImage(),
                                    forToolbarPosition: .any)
-            toolbar.tintColor = .primaryOrange
         }
     }
 
@@ -36,7 +35,7 @@ class PosterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        toolbarBackgroundView.backgroundColor = .transparentBlack
+        toolbarBackgroundView.backgroundColor = .cineToolBarBackground
         toolbarBackgroundView.addBlurEffect(with: .dark)
 
         blurredBackgroundImage.image = image

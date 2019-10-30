@@ -8,6 +8,7 @@
 
 import UIKit
 
+// swiftlint:disable:next type_body_length
 class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var permissionDeniedView: UIView!
     @IBOutlet private weak var nearbyIcon: UIImageView!
@@ -31,13 +32,17 @@ class MovieNightViewController: UITableViewController {
 
     private var canUseBluetooth: Bool = true {
         didSet {
-            bluetoothIcon.tintColor = canUseBluetooth ? .accentTextOnBlack : .accentTextOnWhite
+            bluetoothIcon.tintColor = canUseBluetooth
+                ? .cineUsageActive
+                : .cineUsageInactive
         }
     }
 
     private var canUseMicrophone: Bool = true {
         didSet {
-            microphoneIcon.tintColor = canUseMicrophone ? .accentTextOnBlack : .accentTextOnWhite
+            microphoneIcon.tintColor = canUseMicrophone
+            ? .cineUsageActive
+            : .cineUsageInactive
         }
     }
 
@@ -179,9 +184,9 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureViews() {
-        nearbyIcon.tintColor = .accentTextOnBlack
-        permissionDeniedDescription.textColor = .accentTextOnBlack
-        usageDescription.textColor = .accentTextOnBlack
+        nearbyIcon.tintColor = .cineFooter
+        permissionDeniedDescription.textColor = .cineFooter
+        usageDescription.textColor = .cineFooter
 
         let nearbyPermissionStyle = nearbyLinkPermissionDeniedTextView.paragraphStyle
         nearbyPermissionStyle.alignment = .center
@@ -195,7 +200,7 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.backgroundColor = UIColor.basicBackground
+        tableView.backgroundColor = UIColor.cineListBackground
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80

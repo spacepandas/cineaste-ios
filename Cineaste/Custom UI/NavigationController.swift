@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrangeNavigationController: UINavigationController {
+class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,20 +18,20 @@ class OrangeNavigationController: UINavigationController {
         navigationItem.largeTitleDisplayMode = .automatic
         navigationBar.prefersLargeTitles = true
         navigationBar.isTranslucent = false
-        navigationBar.barTintColor = .primaryOrange
-        navigationBar.tintColor = .white
+        navigationBar.barTintColor = .cineNavBar
+        navigationBar.tintColor = .cineNavBarTint
 
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.cineNavBarTitle
         ]
         let largeTitleTextAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.cineNavBarTitle
         ]
 
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithDefaultBackground()
-            navBarAppearance.backgroundColor = .primaryOrange
+            navBarAppearance.backgroundColor = .cineNavBar
 
             navBarAppearance.titleTextAttributes = titleTextAttributes
             navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes

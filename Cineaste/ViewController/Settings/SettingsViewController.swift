@@ -30,11 +30,11 @@ class SettingsViewController: UITableViewController {
 
         title = String.moreTitle
 
-        tableView.backgroundColor = UIColor.basicBackground
+        tableView.backgroundColor = UIColor.cineListBackground
         tableView.tableFooterView = footerView
 
         versionInfo.text = Constants.versionNumberInformation
-        versionInfo.textColor = .accentTextOnBlack
+        versionInfo.textColor = .cineFooter
     }
 
     override func viewWillAppear(_ animated: Bool) {

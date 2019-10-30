@@ -16,11 +16,12 @@ class TextView: UITextView {
     }()
 
     func setup() {
+        backgroundColor = .clear
         isEditable = false
         isSelectable = true
         dataDetectorTypes = .link
         linkTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.primaryOrange
+            NSAttributedString.Key.foregroundColor: UIColor.cineLink
         ]
 
         NotificationCenter.default.addObserver(
@@ -66,13 +67,13 @@ class DescriptionTextView: TextView {
             let titleAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
-                NSAttributedString.Key.foregroundColor: UIColor.basicBlack
+                NSAttributedString.Key.foregroundColor: UIColor.cineTitle
             ]
 
             let paragraphAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+                NSAttributedString.Key.foregroundColor: UIColor.cineDescription
             ]
 
             attributedText = type
@@ -82,7 +83,7 @@ class DescriptionTextView: TextView {
             let defaultAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-                NSAttributedString.Key.foregroundColor: UIColor.basicBackground
+                NSAttributedString.Key.foregroundColor: UIColor.cineDescription
             ]
 
             attributedText = NSAttributedString(string: text,
@@ -107,7 +108,7 @@ class LinkTextView: TextView {
         let defaultAttributes = [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline),
-            NSAttributedString.Key.foregroundColor: UIColor.accentTextOnBlack
+            NSAttributedString.Key.foregroundColor: UIColor.cineFooter
         ]
 
         attributedText = NSAttributedString(string: text,

@@ -26,13 +26,6 @@ class SearchMoviesViewControllerTests: XCTestCase {
         XCTAssertNotNil(searchMoviesVC.tableView.dataSource)
     }
 
-    func testBackgroundColorShouldBeSetCorrectly() {
-        searchMoviesVC.viewDidLoad()
-
-        XCTAssertEqual(searchMoviesVC.view.backgroundColor, UIColor.basicBackground)
-        XCTAssertEqual(searchMoviesVC.tableView.backgroundColor, UIColor.clear)
-    }
-
     func testNumberOfRowsShouldEqualNumberOfMovies() {
         XCTAssertEqual(searchMoviesVC.tableView.numberOfRows(inSection: 0), 0)
 

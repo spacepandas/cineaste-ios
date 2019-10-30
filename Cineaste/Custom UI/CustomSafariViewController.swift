@@ -13,7 +13,7 @@ class CustomSafariViewController: SFSafariViewController {
     init(url: URL) {
         super.init(url: url, configuration: .init())
 
-        preferredBarTintColor = .basicBlack
-        preferredControlTintColor = .white
+        preferredBarTintColor = .cineSafariBackground
+        preferredControlTintColor = .cineSafariTint
     }
 }

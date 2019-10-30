@@ -44,12 +44,12 @@ class MoviesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.basicBackground
+        view.backgroundColor = UIColor.cineListBackground
 
-        emptyListLabel.textColor = .accentTextOnBlack
-        empyListTitle.textColor = .accentTextOnBlack
+        emptyListLabel.textColor = .cineEmptyListDescription
+        empyListTitle.textColor = .cineEmptyListDescription
         empyListTitle.text = .noContentTitle
-        emptyListAddMovieButton.backgroundColor = .primaryOrange
+        emptyListAddMovieButton.backgroundColor = .cineButton
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
         emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
 
@@ -144,7 +144,7 @@ class MoviesViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.basicBackground
+        tableView.backgroundColor = UIColor.cineListBackground
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80

@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length file_length
 class MovieDetailViewController: UIViewController {
     enum MovieType {
         case stored(StoredMovie)
@@ -33,7 +33,9 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
 
+    @IBOutlet private weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
+    @IBOutlet private weak var background: UIView!
 
     @IBOutlet private weak var titleLabel: TitleLabel!
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -46,8 +48,8 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
-    @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet private var deleteButton: UIBarButtonItem!
+    @IBOutlet private weak var toolBar: UIToolbar!
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
 
     private var storageManager: MovieStorageManager?
 
@@ -209,19 +211,24 @@ class MovieDetailViewController: UIViewController {
 
     private func configureElements() {
         contentStackView.setCustomSpacing(30, after: moreInformationStackView)
+        view.backgroundColor = .cineContentBackground
+        triangleImageView.tintColor = .cineContentBackground
+        background.backgroundColor = .cineContentBackground
 
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
-        buttonInfoLabel.textColor = UIColor.basicBackground
+        buttonInfoLabel.textColor = UIColor.cineDescription
 
         if #available(iOS 13.0, *) {
-            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.primaryOrange
-            let whiteText: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.white
-            ]
-            movieStateSegmentedControl.setTitleTextAttributes(whiteText, for: .selected)
+            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.cineSegmentedControlSelected
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlTint],
+                for: .selected)
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlNormal],
+                for: .normal)
         } else {
-            movieStateSegmentedControl.tintColor = UIColor.primaryOrange
+            movieStateSegmentedControl.tintColor = UIColor.cineSegmentedControlSelected
         }
 
         posterImageView.isUserInteractionEnabled = true
@@ -447,4 +454,3 @@ extension MovieDetailViewController: Instantiable {
     static var storyboard: Storyboard { return .movieDetail }
     static var storyboardID: String? { return "MovieDetailViewController" }
 }
-//swiftlint:enable type_body_length

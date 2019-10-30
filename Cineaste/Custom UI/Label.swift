@@ -29,7 +29,7 @@ class Label: UILabel {
 class DescriptionLabel: Label {
     override func setup() {
         font = UIFont.preferredFont(forTextStyle: .body)
-        textColor = UIColor.basicBackground
+        textColor = UIColor.cineDescription
         adjustsFontForContentSizeCategory = true
     }
 }
@@ -37,7 +37,7 @@ class DescriptionLabel: Label {
 class TitleLabel: Label {
     override func setup() {
         font = UIFont.preferredFont(forTextStyle: .headline)
-        textColor = UIColor.basicBlack
+        textColor = UIColor.cineTitle
         adjustsFontForContentSizeCategory = true
     }
 }
@@ -52,7 +52,7 @@ class Title1CondensedLabel: Label {
 
         setCondensedTitle1SymbolicTrait()
 
-        textColor = UIColor.basicBlack
+        textColor = UIColor.cineTitle
     }
 }
 
@@ -66,7 +66,7 @@ class Title2CondensedLabel: Label {
 
         setCondensedTitle2SymbolicTrait()
 
-        textColor = UIColor.basicBlack
+        textColor = UIColor.cineTitle
     }
 }
 
@@ -80,14 +80,14 @@ class SubheadlineItalicLabel: Label {
 
         setItalicSymbolicTrait()
 
-        textColor = UIColor.basicBackground
+        textColor = UIColor.cineTitle
     }
 }
 
 class FootnoteLabel: Label {
     override func setup() {
         font = UIFont.preferredFont(forTextStyle: .caption1)
-        textColor = UIColor.accentTextOnBlack
+        textColor = UIColor.cineDescription
         adjustsFontForContentSizeCategory = true
     }
 }

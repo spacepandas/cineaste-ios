@@ -22,9 +22,9 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Bluetooth</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Bluetooth</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location</string>
@@ -64,8 +64,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

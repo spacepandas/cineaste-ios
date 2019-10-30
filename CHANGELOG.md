@@ -3,13 +3,13 @@
 # Upcoming Release
 
 ## New
-* 
+* Add Dark Mode ([#114](https://github.com/spacepandas/cineaste-ios/pull/114))
 
 ## Fixed
-* 
+* Fix a wrong BackgroundColor for iOS 11.4
 
 ## Improved
-* 
+* Disable Parallax Effect when "Reduce Motion" is enabled
 
 # 1.12.1
 
