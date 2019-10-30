@@ -49,7 +49,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var descriptionTextView: DescriptionTextView!
 
     @IBOutlet private weak var toolBar: UIToolbar!
-    @IBOutlet private weak var deleteButton: UIBarButtonItem!
+    @IBOutlet private var deleteButton: UIBarButtonItem!
 
     private var storageManager: MovieStorageManager?
 
