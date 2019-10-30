@@ -3,6 +3,17 @@
 # Upcoming Release
 
 ## New
+* 
+
+## Fixed
+* 
+
+## Improved
+* 
+
+# 1.13.0
+
+## New
 * Add Dark Mode ([#114](https://github.com/spacepandas/cineaste-ios/pull/114))
 
 ## Fixed
