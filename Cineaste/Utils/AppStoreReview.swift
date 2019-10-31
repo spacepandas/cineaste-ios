@@ -23,6 +23,11 @@ enum AppStoreReview {
     }
 
     static func requestReview() {
+        // do not ask for appStore Review in UITest
+        #if DEBUG
+        guard !ProcessInfo().arguments.contains("UI_TEST") else { return }
+        #endif
+
         guard let currentBuildVersion = Bundle.main
             .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return }
@@ -32,13 +37,8 @@ enum AppStoreReview {
 
         if canShowRequest {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                #if DEBUG
-                    // do not ask for appStore Review in DEBUG mode
-                    // this is a problem for UITests and it has no value
-                #else
-                    SKStoreReviewController.requestReview()
-                    PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
-                #endif
+                SKStoreReviewController.requestReview()
+                PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
             }
         }
     }

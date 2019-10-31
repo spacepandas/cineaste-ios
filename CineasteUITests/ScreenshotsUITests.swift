@@ -21,7 +21,8 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         app.launchArguments += [
-            "SKIP_ANIMATIONS"
+            "SKIP_ANIMATIONS",
+            "UI_TEST"
 
             // Enable the following launch arguments
             // to test dynamic type without running `fastlane screenshot`
