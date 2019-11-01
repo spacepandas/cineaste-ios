@@ -30,9 +30,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95AE259B1F9531E20067F5F5"
-            BuildableName = "Cineaste App-Dev.app"
-            BlueprintName = "Cineaste App-Dev"
+            BlueprintIdentifier = "3FF790E120DE274A007B7D37"
+            BuildableName = "Cineaste App.app"
+            BlueprintName = "Cineaste App"
             ReferencedContainer = "container:Cineaste.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -41,16 +41,11 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F2408F1203CB88E00EB9141"
-               BuildableName = "CineasteUITests.xctest"
-               BlueprintName = "CineasteUITests"
+               BlueprintIdentifier = "3F450B33236C6EF100A59F1E"
+               BuildableName = "CineasteSnapshotTests.xctest"
+               BlueprintName = "CineasteSnapshotTests"
                ReferencedContainer = "container:Cineaste.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "MonkeyTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

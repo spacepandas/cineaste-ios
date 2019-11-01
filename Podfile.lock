@@ -12,21 +12,24 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilitiesLegacy (~> 1.3)
+  - SnapshotTesting (1.6.0)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Kingfisher
   - NearbyMessages
+  - SnapshotTesting (~> 1.0)
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://cdn.cocoapods.org/:
     - GoogleInterchangeUtilities
     - GoogleNetworkingUtilities
     - GoogleSymbolUtilities
     - GoogleUtilitiesLegacy
     - Kingfisher
     - NearbyMessages
+    - SnapshotTesting
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -36,8 +39,9 @@ SPEC CHECKSUMS:
   GoogleUtilitiesLegacy: 5501bedec1646bd284286eb5fc9453f7e23a12f4
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
+  SnapshotTesting: 9f478335073a830eafb7dc1fcd526c5e90143991
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 5c8bfc62f3d1d8bc2ab89e4394f59651ca1633f5
+PODFILE CHECKSUM: 4cad7e00b5f37ae697c702a0b42d1314fb20b95e
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

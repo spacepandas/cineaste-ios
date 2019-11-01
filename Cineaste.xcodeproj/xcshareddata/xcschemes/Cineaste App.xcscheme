@@ -57,6 +57,16 @@
                ReferencedContainer = "container:Cineaste.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3F450B33236C6EF100A59F1E"
+               BuildableName = "CineasteSnapshotTests.xctest"
+               BlueprintName = "CineasteSnapshotTests"
+               ReferencedContainer = "container:Cineaste.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
