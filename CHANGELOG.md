@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Introduces `SnapshotTesting` as new Dependency with two sample Snapshot Tests
 
 ## Fixed
 * 
