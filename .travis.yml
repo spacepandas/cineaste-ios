@@ -14,7 +14,8 @@ jobs:
   include:
     - script: bundle exec fastlane test
       name: Unit Tests
-      if: fork = true
+    - script: bundle exec fastlane snapshot_test
+      name: Snapshot Tests
     - script: ./tests.sh
       name: Unit Tests + SonarCloud
       if: fork = false

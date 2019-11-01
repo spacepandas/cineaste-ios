@@ -7,6 +7,7 @@ DerivedDataPath = 'DerivedData'
 
 Scheme = 'Cineaste App'
 Scheme_UnitTests = 'UnitTests'
+Scheme_SnapshotTests = 'SnapshotTests'
 Scheme_UITests = 'UITests'
 
 Test_Device = 'iPhone 8'
@@ -38,8 +39,16 @@ lane :test do
   )
 end
 
+desc 'Runs all snapshot tests'
+lane :snapshot_test do
+  run_tests(
+    device: Test_Device,
+    scheme: Scheme_SnapshotTests
+  )
+end
+
 desc 'Runs all UI tests'
-lane :uitest do
+lane :ui_test do
   run_tests(
     device: Test_Device,
     scheme: Scheme_UITests
