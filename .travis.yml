@@ -14,10 +14,11 @@ jobs:
   include:
     - script: bundle exec fastlane test
       name: Unit Tests
-    - script: bundle exec fastlane snapshot_test
-      name: Snapshot Tests
+      if: fork = true
     - script: ./tests.sh
       name: Unit Tests + SonarCloud
       if: fork = false
+    - script: bundle exec fastlane snapshot_test
+      name: Snapshot Tests
     - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
       name: SwiftLint
