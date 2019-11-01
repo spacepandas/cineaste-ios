@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.13.1
+
+## Fixed
+* Prevent a Crash with handling App Review Prompts and UI Tests differently
+
 # 1.13.0
 
 ## New
