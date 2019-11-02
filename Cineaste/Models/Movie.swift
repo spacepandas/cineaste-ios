@@ -25,44 +25,19 @@ struct Movie: Codable, Equatable {
     var listPosition: Int?
 
     let popularity: Double?
+}
 
+extension Movie {
     // This is only for creating a movie to use it with the webservice
     init(id: Int64) {
         self.id = id
-        self.title = ""
+        title = ""
         voteAverage = 0
         voteCount = 0
         overview = ""
         runtime = 0
         posterPath = nil
         popularity = 0
-    }
-
-    init(id: Int64,
-         title: String,
-         voteAverage: Double,
-         voteCount: Double,
-         posterPath: String?,
-         overview: String,
-         runtime: Int16?,
-         releaseDate: Date?,
-         //swiftlint:disable:next discouraged_optional_boolean
-         watched: Bool?,
-         watchedDate: Date?,
-         listPosition: Int? = 0,
-         popularity: Double?) {
-        self.id = id
-        self.title = title
-        self.voteAverage = voteAverage
-        self.voteCount = voteCount
-        self.posterPath = posterPath
-        self.overview = overview
-        self.runtime = runtime
-        self.releaseDate = releaseDate
-        self.watched = watched
-        self.watchedDate = watchedDate
-        self.listPosition = listPosition
-        self.popularity = popularity
     }
 }
 
