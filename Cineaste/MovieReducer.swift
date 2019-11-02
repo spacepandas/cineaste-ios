@@ -20,6 +20,7 @@ func movieReducer(action: Action, state: Set<Movie>?) -> Set<Movie> {
     switch action as? MovieAction {
     case .add(let movie)?:
         if !state.filter({ $0.id == movie.id }).isEmpty {
+            // update movie when it already exists
             state = state
                 .filter { $0.id != movie.id }
                 .union([movie])

@@ -46,6 +46,23 @@ class MovieReducerTests: XCTestCase {
         XCTAssert(after.first!.watched!)
     }
 
+    func testAddMovieActionShouldUpdateExistingMovie() {
+        // Given
+        var movie = Movie(id: 0)
+        movie.watched = false
+        let before: Set<Movie> = [movie]
+
+        movie.watched = true
+        let action = MovieAction.add(movie: movie)
+
+        // When
+        let after = movieReducer(action: action, state: before)
+
+        // Then
+        XCTAssertEqual(after.count, 1)
+        XCTAssert(after.first!.watched!)
+    }
+
     func testDeleteMovieActionShouldDeleteExistingMovie() {
         // Given
         let movie = Movie(id: 0)
