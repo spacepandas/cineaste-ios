@@ -46,9 +46,9 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private var deleteButton: UIBarButtonItem!
 
-    private var state: WatchState = .undefined {
+    private var watchState: WatchState = .undefined {
         didSet {
-            updateElements(for: state)
+            updateElements(for: watchState)
         }
     }
 
@@ -188,7 +188,7 @@ class MovieDetailViewController: UIViewController {
                                                        action: #selector(showPoster))
         posterImageView.addGestureRecognizer(gestureRecognizer)
 
-        updateElements(for: state)
+        updateElements(for: watchState)
     }
 
     private func setupLocalization() {
@@ -274,7 +274,7 @@ class MovieDetailViewController: UIViewController {
         let deleteAction = PreviewAction.delete.previewAction(for: movie)
 
         let actions: [UIPreviewActionItem]
-        switch state {
+        switch watchState {
         case .seen:
             actions = [watchlistAction, deleteAction]
         case .watchlist:
@@ -306,33 +306,34 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 
 extension MovieDetailViewController: StoreSubscriber {
     struct State: Equatable {
-        let selectedMovieId: Int64?
-        let movies: Set<Movie>
+        let movie: Movie
+        let watchState: WatchState
     }
 
     private static func select(state: AppState) -> State {
-        return .init(
-            selectedMovieId: state.selectedMovieId,
-            movies: state.movies
-        )
-    }
-
-    func newState(state: State) {
-        guard let selectedMovieId = state.selectedMovieId else { return }
-
-        if let movie = state.movies.first(where: { $0.id == selectedMovieId }) {
-            self.movie = movie
-        } else {
-            movie = Movie(id: selectedMovieId)
+        guard let selectedMovieId = state.selectedMovieId else {
+            fatalError("This ViewController should always have a movie")
         }
 
+        let selectedMovie = state.movies.first { $0.id == selectedMovieId }
+         ?? Movie(id: selectedMovieId)
+
         let state: WatchState
-        if let watched = movie?.watched {
+        if let watched = selectedMovie.watched {
             state = watched ? .seen : .watchlist
         } else {
             state = .undefined
         }
-        self.state = state
+
+        return .init(
+            movie: selectedMovie,
+            watchState: state
+        )
+    }
+
+    func newState(state: State) {
+        movie = state.movie
+        watchState = state.watchState
     }
 }
 

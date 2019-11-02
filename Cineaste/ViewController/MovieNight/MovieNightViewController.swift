@@ -348,17 +348,18 @@ extension MovieNightViewController: UITextViewDelegate {
 
 extension MovieNightViewController: StoreSubscriber {
     struct State: Equatable {
-        let movies: Set<Movie>
+        let movies: [Movie]
     }
 
     private static func select(state: AppState) -> State {
-        return .init(movies: state.movies)
+        let movies = state.movies
+            .filter { !($0.watched ?? false) }
+            .sorted { $0.title > $1.title }
+        return .init(movies: movies)
     }
 
     func newState(state: State) {
         movies = state.movies
-            .filter { !($0.watched ?? false) }
-            .sorted { $0.title > $1.title }
     }
 }
 
