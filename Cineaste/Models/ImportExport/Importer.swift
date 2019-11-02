@@ -8,7 +8,7 @@
 
 enum ImportError: Error {
     case noDataAtPath
-    case parsingJsonToStoredMovie
+    case parsingJsonToImportExport
 }
 
 enum Importer {
@@ -18,7 +18,7 @@ enum Importer {
 
         guard let importExportObject = try? JSONDecoder.tmdbDecoder
             .decode(ImportExportObject.self, from: data)
-            else { throw ImportError.parsingJsonToStoredMovie }
+            else { throw ImportError.parsingJsonToImportExport }
 
         for movie in importExportObject.movies {
             store.dispatch(MovieAction.add(movie: movie))
