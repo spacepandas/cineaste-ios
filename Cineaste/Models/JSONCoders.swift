@@ -21,12 +21,7 @@ extension JSONDecoder {
         $0.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            if let date = formatter.date(from: dateString) {
-                return date
-            } else {
-                //TODO: maybe fix this at some time?
-                return Date.distantFuture
-            }
+            return formatter.date(from: dateString) ?? Date.distantFuture
         }
         return $0
     }(JSONDecoder())
