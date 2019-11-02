@@ -29,9 +29,9 @@ enum Persistence {
 }
 
 private extension Persistence {
-    private static let movieUrl = FileManager.default.documentsDirectory
+    static let movieUrl = FileManager.default.documentsDirectory
         .appendingPathComponent("movies.json")
-    private static let exportMovieUrl = FileManager.default.cachesDirectory
+    static let exportMovieUrl = FileManager.default.cachesDirectory
         .appendingPathComponent("cineaste-\(Date().formattedForRequest).json")
 }
 
