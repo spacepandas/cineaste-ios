@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  XCTestCase+SnapshotTests.swift
 //  CineasteSnapshotTests
@@ -37,7 +38,7 @@ func assertViewSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image,
+            as: .image(precision: 0.99),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
