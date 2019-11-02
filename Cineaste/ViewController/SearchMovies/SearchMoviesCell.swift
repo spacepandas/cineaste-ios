@@ -33,6 +33,8 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie, state: WatchState) {
         cellBackgroundView.backgroundColor = .cineCellBackground
+
+        poster.accessibilityIgnoresInvertColors = true
         let nonbreakingSpace = "\u{00a0}"
         title.text = movie.title
         detailLabel.text = movie.formattedRelativeReleaseInformation

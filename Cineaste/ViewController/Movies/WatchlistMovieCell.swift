@@ -23,6 +23,7 @@ class WatchlistMovieCell: UITableViewCell {
         background.backgroundColor = .cineCellBackground
         let nonbreakingSpace = "\u{00a0}"
 
+        poster.accessibilityIgnoresInvertColors = true
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {

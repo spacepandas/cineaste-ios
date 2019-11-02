@@ -17,7 +17,10 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var watchedDateLabel: UILabel!
 
-    func configure(with movie: StoredMovie) { background.backgroundColor = .cineCellBackground
+    func configure(with movie: StoredMovie) {
+        background.backgroundColor = .cineCellBackground
+
+        poster.accessibilityIgnoresInvertColors = true
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {
