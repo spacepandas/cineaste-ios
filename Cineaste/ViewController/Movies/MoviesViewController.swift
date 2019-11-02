@@ -147,7 +147,7 @@ class MoviesViewController: UITableViewController {
 
     @objc
     func refreshMovies() {
-        MovieRefresher().refresh(movies: movies) {
+        MovieRefresher.refresh(movies: movies) {
             self.tableView.refreshControl?.endRefreshing()
         }
     }

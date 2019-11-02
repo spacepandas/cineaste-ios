@@ -6,8 +6,8 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
-final class MovieRefresher {
-    func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
+enum MovieRefresher {
+    static func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
         let group = DispatchGroup()
 
         for movieToUpdate in movies {
@@ -15,12 +15,12 @@ final class MovieRefresher {
             let networkMovie = Movie(id: movieToUpdate.id)
 
             Webservice.load(resource: networkMovie.get) { result in
-                if case let .success(movie) = result {
-                    self.update(movieToUpdate, withNew: movie) { updatedMovie in
-                        store.dispatch(MovieAction.update(movie: updatedMovie))
-                        group.leave()
-                    }
-                } else {
+                switch result {
+                case .success(let movie):
+                    let updatedMovie = self.update(movieToUpdate, withNew: movie)
+                    store.dispatch(MovieAction.update(movie: updatedMovie))
+                    group.leave()
+                case .failure:
                     group.leave()
                 }
             }
@@ -34,7 +34,7 @@ final class MovieRefresher {
 }
 
 private extension MovieRefresher {
-    func update(_ movieToUpdate: Movie, withNew movie: Movie, completion: @escaping (Movie) -> Void) {
+    static func update(_ movieToUpdate: Movie, withNew movie: Movie) -> Movie {
         let updatedMovie = Movie(
             id: movie.id,
             title: movie.title,
@@ -48,6 +48,6 @@ private extension MovieRefresher {
             watchedDate: movieToUpdate.watchedDate,
             popularity: movie.popularity)
 
-        completion(updatedMovie)
+        return updatedMovie
     }
 }
