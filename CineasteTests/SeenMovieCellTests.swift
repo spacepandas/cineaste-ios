@@ -15,6 +15,10 @@ class SeenMovieCellTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        let backgroundView = UIView()
+        cell.addSubview(backgroundView)
+        cell.background = backgroundView
+
         let poster = UIImageView()
         cell.addSubview(poster)
         cell.poster = poster
