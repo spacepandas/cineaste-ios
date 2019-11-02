@@ -11,6 +11,8 @@ import UIKit
 class WatchlistMovieCell: UITableViewCell {
     static let identifier = "WatchlistMovieCell"
 
+    @IBOutlet weak var background: UIView!
+
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var releaseAndRuntimeLabel: UILabel!
@@ -18,6 +20,7 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var voteView: VoteView!
 
     func configure(with movie: Movie) {
+        background.backgroundColor = .cineCellBackground
         let nonbreakingSpace = "\u{00a0}"
 
         poster.loadingImage(from: movie.posterPath, in: .small)

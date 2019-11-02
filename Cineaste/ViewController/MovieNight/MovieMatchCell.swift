@@ -15,6 +15,7 @@ protocol MovieMatchTableViewCellDelegate: AnyObject {
 class MovieMatchCell: UITableViewCell {
     static let identifier = "MovieMatchCell"
 
+    @IBOutlet weak var background: UIView!
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var separatorView: UIView!
 
@@ -27,9 +28,11 @@ class MovieMatchCell: UITableViewCell {
 
     private func setup(with movie: NearbyMovie,
                        delegate: MovieMatchTableViewCellDelegate) {
+        background.backgroundColor = .cineCellBackground
         self.delegate = delegate
 
         seenButton.setTitle(.chooseMovie, for: .normal)
+        seenButton.accessibilityIdentifier = "Choose.Movie.Button"
         nearbyMovie = movie
         movieTitelLabel.text = movie.title
         seenButton.addTarget(self,

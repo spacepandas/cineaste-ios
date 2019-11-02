@@ -8,19 +8,61 @@
 
 import UIKit
 
+// The default values are needed due to this bug: 41244137
+// (Force unwrapping fails in Interface Builder)
+
 extension UIColor {
-    static let primaryOrange = #colorLiteral(red: 0.9176470588, green: 0.337254902, blue: 0.1882352941, alpha: 1)
-    static let primaryDarkOrange = #colorLiteral(red: 0.7294117647, green: 0.2666666667, blue: 0.1490196078, alpha: 1)
+    // MARK: NavBar
+    static let cineNavBar = UIColor(named: "navBar") ?? .lightGray
+    static let cineNavBarTint = UIColor(named: "navBarTint") ?? .lightGray
+    static let cineNavBarTitle = UIColor(named: "navBarTitle") ?? .lightGray
 
-    static let basicYellow = #colorLiteral(red: 0.9843137255, green: 0.8862745098, blue: 0.1803921569, alpha: 1)
-    static let basicWhite = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    static let basicBackground = #colorLiteral(red: 0.2549019608, green: 0.2901960784, blue: 0.3176470588, alpha: 1)
-    static let basicBlack = #colorLiteral(red: 0.1458641843, green: 0.157300925, blue: 0.1739156683, alpha: 1)
+    // MARK: TabBar
+    static let cineTabBar = UIColor(named: "tabBar") ?? .lightGray
+    static let cineTabBarSelected = UIColor(named: "tabBarSelected") ?? .lightGray
+    static let cineTabBarNormal = UIColor(named: "tabBarNormal") ?? .lightGray
 
-    static let superLightGray = #colorLiteral(red: 0.7537454963, green: 0.7489073873, blue: 0.7746431231, alpha: 1)
+    // MARK: SegmentedControl
+    static let cineSegmentedControlSelected = UIColor(named: "segmentedControlSelected") ?? .lightGray
+    static let cineSegmentedControlNormal = UIColor(named: "segmentedControlNormal") ?? .lightGray
+    static let cineSegmentedControlTint = UIColor(named: "segmentedControlTint") ?? .lightGray
 
-    static let accentTextOnWhite = #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5019607843, alpha: 1)
-    static let accentTextOnBlack = #colorLiteral(red: 0.8837971091, green: 0.8855347633, blue: 0.9063164592, alpha: 1)
+    // MARK: Search TextField
+    static let cineSearchBackground = UIColor(named: "searchBackground") ?? .lightGray
+    static let cineSearchTint = UIColor(named: "searchTint") ?? .lightGray
+    static let cineSearchInput = UIColor(named: "searchInput") ?? .lightGray
+    static let cineSearchPlaceholder = UIColor(named: "searchPlaceholder") ?? .lightGray
 
-    static let transparentBlack = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
+    // MARK: ToolBar
+    static let cineToolBarBackground = UIColor(named: "toolBarBackground") ?? .lightGray
+    static let cineToolBarTint = UIColor(named: "toolBarTint") ?? .lightGray
+
+    // MARK: Safari
+    static let cineSafariBackground = UIColor(named: "safariBackground") ?? .lightGray
+    static let cineSafariTint = UIColor(named: "safariTint") ?? .lightGray
+
+    // MARK: SwipeAction
+    static let cineSwipeSeen = UIColor(named: "swipeSeen") ?? .lightGray
+    static let cineSwipeWatchlist = UIColor(named: "swipeWatchlist") ?? .lightGray
+    static let cineSwipeDelete = UIColor(named: "swipeDelete") ?? .lightGray
+
+    // MARK: More...
+    static let cineListBackground = UIColor(named: "listBackground") ?? .lightGray
+    static let cineSeparator = UIColor(named: "separator") ?? .lightGray
+    static let cineCellBackground = UIColor(named: "cellBackground") ?? .lightGray
+    static let cineContentBackground = UIColor(named: "cellBackground") ?? .lightGray
+    static let cineVoteCircle = UIColor(named: "voteCircle") ?? .lightGray
+    static let cineVoteRectangle = UIColor(named: "voteRectangle") ?? .lightGray
+    static let cineButton = UIColor(named: "button") ?? .lightGray
+    static let cineButtonDark = UIColor(named: "buttonDark") ?? .lightGray
+    static let cineTitle = UIColor(named: "title") ?? .lightGray
+    static let cineDescription = UIColor(named: "description") ?? .lightGray
+    static let cineLink = UIColor(named: "link") ?? .lightGray
+    static let cineImageTint = UIColor(named: "imageTint") ?? .lightGray
+    static let cineAlertTint = UIColor(named: "alertTint") ?? .lightGray
+    static let cineShadow = UIColor(named: "shadow") ?? .lightGray
+    static let cineFooter = UIColor(named: "footer") ?? .lightGray
+    static let cineEmptyListDescription = UIColor(named: "emptyListDescription") ?? .lightGray
+    static let cineUsageActive = UIColor(named: "usageActive") ?? .lightGray
+    static let cineUsageInactive = UIColor(named: "usageInactive") ?? .lightGray
 }

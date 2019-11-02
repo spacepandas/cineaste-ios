@@ -34,10 +34,10 @@ class VoteCircleView: View {
             name: UIContentSizeCategory.didChangeNotification,
             object: nil)
 
-        backgroundColor = UIColor.basicYellow
+        backgroundColor = UIColor.cineVoteCircle
 
         layer.masksToBounds = true
-        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
+        layer.shadowColor = UIColor.cineShadow.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = 3
@@ -70,7 +70,7 @@ class ShadowView: View {
     }
 
     override func setup() {
-        layer.shadowColor = UIColor.accentTextOnWhite.cgColor
+        layer.shadowColor = UIColor.cineShadow.cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = shadowRadius
@@ -79,7 +79,7 @@ class ShadowView: View {
 
 class SeparatorView: View {
     override func setup() {
-        backgroundColor = UIColor.primaryOrange
+        backgroundColor = UIColor.cineSeparator
     }
 
     override var backgroundColor: UIColor? {
@@ -165,12 +165,13 @@ class VoteView: View {
             object: nil)
 
         clipsToBounds = true
+        backgroundColor = .clear
 
         setBorderWidth()
         layer.cornerRadius = frame.height / 3
-        layer.borderColor = UIColor.primaryOrange.cgColor
+        layer.borderColor = UIColor.cineVoteRectangle.cgColor
 
-        voteLabel.textColor = .primaryOrange
+        voteLabel.textColor = .cineVoteRectangle
         voteLabel.adjustsFontSizeToFitWidth = true
         voteLabel.minimumScaleFactor = 0.5
         voteLabel.translatesAutoresizingMaskIntoConstraints = false

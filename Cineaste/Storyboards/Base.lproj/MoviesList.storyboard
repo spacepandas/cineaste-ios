@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,28 +21,28 @@
             <objects>
                 <tableViewController storyboardIdentifier="MoviesViewController" extendedLayoutIncludesOpaqueBars="YES" id="Uku-M8-iEE" customClass="MoviesViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="34x-gt-6uY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WatchlistMovieCell" rowHeight="120" id="AcX-8Q-Q1n" customClass="WatchlistMovieCell" customModule="Cineaste_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AcX-8Q-Q1n" id="bNV-yf-NWJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-1f-yR8">
-                                            <rect key="frame" x="255.5" y="0.0" width="119.5" height="119.5"/>
+                                            <rect key="frame" x="480" y="0.0" width="120" height="120"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="qUJ-1f-yR8" secondAttribute="height" id="m7e-Pc-Jlq"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEp-L3-aTQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="D4O-sx-IJ1">
-                                                    <rect key="frame" x="107.5" y="8" width="247.5" height="103.5"/>
+                                                    <rect key="frame" x="157" y="8" width="423" height="104"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="watchlist.releaseAndRuntime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-GG-yAO" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="221.5" height="20.5"/>
@@ -66,26 +63,26 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zXA-9K-AVC">
-                                                            <rect key="frame" x="0.0" y="49" width="154.5" height="30.5"/>
+                                                            <rect key="frame" x="0.0" y="49" width="154.5" height="31"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" priority="750" constant="4" id="T1a-eR-MC2"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-sK-hhJ" customClass="VoteView" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="83.5" width="70" height="20"/>
+                                                            <rect key="frame" x="0.0" y="84" width="70" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-Z0-7D4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="119.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="132" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="3f3-Z0-7D4" secondAttribute="height" multiplier="0.7" priority="999" id="eyC-zC-Brq"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krj-Xu-Ja7" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="82.5" y="0.0" width="5" height="119.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="132" y="0.0" width="5" height="120"/>
+                                                    <color key="backgroundColor" name="primaryOrange"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="8cB-Wz-rUf"/>
                                                     </constraints>
@@ -118,6 +115,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="background" destination="zEp-L3-aTQ" id="6IU-Ci-SHa"/>
                                     <outlet property="poster" destination="3f3-Z0-7D4" id="v2r-3t-UXU"/>
                                     <outlet property="releaseAndRuntimeLabel" destination="Gqs-GG-yAO" id="R9j-Na-KNS"/>
                                     <outlet property="separatorView" destination="Krj-Xu-Ja7" id="jKX-E6-WSc"/>
@@ -126,23 +124,23 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeenMovieCell" rowHeight="100" id="Hys-Ew-Zb3" customClass="SeenMovieCell" customModule="Cineaste_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="148" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="148" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hys-Ew-Zb3" id="Wt4-Cx-5Ag">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z24-AG-ZiF">
-                                            <rect key="frame" x="275.5" y="0.0" width="99.5" height="99.5"/>
+                                            <rect key="frame" x="500" y="0.0" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="z24-AG-ZiF" secondAttribute="height" id="Kkm-jM-Ne0"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAG-UI-3Kr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="5Xq-mD-TxO">
-                                                    <rect key="frame" x="107.5" y="27.5" width="247.5" height="45"/>
+                                                    <rect key="frame" x="157" y="27.5" width="423" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="seen.date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E1-HW-nl1" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="75.5" height="20.5"/>
@@ -165,14 +163,14 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rt5-PR-Cjl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="99.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="132" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="rt5-PR-Cjl" secondAttribute="height" multiplier="0.7" priority="999" id="7fk-tD-CQF"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAr-CO-u39" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="82.5" y="0.0" width="5" height="99.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="132" y="0.0" width="5" height="100"/>
+                                                    <color key="backgroundColor" name="primaryOrange"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="JKd-DD-kvy"/>
                                                     </constraints>
@@ -205,6 +203,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="background" destination="xAG-UI-3Kr" id="56g-aC-Sh9"/>
                                     <outlet property="poster" destination="rt5-PR-Cjl" id="ZBw-j9-i0m"/>
                                     <outlet property="separatorView" destination="CAr-CO-u39" id="ElX-Eg-adp"/>
                                     <outlet property="title" destination="osR-E3-RkD" id="hqJ-WN-ElQ"/>
@@ -312,14 +311,14 @@
             </objects>
             <point key="canvasLocation" x="3142" y="-1231"/>
         </scene>
-        <!--Orange Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="9oY-FA-Dha">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFK-3i-bNg" customClass="OrangeNavigationController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFK-3i-bNg" customClass="NavigationController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ztX-UB-Ym7">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -334,5 +333,8 @@
     </scenes>
     <resources>
         <image name="movieNight" width="23" height="23"/>
+        <namedColor name="primaryOrange">
+            <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

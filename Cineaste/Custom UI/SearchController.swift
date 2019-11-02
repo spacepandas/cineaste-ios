@@ -28,14 +28,25 @@ class SearchController: UISearchController {
         isActive = false
         searchBar.sizeToFit()
 
-        guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
-            let backgroundview = textfield.subviews.first
-            else { return }
-        backgroundview.backgroundColor = .basicWhite
-        backgroundview.layer.cornerRadius = 10
-        backgroundview.clipsToBounds = true
-
         searchBar.smartQuotesType = .no
+        searchBar.tintColor = .cineSearchTint
+        searchBar.barTintColor = .cineSearchBackground
+
+        if #available(iOS 13.0, *) {
+            let searchField = searchBar.searchTextField
+            searchField.tintColor = .cineSearchInput
+            searchField.backgroundColor = .cineSearchBackground
+            searchField.layer.cornerRadius = 10
+            searchField.clipsToBounds = true
+        } else {
+            guard let textfield = searchBar.value(forKey: "searchField") as? UITextField,
+                let backgroundview = textfield.subviews.first
+                else { return }
+            textfield.tintColor = .cineSearchInput
+            backgroundview.backgroundColor = .cineSearchBackground
+            backgroundview.layer.cornerRadius = 10
+            backgroundview.clipsToBounds = true
+        }
     }
 
 }

@@ -24,7 +24,7 @@ class MoviesTabBarController: UITabBarController {
             image: UIImage.watchlistIcon,
             tag: 0)
         watchlistVC.tabBarItem.accessibilityIdentifier = "WatchlistTab"
-        let watchlistVCWithNavi = OrangeNavigationController(rootViewController: watchlistVC)
+        let watchlistVCWithNavi = NavigationController(rootViewController: watchlistVC)
 
         let seenVC = MoviesViewController.instantiate()
         seenVC.category = .seen
@@ -33,7 +33,7 @@ class MoviesTabBarController: UITabBarController {
             image: UIImage.seenIcon,
             tag: 1)
         seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
-        let seenVCWithNavi = OrangeNavigationController(rootViewController: seenVC)
+        let seenVCWithNavi = NavigationController(rootViewController: seenVC)
 
         let settingsVC = SettingsViewController.instantiate()
         settingsVC.tabBarItem = UITabBarItem(
@@ -41,7 +41,7 @@ class MoviesTabBarController: UITabBarController {
             image: UIImage.moreIcon,
             tag: 2)
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
-        let settingsVCWithNavi = OrangeNavigationController(rootViewController: settingsVC)
+        let settingsVCWithNavi = NavigationController(rootViewController: settingsVC)
 
         viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
     }

@@ -69,9 +69,10 @@ class SearchMoviesViewController: UIViewController {
 
         title = String.addMovieTitle
 
-        view.backgroundColor = UIColor.basicBackground
+        view.backgroundColor = UIColor.cineListBackground
 
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
 
         loadMovies { [weak self] movies in
             self?.moviesFromNetworking = movies
@@ -143,6 +144,8 @@ class SearchMoviesViewController: UIViewController {
 
         tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = loadingIndicatorView
+
+        tableView.accessibilityIdentifier = "Search.TableView"
     }
 
     func configureSearchController() {

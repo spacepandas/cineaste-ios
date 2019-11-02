@@ -13,6 +13,7 @@ class ScreenshotsUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        continueAfterFailure = false
 
         if let domain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: domain)
@@ -20,7 +21,8 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         app.launchArguments += [
-            "SKIP_ANIMATIONS"
+            "SKIP_ANIMATIONS",
+            "UI_TEST"
 
             // Enable the following launch arguments
             // to test dynamic type without running `fastlane screenshot`
@@ -36,6 +38,16 @@ class ScreenshotsUITests: XCTestCase {
         app.launch()
 
         resetMoviesIfNeeded()
+
+        addUIInterruptionMonitor(withDescription: "Allow bluetooth permissions") { alert in
+            if alert.label.contains("Nearby") {
+                alert.buttons["Allow"].tap()
+                return true
+            } else {
+                return false
+            }
+        }
+        app.tap()
     }
 
     func testScreenshots() {
@@ -45,13 +57,21 @@ class ScreenshotsUITests: XCTestCase {
         let backButton = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
         XCTContext.runActivity(named: "Search for Movies") { _ in
-            app.navigationBars.buttons.element(boundBy: 1).firstMatch.tap()
-            _ = app.cells.element(boundBy: 0).waitForExistence(timeout: 1.0)
+            app.navigationBars.element(boundBy: 0).buttons["AddMovie.Button"].firstMatch.tap()
+
+            let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
+            let exists = NSPredicate(format: "exists == true")
+            expectation(for: exists, evaluatedWith: firstCellInSearch, handler: nil)
+            waitForExpectations(timeout: 2, handler: nil)
+            XCTAssert(firstCellInSearch.exists)
+
             namedSnapshot("search_withoutMarker")
         }
 
         XCTContext.runActivity(named: "Add first Movie to Watchlist") { _ in
-            app.cells.element(boundBy: 0).firstMatch.tap()
+            let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
+            firstCellInSearch.tap()
+            sleep(1)
             namedSnapshot("search_detail")
 
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
@@ -60,14 +80,14 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "Mark third Movie as watched") { _ in
-            app.cells.element(boundBy: 1).firstMatch.tap()
+            app.tables["Search.TableView"].cells.element(boundBy: 1).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
         }
 
         XCTContext.runActivity(named: "Mark fourth Movie as watched") { _ in
-            app.cells.element(boundBy: 3).firstMatch.tap()
+            app.tables["Search.TableView"].cells.element(boundBy: 3).firstMatch.tap()
             app.scrollDownToElement(element: app.segmentedControls.firstMatch)
             app.segmentedControls.buttons.element(boundBy: 1).firstMatch.tap()
             backButton.tap()
@@ -84,25 +104,25 @@ class ScreenshotsUITests: XCTestCase {
 
             let wantToSeeMovie = app.cells.element(boundBy: 0).firstMatch
             wantToSeeMovie.tap()
+            sleep(1)
             namedSnapshot("01_watchlist_detail")
             backButton.tap()
         }
 
         XCTContext.runActivity(named: "See Seen List") { _ in
-            app.buttons["SeenTab"].firstMatch.tap()
+            app.tabBars.buttons["SeenTab"].firstMatch.tap()
             XCTAssertEqual(app.cells.count, 2)
             namedSnapshot("04_seenList")
 
             let seenMovie = app.cells.element(boundBy: 0).firstMatch
             seenMovie.tap()
+            sleep(1)
             namedSnapshot("seen_detail")
             backButton.tap()
         }
 
         XCTContext.runActivity(named: "Start Movie Night") { _ in
-            let startMovieNightButton = app.navigationBars.buttons
-                .element(boundBy: 0).firstMatch
-            startMovieNightButton.tap()
+            app.navigationBars.buttons["StartMovieNight.Button"].firstMatch.tap()
         }
 
         XCTContext.runActivity(named: "Ask for Username") { _ in
@@ -119,19 +139,6 @@ class ScreenshotsUITests: XCTestCase {
             }
         }
 
-        XCTContext.runActivity(named: "Ask for Nearby Permission (if needed)") { _ in
-            let nearbyAlert = app.alerts.element(boundBy: 0)
-            if nearbyAlert.exists {
-                namedSnapshot("startMovieNight_nearbyAlert")
-                let moreInfoButton = nearbyAlert.buttons.element(boundBy: 0)
-                    .firstMatch
-                moreInfoButton.tap()
-                namedSnapshot("startMovieNight_nearbyAlert_moreInfo")
-                let allowNearbyButton = app.buttons.element(boundBy: 1).firstMatch
-                allowNearbyButton.tap()
-            }
-        }
-
         XCTContext.runActivity(named: "Search for Nearby Friends") { _ in
             namedSnapshot("startMovieNight_searching")
 
@@ -144,7 +151,10 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See Movie Night Results") { _ in
-            let startButton = app.buttons.element(boundBy: 1).firstMatch
+            let firstCell = app.cells.staticTexts["Simulator"]
+            firstCell.tap()
+
+            let startButton = app.buttons["Choose.Movie.Button"].firstMatch
             startButton.tap()
             namedSnapshot("startMovieNight_results")
 
@@ -153,7 +163,7 @@ class ScreenshotsUITests: XCTestCase {
         }
 
         XCTContext.runActivity(named: "See More Content") { _ in
-            let settingsTab = app.buttons["SettingsTab"].firstMatch
+            let settingsTab = app.tabBars.buttons["SettingsTab"].firstMatch
             settingsTab.tap()
             namedSnapshot("06_settings")
 
@@ -173,7 +183,7 @@ extension ScreenshotsUITests {
     private func resetMoviesIfNeeded() {
         let back = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
-        app.buttons["SeenTab"].firstMatch.tap()
+        app.tabBars.buttons["SeenTab"].firstMatch.tap()
         for _ in 0..<app.cells.count {
             app.cells.element(boundBy: 0).firstMatch.tap()
             app.toolbars.buttons.element(boundBy: 0).firstMatch.tap()
@@ -181,7 +191,7 @@ extension ScreenshotsUITests {
         }
         XCTAssertEqual(app.cells.count, 0)
 
-        app.buttons["WatchlistTab"].firstMatch.tap()
+        app.tabBars.buttons["WatchlistTab"].firstMatch.tap()
         for _ in 0..<app.cells.count {
             app.cells.element(boundBy: 0).firstMatch.tap()
             app.toolbars.buttons.element(boundBy: 0).firstMatch.tap()

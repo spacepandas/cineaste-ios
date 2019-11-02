@@ -28,7 +28,9 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
 
+    @IBOutlet private weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
+    @IBOutlet private weak var background: UIView!
 
     @IBOutlet private weak var titleLabel: TitleLabel!
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -162,11 +164,25 @@ class MovieDetailViewController: UIViewController {
 
     private func configureElements() {
         contentStackView.setCustomSpacing(30, after: moreInformationStackView)
+        view.backgroundColor = .cineContentBackground
+        triangleImageView.tintColor = .cineContentBackground
+        background.backgroundColor = .cineContentBackground
 
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
-        buttonInfoLabel.textColor = UIColor.basicBackground
-        movieStateSegmentedControl.tintColor = UIColor.primaryOrange
+        buttonInfoLabel.textColor = UIColor.cineDescription
+
+        if #available(iOS 13.0, *) {
+            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.cineSegmentedControlSelected
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlTint],
+                for: .selected)
+            movieStateSegmentedControl.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlNormal],
+                for: .normal)
+        } else {
+            movieStateSegmentedControl.tintColor = UIColor.cineSegmentedControlSelected
+        }
 
         posterImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self,
@@ -288,6 +304,9 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         if offset < 0 {
             detailScrollView.contentOffset.y = -scrollView.contentOffset.y
         } else {
+            // disable parallax effect when reduce motion is enabled
+            guard !UIAccessibility.isReduceMotionEnabled else { return }
+
             detailScrollView.contentOffset.y = offset
         }
     }

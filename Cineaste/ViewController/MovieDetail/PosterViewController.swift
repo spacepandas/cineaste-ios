@@ -23,7 +23,6 @@ class PosterViewController: UIViewController {
             toolbar.backgroundColor = .clear
             toolbar.setShadowImage(UIImage(),
                                    forToolbarPosition: .any)
-            toolbar.tintColor = .primaryOrange
         }
     }
 
@@ -35,7 +34,7 @@ class PosterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        toolbarBackgroundView.backgroundColor = .transparentBlack
+        toolbarBackgroundView.backgroundColor = .cineToolBarBackground
         toolbarBackgroundView.addBlurEffect(with: .dark)
 
         if let posterPath = posterPath {
@@ -66,12 +65,15 @@ class PosterViewController: UIViewController {
         doubleTapGestureRecognizer.delegate = self
         scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
 
-        let panGestureRecognizer =
-            UIPanGestureRecognizer(target: self,
-                                   action: #selector(handlePanGesture(recognizer:)))
-        panGestureRecognizer.maximumNumberOfTouches = 1
-        panGestureRecognizer.delegate = self
-        scrollView.addGestureRecognizer(panGestureRecognizer)
+        if #available(iOS 13.0, *) {} else {
+            let panGestureRecognizer =
+                UIPanGestureRecognizer(target: self,
+                                       action: #selector(handlePanGesture(recognizer:)))
+            panGestureRecognizer.maximumNumberOfTouches = 1
+            panGestureRecognizer.delegate = self
+            scrollView.addGestureRecognizer(panGestureRecognizer)
+        }
+
     }
 
     func configure(with posterPath: String) {

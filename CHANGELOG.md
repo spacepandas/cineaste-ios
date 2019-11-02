@@ -3,13 +3,40 @@
 # Upcoming Release
 
 ## New
-* 
+* Introduces `SnapshotTesting` as new Dependency with two sample Snapshot Tests
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.13.1
+
+## Fixed
+* Prevent a Crash with handling App Review Prompts and UI Tests differently
+
+# 1.13.0
+
+## New
+* Add Dark Mode ([#114](https://github.com/spacepandas/cineaste-ios/pull/114))
+
+## Fixed
+* Fix a wrong BackgroundColor for iOS 11.4
+
+## Improved
+* Disable Parallax Effect when "Reduce Motion" is enabled
+
+# 1.12.1
+
+## Fixed
+* Fix Crash when starting Movie Night: Add Bluetooth Permission Description
+* Add Spacing between Disclosure Indicator and Text in Movie Night Screen
+
+# 1.12.0
+
+## Improved
+* Update for iOS 13 ([#112](https://github.com/spacepandas/cineaste-ios/pull/112))
 
 # 1.11.0
 

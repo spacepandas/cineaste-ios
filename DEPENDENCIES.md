@@ -21,4 +21,8 @@ neccesary for detecting devices with the Cineaste Android App
 - For easy and testable State Management
 - License: [MIT](https://github.com/ReSwift/ReSwift/blob/master/LICENSE.md)
 
+### SnapshotTesting
+- (only test target) Added to automatically test UI and dark and light mode
+- License: [MIT](https://github.com/pointfreeco/swift-snapshot-testing/blob/master/LICENSE)
+
 _[Idea for this file is from: [blog.mazur.me/DEPENDENCIES.md](https://blog.mazur.me/DEPENDENCIES.md)]_

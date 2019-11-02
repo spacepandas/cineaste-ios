@@ -43,11 +43,11 @@ enum SwipeAction {
     var backgroundColor: UIColor? {
         switch self {
         case .delete:
-            return .superLightGray
+            return .cineSwipeDelete
         case .moveToWatchlist:
-            return .basicYellow
+            return .cineSwipeWatchlist
         case .moveToSeen:
-            return .primaryOrange
+            return .cineSwipeSeen
         }
     }
 }

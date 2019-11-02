@@ -23,6 +23,11 @@ enum AppStoreReview {
     }
 
     static func requestReview() {
+        // do not ask for appStore Review in UITest
+        #if DEBUG
+        guard !ProcessInfo().arguments.contains("UI_TEST") else { return }
+        #endif
+
         guard let currentBuildVersion = Bundle.main
             .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
             else { return }

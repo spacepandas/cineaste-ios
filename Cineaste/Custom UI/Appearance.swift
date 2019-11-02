@@ -13,37 +13,26 @@ enum Appearance {
         // MARK: TabBar
         let tabBar = UITabBar.appearance()
         tabBar.isTranslucent = false
-        tabBar.tintColor = .basicWhite
-        tabBar.barTintColor = .primaryOrange
-        tabBar.unselectedItemTintColor = .basicBlack
+        tabBar.tintColor = .cineTabBarSelected
+        tabBar.barTintColor = .cineTabBar
+        tabBar.unselectedItemTintColor = .cineTabBarNormal
 
         // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.basicWhite
+            .foregroundColor: UIColor.cineTabBarSelected
             ], for: .selected)
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.basicBackground
+            .foregroundColor: UIColor.cineTabBarNormal
             ], for: .normal)
 
-        // MARK: SearchBar
-        let searchBar = UISearchBar.appearance()
-        searchBar.tintColor = .basicWhite
-        searchBar.barTintColor = .primaryOrange
-
-        //change color of cursor
-        let searchField = UITextField
-            .appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        searchField.tintColor = .basicBackground
-
         // MARK: UIAlertController
-        //change tint color in UIAlertController
         let alertController = UIView
             .appearance(whenContainedInInstancesOf: [UIAlertController.self])
-        alertController.tintColor = .primaryOrange
+        alertController.tintColor = .cineAlertTint
 
         // MARK: UIToolBar
         let toolBar = UIToolbar.appearance()
-        toolBar.tintColor = .primaryOrange
+        toolBar.tintColor = .cineToolBarTint
     }
 }
