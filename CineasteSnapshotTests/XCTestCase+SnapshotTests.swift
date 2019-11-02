@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  XCTestCase+SnapshotTests.swift
 //  CineasteSnapshotTests
