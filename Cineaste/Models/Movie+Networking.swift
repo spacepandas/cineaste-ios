@@ -70,17 +70,24 @@ extension Movie {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&region=\(String.regionIso31661)" +
-            "&api_key=\(Movie.apiKey)"
+            "&api_key=\(Movie.apiKey)" +
+            "&append_to_response=release_dates"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
                 let sanitized = data.sanitizingReleaseDates()
-                return try JSONDecoder.tmdbDecoder.decode(Movie.self, from: sanitized)
+                var movie = try JSONDecoder.tmdbDecoder.decode(Movie.self, from: sanitized)
+
+                // only set localized release date if there is one
+                if let releaseDate = try? JSONDecoder().decode(LocalizedReleaseDate.self, from: sanitized).date {
+                    movie.releaseDate = releaseDate
+                }
+
+                return movie
             } catch {
                 print(error)
                 return nil
             }
         }
     }
-
 }
