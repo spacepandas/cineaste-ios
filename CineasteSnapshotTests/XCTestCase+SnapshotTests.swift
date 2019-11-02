@@ -38,7 +38,7 @@ func assertViewSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image,
+            as: .image(precision: 0.99),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
