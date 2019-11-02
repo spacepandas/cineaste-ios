@@ -8,8 +8,6 @@
 
 import Foundation
 
-private let movieUrl = FileManager.default.documentsDirectory.appendingPathComponent("movies.json")
-
 enum Persistence {
     static func saveMovies(_ movies: Set<Movie>) throws {
         let data = try JSONEncoder.tmdbEncoder.encode(movies)
@@ -24,14 +22,17 @@ enum Persistence {
 
     static func urlForMovieExport() throws -> URL {
         let movies = loadMovies()
-        let url = FileManager.default
-            .cachesDirectory
-            .appendingPathComponent(String.exportMoviesFileName)
         let data = try JSONEncoder.tmdbEncoder.encode(ImportExportObject(movies: movies))
-        try data.write(to: url)
-
-        return url
+        try data.write(to: exportMovieUrl)
+        return exportMovieUrl
     }
+}
+
+private extension Persistence {
+    private static let movieUrl = FileManager.default.documentsDirectory
+        .appendingPathComponent("movies.json")
+    private static let exportMovieUrl = FileManager.default.cachesDirectory
+        .appendingPathComponent("cineaste-\(Date().formattedForRequest).json")
 }
 
 private extension FileManager {
