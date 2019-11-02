@@ -18,5 +18,7 @@ jobs:
     - script: ./tests.sh
       name: Unit Tests + SonarCloud
       if: fork = false
+    - script: bundle exec fastlane snapshot_test
+      name: Snapshot Tests
     - script: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
       name: SwiftLint

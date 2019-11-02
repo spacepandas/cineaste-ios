@@ -14,6 +14,11 @@ target 'Cineaste App' do
   target 'CineasteTests' do
     inherit! :search_paths
   end
+
+  target 'CineasteSnapshotTests' do
+    inherit! :search_paths
+    pod 'SnapshotTesting', '~> 1.0'
+  end
 end
 
 post_install do | installer |
