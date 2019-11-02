@@ -11,7 +11,10 @@ import Foundation
 enum Constants {
     enum Backend {
         static let url = "https://api.themoviedb.org/3"
-        static let shareMovieUrl = "https://www.themoviedb.org/movie/"
+
+        static func shareUrl(for movie: Movie) -> URL? {
+            URL(string: "https://www.themoviedb.org/movie/\(movie.id)")
+        }
     }
 
     static let appStoreUrl = "https://apps.apple.com/app/id1402748020"

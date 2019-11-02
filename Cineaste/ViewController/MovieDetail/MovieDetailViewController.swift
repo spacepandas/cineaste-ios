@@ -91,7 +91,8 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func showMoreInformation() {
-        guard let url = generateMovieURL() else { return }
+        guard let movie = movie,
+            let url = Constants.Backend.shareUrl(for: movie) else { return }
 
         let safariVC = CustomSafariViewController(url: url)
         present(safariVC, animated: true)
@@ -125,13 +126,13 @@ class MovieDetailViewController: UIViewController {
 
         items.append(movie.title)
 
-        if let url = generateMovieURL() {
+        if let url = Constants.Backend.shareUrl(for: movie) {
             items.append(url)
         }
 
-        let activityController =
-            UIActivityViewController(activityItems: items,
-                                     applicationActivities: nil)
+        let activityController = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil)
 
         present(activityController, animated: true)
     }
@@ -141,9 +142,7 @@ class MovieDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showPosterFromMovieDetail?:
-            guard
-                let posterPath = movie?.posterPath
-                else { return }
+            guard let posterPath = movie?.posterPath else { return }
 
             let posterVC = segue.destination as? PosterViewController
             posterVC?.configure(with: posterPath)
@@ -228,13 +227,6 @@ class MovieDetailViewController: UIViewController {
 
             addDeleteButtonToToolbar()
         }
-    }
-
-    private func generateMovieURL() -> URL? {
-        guard let movie = movie else { return nil }
-
-        let movieUrl = Constants.Backend.shareMovieUrl + "\(movie.id)"
-        return URL(string: movieUrl)
     }
 
     fileprivate func loadDetails(for movie: Movie) {
