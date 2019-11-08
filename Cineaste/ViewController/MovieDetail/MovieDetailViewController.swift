@@ -55,6 +55,8 @@ class MovieDetailViewController: UIViewController {
         didSet {
             guard let movie = movie else { return }
 
+            setupUI(for: movie)
+
             if !detailsLoaded {
                 loadDetails(for: movie)
             }
@@ -239,30 +241,30 @@ class MovieDetailViewController: UIViewController {
 
             self.detailsLoaded = true
             self.movie = detailedMovie
-            self.setupUI(for: detailedMovie)
+            DispatchQueue.main.async {
+                self.setupUI(for: detailedMovie)
+            }
         }
     }
 
     fileprivate func setupUI(for movie: Movie) {
-        DispatchQueue.main.async {
-            guard let titleLabel = self.titleLabel,
-                let descriptionTextView = self.descriptionTextView,
-                let releaseDateAndRuntimeLabel = self.releaseDateAndRuntimeLabel,
-                let votingLabel = self.votingLabel,
-                let posterImageView = self.posterImageView
-                else { return }
+        guard let titleLabel = titleLabel,
+            let descriptionTextView = descriptionTextView,
+            let releaseDateAndRuntimeLabel = releaseDateAndRuntimeLabel,
+            let votingLabel = votingLabel,
+            let posterImageView = posterImageView
+            else { return }
 
-            titleLabel.text = movie.title
-            releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
-                + " ∙ "
-                + movie.formattedRuntime
+        titleLabel.text = movie.title
+        releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
+            + " ∙ "
+            + movie.formattedRuntime
 
-            votingLabel.text = movie.formattedVoteAverage
+        votingLabel.text = movie.formattedVoteAverage
 
-            descriptionTextView.text = movie.overview
+        descriptionTextView.text = movie.overview
 
-            posterImageView.loadingImage(from: movie.posterPath, in: .original)
-        }
+        posterImageView.loadingImage(from: movie.posterPath, in: .original)
     }
 
     // MARK: 3D Actions

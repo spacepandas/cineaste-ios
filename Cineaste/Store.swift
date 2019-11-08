@@ -8,7 +8,14 @@
 
 import ReSwift
 
-let store = Store<AppState>(
+#if DEBUG
+var store = Store(
     reducer: appReducer,
     state: nil
 )
+#else
+let store = Store(
+    reducer: appReducer,
+    state: nil
+)
+#endif
