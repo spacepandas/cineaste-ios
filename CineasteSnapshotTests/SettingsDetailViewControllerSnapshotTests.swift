@@ -6,9 +6,9 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
-@testable import Cineaste_App
 import XCTest
 import SnapshotTesting
+@testable import Cineaste_App
 
 class SettingsDetailViewControllerSnapshotTests: XCTestCase {
 

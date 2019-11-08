@@ -21,6 +21,8 @@
 		3F229214225A41F6001D4358 /* MovieReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229213225A41F6001D4358 /* MovieReducerTests.swift */; };
 		3F2408F5203CB88E00EB9141 /* ScreenshotsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2408F4203CB88E00EB9141 /* ScreenshotsUITests.swift */; };
 		3F2408FD203CB96000EB9141 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2408FC203CB96000EB9141 /* SnapshotHelper.swift */; };
+		3F32C1FB23754B66005C713A /* XCTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32C1FA23754B65005C713A /* XCTestObserver.swift */; };
+		3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32C1FA23754B65005C713A /* XCTestObserver.swift */; };
 		3F36FAA1218657E10018E25B /* MovieNightViewController+Nearby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */; };
 		3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FAA0218657E10018E25B /* MovieNightViewController+UITableView.swift */; };
 		3F3BCAAA22D1FEE8005BEF12 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BCAA922D1FEE8005BEF12 /* UIImageView+Loading.swift */; };
@@ -217,6 +219,7 @@
 		3F2408F6203CB88E00EB9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2408FC203CB96000EB9141 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		3F27A6C020F3F4260053482B /* ReleaseDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDatesTests.swift; sourceTree = "<group>"; };
+		3F32C1FA23754B65005C713A /* XCTestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestObserver.swift; sourceTree = "<group>"; };
 		3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+Nearby.swift"; sourceTree = "<group>"; };
 		3F36FAA0218657E10018E25B /* MovieNightViewController+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
@@ -433,6 +436,7 @@
 				3FBDB2FF21D4F35D00CBE341 /* ReleaseDates.json */,
 				3FCFB11021D678A0006E2F91 /* UpdatedMoviesImport.json */,
 				3F187F8E22632DC000B7A9CF /* Movie+Testing.swift */,
+				3F32C1FA23754B65005C713A /* XCTestObserver.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1110,6 +1114,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */,
 				3F450B3F236C6F3500A59F1E /* XCTestCase+SnapshotTests.swift in Sources */,
 				3F450B37236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift in Sources */,
 				3F450B42236C761800A59F1E /* SettingsDetailViewControllerSnapshotTests.swift in Sources */,
@@ -1124,6 +1129,7 @@
 				3F701B3D218640F80033562B /* SeenMovieCellTests.swift in Sources */,
 				3FF0A2F821D3C2BD00BF9E83 /* ImporterTests.swift in Sources */,
 				4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */,
+				3F32C1FB23754B66005C713A /* XCTestObserver.swift in Sources */,
 				3F701B43218640F80033562B /* SettingsDetailViewControllerTests.swift in Sources */,
 				4ED2FC7F2266DF93007BDE06 /* CoreDataMigratorTests.swift in Sources */,
 				3F701B44218640F80033562B /* SettingsViewControllerTests.swift in Sources */,

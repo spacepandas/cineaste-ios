@@ -18,5 +18,7 @@
 	<string>1.13.1</string>
 	<key>CFBundleVersion</key>
 	<string>491</string>
+    <key>NSPrincipalClass</key>
+    <string>CineasteTests.XCTestObserver</string>
 </dict>
 </plist>
