@@ -9,23 +9,23 @@
 import UIKit
 
 enum ContextMenu {
-    case share
-    case delete
-    case moveToWatchlist
-    case moveToSeen
+    case share(Movie, viewController: UIViewController)
+    case delete(Movie)
+    case moveToWatchlist(Movie)
+    case moveToSeen(Movie)
 
     @available(iOS 13.0, *)
-    func action(on movie: Movie) -> UIAction {
+    var action: UIAction {
         switch self {
-        case .share:
+        case .share(let movie, let presenter):
             return UIAction(
                 title: "Share",
                 image: UIImage(systemName: "square.and.arrow.up"),
                 identifier: UIAction.Identifier(rawValue: "share")
             ) { _ in
-                //                self.shareMovie()
+                presenter.share(movie: movie)
             }
-        case .delete:
+        case .delete(let movie):
             return UIAction(
                 title: String.deleteActionLong,
                 image: UIImage(systemName: "trash"),
@@ -34,7 +34,7 @@ enum ContextMenu {
             ) { _ in
                 store.dispatch(MovieAction.delete(movie: movie))
             }
-        case .moveToWatchlist:
+        case .moveToWatchlist(let movie):
             return UIAction(
                 title: String.watchlistActionLong,
                 image: UIImage(systemName: "star"),
@@ -45,7 +45,7 @@ enum ContextMenu {
 
                 store.dispatch(MovieAction.update(movie: movie))
             }
-        case .moveToSeen:
+        case .moveToSeen(let movie):
             return UIAction(
                 title: String.seenAction,
                 image: UIImage(systemName: "checkmark"),
@@ -62,20 +62,29 @@ enum ContextMenu {
     }
 
     @available(iOS 13.0, *)
-    static func actions(for movie: Movie) -> [UIAction] {
-        if let watched = movie.watched {
-            return watched
-                ? [ContextMenu.share.action(on: movie),
-                   ContextMenu.moveToWatchlist.action(on: movie),
-                   ContextMenu.delete.action(on: movie)]
-                : [ContextMenu.share.action(on: movie),
-                   ContextMenu.moveToSeen.action(on: movie),
-                   ContextMenu.delete.action(on: movie)]
-        } else {
-            return [ContextMenu.share.action(on: movie),
-                    ContextMenu.moveToWatchlist.action(on: movie),
-                    ContextMenu.moveToSeen.action(on: movie)]
+    static func actions(for movie: Movie, presenter: UIViewController? = nil) -> [UIAction] {
+        var actions: [UIAction] = []
+
+        if let presenter = presenter {
+            actions.append(ContextMenu.share(movie, viewController: presenter).action)
         }
+
+        if let watched = movie.watched {
+            let moreActions = watched
+                ? [ContextMenu.moveToWatchlist(movie).action,
+                   ContextMenu.delete(movie).action]
+                : [ContextMenu.moveToSeen(movie).action,
+                   ContextMenu.delete(movie).action]
+            actions.append(contentsOf: moreActions)
+        } else {
+            let moreActions = [
+                ContextMenu.moveToWatchlist(movie).action,
+                ContextMenu.moveToSeen(movie).action
+            ]
+            actions.append(contentsOf: moreActions)
+        }
+
+        return actions
     }
 
 }

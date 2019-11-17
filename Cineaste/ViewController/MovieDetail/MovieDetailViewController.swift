@@ -124,19 +124,7 @@ class MovieDetailViewController: UIViewController {
     @IBAction func shareMovie() {
         guard let movie = movie else { return }
 
-        var items = [Any]()
-
-        items.append(movie.title)
-
-        if let url = Constants.Backend.shareUrl(for: movie) {
-            items.append(url)
-        }
-
-        let activityController = UIActivityViewController(
-            activityItems: items,
-            applicationActivities: nil)
-
-        present(activityController, animated: true)
+        share(movie: movie)
     }
 
     // MARK: - Navigation
