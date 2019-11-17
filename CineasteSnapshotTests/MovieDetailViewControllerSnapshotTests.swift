@@ -24,7 +24,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
         state.selectedMovieId = movie.id
         store = Store(reducer: appReducer, state: state)
 
-        let vcState = MovieDetailViewController.State(movie: movie, watchState: .undefined)
+        let vcState = MovieDetailViewController.State(movie: movie)
         viewController.newState(state: vcState)
 
         // Then
