@@ -55,7 +55,7 @@ class MovieDetailViewController: UIViewController {
         didSet {
             guard let movie = movie else { return }
 
-            setupUI(for: movie)
+            updateUI(for: movie)
 
             if !detailsLoaded {
                 loadDetails(for: movie)
@@ -233,21 +233,17 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func loadDetails(for movie: Movie) {
-        // Setup with the default data to show something while new data is loading
-        setupUI(for: movie)
-
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
 
-            self.detailsLoaded = true
-            self.movie = detailedMovie
             DispatchQueue.main.async {
-                self.setupUI(for: detailedMovie)
+                self.detailsLoaded = true
+                self.movie = detailedMovie
             }
         }
     }
 
-    fileprivate func setupUI(for movie: Movie) {
+    fileprivate func updateUI(for movie: Movie) {
         guard let titleLabel = titleLabel,
             let descriptionTextView = descriptionTextView,
             let releaseDateAndRuntimeLabel = releaseDateAndRuntimeLabel,
