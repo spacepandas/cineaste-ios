@@ -32,24 +32,6 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
-    func updateMovies() {
-        watchStates = [:]
-        for movie in moviesFromNetworking {
-            if storedIDs.watchListMovieIDs.contains(movie.id) {
-                watchStates[movie] = .watchlist
-            } else if storedIDs.seenMovieIDs.contains(movie.id) {
-                watchStates[movie] = .seen
-            } else {
-                watchStates[movie] = .undefined
-            }
-        }
-        DispatchQueue.main.async {
-            self.updateUI()
-        }
-    }
-
-    var selectedMovie: Movie?
-
     var currentPage: Int?
     var totalResults: Int?
 
@@ -145,6 +127,23 @@ class SearchMoviesViewController: UIViewController {
     }
 
     // MARK: - Custom functions
+
+    func updateMovies() {
+        watchStates = [:]
+        for movie in moviesFromNetworking {
+            if storedIDs.watchListMovieIDs.contains(movie.id) {
+                watchStates[movie] = .watchlist
+            } else if storedIDs.seenMovieIDs.contains(movie.id) {
+                watchStates[movie] = .seen
+            } else {
+                watchStates[movie] = .undefined
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.updateUI()
+        }
+    }
 
     func updateUI() {
         tableView.reloadData()
