@@ -49,7 +49,7 @@ extension Movie {
         posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
         overview: "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
         runtime: 72,
-        releaseDate: Date(timeIntervalSinceNow: -10_713_600),
+        releaseDate: Date(timeIntervalSince1970: 1_132_260_566),
         watched: false,
         watchedDate: nil,
         popularity: 2_166
@@ -65,7 +65,7 @@ extension Movie {
         runtime: 132,
         releaseDate: Date.distantFuture,
         watched: true,
-        watchedDate: Date(timeIntervalSince1970: 1_574_023_766),
-        popularity: 444
+        watchedDate: Date(timeIntervalSince1970: 1_510_951_766),
+        popularity: 448
     )
 }
