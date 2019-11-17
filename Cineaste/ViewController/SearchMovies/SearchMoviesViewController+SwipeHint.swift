@@ -11,9 +11,12 @@ import UIKit
 extension SearchMoviesViewController {
     /// Shows a hint for the swipe actions of the table view cells.
     func animateSwipeActionHint() {
-        guard let cell = tableView.visibleCells.first as? SearchMoviesCell else { return }
+        // Do not swipe in Tests
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else { return }
 
-        guard shouldAnimateShowSwipeActionHint else { return }
+        guard let cell = tableView.visibleCells.first as? SearchMoviesCell,
+            shouldAnimateShowSwipeActionHint
+            else { return }
 
         cell.animateSwipeHint()
 
