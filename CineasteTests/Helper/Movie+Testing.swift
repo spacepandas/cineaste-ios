@@ -26,4 +26,46 @@ extension Movie {
         watchedDate: nil,
         popularity: 444
     )
+
+    static let testingWatchlist = Movie(
+        id: 10_144,
+        title: "The Little Mermaid",
+        voteAverage: 7.3,
+        voteCount: 4_529,
+        posterPath: "/6aXMusULuKFAK0ZRUlv7RJ9zHTc.jpg",
+        overview: "This colorful adventure tells the story of an impetuous mermaid princess named Ariel who falls in love with the very human Prince Eric and puts everything on the line for the chance to be with him. Memorable songs and characters -- including the villainous sea witch Ursula.",
+        runtime: 83,
+        releaseDate: Date(timeIntervalSinceNow: -351_043_200),
+        watched: false,
+        watchedDate: nil,
+        popularity: 19_372
+    )
+
+    static let testingWatchlist2 = Movie(
+        id: 10_898,
+        title: "The Little Mermaid II: Return to the Sea",
+        voteAverage: 6.3,
+        voteCount: 898,
+        posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+        overview: "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
+        runtime: 72,
+        releaseDate: Date(timeIntervalSinceNow: -10_713_600),
+        watched: false,
+        watchedDate: nil,
+        popularity: 2_166
+    )
+
+    static let testingSeen = Movie(
+        id: 3,
+        title: "Harry Potter",
+        voteAverage: 7.4,
+        voteCount: 1_234,
+        posterPath: nil,
+        overview: "",
+        runtime: 132,
+        releaseDate: nil,
+        watched: true,
+        watchedDate: Date(timeIntervalSince1970: 1_574_023_766),
+        popularity: 444
+    )
 }
