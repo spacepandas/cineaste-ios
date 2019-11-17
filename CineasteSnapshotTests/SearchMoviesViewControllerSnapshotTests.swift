@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ReSwift
 import SnapshotTesting
 @testable import Cineaste_App
 
@@ -23,6 +24,32 @@ class SearchMoviesViewControllerSnapshotTests: XCTestCase {
             .testingWatchlist,
             .testingWatchlist2
         ]
+
+        // Then
+        let navigationController = NavigationController(rootViewController: viewController)
+        assertViewSnapshot(matching: navigationController)
+    }
+
+    func testAppearanceWithMarkedMovies() {
+        // Given
+        let viewController = SearchMoviesViewController.instantiate()
+
+        // When
+        viewController.moviesFromNetworking = [
+            .testing,
+            .testingSeen,
+            .testingWatchlist,
+            .testingWatchlist2
+        ]
+
+        var state = AppState()
+        state.movies = [
+            .testingSeen,
+            .testingWatchlist,
+            .testingWatchlist2
+        ]
+        store = Store(reducer: appReducer, state: state)
+        waitForQueue(timeout: 10)
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
