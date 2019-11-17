@@ -45,6 +45,7 @@ class PosterViewController: UIViewController {
         }
         blurredBackgroundImage.addBlurEffect(with: .dark)
 
+        imageView.accessibilityIgnoresInvertColors = true
         imageView.isUserInteractionEnabled = true
 
         scrollView.delegate = self

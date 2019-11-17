@@ -23,6 +23,7 @@ class WatchlistMovieCell: UITableViewCell {
         background.backgroundColor = .cineCellBackground
         let nonbreakingSpace = "\u{00a0}"
 
+        poster.accessibilityIgnoresInvertColors = true
         poster.loadingImage(from: movie.posterPath, in: .small)
 
         releaseAndRuntimeLabel.text = movie.formattedRelativeReleaseInformation

@@ -183,6 +183,7 @@ class MovieDetailViewController: UIViewController {
             movieStateSegmentedControl.tintColor = UIColor.cineSegmentedControlSelected
         }
 
+        posterImageView.accessibilityIgnoresInvertColors = true
         posterImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self,
                                                        action: #selector(showPoster))

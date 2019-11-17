@@ -19,6 +19,7 @@ class SeenMovieCell: UITableViewCell {
 
     func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
+        poster.accessibilityIgnoresInvertColors = true
         poster.loadingImage(from: movie.posterPath, in: .small)
 
         title.text = movie.title

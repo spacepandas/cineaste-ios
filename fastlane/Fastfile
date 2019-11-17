@@ -15,8 +15,8 @@ Test_Devices = [
   'iPhone SE',
   'iPhone 8',
   'iPhone 8 Plus',
-  'iPhone 11',
-  'iPhone 11 Pro'
+  'iPhone 11 Pro',
+  'iPhone 11 Pro Max'
 ]
 Test_Language = 'en-US'
 Test_Languages = [
