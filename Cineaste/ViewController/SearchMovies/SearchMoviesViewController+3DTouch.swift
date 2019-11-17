@@ -55,7 +55,8 @@ extension SearchMoviesViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
-            let actions = ContextMenu.actions(for: movie, presenter: self)
+            let currentState = self.watchStates[movie] ?? .undefined
+            let actions = ContextMenu.actions(for: movie, watchState: currentState, presenter: self)
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             })
 

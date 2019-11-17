@@ -46,3 +46,15 @@ extension Movie: Hashable {
         hasher.combine(id)
     }
 }
+
+extension Movie {
+    var currentWatchState: WatchState {
+        let state: WatchState
+        if let watched = watched {
+            state = watched ? .seen : .watchlist
+        } else {
+            state = .undefined
+        }
+        return state
+    }
+}

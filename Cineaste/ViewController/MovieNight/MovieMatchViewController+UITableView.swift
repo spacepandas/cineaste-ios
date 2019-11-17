@@ -70,7 +70,12 @@ extension MovieMatchViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
-            let actions = ContextMenu.actions(for: movie, presenter: self)
+            let actions = ContextMenu.actions(
+                for: movie,
+                // TODO: this is incorrect
+                // we have to search for an existing movie in the store
+                watchState: movie.currentWatchState,
+                presenter: self)
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             })
 

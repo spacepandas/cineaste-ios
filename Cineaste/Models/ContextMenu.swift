@@ -62,25 +62,29 @@ enum ContextMenu {
     }
 
     @available(iOS 13.0, *)
-    static func actions(for movie: Movie, presenter: UIViewController? = nil) -> [UIAction] {
+    static func actions(for movie: Movie, watchState: WatchState, presenter: UIViewController? = nil) -> [UIAction] {
         var actions: [UIAction] = []
 
         if let presenter = presenter {
             actions.append(ContextMenu.share(movie, viewController: presenter).action)
         }
 
-        if let watched = movie.watched {
-            let moreActions = watched
-                ? [ContextMenu.moveToWatchlist(movie).action,
-                   ContextMenu.delete(movie).action]
-                : [ContextMenu.moveToSeen(movie).action,
-                   ContextMenu.delete(movie).action]
-            actions.append(contentsOf: moreActions)
-        } else {
+        switch watchState {
+        case .undefined:
             let moreActions = [
                 ContextMenu.moveToWatchlist(movie).action,
                 ContextMenu.moveToSeen(movie).action
             ]
+            actions.append(contentsOf: moreActions)
+        case .seen:
+            let moreActions = [
+                ContextMenu.moveToWatchlist(movie).action,
+                ContextMenu.delete(movie).action]
+            actions.append(contentsOf: moreActions)
+        case .watchlist:
+            let moreActions = [
+                ContextMenu.moveToSeen(movie).action,
+                ContextMenu.delete(movie).action]
             actions.append(contentsOf: moreActions)
         }
 

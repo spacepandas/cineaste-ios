@@ -294,7 +294,6 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 extension MovieDetailViewController: StoreSubscriber {
     struct State: Equatable {
         let movie: Movie
-        let watchState: WatchState
     }
 
     private static func select(state: AppState) -> State {
@@ -305,22 +304,14 @@ extension MovieDetailViewController: StoreSubscriber {
         let selectedMovie = state.movies.first { $0.id == selectedMovieId }
          ?? Movie(id: selectedMovieId)
 
-        let state: WatchState
-        if let watched = selectedMovie.watched {
-            state = watched ? .seen : .watchlist
-        } else {
-            state = .undefined
-        }
-
         return .init(
-            movie: selectedMovie,
-            watchState: state
+            movie: selectedMovie
         )
     }
 
     func newState(state: State) {
         movie = state.movie
-        watchState = state.watchState
+        watchState = state.movie.currentWatchState
     }
 }
 
