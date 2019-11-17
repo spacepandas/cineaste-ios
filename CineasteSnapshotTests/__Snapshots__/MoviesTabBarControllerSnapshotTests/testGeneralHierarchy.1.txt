@@ -1,0 +1,7 @@
+<Cineaste_App.MoviesTabBarController>, state: appearing, view: <UILayoutContainerView>
+   | <Cineaste_App.NavigationController>, state: appearing, view: <UILayoutContainerView>
+   |    | <Cineaste_App.MoviesViewController>, state: appearing, view: <UITableView>
+   | <Cineaste_App.NavigationController>, state: disappeared, view: <UILayoutContainerView> not in the window
+   |    | <Cineaste_App.MoviesViewController>, state: disappeared, view: <UITableView> not in the window
+   | <Cineaste_App.NavigationController>, state: disappeared, view: <UILayoutContainerView> not in the window
+   |    | <Cineaste_App.SettingsViewController>, state: disappeared, view: <UITableView> not in the window

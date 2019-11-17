@@ -37,6 +37,7 @@
 		3F4C9660232E1FB8002692D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4C965F232E1FB8002692D0 /* Colors.xcassets */; };
 		3F4F4D552233D3C40093CDEF /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F4D542233D3C40093CDEF /* SwipeAction.swift */; };
 		3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */; };
+		3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */; };
 		3F5FF0B423642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5FF0B323642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift */; };
 		3F630C6322AEA32E0070A4B6 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */; };
 		3F630C6522AEA35B0070A4B6 /* PromtForReviewPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6422AEA35B0070A4B6 /* PromtForReviewPersistence.swift */; };
@@ -243,6 +244,7 @@
 		3F4C965F232E1FB8002692D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3F4F4D542233D3C40093CDEF /* SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAction.swift; sourceTree = "<group>"; };
 		3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBarControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				3FCD90742381625500E0C9FD /* __Snapshots__ */,
 				3F450B38236C6EF100A59F1E /* Info.plist */,
 				3F32C1F72375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift */,
+				3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */,
 				3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */,
 				3F450B41236C761800A59F1E /* SettingsDetailViewControllerSnapshotTests.swift */,
 				3F450B36236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift */,
@@ -1135,6 +1138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */,
+				3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */,
 				3F32C1F82375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift in Sources */,
 				3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */,
 				3F32C1F9237548EA005C713A /* Movie+Testing.swift in Sources */,
