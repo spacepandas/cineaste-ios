@@ -14,9 +14,9 @@
 # 1.14.0 
 
 ## New
-* Introduce ReSwift for easy and testable State Management
-* Save movies as json in documents directory instead of using Core Data
-* Introduce `SnapshotTesting` as new Dependency with two sample Snapshot Tests
+* Introduce ReSwift for easy and testable State Management ([#88](https://github.com/spacepandas/cineaste-ios/pull/88))
+* Save movies as json in documents directory instead of using Core Data ([#88](https://github.com/spacepandas/cineaste-ios/pull/88))
+* Introduce `SnapshotTesting` as new Dependency with two sample Snapshot Tests ([#115](https://github.com/spacepandas/cineaste-ios/pull/115))
 
 ## Fixed
 * When using "Invert Colors", posters shouldn't be inverted
