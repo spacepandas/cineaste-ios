@@ -6,9 +6,9 @@ PODS:
   - GoogleSymbolUtilities (1.1.2)
   - GoogleUtilitiesLegacy (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
-  - Kingfisher (5.9.0):
-    - Kingfisher/Core (= 5.9.0)
-  - Kingfisher/Core (5.9.0)
+  - Kingfisher (5.10.0):
+    - Kingfisher/Core (= 5.10.0)
+  - Kingfisher/Core (5.10.0)
   - NearbyMessages (1.1.1):
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleNetworkingUtilities (~> 1.2)
@@ -16,7 +16,7 @@ PODS:
     - GoogleUtilitiesLegacy (~> 1.3)
   - ReSwift (5.0.0)
   - SnapshotTesting (1.6.0)
-  - SwiftLint (0.36.0)
+  - SwiftLint (0.37.0)
 
 DEPENDENCIES:
   - Kingfisher
@@ -42,11 +42,11 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilitiesLegacy: 5501bedec1646bd284286eb5fc9453f7e23a12f4
-  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
+  Kingfisher: 0bf6eae7c2193f15719915fecb7c2c1c03855f3d
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
   ReSwift: 628f1a9b3ee52e3b3ca2a644435472fd77afafe1
   SnapshotTesting: 9f478335073a830eafb7dc1fcd526c5e90143991
-  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
 PODFILE CHECKSUM: 72343786757bd50678b1865376b66e0ad1397fd9
 
