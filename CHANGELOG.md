@@ -3,13 +3,18 @@
 # Upcoming Release
 
 ## New
-* Add Contextual Menus for iOS 13 and devices without 3D Touch 
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.15.0
+
+## New
+* Add Contextual Menus for iOS 13 devices without 3D Touch ([#121](https://github.com/spacepandas/cineaste-ios/pull/121))
 
 # 1.14.0 
 
