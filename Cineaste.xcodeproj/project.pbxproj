@@ -39,6 +39,8 @@
 		3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */; };
 		3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */; };
 		3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */; };
+		3F544E3F2381F36900B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
+		3F544E402381F36E00B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
 		3F5FF0B423642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5FF0B323642EDE00A7B3C5 /* AppLaunchPerformanceUITests.swift */; };
 		3F630C6322AEA32E0070A4B6 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */; };
 		3F630C6522AEA35B0070A4B6 /* PromtForReviewPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F630C6422AEA35B0070A4B6 /* PromtForReviewPersistence.swift */; };
@@ -247,6 +249,7 @@
 		3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBarControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+WaitForQueue.swift"; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -454,6 +457,7 @@
 				3FCFB11021D678A0006E2F91 /* UpdatedMoviesImport.json */,
 				3F187F8E22632DC000B7A9CF /* Movie+Testing.swift */,
 				3F32C1FA23754B65005C713A /* XCTestObserver.swift */,
+				3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1147,6 +1151,7 @@
 				3F32C1F9237548EA005C713A /* Movie+Testing.swift in Sources */,
 				3F450B3F236C6F3500A59F1E /* XCTestCase+SnapshotTests.swift in Sources */,
 				3F450B37236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift in Sources */,
+				3F544E402381F36E00B26071 /* XCTestCase+WaitForQueue.swift in Sources */,
 				3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */,
 				3F450B42236C761800A59F1E /* SettingsDetailViewControllerSnapshotTests.swift in Sources */,
 			);
@@ -1164,6 +1169,7 @@
 				3F701B43218640F80033562B /* SettingsDetailViewControllerTests.swift in Sources */,
 				4ED2FC7F2266DF93007BDE06 /* CoreDataMigratorTests.swift in Sources */,
 				3F701B44218640F80033562B /* SettingsViewControllerTests.swift in Sources */,
+				3F544E3F2381F36900B26071 /* XCTestCase+WaitForQueue.swift in Sources */,
 				3F701B42218640F80033562B /* SettingsCellTests.swift in Sources */,
 				3F701B46218640F80033562B /* WatchlistMovieCellTests.swift in Sources */,
 				3F701B3E218640F80033562B /* SeparatorViewTests.swift in Sources */,
