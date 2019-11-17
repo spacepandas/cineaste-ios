@@ -47,7 +47,7 @@ enum ContextMenu {
             }
         case .moveToSeen(let movie):
             return UIAction(
-                title: String.seenAction,
+                title: String.seenActionLong,
                 image: UIImage(systemName: "checkmark"),
                 identifier: UIAction.Identifier(rawValue: "seen")
             ) { _ in
