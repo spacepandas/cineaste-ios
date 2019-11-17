@@ -15,7 +15,7 @@ enum ContextMenu {
     case moveToSeen
 
     @available(iOS 13.0, *)
-    var action: UIAction {
+    func action(on movie: Movie) -> UIAction {
         switch self {
         case .share:
             return UIAction(
@@ -32,7 +32,7 @@ enum ContextMenu {
                 identifier: UIAction.Identifier(rawValue: "delete"),
                 attributes: .destructive
             ) { _ in
-                //                self.deleteMovie()
+                store.dispatch(MovieAction.delete(movie: movie))
             }
         case .moveToWatchlist:
             return UIAction(
@@ -40,7 +40,10 @@ enum ContextMenu {
                 image: UIImage(systemName: "star"),
                 identifier: UIAction.Identifier(rawValue: "watchlist")
             ) { _ in
-                //                self.saveMovie(asWatched: false)
+                var movie = movie
+                movie.watched = false
+
+                store.dispatch(MovieAction.update(movie: movie))
             }
         case .moveToSeen:
             return UIAction(
@@ -48,7 +51,12 @@ enum ContextMenu {
                 image: UIImage(systemName: "checkmark"),
                 identifier: UIAction.Identifier(rawValue: "seen")
             ) { _ in
-                //                self.saveMovie(asWatched: true)
+
+                var movie = movie
+                movie.watched = true
+                movie.watchedDate = Date()
+
+                store.dispatch(MovieAction.update(movie: movie))
             }
         }
     }
@@ -57,16 +65,16 @@ enum ContextMenu {
     static func actions(for movie: Movie) -> [UIAction] {
         if let watched = movie.watched {
             return watched
-                ? [ContextMenu.share.action,
-                   ContextMenu.moveToWatchlist.action,
-                   ContextMenu.delete.action]
-                : [ContextMenu.share.action,
-                   ContextMenu.moveToSeen.action,
-                   ContextMenu.delete.action]
+                ? [ContextMenu.share.action(on: movie),
+                   ContextMenu.moveToWatchlist.action(on: movie),
+                   ContextMenu.delete.action(on: movie)]
+                : [ContextMenu.share.action(on: movie),
+                   ContextMenu.moveToSeen.action(on: movie),
+                   ContextMenu.delete.action(on: movie)]
         } else {
-            return [ContextMenu.share.action,
-                    ContextMenu.moveToWatchlist.action,
-                    ContextMenu.moveToSeen.action]
+            return [ContextMenu.share.action(on: movie),
+                    ContextMenu.moveToWatchlist.action(on: movie),
+                    ContextMenu.moveToSeen.action(on: movie)]
         }
     }
 

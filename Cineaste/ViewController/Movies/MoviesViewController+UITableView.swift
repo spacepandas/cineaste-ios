@@ -39,6 +39,7 @@ extension MoviesViewController {
             else { return }
 
         animator.addCompletion {
+            store.dispatch(SelectionAction.select(movie: self.movies[id]))
             let detailVC = MovieDetailViewController.instantiate()
             detailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detailVC, animated: true)
@@ -52,6 +53,7 @@ extension MoviesViewController {
         let configuration = UIContextMenuConfiguration(
             identifier: "\(indexPath.row)" as NSCopying,
             previewProvider: {
+                store.dispatch(SelectionAction.select(movie: movie))
                 let detailVC = MovieDetailViewController.instantiate()
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
