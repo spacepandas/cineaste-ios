@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import CoreData
 @testable import Cineaste_App
 
 class MoviesViewControllerTests: XCTestCase {
@@ -16,13 +15,9 @@ class MoviesViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
         tableView = moviesVC.tableView
         tableView.dataSource = moviesVC
-    }
-
-    func testFetchedResultsManagerDelegateIsNotNil() {
-        moviesVC.viewDidLoad()
-        XCTAssertNotNil(moviesVC.fetchedResultsManager.delegate)
     }
 
     func testSettingCategoryShouldChangeTitleOfVC() {
@@ -35,23 +30,35 @@ class MoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(moviesVC.title, wantToSeeTitle)
     }
 
-    func testEmptyListShouldHideTableView() {
+    func testTableViewShouldHideWhenListIsEmpty() {
         XCTAssertNotNil(tableView.backgroundView)
+        let exp = expectation(description: "\(#function)\(#line)")
 
         moviesVC.showEmptyState(true) {
-            XCTAssertFalse(self.tableView.backgroundView!.isHidden)
+            exp.fulfill()
         }
 
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertFalse(tableView.backgroundView!.isHidden)
+    }
+
+    func testTableViewShouldNotHideWhenListIsNotEmpty() {
+        XCTAssertNotNil(tableView.backgroundView)
+        let exp = expectation(description: "\(#function)\(#line)")
+
         moviesVC.showEmptyState(false) {
-            XCTAssertTrue(self.tableView.backgroundView!.isHidden)
+            exp.fulfill()
         }
+
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertTrue(tableView.backgroundView!.isHidden)
     }
 
     func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
-        if moviesVC.fetchedResultsManager.movies.isEmpty {
+        if moviesVC.movies.isEmpty {
             XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         } else {
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.fetchedResultsManager.movies.count)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.movies.count)
         }
     }
 
@@ -80,13 +87,4 @@ class MoviesViewControllerTests: XCTestCase {
         let invalidCell = tableView.dequeueReusableCell(withIdentifier: "invalidIdentifier")
         XCTAssertNil(invalidCell)
     }
-
-    private let storedMovie: StoredMovie = {
-        let managedObjectContext = setUpInMemoryManagedObjectContext()
-        let entity = NSEntityDescription
-            .insertNewObject(forEntityName: "StoredMovie",
-                             into: managedObjectContext)
-            as! StoredMovie
-        return entity
-    }()
 }

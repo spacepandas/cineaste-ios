@@ -7,21 +7,48 @@
 //
 
 import UIKit
+import ReSwift
 
 class SearchMoviesViewController: UIViewController {
     @IBOutlet weak var loadingIndicatorView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
-    var movies: [Movie] = [] {
+    var movies: [Movie] {
+        return watchStates.keys
+            .sorted(by: SortDescriptor.sortByPopularity)
+    }
+
+    var watchStates: [Movie: WatchState] = [:]
+
+    private var storedIDs = StoredMovieIDs(watchListMovieIDs: [], seenMovieIDs: []) {
         didSet {
-            DispatchQueue.main.async {
-                self.updateUI()
+            updateMovies()
+        }
+    }
+
+    var moviesFromNetworking: Set<Movie> = [] {
+        didSet {
+            updateMovies()
+        }
+    }
+
+    func updateMovies() {
+        watchStates = [:]
+        for movie in moviesFromNetworking {
+            if storedIDs.watchListMovieIDs.contains(movie.id) {
+                watchStates[movie] = .watchlist
+            } else if storedIDs.seenMovieIDs.contains(movie.id) {
+                watchStates[movie] = .seen
+            } else {
+                watchStates[movie] = .undefined
             }
+        }
+        DispatchQueue.main.async {
+            self.updateUI()
         }
     }
 
     var selectedMovie: Movie?
-    var storageManager: MovieStorageManager?
 
     var currentPage: Int?
     var totalResults: Int?
@@ -48,16 +75,12 @@ class SearchMoviesViewController: UIViewController {
         navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
 
         loadMovies { [weak self] movies in
-            self?.movies = movies
+            self?.moviesFromNetworking = movies
         }
 
         configureTableViewController()
         configureSearchController()
         registerForPreviewing(with: self, sourceView: tableView)
-    }
-
-    func configure(with storageManager: MovieStorageManager) {
-        self.storageManager = storageManager
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +90,11 @@ class SearchMoviesViewController: UIViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
 
-        updateUI()
+        store.subscribe(self) { subscription in
+            subscription
+                .select(SearchMoviesViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -76,22 +103,20 @@ class SearchMoviesViewController: UIViewController {
         animateSwipeActionHint()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie,
-                let storageManager = storageManager
-                else { return }
+            guard let selectedMovie = selectedMovie else { return }
 
-            let currentState = storageManager.currentState(for: selectedMovie)
-
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.configure(with: .network(selectedMovie),
-                          state: currentState,
-                          storageManager: storageManager)
-            vc?.hidesBottomBarWhenPushed = true
+            store.dispatch(SelectionAction.select(movie: selectedMovie))
         default:
             return
         }
@@ -135,13 +160,13 @@ class SearchMoviesViewController: UIViewController {
     func updateUI() {
         tableView.reloadData()
 
-        if movies.isEmpty {
+        if watchStates.isEmpty {
             tableView.tableFooterView = UIView()
         }
     }
 
     func scrollToTopCell(withAnimation: Bool) {
-        guard !movies.isEmpty else { return }
+        guard !watchStates.isEmpty else { return }
 
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: 0, section: 0)
@@ -150,26 +175,19 @@ class SearchMoviesViewController: UIViewController {
                                        animated: withAnimation)
         }
     }
+}
 
-    func shouldMark(movie: Movie, state: WatchState) {
-        guard let storageManager = storageManager else { return }
+extension SearchMoviesViewController: StoreSubscriber {
+    struct State: Equatable {
+        let storedIDs: StoredMovieIDs
+    }
 
-        loadDetails(for: movie) { detailedMovie in
-            guard let detailedMovie = detailedMovie else { return }
+    private static func select(state: AppState) -> State {
+        return .init(storedIDs: state.storedIDs)
+    }
 
-            storageManager.save(detailedMovie, state: state) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .failure:
-                        self.showAlert(withMessage: Alert.insertMovieError)
-                    case .success:
-                        self.updateUI()
-
-                        AppStoreReview.requestReview()
-                    }
-                }
-            }
-        }
+    func newState(state: State) {
+        storedIDs = state.storedIDs
     }
 }
 

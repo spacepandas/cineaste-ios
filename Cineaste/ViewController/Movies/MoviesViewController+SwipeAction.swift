@@ -10,30 +10,14 @@ import UIKit
 
 extension MoviesViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = fetchedResultsManager.movies[indexPath.row]
+        let movie = movies[indexPath.row]
 
-        let currentState = category.state
-
-        let seenAction = SwipeAction.moveToSeen.contextualAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: true) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
-            self.storageManager?.updateMovieItem(with: movie.objectID, watched: false) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.updateMovieError)
-                    return
-                }
-            }
-        }
+        let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = category.state
         switch currentState {
         case .undefined:
             actions = []
@@ -47,16 +31,8 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = fetchedResultsManager.movies[indexPath.row]
-
-        let removeAction = SwipeAction.delete.contextualAction {
-            self.storageManager?.remove(with: movie.objectID) { result in
-                guard case .success = result else {
-                    self.showAlert(withMessage: Alert.deleteMovieError)
-                    return
-                }
-            }
-        }
+        let movie = movies[indexPath.row]
+        let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         return UISwipeActionsConfiguration(actions: [removeAction])
     }

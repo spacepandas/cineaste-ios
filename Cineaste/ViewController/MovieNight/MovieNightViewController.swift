@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 // swiftlint:disable:next type_body_length
 class MovieNightViewController: UITableViewController {
@@ -58,9 +59,8 @@ class MovieNightViewController: UITableViewController {
             params.bluetoothPowerErrorHandler = self.bluetoothPowerErrorHandler ?? { _ in }
         }
 
-    lazy var ownNearbyMessage = generateOwnNearbyMessage()
+    var ownNearbyMessage: NearbyMessage?
 
-    var storageManager: MovieStorageManager?
     var timer: Timer?
 
     var currentPermission: GNSPermission?
@@ -70,6 +70,14 @@ class MovieNightViewController: UITableViewController {
     var nearbyMessages = [NearbyMessage]() {
         didSet {
             tableView.reloadData()
+        }
+    }
+
+    private(set) var movies: [Movie] = [] {
+        didSet {
+            ownNearbyMessage = generateOwnNearbyMessage()
+            tableView.reloadData()
+            publishWatchlistMovies()
         }
     }
 
@@ -105,10 +113,6 @@ class MovieNightViewController: UITableViewController {
         configureStateObserver()
     }
 
-    func configure(with storageManager: MovieStorageManager) {
-        self.storageManager = storageManager
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -121,12 +125,19 @@ class MovieNightViewController: UITableViewController {
         currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
+
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MovieNightViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
         stopTitleAnimation()
+        store.unsubscribe(self)
     }
 
     // MARK: - Actions
@@ -232,16 +243,14 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func generateOwnNearbyMessage() -> NearbyMessage {
-        guard let storageManager = storageManager,
-            let username = UsernamePersistence.username
+        guard let username = UsernamePersistence.username
             else { fatalError("ViewController should never be presented without a username") }
 
-        let nearbyMovies = storageManager
-            .fetchAllWatchlistMovies()
-            .compactMap { storedMovie -> NearbyMovie in
-                NearbyMovie(id: storedMovie.id,
-                            title: storedMovie.title ?? .unknownTitle,
-                            posterPath: storedMovie.posterPath)
+        let nearbyMovies = movies
+            .compactMap { movie -> NearbyMovie in
+                NearbyMovie(id: movie.id,
+                            title: movie.title,
+                            posterPath: movie.posterPath)
             }
 
         return NearbyMessage(with: username, movies: nearbyMovies)
@@ -315,15 +324,12 @@ class MovieNightViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch Segue(initWith: segue) {
         case .showMovieMatches?:
-            guard
-                let (title, nearbyMessages) = sender as? (String, [NearbyMessage]),
-                let storageManager = storageManager
+            guard let (title, nearbyMessages) = sender as? (String, [NearbyMessage])
                 else { return }
 
             let vc = segue.destination as? MovieMatchViewController
             vc?.configure(with: title,
-                          messagesToMatch: nearbyMessages,
-                          storageManager: storageManager)
+                          messagesToMatch: nearbyMessages)
         default:
             return
         }
@@ -337,6 +343,23 @@ extension MovieNightViewController: UITextViewDelegate {
         present(safariVC, animated: true)
 
         return false
+    }
+}
+
+extension MovieNightViewController: StoreSubscriber {
+    struct State: Equatable {
+        let movies: [Movie]
+    }
+
+    private static func select(state: AppState) -> State {
+        let movies = state.movies
+            .filter { !($0.watched ?? false) }
+            .sorted { $0.title > $1.title }
+        return .init(movies: movies)
+    }
+
+    func newState(state: State) {
+        movies = state.movies
     }
 }
 

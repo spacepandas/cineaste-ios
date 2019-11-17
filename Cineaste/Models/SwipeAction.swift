@@ -13,11 +13,26 @@ enum SwipeAction {
     case moveToWatchlist
     case moveToSeen
 
-    func contextualAction(with completion: @escaping () -> Void) -> UIContextualAction {
+    func contextualAction(for movie: Movie) -> UIContextualAction {
         let action = UIContextualAction(
             style: .normal,
             title: title) { _, _, success in
-                completion()
+                var movie = movie
+
+                switch self {
+                case .delete:
+                    store.dispatch(MovieAction.delete(movie: movie))
+                case .moveToWatchlist:
+                    movie.watched = false
+                    store.dispatch(MovieAction.update(movie: movie))
+                case .moveToSeen:
+                    movie.watched = true
+                    movie.watchedDate = Date()
+                    store.dispatch(MovieAction.update(movie: movie))
+                }
+
+                AppStoreReview.requestReview()
+
                 success(true)
         }
         action.backgroundColor = backgroundColor

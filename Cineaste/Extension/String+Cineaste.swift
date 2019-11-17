@@ -130,10 +130,6 @@ extension String {
     static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
 
     // MARK: EXPORT
-    static func exportMoviesFileName(with date: String) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("cineaste-\(date).json", comment: "export movies json name"), date)
-    }
-
     static let exportMoviesFileUTI = "public.json"
 
     // MARK: Empty state

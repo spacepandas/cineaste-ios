@@ -17,7 +17,6 @@ class MovieMatchViewController: UITableViewController {
     }
     private var totalNumberOfPeople: Int = 0
     private var showAllTogetherMovies: Bool = false
-    private var storageManager: MovieStorageManager?
 
     private lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
@@ -32,11 +31,10 @@ class MovieMatchViewController: UITableViewController {
         configureSearchController()
     }
 
-    func configure(with userName: String, messagesToMatch: [NearbyMessage], storageManager: MovieStorageManager) {
+    func configure(with userName: String, messagesToMatch: [NearbyMessage]) {
         title = userName
         totalNumberOfPeople = messagesToMatch.count
         showAllTogetherMovies = totalNumberOfPeople != 1
-        self.storageManager = storageManager
 
         var moviesWithNumberDict: [NearbyMovie: Int] = [:]
 
@@ -99,17 +97,10 @@ class MovieMatchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
+        let movieDetailVC = MovieDetailViewController.instantiate()
 
-        guard let storageManager = storageManager
-            else { return }
-
-        let vc = MovieDetailViewController.instantiate()
-
-        let networkMovie = Movie(id: nearbyMovie.id, title: nearbyMovie.title)
-        vc.configure(with: .network(networkMovie),
-                     state: .undefined,
-                     storageManager: storageManager)
-        navigationController?.pushViewController(vc, animated: true)
+        store.dispatch(SelectionAction.select(movie: Movie(id: nearbyMovie.id)))
+        navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 
@@ -127,27 +118,20 @@ extension MovieMatchViewController: UISearchResultsUpdating {
 
 extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
     func movieMatchTableViewCell(didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?) {
-        let movieForRequest = Movie(id: movie.id,
-                                    title: movie.title)
+        let movieForRequest = Movie(id: movie.id)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
-            case .success(let movie):
-                movie.poster = poster ?? movie.poster
+            case .success(var movie):
+                movie.watched = true
+                movie.watchedDate = Date()
+                store.dispatch(MovieAction.add(movie: movie))
 
-                guard let storageManager = self.storageManager else { return }
-                storageManager.insertMovieItem(with: movie, watched: true) { result in
-                    DispatchQueue.main.async {
-                        if self.resultSearchController.isActive {
-                            self.resultSearchController.isActive = false
-                        }
-
-                        switch result {
-                        case .failure:
-                            self.showAlert(withMessage: Alert.insertMovieError)
-                        case .success:
-                            self.dismiss(animated: true)
-                        }
+                DispatchQueue.main.async {
+                    if self.resultSearchController.isActive {
+                        self.resultSearchController.isActive = false
                     }
+
+                    self.dismiss(animated: true)
                 }
             case .failure:
                 self.showAlert(withMessage: Alert.loadingDataError)

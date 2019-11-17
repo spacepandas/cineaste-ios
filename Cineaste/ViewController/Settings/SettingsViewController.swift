@@ -22,7 +22,6 @@ class SettingsViewController: UITableViewController {
     }
     var selectedSetting: SettingItem?
 
-    var storageManager: MovieStorageManager?
     var docController: UIDocumentInteractionController?
 
     override func viewDidLoad() {
@@ -104,26 +103,10 @@ extension SettingsViewController {
     }
 
     func exportMovies(showUIOn rect: CGRect) {
-        guard let storageManager = storageManager else {
-            fatalError("No storageManager injected")
-        }
+        guard let url = try? Persistence.urlForMovieExport()
+            else { return showAlert(withMessage: Alert.exportFailedInfo) }
 
-        let allMovies = storageManager.fetchAll()
-
-        guard !allMovies.isEmpty else {
-            //database is empty, inform user that an export is not useful
-            showAlert(withMessage: Alert.exportEmptyData)
-            return
-        }
-
-        do {
-            try Exporter.saveAsFileToExport(allMovies)
-        } catch {
-            showAlert(withMessage: Alert.exportFailedInfo)
-        }
-
-        let path = URL(fileURLWithPath: Exporter.exportPath)
-        docController = UIDocumentInteractionController(url: path)
+        docController = UIDocumentInteractionController(url: url)
         docController?.uti = String.exportMoviesFileUTI
         docController?.presentOptionsMenu(from: rect, in: view, animated: true)
     }

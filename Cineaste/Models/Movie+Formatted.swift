@@ -42,7 +42,7 @@ extension Movie {
             return "\(String.unknownRuntime) min"
         }
 
-        return "\(runtime.formatted ?? String.unknownRuntime) min"
+        return "\(runtime?.formatted ?? String.unknownRuntime) min"
     }
 
     var soonAvailable: Bool {
@@ -52,5 +52,13 @@ extension Movie {
         }
 
         return true
+    }
+
+    var formattedWatchedDate: String? {
+        guard let watchedDate = watchedDate else {
+            return nil
+        }
+
+        return "\(String.onDate) \(watchedDate.formattedWithTime)"
     }
 }

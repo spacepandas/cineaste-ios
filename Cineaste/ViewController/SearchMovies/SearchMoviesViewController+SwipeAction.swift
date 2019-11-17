@@ -11,19 +11,13 @@ import UIKit
 extension SearchMoviesViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        guard let currentState = storageManager?.currentState(for: movie)
-            else { return nil }
 
-        let seenAction = SwipeAction.moveToSeen.contextualAction {
-            self.shouldMark(movie: movie, state: .seen)
-        }
-
-        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction {
-            self.shouldMark(movie: movie, state: .watchlist)
-        }
+        let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
+        let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = watchStates[movie] ?? .undefined
         switch currentState {
         case .undefined:
             actions = [watchlistAction, seenAction]
@@ -38,15 +32,11 @@ extension SearchMoviesViewController {
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let movie = movies[indexPath.row]
-        guard let currentState = storageManager?.currentState(for: movie)
-            else { return nil }
-
-        let removeAction = SwipeAction.delete.contextualAction {
-            self.shouldMark(movie: movie, state: .undefined)
-        }
+        let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
+        let currentState = watchStates[movie] ?? .undefined
         if currentState == .undefined {
             actions = []
         } else {

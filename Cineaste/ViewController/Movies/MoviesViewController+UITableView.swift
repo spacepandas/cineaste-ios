@@ -10,11 +10,11 @@ import UIKit
 
 extension MoviesViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.movies.count
+        return movies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = fetchedResultsManager.movies[indexPath.row]
+        let movie = movies[indexPath.row]
         switch category {
         case .watchlist:
             let cell: WatchlistMovieCell = tableView.dequeueCell(identifier: WatchlistMovieCell.identifier)
@@ -28,7 +28,7 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovie = fetchedResultsManager.movies[indexPath.row]
+        store.dispatch(SelectionAction.select(movie: movies[indexPath.row]))
         perform(segue: .showMovieDetail, sender: nil)
     }
 }

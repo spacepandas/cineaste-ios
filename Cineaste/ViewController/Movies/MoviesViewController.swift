@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
@@ -23,10 +24,19 @@ class MoviesViewController: UITableViewController {
             title = category.title
             emptyListLabel.text = String.title(for: category)
 
-            let changedCategory = oldValue != category
-            guard changedCategory else { return }
-            fetchedResultsManager.refetch(for: category.predicate)
-            tableView.reloadData()
+            guard oldValue != category else { return }
+
+            movies = movies.filter { $0.watched == category.watched }
+        }
+    }
+
+    var movies: [Movie] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.showEmptyState(self.movies.isEmpty)
+                self.updateShortcutItems()
+            }
         }
     }
 
@@ -35,11 +45,6 @@ class MoviesViewController: UITableViewController {
         resultSearchController.searchResultsUpdater = self
         return resultSearchController
     }()
-
-    let fetchedResultsManager = FetchedResultsManager()
-
-    var storageManager: MovieStorageManager?
-    var selectedMovie: StoredMovie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +65,6 @@ class MoviesViewController: UITableViewController {
         addMovieButton.accessibilityLabel = .addMovieTitle
         addMovieButton.accessibilityIdentifier = "AddMovie.Button"
 
-        fetchedResultsManager.delegate = self
-        fetchedResultsManager.refetch(for: category.predicate)
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
-
         registerForPreviewing(with: self, sourceView: tableView)
 
         configureTableView()
@@ -76,50 +77,28 @@ class MoviesViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MoviesViewController.select)
+                .skipRepeats()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        fetchedResultsManager.refetch(for: category.predicate)
         resultSearchController.isActive = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let storageManager = storageManager else { return }
-
-        switch Segue(initWith: segue) {
-        case .showSearchFromMovieList?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? SearchMoviesViewController
-            vc?.configure(with: storageManager)
-        case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie else { return }
-
-            let vc = segue.destination as? MovieDetailViewController
-            vc?.configure(with: .stored(selectedMovie),
-                          state: category.state,
-                          storageManager: storageManager)
-            vc?.hidesBottomBarWhenPushed = true
-        case .showMovieNight?:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? MovieNightViewController
-            vc?.configure(with: storageManager)
-        default:
-            break
-        }
     }
 
     // MARK: - Action
@@ -168,11 +147,7 @@ class MoviesViewController: UITableViewController {
 
     @objc
     func refreshMovies() {
-        guard let storageManager = storageManager else {
-            fatalError("No storageManager injected")
-        }
-        let movieRefresher = MovieRefresher(with: storageManager)
-        movieRefresher.refresh(movies: fetchedResultsManager.movies) {
+        MovieRefresher.refresh(movies: movies) {
             self.tableView.refreshControl?.endRefreshing()
         }
     }
@@ -229,9 +204,9 @@ class MoviesViewController: UITableViewController {
 
         //only update if value changed
         let newShortcutSubtitle =
-            fetchedResultsManager.movies.isEmpty
+            movies.isEmpty
             ? nil
-            : String.movies(for: fetchedResultsManager.movies.count)
+            : String.movies(for: movies.count)
         if existingItem.localizedSubtitle != newShortcutSubtitle {
             //swiftlint:disable:next force_cast
             let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
@@ -262,28 +237,21 @@ extension MoviesViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - FetchedResultsManagerDelegate
+extension MoviesViewController: StoreSubscriber {
+    struct State: Equatable {
+        let movies: Set<Movie>
+    }
 
-extension MoviesViewController: FetchedResultsManagerDelegate {
-    func beginUpdate() {
-        tableView.beginUpdates()
+    private static func select(state: AppState) -> State {
+        return .init(movies: state.movies)
     }
-    func insertRows(at index: [IndexPath]) {
-        tableView.insertRows(at: index, with: .fade)
-    }
-    func deleteRows(at index: [IndexPath]) {
-        tableView.deleteRows(at: index, with: .fade)
-    }
-    func updateRows(at index: [IndexPath]) {
-        tableView.reloadRows(at: index, with: .none)
-    }
-    func moveRow(at index: IndexPath, to newIndex: IndexPath) {
-        tableView.moveRow(at: index, to: newIndex)
-    }
-    func endUpdate() {
-        tableView.endUpdates()
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
-        updateShortcutItems()
+
+    func newState(state: State) {
+        movies = state.movies
+            .filter { $0.watched == category.watched }
+            .sorted(by: category.watched
+                ? SortDescriptor.sortByWatchedDate
+                : SortDescriptor.sortByListPositionAndTitle)
     }
 }
 

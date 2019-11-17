@@ -17,15 +17,10 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var watchedDateLabel: UILabel!
 
-    func configure(with movie: StoredMovie) {
+    func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
-
         poster.accessibilityIgnoresInvertColors = true
-        if let moviePoster = movie.poster {
-            poster.image = UIImage(data: moviePoster)
-        } else {
-            poster.image = UIImage.posterPlaceholder
-        }
+        poster.loadingImage(from: movie.posterPath, in: .small)
 
         title.text = movie.title
         watchedDateLabel.text = movie.formattedWatchedDate
@@ -33,7 +28,7 @@ class SeenMovieCell: UITableViewCell {
         applyAccessibility(with: movie)
     }
 
-    private func applyAccessibility(with movie: StoredMovie) {
+    private func applyAccessibility(with movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title

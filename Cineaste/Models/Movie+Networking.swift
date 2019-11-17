@@ -11,9 +11,9 @@ import UIKit
 extension Movie {
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey
 
-    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult>? {
+    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult> {
         guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return nil
+            return latestReleases(page: page)
         }
         let urlAsString = "\(Constants.Backend.url)/search/movie" +
             "?language=\(String.languageFormattedForTMDb)" +
@@ -25,7 +25,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder()
+                let paginatedMovies = try JSONDecoder.tmdbDecoder
                     .decode(PagedMovieResult.self, from: data)
                 return paginatedMovies
             } catch {
@@ -35,7 +35,7 @@ extension Movie {
         }
     }
 
-    static func latestReleases(page: Int) -> Resource<PagedMovieResult>? {
+    static func latestReleases(page: Int) -> Resource<PagedMovieResult> {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString = "\(Constants.Backend.url)/discover/movie" +
@@ -49,9 +49,8 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder()
+                return try JSONDecoder.tmdbDecoder
                     .decode(PagedMovieResult.self, from: data)
-                return paginatedMovies
             } catch {
                 print(error)
                 return nil
@@ -70,17 +69,19 @@ extension Movie {
     var get: Resource<Movie> {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
+            "&region=\(String.regionIso31661)" +
             "&api_key=\(Movie.apiKey)" +
             "&append_to_response=release_dates"
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let decoder = JSONDecoder()
-                let movie = try decoder.decode(Movie.self, from: data)
+                let sanitized = data.sanitizingReleaseDates()
+                var movie = try JSONDecoder.tmdbDecoder.decode(Movie.self, from: sanitized)
 
-                let release = try? decoder.decode(LocalizedReleaseDate.self,
-                                                  from: data)
-                movie.releaseDate = release?.date
+                // only set localized release date if there is one
+                if let releaseDate = try? JSONDecoder().decode(LocalizedReleaseDate.self, from: sanitized).date {
+                    movie.releaseDate = releaseDate
+                }
 
                 return movie
             } catch {

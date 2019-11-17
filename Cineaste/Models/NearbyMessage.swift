@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct NearbyMessage: Codable {
+struct NearbyMessage: Codable, Equatable, Hashable {
     let userName: String
     let deviceId: String
     let movies: [NearbyMovie]
@@ -22,18 +22,5 @@ extension NearbyMessage {
         self.userName = userName
         self.deviceId = deviceId
         self.movies = movies
-    }
-}
-
-extension NearbyMessage: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(userName)
-        hasher.combine(deviceId)
-    }
-}
-
-extension NearbyMessage: Equatable {
-    static func == (lhs: NearbyMessage, rhs: NearbyMessage) -> Bool {
-        return lhs.deviceId == rhs.deviceId
     }
 }

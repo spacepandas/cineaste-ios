@@ -8,42 +8,22 @@
 
 enum ImportError: Error {
     case noDataAtPath
-    case parsingJsonToStoredMovie
+    case parsingJsonToImportExport
 }
 
 enum Importer {
-    static func importMovies(from path: URL, storageManager: MovieStorageManager, completion: @escaping ((Result<Int, Error>) -> Void)) {
-        guard let data = try? Data(contentsOf: path, options: []) else {
-            completion(.failure(ImportError.noDataAtPath))
-            return
+    static func importMovies(from url: URL) throws -> Int {
+        guard let data = try? Data(contentsOf: url, options: [])
+            else { throw ImportError.noDataAtPath }
+
+        guard let importExportObject = try? JSONDecoder.tmdbDecoder
+            .decode(ImportExportObject.self, from: data)
+            else { throw ImportError.parsingJsonToImportExport }
+
+        for movie in importExportObject.movies {
+            store.dispatch(MovieAction.add(movie: movie))
         }
 
-        let group = DispatchGroup()
-
-        storageManager.backgroundContext.performChanges {
-            let decoder = JSONDecoder()
-            decoder.userInfo[.context] = storageManager.backgroundContext
-
-            guard let importExportObject = try? decoder
-                .decode(ImportExportObject.self, from: data)
-                else {
-                    completion(.failure(ImportError.parsingJsonToStoredMovie))
-                    return
-            }
-
-            //load all posters
-            for movie in importExportObject.movies {
-                group.enter()
-
-                movie.reloadPosterIfNeeded {
-                    group.leave()
-                }
-            }
-
-            group.wait()
-            DispatchQueue.main.async {
-                completion(.success(importExportObject.movies.count))
-            }
-        }
+        return importExportObject.movies.count
     }
 }

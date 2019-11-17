@@ -13,18 +13,13 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
 
         guard let path = tableView.indexPathForRow(at: location),
-            let cell = tableView.cellForRow(at: path),
-            let storageManager = storageManager
+            let cell = tableView.cellForRow(at: path)
             else { return nil }
 
         previewingContext.sourceRect = cell.frame
 
-        let detailVC = MovieDetailViewController.instantiate()
-        detailVC.configure(with: .stored(fetchedResultsManager.movies[path.row]),
-                           state: category.state,
-                           storageManager: storageManager)
-        detailVC.hidesBottomBarWhenPushed = true
-        return detailVC
+        store.dispatch(SelectionAction.select(movie: movies[path.row]))
+        return MovieDetailViewController.instantiate()
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,

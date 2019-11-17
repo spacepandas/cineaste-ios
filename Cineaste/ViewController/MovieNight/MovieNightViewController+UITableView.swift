@@ -39,7 +39,9 @@ extension MovieNightViewController {
         switch Section(rawValue: indexPath.section) {
         case .allFriends?:
             var combinedMessages = nearbyMessages
-            combinedMessages.append(ownNearbyMessage)
+            if let ownMessage = ownNearbyMessage {
+                combinedMessages.append(ownMessage)
+            }
 
             let numberOfAllMovies = combinedMessages
                 .compactMap { $0.movies.count }
@@ -62,7 +64,9 @@ extension MovieNightViewController {
         switch Section(rawValue: indexPath.section) {
         case .allFriends?:
             var combinedMessages = nearbyMessages
-            combinedMessages.append(ownNearbyMessage)
+            if let ownMessage = ownNearbyMessage {
+                combinedMessages.append(ownMessage)
+            }
 
             performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
                          sender: (String.allResultsForMovieNight, combinedMessages))

@@ -13,18 +13,12 @@ extension MoviesViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
 
         if !searchText.isEmpty {
-            let predicate = NSCompoundPredicate(
-                type: .and,
-                subpredicates: [
-                    NSPredicate(format: "title contains[c] %@", searchText),
-                    category.predicate
-                ]
-            )
-
-            fetchedResultsManager.refetch(for: predicate)
+            movies = movies
+                .filter { $0.title.contains(searchText)
+                    && $0.watched == category.watched
+                }
         } else {
-            fetchedResultsManager.refetch(for: category.predicate)
+            movies = movies.filter { $0.watched == category.watched }
         }
-        tableView.reloadData()
     }
 }

@@ -7,5 +7,5 @@
 //
 
 struct ImportExportObject: Codable {
-    var movies: [StoredMovie]
+    var movies: Set<Movie>
 }

@@ -19,16 +19,12 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var voteView: VoteView!
 
-    func configure(with movie: StoredMovie) {
+    func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
         let nonbreakingSpace = "\u{00a0}"
 
         poster.accessibilityIgnoresInvertColors = true
-        if let moviePoster = movie.poster {
-            poster.image = UIImage(data: moviePoster)
-        } else {
-            poster.image = UIImage.posterPlaceholder
-        }
+        poster.loadingImage(from: movie.posterPath, in: .small)
 
         releaseAndRuntimeLabel.text = movie.formattedRelativeReleaseInformation
             + " ∙ "
@@ -41,7 +37,7 @@ class WatchlistMovieCell: UITableViewCell {
         applyAccessibility(with: movie)
     }
 
-    private func applyAccessibility(with movie: StoredMovie) {
+    private func applyAccessibility(with movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title

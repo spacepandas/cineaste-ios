@@ -7,30 +7,39 @@
 //
 
 import UIKit
-import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let persistenceSubscriber = PersistenceSubscriber()
+
+    // swiftlint:disable:next discouraged_optional_collection
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+
+        // IMPORTANT: Call this before the ReSwift Store is initialized
+        // (before ReSwiftInit is dispatched)
+        migrateCoreData()
+
+        return true
+    }
+
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        NotificationCenter
-            .default
-            .addObserver(self,
-                         selector: #selector(contextDidSave(notification:)),
-                         name: NSNotification.Name.NSManagedObjectContextDidSave,
-                         object: nil)
 
         handleLaunchArguments()
         Appearance.setup()
+
+        store.subscribe(persistenceSubscriber) { subscription in
+            subscription.select { $0.movies }
+        }
 
         // check if system launched the app with a quick action
         // return false so performActionForShortcutItem: is not called twice
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem]
             as? UIApplicationShortcutItem {
-            _ = handle(shortCut: shortcutItem)
+            handle(shortCut: shortcutItem)
             return false
         }
 
@@ -45,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(handle(shortCut: shortcutItem))
     }
 
+    @discardableResult
     private func handle(shortCut shortcutItem: UIApplicationShortcutItem) -> Bool {
         let shortcutType = shortcutItem.type
         guard let shortcutIdentifier = ShortcutIdentifier(rawValue: shortcutType),
@@ -54,61 +64,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutIdentifier {
         case .watchlist:
             tabBarVC.selectedIndex = 0
-            return true
         case .seen:
             tabBarVC.selectedIndex = 1
-            return true
         case .startMovieNight:
             guard
                 let moviesVC = tabBarVC.selectedViewController?
                     .children.first as? MoviesViewController
                 else { return false }
             moviesVC.movieNightButtonTouched()
-            return true
         }
 
-    }
-
-    // MARK: - Core Data
-
-    @objc
-    func contextDidSave(notification: Notification) {
-        AppDelegate.viewContext.perform {
-            print("💾 Saved context: \(notification.description) 💾")
-            AppDelegate.viewContext.mergeChanges(fromContextDidSave: notification)
-        }
-    }
-
-    static var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-
-        return container
-    }()
-
-    static var viewContext: NSManagedObjectContext {
-        return AppDelegate.persistentContainer.viewContext
+        return true
     }
 
     private func handleLaunchArguments() {
@@ -119,5 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIView.setAnimationsEnabled(false)
         }
         #endif
+    }
+
+    private func migrateCoreData() {
+        let migrator = CoreDataMigrator()
+        let movies = migrator.coreDataMovies
+
+        guard !movies.isEmpty else { return }
+
+        try? Persistence.saveMovies(movies)
+        try? migrator.clearCoreData()
     }
 }
