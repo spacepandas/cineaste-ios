@@ -3,13 +3,23 @@
 # Upcoming Release
 
 ## New
-* Introduces `SnapshotTesting` as new Dependency with two sample Snapshot Tests
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.14.0 
+
+## New
+* Introduce ReSwift for easy and testable State Management
+* Save movies as json in documents directory instead of using Core Data
+* Introduce `SnapshotTesting` as new Dependency with two sample Snapshot Tests
+
+## Fixed
+* When using "Invert Colors", posters shouldn't be inverted
 
 # 1.13.1
 
