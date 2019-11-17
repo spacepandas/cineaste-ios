@@ -17,8 +17,7 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
-            guard let poster = posterImageView.image
-                else { return }
+            guard let poster = posterImageView.image else { return }
 
             DispatchQueue.main.async {
                 let aspectRatio = poster.size.height / poster.size.width
@@ -92,7 +91,8 @@ class MovieDetailViewController: UIViewController {
 
     @IBAction func showMoreInformation() {
         guard let movie = movie,
-            let url = Constants.Backend.shareUrl(for: movie) else { return }
+            let url = Constants.Backend.shareUrl(for: movie)
+            else { return }
 
         let safariVC = CustomSafariViewController(url: url)
         present(safariVC, animated: true)
