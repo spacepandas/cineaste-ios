@@ -29,7 +29,8 @@ extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
 
 extension SearchMoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovie = movies[indexPath.row]
+        let selectedMovie = movies[indexPath.row]
+        store.dispatch(SelectionAction.select(movie: selectedMovie))
         perform(segue: .showMovieDetail, sender: self)
     }
 }

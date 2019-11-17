@@ -111,17 +111,6 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showMovieDetail?:
-            guard let selectedMovie = selectedMovie else { return }
-
-            store.dispatch(SelectionAction.select(movie: selectedMovie))
-        default:
-            return
-        }
-    }
-
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
