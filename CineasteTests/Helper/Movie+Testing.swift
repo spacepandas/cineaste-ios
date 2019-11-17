@@ -63,7 +63,7 @@ extension Movie {
         posterPath: nil,
         overview: "",
         runtime: 132,
-        releaseDate: nil,
+        releaseDate: Date.distantFuture,
         watched: true,
         watchedDate: Date(timeIntervalSince1970: 1_574_023_766),
         popularity: 444

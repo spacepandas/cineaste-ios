@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import ReSwift
 import SnapshotTesting
 @testable import Cineaste_App
 
