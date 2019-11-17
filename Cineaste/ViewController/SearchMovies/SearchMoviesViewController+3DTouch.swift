@@ -28,3 +28,39 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
                                                  animated: true)
     }
 }
+
+@available(iOS 13.0, *)
+extension SearchMoviesViewController {
+    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let idString = configuration.identifier as? String,
+            let id = Int(idString)
+            else { return }
+
+        animator.addCompletion {
+            store.dispatch(SelectionAction.select(movie: self.movies[id]))
+            let detailVC = MovieDetailViewController.instantiate()
+            detailVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let movie = movies[indexPath.row]
+
+        let configuration = UIContextMenuConfiguration(
+            identifier: "\(indexPath.row)" as NSCopying,
+            previewProvider: {
+                store.dispatch(SelectionAction.select(movie: movie))
+                let detailVC = MovieDetailViewController.instantiate()
+                detailVC.hidesBottomBarWhenPushed = true
+                return detailVC
+            }, actionProvider: { _ in
+            let currentState = self.watchStates[movie] ?? .undefined
+            let actions = ContextMenu.actions(for: movie, watchState: currentState, presenter: self)
+            return UIMenu(title: "", image: nil, identifier: nil, children: actions)
+            })
+
+        return configuration
+    }
+
+}

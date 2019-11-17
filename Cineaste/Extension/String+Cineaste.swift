@@ -24,11 +24,14 @@ extension String {
     static let watchStateWatchlist = NSLocalizedString("watchStateWatchlist", comment: "Information watchstate watchlist")
     static let onTMDB = NSLocalizedString("onTMDB", comment: "Hint for more information on TMDB")
 
-    // MARK: ACTION BUTTONS
+    // MARK: ACTION BUTTONS / SWIPE ACTIONS
     static let watchlistActionLong = NSLocalizedString("watchlistActionLong", comment: "Title for long must see movie button")
     static let watchlistAction = NSLocalizedString("watchlistAction", comment: "Title for must see movie button")
+    static let seenActionLong = NSLocalizedString("seenActionLong", comment: "Title for long seen movie button")
     static let seenAction = NSLocalizedString("seen.width", comment: "Title for seen movie button").forWidth
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
+    static let deleteAction = NSLocalizedString("delete", comment: "Title for delete swipe action")
+    static let deleteActionLong = NSLocalizedString("deleteFromList", comment: "Title for delete action")
     static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
     static let chooseMovie = NSLocalizedString("chooseMovie", comment: "Title for choose movie button")
     static let moreInformation = NSLocalizedString("moreInformation", comment: "Title for the more information button")
@@ -85,10 +88,6 @@ extension String {
 
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")
-
-    // MARK: SWIPE ACTIONS
-    static let deleteAction = NSLocalizedString("delete", comment: "Title for delete swipe action")
-    static let deleteActionLong = NSLocalizedString("deleteFromList", comment: "Title for delete action")
 
     // MARK: CONTENT
     static let imprintContent = NSLocalizedString("aboutContent", comment: "Imprint content")

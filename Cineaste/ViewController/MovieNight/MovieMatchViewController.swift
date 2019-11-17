@@ -10,13 +10,13 @@ import UIKit
 
 class MovieMatchViewController: UITableViewController {
     private var moviesWithNumber: [(NearbyMovie, Int)] = []
-    private var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
+    private(set) var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    private var totalNumberOfPeople: Int = 0
-    private var showAllTogetherMovies: Bool = false
+    private(set) var totalNumberOfPeople: Int = 0
+    private(set) var showAllTogetherMovies: Bool = false
 
     private lazy var resultSearchController: SearchController = {
         let resultSearchController = SearchController(searchResultsController: nil)
@@ -70,37 +70,6 @@ class MovieMatchViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
 
         definesPresentationContext = true
-    }
-
-    // MARK: TableView
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredMoviesWithNumber.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
-
-        let movieWithNumber = filteredMoviesWithNumber[indexPath.row]
-        if showAllTogetherMovies {
-            cell.configure(with: movieWithNumber.movie,
-                           numberOfMatches: movieWithNumber.number,
-                           amountOfPeople: totalNumberOfPeople,
-                           delegate: self)
-        } else {
-            cell.configure(with: movieWithNumber.movie,
-                           delegate: self)
-        }
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nearbyMovie = filteredMoviesWithNumber[indexPath.row].0
-        let movieDetailVC = MovieDetailViewController.instantiate()
-
-        store.dispatch(SelectionAction.select(movie: Movie(id: nearbyMovie.id)))
-        navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 

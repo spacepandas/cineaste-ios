@@ -1,35 +1,43 @@
 //
-//  MoviesViewController+UITableView.swift
-//  Cineaste
+//  MovieMatchViewController+UITableView.swift
+//  Cineaste App
 //
-//  Created by Felizia Bernutz on 21.07.18.
-//  Copyright © 2018 spacepandas.de. All rights reserved.
+//  Created by Felizia Bernutz on 17.11.19.
+//  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
 import UIKit
 
-extension MoviesViewController {
+extension MovieMatchViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return filteredMoviesWithNumber.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = movies[indexPath.row]
-        switch category {
-        case .watchlist:
-            let cell: WatchlistMovieCell = tableView.dequeueCell(identifier: WatchlistMovieCell.identifier)
-            cell.configure(with: movie)
-            return cell
-        case .seen:
-            let cell: SeenMovieCell = tableView.dequeueCell(identifier: SeenMovieCell.identifier)
-            cell.configure(with: movie)
-            return cell
+        let cell: MovieMatchCell = tableView.dequeueCell(identifier: MovieMatchCell.identifier)
+
+        let movieWithNumber = filteredMoviesWithNumber[indexPath.row]
+        if showAllTogetherMovies {
+            cell.configure(
+                with: movieWithNumber.movie,
+                numberOfMatches: movieWithNumber.number,
+                amountOfPeople: totalNumberOfPeople,
+                delegate: self)
+        } else {
+            cell.configure(
+                with: movieWithNumber.movie,
+                delegate: self)
         }
+
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        store.dispatch(SelectionAction.select(movie: movies[indexPath.row]))
-        perform(segue: .showMovieDetail, sender: nil)
+        let nearbyMovie = filteredMoviesWithNumber[indexPath.row].movie
+        let movieDetailVC = MovieDetailViewController.instantiate()
+
+        store.dispatch(SelectionAction.select(movie: Movie(id: nearbyMovie.id)))
+        navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 
     @available(iOS 13.0, *)
@@ -38,8 +46,11 @@ extension MoviesViewController {
             let id = Int(idString)
             else { return }
 
+        let nearbyMovie = filteredMoviesWithNumber[id].movie
+        let movie = Movie(id: nearbyMovie.id)
+
         animator.addCompletion {
-            store.dispatch(SelectionAction.select(movie: self.movies[id]))
+            store.dispatch(SelectionAction.select(movie: movie))
             let detailVC = MovieDetailViewController.instantiate()
             detailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detailVC, animated: true)
@@ -48,7 +59,8 @@ extension MoviesViewController {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let movie = movies[indexPath.row]
+        let nearbyMovie = filteredMoviesWithNumber[indexPath.row].movie
+        let movie = Movie(id: nearbyMovie.id)
 
         let configuration = UIContextMenuConfiguration(
             identifier: "\(indexPath.row)" as NSCopying,
@@ -58,10 +70,12 @@ extension MoviesViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
-                let actions = ContextMenu.actions(
-                    for: movie,
-                    watchState: movie.currentWatchState,
-                    presenter: self)
+            let actions = ContextMenu.actions(
+                for: movie,
+                // TODO: this is incorrect
+                // we have to search for an existing movie in the store
+                watchState: movie.currentWatchState,
+                presenter: self)
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             })
 

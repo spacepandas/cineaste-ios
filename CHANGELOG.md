@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Add Contextual Menus for iOS 13 and devices without 3D Touch 
 
 ## Fixed
 * 

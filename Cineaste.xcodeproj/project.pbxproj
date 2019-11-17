@@ -50,9 +50,12 @@
 		3F701B44218640F80033562B /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */; };
 		3F701B46218640F80033562B /* WatchlistMovieCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE811FF3AE3700E584E9 /* WatchlistMovieCellTests.swift */; };
 		3F712536224C066B00B6B100 /* Keys.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F712535224C066B00B6B100 /* Keys.xcassets */; };
+		3F75665C2381737F007E2DE8 /* UIViewController+ShareMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75665B2381737E007E2DE8 /* UIViewController+ShareMovie.swift */; };
+		3F75665E23817BBE007E2DE8 /* MovieMatchViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75665D23817BBE007E2DE8 /* MovieMatchViewController+UITableView.swift */; };
 		3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F941B7620F5295D008A4407 /* Movie+Formatted.swift */; };
 		3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F941B7020F528BA008A4407 /* Movie+Networking.swift */; };
 		3F7ABD5620F5C71E004B069E /* String+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F941B6C20F527E5008A4407 /* String+Locale.swift */; };
+		3F7B66C62353B81600464BCC /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B66C52353B81600464BCC /* ContextMenu.swift */; };
 		3F80F27222359E5C007E03C5 /* UIView+SlideIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F80F27122359E5C007E03C5 /* UIView+SlideIn.swift */; };
 		3F85488A21039778007A322E /* IndexPath+Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F85488821039778007A322E /* IndexPath+Last.swift */; };
 		3F8CEBEE2250A229001916BD /* Screenshots+ScrollToElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8CEBED2250A229001916BD /* Screenshots+ScrollToElement.swift */; };
@@ -255,6 +258,9 @@
 		3F701B35218640EE0033562B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F712535224C066B00B6B100 /* Keys.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Keys.xcassets; sourceTree = "<group>"; };
 		3F71F684200292B700496E05 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		3F75665B2381737E007E2DE8 /* UIViewController+ShareMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShareMovie.swift"; sourceTree = "<group>"; };
+		3F75665D23817BBE007E2DE8 /* MovieMatchViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieMatchViewController+UITableView.swift"; sourceTree = "<group>"; };
+		3F7B66C52353B81600464BCC /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		3F80F27122359E5C007E03C5 /* UIView+SlideIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SlideIn.swift"; sourceTree = "<group>"; };
 		3F83BE771FF39DFC00E584E9 /* Instantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiable.swift; sourceTree = "<group>"; };
 		3F83BE811FF3AE3700E584E9 /* WatchlistMovieCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistMovieCellTests.swift; sourceTree = "<group>"; };
@@ -554,6 +560,7 @@
 				3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */,
 				3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */,
 				3F80F27122359E5C007E03C5 /* UIView+SlideIn.swift */,
+				3F75665B2381737E007E2DE8 /* UIViewController+ShareMovie.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -576,6 +583,7 @@
 				3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */,
 				953182FA203E212A00A331A0 /* MovieNightUserCell.swift */,
 				9526A70420448940004E08F7 /* MovieMatchViewController.swift */,
+				3F75665D23817BBE007E2DE8 /* MovieMatchViewController+UITableView.swift */,
 				9526A70620449206004E08F7 /* MovieMatchCell.swift */,
 			);
 			path = MovieNight;
@@ -726,6 +734,7 @@
 		95DC32011F97E0EF0014E3EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F7B66C52353B81600464BCC /* ContextMenu.swift */,
 				4EB512052268BAEA00CBDC7E /* JSONCoders.swift */,
 				3F3BCAAE22D213BC005BEF12 /* LocalizedReleaseDate.swift */,
 				95DC320C1F97E5150014E3EA /* Movie.swift */,
@@ -1184,6 +1193,7 @@
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
 				3F22920C225A3B5C001D4358 /* AppState.swift in Sources */,
 				3F187F952263491500B7A9CF /* SortDescriptor.swift in Sources */,
+				3F75665E23817BBE007E2DE8 /* MovieMatchViewController+UITableView.swift in Sources */,
 				3FF790F620DE274A007B7D37 /* NavigationController.swift in Sources */,
 				3FF790F720DE274A007B7D37 /* Button.swift in Sources */,
 				3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */,
@@ -1240,6 +1250,7 @@
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,
 				4EB512022268B07600CBDC7E /* AppReducer.swift in Sources */,
 				6409299022DBAB0C0011AB96 /* SearchMoviesViewController+SwipeHint.swift in Sources */,
+				3F7B66C62353B81600464BCC /* ContextMenu.swift in Sources */,
 				3FF7911720DE274A007B7D37 /* View.swift in Sources */,
 				4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */,
 				3FF7911820DE274A007B7D37 /* String+Cineaste.swift in Sources */,
@@ -1261,6 +1272,7 @@
 				3F3BCAAA22D1FEE8005BEF12 /* UIImageView+Loading.swift in Sources */,
 				3FF7912020DE274A007B7D37 /* Webservice.swift in Sources */,
 				64F4EFF822DD1164005B504C /* SwipeActionHintShowCountPersistence.swift in Sources */,
+				3F75665C2381737F007E2DE8 /* UIViewController+ShareMovie.swift in Sources */,
 				3F98C82621D262A500F926E9 /* Importer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
