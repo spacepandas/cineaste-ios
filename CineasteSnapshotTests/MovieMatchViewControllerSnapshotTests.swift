@@ -17,13 +17,13 @@ class MovieMatchViewControllerSnapshotTests: XCTestCase {
         let viewController = MovieMatchViewController.instantiate()
 
         let simulatorMovies = [
-            NearbyMovie(id: 1, title: "Film B", posterPath: nil),
-            NearbyMovie(id: 2, title: "Asterix", posterPath: nil),
-            NearbyMovie(id: 3, title: "Film 3", posterPath: nil)
+            NearbyMovie.testing1,
+            NearbyMovie.testing2,
+            NearbyMovie.testing3
         ]
         let developerMovies = [
-            NearbyMovie(id: 1, title: "Film B", posterPath: nil),
-            NearbyMovie(id: 2, title: "Asterix", posterPath: nil)
+            NearbyMovie.testing1,
+            NearbyMovie.testing2
         ]
 
         let nearbyMessages = [

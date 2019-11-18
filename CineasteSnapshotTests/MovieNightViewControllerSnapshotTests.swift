@@ -23,8 +23,8 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
         let viewController = MovieNightViewController.instantiate()
 
         // When
+        viewController.canUseNearby = true
         viewController.toggleSearchingForFriendsMode()
-        waitForQueue()
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
