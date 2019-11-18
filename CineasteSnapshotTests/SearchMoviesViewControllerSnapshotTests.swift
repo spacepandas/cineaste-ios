@@ -24,6 +24,7 @@ class SearchMoviesViewControllerSnapshotTests: XCTestCase {
             .testingWatchlist,
             .testingWatchlist2
         ]
+        waitForQueue()
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
@@ -35,13 +36,6 @@ class SearchMoviesViewControllerSnapshotTests: XCTestCase {
         let viewController = SearchMoviesViewController.instantiate()
 
         // When
-        viewController.moviesFromNetworking = [
-            .testing,
-            .testingSeen,
-            .testingWatchlist,
-            .testingWatchlist2
-        ]
-
         var state = AppState()
         state.movies = [
             .testingSeen,
@@ -49,6 +43,13 @@ class SearchMoviesViewControllerSnapshotTests: XCTestCase {
             .testingWatchlist2
         ]
         store = Store(reducer: appReducer, state: state)
+
+        viewController.moviesFromNetworking = [
+            .testing,
+            .testingSeen,
+            .testingWatchlist,
+            .testingWatchlist2
+        ]
         waitForQueue()
 
         // Then
