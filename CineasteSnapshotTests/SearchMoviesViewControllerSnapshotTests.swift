@@ -49,7 +49,7 @@ class SearchMoviesViewControllerSnapshotTests: XCTestCase {
             .testingWatchlist2
         ]
         store = Store(reducer: appReducer, state: state)
-        waitForQueue(timeout: 10)
+        waitForQueue()
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
