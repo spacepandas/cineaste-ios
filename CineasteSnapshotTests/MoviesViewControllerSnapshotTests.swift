@@ -22,7 +22,7 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         viewController.category = .watchlist
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 
     func testGeneralAppearanceForWatchlist() {
@@ -38,7 +38,7 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         store = Store(reducer: appReducer, state: state)
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 
     func testGeneralAppearanceForHistory() {
@@ -54,6 +54,6 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         store = Store(reducer: appReducer, state: state)
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }

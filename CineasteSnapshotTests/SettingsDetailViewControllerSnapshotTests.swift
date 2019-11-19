@@ -21,6 +21,6 @@ class SettingsDetailViewControllerSnapshotTests: XCTestCase {
         viewController.configure(with: SettingItem.about.title, textViewContent: .imprint)
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }

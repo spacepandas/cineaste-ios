@@ -36,6 +36,6 @@ class MovieMatchViewControllerSnapshotTests: XCTestCase {
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }

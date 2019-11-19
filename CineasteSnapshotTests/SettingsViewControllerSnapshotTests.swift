@@ -24,6 +24,6 @@ class SettingsViewControllerSnapshotTests: XCTestCase {
         let navigationController = NavigationController(rootViewController: viewController)
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }

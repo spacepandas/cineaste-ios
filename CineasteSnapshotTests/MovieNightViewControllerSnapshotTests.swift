@@ -28,7 +28,7 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 
     func testPermissionGrantedAppearance() {
@@ -40,7 +40,7 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 
     func testPermissionDeniedAppearance() {
@@ -52,6 +52,6 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }
