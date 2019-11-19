@@ -28,20 +28,6 @@ extension Movie {
     )
 
     static let testingWatchlist = Movie(
-        id: 10_144,
-        title: "The Little Mermaid",
-        voteAverage: 7.3,
-        voteCount: 4_529,
-        posterPath: nil,
-        overview: "This colorful adventure tells the story of an impetuous mermaid princess named Ariel who falls in love with the very human Prince Eric and puts everything on the line for the chance to be with him. Memorable songs and characters -- including the villainous sea witch Ursula.",
-        runtime: 83,
-        releaseDate: Date(timeIntervalSinceNow: -351_043_200),
-        watched: false,
-        watchedDate: nil,
-        popularity: 19_372
-    )
-
-    static let testingWatchlist2 = Movie(
         id: 10_898,
         title: "The Little Mermaid II: Return to the Sea",
         voteAverage: 6.3,
@@ -52,20 +38,34 @@ extension Movie {
         releaseDate: Date(timeIntervalSince1970: 1_132_260_566),
         watched: false,
         watchedDate: nil,
-        popularity: 2_166
+        popularity: 19_372
     )
 
-    static let testingSeen = Movie(
+    static let testingWatchlist2 = Movie(
         id: 3,
         title: "Harry Potter",
-        voteAverage: 7.4,
-        voteCount: 1_234,
+        voteAverage: 0,
+        voteCount: 0,
         posterPath: nil,
         overview: "",
         runtime: 132,
-        releaseDate: Date.distantFuture,
+        releaseDate: Date(timeIntervalSince1970: 1_763_589_628),
+        watched: false,
+        watchedDate: nil,
+        popularity: 448
+    )
+
+    static let testingSeen = Movie(
+        id: 10_144,
+        title: "The Little Mermaid",
+        voteAverage: 7.3,
+        voteCount: 4_529,
+        posterPath: nil,
+        overview: "This colorful adventure tells the story of an impetuous mermaid princess named Ariel who falls in love with the very human Prince Eric and puts everything on the line for the chance to be with him. Memorable songs and characters -- including the villainous sea witch Ursula.",
+        runtime: 83,
+        releaseDate: Date(timeIntervalSince1970: 1_041_717_321),
         watched: true,
         watchedDate: Date(timeIntervalSince1970: 1_510_951_766),
-        popularity: 448
+        popularity: 2_166
     )
 }

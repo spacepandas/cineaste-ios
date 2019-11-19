@@ -31,6 +31,12 @@ class SearchMoviesCellSnapshotTests: XCTestCase {
         assertThemedViewSnapshot(matching: cellWatchlist, with: size)
     }
 
+    func testWatchlistComingSoonAppearance() {
+        let cellWatchlist = cell
+        cellWatchlist.configure(with: Movie.testingWatchlist2, state: .watchlist)
+        assertThemedViewSnapshot(matching: cellWatchlist, with: size)
+    }
+
     func testSeenAppearance() {
         let cellSeen = cell
         cellSeen.configure(with: Movie.testingSeen, state: .seen)
