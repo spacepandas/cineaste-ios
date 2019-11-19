@@ -23,7 +23,7 @@ class MovieNightViewController: UITableViewController {
     @IBOutlet private weak var bluetoothIcon: UIImageView!
     @IBOutlet private weak var nearbyLinkUsageDescriptionTextView: LinkTextView!
 
-    private var canUseNearby: Bool = true {
+    var canUseNearby: Bool = true {
         didSet {
             updateTableView(with: canUseNearby)
 
@@ -61,7 +61,7 @@ class MovieNightViewController: UITableViewController {
 
     var ownNearbyMessage: NearbyMessage?
 
-    var timer: Timer?
+    private var timer: Timer?
 
     var currentPermission: GNSPermission?
     var currentPublication: GNSPublication?
@@ -120,8 +120,6 @@ class MovieNightViewController: UITableViewController {
             startTitleAnimation()
         }
 
-        nearbyMessages = []
-
         currentPermission = GNSPermission(changedHandler: nearbyPermissionHandler)
         publishWatchlistMovies()
         subscribeToNearbyMessages()
@@ -142,11 +140,11 @@ class MovieNightViewController: UITableViewController {
 
     // MARK: - Actions
 
-    @IBAction func cancelMovieNight(_ sender: Any) {
+    @IBAction func cancelMovieNight() {
         dismiss(animated: true)
     }
 
-    @IBAction func allowNearby(_ sender: UIButton) {
+    @IBAction func allowNearby() {
         GNSPermission.setGranted(true)
     }
 
@@ -178,9 +176,9 @@ class MovieNightViewController: UITableViewController {
 
     private func configureDebugModeHelper() {
         #if DEBUG
-        let tripleTapGestureRecognizer =
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(toggleSearchingForFriendsMode))
+        let tripleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(toggleSearchingForFriendsMode))
         tripleTapGestureRecognizer.numberOfTapsRequired = 3
         view.addGestureRecognizer(tripleTapGestureRecognizer)
         #endif
@@ -248,22 +246,23 @@ class MovieNightViewController: UITableViewController {
 
         let nearbyMovies = movies
             .compactMap { movie -> NearbyMovie in
-                NearbyMovie(id: movie.id,
-                            title: movie.title,
-                            posterPath: movie.posterPath)
+                NearbyMovie(
+                    id: movie.id,
+                    title: movie.title,
+                    posterPath: movie.posterPath)
             }
 
         return NearbyMessage(with: username, movies: nearbyMovies)
     }
 
     private func startTitleAnimation() {
-        if timer == nil {
-            timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
-                self?.title = self?.animateTitle()
-            }
-            //swiftlint:disable:next force_unwrapping
-            RunLoop.current.add(timer!, forMode: .common)
+        guard timer == nil else { return }
+
+        timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
+            self?.title = self?.animateTitle()
         }
+        //swiftlint:disable:next force_unwrapping
+        RunLoop.current.add(timer!, forMode: .common)
     }
 
     private func stopTitleAnimation() {

@@ -20,48 +20,6 @@ class MoviesViewControllerTests: XCTestCase {
         tableView.dataSource = moviesVC
     }
 
-    func testSettingCategoryShouldChangeTitleOfVC() {
-        let seenTitle = MovieListCategory.seen.title
-        moviesVC.category = .seen
-        XCTAssertEqual(moviesVC.title, seenTitle)
-
-        let wantToSeeTitle = MovieListCategory.watchlist.title
-        moviesVC.category = .watchlist
-        XCTAssertEqual(moviesVC.title, wantToSeeTitle)
-    }
-
-    func testTableViewShouldHideWhenListIsEmpty() {
-        XCTAssertNotNil(tableView.backgroundView)
-        let exp = expectation(description: "\(#function)\(#line)")
-
-        moviesVC.showEmptyState(true) {
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertFalse(tableView.backgroundView!.isHidden)
-    }
-
-    func testTableViewShouldNotHideWhenListIsNotEmpty() {
-        XCTAssertNotNil(tableView.backgroundView)
-        let exp = expectation(description: "\(#function)\(#line)")
-
-        moviesVC.showEmptyState(false) {
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertTrue(tableView.backgroundView!.isHidden)
-    }
-
-    func testNumberOfRowsShouldEqualNumberOfFetchedObjects() {
-        if moviesVC.movies.isEmpty {
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
-        } else {
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), moviesVC.movies.count)
-        }
-    }
-
     func testDequeueReusableCellWithMovieListCellIdentifierShouldReturnTableViewCell() {
         // important:
         // use dequeueReusableCell:withIdentifier for this test, this method

@@ -6,11 +6,17 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
-@testable import Cineaste_App
 import XCTest
 import SnapshotTesting
+@testable import Cineaste_App
 
 class SettingsViewControllerSnapshotTests: XCTestCase {
+
+    override class func setUp() {
+        super.setUp()
+
+        UsernamePersistence.username = "Simulator"
+    }
 
     func testGeneralAppearance() {
         // Given
@@ -18,6 +24,6 @@ class SettingsViewControllerSnapshotTests: XCTestCase {
         let navigationController = NavigationController(rootViewController: viewController)
 
         // Then
-        assertViewSnapshot(matching: navigationController)
+        assertThemedNavigationSnapshot(matching: navigationController)
     }
 }

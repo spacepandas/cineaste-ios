@@ -13,18 +13,18 @@ class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
     @IBOutlet private weak var empyListTitle: UILabel!
     @IBOutlet private weak var emptyListLabel: UILabel!
-    @IBOutlet weak var emptyListAddMovieButton: UIButton!
-    @IBOutlet weak var emptyViewStackView: UIStackView!
+    @IBOutlet private weak var emptyListAddMovieButton: UIButton!
+    @IBOutlet private var emptyViewStackView: UIStackView!
 
     @IBOutlet private weak var startMovieNightButton: UIBarButtonItem!
     @IBOutlet private weak var addMovieButton: UIBarButtonItem!
 
     var category: MovieListCategory = .watchlist {
         didSet {
+            guard oldValue != category else { return }
+
             title = category.title
             emptyListLabel.text = String.title(for: category)
-
-            guard oldValue != category else { return }
 
             movies = movies.filter { $0.watched == category.watched }
         }
@@ -32,11 +32,10 @@ class MoviesViewController: UITableViewController {
 
     var movies: [Movie] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.showEmptyState(self.movies.isEmpty)
-                self.updateShortcutItems()
-            }
+            guard oldValue != movies else { return }
+
+            tableView.reloadData()
+            updateShortcutItems()
         }
     }
 
@@ -49,16 +48,8 @@ class MoviesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = category.title
         view.backgroundColor = UIColor.cineListBackground
-
-        emptyListLabel.textColor = .cineEmptyListDescription
-        empyListTitle.textColor = .cineEmptyListDescription
-        empyListTitle.text = .noContentTitle
-        emptyListAddMovieButton.backgroundColor = .cineButton
-        emptyListAddMovieButton.setTitleColor(.white, for: .normal)
-        emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
-
-        emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
 
         startMovieNightButton.accessibilityLabel = .startMovieNight
         startMovieNightButton.accessibilityIdentifier = "StartMovieNight.Button"
@@ -69,6 +60,7 @@ class MoviesViewController: UITableViewController {
 
         configureTableView()
         configureSearchController()
+        configureEmptyState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +111,13 @@ class MoviesViewController: UITableViewController {
         }
     }
 
+    @objc
+    func refreshMovies() {
+        MovieRefresher.refresh(movies: movies) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+
     // MARK: - Configuration
 
     private func configureTableView() {
@@ -137,19 +136,13 @@ class MoviesViewController: UITableViewController {
             NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .callout),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
-        refreshControl.attributedTitle =
-            NSAttributedString(string: String.refreshMovieData,
-                               attributes: attributes)
+        refreshControl.attributedTitle = NSAttributedString(
+            string: String.refreshMovieData,
+            attributes: attributes
+        )
 
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshMovies), for: .valueChanged)
-    }
-
-    @objc
-    func refreshMovies() {
-        MovieRefresher.refresh(movies: movies) {
-            self.tableView.refreshControl?.endRefreshing()
-        }
     }
 
     private func configureSearchController() {
@@ -159,19 +152,28 @@ class MoviesViewController: UITableViewController {
         definesPresentationContext = true
     }
 
+    private func configureEmptyState() {
+        emptyListLabel.textColor = .cineEmptyListDescription
+        emptyListLabel.text = String.title(for: category)
+        empyListTitle.textColor = .cineEmptyListDescription
+        empyListTitle.text = .noContentTitle
+        emptyListAddMovieButton.backgroundColor = .cineButton
+        emptyListAddMovieButton.setTitleColor(.white, for: .normal)
+        emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
+
+        emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
+    }
+
     // MARK: - Custom functions
 
-    func showEmptyState(_ emptyState: Bool, completion: (() -> Void)? = nil) {
+    func showEmptyState(_ emptyState: Bool) {
         let isEmpty = emptyState
 
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
-            }, completion: { _ in
-                self.tableView.backgroundView?.isHidden = !isEmpty
-                completion?()
-            })
-        }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
+        }, completion: { _ in
+            self.tableView.backgroundView?.isHidden = !isEmpty
+        })
     }
 
     private func updateShortcutItems() {
@@ -180,20 +182,20 @@ class MoviesViewController: UITableViewController {
         //initially instantiate shortcuts
         if shortcuts.isEmpty {
             let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "watchlist")
-            let watchlistShortcut =
-                UIApplicationShortcutItem(type: ShortcutIdentifier.watchlist.rawValue,
-                                          localizedTitle: String.watchlist,
-                                          localizedSubtitle: nil,
-                                          icon: watchlistIcon,
-                                          userInfo: nil)
+            let watchlistShortcut = UIApplicationShortcutItem(
+                type: ShortcutIdentifier.watchlist.rawValue,
+                localizedTitle: String.watchlist,
+                localizedSubtitle: nil,
+                icon: watchlistIcon,
+                userInfo: nil)
 
             let seenIcon = UIApplicationShortcutIcon(templateImageName: "seen")
-            let seenShortcut =
-                UIApplicationShortcutItem(type: ShortcutIdentifier.seen.rawValue,
-                                          localizedTitle: String.seen,
-                                          localizedSubtitle: nil,
-                                          icon: seenIcon,
-                                          userInfo: nil)
+            let seenShortcut = UIApplicationShortcutItem(
+                type: ShortcutIdentifier.seen.rawValue,
+                localizedTitle: String.seen,
+                localizedSubtitle: nil,
+                icon: seenIcon,
+                userInfo: nil)
 
             shortcuts = [watchlistShortcut, seenShortcut]
             UIApplication.shared.shortcutItems = shortcuts
@@ -252,6 +254,8 @@ extension MoviesViewController: StoreSubscriber {
             .sorted(by: category.watched
                 ? SortDescriptor.sortByWatchedDate
                 : SortDescriptor.sortByListPositionAndTitle)
+
+        showEmptyState(movies.isEmpty)
     }
 }
 
