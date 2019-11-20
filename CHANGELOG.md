@@ -3,13 +3,22 @@
 # Upcoming Release
 
 ## New
+* 
+
+## Fixed
+* 
+
+## Improved
+* 
+
+# 1.15.1
+
+## New
 * Add `ReSwiftThunk` to perform side effects
 
 ## Fixed
 * Import with formatting of WatchedDate
-
-## Improved
-* 
+* Styling of SegmentedControl with DynamicType
 
 # 1.15.0
 
