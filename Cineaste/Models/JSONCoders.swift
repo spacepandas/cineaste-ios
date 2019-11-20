@@ -35,3 +35,15 @@ extension JSONEncoder {
         return $0
     }(JSONEncoder())
 }
+
+extension JSONDecoder {
+    static let importDecoder: JSONDecoder = {
+        $0.keyDecodingStrategy = .convertFromSnakeCase
+        $0.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            return dateString.dateFromImportedMoviesString ?? Date.distantFuture
+        }
+        return $0
+    }(JSONDecoder())
+}

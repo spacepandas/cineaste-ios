@@ -7,3 +7,4 @@ disabled_rules:
   - type_name
   - weak_delegate
   - function_parameter_count
+  - line_length

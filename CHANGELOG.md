@@ -6,7 +6,7 @@
 * Add `ReSwiftThunk` to perform side effects
 
 ## Fixed
-* 
+* Import with formatting of WatchedDate
 
 ## Improved
 * 

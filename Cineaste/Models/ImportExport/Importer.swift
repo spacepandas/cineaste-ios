@@ -16,7 +16,7 @@ enum Importer {
         guard let data = try? Data(contentsOf: url, options: [])
             else { throw ImportError.noDataAtPath }
 
-        guard let importExportObject = try? JSONDecoder.tmdbDecoder
+        guard let importExportObject = try? JSONDecoder.importDecoder
             .decode(ImportExportObject.self, from: data)
             else { throw ImportError.parsingJsonToImportExport }
 
