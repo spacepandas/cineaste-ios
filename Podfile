@@ -11,6 +11,7 @@ target 'Cineaste App' do
   pod 'NearbyMessages'
   pod 'Kingfisher'
   pod 'ReSwift'
+  pod 'ReSwiftThunk'
 
   target 'CineasteTests' do
     inherit! :search_paths

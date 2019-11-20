@@ -15,6 +15,11 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilitiesLegacy (~> 1.3)
   - ReSwift (5.0.0)
+  - ReSwiftThunk (1.2.0):
+    - ReSwift (~> 5.0)
+    - ReSwiftThunk/Core (= 1.2.0)
+  - ReSwiftThunk/Core (1.2.0):
+    - ReSwift (~> 5.0)
   - SnapshotTesting (1.6.0)
   - SwiftLint (0.37.0)
 
@@ -22,6 +27,7 @@ DEPENDENCIES:
   - Kingfisher
   - NearbyMessages
   - ReSwift
+  - ReSwiftThunk
   - SnapshotTesting (~> 1.0)
   - SwiftLint
 
@@ -34,6 +40,7 @@ SPEC REPOS:
     - Kingfisher
     - NearbyMessages
     - ReSwift
+    - ReSwiftThunk
     - SnapshotTesting
     - SwiftLint
 
@@ -45,9 +52,10 @@ SPEC CHECKSUMS:
   Kingfisher: 0bf6eae7c2193f15719915fecb7c2c1c03855f3d
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
   ReSwift: 628f1a9b3ee52e3b3ca2a644435472fd77afafe1
+  ReSwiftThunk: 23c8ea9092d9dc94b72005f19352dbd37fa42533
   SnapshotTesting: 9f478335073a830eafb7dc1fcd526c5e90143991
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
-PODFILE CHECKSUM: 72343786757bd50678b1865376b66e0ad1397fd9
+PODFILE CHECKSUM: 63c5347dc001ae7bf34c449280f27aa809ebce44
 
 COCOAPODS: 1.8.4

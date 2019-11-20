@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Add `ReSwiftThunk` to perform side effects
 
 ## Fixed
 * 
