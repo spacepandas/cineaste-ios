@@ -7,15 +7,18 @@
 //
 
 import ReSwift
+import ReSwiftThunk
 
 #if DEBUG
 var store = Store(
     reducer: appReducer,
-    state: nil
+    state: nil,
+    middleware: [createThunkMiddleware()]
 )
 #else
 let store = Store(
     reducer: appReducer,
-    state: nil
+    state: nil,
+    middleware: [createThunkMiddleware()]
 )
 #endif

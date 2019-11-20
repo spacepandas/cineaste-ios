@@ -93,7 +93,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
             case .success(var movie):
                 movie.watched = true
                 movie.watchedDate = Date()
-                store.dispatch(MovieAction.add(movie: movie))
+                store.dispatch(addMovie(movie))
 
                 DispatchQueue.main.async {
                     if self.resultSearchController.isActive {

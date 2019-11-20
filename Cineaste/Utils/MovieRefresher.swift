@@ -18,7 +18,7 @@ enum MovieRefresher {
                 switch result {
                 case .success(let movie):
                     let updatedMovie = self.update(movieToUpdate, withNew: movie)
-                    store.dispatch(MovieAction.update(movie: updatedMovie))
+                    store.dispatch(updateMovie(with: updatedMovie))
                     group.leave()
                 case .failure:
                     group.leave()

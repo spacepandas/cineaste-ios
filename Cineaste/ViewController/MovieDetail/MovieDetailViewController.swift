@@ -101,24 +101,16 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBAction func updateWatchState() {
-        guard var movie = movie else { return }
-
-        let watched = movieStateSegmentedControl.selectedSegmentIndex == 1
-        movie.watched = watched
-
-        if watched {
-            movie.watchedDate = Date()
-        }
-
-        store.dispatch(MovieAction.update(movie: movie))
-
-        AppStoreReview.requestReview()
-    }
-
-    @IBAction func deleteMovie() {
         guard let movie = movie else { return }
 
-        store.dispatch(MovieAction.delete(movie: movie))
+        let watched = movieStateSegmentedControl.selectedSegmentIndex == 1
+        store.dispatch(updateMovie(with: movie, markAsWatched: watched))
+    }
+
+    @IBAction func deleteMovieFromList() {
+        guard let movie = movie else { return }
+
+        store.dispatch(deleteMovie(movie))
     }
 
     @IBAction func shareMovie() {

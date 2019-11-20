@@ -32,7 +32,7 @@ enum ContextMenu {
                 identifier: UIAction.Identifier(rawValue: "delete"),
                 attributes: .destructive
             ) { _ in
-                store.dispatch(MovieAction.delete(movie: movie))
+                store.dispatch(deleteMovie(movie))
             }
         case .moveToWatchlist(let movie):
             return UIAction(
@@ -40,10 +40,7 @@ enum ContextMenu {
                 image: UIImage(systemName: "star"),
                 identifier: UIAction.Identifier(rawValue: "watchlist")
             ) { _ in
-                var movie = movie
-                movie.watched = false
-
-                store.dispatch(MovieAction.update(movie: movie))
+                store.dispatch(updateMovie(with: movie, markAsWatched: false))
             }
         case .moveToSeen(let movie):
             return UIAction(
@@ -51,12 +48,7 @@ enum ContextMenu {
                 image: UIImage(systemName: "checkmark"),
                 identifier: UIAction.Identifier(rawValue: "seen")
             ) { _ in
-
-                var movie = movie
-                movie.watched = true
-                movie.watchedDate = Date()
-
-                store.dispatch(MovieAction.update(movie: movie))
+                store.dispatch(updateMovie(with: movie, markAsWatched: true))
             }
         }
     }

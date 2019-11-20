@@ -13,7 +13,3 @@ enum MovieAction: Action {
     case update(movie: Movie)
     case delete(movie: Movie)
 }
-
-enum SelectionAction: Action {
-    case select(movie: Movie)
-}

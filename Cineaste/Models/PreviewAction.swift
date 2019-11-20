@@ -17,18 +17,13 @@ enum PreviewAction {
         let action = UIPreviewAction(
             title: title,
             style: style) { _, _ -> Void in
-                var movie = movie
-
                 switch self {
                 case .delete:
-                    store.dispatch(MovieAction.delete(movie: movie))
+                    store.dispatch(deleteMovie(movie))
                 case .moveToWatchlist:
-                    movie.watched = false
-                    store.dispatch(MovieAction.update(movie: movie))
+                    store.dispatch(updateMovie(with: movie, markAsWatched: false))
                 case .moveToSeen:
-                    movie.watched = true
-                    movie.watchedDate = Date()
-                    store.dispatch(MovieAction.update(movie: movie))
+                    store.dispatch(updateMovie(with: movie, markAsWatched: true))
                 }
         }
 
