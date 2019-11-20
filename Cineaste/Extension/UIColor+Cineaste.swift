@@ -23,8 +23,6 @@ extension UIColor {
     static let cineTabBarNormal = UIColor(named: "tabBarNormal") ?? .lightGray
 
     // MARK: SegmentedControl
-    static let cineSegmentedControlSelected = UIColor(named: "segmentedControlSelected") ?? .lightGray
-    static let cineSegmentedControlNormal = UIColor(named: "segmentedControlNormal") ?? .lightGray
     static let cineSegmentedControlTint = UIColor(named: "segmentedControlTint") ?? .lightGray
 
     // MARK: Search TextField

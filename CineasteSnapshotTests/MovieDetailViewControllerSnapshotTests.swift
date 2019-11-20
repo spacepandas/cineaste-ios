@@ -28,4 +28,20 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
         let navigationController = NavigationController(rootViewController: viewController)
         assertThemedNavigationSnapshot(matching: navigationController)
     }
+
+    func testWatchlistMovieAppearance() {
+        // Given
+        let viewController = MovieDetailViewController.instantiate()
+
+        // When
+        var state = AppState()
+        let movie = Movie.testingWatchlist
+        state.movies = [movie]
+        state.selectedMovieId = movie.id
+        store = Store(reducer: appReducer, state: state)
+
+        // Then
+        let navigationController = NavigationController(rootViewController: viewController)
+        assertThemedNavigationSnapshot(matching: navigationController)
+    }
 }

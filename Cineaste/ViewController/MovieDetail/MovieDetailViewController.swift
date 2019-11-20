@@ -161,18 +161,6 @@ class MovieDetailViewController: UIViewController {
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.cineDescription
 
-        if #available(iOS 13.0, *) {
-            movieStateSegmentedControl.selectedSegmentTintColor = UIColor.cineSegmentedControlSelected
-            movieStateSegmentedControl.setTitleTextAttributes(
-                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlTint],
-                for: .selected)
-            movieStateSegmentedControl.setTitleTextAttributes(
-                [NSAttributedString.Key.foregroundColor: UIColor.cineSegmentedControlNormal],
-                for: .normal)
-        } else {
-            movieStateSegmentedControl.tintColor = UIColor.cineSegmentedControlSelected
-        }
-
         posterImageView.accessibilityIgnoresInvertColors = true
         posterImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self,
