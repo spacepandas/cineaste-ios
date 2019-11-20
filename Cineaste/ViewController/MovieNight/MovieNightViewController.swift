@@ -249,7 +249,10 @@ class MovieNightViewController: UITableViewController {
                 NearbyMovie(
                     id: movie.id,
                     title: movie.title,
-                    posterPath: movie.posterPath)
+                    posterPath: movie.posterPath,
+                    releaseDate: movie.releaseDate,
+                    voteAverage: movie.voteAverage,
+                    runtime: movie.runtime)
             }
 
         return NearbyMessage(with: username, movies: nearbyMovies)
