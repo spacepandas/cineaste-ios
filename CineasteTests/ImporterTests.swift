@@ -13,13 +13,15 @@ import ReSwift
 class ImporterTests: XCTestCase {
 
     func testImportMoviesFromUrlShouldImportMovies() {
-        XCTAssertNoThrow(try cleanImportOfMovies(from: "Import",
-                                                 expectedNumberOfMovies: 2))
+        XCTAssertNoThrow(try cleanImportOfMovies(
+            from: "Import",
+            expectedNumberOfMovies: 2))
     }
 
     func testImportMoviesFromUrlShouldImportMoviesFromAndroidExport() {
-        XCTAssertNoThrow(try cleanImportOfMovies(from: "AndroidExport",
-                                                 expectedNumberOfMovies: 3))
+        XCTAssertNoThrow(try cleanImportOfMovies(
+            from: "AndroidExport",
+            expectedNumberOfMovies: 3))
     }
 
     func testImportMoviesFromUrlShouldResultInErrorWhenImportingFailingJson() {

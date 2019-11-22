@@ -12,27 +12,6 @@ import XCTest
 class SettingsViewControllerTests: XCTestCase {
     let settingsVC = SettingsViewController.instantiate()
 
-    func testNumberOfSectionsShouldEqualOne() {
-        XCTAssertEqual(settingsVC.tableView.numberOfSections, 1)
-    }
-
-    func testNumberOfRowsShouldEqualNumberOfSettingItems() {
-        XCTAssertEqual(settingsVC.tableView.numberOfRows(inSection: 0), settingsVC.settings.count)
-    }
-
-    func testCellWithSegueShouldHaveDisclosureIndicator() {
-        for row in 0..<settingsVC.settings.count {
-            let path = IndexPath(row: row, section: 0)
-            let cell = settingsVC.tableView.dataSource!.tableView(settingsVC.tableView, cellForRowAt: path)
-
-            if settingsVC.settings[row].segue == nil {
-                XCTAssert(cell.accessoryType == .none)
-            } else {
-                XCTAssert(cell.accessoryType == .disclosureIndicator)
-            }
-        }
-    }
-
     func testSelectRowShouldSetCorrectSelectedSetting() {
         //nothing selected
         XCTAssertNil(settingsVC.selectedSetting)
