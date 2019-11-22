@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // return false so performActionForShortcutItem: is not called twice
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem]
             as? UIApplicationShortcutItem {
-            handle(shortCut: shortcutItem)
+            handleShortcut(for: shortcutItem)
             return false
         }
 
@@ -48,14 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Home Quick Actions
 
-    func application(_ application: UIApplication,
-                     performActionFor shortcutItem: UIApplicationShortcutItem,
-                     completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(handle(shortCut: shortcutItem))
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handleShortcut(for: shortcutItem))
     }
 
     @discardableResult
-    private func handle(shortCut shortcutItem: UIApplicationShortcutItem) -> Bool {
+    private func handleShortcut(for shortcutItem: UIApplicationShortcutItem) -> Bool {
         let shortcutType = shortcutItem.type
         guard let shortcutIdentifier = ShortcutIdentifier(rawValue: shortcutType),
             let tabBarVC = window?.rootViewController as? MoviesTabBarController
@@ -67,15 +65,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .seen:
             tabBarVC.selectedIndex = 1
         case .startMovieNight:
-            guard
-                let moviesVC = tabBarVC.selectedViewController?
-                    .children.first as? MoviesViewController
+            guard let moviesVC = tabBarVC.selectedViewController?
+                .children.first as? MoviesViewController
                 else { return false }
+
             moviesVC.movieNightButtonTouched()
         }
 
         return true
     }
+
+    // MARK: - Custom functions
 
     private func handleLaunchArguments() {
         #if DEBUG

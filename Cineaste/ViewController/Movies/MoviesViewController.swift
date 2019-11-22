@@ -35,7 +35,6 @@ class MoviesViewController: UITableViewController {
             guard oldValue != movies else { return }
 
             tableView.reloadData()
-            updateShortcutItems()
         }
     }
 
@@ -174,50 +173,6 @@ class MoviesViewController: UITableViewController {
         }, completion: { _ in
             self.tableView.backgroundView?.isHidden = !isEmpty
         })
-    }
-
-    private func updateShortcutItems() {
-        var shortcuts = UIApplication.shared.shortcutItems ?? []
-
-        //initially instantiate shortcuts
-        if shortcuts.isEmpty {
-            let watchlistIcon = UIApplicationShortcutIcon(templateImageName: "watchlist")
-            let watchlistShortcut = UIApplicationShortcutItem(
-                type: ShortcutIdentifier.watchlist.rawValue,
-                localizedTitle: String.watchlist,
-                localizedSubtitle: nil,
-                icon: watchlistIcon,
-                userInfo: nil)
-
-            let seenIcon = UIApplicationShortcutIcon(templateImageName: "seen")
-            let seenShortcut = UIApplicationShortcutItem(
-                type: ShortcutIdentifier.seen.rawValue,
-                localizedTitle: String.seen,
-                localizedSubtitle: nil,
-                icon: seenIcon,
-                userInfo: nil)
-
-            shortcuts = [watchlistShortcut, seenShortcut]
-            UIApplication.shared.shortcutItems = shortcuts
-        }
-
-        let index = category == .watchlist ? 0 : 1
-        let existingItem = shortcuts[index]
-
-        //only update if value changed
-        let newShortcutSubtitle =
-            movies.isEmpty
-            ? nil
-            : String.movies(for: movies.count)
-        if existingItem.localizedSubtitle != newShortcutSubtitle {
-            //swiftlint:disable:next force_cast
-            let mutableShortcutItem = existingItem.mutableCopy() as! UIMutableApplicationShortcutItem
-            mutableShortcutItem.localizedSubtitle = newShortcutSubtitle
-
-            shortcuts[index] = mutableShortcutItem
-
-            UIApplication.shared.shortcutItems = shortcuts
-        }
     }
 }
 
