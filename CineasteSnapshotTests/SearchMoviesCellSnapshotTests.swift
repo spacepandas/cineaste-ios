@@ -39,7 +39,7 @@ class SearchMoviesCellSnapshotTests: XCTestCase {
 
     func testSeenAppearance() {
         let cellSeen = cell
-        cellSeen.configure(with: Movie.testingSeen, state: .seen)
+        cellSeen.configure(with: Movie.testingSeenWithoutPosterPath, state: .seen)
         assertThemedViewSnapshot(matching: cellSeen, with: size)
     }
 
