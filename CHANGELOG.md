@@ -6,7 +6,7 @@
 * 
 
 ## Fixed
-* 
+* Fix Date Formatter Issues on Import and History
 
 ## Improved
 * 
