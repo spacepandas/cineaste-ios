@@ -8,39 +8,49 @@
 
 import UIKit
 
-extension Date {
-    private static let dateFormatter = { () -> DateFormatter in
-        DateFormatter()
+extension DateFormatter {
+    static let utcFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        return formatter
     }()
+}
 
-    var formattedOnlyYear: String {
-        Date.dateFormatter.dateFormat = "yyyy"
-        return Date.dateFormatter.string(from: self)
+extension Date {
+    var formatted: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: self)
     }
 
-    var formatted: String {
-        Date.dateFormatter.locale = Locale.current
-        Date.dateFormatter.dateStyle = .medium
-        Date.dateFormatter.timeStyle = .none
-        return Date.dateFormatter.string(from: self)
+    var formattedOnlyYear: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return formatter.string(from: self)
     }
 
     var formattedWithTime: String {
-        Date.dateFormatter.locale = Locale.current
-        Date.dateFormatter.dateStyle = .long
-        Date.dateFormatter.timeStyle = .short
-        return Date.dateFormatter.string(from: self)
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        return formatter.string(from: self)
     }
 
     var formattedForRequest: String {
-        Date.dateFormatter.dateFormat = "yyyy-MM-dd"
-        return Date.dateFormatter.string(from: self)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
     }
 
     var formattedForJson: String {
         //important to have locale as "en_US_POSIX" for export and import
-        Date.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        Date.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
-        return Date.dateFormatter.string(from: self)
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
+        return formatter.string(from: self)
     }
 }

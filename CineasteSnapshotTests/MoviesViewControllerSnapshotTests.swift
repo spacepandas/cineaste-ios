@@ -34,7 +34,10 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         viewController.category = .watchlist
 
         var state = AppState()
-        state.movies = [Movie.testingWatchlist, Movie.testingWatchlist2]
+        state.movies = [
+            Movie.testingWatchlistWithoutPosterPath,
+            Movie.testingWatchlist2WithoutPosterPath
+        ]
         store = Store(reducer: appReducer, state: state)
 
         // Then
@@ -50,7 +53,9 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         viewController.category = .seen
 
         var state = AppState()
-        state.movies = [Movie.testingSeen]
+        state.movies = [
+            Movie.testingSeenWithoutPosterPath
+        ]
         store = Store(reducer: appReducer, state: state)
 
         // Then

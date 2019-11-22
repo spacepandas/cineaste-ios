@@ -9,34 +9,17 @@
 
 import Foundation
 
-private let formatter: DateFormatter = {
-    $0.dateFormat = "yyyy-MM-dd"
-    $0.timeZone = TimeZone(abbreviation: "UTC")
-    return $0
-}(DateFormatter())
-
 extension JSONDecoder {
     static let tmdbDecoder: JSONDecoder = {
         $0.keyDecodingStrategy = .convertFromSnakeCase
         $0.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            return formatter.date(from: dateString) ?? Date.distantFuture
+            return DateFormatter.utcFormatter.date(from: dateString) ?? Date.distantFuture
         }
         return $0
     }(JSONDecoder())
-}
 
-extension JSONEncoder {
-    static let tmdbEncoder: JSONEncoder = {
-        $0.keyEncodingStrategy = .convertToSnakeCase
-        $0.dateEncodingStrategy = .formatted(formatter)
-        $0.outputFormatting = .prettyPrinted
-        return $0
-    }(JSONEncoder())
-}
-
-extension JSONDecoder {
     static let importDecoder: JSONDecoder = {
         $0.keyDecodingStrategy = .convertFromSnakeCase
         $0.dateDecodingStrategy = .custom { decoder in
@@ -46,4 +29,13 @@ extension JSONDecoder {
         }
         return $0
     }(JSONDecoder())
+}
+
+extension JSONEncoder {
+    static let tmdbEncoder: JSONEncoder = {
+        $0.keyEncodingStrategy = .convertToSnakeCase
+        $0.dateEncodingStrategy = .formatted(DateFormatter.utcFormatter)
+        $0.outputFormatting = .prettyPrinted
+        return $0
+    }(JSONEncoder())
 }

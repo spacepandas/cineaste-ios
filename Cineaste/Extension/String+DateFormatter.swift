@@ -9,30 +9,20 @@
 import UIKit
 
 extension String {
-    private static let dateFormatter = { () -> DateFormatter in
+    public var dateFromImportedMoviesString: Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
+        return formatter.date(from: self)
+    }
 
-    private static let iso8601Formatter: ISO8601DateFormatter = {
+    var dateFromISO8601String: Date? {
         let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime,
-                                   .withFractionalSeconds]
-        return formatter
-    }()
-
-    var dateFromString: Date? {
-        String.dateFormatter.dateFormat = "yyyy-MM-dd"
-        return String.dateFormatter.date(from: self)
-    }
-
-    public var dateFromImportedMoviesString: Date? {
-        String.dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
-        return String.dateFormatter.date(from: self)
-    }
-
-    var dateFromISO8601: Date? {
-        return String.iso8601Formatter.date(from: self)
+        formatter.formatOptions = [
+            .withInternetDateTime,
+            .withFractionalSeconds
+        ]
+        return formatter.date(from: self)
     }
 }
