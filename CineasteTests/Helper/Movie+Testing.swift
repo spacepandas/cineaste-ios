@@ -108,12 +108,13 @@ extension Movie {
         title: "The Little Mermaid",
         voteAverage: 7.3,
         voteCount: 4_529,
-        posterPath: nil,
+        posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
         overview: "This colorful adventure tells the story of an impetuous mermaid princess named Ariel who falls in love with the very human Prince Eric and puts everything on the line for the chance to be with him. Memorable songs and characters -- including the villainous sea witch Ursula.",
         runtime: 83,
-        releaseDate: Date(timeIntervalSince1970: 1_041_717_321),
+        releaseDate: Date(timeIntervalSince1970: 627_264_000),
         watched: true,
         watchedDate: Date(timeIntervalSince1970: 1_510_951_766),
+        listPosition: 0,
         popularity: 2_166
     )
 
