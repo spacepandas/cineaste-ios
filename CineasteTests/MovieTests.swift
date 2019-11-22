@@ -172,4 +172,67 @@ class MovieTests: XCTestCase {
         XCTAssertEqual(movie, expectedMovie)
     }
 
+    func testDecodingWatchlistMovieFromImport() throws {
+        // Given
+        let expectedMovie = Movie.testingWatchlist
+
+        let jsonData = """
+            {
+              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+              "release_date" : "Jan 23, 2000 00:00:00",
+              "id" : 10898,
+              "runtime" : 72,
+              "title" : "The Little Mermaid II: Return to the Sea",
+              "vote_count" : 898,
+              "watched" : false,
+              "listPosition" : 0,
+              "vote_average" : 6.3,
+              "overview" : "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
+              "watchedDate" : null,
+              "popularity" : 2.535
+            }
+            """
+            .data(using: .utf8)!
+
+        // When
+        let movie = try JSONDecoder.importDecoder.decode(
+            Movie.self,
+            from: jsonData
+        )
+
+        // Then
+        XCTAssertEqual(movie, expectedMovie)
+    }
+
+//    func testDecodingHistoryMovieFromImport() throws {
+//        // Given
+//        let expectedMovie = Movie.testingWatchlist
+//
+//        let jsonData = """
+//            {
+//              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+//              "release_date" : "Jan 23, 2000 00:00:00",
+//              "id" : 10898,
+//              "runtime" : 72,
+//              "title" : "The Little Mermaid II: Return to the Sea",
+//              "vote_count" : 898,
+//              "watched" : true,
+//              "listPosition" : 0,
+//              "vote_average" : 6.3,
+//              "overview" : "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
+//              "watchedDate" : "Jul 03, 2018 07:18:47"
+//            }
+//            """
+//            .data(using: .utf8)!
+//
+//        // When
+//        let movie = try JSONDecoder.importDecoder.decode(
+//            Movie.self,
+//            from: jsonData
+//        )
+//
+//        // Then
+//        XCTAssertEqual(movie, expectedMovie)
+//    }
+
 }

@@ -51,6 +51,7 @@ extension Movie {
         releaseDate: Date(timeIntervalSince1970: 948_585_600),
         watched: false,
         watchedDate: nil,
+        listPosition: 0,
         popularity: 2.535
     )
 
