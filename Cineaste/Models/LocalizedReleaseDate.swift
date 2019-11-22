@@ -87,7 +87,7 @@ extension LocalizedReleaseDate {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             regionIdentifier = try container.decode(String.self, forKey: .regionIdentifier)
             regionReleaseDate = (try container.decodeIfPresent(
-                String.self, forKey: .regionReleaseDate))?.dateFromISO8601
+                String.self, forKey: .regionReleaseDate))?.dateFromISO8601String
             type = try container.decode(Int.self, forKey: .type)
         }
     }
