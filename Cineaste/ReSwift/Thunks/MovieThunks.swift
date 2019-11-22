@@ -8,37 +8,22 @@
 
 import ReSwiftThunk
 
-func addMovie(_ movie: Movie) -> Thunk<AppState> {
-    Thunk { dispatch, _ in
-        dispatch(MovieAction.add(movie: movie))
-        AppStoreReview.requestReview()
-    }
-}
-
 func updateMovie(with movie: Movie, markAsWatched: Bool) -> Thunk<AppState> {
-    Thunk { dispatch, _ in
-        var movie = movie
+    Thunk { dispatch, getState in
+
+        var updatedMovie = movie
         if markAsWatched {
-            movie.watched = true
-            movie.watchedDate = Date()
+            updatedMovie.watched = true
+            updatedMovie.watchedDate = Date()
         } else {
-            movie.watched = false
+            updatedMovie.watched = false
         }
-        dispatch(MovieAction.update(movie: movie))
-        AppStoreReview.requestReview()
-    }
-}
 
-func updateMovie(with movie: Movie) -> Thunk<AppState> {
-    Thunk { dispatch, _ in
-        dispatch(MovieAction.update(movie: movie))
-        AppStoreReview.requestReview()
-    }
-}
-
-func deleteMovie(_ movie: Movie) -> Thunk<AppState> {
-    Thunk { dispatch, _ in
-        dispatch(MovieAction.delete(movie: movie))
-        AppStoreReview.requestReview()
+        let isNewMovie = getState()?.movies.filter { $0.id == movie.id }.isEmpty ?? true
+        if isNewMovie {
+            dispatch(MovieAction.add(movie: updatedMovie))
+        } else {
+            dispatch(MovieAction.update(movie: updatedMovie))
+        }
     }
 }

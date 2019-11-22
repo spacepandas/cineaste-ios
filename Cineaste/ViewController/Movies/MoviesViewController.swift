@@ -34,7 +34,9 @@ class MoviesViewController: UITableViewController {
         didSet {
             guard oldValue != movies else { return }
 
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 

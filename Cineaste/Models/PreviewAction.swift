@@ -19,7 +19,7 @@ enum PreviewAction {
             style: style) { _, _ -> Void in
                 switch self {
                 case .delete:
-                    store.dispatch(deleteMovie(movie))
+                    store.dispatch(MovieAction.delete(movie: movie))
                 case .moveToWatchlist:
                     store.dispatch(updateMovie(with: movie, markAsWatched: false))
                 case .moveToSeen:

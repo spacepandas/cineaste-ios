@@ -11,5 +11,8 @@ import ReSwift
 final class PersistenceSubscriber: StoreSubscriber {
     func newState(state movies: Set<Movie>) {
         try? Persistence.saveMovies(movies)
+
+        ShortcutItemRefresher.refreshShortcutItems(for: movies)
+        AppStoreReview.requestReview()
     }
 }

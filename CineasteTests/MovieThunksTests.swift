@@ -15,10 +15,13 @@ class MovieThunksTests: XCTestCase {
 
     func testUpdateMovieAsWatchedShouldSetWatchedAndWatchedDate() {
         // Given
-        let movie = Movie.testingWatchlist
-        let thunk = updateMovie(with: movie, markAsWatched: true)
+        let movieToUpdate = Movie.testingWatchlist
+        let thunk = updateMovie(with: movieToUpdate, markAsWatched: true)
 
-        var updatedMovie = movie
+        var appState = AppState()
+        appState.movies = [movieToUpdate, Movie.testingWatchlist2]
+
+        var updatedMovie = movieToUpdate
         updatedMovie.watched = true
         updatedMovie.watchedDate = Date()
         let expectedAction = MovieAction.update(movie: updatedMovie)
@@ -26,7 +29,7 @@ class MovieThunksTests: XCTestCase {
         store.dispatchFunction = { XCTFail("\($0)") }
 
         // When
-        thunk.body({ actions.append($0) }, { AppState() })
+        thunk.body({ actions.append($0) }, { appState })
 
         // Then
         XCTAssertEqual(actions.count, 1)
@@ -36,12 +39,36 @@ class MovieThunksTests: XCTestCase {
 
     func testUpdateMovieAsSeenShouldSetWatchedAndWatchedDate() {
         // Given
-        let movie = Movie.testingSeen
-        let thunk = updateMovie(with: movie, markAsWatched: false)
+        let movieToUpdate = Movie.testingSeen
+        let thunk = updateMovie(with: movieToUpdate, markAsWatched: false)
 
-        var updatedMovie = movie
+        var appState = AppState()
+        appState.movies = [movieToUpdate, Movie.testingWatchlist2]
+
+        var updatedMovie = movieToUpdate
         updatedMovie.watched = false
         let expectedAction = MovieAction.update(movie: updatedMovie)
+        var actions: [Action] = []
+        store.dispatchFunction = { XCTFail("\($0)") }
+
+        // When
+        thunk.body({ actions.append($0) }, { appState })
+
+        // Then
+        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(String(describing: actions[0]),
+                       String(describing: expectedAction))
+    }
+
+    func testUpdateMovieAsWatchedShouldAddMovieWhenNotExisting() {
+        // Given
+        let movieToAdd = Movie.testingWatchlist
+        let thunk = updateMovie(with: movieToAdd, markAsWatched: true)
+
+        var updatedMovie = movieToAdd
+        updatedMovie.watched = true
+        updatedMovie.watchedDate = Date()
+        let expectedAction = MovieAction.add(movie: updatedMovie)
         var actions: [Action] = []
         store.dispatchFunction = { XCTFail("\($0)") }
 
@@ -53,5 +80,4 @@ class MovieThunksTests: XCTestCase {
         XCTAssertEqual(String(describing: actions[0]),
                        String(describing: expectedAction))
     }
-
 }

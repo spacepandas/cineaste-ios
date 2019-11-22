@@ -110,7 +110,7 @@ class MovieDetailViewController: UIViewController {
     @IBAction func deleteMovieFromList() {
         guard let movie = movie else { return }
 
-        store.dispatch(deleteMovie(movie))
+        store.dispatch(MovieAction.delete(movie: movie))
     }
 
     @IBAction func shareMovie() {
