@@ -23,6 +23,23 @@ extension Movie {
         popularity: 7.582
     )
 
+    static let testingWithoutPosterPath: Movie = {
+        let original = Movie.testing
+        return Movie(
+            id: original.id,
+            title: original.title,
+            voteAverage: original.voteAverage,
+            voteCount: original.voteAverage,
+            posterPath: nil,
+            overview: original.overview,
+            runtime: original.runtime,
+            releaseDate: original.releaseDate,
+            watched: original.watched,
+            watchedDate: original.watchedDate,
+            popularity: original.popularity
+        )
+    }()
+
     static let testingWatchlist = Movie(
         id: 10_898,
         title: "The Little Mermaid II: Return to the Sea",
@@ -32,10 +49,27 @@ extension Movie {
         overview: "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
         runtime: 72,
         releaseDate: Date(timeIntervalSince1970: 948_585_600),
-        watched: nil,
+        watched: false,
         watchedDate: nil,
         popularity: 2.535
     )
+
+    static let testingWatchlistWithoutPosterPath: Movie = {
+        let original = Movie.testingWatchlist
+        return Movie(
+            id: original.id,
+            title: original.title,
+            voteAverage: original.voteAverage,
+            voteCount: original.voteAverage,
+            posterPath: nil,
+            overview: original.overview,
+            runtime: original.runtime,
+            releaseDate: original.releaseDate,
+            watched: original.watched,
+            watchedDate: original.watchedDate,
+            popularity: original.popularity
+        )
+    }()
 
     static let testingWatchlist2 = Movie(
         id: 3,
@@ -51,6 +85,23 @@ extension Movie {
         popularity: 448
     )
 
+    static let testingWatchlist2WithoutPosterPath: Movie = {
+        let original = Movie.testingWatchlist2
+        return Movie(
+            id: original.id,
+            title: original.title,
+            voteAverage: original.voteAverage,
+            voteCount: original.voteAverage,
+            posterPath: nil,
+            overview: original.overview,
+            runtime: original.runtime,
+            releaseDate: original.releaseDate,
+            watched: original.watched,
+            watchedDate: original.watchedDate,
+            popularity: original.popularity
+        )
+    }()
+
     static let testingSeen = Movie(
         id: 10_144,
         title: "The Little Mermaid",
@@ -64,4 +115,21 @@ extension Movie {
         watchedDate: Date(timeIntervalSince1970: 1_510_951_766),
         popularity: 2_166
     )
+
+    static let testingSeenWithoutPosterPath: Movie = {
+        let original = Movie.testingSeen
+        return Movie(
+            id: original.id,
+            title: original.title,
+            voteAverage: original.voteAverage,
+            voteCount: original.voteAverage,
+            posterPath: nil,
+            overview: original.overview,
+            runtime: original.runtime,
+            releaseDate: original.releaseDate,
+            watched: original.watched,
+            watchedDate: original.watchedDate,
+            popularity: original.popularity
+        )
+    }()
 }

@@ -21,19 +21,19 @@ class SearchMoviesCellSnapshotTests: XCTestCase {
 
     func testUndefinedAppearance() {
         let cellUndefined = cell
-        cellUndefined.configure(with: Movie.testing, state: .undefined)
+        cellUndefined.configure(with: Movie.testingWithoutPosterPath, state: .undefined)
         assertThemedViewSnapshot(matching: cellUndefined, with: size)
     }
 
     func testWatchlistAppearance() {
         let cellWatchlist = cell
-        cellWatchlist.configure(with: Movie.testingWatchlist, state: .watchlist)
+        cellWatchlist.configure(with: Movie.testingWatchlistWithoutPosterPath, state: .watchlist)
         assertThemedViewSnapshot(matching: cellWatchlist, with: size)
     }
 
     func testWatchlistComingSoonAppearance() {
         let cellWatchlist = cell
-        cellWatchlist.configure(with: Movie.testingWatchlist2, state: .watchlist)
+        cellWatchlist.configure(with: Movie.testingWatchlist2WithoutPosterPath, state: .watchlist)
         assertThemedViewSnapshot(matching: cellWatchlist, with: size)
     }
 

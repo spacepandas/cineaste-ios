@@ -19,7 +19,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
         // When
         var state = AppState()
-        let movie = Movie.testing
+        let movie = Movie.testingWithoutPosterPath
         state.movies = [movie]
         state.selectedMovieId = movie.id
         store = Store(reducer: appReducer, state: state)
