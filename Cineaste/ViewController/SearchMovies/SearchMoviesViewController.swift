@@ -22,19 +22,33 @@ class SearchMoviesViewController: UIViewController {
 
     private var storedIDs = StoredMovieIDs(watchListMovieIDs: [], seenMovieIDs: []) {
         didSet {
-            updateMovies()
+            guard oldValue != storedIDs else { return }
+
+            moviesWithWatchStates = updateMoviesWithWatchState(
+                with: storedIDs,
+                moviesFromNetworking: moviesFromNetworking)
         }
     }
 
-    var movies: [Movie] {
-        return watchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
+    var moviesWithWatchStates: [Movie: WatchState] = [:] {
+        didSet {
+            guard oldValue != moviesWithWatchStates else { return }
+
+            updateUI()
+        }
     }
 
-    var watchStates: [Movie: WatchState] = [:]
+    var moviesWithoutWatchState: [Movie] {
+        return moviesWithWatchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
+    }
 
     var moviesFromNetworking: Set<Movie> = [] {
         didSet {
-            updateMovies()
+            guard oldValue != moviesFromNetworking else { return }
+
+            moviesWithWatchStates = updateMoviesWithWatchState(
+                with: storedIDs,
+                moviesFromNetworking: moviesFromNetworking)
         }
     }
 
@@ -131,31 +145,32 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Custom functions
 
-    func updateMovies() {
-        watchStates = [:]
+    func updateMoviesWithWatchState(with storedIDs: StoredMovieIDs, moviesFromNetworking: Set<Movie>) -> [Movie: WatchState] {
+        var movies: [Movie: WatchState] = [:]
+
         for movie in moviesFromNetworking {
             if storedIDs.watchListMovieIDs.contains(movie.id) {
-                watchStates[movie] = .watchlist
+                movies[movie] = .watchlist
             } else if storedIDs.seenMovieIDs.contains(movie.id) {
-                watchStates[movie] = .seen
+                movies[movie] = .seen
             } else {
-                watchStates[movie] = .undefined
+                movies[movie] = .undefined
             }
         }
 
-        updateUI()
+        return movies
     }
 
     func updateUI() {
         tableView.reloadData()
 
-        if watchStates.isEmpty {
+        if moviesWithWatchStates.isEmpty {
             tableView.tableFooterView = UIView()
         }
     }
 
     func scrollToTopCell(withAnimation: Bool) {
-        guard !watchStates.isEmpty else { return }
+        guard !moviesWithWatchStates.isEmpty else { return }
 
         tableView.scrollToRow(
             at: IndexPath(row: 0, section: 0),

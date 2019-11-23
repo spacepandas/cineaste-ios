@@ -179,7 +179,6 @@ class MovieDetailViewController: UIViewController {
             let toolBar = toolBar
             else { return }
 
-        //TODO:
         func addDeleteButtonToToolbar() {
             if !(toolBar.items?.contains(deleteButton) ?? false) {
                 toolBar.items?.insert(deleteButton, at: 0)
