@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,37 +14,37 @@
             <objects>
                 <viewController storyboardIdentifier="SearchMoviesViewController" id="C9O-eg-KSE" customClass="SearchMoviesViewController" customModule="Cineaste_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnV-3h-HdW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ghd-3W-lPW">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchMoviesCell" rowHeight="100" id="Hcz-p6-NGe" customClass="SearchMoviesCell" customModule="Cineaste_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hcz-p6-NGe" id="ZO4-PF-mws">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-Qe-vDf">
-                                                    <rect key="frame" x="500" y="0.0" width="100" height="100"/>
+                                                    <rect key="frame" x="314" y="0.0" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="h0d-Qe-vDf" secondAttribute="height" id="r30-EK-2pK"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thc-MB-8du">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="seen-badge" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fI-55Z">
-                                                            <rect key="frame" x="555" y="0.0" width="45" height="45"/>
+                                                            <rect key="frame" x="369" y="0.0" width="45" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
-                                                            <rect key="frame" x="157" y="5" width="403" height="90"/>
+                                                            <rect key="frame" x="116" y="5" width="258" height="90"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="147.5" height="20.5"/>
@@ -75,14 +77,14 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zZg-aQ-7uo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="132" height="100"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="91" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="zZg-aQ-7uo" secondAttribute="height" multiplier="0.7" priority="999" id="mii-Yc-fTi"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg5-Zb-czx" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="132" y="0.0" width="5" height="100"/>
-                                                            <color key="backgroundColor" name="primaryOrange"/>
+                                                            <rect key="frame" x="91" y="0.0" width="5" height="100"/>
+                                                            <color key="backgroundColor" name="separator"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="5" id="1b0-An-ztY"/>
                                                             </constraints>
@@ -160,13 +162,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-Zu-dfX">
-                            <rect key="frame" x="177.5" y="10" width="20" height="40"/>
+                            <rect key="frame" x="177.5" y="30" width="20" height="0.0"/>
                         </activityIndicatorView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerX" secondItem="MUX-60-4Ps" secondAttribute="centerX" id="S0c-vC-OKE"/>
                         <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerY" secondItem="MUX-60-4Ps" secondAttribute="centerY" id="XfZ-Uj-S5m"/>
-                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="top" secondItem="7FF-lZ-CXt" secondAttribute="top" constant="10" id="fGd-Sj-8Zm"/>
+                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="top" secondItem="7FF-lZ-CXt" secondAttribute="top" priority="999" constant="10" id="fGd-Sj-8Zm"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="7FF-lZ-CXt"/>
                 </view>
@@ -202,7 +204,7 @@
     </scenes>
     <resources>
         <image name="seen-badge" width="100" height="100"/>
-        <namedColor name="primaryOrange">
+        <namedColor name="separator">
             <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

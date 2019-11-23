@@ -61,7 +61,7 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQq-yp-Egt" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
                                                     <rect key="frame" x="91" y="0.0" width="5" height="100"/>
-                                                    <color key="backgroundColor" name="primaryOrange"/>
+                                                    <color key="backgroundColor" name="separator"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="lf0-Ad-9wI"/>
                                                     </constraints>
@@ -342,7 +342,7 @@
         <image name="bluetooth" width="50" height="50"/>
         <image name="ic_nearby_black_48dp" width="48" height="48"/>
         <image name="microphone" width="48" height="48"/>
-        <namedColor name="primaryOrange">
+        <namedColor name="separator">
             <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

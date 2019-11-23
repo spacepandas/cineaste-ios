@@ -84,7 +84,7 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krj-Xu-Ja7" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
                                                     <rect key="frame" x="91" y="0.0" width="5" height="120"/>
-                                                    <color key="backgroundColor" name="primaryOrange"/>
+                                                    <color key="backgroundColor" name="separator"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="8cB-Wz-rUf"/>
                                                     </constraints>
@@ -171,7 +171,7 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAr-CO-u39" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
                                                     <rect key="frame" x="91" y="0.0" width="5" height="100"/>
-                                                    <color key="backgroundColor" name="primaryOrange"/>
+                                                    <color key="backgroundColor" name="separator"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="JKd-DD-kvy"/>
                                                     </constraints>
@@ -333,7 +333,7 @@
     </scenes>
     <resources>
         <image name="movieNight" width="23" height="23"/>
-        <namedColor name="primaryOrange">
+        <namedColor name="separator">
             <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
