@@ -9,10 +9,11 @@
 import UIKit
 
 extension SettingsViewController: UIDocumentPickerDelegate {
-
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        guard let amountOfMovies = try? Importer.importMovies(from: url)
-            else { return showAlert(withMessage: Alert.importFailedInfo) }
+        guard let amountOfMovies = try? Importer.importMovies(from: url) else {
+            showAlert(withMessage: Alert.importFailedInfo)
+            return
+        }
 
         showAlert(withMessage: Alert.importSucceededInfo(with: amountOfMovies))
     }

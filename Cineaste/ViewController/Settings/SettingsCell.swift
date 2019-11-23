@@ -18,8 +18,7 @@ class SettingsCell: UITableViewCell {
         backgroundColor = .cineCellBackground
         title.text = settingsItem.title
 
-        accessoryType =
-            settingsItem.segue == nil
+        accessoryType = settingsItem.segue == nil
             ? .none
             : .disclosureIndicator
 

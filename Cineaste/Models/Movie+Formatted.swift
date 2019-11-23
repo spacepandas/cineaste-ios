@@ -12,8 +12,7 @@ extension Movie {
             return String.unknownVoteAverage
         }
 
-        return voteAverage.formattedWithOneFractionDigit
-            ?? String.unknownVoteAverage
+        return String(format: "%.1f", voteAverage)
     }
 
     var formattedReleaseDate: String {
@@ -46,9 +45,8 @@ extension Movie {
     }
 
     var soonAvailable: Bool {
-        guard let release = releaseDate,
-            release > Date() else {
-                return false
+        guard let release = releaseDate, release > Date() else {
+            return false
         }
 
         return true

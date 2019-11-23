@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     @IBOutlet private weak var footerView: UIView!
-    @IBOutlet private weak var versionInfo: DescriptionLabel!
+    @IBOutlet private weak var versionInfo: UILabel!
 
     var settings: [SettingItem] {
         if #available(iOS 13.0, *) {
@@ -20,28 +20,15 @@ class SettingsViewController: UITableViewController {
             return SettingItem.allCasesForPreIOS13
         }
     }
+
     var selectedSetting: SettingItem?
 
-    var docController: UIDocumentInteractionController?
+    private var docController: UIDocumentInteractionController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = String.moreTitle
-
-        tableView.backgroundColor = UIColor.cineListBackground
-        tableView.tableFooterView = footerView
-
-        versionInfo.text = Constants.versionNumberInformation
-        versionInfo.textColor = .cineFooter
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        configureElements()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,11 +61,24 @@ class SettingsViewController: UITableViewController {
             guard let selected = selectedSetting else { return }
 
             let vc = segue.destination as? SettingsDetailViewController
-            vc?.configure(with: selected.title,
-                          textViewContent: selected == .licence ? .licence : .imprint)
+            vc?.configure(
+                with: selected.title,
+                textViewContent: selected == .licence ? .licence : .imprint)
         default:
             return
         }
+    }
+
+    // MARK: - Configuration
+
+    private func configureElements() {
+        title = String.moreTitle
+
+        tableView.backgroundColor = UIColor.cineListBackground
+        tableView.tableFooterView = footerView
+
+        versionInfo.text = Constants.versionNumberInformation
+        versionInfo.textColor = .cineFooter
     }
 }
 

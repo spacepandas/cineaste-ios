@@ -20,16 +20,18 @@ class SettingsDetailViewControllerTests: XCTestCase {
         settingsDetailVC.configure(with: "", textViewContent: .imprint)
         XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
 
-        let imprintChain = TextViewType.imprint.chainContent(titleAttributes: titleAttributes,
-                                                             paragraphAttributes: paragraphAttributes)
+        let imprintChain = TextViewType.imprint.chainContent(
+            titleAttributes: titleAttributes,
+            paragraphAttributes: paragraphAttributes)
         XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, imprintChain.string)
 
         //LICENSE
         settingsDetailVC.configure(with: "", textViewContent: .licence)
         XCTAssertNotNil(settingsDetailVC.settingsDetailTextView.attributedText)
 
-        let licenseChain = TextViewType.licence.chainContent(titleAttributes: titleAttributes,
-                                                             paragraphAttributes: paragraphAttributes)
+        let licenseChain = TextViewType.licence.chainContent(
+            titleAttributes: titleAttributes,
+            paragraphAttributes: paragraphAttributes)
         XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, licenseChain.string)
     }
 

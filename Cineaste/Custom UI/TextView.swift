@@ -76,9 +76,9 @@ class DescriptionTextView: TextView {
                 NSAttributedString.Key.foregroundColor: UIColor.cineDescription
             ]
 
-            attributedText = type
-                .chainContent(titleAttributes: titleAttributes,
-                              paragraphAttributes: paragraphAttributes)
+            attributedText = type.chainContent(
+                titleAttributes: titleAttributes,
+                paragraphAttributes: paragraphAttributes)
         } else {
             let defaultAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
@@ -86,8 +86,9 @@ class DescriptionTextView: TextView {
                 NSAttributedString.Key.foregroundColor: UIColor.cineDescription
             ]
 
-            attributedText = NSAttributedString(string: text,
-                                                attributes: defaultAttributes)
+            attributedText = NSAttributedString(
+                string: text,
+                attributes: defaultAttributes)
         }
     }
 
@@ -111,7 +112,8 @@ class LinkTextView: TextView {
             NSAttributedString.Key.foregroundColor: UIColor.cineFooter
         ]
 
-        attributedText = NSAttributedString(string: text,
-                                            attributes: defaultAttributes)
+        attributedText = NSAttributedString(
+            string: text,
+            attributes: defaultAttributes)
     }
 }

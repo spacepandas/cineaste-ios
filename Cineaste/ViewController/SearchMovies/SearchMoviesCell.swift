@@ -47,10 +47,10 @@ class SearchMoviesCell: UITableViewCell {
             stateImageView.isHidden = true
         case .seen:
             stateImageView.isHidden = false
-            stateImageView.image = #imageLiteral(resourceName: "seen-badge")
+            stateImageView.image = UIImage.seenBadgeIcon
         case .watchlist:
             stateImageView.isHidden = false
-            stateImageView.image = #imageLiteral(resourceName: "watchlist-badge")
+            stateImageView.image = UIImage.watchlistBadgeIcon
         }
 
         applyAccessibility(for: movie, with: state)

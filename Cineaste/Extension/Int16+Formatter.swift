@@ -9,13 +9,9 @@
 import Foundation
 
 extension Int16 {
-    private static let numberFormatter = { () -> NumberFormatter in
+    var formatted: String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
-        return formatter
-    }()
-
-    var formatted: String? {
-        return Int16.numberFormatter.string(from: NSNumber(value: self))
+        return formatter.string(from: NSNumber(value: self))
     }
 }

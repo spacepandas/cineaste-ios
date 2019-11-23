@@ -15,25 +15,30 @@ class SettingsDetailViewController: UIViewController {
 
     private var textViewContent: TextViewType = .imprint {
         didSet {
-            if oldValue != textViewContent {
-                update(textViewContent)
-            }
+            guard oldValue != textViewContent else { return }
+
+            update(textViewContent)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureElements()
+    }
+
+    func configure(with title: String, textViewContent: TextViewType) {
+        self.title = title
+        self.textViewContent = textViewContent
+    }
+
+    private func configureElements() {
         view.backgroundColor = .cineContentBackground
         navigationItem.largeTitleDisplayMode = .never
 
         settingsDetailTextView.delegate = self
         movieDBImageView.isHidden = true
         update(textViewContent)
-    }
-
-    func configure(with title: String, textViewContent: TextViewType) {
-        self.title = title
-        self.textViewContent = textViewContent
     }
 
     private func update(_ type: TextViewType) {

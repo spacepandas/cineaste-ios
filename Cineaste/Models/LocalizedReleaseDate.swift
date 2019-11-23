@@ -52,7 +52,7 @@ struct LocalizedReleaseDate: Decodable, Equatable {
     }
 }
 
-extension LocalizedReleaseDate {
+private extension LocalizedReleaseDate {
     struct InnerLocalizedReleaseDate: Decodable {
         var identifier: String
         var regionReleaseDates: [ReleaseDate]

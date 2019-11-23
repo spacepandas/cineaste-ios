@@ -10,27 +10,39 @@ enum TextViewType {
     case imprint
     case licence
 
+    struct ContentBlock: Equatable {
+        var title: String?
+        var paragraph: String
+    }
+
     var content: [ContentBlock] {
         switch self {
         case .imprint:
             return [
-                ContentBlock(title: nil,
-                             paragraph: String.imprintContent),
-                ContentBlock(title: String.openSourceTitle,
-                             paragraph: String.openSourceDescription),
-                ContentBlock(title: String.spacePandasTitle,
-                             paragraph: String.spacePandasDescription),
-                ContentBlock(title: String.helpPandasTitle,
-                             paragraph: String.littlePandasDescription),
-                ContentBlock(title: String.icons8Title,
-                             paragraph: String.icons8Description),
-                ContentBlock(title: String.movieDBTitle,
-                             paragraph: String.movieDBDescription)
+                ContentBlock(
+                    title: nil,
+                    paragraph: String.imprintContent),
+                ContentBlock(
+                    title: String.openSourceTitle,
+                    paragraph: String.openSourceDescription),
+                ContentBlock(
+                    title: String.spacePandasTitle,
+                    paragraph: String.spacePandasDescription),
+                ContentBlock(
+                    title: String.helpPandasTitle,
+                    paragraph: String.littlePandasDescription),
+                ContentBlock(
+                    title: String.icons8Title,
+                    paragraph: String.icons8Description),
+                ContentBlock(
+                    title: String.movieDBTitle,
+                    paragraph: String.movieDBDescription)
             ]
         case .licence:
-            guard let url = Bundle.main.url(forResource: "Acknowledgements",
-                                            withExtension: "plist",
-                                            subdirectory: "Settings.bundle"),
+            guard let url = Bundle.main.url(
+                forResource: "Acknowledgements",
+                withExtension: "plist",
+                subdirectory: "Settings.bundle"),
                 let dictionary = NSDictionary(contentsOf: url),
                 let array = dictionary.object(forKey: "PreferenceSpecifiers")
                     as? [[String: String]]
@@ -44,8 +56,9 @@ enum TextViewType {
             for element in array {
                 if let title = element["Title"],
                     let paragraph = element["FooterText"] {
-                    contentBlocks.append(ContentBlock(title: title,
-                                                      paragraph: paragraph))
+                    contentBlocks.append(ContentBlock(
+                        title: title,
+                        paragraph: paragraph))
                 }
             }
 
@@ -53,8 +66,7 @@ enum TextViewType {
         }
     }
 
-    func chainContent(titleAttributes: [NSAttributedString.Key: NSObject],
-                      paragraphAttributes: [NSAttributedString.Key: NSObject]) -> NSMutableAttributedString {
+    func chainContent(titleAttributes: [NSAttributedString.Key: NSObject], paragraphAttributes: [NSAttributedString.Key: NSObject]) -> NSMutableAttributedString {
         let chain = NSMutableAttributedString(string: "")
         for block in content {
             if let title = block.title,
@@ -62,10 +74,12 @@ enum TextViewType {
                 let titleBlock = "\(title)\n"
                 chain.append(NSAttributedString(string: titleBlock))
 
-                let range = NSRange(location: chain.length - titleBlock.count,
-                                    length: titleBlock.count)
-                chain.addAttributes(titleAttributes,
-                                    range: range)
+                let range = NSRange(
+                    location: chain.length - titleBlock.count,
+                    length: titleBlock.count)
+                chain.addAttributes(
+                    titleAttributes,
+                    range: range)
             }
 
             var paragraphBlock = "\(block.paragraph)"
@@ -76,10 +90,12 @@ enum TextViewType {
 
             chain.append(NSAttributedString(string: paragraphBlock))
 
-            let range = NSRange(location: chain.length - paragraphBlock.count,
-                                length: paragraphBlock.count)
-            chain.addAttributes(paragraphAttributes,
-                                range: range)
+            let range = NSRange(
+                location: chain.length - paragraphBlock.count,
+                length: paragraphBlock.count)
+            chain.addAttributes(
+                paragraphAttributes,
+                range: range)
         }
         return chain
     }

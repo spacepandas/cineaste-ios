@@ -124,27 +124,27 @@ class HintView: View {
         let horizontalConstant: CGFloat = 4
         let verticalConstant: CGFloat = 2
 
-        let bottomConstraint = hintLabel.bottomAnchor
-            .constraint(equalTo: bottomAnchor,
-                        constant: -verticalConstant)
+        let bottomConstraint = hintLabel.bottomAnchor.constraint(
+            equalTo: bottomAnchor,
+            constant: -verticalConstant)
         bottomConstraint.priority = UILayoutPriority(rawValue: 999)
 
         NSLayoutConstraint.activate([
-            hintLabel.leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: horizontalConstant),
-            hintLabel.trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -horizontalConstant),
+            hintLabel.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: horizontalConstant),
+            hintLabel.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -horizontalConstant),
             bottomConstraint,
-            hintLabel.topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: verticalConstant)
-            ])
+            hintLabel.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: verticalConstant)
+        ])
 
-        hintLabel
-            .setContentCompressionResistancePriority(.required,
-                                                     for: .vertical)
+        hintLabel.setContentCompressionResistancePriority(
+            .required,
+            for: .vertical)
     }
 }
 
@@ -180,27 +180,27 @@ class VoteView: View {
         let horizontalConstant: CGFloat = 8
         let verticalConstant: CGFloat = 4
 
-        let bottomConstraint = voteLabel.bottomAnchor
-            .constraint(equalTo: bottomAnchor,
-                        constant: -verticalConstant)
+        let bottomConstraint = voteLabel.bottomAnchor.constraint(
+            equalTo: bottomAnchor,
+            constant: -verticalConstant)
         bottomConstraint.priority = UILayoutPriority(rawValue: 999)
 
         NSLayoutConstraint.activate([
-            voteLabel.leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: horizontalConstant),
-            voteLabel.trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -horizontalConstant),
+            voteLabel.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: horizontalConstant),
+            voteLabel.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -horizontalConstant),
             bottomConstraint,
-            voteLabel.topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: verticalConstant)
-            ])
+            voteLabel.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: verticalConstant)
+        ])
 
-        voteLabel
-            .setContentCompressionResistancePriority(.required,
-                                                     for: .vertical)
+        voteLabel.setContentCompressionResistancePriority(
+            .required,
+            for: .vertical)
     }
 
     @objc

@@ -22,8 +22,9 @@ extension SettingsViewController {
 
     // swiftlint:disable:next cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSetting = settings[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
 
+        selectedSetting = settings[indexPath.row]
         guard let setting = selectedSetting else { return }
 
         switch setting {
@@ -31,8 +32,6 @@ extension SettingsViewController {
             guard let segue = setting.segue else { return }
             perform(segue: segue, sender: self)
         case .language:
-            tableView.deselectRow(at: indexPath, animated: true)
-
             guard let url = URL(string: UIApplication.openSettingsURLString)
                 else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(url, options: [:])
@@ -41,16 +40,11 @@ extension SettingsViewController {
                 presenter: self,
                 onSave: {
                     self.reloadUsernameCell()
-                },
-                onCancel: {
-                    tableView.deselectRow(at: indexPath, animated: true)
                 })
             present(alert, animated: true)
         case .exportMovies:
-            tableView.deselectRow(at: indexPath, animated: true)
             exportMovies(showUIOn: tableView.rectForRow(at: indexPath))
         case .importMovies:
-            tableView.deselectRow(at: indexPath, animated: true)
             importMovies()
         case .contact:
             if MFMailComposeViewController.canSendMail() {
@@ -64,8 +58,6 @@ extension SettingsViewController {
                 showAlert(withMessage: Alert.noEmailClient)
             }
         case .appStore:
-            tableView.deselectRow(at: indexPath, animated: true)
-
             AppStoreReview.openWriteReviewURL()
         }
     }
