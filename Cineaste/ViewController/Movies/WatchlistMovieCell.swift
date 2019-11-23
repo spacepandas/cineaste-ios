@@ -14,14 +14,12 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var background: UIView!
 
     @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var releaseAndRuntimeLabel: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var voteView: VoteView!
 
     func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
-        let nonbreakingSpace = "\u{00a0}"
 
         poster.accessibilityIgnoresInvertColors = true
         poster.loadingImage(from: movie.posterPath, in: .small)
@@ -31,20 +29,21 @@ class WatchlistMovieCell: UITableViewCell {
             + movie.formattedRuntime
 
         title.text = movie.title
+
+        let nonbreakingSpace = "\u{00a0}"
         voteView.content = movie.formattedVoteAverage
             + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
-        applyAccessibility(with: movie)
+        applyAccessibility(for: movie)
     }
 
-    private func applyAccessibility(with movie: Movie) {
+    private func applyAccessibility(for movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title
 
         let voting = String.voting(for: movie.formattedVoteAverage)
         accessibilityLabel?.append(", \(voting)")
-
         accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
         accessibilityLabel?.append(", \(movie.formattedRuntime)")
     }

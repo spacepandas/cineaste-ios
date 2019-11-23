@@ -17,14 +17,12 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
-            guard let poster = posterImageView.image else { return }
-
             DispatchQueue.main.async {
-                let aspectRatio = poster.size.height / poster.size.width
-                self.posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
+                self.updatePosterHeight()
             }
         }
     }
+
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
 
     @IBOutlet private weak var triangleImageView: UIImageView!
@@ -47,13 +45,17 @@ class MovieDetailViewController: UIViewController {
 
     private var watchState: WatchState = .undefined {
         didSet {
+            guard oldValue != watchState else { return }
+
             updateElements(for: watchState)
         }
     }
 
     private var movie: Movie? {
         didSet {
-            guard let movie = movie else { return }
+            guard let movie = movie,
+                oldValue != movie
+                else { return }
 
             updateUI(for: movie)
 
@@ -69,8 +71,8 @@ class MovieDetailViewController: UIViewController {
 
         navigationItem.largeTitleDisplayMode = .never
 
-        setupLocalization()
         configureElements()
+        setupLocalization()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -144,20 +146,22 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private
 
     private func configureElements() {
-        contentStackView.setCustomSpacing(30, after: moreInformationStackView)
         view.backgroundColor = .cineContentBackground
+
+        contentStackView.setCustomSpacing(30, after: moreInformationStackView)
         triangleImageView.tintColor = .cineContentBackground
         background.backgroundColor = .cineContentBackground
-
         categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.cineDescription
-
         posterImageView.accessibilityIgnoresInvertColors = true
         posterImageView.isUserInteractionEnabled = true
-        let gestureRecognizer = UITapGestureRecognizer(target: self,
-                                                       action: #selector(showPoster))
-        posterImageView.addGestureRecognizer(gestureRecognizer)
+        posterImageView.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(showPoster)
+            )
+        )
 
         updateElements(for: watchState)
     }
@@ -175,6 +179,7 @@ class MovieDetailViewController: UIViewController {
             let toolBar = toolBar
             else { return }
 
+        //TODO:
         func addDeleteButtonToToolbar() {
             if !(toolBar.items?.contains(deleteButton) ?? false) {
                 toolBar.items?.insert(deleteButton, at: 0)
@@ -200,7 +205,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func loadDetails(for movie: Movie) {
+    private func loadDetails(for movie: Movie) {
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
 
@@ -211,7 +216,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    fileprivate func updateUI(for movie: Movie) {
+    private func updateUI(for movie: Movie) {
         guard let titleLabel = titleLabel,
             let descriptionTextView = descriptionTextView,
             let releaseDateAndRuntimeLabel = releaseDateAndRuntimeLabel,
@@ -225,10 +230,15 @@ class MovieDetailViewController: UIViewController {
             + movie.formattedRuntime
 
         votingLabel.text = movie.formattedVoteAverage
-
         descriptionTextView.text = movie.overview
-
         posterImageView.loadingImage(from: movie.posterPath, in: .original)
+    }
+
+    private func updatePosterHeight() {
+        guard let poster = posterImageView.image else { return }
+
+        let aspectRatio = poster.size.height / poster.size.width
+        posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
     }
 
     // MARK: 3D Actions
@@ -273,7 +283,8 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 
 extension MovieDetailViewController: StoreSubscriber {
     struct State: Equatable {
-        let movie: Movie
+        let movieId: Int64
+        let movie: Movie?
     }
 
     private static func select(state: AppState) -> State {
@@ -281,17 +292,29 @@ extension MovieDetailViewController: StoreSubscriber {
             fatalError("This ViewController should always have a movie")
         }
 
-        let selectedMovie = state.movies.first { $0.id == selectedMovieId }
-         ?? Movie(id: selectedMovieId)
+        let movie = state.movies.first { $0.id == selectedMovieId }
 
         return .init(
-            movie: selectedMovie
+            movieId: selectedMovieId,
+            movie: movie
         )
     }
 
     func newState(state: State) {
-        movie = state.movie
-        watchState = state.movie.currentWatchState
+        let selectedMovie: Movie
+        if let movie = state.movie {
+            selectedMovie = movie
+        } else if var oldMovie = movie, oldMovie.id == state.movieId {
+            oldMovie.watched = nil
+            oldMovie.watchedDate = nil
+            selectedMovie = oldMovie
+        } else {
+            selectedMovie = Movie(id: state.movieId)
+            detailsLoaded = false
+        }
+
+        movie = selectedMovie
+        watchState = selectedMovie.currentWatchState
     }
 }
 

@@ -167,7 +167,7 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Custom functions
 
-    func showEmptyState(_ emptyState: Bool) {
+    func showEmptyStateIfNeeded(_ emptyState: Bool) {
         let isEmpty = emptyState
 
         UIView.animate(withDuration: 0.2, animations: {
@@ -212,7 +212,7 @@ extension MoviesViewController: StoreSubscriber {
                 ? SortDescriptor.sortByWatchedDate
                 : SortDescriptor.sortByListPositionAndTitle)
 
-        showEmptyState(movies.isEmpty)
+        showEmptyStateIfNeeded(movies.isEmpty)
     }
 }
 

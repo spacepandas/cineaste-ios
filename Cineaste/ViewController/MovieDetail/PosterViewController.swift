@@ -14,72 +14,23 @@ class PosterViewController: UIViewController {
     @IBOutlet private weak var blurredBackgroundImage: UIImageView!
     @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var toolbarBackgroundView: UIView!
-
-    @IBOutlet private weak var toolbar: UIToolbar! {
-        didSet {
-            toolbar.setBackgroundImage(UIImage(),
-                                       forToolbarPosition: .any,
-                                       barMetrics: .default)
-            toolbar.backgroundColor = .clear
-            toolbar.setShadowImage(UIImage(),
-                                   forToolbarPosition: .any)
-        }
-    }
+    @IBOutlet private weak var toolbar: UIToolbar!
 
     private var posterPath: String?
-
     private var originalPosition: CGPoint?
-    private var currentPositionTouched: CGPoint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        toolbarBackgroundView.backgroundColor = .cineToolBarBackground
-        toolbarBackgroundView.addBlurEffect(with: .dark)
-
-        if let posterPath = posterPath {
-            blurredBackgroundImage.kf
-                .setImage(with: Movie.posterUrl(from: posterPath, for: .original))
-            imageView.kf
-                .setImage(with: Movie.posterUrl(from: posterPath, for: .original))
-        }
-        blurredBackgroundImage.addBlurEffect(with: .dark)
-
-        imageView.accessibilityIgnoresInvertColors = true
-        imageView.isUserInteractionEnabled = true
-
-        scrollView.delegate = self
-        scrollView.minimumZoomScale = 1
-        scrollView.maximumZoomScale = 2.0
-
-        let oneTapGestureRecognizer =
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(handleOneTap(recognizer:)))
-        oneTapGestureRecognizer.numberOfTapsRequired = 1
-        oneTapGestureRecognizer.delegate = self
-        scrollView.addGestureRecognizer(oneTapGestureRecognizer)
-
-        let doubleTapGestureRecognizer =
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(handleDoubleTap(recognizer:)))
-        doubleTapGestureRecognizer.numberOfTapsRequired = 2
-        doubleTapGestureRecognizer.delegate = self
-        scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
-
-        if #available(iOS 13.0, *) {} else {
-            let panGestureRecognizer =
-                UIPanGestureRecognizer(target: self,
-                                       action: #selector(handlePanGesture(recognizer:)))
-            panGestureRecognizer.maximumNumberOfTouches = 1
-            panGestureRecognizer.delegate = self
-            scrollView.addGestureRecognizer(panGestureRecognizer)
-        }
-
+        configureElements()
+        addGestureRecognizer()
     }
 
     func configure(with posterPath: String) {
         self.posterPath = posterPath
     }
+
+    // MARK: IBAction
 
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
@@ -92,23 +43,16 @@ class PosterViewController: UIViewController {
 
     @objc
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-        if scrollView.zoomScale == 1 {
-            scrollView.zoom(to: zoomRectForScale(scale: scrollView.maximumZoomScale,
-                                                 center: recognizer.location(in: recognizer.view)),
-                            animated: true)
-        } else {
+        guard scrollView.zoomScale == 1 else {
             scrollView.setZoomScale(1, animated: true)
+            return
         }
-    }
 
-    private func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
-        var zoomRect = CGRect.zero
-        zoomRect.size.height = imageView.frame.size.height / scale
-        zoomRect.size.width = imageView.frame.size.width / scale
-        let newCenter = imageView.convert(center, from: scrollView)
-        zoomRect.origin.x = newCenter.x - (zoomRect.size.width / 2.0)
-        zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
-        return zoomRect
+        scrollView.zoom(
+            to: zoomRectForScale(
+                scale: scrollView.maximumZoomScale,
+                center: recognizer.location(in: recognizer.view)),
+            animated: true)
     }
 
     @objc
@@ -120,10 +64,8 @@ class PosterViewController: UIViewController {
         switch recognizer.state {
         case .began:
             originalPosition = imageView.center
-            currentPositionTouched = recognizer.location(in: imageView)
         case .changed:
-            imageView.frame.origin = CGPoint(x: 0,
-                                             y: translation.y)
+            imageView.frame.origin = CGPoint(x: 0, y: translation.y)
 
             let halfImageHeight = imageView.bounds.height / 2
             let alpha = abs(halfImageHeight - imageView.center.y) / halfImageHeight
@@ -142,26 +84,100 @@ class PosterViewController: UIViewController {
 
             if isFastEnoughToDismiss || isMovedEnoughToDismiss {
                 UIView.animate(withDuration: animationDuration, animations: {
-                    self.imageView.frame.origin =
-                        CGPoint(x: self.imageView.frame.origin.x,
-                                y: self.imageView.frame.size.height)
+                    self.imageView.frame.origin = CGPoint(
+                        x: self.imageView.frame.origin.x,
+                        y: self.imageView.frame.size.height)
                     self.blurredBackgroundImage.alpha = 0
                     self.backgroundView.alpha = 0
                 }, completion: { _ in
                     self.dismiss(animated: false)
                 })
             } else {
+                guard let position = originalPosition else { return }
+
                 UIView.animate(withDuration: animationDuration) {
-                    if let position = self.originalPosition {
-                        self.imageView.center = position
-                        self.blurredBackgroundImage.alpha = 1
-                        self.backgroundView.alpha = 1
-                    }
+                    self.imageView.center = position
+                    self.blurredBackgroundImage.alpha = 1
+                    self.backgroundView.alpha = 1
                 }
             }
         default:
             break
         }
+    }
+
+    // MARK: Custom Functions
+
+    private func configureElements() {
+        toolbar.setBackgroundImage(
+            UIImage(),
+            forToolbarPosition: .any,
+            barMetrics: .default)
+        toolbar.backgroundColor = .clear
+        toolbar.setShadowImage(
+            UIImage(),
+            forToolbarPosition: .any)
+
+        toolbarBackgroundView.backgroundColor = .cineToolBarBackground
+        toolbarBackgroundView.addBlurEffect(with: .dark)
+
+        if let posterPath = posterPath {
+            blurredBackgroundImage.kf.setImage(with: Movie.posterUrl(
+                from: posterPath,
+                for: .original)
+            )
+            imageView.kf.setImage(with: Movie.posterUrl(
+                from: posterPath,
+                for: .original)
+            )
+        }
+        blurredBackgroundImage.addBlurEffect(with: .dark)
+
+        imageView.accessibilityIgnoresInvertColors = true
+        imageView.isUserInteractionEnabled = true
+
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1
+        scrollView.maximumZoomScale = 2.0
+    }
+
+    private func addGestureRecognizer() {
+        let oneTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleOneTap(recognizer:))
+        )
+        oneTapGestureRecognizer.numberOfTapsRequired = 1
+        oneTapGestureRecognizer.delegate = self
+        scrollView.addGestureRecognizer(oneTapGestureRecognizer)
+
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleDoubleTap(recognizer:))
+        )
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer.delegate = self
+        scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
+
+        if #available(iOS 13.0, *) {} else {
+            let panGestureRecognizer = UIPanGestureRecognizer(
+                target: self,
+                action: #selector(handlePanGesture(recognizer:))
+            )
+            panGestureRecognizer.maximumNumberOfTouches = 1
+            panGestureRecognizer.delegate = self
+            scrollView.addGestureRecognizer(panGestureRecognizer)
+        }
+    }
+
+    private func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
+        let newCenter = imageView.convert(center, from: scrollView)
+
+        var zoomRect = CGRect.zero
+        zoomRect.size.height = imageView.frame.size.height / scale
+        zoomRect.size.width = imageView.frame.size.width / scale
+        zoomRect.origin.x = newCenter.x - (zoomRect.size.width / 2.0)
+        zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
+        return zoomRect
     }
 }
 

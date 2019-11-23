@@ -9,8 +9,7 @@
 import UIKit
 
 extension MoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
 
         guard let path = tableView.indexPathForRow(at: location),
             let cell = tableView.cellForRow(at: path)
@@ -22,9 +21,10 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
         return MovieDetailViewController.instantiate()
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit,
-                                                 animated: true)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+
+        navigationController?.pushViewController(
+            viewControllerToCommit,
+            animated: true)
     }
 }

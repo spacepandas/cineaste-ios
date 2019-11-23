@@ -14,24 +14,26 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var watchedDateLabel: UILabel!
 
     func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
+
         poster.accessibilityIgnoresInvertColors = true
         poster.loadingImage(from: movie.posterPath, in: .small)
 
         title.text = movie.title
+
         watchedDateLabel.text = movie.formattedWatchedDate
 
-        applyAccessibility(with: movie)
+        applyAccessibility(for: movie)
     }
 
-    private func applyAccessibility(with movie: Movie) {
+    private func applyAccessibility(for movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title
+
         if let watchedDate = movie.formattedWatchedDate {
             accessibilityLabel?.append(", \(watchedDate)")
         }
