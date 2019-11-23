@@ -9,20 +9,21 @@
 import UIKit
 
 class MovieMatchViewController: UITableViewController {
+    private lazy var resultSearchController: SearchController = {
+        let resultSearchController = SearchController(searchResultsController: nil)
+        resultSearchController.searchResultsUpdater = self
+        return resultSearchController
+    }()
+
+    private(set) var totalNumberOfPeople: Int = 0
+    private(set) var showAllTogetherMovies: Bool = false
+
     private var moviesWithNumber: [(NearbyMovie, Int)] = []
     private(set) var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    private(set) var totalNumberOfPeople: Int = 0
-    private(set) var showAllTogetherMovies: Bool = false
-
-    private lazy var resultSearchController: SearchController = {
-        let resultSearchController = SearchController(searchResultsController: nil)
-        resultSearchController.searchResultsUpdater = self
-        return resultSearchController
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,12 @@ class MovieMatchViewController: UITableViewController {
             }
         }
 
-        moviesWithNumber = moviesWithNumberDict.sorted {
+        let sortedMoviesWithNumber: [(NearbyMovie, Int)] = moviesWithNumberDict.sorted {
             // first sort by number, second sort by title
             ($0.value, $1.key.title) > ($1.value, $0.key.title)
         }
-        filteredMoviesWithNumber = moviesWithNumber
+        moviesWithNumber = sortedMoviesWithNumber
+        filteredMoviesWithNumber = sortedMoviesWithNumber
     }
 
     // MARK: - Configuration
@@ -90,12 +92,10 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
         let movieForRequest = Movie(id: movie.id)
         Webservice.load(resource: movieForRequest.get) { result in
             switch result {
-            case .success(var movie):
-                movie.watched = true
-                movie.watchedDate = Date()
-                store.dispatch(MovieAction.add(movie: movie))
-
+            case .success(let movie):
                 DispatchQueue.main.async {
+                    store.dispatch(updateMovie(with: movie, markAsWatched: true))
+
                     if self.resultSearchController.isActive {
                         self.resultSearchController.isActive = false
                     }

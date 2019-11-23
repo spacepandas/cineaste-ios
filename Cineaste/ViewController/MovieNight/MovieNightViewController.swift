@@ -151,24 +151,46 @@ class MovieNightViewController: UITableViewController {
     @objc
     func toggleSearchingForFriendsMode() {
         #if DEBUG
-        if nearbyMessages.isEmpty {
-            let simulatorMovies = [
-                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
-                NearbyMovie(id: 2, title: "Asterix", posterPath: nil),
-                NearbyMovie(id: 3, title: "Film 3", posterPath: nil)
-            ]
-            let developerMovies = [
-                NearbyMovie(id: 1, title: "Film B", posterPath: nil),
-                NearbyMovie(id: 2, title: "Asterix", posterPath: nil)
-            ]
-
-            nearbyMessages = [
-                NearbyMessage(userName: "Simulator", deviceId: "1", movies: simulatorMovies),
-                NearbyMessage(userName: "Developer", deviceId: "2", movies: developerMovies)
-            ]
-        } else {
+        guard nearbyMessages.isEmpty else {
             nearbyMessages = []
+            return
         }
+
+        let simulatorMovies = [
+            NearbyMovie(
+                id: 515_042,
+                title: "Free Solo",
+                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"),
+            NearbyMovie(
+                id: 10_898,
+                title: "The Little Mermaid II: Return to the Sea",
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg"),
+            NearbyMovie(
+                id: 10_144,
+                title: "The Little Mermaid",
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg")
+        ]
+        let developerMovies = [
+            NearbyMovie(
+                id: 515_042,
+                title: "Free Solo",
+                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"),
+            NearbyMovie(
+                id: 10_898,
+                title: "The Little Mermaid II: Return to the Sea",
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg")
+        ]
+
+        nearbyMessages = [
+            NearbyMessage(
+                userName: "Simulator",
+                deviceId: "1",
+                movies: simulatorMovies),
+            NearbyMessage(
+                userName: "Developer",
+                deviceId: "2",
+                movies: developerMovies)
+        ]
         #endif
     }
 
@@ -244,28 +266,18 @@ class MovieNightViewController: UITableViewController {
         guard let username = UsernamePersistence.username
             else { fatalError("ViewController should never be presented without a username") }
 
-        let nearbyMovies = movies
-            .compactMap { movie -> NearbyMovie in
-                NearbyMovie(
-                    id: movie.id,
-                    title: movie.title,
-                    posterPath: movie.posterPath,
-                    releaseDate: movie.releaseDate,
-                    voteAverage: movie.voteAverage,
-                    runtime: movie.runtime)
-            }
-
+        let nearbyMovies = movies.compactMap(NearbyMovie.init)
         return NearbyMessage(with: username, movies: nearbyMovies)
     }
 
     private func startTitleAnimation() {
         guard timer == nil else { return }
-
         timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
             self?.title = self?.animateTitle()
         }
-        //swiftlint:disable:next force_unwrapping
-        RunLoop.current.add(timer!, forMode: .common)
+
+        guard let timer = timer else { return }
+        RunLoop.current.add(timer, forMode: .common)
     }
 
     private func stopTitleAnimation() {
@@ -291,16 +303,14 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func resizeLargeTitle() {
-        guard
-            var largeTitleAttributes = navigationController?.navigationBar
+        guard var largeTitleAttributes = navigationController?.navigationBar
                 .largeTitleTextAttributes
             else { return }
 
         let largestPossibleTitle = "\(String.movieNightTitle)..."
         largeTitleAttributes[.font] = resizedFont(for: largestPossibleTitle)
 
-        navigationController?.navigationBar
-            .largeTitleTextAttributes = largeTitleAttributes
+        navigationController?.navigationBar.largeTitleTextAttributes = largeTitleAttributes
     }
 
     // credits: https://stackoverflow.com/a/49082928
@@ -330,8 +340,9 @@ class MovieNightViewController: UITableViewController {
                 else { return }
 
             let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(with: title,
-                          messagesToMatch: nearbyMessages)
+            vc?.configure(
+                with: title,
+                messagesToMatch: nearbyMessages)
         default:
             return
         }

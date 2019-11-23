@@ -14,10 +14,10 @@ class MovieNightUserCell: UITableViewCell {
     @IBOutlet private weak var allTitle: UILabel!
     @IBOutlet private weak var namesOfFriendsLabel: UILabel!
     @IBOutlet private weak var numberOfMoviesLabel: UILabel!
-    @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet private weak var contentStackView: UIStackView!
 
     func configureAll(numberOfMovies: Int, namesOfFriends: [String]) {
-        setup()
+        configureElements()
 
         allTitle.text = String.allResultsForMovieNight
         numberOfMoviesLabel.text = String.movies(for: numberOfMovies)
@@ -27,7 +27,7 @@ class MovieNightUserCell: UITableViewCell {
     }
 
     func configure(userName: String, numberOfMovies: Int) {
-        setup()
+        configureElements()
 
         allTitle.text = userName
         numberOfMoviesLabel.text = String.movies(for: numberOfMovies)
@@ -35,7 +35,7 @@ class MovieNightUserCell: UITableViewCell {
         namesOfFriendsLabel.isHidden = true
     }
 
-    private func setup() {
+    private func configureElements() {
         accessoryType = .disclosureIndicator
 
         let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory

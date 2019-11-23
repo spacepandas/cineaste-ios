@@ -16,3 +16,15 @@ struct NearbyMovie: Codable, Hashable {
     var voteAverage: Double = 0
     var runtime: Int16?
 }
+
+extension NearbyMovie {
+    init(with movie: Movie) {
+        id = movie.id
+        title = movie.title
+        posterPath = movie.posterPath
+
+        releaseDate = movie.releaseDate
+        voteAverage = movie.voteAverage
+        runtime = movie.runtime
+    }
+}

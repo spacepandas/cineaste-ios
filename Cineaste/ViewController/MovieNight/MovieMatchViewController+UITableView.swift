@@ -34,9 +34,10 @@ extension MovieMatchViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].movie
-        let movieDetailVC = MovieDetailViewController.instantiate()
 
         store.dispatch(SelectionAction.select(movie: Movie(id: nearbyMovie.id)))
+
+        let movieDetailVC = MovieDetailViewController.instantiate()
         navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 
@@ -47,7 +48,7 @@ extension MovieMatchViewController {
             else { return }
 
         let nearbyMovie = filteredMoviesWithNumber[id].movie
-        let movie = Movie(id: nearbyMovie.id)
+        let movie = Movie(with: nearbyMovie)
 
         animator.addCompletion {
             store.dispatch(SelectionAction.select(movie: movie))
@@ -60,7 +61,7 @@ extension MovieMatchViewController {
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].movie
-        let movie = Movie(id: nearbyMovie.id)
+        let movie = Movie(with: nearbyMovie)
 
         let configuration = UIContextMenuConfiguration(
             identifier: "\(indexPath.row)" as NSCopying,

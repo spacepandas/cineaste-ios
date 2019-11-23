@@ -96,7 +96,6 @@
                                     <outlet property="numberOfMatchesLabel" destination="F7H-gb-4WR" id="hp9-wi-Lql"/>
                                     <outlet property="posterImageView" destination="hph-NR-PkQ" id="yRg-6Y-QY9"/>
                                     <outlet property="seenButton" destination="qf4-RI-zJx" id="KNk-qR-nlq"/>
-                                    <outlet property="separatorView" destination="BQq-yp-Egt" id="9Ro-qt-hDt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

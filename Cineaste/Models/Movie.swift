@@ -39,6 +39,18 @@ extension Movie {
         posterPath = nil
         popularity = 0
     }
+
+    init(with nearbyMovie: NearbyMovie) {
+        id = nearbyMovie.id
+        title = nearbyMovie.title
+        voteAverage = nearbyMovie.voteAverage
+        voteCount = 0
+        posterPath = nearbyMovie.posterPath
+        overview = ""
+        runtime = nearbyMovie.runtime
+        releaseDate = nearbyMovie.releaseDate
+        popularity = 0
+    }
 }
 
 extension Movie: Hashable {

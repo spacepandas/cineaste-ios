@@ -10,8 +10,7 @@ import Foundation
 
 extension MovieNightViewController {
     func publishWatchlistMovies() {
-        guard let ownMessage = ownNearbyMessage,
-            let messageData = try? JSONEncoder.tmdbEncoder.encode(ownMessage)
+        guard let messageData = try? JSONEncoder.tmdbEncoder.encode(ownNearbyMessage)
             else { return }
 
         currentPublication = gnsMessageManager.publication(
