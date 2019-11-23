@@ -16,8 +16,10 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
         totalResults = nil
 
         loadMovies { [weak self] movies in
-            self?.moviesFromNetworking = movies
-            self?.scrollToTopCell(withAnimation: true)
+            DispatchQueue.main.async {
+                self?.moviesFromNetworking = movies
+                self?.scrollToTopCell(withAnimation: true)
+            }
         }
     }
 }
@@ -27,8 +29,10 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.moviesFromNetworking = movies
-                self?.scrollToTopCell(withAnimation: false)
+                DispatchQueue.main.async {
+                    self?.moviesFromNetworking = movies
+                    self?.scrollToTopCell(withAnimation: false)
+                }
             }
         }
     }

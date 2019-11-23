@@ -10,8 +10,7 @@ import UIKit
 
 extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        guard
-            indexPaths.first(where: { $0.isLast(of: watchStates.count) }) != nil,
+        guard indexPaths.first(where: { $0.isLast(of: watchStates.count) }) != nil,
             let total = totalResults
             else { return }
 
@@ -20,8 +19,10 @@ extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
             isLoadingNextPage = true
 
             loadMovies(forQuery: resultSearchController.searchBar.text, nextPage: true) { movies in
-                self.moviesFromNetworking.formUnion(movies)
-                self.isLoadingNextPage = false
+                DispatchQueue.main.async {
+                    self.moviesFromNetworking.formUnion(movies)
+                    self.isLoadingNextPage = false
+                }
             }
         }
     }

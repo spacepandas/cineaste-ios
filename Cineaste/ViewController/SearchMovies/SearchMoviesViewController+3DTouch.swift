@@ -9,8 +9,7 @@
 import UIKit
 
 extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
 
         guard let path = tableView.indexPathForRow(at: location),
             let cell = tableView.cellForRow(at: path)
@@ -22,16 +21,18 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
         return MovieDetailViewController.instantiate()
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit,
-                                                 animated: true)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+
+        navigationController?.pushViewController(
+            viewControllerToCommit,
+            animated: true)
     }
 }
 
 @available(iOS 13.0, *)
 extension SearchMoviesViewController {
     func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+
         guard let idString = configuration.identifier as? String,
             let id = Int(idString)
             else { return }
@@ -58,7 +59,8 @@ extension SearchMoviesViewController {
             let currentState = self.watchStates[movie] ?? .undefined
             let actions = ContextMenu.actions(for: movie, watchState: currentState, presenter: self)
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
-            })
+            }
+        )
 
         return configuration
     }

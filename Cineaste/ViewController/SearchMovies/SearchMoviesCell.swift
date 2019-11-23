@@ -13,17 +13,12 @@ class SearchMoviesCell: UITableViewCell {
 
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var soonHint: HintView!
     @IBOutlet weak var cellBackgroundView: UIView!
-    @IBOutlet weak var swipeHintView: UIView! {
-        didSet {
-            swipeHintView.backgroundColor = SwipeAction.moveToWatchlist.backgroundColor
-        }
-    }
+    @IBOutlet weak var swipeHintView: UIView!
 
     // MARK: - Actions
 
@@ -33,18 +28,19 @@ class SearchMoviesCell: UITableViewCell {
 
     func configure(with movie: Movie, state: WatchState) {
         cellBackgroundView.backgroundColor = .cineCellBackground
-
+        swipeHintView.backgroundColor = SwipeAction.moveToWatchlist.backgroundColor
         poster.accessibilityIgnoresInvertColors = true
-        let nonbreakingSpace = "\u{00a0}"
+        poster.loadingImage(from: movie.posterPath, in: .small)
         title.text = movie.title
+        soonHint.content = .soonReleaseInformation
+        soonHint.isHidden = !movie.soonAvailable
+        placeholderView.isHidden = !movie.soonAvailable
+
+        let nonbreakingSpace = "\u{00a0}"
         detailLabel.text = movie.formattedRelativeReleaseInformation
             + " ∙ "
             + movie.formattedVoteAverage
             + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
-
-        soonHint.content = .soonReleaseInformation
-        soonHint.isHidden = !movie.soonAvailable
-        placeholderView.isHidden = !movie.soonAvailable
 
         switch state {
         case .undefined:
@@ -57,23 +53,26 @@ class SearchMoviesCell: UITableViewCell {
             stateImageView.image = #imageLiteral(resourceName: "watchlist-badge")
         }
 
-        poster.loadingImage(from: movie.posterPath, in: .small)
-
-        applyAccessibility(with: movie, for: state)
+        applyAccessibility(for: movie, with: state)
     }
 
-    private func applyAccessibility(with movie: Movie, for state: WatchState) {
-        let isSoonAvailable = !soonHint.isHidden
-        let voting = String.voting(for: movie.formattedVoteAverage)
-
+    private func applyAccessibility(for movie: Movie, with state: WatchState) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title
+
         if let state = String.state(for: state) {
             accessibilityLabel?.append(", \(state)")
         }
+
+        let voting = String.voting(for: movie.formattedVoteAverage)
         accessibilityLabel?.append(", \(voting)")
-        accessibilityLabel?.append(isSoonAvailable ? ", \(String.soonReleaseInformationLong)" : "")
+
+        let isSoonAvailable = !soonHint.isHidden
+        accessibilityLabel?.append(isSoonAvailable
+            ? ", \(String.soonReleaseInformationLong)"
+            : ""
+        )
         accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
     }
 }

@@ -13,18 +13,24 @@ class SearchMoviesViewController: UIViewController {
     @IBOutlet weak var loadingIndicatorView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
-    var movies: [Movie] {
-        return watchStates.keys
-            .sorted(by: SortDescriptor.sortByPopularity)
-    }
-
-    var watchStates: [Movie: WatchState] = [:]
+    lazy var resultSearchController: SearchController = {
+        let resultSearchController = SearchController(searchResultsController: nil)
+        resultSearchController.searchResultsUpdater = self
+        resultSearchController.delegate = self
+        return resultSearchController
+    }()
 
     private var storedIDs = StoredMovieIDs(watchListMovieIDs: [], seenMovieIDs: []) {
         didSet {
             updateMovies()
         }
     }
+
+    var movies: [Movie] {
+        return watchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
+    }
+
+    var watchStates: [Movie: WatchState] = [:]
 
     var moviesFromNetworking: Set<Movie> = [] {
         didSet {
@@ -34,35 +40,21 @@ class SearchMoviesViewController: UIViewController {
 
     var currentPage: Int?
     var totalResults: Int?
-
     var isLoadingNextPage = false
-
     var searchDelayTimer: Timer?
-
-    lazy var resultSearchController: SearchController = {
-        let resultSearchController = SearchController(searchResultsController: nil)
-        resultSearchController.searchResultsUpdater = self
-        resultSearchController.delegate = self
-        return resultSearchController
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = String.addMovieTitle
-
-        view.backgroundColor = UIColor.cineListBackground
-
-        navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
-
-        loadMovies { [weak self] movies in
-            self?.moviesFromNetworking = movies
-        }
-
+        configureElements()
         configureTableViewController()
         configureSearchController()
-        registerForPreviewing(with: self, sourceView: tableView)
+
+        loadMovies { [weak self] movies in
+            DispatchQueue.main.async {
+                self?.moviesFromNetworking = movies
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +97,18 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Configuration
 
-    func configureTableViewController() {
+    private func configureElements() {
+        title = String.addMovieTitle
+
+        view.backgroundColor = UIColor.cineListBackground
+
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
+
+        registerForPreviewing(with: self, sourceView: tableView)
+    }
+
+    private func configureTableViewController() {
         tableView.dataSource = self
         tableView.prefetchDataSource = self
         tableView.delegate = self
@@ -119,7 +122,7 @@ class SearchMoviesViewController: UIViewController {
         tableView.accessibilityIdentifier = "Search.TableView"
     }
 
-    func configureSearchController() {
+    private func configureSearchController() {
         navigationItem.searchController = resultSearchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -140,9 +143,7 @@ class SearchMoviesViewController: UIViewController {
             }
         }
 
-        DispatchQueue.main.async {
-            self.updateUI()
-        }
+        updateUI()
     }
 
     func updateUI() {
@@ -156,13 +157,10 @@ class SearchMoviesViewController: UIViewController {
     func scrollToTopCell(withAnimation: Bool) {
         guard !watchStates.isEmpty else { return }
 
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.scrollToRow(
-                at: indexPath,
-                at: .top,
-                animated: withAnimation)
-        }
+        tableView.scrollToRow(
+            at: IndexPath(row: 0, section: 0),
+            at: .top,
+            animated: withAnimation)
     }
 }
 
