@@ -10,11 +10,11 @@ import UIKit
 
 extension MoviesViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return filteredMovies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = movies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         switch category {
         case .watchlist:
             let cell: WatchlistMovieCell = tableView.dequeueCell(identifier: WatchlistMovieCell.identifier)
@@ -28,7 +28,7 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        store.dispatch(SelectionAction.select(movie: movies[indexPath.row]))
+        store.dispatch(SelectionAction.select(movie: filteredMovies[indexPath.row]))
         perform(segue: .showMovieDetail, sender: nil)
     }
 
@@ -39,7 +39,7 @@ extension MoviesViewController {
             else { return }
 
         animator.addCompletion {
-            store.dispatch(SelectionAction.select(movie: self.movies[id]))
+            store.dispatch(SelectionAction.select(movie: self.filteredMovies[id]))
             let detailVC = MovieDetailViewController.instantiate()
             detailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detailVC, animated: true)
@@ -48,7 +48,7 @@ extension MoviesViewController {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let movie = movies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
 
         let configuration = UIContextMenuConfiguration(
             identifier: "\(indexPath.row)" as NSCopying,

@@ -13,12 +13,12 @@ extension MoviesViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
 
         if !searchText.isEmpty {
-            movies = movies
+            filteredMovies = movies
                 .filter { $0.title.contains(searchText)
                     && $0.watched == category.watched
                 }
         } else {
-            movies = movies.filter { $0.watched == category.watched }
+            filteredMovies = movies.filter { $0.watched == category.watched }
         }
     }
 }

@@ -30,7 +30,8 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    var movies: [Movie] = [] {
+    var movies: [Movie] = []
+    var filteredMovies: [Movie] = [] {
         didSet {
             guard oldValue != movies else { return }
 
@@ -206,13 +207,16 @@ extension MoviesViewController: StoreSubscriber {
     }
 
     func newState(state: State) {
-        movies = state.movies
+        let sortedMovies = state.movies
             .filter { $0.watched == category.watched }
             .sorted(by: category.watched
                 ? SortDescriptor.sortByWatchedDate
                 : SortDescriptor.sortByListPositionAndTitle)
 
-        showEmptyStateIfNeeded(movies.isEmpty)
+        movies = sortedMovies
+        filteredMovies = sortedMovies
+
+        showEmptyStateIfNeeded(sortedMovies.isEmpty)
     }
 }
 

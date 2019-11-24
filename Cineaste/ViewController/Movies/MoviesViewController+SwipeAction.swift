@@ -10,7 +10,7 @@ import UIKit
 
 extension MoviesViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = movies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
 
         let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
         let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
@@ -31,7 +31,7 @@ extension MoviesViewController {
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = movies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         return UISwipeActionsConfiguration(actions: [removeAction])

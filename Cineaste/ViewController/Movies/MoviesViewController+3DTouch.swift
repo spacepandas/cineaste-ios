@@ -17,7 +17,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
 
         previewingContext.sourceRect = cell.frame
 
-        store.dispatch(SelectionAction.select(movie: movies[path.row]))
+        store.dispatch(SelectionAction.select(movie: filteredMovies[path.row]))
         return MovieDetailViewController.instantiate()
     }
 
