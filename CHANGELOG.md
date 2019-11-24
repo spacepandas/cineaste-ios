@@ -6,6 +6,14 @@
 * 
 
 ## Fixed
+* 
+
+## Improved
+* 
+
+# 1.15.2
+
+## Fixed
 * Fix Date Formatter Issues on Import and History
 * Filter Movies in MoviesVC correctly
 
