@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.15.3
+
+## Improved
+* Add LocalizedDescription in ErrorAlert
+
 # 1.15.2
 
 ## Fixed

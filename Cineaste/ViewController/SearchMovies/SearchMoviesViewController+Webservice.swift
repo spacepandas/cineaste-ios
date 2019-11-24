@@ -24,8 +24,8 @@ extension SearchMoviesViewController {
 
         Webservice.load(resource: resource) { result in
             switch result {
-            case .failure:
-                self.showAlert(withMessage: Alert.loadingDataError)
+            case .failure(let error):
+                self.showAlert(withMessage: Alert.loadingData(with: error))
                 completion([])
             case .success(let result):
                 self.currentPage = result.page
@@ -38,8 +38,8 @@ extension SearchMoviesViewController {
     func loadDetails(for movie: Movie, completion: @escaping (Movie?) -> Void) {
         Webservice.load(resource: movie.get) { result in
             switch result {
-            case .failure:
-                self.showAlert(withMessage: Alert.loadingDataError)
+            case .failure(let error):
+                self.showAlert(withMessage: Alert.loadingData(with: error))
                 completion(nil)
             case .success(let detailedMovie):
                 completion(detailedMovie)

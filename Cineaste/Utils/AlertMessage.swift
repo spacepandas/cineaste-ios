@@ -26,38 +26,30 @@ class AlertMessage {
 }
 
 class Alert: AlertMessage {
-    static let connectionError = AlertMessage(
-        title: .errorTitle,
-        message: .connectionErrorMessage,
-        action: .okAction)
-    static let loadingDataError = AlertMessage(
-        title: .errorTitle,
-        message: .loadingDataErrorMessage,
-        action: .okAction)
-
-    static let deleteMovieError = AlertMessage(
-        title: .errorTitle,
-        message: .deleteMovieErrorMessage,
-        action: .okAction)
-    static let updateMovieError = AlertMessage(
-        title: .errorTitle,
-        message: .updateMovieErrorMessage,
-        action: .okAction)
-    static let insertMovieError = AlertMessage(
-        title: .errorTitle,
-        message: .insertMovieErrorMessage,
-        action: .okAction)
-
     static let username = AlertMessage(
         title: .username,
         message: .insertUsernameDescription,
         action: .saveAction,
         cancel: .cancelAction)
-
-    static let missingFeatureInfo = AlertMessage(
-        title: .infoTitle,
-        message: .missingFeatureMessage,
+    static let importFailedInfo = AlertMessage(
+        title: .errorTitle,
+        message: .importFailedMessage,
         action: .okAction)
+    static let exportFailedInfo = AlertMessage(
+        title: .errorTitle,
+        message: .exportFailedMessage,
+        action: .okAction)
+    static let noEmailClient = AlertMessage(
+        title: .infoTitle,
+        message: .noEmailClientMessage,
+        action: .okAction)
+
+    static func loadingData(with error: Error) -> AlertMessage {
+        return AlertMessage(
+            title: .errorTitle,
+            message: .loadingDataErrorMessage + "\n" + error.localizedDescription,
+            action: .okAction)
+    }
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
         return AlertMessage(
@@ -65,29 +57,6 @@ class Alert: AlertMessage {
             message: .importSucceededMessage(with: counter),
             action: .okAction)
     }
-
-    static let importFailedInfo = AlertMessage(
-        title: .errorTitle,
-        message: .importFailedMessage,
-        action: .okAction)
-    static let importFailedCouldNotReadFile = AlertMessage(
-        title: .errorTitle,
-        message: .importFailedCouldNotReadFileMessage,
-        action: .okAction)
-
-    static let exportFailedInfo = AlertMessage(
-        title: .errorTitle,
-        message: .exportFailedMessage,
-        action: .okAction)
-    static let exportEmptyData = AlertMessage(
-        title: .infoTitle,
-        message: .exportWithEmptyDataMessage,
-        action: .okAction)
-
-    static let noEmailClient = AlertMessage(
-        title: .infoTitle,
-        message: .noEmailClientMessage,
-        action: .okAction)
 }
 
 extension UIViewController {

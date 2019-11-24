@@ -96,8 +96,8 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
 
                     self.dismiss(animated: true)
                 }
-            case .failure:
-                self.showAlert(withMessage: Alert.loadingDataError)
+            case .failure(let error):
+                self.showAlert(withMessage: Alert.loadingData(with: error))
             }
         }
     }

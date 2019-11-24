@@ -15,8 +15,6 @@ extension String {
     static let saveAction = NSLocalizedString("save", comment: "Title for save action")
     static let infoTitle = NSLocalizedString("info", comment: "Title for information")
     static let cancelAction = NSLocalizedString("cancel", comment: "Title for cancel action")
-    static let yesAction = NSLocalizedString("yes", comment: "Title for yes action")
-    static let noAction = NSLocalizedString("no", comment: "Title for no action")
     static let errorTitle = NSLocalizedString("error", comment: "Title for error alert")
 
     // MARK: MOVIE DETAIL
@@ -120,7 +118,6 @@ extension String {
         return String.localizedStringWithFormat(NSLocalizedString("%d of %d", comment: "Number of matches description"), number, amountOfPeople)
     }
 
-    static let searchFriendsOnMovieNight = NSLocalizedString("searchFriends", comment: "Search friends on movie night")
     static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")
     static let allResultsForMovieNight = NSLocalizedString("results all together", comment: "All results for movie night")
     static let enableNearby = NSLocalizedString("enable nearby", comment: "Title for enable nearby button")
@@ -128,37 +125,20 @@ extension String {
     static let nearbyPermissionDenied = NSLocalizedString("nearbyPermissionDenied", comment: "Description for denied nearby permission")
     static let nearbyLink = NSLocalizedString("nearbyLink", comment: "Nearby link")
 
-    // MARK: IMPORT
-    static let importingMovies = NSLocalizedString("importingMovies", comment: "Description while importing movies")
-
-    // MARK: EXPORT
-    static let exportMoviesFileUTI = "public.json"
-
     // MARK: Empty state
-    static let unknownVoteCount = "-"
     static let unknownVoteAverage = "-"
     static let unknownRuntime = "-"
-    static let unknownTitle = NSLocalizedString("unknown_title", comment: "Title for unknown title")
     static let unknownReleaseDate = NSLocalizedString("unknown_releaseDate", comment: "Title for unknown release date")
 
     // MARK: Alert messages
 
-    // connection error
-    static let connectionErrorMessage = NSLocalizedString("connectionError", comment: "Message for connection error alert")
+    // error
     static let loadingDataErrorMessage = NSLocalizedString("loadingDataError", comment: "Message for loading data error alert")
-
-    // core data error
-    static let deleteMovieErrorMessage = NSLocalizedString("couldNotDeleteMovie", comment: "Message for delete movie error alert")
-    static let updateMovieErrorMessage = NSLocalizedString("couldNotMoveMovie", comment: "Message for update movie error alert")
-    static let insertMovieErrorMessage = NSLocalizedString("couldNotAddMovie", comment: "Message for insert movie error alert")
 
     // enter username for movie night
     static let username = NSLocalizedString("username", comment: "Enter username title")
     static let insertUsernameDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
     static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
-
-    // missing feature
-    static let missingFeatureMessage = NSLocalizedString("missingFeature", comment: "Message for missing feature alert")
 
     // import
     static func importSucceededMessage(with counter: Int) -> String {
@@ -168,11 +148,9 @@ extension String {
     }
 
     static let importFailedMessage = NSLocalizedString("importFailed", comment: "Message for import failed alert")
-    static let importFailedCouldNotReadFileMessage = NSLocalizedString("importFailedNotReadFile", comment: "Message for import failed because the file could not be read alert")
 
     // export
     static let exportFailedMessage = NSLocalizedString("exportFailed", comment: "Message for export failed alert")
-    static let exportWithEmptyDataMessage = NSLocalizedString("emptyDatabase", comment: "Message for export with empty data alert")
 
     static let noEmailClientMessage = NSLocalizedString("noEmailClient", comment: "Message for no email client alert")
 

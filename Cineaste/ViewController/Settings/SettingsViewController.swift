@@ -93,7 +93,7 @@ extension SettingsViewController {
 
     func importMovies() {
         let documentPickerVC = UIDocumentPickerViewController(
-            documentTypes: [String.exportMoviesFileUTI],
+            documentTypes: [Constants.exportMoviesFileUTI],
             in: .import
         )
         documentPickerVC.delegate = self
@@ -107,7 +107,7 @@ extension SettingsViewController {
             else { return showAlert(withMessage: Alert.exportFailedInfo) }
 
         docController = UIDocumentInteractionController(url: url)
-        docController?.uti = String.exportMoviesFileUTI
+        docController?.uti = Constants.exportMoviesFileUTI
         docController?.presentOptionsMenu(from: rect, in: view, animated: true)
     }
 }

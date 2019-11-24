@@ -20,6 +20,7 @@ enum Constants {
     static let emailAddress = "ios@spacepandas.de"
     static let gitHubRepo = "https://github.com/spacepandas/cineaste-ios"
     static let appStoreUrl = "https://apps.apple.com/app/id1402748020"
+    static let exportMoviesFileUTI = "public.json"
 
     enum PosterSize {
         case small
