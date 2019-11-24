@@ -7,6 +7,7 @@
 
 ## Fixed
 * Fix Date Formatter Issues on Import and History
+* Filter Movies in MoviesVC correctly
 
 ## Improved
 * 
