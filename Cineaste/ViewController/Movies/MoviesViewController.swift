@@ -33,7 +33,7 @@ class MoviesViewController: UITableViewController {
     var movies: [Movie] = []
     var filteredMovies: [Movie] = [] {
         didSet {
-            guard oldValue != movies else { return }
+            guard oldValue != filteredMovies else { return }
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -162,20 +162,16 @@ class MoviesViewController: UITableViewController {
         emptyListAddMovieButton.backgroundColor = .cineButton
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
         emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
-
         emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
     }
 
     // MARK: - Custom functions
 
-    func showEmptyStateIfNeeded(_ emptyState: Bool) {
-        let isEmpty = emptyState
-
-        UIView.animate(withDuration: 0.2, animations: {
-            self.tableView.backgroundView?.alpha = isEmpty ? 1 : 0
-        }, completion: { _ in
-            self.tableView.backgroundView?.isHidden = !isEmpty
-        })
+    func showEmptyStateIfNeeded(_ showEmptyState: Bool) {
+        DispatchQueue.main.async {
+            self.tableView.backgroundView?.alpha = showEmptyState ? 1 : 0
+            self.tableView.backgroundView?.isHidden = !showEmptyState
+        }
     }
 }
 
@@ -215,7 +211,6 @@ extension MoviesViewController: StoreSubscriber {
 
         movies = sortedMovies
         filteredMovies = sortedMovies
-
         showEmptyStateIfNeeded(sortedMovies.isEmpty)
     }
 }

@@ -25,7 +25,8 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         assertThemedNavigationSnapshot(matching: navigationController)
     }
 
-    func testGeneralAppearanceForWatchlist() {
+    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
+    func disabledtestGeneralAppearanceForWatchlist() {
         // Given
         let viewController = MoviesViewController.instantiate()
         let navigationController = NavigationController(rootViewController: viewController)
@@ -44,7 +45,8 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         assertThemedNavigationSnapshot(matching: navigationController)
     }
 
-    func testGeneralAppearanceForHistory() {
+    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
+    func disabledtestGeneralAppearanceForHistory() {
         // Given
         let viewController = MoviesViewController.instantiate()
         let navigationController = NavigationController(rootViewController: viewController)

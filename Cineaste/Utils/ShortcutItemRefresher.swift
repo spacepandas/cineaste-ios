@@ -26,7 +26,10 @@ enum ShortcutItemRefresher {
             shortcuts.append(seenShortcutItem)
         }
 
-        UIApplication.shared.shortcutItems = shortcuts
+        DispatchQueue.main.async {
+            UIApplication.shared.shortcutItems = shortcuts
+        }
+
     }
 
     private static func watchlistShortcut(for counterDescription: String) -> UIApplicationShortcutItem {
