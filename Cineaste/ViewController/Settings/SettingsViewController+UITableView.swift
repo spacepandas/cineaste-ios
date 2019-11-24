@@ -47,16 +47,42 @@ extension SettingsViewController {
         case .importMovies:
             importMovies()
         case .contact:
-            if MFMailComposeViewController.canSendMail() {
-                let mailComposeVC = MFMailComposeViewController()
-                mailComposeVC.mailComposeDelegate = self
-                mailComposeVC.setSubject("Cineaste iOS || \(Constants.versionNumberInformation)")
-                mailComposeVC.setToRecipients(["ios@spacepandas.de"])
+            let actionSheet = UIAlertController(
+                title: .contactTitle,
+                message: nil,
+                preferredStyle: .actionSheet)
 
-                present(mailComposeVC, animated: true)
-            } else {
-                showAlert(withMessage: Alert.noEmailClient)
+            let email = UIAlertAction(title: "\(String.emailTo) \(Constants.emailAddress)", style: .default) { _ in
+                if MFMailComposeViewController.canSendMail() {
+                    let mailComposeVC = MFMailComposeViewController()
+                    mailComposeVC.mailComposeDelegate = self
+                    mailComposeVC.setSubject("Cineaste iOS || \(Constants.versionNumberInformation)")
+                    mailComposeVC.setToRecipients([Constants.emailAddress])
+
+                    self.present(mailComposeVC, animated: true)
+                } else {
+                    let pasteBoard = UIPasteboard.general
+                    pasteBoard.string = Constants.emailAddress
+
+                    let alert = UIAlertController(title: .copiedEmailAddress, message: nil, preferredStyle: .alert)
+                    self.present(alert, animated: true) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                            alert.dismiss(animated: true)
+                        }
+                    }
+                }
             }
+            actionSheet.addAction(email)
+
+            if let url = URL(string: Constants.gitHubRepo) {
+                let github = UIAlertAction(title: .linkToGitHub, style: .default) { _ in
+                    let safariVC = CustomSafariViewController(url: url)
+                    self.present(safariVC, animated: true)
+                }
+                actionSheet.addAction(github)
+            }
+
+            present(actionSheet, animated: true)
         case .appStore:
             AppStoreReview.openWriteReviewURL()
         }

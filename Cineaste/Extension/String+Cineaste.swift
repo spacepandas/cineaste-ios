@@ -85,6 +85,9 @@ extension String {
     static let aboutAppTitle = NSLocalizedString("aboutApp", comment: "Title for settings cell about")
     static let contactTitle = NSLocalizedString("contact", comment: "Title for settings cell contact")
     static let appStoreTitle = NSLocalizedString("appStore", comment: "Title for settings cell appStore")
+    static let linkToGitHub = NSLocalizedString("linkToGitHub", comment: "Alert sheet option to link to GitHub")
+    static let copiedEmailAddress = NSLocalizedString("copyEmailAddress", comment: "Alert sheet option to copy email address")
+    static let emailTo = NSLocalizedString("emailTo", comment: "Alert sheet option to write email address")
 
     // MARK: VERSION INFO
     static let versionText = NSLocalizedString("version", comment: "Description for app version")

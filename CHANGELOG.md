@@ -10,7 +10,7 @@
 * Filter Movies in MoviesVC correctly
 
 ## Improved
-* 
+* Add more Contact Information
 
 # 1.15.1
 
