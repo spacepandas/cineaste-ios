@@ -25,7 +25,7 @@ enum SettingItem: CaseIterable {
         case .language:
             return .languageTitle
         case .name:
-            if let name = UsernamePersistence.username {
+            if let name = UserDefaults.standard.username {
                 return .username + ": \(name)"
             } else {
                 return .username
@@ -50,7 +50,7 @@ enum SettingItem: CaseIterable {
              .appStore:
             return nil
         case .name:
-            return UsernamePersistence.username != nil
+            return UserDefaults.standard.username != nil
                 ? .changeUsernameDescription
                 : .insertUsernameDescription
         case .exportMovies:

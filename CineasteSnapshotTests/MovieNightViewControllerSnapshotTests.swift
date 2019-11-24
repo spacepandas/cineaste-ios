@@ -15,7 +15,7 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
     override class func setUp() {
         super.setUp()
 
-        UsernamePersistence.username = "Simulator"
+        UserDefaults.standard.username = "Simulator"
     }
 
     func testGeneralAppearance() {

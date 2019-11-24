@@ -29,12 +29,12 @@ extension SearchMoviesViewController {
     /// Determines whether the swipe action hint should be animated.
     private var shouldAnimateShowSwipeActionHint: Bool {
         let maximumNumberOfTimesToShowHint = 3
-        let numberOfTimesHintWasShown = SwipeActionHintShowCountPersistence.swipeActionHintShowCount
+        let numberOfTimesHintWasShown = UserDefaults.standard.swipeActionHintShowCount
         return numberOfTimesHintWasShown < maximumNumberOfTimesToShowHint
     }
 
     private func rememberThatSwipeActionHintWasAnimated() {
-        let numberOfTimesHintWasShown = SwipeActionHintShowCountPersistence.swipeActionHintShowCount
-        SwipeActionHintShowCountPersistence.swipeActionHintShowCount = numberOfTimesHintWasShown + 1
+        let numberOfTimesHintWasShown = UserDefaults.standard.swipeActionHintShowCount
+        UserDefaults.standard.swipeActionHintShowCount = numberOfTimesHintWasShown + 1
     }
 }

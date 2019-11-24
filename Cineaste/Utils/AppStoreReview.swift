@@ -15,9 +15,9 @@ import StoreKit
 enum AppStoreReview {
 
     private static var processCompletedCounter: Int {
-        var count = PromtForReviewPersistence.processCompletedCount
+        var count = UserDefaults.standard.processCompletedCount
         count += 1
-        PromtForReviewPersistence.processCompletedCount = count
+        UserDefaults.standard.processCompletedCount = count
 
         return count
     }
@@ -33,12 +33,12 @@ enum AppStoreReview {
             else { return }
 
         let canShowRequest = AppStoreReview.processCompletedCounter % 4 == 0
-            && currentBuildVersion != PromtForReviewPersistence.lastVersionPromptedForReview
+            && currentBuildVersion != UserDefaults.standard.lastVersionPromptedForReview
 
         if canShowRequest {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 SKStoreReviewController.requestReview()
-                PromtForReviewPersistence.lastVersionPromptedForReview = currentBuildVersion
+                UserDefaults.standard.lastVersionPromptedForReview = currentBuildVersion
             }
         }
     }

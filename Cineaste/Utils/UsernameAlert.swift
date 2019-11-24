@@ -17,7 +17,7 @@ enum UsernameAlert {
         onCancel: (() -> Void)? = nil
         ) -> UIAlertController {
 
-        let message: String = UsernamePersistence.username != nil
+        let message: String = UserDefaults.standard.username != nil
             ? .changeUsernameDescription
             : .insertUsernameDescription
 
@@ -35,7 +35,7 @@ enum UsernameAlert {
                 else { return }
 
             let trimmedName = username.trimmingCharacters(in: .whitespaces)
-            UsernamePersistence.username = trimmedName
+            UserDefaults.standard.username = trimmedName
 
             saveAction = nil
 
@@ -43,7 +43,7 @@ enum UsernameAlert {
         }
 
         if let saveAction = saveAction {
-            saveAction.isEnabled = UsernamePersistence.username != nil
+            saveAction.isEnabled = UserDefaults.standard.username != nil
             alert.addAction(saveAction)
         }
 
@@ -61,7 +61,7 @@ enum UsernameAlert {
         }
 
         alert.addTextField { textField in
-            textField.text = UsernamePersistence.username
+            textField.text = UserDefaults.standard.username
             textField.placeholder = String.username
             textField.delegate = presenter
             textField.autocorrectionType = .default

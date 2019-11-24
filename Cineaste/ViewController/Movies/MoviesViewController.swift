@@ -101,7 +101,7 @@ class MoviesViewController: UITableViewController {
     }
 
     @IBAction func movieNightButtonTouched() {
-        if UsernamePersistence.username == nil {
+        if UserDefaults.standard.username == nil {
             let alert = UsernameAlert.askForUsernameAlertController(presenter: self, onSave: {
                 self.performSegue(withIdentifier: Segue.showMovieNight.rawValue,
                                   sender: nil)

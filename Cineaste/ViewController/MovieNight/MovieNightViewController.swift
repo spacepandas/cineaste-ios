@@ -263,7 +263,7 @@ class MovieNightViewController: UITableViewController {
     }
 
     private func generateOwnNearbyMessage() -> NearbyMessage {
-        guard let username = UsernamePersistence.username
+        guard let username = UserDefaults.standard.username
             else { fatalError("ViewController should never be presented without a username") }
 
         let nearbyMovies = movies.compactMap(NearbyMovie.init)
