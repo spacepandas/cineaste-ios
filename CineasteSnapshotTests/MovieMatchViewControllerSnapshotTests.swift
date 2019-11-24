@@ -7,10 +7,17 @@
 //
 
 import XCTest
+import ReSwift
 import SnapshotTesting
 @testable import Cineaste_App
 
 class MovieMatchViewControllerSnapshotTests: XCTestCase {
+
+    override class func setUp() {
+        super.setUp()
+
+        UserDefaults.standard.username = "Simulator"
+    }
 
     func testGeneralAppearance() {
         // Given
@@ -26,13 +33,13 @@ class MovieMatchViewControllerSnapshotTests: XCTestCase {
             NearbyMovie.testing2
         ]
 
-        let nearbyMessages = [
+        // When
+        var state = AppState()
+        state.nearbyState.selectedNearbyMessages = [
             NearbyMessage(userName: "Simulator", deviceId: "1", movies: simulatorMovies),
             NearbyMessage(userName: "Developer", deviceId: "2", movies: developerMovies)
         ]
-
-        // When
-        viewController.configure(with: "Simulator", messagesToMatch: nearbyMessages)
+        store = Store(reducer: appReducer, state: state)
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)

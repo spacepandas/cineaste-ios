@@ -63,21 +63,24 @@ extension MovieNightViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedNearbyMessages: [NearbyMessage]
+
         switch Section(rawValue: indexPath.section) {
         case .allFriends?:
             var combinedMessages = nearbyMessages
             if let ownMessage = ownNearbyMessage {
                 combinedMessages.append(ownMessage)
             }
-
-            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                         sender: (String.allResultsForMovieNight, combinedMessages))
+            selectedNearbyMessages = combinedMessages
         case .specificFriend?:
-            let nearbyMessage = nearbyMessages[indexPath.row]
-            performSegue(withIdentifier: Segue.showMovieMatches.rawValue,
-                         sender: (nearbyMessage.userName, [nearbyMessage]))
+            let specificMessage = nearbyMessages[indexPath.row]
+            selectedNearbyMessages = [specificMessage]
         default:
-            break
+            return
         }
+
+        store.dispatch(NearbyAction.select(nearbyMessages: selectedNearbyMessages))
+
+        performSegue(withIdentifier: Segue.showMovieMatches.rawValue, sender: nil)
     }
 }

@@ -73,9 +73,8 @@ class MovieNightViewController: UITableViewController {
         }
     }
 
-    private(set) var movies: [Movie] = [] {
+    private(set) var ownMovies: [Movie] = [] {
         didSet {
-            ownNearbyMessage = generateOwnNearbyMessage()
             tableView.reloadData()
             publishWatchlistMovies()
         }
@@ -97,6 +96,7 @@ class MovieNightViewController: UITableViewController {
         resizeLargeTitle()
 
         title = String.movieNightTitle
+        store.dispatch(NearbyAction.setNearbyMessages([]))
 
         nearbyLinkPermissionDeniedTextView.delegate = self
         nearbyLinkUsageDescriptionTextView.delegate = self
@@ -152,7 +152,7 @@ class MovieNightViewController: UITableViewController {
     func toggleSearchingForFriendsMode() {
         #if DEBUG
         guard nearbyMessages.isEmpty else {
-            nearbyMessages = []
+            store.dispatch(NearbyAction.setNearbyMessages([]))
             return
         }
 
@@ -181,7 +181,7 @@ class MovieNightViewController: UITableViewController {
                 posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg")
         ]
 
-        nearbyMessages = [
+        let newMessages = [
             NearbyMessage(
                 userName: "Simulator",
                 deviceId: "1",
@@ -191,6 +191,7 @@ class MovieNightViewController: UITableViewController {
                 deviceId: "2",
                 movies: developerMovies)
         ]
+        store.dispatch(NearbyAction.setNearbyMessages(newMessages))
         #endif
     }
 
@@ -262,14 +263,6 @@ class MovieNightViewController: UITableViewController {
         tableView.backgroundView = canUseNearby ? nil : permissionDeniedView
     }
 
-    private func generateOwnNearbyMessage() -> NearbyMessage {
-        guard let username = UserDefaults.standard.username
-            else { fatalError("ViewController should never be presented without a username") }
-
-        let nearbyMovies = movies.compactMap(NearbyMovie.init)
-        return NearbyMessage(with: username, movies: nearbyMovies)
-    }
-
     private func startTitleAnimation() {
         guard timer == nil else { return }
         timer = Timer(timeInterval: 0.6, repeats: true) { [weak self] _ in
@@ -330,23 +323,6 @@ class MovieNightViewController: UITableViewController {
 
         return UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segue(initWith: segue) {
-        case .showMovieMatches?:
-            guard let (title, nearbyMessages) = sender as? (String, [NearbyMessage])
-                else { return }
-
-            let vc = segue.destination as? MovieMatchViewController
-            vc?.configure(
-                with: title,
-                messagesToMatch: nearbyMessages)
-        default:
-            return
-        }
-    }
 }
 
 extension MovieNightViewController: UITextViewDelegate {
@@ -362,17 +338,26 @@ extension MovieNightViewController: UITextViewDelegate {
 extension MovieNightViewController: StoreSubscriber {
     struct State: Equatable {
         let movies: [Movie]
+        let nearbyMessages: [NearbyMessage]
+        let ownNearbyMessage: NearbyMessage
     }
 
     private static func select(state: AppState) -> State {
         let movies = state.movies
             .filter { !($0.watched ?? false) }
             .sorted { $0.title > $1.title }
-        return .init(movies: movies)
+
+        return .init(
+            movies: movies,
+            nearbyMessages: state.nearbyState.nearbyMessages,
+            ownNearbyMessage: state.ownNearbyMessage
+        )
     }
 
     func newState(state: State) {
-        movies = state.movies
+        ownMovies = state.movies
+        nearbyMessages = state.nearbyMessages
+        ownNearbyMessage = state.ownNearbyMessage
     }
 }
 

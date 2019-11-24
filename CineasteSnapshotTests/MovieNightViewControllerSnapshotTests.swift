@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ReSwift
 import SnapshotTesting
 @testable import Cineaste_App
 
@@ -21,10 +22,25 @@ class MovieNightViewControllerSnapshotTests: XCTestCase {
     func testGeneralAppearance() {
         // Given
         let viewController = MovieNightViewController.instantiate()
+        let simulatorMovies = [
+            NearbyMovie.testing1,
+            NearbyMovie.testing2,
+            NearbyMovie.testing3
+        ]
+        let developerMovies = [
+            NearbyMovie.testing1,
+            NearbyMovie.testing2
+        ]
 
         // When
         viewController.canUseNearby = true
-        viewController.toggleSearchingForFriendsMode()
+
+        var state = AppState()
+        state.nearbyState.nearbyMessages = [
+            NearbyMessage(userName: "Simulator", deviceId: "1", movies: simulatorMovies),
+            NearbyMessage(userName: "Developer", deviceId: "2", movies: developerMovies)
+        ]
+        store = Store(reducer: appReducer, state: state)
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)

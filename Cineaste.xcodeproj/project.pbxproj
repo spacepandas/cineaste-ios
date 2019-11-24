@@ -34,6 +34,8 @@
 		3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32C1FA23754B65005C713A /* XCTestObserver.swift */; };
 		3F36F5D023899F9500267280 /* MovieNightUserCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36F5CF23899F9500267280 /* MovieNightUserCellSnapshotTests.swift */; };
 		3F36F5D2238A8CCE00267280 /* UserDefaults+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36F5D1238A8CCE00267280 /* UserDefaults+Cineaste.swift */; };
+		3F36F5D4238A9C2000267280 /* NearbyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36F5D3238A9C2000267280 /* NearbyAction.swift */; };
+		3F36F5D6238A9C5700267280 /* NearbyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36F5D5238A9C5700267280 /* NearbyReducer.swift */; };
 		3F36FAA1218657E10018E25B /* MovieNightViewController+Nearby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */; };
 		3F36FAA2218657E10018E25B /* MovieNightViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36FAA0218657E10018E25B /* MovieNightViewController+UITableView.swift */; };
 		3F3BCAAA22D1FEE8005BEF12 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BCAA922D1FEE8005BEF12 /* UIImageView+Loading.swift */; };
@@ -237,6 +239,8 @@
 		3F32C1FA23754B65005C713A /* XCTestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestObserver.swift; sourceTree = "<group>"; };
 		3F36F5CF23899F9500267280 /* MovieNightUserCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNightUserCellSnapshotTests.swift; sourceTree = "<group>"; };
 		3F36F5D1238A8CCE00267280 /* UserDefaults+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Cineaste.swift"; path = "Cineaste/Extension/UserDefaults+Cineaste.swift"; sourceTree = SOURCE_ROOT; };
+		3F36F5D3238A9C2000267280 /* NearbyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyAction.swift; sourceTree = "<group>"; };
+		3F36F5D5238A9C5700267280 /* NearbyReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyReducer.swift; sourceTree = "<group>"; };
 		3F36FA9F218657E10018E25B /* MovieNightViewController+Nearby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+Nearby.swift"; sourceTree = "<group>"; };
 		3F36FAA0218657E10018E25B /* MovieNightViewController+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieNightViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormatter.swift"; sourceTree = "<group>"; };
@@ -592,6 +596,7 @@
 				4EB512012268B07600CBDC7E /* AppReducer.swift */,
 				3F22920F225A3CDE001D4358 /* MovieReducer.swift */,
 				4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */,
+				3F36F5D5238A9C5700267280 /* NearbyReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 			children = (
 				3F22920D225A3C4B001D4358 /* MovieAction.swift */,
 				3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */,
+				3F36F5D3238A9C2000267280 /* NearbyAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1274,6 +1280,7 @@
 				4ED2FC7D22666D89007BDE06 /* CoreDataMigrator.swift in Sources */,
 				3F0C1D1322A4395E00F0F52A /* ShortcutIdentifier.swift in Sources */,
 				3FF7910620DE274A007B7D37 /* Model.xcdatamodeld in Sources */,
+				3F36F5D4238A9C2000267280 /* NearbyAction.swift in Sources */,
 				3FF7910720DE274A007B7D37 /* MovieDetailViewController.swift in Sources */,
 				3FF7910820DE274A007B7D37 /* MovieNightViewController.swift in Sources */,
 				3FF095BD2103223200ADFB86 /* SearchMoviesViewController+3DTouch.swift in Sources */,
@@ -1302,6 +1309,7 @@
 				3FF7911820DE274A007B7D37 /* String+Cineaste.swift in Sources */,
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
+				3F36F5D6238A9C5700267280 /* NearbyReducer.swift in Sources */,
 				3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */,
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,

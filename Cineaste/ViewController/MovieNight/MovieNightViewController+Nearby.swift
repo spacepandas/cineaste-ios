@@ -24,21 +24,16 @@ extension MovieNightViewController {
                 guard let nearbyMessage = self.convertGNSMessage(from: message)
                     else { return }
 
-                // add nearbyMessage
                 DispatchQueue.main.async {
-                    if !self.nearbyMessages.contains(nearbyMessage) {
-                        self.nearbyMessages.append(nearbyMessage)
-                    }
+                    store.dispatch(NearbyAction.addNearbyMessage(nearbyMessage))
                 }
             },
             messageLostHandler: { message in
                 guard let nearbyMessage = self.convertGNSMessage(from: message)
                     else { return }
 
-                // remove nearbyMessage
                 DispatchQueue.main.async {
-                    self.nearbyMessages = self.nearbyMessages
-                        .filter { $0 != nearbyMessage }
+                    store.dispatch(NearbyAction.deleteNearbyMessage(nearbyMessage))
                 }
             }
         )

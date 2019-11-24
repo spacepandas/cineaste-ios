@@ -11,6 +11,7 @@ import ReSwift
 func appReducer(action: Action, state: AppState?) -> AppState {
     return AppState(
         movies: movieReducer(action: action, state: state?.movies),
-        selectedMovieId: selectionReducer(action: action, state: state?.selectedMovieId)
+        selectedMovieId: selectionReducer(action: action, state: state?.selectedMovieId),
+        nearbyState: nearbyReducer(action: action, state: state?.nearbyState)
     )
 }

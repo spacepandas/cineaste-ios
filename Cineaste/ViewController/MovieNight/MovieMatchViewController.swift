@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class MovieMatchViewController: UITableViewController {
     private lazy var resultSearchController: SearchController = {
@@ -16,7 +17,9 @@ class MovieMatchViewController: UITableViewController {
     }()
 
     private(set) var totalNumberOfPeople: Int = 0
-    private(set) var showAllTogetherMovies: Bool = false
+    var showAllTogetherMovies: Bool {
+        totalNumberOfPeople != 1
+    }
 
     private var moviesWithNumber: [(NearbyMovie, Int)] = []
     private(set) var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
@@ -32,29 +35,20 @@ class MovieMatchViewController: UITableViewController {
         configureSearchController()
     }
 
-    func configure(with userName: String, messagesToMatch: [NearbyMessage]) {
-        title = userName
-        totalNumberOfPeople = messagesToMatch.count
-        showAllTogetherMovies = totalNumberOfPeople != 1
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-        var moviesWithNumberDict: [NearbyMovie: Int] = [:]
-
-        for movies in messagesToMatch {
-            for movie in movies.movies {
-                if let number = moviesWithNumberDict[movie] {
-                    moviesWithNumberDict[movie] = number + 1
-                } else {
-                    moviesWithNumberDict[movie] = 1
-                }
-            }
+        store.subscribe(self) { subscription in
+            subscription
+                .select(MovieMatchViewController.select)
+                .skipRepeats()
         }
+    }
 
-        let sortedMoviesWithNumber: [(NearbyMovie, Int)] = moviesWithNumberDict.sorted {
-            // first sort by number, second sort by title
-            ($0.value, $1.key.title) > ($1.value, $0.key.title)
-        }
-        moviesWithNumber = sortedMoviesWithNumber
-        filteredMoviesWithNumber = sortedMoviesWithNumber
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        store.unsubscribe(self)
     }
 
     // MARK: - Configuration
@@ -106,6 +100,59 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
                 self.showAlert(withMessage: Alert.loadingDataError)
             }
         }
+    }
+}
+
+extension MovieMatchViewController: StoreSubscriber {
+    struct State: Equatable {
+        let title: String
+        let nearbyMessages: [NearbyMessage]
+    }
+
+    private static func select(state: AppState) -> State {
+        let messages = state.nearbyState.selectedNearbyMessages
+
+        let title: String
+        if messages.count == 1 {
+            title = messages.first?.userName ?? ""
+        } else {
+            title = String.allResultsForMovieNight
+        }
+
+        return .init(
+            title: title,
+            nearbyMessages: messages
+        )
+    }
+
+    func newState(state: State) {
+        title = state.title
+        totalNumberOfPeople = state.nearbyMessages.count
+
+        let sortedMoviesWithNumber = getSortedMoviesWithNumber(from: state.nearbyMessages)
+        moviesWithNumber = sortedMoviesWithNumber
+        filteredMoviesWithNumber = sortedMoviesWithNumber
+    }
+
+    private func getSortedMoviesWithNumber(from messagesToMatch: [NearbyMessage]) -> [(NearbyMovie, Int)] {
+        var moviesWithNumberDict: [NearbyMovie: Int] = [:]
+
+        for movies in messagesToMatch {
+            for movie in movies.movies {
+                if let number = moviesWithNumberDict[movie] {
+                    moviesWithNumberDict[movie] = number + 1
+                } else {
+                    moviesWithNumberDict[movie] = 1
+                }
+            }
+        }
+
+        let sortedMoviesWithNumber: [(NearbyMovie, Int)] = moviesWithNumberDict.sorted {
+            // first sort by number, second sort by title
+            ($0.value, $1.key.title) > ($1.value, $0.key.title)
+        }
+
+        return sortedMoviesWithNumber
     }
 }
 
