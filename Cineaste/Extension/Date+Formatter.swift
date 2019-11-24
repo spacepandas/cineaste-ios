@@ -8,15 +8,6 @@
 
 import UIKit
 
-extension DateFormatter {
-    static let utcFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        return formatter
-    }()
-}
-
 extension Date {
     var formatted: String {
         let formatter = DateFormatter()

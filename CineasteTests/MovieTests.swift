@@ -204,6 +204,37 @@ class MovieTests: XCTestCase {
         XCTAssertEqual(movie, expectedMovie)
     }
 
+    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
+    func disabledtestEncodingWatchlistMovieForExport() throws {
+        // Given
+        let movie = Movie.testingWatchlist
+
+        let expected = """
+            {
+              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+              "release_date" : "Jan 23, 2000 00:00:00",
+              "id" : 10898,
+              "runtime" : 72,
+              "title" : "The Little Mermaid II: Return to the Sea",
+              "vote_count" : 898,
+              "watched" : false,
+              "listPosition" : 0,
+              "vote_average" : 6.3,
+              "overview" : "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
+              "watchedDate" : null,
+              "popularity" : 2.535
+            }
+            """
+            .data(using: .utf8)!
+
+        // When
+        let data = try JSONEncoder.tmdbEncoder.encode(movie)
+
+        // Then
+        XCTAssertEqual(try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
+                       try JSONSerialization.jsonObject(with: data) as! NSDictionary)
+    }
+
     func testDecodingHistoryMovieFromImport() throws {
         // Given
         let expectedMovie = Movie.testingSeen
@@ -234,6 +265,37 @@ class MovieTests: XCTestCase {
 
         // Then
         XCTAssertEqual(movie, expectedMovie)
+    }
+
+    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
+    func disabledtestEncodingHistoryMovieForExport() throws {
+        // Given
+        let movie = Movie.testingSeen
+
+        let expected = """
+            {
+              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+              "release_date" : "Nov 17, 1989 00:00:00",
+              "id" : 10144,
+              "runtime" : 83,
+              "title" : "The Little Mermaid",
+              "vote_count" : 4529,
+              "watched" : true,
+              "listPosition" : 0,
+              "vote_average" : 7.3,
+              "overview" : "This colorful adventure tells the story of an impetuous mermaid princess named Ariel who falls in love with the very human Prince Eric and puts everything on the line for the chance to be with him. Memorable songs and characters -- including the villainous sea witch Ursula.",
+              "watchedDate" : "Nov 17, 2017 20:49:26",
+              "popularity" : 2166
+            }
+            """
+            .data(using: .utf8)!
+
+        // When
+        let data = try JSONEncoder.tmdbEncoder.encode(movie)
+
+        // Then
+        XCTAssertEqual(try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
+                       try JSONSerialization.jsonObject(with: data) as! NSDictionary)
     }
 
 }

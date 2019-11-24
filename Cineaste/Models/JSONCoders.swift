@@ -22,11 +22,7 @@ extension JSONDecoder {
 
     static let importDecoder: JSONDecoder = {
         $0.keyDecodingStrategy = .convertFromSnakeCase
-        $0.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
-            return dateString.dateFromImportedMoviesString ?? Date.distantFuture
-        }
+        $0.dateDecodingStrategy = .formatted(DateFormatter.importFormatter)
         return $0
     }(JSONDecoder())
 }
@@ -34,7 +30,7 @@ extension JSONDecoder {
 extension JSONEncoder {
     static let tmdbEncoder: JSONEncoder = {
         $0.keyEncodingStrategy = .convertToSnakeCase
-        $0.dateEncodingStrategy = .formatted(DateFormatter.utcFormatter)
+        $0.dateEncodingStrategy = .formatted(DateFormatter.importFormatter)
         $0.outputFormatting = .prettyPrinted
         return $0
     }(JSONEncoder())

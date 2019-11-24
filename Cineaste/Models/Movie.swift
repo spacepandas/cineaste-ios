@@ -17,13 +17,10 @@ struct Movie: Codable, Equatable {
     let overview: String
     let runtime: Int16?
     var releaseDate: Date?
-
     //swiftlint:disable:next discouraged_optional_boolean
     var watched: Bool?
     var watchedDate: Date?
-
     var listPosition: Int?
-
     let popularity: Double?
 }
 
