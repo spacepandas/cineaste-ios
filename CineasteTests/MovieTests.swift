@@ -99,7 +99,7 @@ class MovieTests: XCTestCase {
             .data(using: .utf8)!
 
         // When
-        let movie = try JSONDecoder.tmdbDecoder.decode(
+        let movie = try JSONDecoder().decode(
             Movie.self,
             from: jsonData
         )
@@ -108,10 +108,10 @@ class MovieTests: XCTestCase {
         XCTAssertEqual(movie, expectedMovie)
     }
 
-    func testDecodingFromNetworkWithSanitizedReleaseDate() throws {
+    func testDecodingFromNetworkWithEmptyReleaseDate() throws {
         // Given
         var expectedMovie = Movie.testing
-        expectedMovie.releaseDate = Date.distantFuture
+        expectedMovie.releaseDate = nil
 
         let jsonData = """
             {
@@ -129,10 +129,9 @@ class MovieTests: XCTestCase {
             .data(using: .utf8)!
 
         // When
-        let sanitized = jsonData.sanitizingReleaseDates()
-        let movie = try JSONDecoder.tmdbDecoder.decode(
+        let movie = try JSONDecoder().decode(
             Movie.self,
-            from: sanitized
+            from: jsonData
         )
 
         // Then
@@ -142,8 +141,6 @@ class MovieTests: XCTestCase {
     func testDecodingFromNetworkWithoutReleaseDate() throws {
         // Given
         var expectedMovie = Movie.testing
-
-        //TODO: shouldn't this be Date.distantFuture as well?
         expectedMovie.releaseDate = nil
 
         let jsonData = """
@@ -162,10 +159,9 @@ class MovieTests: XCTestCase {
             .data(using: .utf8)!
 
         // When
-        let sanitized = jsonData.sanitizingReleaseDates()
-        let movie = try JSONDecoder.tmdbDecoder.decode(
+        let movie = try JSONDecoder().decode(
             Movie.self,
-            from: sanitized
+            from: jsonData
         )
 
         // Then
@@ -188,14 +184,13 @@ class MovieTests: XCTestCase {
               "listPosition" : 0,
               "vote_average" : 6.3,
               "overview" : "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
-              "watchedDate" : null,
               "popularity" : 2.535
             }
             """
             .data(using: .utf8)!
 
         // When
-        let movie = try JSONDecoder.importDecoder.decode(
+        let movie = try JSONDecoder().decode(
             Movie.self,
             from: jsonData
         )
@@ -204,8 +199,7 @@ class MovieTests: XCTestCase {
         XCTAssertEqual(movie, expectedMovie)
     }
 
-    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
-    func disabledtestEncodingWatchlistMovieForExport() throws {
+    func testEncodingWatchlistMovieForExport() throws {
         // Given
         let movie = Movie.testingWatchlist
 
@@ -221,7 +215,6 @@ class MovieTests: XCTestCase {
               "listPosition" : 0,
               "vote_average" : 6.3,
               "overview" : "Set several years after the first film, Ariel and Prince Eric are happily married with a daughter, Melody. In order to protect Melody from the Sea Witch, Morgana, they have not told her about her mermaid heritage. Melody is curious and ventures into the sea, where she meets new friends. But will she become a pawn in Morgana\'s quest to take control of the ocean from King Triton?",
-              "watchedDate" : null,
               "popularity" : 2.535
             }
             """
@@ -258,7 +251,7 @@ class MovieTests: XCTestCase {
             .data(using: .utf8)!
 
         // When
-        let movie = try JSONDecoder.importDecoder.decode(
+        let movie = try JSONDecoder().decode(
             Movie.self,
             from: jsonData
         )
@@ -267,8 +260,7 @@ class MovieTests: XCTestCase {
         XCTAssertEqual(movie, expectedMovie)
     }
 
-    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/124
-    func disabledtestEncodingHistoryMovieForExport() throws {
+    func testEncodingHistoryMovieForExport() throws {
         // Given
         let movie = Movie.testingSeen
 

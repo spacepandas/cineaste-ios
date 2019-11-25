@@ -9,27 +9,8 @@
 
 import Foundation
 
-extension JSONDecoder {
-    static let tmdbDecoder: JSONDecoder = {
-        $0.keyDecodingStrategy = .convertFromSnakeCase
-        $0.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
-            return DateFormatter.utcFormatter.date(from: dateString) ?? Date.distantFuture
-        }
-        return $0
-    }(JSONDecoder())
-
-    static let importDecoder: JSONDecoder = {
-        $0.keyDecodingStrategy = .convertFromSnakeCase
-        $0.dateDecodingStrategy = .formatted(DateFormatter.importFormatter)
-        return $0
-    }(JSONDecoder())
-}
-
 extension JSONEncoder {
     static let tmdbEncoder: JSONEncoder = {
-        $0.keyEncodingStrategy = .convertToSnakeCase
         $0.dateEncodingStrategy = .formatted(DateFormatter.importFormatter)
         $0.outputFormatting = .prettyPrinted
         return $0

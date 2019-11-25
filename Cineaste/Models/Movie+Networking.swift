@@ -25,7 +25,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder.tmdbDecoder
+                let paginatedMovies = try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
                 return paginatedMovies
             } catch {
@@ -49,7 +49,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                return try JSONDecoder.tmdbDecoder
+                return try JSONDecoder()
                     .decode(PagedMovieResult.self, from: data)
             } catch {
                 print(error)
@@ -75,11 +75,11 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let sanitized = data.sanitizingReleaseDates()
-                var movie = try JSONDecoder.tmdbDecoder.decode(Movie.self, from: sanitized)
+                let decoder = JSONDecoder()
+                var movie = try decoder.decode(Movie.self, from: data)
 
                 // only set localized release date if there is one
-                if let releaseDate = try? JSONDecoder().decode(LocalizedReleaseDate.self, from: sanitized).date {
+                if let releaseDate = try? decoder.decode(LocalizedReleaseDate.self, from: data).date {
                     movie.releaseDate = releaseDate
                 }
 

@@ -41,7 +41,7 @@ extension MovieNightViewController {
 
     private func convertGNSMessage(from message: GNSMessage?) -> NearbyMessage? {
         guard let data = message?.content,
-            let nearbyMessage = try? JSONDecoder.tmdbDecoder
+            let nearbyMessage = try? JSONDecoder()
                 .decode(NearbyMessage.self, from: data)
             else { return nil }
 

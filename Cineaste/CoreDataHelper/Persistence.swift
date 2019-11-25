@@ -16,7 +16,7 @@ enum Persistence {
 
     static func loadMovies() -> Set<Movie> {
         guard let data = try? Data(contentsOf: movieUrl) else { return [] }
-        let movies = try? JSONDecoder.tmdbDecoder.decode(Set<Movie>.self, from: data)
+        let movies = try? JSONDecoder().decode(Set<Movie>.self, from: data)
         return movies ?? []
     }
 

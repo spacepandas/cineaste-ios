@@ -60,7 +60,7 @@ class PersistenceTests: XCTestCase {
         // Then
         XCTAssert(fileManager.fileExists(atPath: url.path))
         let data = try Data(contentsOf: url)
-        let exportedMovies = try JSONDecoder.tmdbDecoder.decode(ImportExportObject.self, from: data).movies
+        let exportedMovies = try JSONDecoder().decode(ImportExportObject.self, from: data).movies
         XCTAssertEqual(exportedMovies, Persistence.loadMovies())
     }
 

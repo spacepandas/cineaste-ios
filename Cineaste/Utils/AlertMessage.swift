@@ -47,7 +47,7 @@ class Alert: AlertMessage {
     static func loadingData(with error: Error) -> AlertMessage {
         return AlertMessage(
             title: .errorTitle,
-            message: .loadingDataErrorMessage + "\n" + error.localizedDescription,
+            message: .loadingDataErrorMessage + "\n\n" + error.localizedDescription,
             action: .okAction)
     }
 
