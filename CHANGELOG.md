@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.15.4
+
+## Fixed
+* Fix Date Formatter Issues on Import and History for import and export (now really, hopefully)
+
 # 1.15.3
 
 ## Improved
