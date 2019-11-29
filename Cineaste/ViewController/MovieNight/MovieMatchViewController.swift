@@ -139,6 +139,10 @@ extension MovieMatchViewController: StoreSubscriber {
 
         for movies in messagesToMatch {
             for movie in movies.movies {
+
+                // see https://github.com/spacepandas/cineaste-ios/issues/128
+                // we have to check for movies in dict with same id
+
                 if let number = moviesWithNumberDict[movie] {
                     moviesWithNumberDict[movie] = number + 1
                 } else {

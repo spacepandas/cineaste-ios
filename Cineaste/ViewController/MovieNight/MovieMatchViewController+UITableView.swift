@@ -73,7 +73,8 @@ extension MovieMatchViewController {
             }, actionProvider: { _ in
             let actions = ContextMenu.actions(
                 for: movie,
-                // TODO: this is incorrect
+                // see https://github.com/spacepandas/cineaste-ios/issues/127
+                // this is incorrect
                 // we have to search for an existing movie in the store
                 watchState: movie.currentWatchState,
                 presenter: self)

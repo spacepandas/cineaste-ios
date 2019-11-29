@@ -43,6 +43,9 @@ extension MovieNightViewController {
                 combinedMessages.append(ownMessage)
             }
 
+            // see https://github.com/spacepandas/cineaste-ios/issues/128
+            // we need to filter for same ids
+            
             let numberOfAllMovies = combinedMessages
                 .compactMap { $0.movies.count }
                 .reduce(0, +)
