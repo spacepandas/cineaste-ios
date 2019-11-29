@@ -82,6 +82,9 @@ extension SettingsViewController {
                 actionSheet.addAction(github)
             }
 
+            let cancel = UIAlertAction(title: .cancelAction, style: .cancel)
+            actionSheet.addAction(cancel)
+
             present(actionSheet, animated: true)
         case .appStore:
             AppStoreReview.openWriteReviewURL()
