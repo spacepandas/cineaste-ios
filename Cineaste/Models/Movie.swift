@@ -42,15 +42,15 @@ extension Movie: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int64.self, forKey: .id)
-        title = try container.decode(String.self, forKey: .title)
-        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
-        voteCount = try container.decodeIfPresent(Double.self, forKey: .voteCount) ?? 0
-        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
-        overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
-        runtime = try container.decodeIfPresent(Int16.self, forKey: .runtime)
+        id = try container.decode(forKey: .id)
+        title = try container.decode(forKey: .title)
+        voteAverage = try container.decode(forKey: .voteAverage, default: 0)
+        voteCount = try container.decode(forKey: .voteCount, default: 0)
+        posterPath = try container.decodeIfPresent(forKey: .posterPath)
+        overview = try container.decode(forKey: .overview, default: "")
+        runtime = try container.decodeIfPresent(forKey: .runtime)
 
-        if let dateString = try container.decodeIfPresent(String.self, forKey: .releaseDate) {
+        if let dateString: String = try container.decodeIfPresent(forKey: .releaseDate) {
             if let date = DateFormatter.utcFormatter.date(from: dateString) {
                 // Networking Movie
                 releaseDate = date
@@ -62,14 +62,14 @@ extension Movie: Codable {
             }
         }
 
-        watched = try container.decodeIfPresent(Bool.self, forKey: .watched)
+        watched = try container.decodeIfPresent(forKey: .watched)
 
-        if let watchedDateString = try container.decodeIfPresent(String.self, forKey: .watchedDate) {
+        if let watchedDateString: String = try container.decodeIfPresent(forKey: .watchedDate) {
             watchedDate = DateFormatter.importFormatter.date(from: watchedDateString)
         }
 
-        listPosition = try container.decodeIfPresent(Int.self, forKey: .listPosition)
-        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity)
+        listPosition = try container.decodeIfPresent(forKey: .listPosition)
+        popularity = try container.decodeIfPresent(forKey: .popularity)
     }
 }
 

@@ -44,8 +44,8 @@ struct LocalizedReleaseDate: Decodable, Equatable {
             .container(keyedBy: CodingKeys.self)
             .nestedContainer(keyedBy: CodingKeys.self, forKey: .releaseDates)
 
-        let allReleaseDates = try container.decode(
-            [InnerLocalizedReleaseDate].self, forKey: .results)
+        let allReleaseDates: [InnerLocalizedReleaseDate] = try container
+            .decode(forKey: .results)
         let allRegionalReleaseDates = allReleaseDates
             .first { $0.identifier == String.regionIso31661 }
         date = allRegionalReleaseDates?.correctReleaseDate
@@ -85,10 +85,13 @@ private extension LocalizedReleaseDate {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            regionIdentifier = try container.decode(String.self, forKey: .regionIdentifier)
-            regionReleaseDate = (try container.decodeIfPresent(
-                String.self, forKey: .regionReleaseDate))?.dateFromISO8601String
-            type = try container.decode(Int.self, forKey: .type)
+            regionIdentifier = try container.decode(forKey: .regionIdentifier)
+
+            let regionReleaseDateString: String? = try container
+                .decodeIfPresent(forKey: .regionReleaseDate)
+            regionReleaseDate = regionReleaseDateString?.dateFromISO8601String
+
+            type = try container.decode(forKey: .type)
         }
     }
 }
