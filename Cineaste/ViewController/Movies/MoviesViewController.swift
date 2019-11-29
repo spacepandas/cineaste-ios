@@ -143,8 +143,8 @@ class MoviesViewController: UITableViewController {
             attributes: attributes
         )
 
-        tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshMovies), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
 
     private func configureSearchController() {
