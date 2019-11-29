@@ -43,9 +43,9 @@ extension MovieMatchViewController {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        guard let idString = configuration.identifier as? String,
-            let id = Int(idString)
+        guard let indexPath = configuration.identifier as? IndexPath
             else { return }
+        let id = indexPath.row
 
         let nearbyMovie = filteredMoviesWithNumber[id].movie
         let movie = Movie(with: nearbyMovie)
@@ -64,7 +64,7 @@ extension MovieMatchViewController {
         let movie = Movie(with: nearbyMovie)
 
         let configuration = UIContextMenuConfiguration(
-            identifier: "\(indexPath.row)" as NSCopying,
+            identifier: indexPath as NSCopying,
             previewProvider: {
                 store.dispatch(SelectionAction.select(movie: movie))
                 let detailVC = MovieDetailViewController.instantiate()

@@ -34,12 +34,13 @@ extension MoviesViewController {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        guard let idString = configuration.identifier as? String,
-            let id = Int(idString)
+        guard let indexPath = configuration.identifier as? IndexPath
             else { return }
+        let id = indexPath.row
+        let movie = filteredMovies[id]
 
         animator.addCompletion {
-            store.dispatch(SelectionAction.select(movie: self.filteredMovies[id]))
+            store.dispatch(SelectionAction.select(movie: movie))
             let detailVC = MovieDetailViewController.instantiate()
             detailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detailVC, animated: true)
@@ -51,7 +52,7 @@ extension MoviesViewController {
         let movie = filteredMovies[indexPath.row]
 
         let configuration = UIContextMenuConfiguration(
-            identifier: "\(indexPath.row)" as NSCopying,
+            identifier: indexPath as NSCopying,
             previewProvider: {
                 store.dispatch(SelectionAction.select(movie: movie))
                 let detailVC = MovieDetailViewController.instantiate()
