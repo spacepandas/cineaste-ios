@@ -33,8 +33,10 @@ class MovieThunksTests: XCTestCase {
 
         // Then
         XCTAssertEqual(actions.count, 1)
-        XCTAssertEqual(String(describing: actions[0]),
-                       String(describing: expectedAction))
+        XCTAssertEqual(
+            String(describing: actions[0]),
+            String(describing: expectedAction)
+        )
     }
 
     func testUpdateMovieAsSeenShouldSetWatchedAndWatchedDate() {
@@ -56,8 +58,10 @@ class MovieThunksTests: XCTestCase {
 
         // Then
         XCTAssertEqual(actions.count, 1)
-        XCTAssertEqual(String(describing: actions[0]),
-                       String(describing: expectedAction))
+        XCTAssertEqual(
+            String(describing: actions[0]),
+            String(describing: expectedAction)
+        )
     }
 
     func testUpdateMovieAsWatchedShouldAddMovieWhenNotExisting() {
@@ -77,7 +81,9 @@ class MovieThunksTests: XCTestCase {
 
         // Then
         XCTAssertEqual(actions.count, 1)
-        XCTAssertEqual(String(describing: actions[0]),
-                       String(describing: expectedAction))
+        XCTAssertEqual(
+            String(describing: actions[0]),
+            String(describing: expectedAction)
+        )
     }
 }

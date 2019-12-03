@@ -48,7 +48,8 @@ class Title1CondensedLabel: Label {
             self,
             selector: #selector(setCondensedTitle1SymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         setCondensedTitle1SymbolicTrait()
 
@@ -62,7 +63,8 @@ class Title2CondensedLabel: Label {
             self,
             selector: #selector(setCondensedTitle2SymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         setCondensedTitle2SymbolicTrait()
 
@@ -76,7 +78,8 @@ class SubheadlineItalicLabel: Label {
             self,
             selector: #selector(setItalicSymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         setItalicSymbolicTrait()
 

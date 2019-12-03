@@ -25,7 +25,8 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
 
         navigationController?.pushViewController(
             viewControllerToCommit,
-            animated: true)
+            animated: true
+        )
     }
 }
 

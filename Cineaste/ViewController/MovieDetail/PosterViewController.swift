@@ -51,8 +51,10 @@ class PosterViewController: UIViewController {
         scrollView.zoom(
             to: zoomRectForScale(
                 scale: scrollView.maximumZoomScale,
-                center: recognizer.location(in: recognizer.view)),
-            animated: true)
+                center: recognizer.location(in: recognizer.view)
+            ),
+            animated: true
+        )
     }
 
     @objc
@@ -86,12 +88,13 @@ class PosterViewController: UIViewController {
                 UIView.animate(withDuration: animationDuration, animations: {
                     self.imageView.frame.origin = CGPoint(
                         x: self.imageView.frame.origin.x,
-                        y: self.imageView.frame.size.height)
+                        y: self.imageView.frame.size.height
+                    )
                     self.blurredBackgroundImage.alpha = 0
                     self.backgroundView.alpha = 0
                 }, completion: { _ in
                     self.dismiss(animated: false)
-                })
+                }) // swiftlint:disable:this multiline_arguments_brackets
             } else {
                 guard let position = originalPosition else { return }
 
@@ -112,23 +115,29 @@ class PosterViewController: UIViewController {
         toolbar.setBackgroundImage(
             UIImage(),
             forToolbarPosition: .any,
-            barMetrics: .default)
+            barMetrics: .default
+        )
         toolbar.backgroundColor = .clear
         toolbar.setShadowImage(
             UIImage(),
-            forToolbarPosition: .any)
+            forToolbarPosition: .any
+        )
 
         toolbarBackgroundView.backgroundColor = .cineToolBarBackground
         toolbarBackgroundView.addBlurEffect(with: .dark)
 
         if let posterPath = posterPath {
-            blurredBackgroundImage.kf.setImage(with: Movie.posterUrl(
-                from: posterPath,
-                for: .original)
+            blurredBackgroundImage.kf.setImage(
+                with: Movie.posterUrl(
+                    from: posterPath,
+                    for: .original
+                )
             )
-            imageView.kf.setImage(with: Movie.posterUrl(
-                from: posterPath,
-                for: .original)
+            imageView.kf.setImage(
+                with: Movie.posterUrl(
+                    from: posterPath,
+                    for: .original
+                )
             )
         }
         blurredBackgroundImage.addBlurEffect(with: .dark)

@@ -14,10 +14,7 @@ class AlertMessage {
     var action: String
     var cancel: String?
 
-    init(title: String,
-         message: String,
-         action: String,
-         cancel: String? = nil) {
+    init(title: String, message: String, action: String, cancel: String? = nil) {
         self.title = title
         self.message = message
         self.action = action
@@ -30,32 +27,38 @@ class Alert: AlertMessage {
         title: .username,
         message: .insertUsernameDescription,
         action: .saveAction,
-        cancel: .cancelAction)
+        cancel: .cancelAction
+    )
     static let importFailedInfo = AlertMessage(
         title: .errorTitle,
         message: .importFailedMessage,
-        action: .okAction)
+        action: .okAction
+    )
     static let exportFailedInfo = AlertMessage(
         title: .errorTitle,
         message: .exportFailedMessage,
-        action: .okAction)
+        action: .okAction
+    )
     static let noEmailClient = AlertMessage(
         title: .infoTitle,
         message: .noEmailClientMessage,
-        action: .okAction)
+        action: .okAction
+    )
 
     static func loadingData(with error: Error) -> AlertMessage {
         return AlertMessage(
             title: .errorTitle,
             message: .loadingDataErrorMessage + "\n\n" + error.localizedDescription,
-            action: .okAction)
+            action: .okAction
+        )
     }
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
         return AlertMessage(
             title: .infoTitle,
             message: .importSucceededMessage(with: counter),
-            action: .okAction)
+            action: .okAction
+        )
     }
 }
 
@@ -90,6 +93,7 @@ private extension UIAlertController {
         self.init(
             title: message.title,
             message: message.message,
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
     }
 }

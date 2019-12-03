@@ -17,8 +17,10 @@ struct CoreDataMigrator {
     }
 
     var coreDataMovies: Set<Movie> {
-        assert(Thread.isMainThread,
-               "Must be called on main thread because of core data view context")
+        assert(
+            Thread.isMainThread,
+            "Must be called on main thread because of core data view context"
+        )
 
         let request: NSFetchRequest<StoredMovie> = StoredMovie.fetchRequest()
         let results = try? container.viewContext.fetch(request)

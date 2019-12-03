@@ -160,36 +160,43 @@ class MovieNightViewController: UITableViewController {
             NearbyMovie(
                 id: 515_042,
                 title: "Free Solo",
-                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"),
+                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"
+            ),
             NearbyMovie(
                 id: 10_898,
                 title: "The Little Mermaid II: Return to the Sea",
-                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg"),
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg"
+            ),
             NearbyMovie(
                 id: 10_144,
                 title: "The Little Mermaid",
-                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg")
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg"
+            )
         ]
         let developerMovies = [
             NearbyMovie(
                 id: 515_042,
                 title: "Free Solo",
-                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"),
+                posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg"
+            ),
             NearbyMovie(
                 id: 10_898,
                 title: "The Little Mermaid II: Return to the Sea",
-                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg")
+                posterPath: "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg"
+            )
         ]
 
         let newMessages = [
             NearbyMessage(
                 userName: "Simulator",
                 deviceId: "1",
-                movies: simulatorMovies),
+                movies: simulatorMovies
+            ),
             NearbyMessage(
                 userName: "Developer",
                 deviceId: "2",
-                movies: developerMovies)
+                movies: developerMovies
+            )
         ]
         store.dispatch(NearbyAction.setNearbyMessages(newMessages))
         #endif
@@ -201,7 +208,8 @@ class MovieNightViewController: UITableViewController {
         #if DEBUG
         let tripleTapGestureRecognizer = UITapGestureRecognizer(
             target: self,
-            action: #selector(toggleSearchingForFriendsMode))
+            action: #selector(toggleSearchingForFriendsMode)
+        )
         tripleTapGestureRecognizer.numberOfTapsRequired = 3
         view.addGestureRecognizer(tripleTapGestureRecognizer)
         #endif
@@ -309,16 +317,21 @@ class MovieNightViewController: UITableViewController {
     // credits: https://stackoverflow.com/a/49082928
     private func resizedFont(for title: String) -> UIFont {
         var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
-        var largeTitleWidth = title.size(withAttributes: [
-            .font: UIFont.systemFont(ofSize: fontSize)
-            ]).width
+        var largeTitleWidth = title.size(
+            withAttributes: [
+                .font: UIFont.systemFont(ofSize: fontSize)
+            ]
+        ).width
 
         let maxWidth = UIScreen.main.bounds.size.width - 60
         while largeTitleWidth > maxWidth {
             fontSize -= 1
-            largeTitleWidth = title.size(withAttributes: [
-                .font: UIFont.systemFont(ofSize: fontSize)
-                ]).width
+            largeTitleWidth = title.size(
+                withAttributes:
+                [
+                    .font: UIFont.systemFont(ofSize: fontSize)
+                ]
+            ).width
         }
 
         return UIFont.systemFont(ofSize: fontSize, weight: .bold)

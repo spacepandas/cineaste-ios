@@ -63,7 +63,8 @@ class SettingsViewController: UITableViewController {
             let vc = segue.destination as? SettingsDetailViewController
             vc?.configure(
                 with: selected.title,
-                textViewContent: selected == .licence ? .licence : .imprint)
+                textViewContent: selected == .licence ? .licence : .imprint
+            )
         default:
             return
         }

@@ -28,7 +28,8 @@ class TextView: UITextView {
             self,
             selector: #selector(setDynamicType),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
     }
 
     func setAttributes() {
@@ -78,7 +79,8 @@ class DescriptionTextView: TextView {
 
             attributedText = type.chainContent(
                 titleAttributes: titleAttributes,
-                paragraphAttributes: paragraphAttributes)
+                paragraphAttributes: paragraphAttributes
+            )
         } else {
             let defaultAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
@@ -88,7 +90,8 @@ class DescriptionTextView: TextView {
 
             attributedText = NSAttributedString(
                 string: text,
-                attributes: defaultAttributes)
+                attributes: defaultAttributes
+            )
         }
     }
 
@@ -114,6 +117,7 @@ class LinkTextView: TextView {
 
         attributedText = NSAttributedString(
             string: text,
-            attributes: defaultAttributes)
+            attributes: defaultAttributes
+        )
     }
 }

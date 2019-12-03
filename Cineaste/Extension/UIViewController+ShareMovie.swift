@@ -20,7 +20,8 @@ extension UIViewController {
 
         let activityController = UIActivityViewController(
             activityItems: items,
-            applicationActivities: nil)
+            applicationActivities: nil
+        )
 
         DispatchQueue.main.async {
             self.present(activityController, animated: true)

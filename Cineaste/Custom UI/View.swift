@@ -32,7 +32,8 @@ class VoteCircleView: View {
             self,
             selector: #selector(setCornerRadius),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         backgroundColor = UIColor.cineVoteCircle
 
@@ -126,25 +127,32 @@ class HintView: View {
 
         let bottomConstraint = hintLabel.bottomAnchor.constraint(
             equalTo: bottomAnchor,
-            constant: -verticalConstant)
+            constant: -verticalConstant
+        )
         bottomConstraint.priority = UILayoutPriority(rawValue: 999)
 
-        NSLayoutConstraint.activate([
-            hintLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: horizontalConstant),
-            hintLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -horizontalConstant),
-            bottomConstraint,
-            hintLabel.topAnchor.constraint(
-                equalTo: topAnchor,
-                constant: verticalConstant)
-        ])
+        NSLayoutConstraint.activate(
+            [
+                hintLabel.leadingAnchor.constraint(
+                    equalTo: leadingAnchor,
+                    constant: horizontalConstant
+                ),
+                hintLabel.trailingAnchor.constraint(
+                    equalTo: trailingAnchor,
+                    constant: -horizontalConstant
+                ),
+                bottomConstraint,
+                hintLabel.topAnchor.constraint(
+                    equalTo: topAnchor,
+                    constant: verticalConstant
+                )
+            ]
+        )
 
         hintLabel.setContentCompressionResistancePriority(
             .required,
-            for: .vertical)
+            for: .vertical
+        )
     }
 }
 
@@ -162,7 +170,8 @@ class VoteView: View {
             self,
             selector: #selector(setBorderWidth),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         clipsToBounds = true
         backgroundColor = .clear
@@ -182,25 +191,32 @@ class VoteView: View {
 
         let bottomConstraint = voteLabel.bottomAnchor.constraint(
             equalTo: bottomAnchor,
-            constant: -verticalConstant)
+            constant: -verticalConstant
+        )
         bottomConstraint.priority = UILayoutPriority(rawValue: 999)
 
-        NSLayoutConstraint.activate([
-            voteLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: horizontalConstant),
-            voteLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -horizontalConstant),
-            bottomConstraint,
-            voteLabel.topAnchor.constraint(
-                equalTo: topAnchor,
-                constant: verticalConstant)
-        ])
+        NSLayoutConstraint.activate(
+            [
+                voteLabel.leadingAnchor.constraint(
+                    equalTo: leadingAnchor,
+                    constant: horizontalConstant
+                ),
+                voteLabel.trailingAnchor.constraint(
+                    equalTo: trailingAnchor,
+                    constant: -horizontalConstant
+                ),
+                bottomConstraint,
+                voteLabel.topAnchor.constraint(
+                    equalTo: topAnchor,
+                    constant: verticalConstant
+                )
+            ]
+        )
 
         voteLabel.setContentCompressionResistancePriority(
             .required,
-            for: .vertical)
+            for: .vertical
+        )
     }
 
     @objc

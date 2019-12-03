@@ -14,7 +14,8 @@ extension MoviesViewController: UISearchResultsUpdating {
 
         if !searchText.isEmpty {
             filteredMovies = movies
-                .filter { $0.title.contains(searchText)
+                .filter {
+                    $0.title.contains(searchText)
                     && $0.watched == category.watched
                 }
         } else {

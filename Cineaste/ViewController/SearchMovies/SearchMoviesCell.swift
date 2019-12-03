@@ -69,7 +69,8 @@ class SearchMoviesCell: UITableViewCell {
         accessibilityLabel?.append(", \(voting)")
 
         let isSoonAvailable = !soonHint.isHidden
-        accessibilityLabel?.append(isSoonAvailable
+        accessibilityLabel?.append(
+            isSoonAvailable
             ? ", \(String.soonReleaseInformationLong)"
             : ""
         )

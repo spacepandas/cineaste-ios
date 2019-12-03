@@ -104,9 +104,11 @@ class MoviesViewController: UITableViewController {
     @IBAction func movieNightButtonTouched() {
         if UserDefaults.standard.username == nil {
             let alert = UsernameAlert.askForUsernameAlertController(presenter: self, onSave: {
-                self.performSegue(withIdentifier: Segue.showMovieNight.rawValue,
-                                  sender: nil)
-            }, onCancel: nil)
+                self.performSegue(
+                    withIdentifier: Segue.showMovieNight.rawValue,
+                    sender: nil
+                )
+            }, onCancel: nil) // swiftlint:disable:this multiline_arguments_brackets
             present(alert, animated: true)
         } else {
             performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
@@ -205,9 +207,11 @@ extension MoviesViewController: StoreSubscriber {
     func newState(state: State) {
         let sortedMovies = state.movies
             .filter { $0.watched == category.watched }
-            .sorted(by: category.watched
+            .sorted(
+                by: category.watched
                 ? SortDescriptor.sortByWatchedDate
-                : SortDescriptor.sortByListPositionAndTitle)
+                : SortDescriptor.sortByListPositionAndTitle
+        )
 
         movies = sortedMovies
         filteredMovies = sortedMovies

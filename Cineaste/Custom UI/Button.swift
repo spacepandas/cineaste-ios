@@ -36,7 +36,8 @@ class ActionButton: Button {
             self,
             selector: #selector(setBoldSymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         // Fix layout issues when using dynamic size, related to #80
         // https://github.com/spacepandas/cineaste-ios/issues/80
@@ -67,7 +68,8 @@ class LinkButton: Button {
             self,
             selector: #selector(setBoldSymbolicTrait),
             name: UIContentSizeCategory.didChangeNotification,
-            object: nil)
+            object: nil
+        )
 
         setBoldSymbolicTrait()
 

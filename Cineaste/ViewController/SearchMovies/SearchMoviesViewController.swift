@@ -26,7 +26,8 @@ class SearchMoviesViewController: UIViewController {
 
             moviesWithWatchStates = updateMoviesWithWatchState(
                 with: storedIDs,
-                moviesFromNetworking: moviesFromNetworking)
+                moviesFromNetworking: moviesFromNetworking
+            )
         }
     }
 
@@ -48,7 +49,8 @@ class SearchMoviesViewController: UIViewController {
 
             moviesWithWatchStates = updateMoviesWithWatchState(
                 with: storedIDs,
-                moviesFromNetworking: moviesFromNetworking)
+                moviesFromNetworking: moviesFromNetworking
+            )
         }
     }
 
@@ -175,7 +177,8 @@ class SearchMoviesViewController: UIViewController {
         tableView.scrollToRow(
             at: IndexPath(row: 0, section: 0),
             at: .top,
-            animated: withAnimation)
+            animated: withAnimation
+        )
     }
 }
 

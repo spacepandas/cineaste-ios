@@ -17,10 +17,7 @@ extension XCTestCase {
     ///   - delay: How long to wait on the queue
     ///   - timeout: Timeout for expectation
     ///   - description: The description when the timeout is reached
-    func waitForQueue(queue: DispatchQueue = .main,
-                      delay: TimeInterval = 0,
-                      timeout: TimeInterval = 5,
-                      description: String = #function) {
+    func waitForQueue(queue: DispatchQueue = .main, delay: TimeInterval = 0, timeout: TimeInterval = 5, description: String = #function) {
 
         assert(delay < timeout, "This expectation can never be fulfilled")
 

@@ -22,7 +22,8 @@ class MoviesTabBarController: UITabBarController {
         watchlistVC.tabBarItem = UITabBarItem(
             title: String.watchlist,
             image: UIImage.watchlistIcon,
-            tag: 0)
+            tag: 0
+        )
         watchlistVC.tabBarItem.accessibilityIdentifier = "WatchlistTab"
         let watchlistVCWithNavi = NavigationController(rootViewController: watchlistVC)
 
@@ -31,7 +32,8 @@ class MoviesTabBarController: UITabBarController {
         seenVC.tabBarItem = UITabBarItem(
             title: String.seen,
             image: UIImage.seenIcon,
-            tag: 1)
+            tag: 1
+        )
         seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
         let seenVCWithNavi = NavigationController(rootViewController: seenVC)
 
@@ -39,7 +41,8 @@ class MoviesTabBarController: UITabBarController {
         settingsVC.tabBarItem = UITabBarItem(
             title: String.moreTitle,
             image: UIImage.moreIcon,
-            tag: 2)
+            tag: 2
+        )
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = NavigationController(rootViewController: settingsVC)
 

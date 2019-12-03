@@ -62,9 +62,11 @@ extension MoviesViewController {
                 let actions = ContextMenu.actions(
                     for: movie,
                     watchState: movie.currentWatchState,
-                    presenter: self)
+                    presenter: self
+                )
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
-            })
+            }
+        )
 
         return configuration
     }

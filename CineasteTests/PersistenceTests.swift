@@ -80,17 +80,21 @@ class PersistenceTests: XCTestCase {
 private extension FileManager {
     var documentsDirectory: URL {
         // swiftlint:disable:next force_try
-        return try! url(for: .documentDirectory,
-                        in: .userDomainMask,
-                        appropriateFor: nil,
-                        create: false)
+        return try! url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
     }
 
     var cachesDirectory: URL {
         // swiftlint:disable:next force_try
-        return try! url(for: .cachesDirectory,
-                        in: .userDomainMask,
-                        appropriateFor: nil,
-                        create: false)
+        return try! url(
+            for: .cachesDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
     }
 }

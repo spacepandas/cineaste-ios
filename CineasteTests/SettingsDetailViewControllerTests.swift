@@ -22,7 +22,8 @@ class SettingsDetailViewControllerTests: XCTestCase {
 
         let imprintChain = TextViewType.imprint.chainContent(
             titleAttributes: titleAttributes,
-            paragraphAttributes: paragraphAttributes)
+            paragraphAttributes: paragraphAttributes
+        )
         XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, imprintChain.string)
 
         //LICENSE
@@ -31,7 +32,8 @@ class SettingsDetailViewControllerTests: XCTestCase {
 
         let licenseChain = TextViewType.licence.chainContent(
             titleAttributes: titleAttributes,
-            paragraphAttributes: paragraphAttributes)
+            paragraphAttributes: paragraphAttributes
+        )
         XCTAssertEqual(settingsDetailVC.settingsDetailTextView.text, licenseChain.string)
     }
 

@@ -19,12 +19,18 @@ enum Appearance {
 
         // MARK: TabBarItem
         let tabBarItem = UITabBarItem.appearance()
-        tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.cineTabBarSelected
-            ], for: .selected)
-        tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.cineTabBarNormal
-            ], for: .normal)
+        tabBarItem.setTitleTextAttributes(
+            [
+                .foregroundColor: UIColor.cineTabBarSelected
+            ],
+            for: .selected
+        )
+        tabBarItem.setTitleTextAttributes(
+            [
+                .foregroundColor: UIColor.cineTabBarNormal
+            ],
+            for: .normal
+        )
 
         // MARK: UIAlertController
         let alertController = UIView

@@ -224,8 +224,10 @@ class MovieTests: XCTestCase {
         let data = try JSONEncoder.tmdbEncoder.encode(movie)
 
         // Then
-        XCTAssertEqual(try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
-                       try JSONSerialization.jsonObject(with: data) as! NSDictionary)
+        XCTAssertEqual(
+            try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
+            try JSONSerialization.jsonObject(with: data) as! NSDictionary
+        )
     }
 
     func testDecodingHistoryMovieFromImport() throws {
@@ -286,8 +288,10 @@ class MovieTests: XCTestCase {
         let data = try JSONEncoder.tmdbEncoder.encode(movie)
 
         // Then
-        XCTAssertEqual(try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
-                       try JSONSerialization.jsonObject(with: data) as! NSDictionary)
+        XCTAssertEqual(
+            try JSONSerialization.jsonObject(with: expected) as! NSDictionary,
+            try JSONSerialization.jsonObject(with: data) as! NSDictionary
+        )
     }
 
 }

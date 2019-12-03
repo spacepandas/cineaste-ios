@@ -25,6 +25,7 @@ extension MoviesViewController: UIViewControllerPreviewingDelegate {
 
         navigationController?.pushViewController(
             viewControllerToCommit,
-            animated: true)
+            animated: true
+        )
     }
 }

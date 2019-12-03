@@ -36,7 +36,7 @@ extension UIView {
                 self.transform = .identity
             }, completion: { _ in
                 completion?()
-            })
-        })
+            }) // swiftlint:disable:this multiline_arguments_brackets
+        }) // swiftlint:disable:this multiline_arguments_brackets
     }
 }

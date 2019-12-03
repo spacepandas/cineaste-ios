@@ -21,28 +21,36 @@ enum TextViewType {
             return [
                 ContentBlock(
                     title: nil,
-                    paragraph: String.imprintContent),
+                    paragraph: String.imprintContent
+                ),
                 ContentBlock(
                     title: String.openSourceTitle,
-                    paragraph: String.openSourceDescription),
+                    paragraph: String.openSourceDescription
+                ),
                 ContentBlock(
                     title: String.spacePandasTitle,
-                    paragraph: String.spacePandasDescription),
+                    paragraph: String.spacePandasDescription
+                ),
                 ContentBlock(
                     title: String.helpPandasTitle,
-                    paragraph: String.littlePandasDescription),
+                    paragraph: String.littlePandasDescription
+                ),
                 ContentBlock(
                     title: String.icons8Title,
-                    paragraph: String.icons8Description),
+                    paragraph: String.icons8Description
+                ),
                 ContentBlock(
                     title: String.movieDBTitle,
-                    paragraph: String.movieDBDescription)
+                    paragraph: String.movieDBDescription
+                )
             ]
         case .licence:
-            guard let url = Bundle.main.url(
-                forResource: "Acknowledgements",
-                withExtension: "plist",
-                subdirectory: "Settings.bundle"),
+            guard
+                let url = Bundle.main.url(
+                    forResource: "Acknowledgements",
+                    withExtension: "plist",
+                    subdirectory: "Settings.bundle"
+                ),
                 let dictionary = NSDictionary(contentsOf: url),
                 let array = dictionary.object(forKey: "PreferenceSpecifiers")
                     as? [[String: String]]
@@ -56,9 +64,12 @@ enum TextViewType {
             for element in array {
                 if let title = element["Title"],
                     let paragraph = element["FooterText"] {
-                    contentBlocks.append(ContentBlock(
-                        title: title,
-                        paragraph: paragraph))
+                    contentBlocks.append(
+                        ContentBlock(
+                            title: title,
+                            paragraph: paragraph
+                        )
+                    )
                 }
             }
 
@@ -76,10 +87,12 @@ enum TextViewType {
 
                 let range = NSRange(
                     location: chain.length - titleBlock.count,
-                    length: titleBlock.count)
+                    length: titleBlock.count
+                )
                 chain.addAttributes(
                     titleAttributes,
-                    range: range)
+                    range: range
+                )
             }
 
             var paragraphBlock = "\(block.paragraph)"
@@ -92,10 +105,12 @@ enum TextViewType {
 
             let range = NSRange(
                 location: chain.length - paragraphBlock.count,
-                length: paragraphBlock.count)
+                length: paragraphBlock.count
+            )
             chain.addAttributes(
                 paragraphAttributes,
-                range: range)
+                range: range
+            )
         }
         return chain
     }

@@ -24,7 +24,8 @@ enum UsernameAlert {
         let alert = UIAlertController(
             title: Alert.username.title,
             message: message,
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
 
         saveAction = UIAlertAction(
             title: Alert.username.action,

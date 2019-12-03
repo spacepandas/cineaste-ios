@@ -22,11 +22,13 @@ extension MovieMatchViewController {
                 with: movieWithNumber.movie,
                 numberOfMatches: movieWithNumber.number,
                 amountOfPeople: totalNumberOfPeople,
-                delegate: self)
+                delegate: self
+            )
         } else {
             cell.configure(
                 with: movieWithNumber.movie,
-                delegate: self)
+                delegate: self
+            )
         }
 
         return cell
@@ -77,9 +79,11 @@ extension MovieMatchViewController {
                 // this is incorrect
                 // we have to search for an existing movie in the store
                 watchState: movie.currentWatchState,
-                presenter: self)
+                presenter: self
+            )
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
-            })
+            }
+        )
 
         return configuration
     }

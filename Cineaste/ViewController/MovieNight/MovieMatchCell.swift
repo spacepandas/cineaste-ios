@@ -31,7 +31,8 @@ class MovieMatchCell: UITableViewCell {
         numberOfMatchesLabel.isHidden = false
         let matches = String.matches(
             for: numberOfMatches,
-            amountOfPeople: amountOfPeople)
+            amountOfPeople: amountOfPeople
+        )
         numberOfMatchesLabel.text = matches
 
         applyAccessibility(for: movie, numberOfMatches: matches)
@@ -58,7 +59,8 @@ class MovieMatchCell: UITableViewCell {
         seenButton.addTarget(
             self,
             action: #selector(startMovieNightButtonTouched),
-            for: .touchUpInside)
+            for: .touchUpInside
+        )
 
         posterImageView.loadingImage(from: movie.posterPath, in: .small)
     }
@@ -81,6 +83,7 @@ class MovieMatchCell: UITableViewCell {
 
         delegate?.movieMatchTableViewCell(
             didSelectMovie: nearbyMovie,
-            withPoster: posterImageView.image)
+            withPoster: posterImageView.image
+        )
     }
 }

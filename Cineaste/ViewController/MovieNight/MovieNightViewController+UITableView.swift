@@ -45,19 +45,23 @@ extension MovieNightViewController {
 
             // see https://github.com/spacepandas/cineaste-ios/issues/128
             // we need to filter for same ids
-            
+
             let numberOfAllMovies = combinedMessages
                 .compactMap { $0.movies.count }
                 .reduce(0, +)
             let names = combinedMessages.map { $0.userName }
 
-            cell.configureAll(numberOfMovies: numberOfAllMovies,
-                              namesOfFriends: names)
+            cell.configureAll(
+                numberOfMovies: numberOfAllMovies,
+                namesOfFriends: names
+            )
         case .specificFriend?:
             let message = nearbyMessages[indexPath.row]
 
-            cell.configure(userName: message.userName,
-                           numberOfMovies: message.movies.count)
+            cell.configure(
+                userName: message.userName,
+                numberOfMovies: message.movies.count
+            )
         default:
             break
         }

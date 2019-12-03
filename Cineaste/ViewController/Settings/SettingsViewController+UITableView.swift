@@ -40,7 +40,8 @@ extension SettingsViewController {
                 presenter: self,
                 onSave: {
                     self.reloadUsernameCell()
-                })
+                }
+            )
             present(alert, animated: true)
         case .exportMovies:
             exportMovies(showUIOn: tableView.rectForRow(at: indexPath))
@@ -50,7 +51,8 @@ extension SettingsViewController {
             let actionSheet = UIAlertController(
                 title: .contactTitle,
                 message: nil,
-                preferredStyle: .actionSheet)
+                preferredStyle: .actionSheet
+            )
 
             let email = UIAlertAction(title: "\(String.emailTo) \(Constants.emailAddress)", style: .default) { _ in
                 if MFMailComposeViewController.canSendMail() {

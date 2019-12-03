@@ -71,12 +71,14 @@ enum ContextMenu {
         case .seen:
             let moreActions = [
                 ContextMenu.moveToWatchlist(movie).action,
-                ContextMenu.delete(movie).action]
+                ContextMenu.delete(movie).action
+            ]
             actions.append(contentsOf: moreActions)
         case .watchlist:
             let moreActions = [
                 ContextMenu.moveToSeen(movie).action,
-                ContextMenu.delete(movie).action]
+                ContextMenu.delete(movie).action
+            ]
             actions.append(contentsOf: moreActions)
         }
 

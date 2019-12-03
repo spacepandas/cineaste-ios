@@ -46,7 +46,8 @@ private extension MovieRefresher {
             releaseDate: movie.releaseDate,
             watched: movieToUpdate.watched,
             watchedDate: movieToUpdate.watchedDate,
-            popularity: movie.popularity)
+            popularity: movie.popularity
+        )
 
         return updatedMovie
     }
