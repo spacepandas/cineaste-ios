@@ -88,7 +88,7 @@ extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
             switch result {
             case .success(let movie):
                 DispatchQueue.main.async {
-                    store.dispatch(updateMovie(with: movie, markAsWatched: true))
+                    store.dispatch(markMovie(movie, watched: true))
 
                     if self.resultSearchController.isActive {
                         self.resultSearchController.isActive = false

@@ -21,9 +21,9 @@ enum PreviewAction {
                 case .delete:
                     store.dispatch(MovieAction.delete(movie: movie))
                 case .moveToWatchlist:
-                    store.dispatch(updateMovie(with: movie, markAsWatched: false))
+                    store.dispatch(markMovie(movie, watched: false))
                 case .moveToSeen:
-                    store.dispatch(updateMovie(with: movie, markAsWatched: true))
+                    store.dispatch(markMovie(movie, watched: true))
                 }
         }
 

@@ -116,3 +116,21 @@ extension Movie {
         return state
     }
 }
+
+extension Movie {
+    mutating func update(withNew movie: Movie) {
+        self = Movie(
+            id: movie.id,
+            title: movie.title,
+            voteAverage: movie.voteAverage,
+            voteCount: movie.voteCount,
+            posterPath: movie.posterPath,
+            overview: movie.overview,
+            runtime: movie.runtime,
+            releaseDate: movie.releaseDate,
+            watched: watched,
+            watchedDate: watchedDate,
+            popularity: movie.popularity
+        )
+    }
+}

@@ -17,7 +17,8 @@ enum MovieRefresher {
             Webservice.load(resource: networkMovie.get) { result in
                 switch result {
                 case .success(let movie):
-                    let updatedMovie = self.update(movieToUpdate, withNew: movie)
+                    var updatedMovie = movieToUpdate
+                    updatedMovie.update(withNew: movie)
                     store.dispatch(MovieAction.update(movie: updatedMovie))
                     group.leave()
                 case .failure:
@@ -30,25 +31,5 @@ enum MovieRefresher {
         DispatchQueue.main.async {
             completionHandler()
         }
-    }
-}
-
-private extension MovieRefresher {
-    static func update(_ movieToUpdate: Movie, withNew movie: Movie) -> Movie {
-        let updatedMovie = Movie(
-            id: movie.id,
-            title: movie.title,
-            voteAverage: movie.voteAverage,
-            voteCount: movie.voteCount,
-            posterPath: movie.posterPath,
-            overview: movie.overview,
-            runtime: movie.runtime,
-            releaseDate: movie.releaseDate,
-            watched: movieToUpdate.watched,
-            watchedDate: movieToUpdate.watchedDate,
-            popularity: movie.popularity
-        )
-
-        return updatedMovie
     }
 }

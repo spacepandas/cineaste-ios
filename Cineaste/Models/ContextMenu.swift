@@ -40,7 +40,7 @@ enum ContextMenu {
                 image: UIImage(systemName: "star"),
                 identifier: UIAction.Identifier(rawValue: "watchlist")
             ) { _ in
-                store.dispatch(updateMovie(with: movie, markAsWatched: false))
+                store.dispatch(markMovie(movie, watched: false))
             }
         case .moveToSeen(let movie):
             return UIAction(
@@ -48,7 +48,7 @@ enum ContextMenu {
                 image: UIImage(systemName: "checkmark"),
                 identifier: UIAction.Identifier(rawValue: "seen")
             ) { _ in
-                store.dispatch(updateMovie(with: movie, markAsWatched: true))
+                store.dispatch(markMovie(movie, watched: true))
             }
         }
     }

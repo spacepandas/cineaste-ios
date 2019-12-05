@@ -106,7 +106,7 @@ class MovieDetailViewController: UIViewController {
         guard let movie = movie else { return }
 
         let watched = movieStateSegmentedControl.selectedSegmentIndex == 1
-        store.dispatch(updateMovie(with: movie, markAsWatched: watched))
+        store.dispatch(markMovie(movie, watched: watched))
     }
 
     @IBAction func deleteMovieFromList() {

@@ -8,11 +8,12 @@
 
 import ReSwiftThunk
 
-func updateMovie(with movie: Movie, markAsWatched: Bool) -> Thunk<AppState> {
+func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
     Thunk { dispatch, getState in
 
         var updatedMovie = movie
-        if markAsWatched {
+
+        if watched {
             updatedMovie.watched = true
             updatedMovie.watchedDate = Date()
         } else {
@@ -24,6 +25,15 @@ func updateMovie(with movie: Movie, markAsWatched: Bool) -> Thunk<AppState> {
             dispatch(MovieAction.add(movie: updatedMovie))
         } else {
             dispatch(MovieAction.update(movie: updatedMovie))
+        }
+
+        Webservice.load(resource: movie.get) { result in
+            guard case let .success(detailedMovie) = result else { return }
+
+            DispatchQueue.main.async {
+                updatedMovie.update(withNew: detailedMovie)
+                dispatch(MovieAction.update(movie: updatedMovie))
+            }
         }
     }
 }
