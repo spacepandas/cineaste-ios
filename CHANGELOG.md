@@ -9,7 +9,8 @@
 * 
 
 ## Improved
-* 
+* Show existing Movie Information in Movie Detail
+* Reload Movie Data when saving a movie
 
 # 1.15.4
 
