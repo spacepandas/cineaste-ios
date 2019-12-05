@@ -13,15 +13,13 @@ class SelectionReducerTests: XCTestCase {
 
     func testSelectMovieActionShouldSelectMovie() {
         // Given
-        let movie = Movie(id: 0)
-        let before: Int64? = 123
+        let movie = Movie.testingSeen
         let action = SelectionAction.select(movie: movie)
 
         // When
-        let after = selectionReducer(action: action, state: before)
+        let after = selectionReducer(action: action, state: SelectedMovieState())
 
         // Then
-        XCTAssertNotNil(after)
-        XCTAssertEqual(after, movie.id)
+        XCTAssertEqual(after.movie, movie)
     }
 }

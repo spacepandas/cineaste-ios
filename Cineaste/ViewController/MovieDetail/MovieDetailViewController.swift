@@ -287,14 +287,15 @@ extension MovieDetailViewController: StoreSubscriber {
     }
 
     private static func select(state: AppState) -> State {
-        guard let selectedMovieId = state.selectedMovieId else {
+        guard let selectedMovie = state.selectedMovieState.movie else {
             fatalError("This ViewController should always have a movie")
         }
 
-        let movie = state.movies.first { $0.id == selectedMovieId }
+        let movie = state.movies.first { $0.id == selectedMovie.id }
+            ?? selectedMovie
 
         return .init(
-            movieId: selectedMovieId,
+            movieId: selectedMovie.id,
             movie: movie
         )
     }

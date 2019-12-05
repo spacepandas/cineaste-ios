@@ -10,7 +10,6 @@ import ReSwift
 
 struct AppState: StateType, Equatable {
     var movies: Set<Movie> = []
-    var selectedMovieId: Int64?
 
     var storedIDs: StoredMovieIDs {
         return StoredMovieIDs(
@@ -19,6 +18,7 @@ struct AppState: StateType, Equatable {
         )
     }
 
+    var selectedMovieState = SelectedMovieState()
     var nearbyState = NearbyState()
 
     var ownNearbyMessage: NearbyMessage {
@@ -34,4 +34,8 @@ struct AppState: StateType, Equatable {
 struct NearbyState: Equatable {
     var nearbyMessages: [NearbyMessage] = []
     var selectedNearbyMessages: [NearbyMessage] = []
+}
+
+struct SelectedMovieState: Equatable {
+    var movie: Movie?
 }

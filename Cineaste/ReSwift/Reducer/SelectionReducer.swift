@@ -8,13 +8,15 @@
 
 import ReSwift
 
-func selectionReducer(action: Action, state: Int64?) -> Int64? {
-    guard let action = action as? SelectionAction else {
-        return state
-    }
+func selectionReducer(action: Action, state: SelectedMovieState?) -> SelectedMovieState {
+    var state = state ?? SelectedMovieState()
+
+    guard let action = action as? SelectionAction else { return state }
 
     switch action {
     case .select(let movie):
-        return movie.id
+        state.movie = movie
     }
+
+    return state
 }
