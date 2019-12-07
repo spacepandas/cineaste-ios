@@ -7,6 +7,7 @@
 
 ## Fixed
 * Show correct Contextual Actions in MovieMatch
+* Count Movies in MovieNight correctly
 
 ## Improved
 * Show existing Movie Information in Movie Detail

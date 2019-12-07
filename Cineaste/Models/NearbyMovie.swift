@@ -6,7 +6,7 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-struct NearbyMovie: Codable, Hashable {
+struct NearbyMovie: Codable {
     let id: Int64
     let title: String
     let posterPath: String?
@@ -15,6 +15,18 @@ struct NearbyMovie: Codable, Hashable {
     var releaseDate: Date?
     var voteAverage: Double = 0
     var runtime: Int16?
+}
+
+extension NearbyMovie: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension NearbyMovie: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension NearbyMovie {

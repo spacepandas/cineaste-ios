@@ -138,23 +138,12 @@ extension MovieMatchViewController: StoreSubscriber {
     }
 
     private func getSortedMoviesWithNumber(from messagesToMatch: [NearbyMessage]) -> [(NearbyMovie, Int)] {
-        var moviesWithNumberDict: [NearbyMovie: Int] = [:]
-
-        for movies in messagesToMatch {
-            for movie in movies.movies {
-
-                // see https://github.com/spacepandas/cineaste-ios/issues/128
-                // we have to check for movies in dict with same id
-
-                if let number = moviesWithNumberDict[movie] {
-                    moviesWithNumberDict[movie] = number + 1
-                } else {
-                    moviesWithNumberDict[movie] = 1
-                }
-            }
+        let movies = messagesToMatch.flatMap { $0.movies }
+        let moviesWithCount = movies.reduce(into: [:]) { counts, movie in
+            counts[movie, default: 0] += 1
         }
 
-        let sortedMoviesWithNumber: [(NearbyMovie, Int)] = moviesWithNumberDict.sorted {
+        let sortedMoviesWithNumber: [(NearbyMovie, Int)] = moviesWithCount.sorted {
             // first sort by number, second sort by title
             ($0.value, $1.key.title) > ($1.value, $0.key.title)
         }
