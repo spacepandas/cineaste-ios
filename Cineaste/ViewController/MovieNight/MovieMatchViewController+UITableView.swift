@@ -63,7 +63,7 @@ extension MovieMatchViewController {
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let nearbyMovie = filteredMoviesWithNumber[indexPath.row].movie
-        let movie = Movie(with: nearbyMovie)
+        let movie = ownMovies.first { $0.id == nearbyMovie.id } ?? Movie(with: nearbyMovie)
 
         let configuration = UIContextMenuConfiguration(
             identifier: indexPath as NSCopying,
@@ -75,9 +75,6 @@ extension MovieMatchViewController {
             }, actionProvider: { _ in
             let actions = ContextMenu.actions(
                 for: movie,
-                // see https://github.com/spacepandas/cineaste-ios/issues/127
-                // this is incorrect
-                // we have to search for an existing movie in the store
                 watchState: movie.currentWatchState,
                 presenter: self
             )

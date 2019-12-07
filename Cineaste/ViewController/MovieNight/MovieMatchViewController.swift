@@ -20,6 +20,7 @@ class MovieMatchViewController: UITableViewController {
     var showAllTogetherMovies: Bool {
         totalNumberOfPeople != 1
     }
+    var ownMovies: Set<Movie> = []
 
     private var moviesWithNumber: [(NearbyMovie, Int)] = []
     private(set) var filteredMoviesWithNumber: [(movie: NearbyMovie, number: Int)] = [] {
@@ -107,21 +108,21 @@ extension MovieMatchViewController: StoreSubscriber {
     struct State: Equatable {
         let title: String
         let nearbyMessages: [NearbyMessage]
+        let ownMovies: Set<Movie>
     }
 
     private static func select(state: AppState) -> State {
         let messages = state.nearbyState.selectedNearbyMessages
 
-        let title: String
-        if messages.count == 1 {
-            title = messages.first?.userName ?? ""
-        } else {
-            title = String.allResultsForMovieNight
-        }
+        let title = messages.count == 1
+            ? messages.first?.userName ?? ""
+            : String.allResultsForMovieNight
+        let movies = state.movies
 
         return .init(
             title: title,
-            nearbyMessages: messages
+            nearbyMessages: messages,
+            ownMovies: movies
         )
     }
 
@@ -132,6 +133,8 @@ extension MovieMatchViewController: StoreSubscriber {
         let sortedMoviesWithNumber = getSortedMoviesWithNumber(from: state.nearbyMessages)
         moviesWithNumber = sortedMoviesWithNumber
         filteredMoviesWithNumber = sortedMoviesWithNumber
+
+        ownMovies = state.ownMovies
     }
 
     private func getSortedMoviesWithNumber(from messagesToMatch: [NearbyMessage]) -> [(NearbyMovie, Int)] {

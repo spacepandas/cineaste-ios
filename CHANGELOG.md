@@ -6,7 +6,7 @@
 * 
 
 ## Fixed
-* 
+* Show correct Contextual Actions in MovieMatch
 
 ## Improved
 * Show existing Movie Information in Movie Detail
