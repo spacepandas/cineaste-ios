@@ -21,7 +21,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
         var state = AppState()
         let movie = Movie.testingWithoutPosterPath
         state.movies = [movie]
-        state.selectedMovieId = movie.id
+        state.selectedMovieState.movie = movie
         store = Store(reducer: appReducer, state: state)
 
         // Then
@@ -37,7 +37,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
         var state = AppState()
         let movie = Movie.testingWatchlistWithoutPosterPath
         state.movies = [movie]
-        state.selectedMovieId = movie.id
+        state.selectedMovieState.movie = movie
         store = Store(reducer: appReducer, state: state)
 
         // Then
