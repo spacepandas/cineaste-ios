@@ -6,6 +6,14 @@
 * 
 
 ## Fixed
+* 
+
+## Improved
+* 
+
+# 1.15.5
+
+## Fixed
 * Show correct Contextual Actions in MovieMatch
 * Count Movies in MovieNight correctly
 
