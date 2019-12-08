@@ -3,6 +3,40 @@
     {
       "idiom" : "universal",
       "filename" : "seen-badge.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "seen-badge-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "seen-badge-highcontrast.pdf",
+      "appearances" : [
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "seen-badge-2.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        },
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ]
     }
   ],
   "info" : {

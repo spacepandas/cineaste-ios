@@ -15,6 +15,64 @@
           "green" : "0x56"
         }
       }
+    },
+    {
+      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "red" : "0.918",
+          "alpha" : "1.000",
+          "blue" : "0.188",
+          "green" : "0.337"
+        }
+      }
+    },
+    {
+      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ],
+      "color" : {
+        "color-space" : "display-p3",
+        "components" : {
+          "red" : "0xB5",
+          "alpha" : "1.000",
+          "blue" : "0x00",
+          "green" : "0x2B"
+        }
+      }
+    },
+    {
+      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        },
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ],
+      "color" : {
+        "color-space" : "display-p3",
+        "components" : {
+          "red" : "0xEF",
+          "alpha" : "1.000",
+          "blue" : "0x45",
+          "green" : "0x93"
+        }
+      }
     }
   ]
 }

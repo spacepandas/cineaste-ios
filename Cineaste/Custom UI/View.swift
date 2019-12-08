@@ -54,6 +54,10 @@ class VoteCircleView: View {
 
         setCornerRadius()
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        layer.shadowColor = UIColor.cineShadow.cgColor
+    }
 }
 
 @IBDesignable
@@ -75,6 +79,10 @@ class ShadowView: View {
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
         layer.shadowRadius = shadowRadius
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        layer.shadowColor = UIColor.cineShadow.cgColor
     }
 }
 
@@ -221,6 +229,12 @@ class VoteView: View {
 
     @objc
     func setBorderWidth() {
-        layer.borderWidth = UIFontMetrics.default.scaledValue(for: 1)
+        DispatchQueue.main.async {
+            self.layer.borderWidth = UIFontMetrics.default.scaledValue(for: 1)
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        layer.borderColor = UIColor.cineVoteRectangle.cgColor
     }
 }

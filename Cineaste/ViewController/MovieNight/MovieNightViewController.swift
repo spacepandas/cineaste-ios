@@ -232,11 +232,17 @@ class MovieNightViewController: UITableViewController {
         nearbyPermissionStyle.alignment = .center
         nearbyPermissionStyle.lineSpacing = 3
         nearbyLinkPermissionDeniedTextView.paragraphStyle = nearbyPermissionStyle
+        nearbyLinkPermissionDeniedTextView.linkTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.cineLinkOnBlack
+        ]
 
         let nearbyUsageStyle = nearbyLinkUsageDescriptionTextView.paragraphStyle
         nearbyUsageStyle.alignment = .left
         nearbyUsageStyle.lineSpacing = 3
         nearbyLinkUsageDescriptionTextView.paragraphStyle = nearbyUsageStyle
+        nearbyLinkUsageDescriptionTextView.linkTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.cineLinkOnBlack
+        ]
     }
 
     private func configureTableView() {

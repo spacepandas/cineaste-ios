@@ -94,6 +94,10 @@ class BorderedButton: Button {
 
         titleLabel?.adjustsFontSizeToFitWidth = true
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        layer.borderColor = UIColor.cineButton.cgColor
+    }
 }
 
 extension Button {

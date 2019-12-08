@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Support High Contrast Mode
 
 ## Fixed
 * 

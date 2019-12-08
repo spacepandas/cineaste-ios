@@ -45,7 +45,6 @@ class TextView: UITextView {
     // swiftlint:disable:next implicitly_unwrapped_optional
     override var text: String! {
         didSet {
-            setup()
             setAttributes()
         }
     }
