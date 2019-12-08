@@ -3,13 +3,18 @@
 # Upcoming Release
 
 ## New
-* Support High Contrast Mode
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.16.0
+
+## New
+* Add Support for High Contrast Mode
 
 # 1.15.5
 
