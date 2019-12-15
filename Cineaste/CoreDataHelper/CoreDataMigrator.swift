@@ -58,6 +58,7 @@ private extension Movie {
             overview: storedMovie.overview ?? "",
             runtime: storedMovie.runtime,
             releaseDate: storedMovie.releaseDate,
+            genres: [],
             watched: storedMovie.watched,
             watchedDate: storedMovie.watchedDate,
             listPosition: Int(storedMovie.listPosition),

@@ -17,11 +17,17 @@ struct Movie: Equatable {
     let overview: String
     let runtime: Int16?
     var releaseDate: Date?
+    let genres: [Genre]
     //swiftlint:disable:next discouraged_optional_boolean
     var watched: Bool?
     var watchedDate: Date?
     var listPosition: Int?
     let popularity: Double?
+}
+
+struct Genre: Codable, Equatable {
+    var id: Int
+    var name: String
 }
 
 extension Movie: Codable {
@@ -34,6 +40,7 @@ extension Movie: Codable {
         case overview
         case runtime
         case releaseDate = "release_date"
+        case genres
         case watched
         case watchedDate
         case listPosition
@@ -62,6 +69,7 @@ extension Movie: Codable {
             }
         }
 
+        genres = try container.decode(forKey: .genres, default: [])
         watched = try container.decodeIfPresent(forKey: .watched)
 
         if let watchedDateString: String = try container.decodeIfPresent(forKey: .watchedDate) {
@@ -84,6 +92,7 @@ extension Movie {
         runtime = 0
         posterPath = nil
         popularity = 0
+        genres = []
     }
 
     init(with nearbyMovie: NearbyMovie) {
@@ -96,6 +105,7 @@ extension Movie {
         runtime = nearbyMovie.runtime
         releaseDate = nearbyMovie.releaseDate
         popularity = 0
+        genres = []
     }
 }
 
@@ -128,6 +138,7 @@ extension Movie {
             overview: movie.overview,
             runtime: movie.runtime,
             releaseDate: movie.releaseDate,
+            genres: movie.genres,
             watched: watched,
             watchedDate: watchedDate,
             popularity: movie.popularity

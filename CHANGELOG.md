@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Display Genre in MovieDetail
 
 ## Fixed
 * 

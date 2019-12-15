@@ -30,7 +30,13 @@ class PagedMovieResultTests: XCTestCase {
                   "vote_average": 8,
                   "runtime": 100,
                   "overview": "Follow Alex Honnold as he attempts to become the first person to ever free solo climb Yosemite's 3,000 foot high El Capitan wall. With no ropes or safety gear, this would arguably be the greatest feat in rock climbing history.",
-                  "release_date": "2018-10-12"
+                  "release_date": "2018-10-12",
+                  "genres": [
+                    {
+                      "id": 99,
+                      "name": "Documentary"
+                    }
+                  ]
                 }
               ]
             }

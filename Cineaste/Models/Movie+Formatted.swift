@@ -59,4 +59,8 @@ extension Movie {
 
         return "\(String.onDate) \(watchedDate.formattedWithTime)"
     }
+
+    var formattedGenres: String {
+        return genres.map { $0.name }.joined(separator: ", ")
+    }
 }

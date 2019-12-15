@@ -115,6 +115,12 @@ class MovieTests: XCTestCase {
 
         let jsonData = """
             {
+              "genres": [
+                {
+                  "id": 99,
+                  "name": "Documentary"
+                }
+              ],
               "id": 515042,
               "overview": "Follow Alex Honnold as he attempts to become the first person to ever free solo climb Yosemite's 3,000 foot high El Capitan wall. With no ropes or safety gear, this would arguably be the greatest feat in rock climbing history.",
               "popularity": 7.582,
@@ -145,6 +151,12 @@ class MovieTests: XCTestCase {
 
         let jsonData = """
             {
+              "genres": [
+                {
+                  "id": 99,
+                  "name": "Documentary"
+                }
+              ],
               "id": 515042,
               "overview": "Follow Alex Honnold as he attempts to become the first person to ever free solo climb Yosemite's 3,000 foot high El Capitan wall. With no ropes or safety gear, this would arguably be the greatest feat in rock climbing history.",
               "popularity": 7.582,
@@ -174,6 +186,24 @@ class MovieTests: XCTestCase {
 
         let jsonData = """
             {
+              "genres": [
+                {
+                  "id": 12,
+                  "name": "Adventure"
+                },
+                {
+                  "id": 16,
+                  "name": "Animation"
+                },
+                {
+                  "id": 10751,
+                  "name": "Family"
+                },
+                {
+                  "id": 10402,
+                  "name": "Music"
+                }
+              ],
               "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
               "release_date" : "Jan 23, 2000 00:00:00",
               "id" : 10898,
@@ -205,6 +235,24 @@ class MovieTests: XCTestCase {
 
         let expected = """
             {
+              "genres": [
+                {
+                  "id": 12,
+                  "name": "Adventure"
+                },
+                {
+                  "id": 16,
+                  "name": "Animation"
+                },
+                {
+                  "id": 10751,
+                  "name": "Family"
+                },
+                {
+                  "id": 10402,
+                  "name": "Music"
+                }
+              ],
               "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
               "release_date" : "Jan 23, 2000 00:00:00",
               "id" : 10898,
@@ -236,7 +284,21 @@ class MovieTests: XCTestCase {
 
         let jsonData = """
             {
-              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+              "genres": [
+                {
+                  "id": 16,
+                  "name": "Animation"
+                },
+                {
+                  "id": 10751,
+                  "name": "Family"
+                },
+                {
+                  "id": 14,
+                  "name": "Fantasy"
+                }
+              ],
+              "poster_path" : "/y0EOuK02TasfRGSZBdv5U910QaV.jpg",
               "release_date" : "Nov 17, 1989 00:00:00",
               "id" : 10144,
               "runtime" : 83,
@@ -268,7 +330,21 @@ class MovieTests: XCTestCase {
 
         let expected = """
             {
-              "poster_path" : "/1P7zIGdv3Z0A5L6F30Qx0r69cmI.jpg",
+              "genres": [
+                {
+                  "id": 16,
+                  "name": "Animation"
+                },
+                {
+                  "id": 10751,
+                  "name": "Family"
+                },
+                {
+                  "id": 14,
+                  "name": "Fantasy"
+                }
+              ],
+              "poster_path" : "/y0EOuK02TasfRGSZBdv5U910QaV.jpg",
               "release_date" : "Nov 17, 1989 00:00:00",
               "id" : 10144,
               "runtime" : 83,

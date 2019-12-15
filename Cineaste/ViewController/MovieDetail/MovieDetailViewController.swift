@@ -29,11 +29,11 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var votingLabel: UILabel!
     @IBOutlet private weak var background: UIView!
 
-    @IBOutlet private weak var titleLabel: TitleLabel!
-    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateAndRuntimeLabel: UILabel!
 
-    @IBOutlet private weak var moreInformationButton: ActionButton!
+    @IBOutlet private weak var moreInformationButton: UIButton!
     @IBOutlet private weak var buttonInfoLabel: UILabel!
 
     @IBOutlet private weak var movieStateSegmentedControl: UISegmentedControl!
@@ -151,7 +151,6 @@ class MovieDetailViewController: UIViewController {
         contentStackView.setCustomSpacing(30, after: moreInformationStackView)
         triangleImageView.tintColor = .cineContentBackground
         background.backgroundColor = .cineContentBackground
-        categoryLabel.isHidden = true
         votingLabel.textColor = UIColor.black
         buttonInfoLabel.textColor = UIColor.cineDescription
         posterImageView.accessibilityIgnoresInvertColors = true
@@ -220,6 +219,7 @@ class MovieDetailViewController: UIViewController {
             let descriptionTextView = descriptionTextView,
             let releaseDateAndRuntimeLabel = releaseDateAndRuntimeLabel,
             let votingLabel = votingLabel,
+            let genreLabel = genreLabel,
             let posterImageView = posterImageView
             else { return }
 
@@ -227,6 +227,13 @@ class MovieDetailViewController: UIViewController {
         releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
             + " ∙ "
             + movie.formattedRuntime
+
+        if !movie.formattedGenres.isEmpty {
+            genreLabel.isHidden = false
+            genreLabel.text = movie.formattedGenres
+        } else {
+            genreLabel.isHidden = true
+        }
 
         votingLabel.text = movie.formattedVoteAverage
         descriptionTextView.text = movie.overview
