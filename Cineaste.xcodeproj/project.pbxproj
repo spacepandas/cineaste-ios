@@ -134,7 +134,6 @@
 		3FF7910F20DE274A007B7D37 /* WatchlistMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* WatchlistMovieCell.swift */; };
 		3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */; };
 		3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E8B761FABC6F50004E8C3 /* SearchMoviesViewController.swift */; };
-		3FF7911320DE274A007B7D37 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526A70620449206004E08F7 /* MovieMatchCell.swift */; };
 		3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE259F1F9531E20067F5F5 /* AppDelegate.swift */; };
 		3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB14532025B80F0063E980 /* AlertMessage.swift */; };
@@ -1303,7 +1302,6 @@
 				3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */,
 				3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */,
 				3FF095CF2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */,
-				3FF7911320DE274A007B7D37 /* (null) in Sources */,
 				3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */,
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,

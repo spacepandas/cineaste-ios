@@ -68,6 +68,7 @@ lane :screenshots do
     app_identifier: AppIdentifier,
     clear_previous_screenshots: true,
     configuration: 'Debug',
+    dark_mode: false,
     derived_data_path: DerivedDataPath,
     devices: Test_Devices,
     languages: Test_Languages, 
