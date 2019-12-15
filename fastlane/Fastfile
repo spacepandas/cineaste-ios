@@ -99,10 +99,20 @@ lane :screenshots_limited do
   )
 end
 
-desc 'Frame Screenshots'
+desc 'Frame Screenshots for README'
 lane :frame do
+  capture_ios_screenshots(
+    app_identifier: AppIdentifier,
+    configuration: 'Debug',
+    devices: [ "iPhone 11 Pro" ],
+    languages: [ "en_US" ],
+    output_directory: "#{Target_Folder_Name}/assets",
+    scheme: Scheme_UITests,
+    skip_open_summary: true,
+    stop_after_first_error: true
+  )
   frame_screenshots(
-    path: "#{Target_Folder_Name}/screenshots"
+    path: "#{Target_Folder_Name}/assets"
   )
 end
 

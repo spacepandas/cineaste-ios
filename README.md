@@ -70,8 +70,8 @@ Cineaste App is released under the **Apache License**. Please see the [LICENSE](
 [nearbyLink]: https://developers.google.com/nearby/messages/overview
 [theMovieDb]: https://www.themoviedb.org/
 [Kingfisher]: https://github.com/onevcat/Kingfisher
-[movie-detail]: /assets/iPhone%20X-01_watchlist_detail_framed.png
-[search]: /assets/iPhone%20X-02_search_framed.png
-[watchlist]: /assets/iPhone%20X-03_watchlist_framed.png
-[seen]: /assets/iPhone%20X-04_seenList_framed.png
-[movie-night]: /assets/iPhone%20X-05_startMovieNight_friendsFound_framed.png
+[movie-detail]: /assets/iPhone%2011%20Pro-01_watchlist_detail_framed.png
+[search]: /assets/iPhone%2011%20Pro-02_search_framed.png
+[watchlist]: /assets/iPhone%2011%20Pro-03_watchlist_framed.png
+[seen]: /assets/iPhone%2011%20Pro-04_seenList_framed.png
+[movie-night]: /assets/iPhone%2011%20Pro-05_startMovieNight_friendsFound_framed.png
