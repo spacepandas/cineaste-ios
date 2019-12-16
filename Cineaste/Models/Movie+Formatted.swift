@@ -61,6 +61,9 @@ extension Movie {
     }
 
     var formattedGenres: String {
-        return genres.map { $0.name }.joined(separator: ", ")
+        return genres
+            .sorted(by: SortDescriptor.sortByGenreName)
+            .map { $0.name }
+            .joined(separator: ", ")
     }
 }

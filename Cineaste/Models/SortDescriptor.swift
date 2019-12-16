@@ -39,6 +39,10 @@ enum SortDescriptor {
     static let sortByListPositionAndTitle: SortDescriptor<Movie> = combine(
         sortDescriptors: [sortByListPosition, sortByTitle]
     )
+
+    static let sortByGenreName: SortDescriptor<Genre> = {
+        $0.name < $1.name
+    }
 }
 
 private extension SortDescriptor {
