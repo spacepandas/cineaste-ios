@@ -32,7 +32,7 @@ enum ContextMenu {
                 identifier: UIAction.Identifier(rawValue: "delete"),
                 attributes: .destructive
             ) { _ in
-                store.dispatch(MovieAction.delete(movie: movie))
+                store.dispatch(deleteMovie(movie))
             }
         case .moveToWatchlist(let movie):
             return UIAction(

@@ -86,4 +86,27 @@ class MovieThunksTests: XCTestCase {
             String(describing: expectedAction)
         )
     }
+
+    func testDeleteMovieShouldDispatchAction() {
+        // Given
+        let movieToDelete = Movie.testingWatchlist
+        let thunk = deleteMovie(movieToDelete)
+
+        var appState = AppState()
+        appState.movies = [movieToDelete]
+
+        let expectedAction = MovieAction.delete(movie: movieToDelete)
+        var actions: [Action] = []
+        store.dispatchFunction = { XCTFail("\($0)") }
+
+        // When
+        thunk.body({ actions.append($0) }, { appState })
+
+        // Then
+        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(
+            String(describing: actions[0]),
+            String(describing: expectedAction)
+        )
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -75,6 +76,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    // MARK: - Spotlight
+
+    // swiftlint:disable:next discouraged_optional_collection
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+
+        if userActivity.activityType == CSSearchableItemActionType,
+            let uniqueIdentifier = userActivity
+                .userInfo?[CSSearchableItemActivityIdentifier] as? String {
+
+            navigateToDetail(with: uniqueIdentifier)
+        }
+
+        return true
+    }
+
     // MARK: - Custom functions
 
     private func handleLaunchArguments() {
@@ -95,5 +111,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         try? Persistence.saveMovies(movies)
         try? migrator.clearCoreData()
+    }
+
+    private func navigateToDetail(with id: String) {
+        guard let tabBarVC = window?.rootViewController as? MoviesTabBarController,
+            let identifier = Int(id)
+            else { return }
+
+        guard let movie = store.state.movies.first(where: { $0.id == identifier })
+            else { return }
+
+        switch movie.currentWatchState {
+        case .watchlist:
+            tabBarVC.selectedIndex = 0
+        case .seen:
+            tabBarVC.selectedIndex = 1
+        case .undefined:
+            break
+        }
+
+        store.dispatch(SelectionAction.select(movie: movie))
+        let detailVC = MovieDetailViewController.instantiate()
+
+        guard let moviesVC = tabBarVC.selectedViewController?
+            .children.first as? MoviesViewController else { return }
+
+        moviesVC.navigationController?.presentedViewController?.dismiss(animated: false)
+        moviesVC.navigationController?.popToRootViewController(animated: false)
+        moviesVC.navigationController?.pushViewController(detailVC, animated: false)
     }
 }

@@ -19,7 +19,7 @@ enum SwipeAction {
             title: title) { _, _, success in
                 switch self {
                 case .delete:
-                    store.dispatch(MovieAction.delete(movie: movie))
+                    store.dispatch(deleteMovie(movie))
                 case .moveToWatchlist:
                     store.dispatch(markMovie(movie, watched: false))
                 case .moveToSeen:

@@ -12,6 +12,7 @@ final class PersistenceSubscriber: StoreSubscriber {
     func newState(state movies: Set<Movie>) {
         try? Persistence.saveMovies(movies)
 
+        SpotlightIndexing.indexItems(movies)
         ShortcutItemRefresher.refreshShortcutItems(for: movies)
         AppStoreReview.requestReview()
     }

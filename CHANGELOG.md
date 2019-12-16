@@ -4,6 +4,7 @@
 
 ## New
 * Display Genre in MovieDetail
+* Add Spotlight Search for own Movies
 
 ## Fixed
 * 

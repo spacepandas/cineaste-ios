@@ -37,3 +37,10 @@ func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
         }
     }
 }
+
+func deleteMovie(_ movie: Movie) -> Thunk<AppState> {
+    Thunk { dispatch, _ in
+        dispatch(MovieAction.delete(movie: movie))
+        SpotlightIndexing.deindexItem(movie)
+    }
+}

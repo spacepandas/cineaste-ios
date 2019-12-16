@@ -74,6 +74,7 @@
 		3F85488A21039778007A322E /* IndexPath+Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F85488821039778007A322E /* IndexPath+Last.swift */; };
 		3F8CEBEE2250A229001916BD /* Screenshots+ScrollToElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8CEBED2250A229001916BD /* Screenshots+ScrollToElement.swift */; };
 		3F98C82621D262A500F926E9 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98C82521D262A500F926E9 /* Importer.swift */; };
+		3F9FACF423A8290000D93464 /* SpotlightIndexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9FACF323A8290000D93464 /* SpotlightIndexing.swift */; };
 		3FA48FA020FA7C14002F7665 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48F9E20FA7C14002F7665 /* SearchController.swift */; };
 		3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA120FA856E002F7665 /* MoviesViewController+SearchController.swift */; };
 		3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */; };
@@ -297,6 +298,7 @@
 		3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutIdentifier.swift; sourceTree = "<group>"; };
 		3F98063E20556EA700B92A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F98C82521D262A500F926E9 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
+		3F9FACF323A8290000D93464 /* SpotlightIndexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexing.swift; sourceTree = "<group>"; };
 		3FA48F9E20FA7C14002F7665 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		3FA48FA120FA856E002F7665 /* MoviesViewController+SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+SearchController.swift"; sourceTree = "<group>"; };
 		3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesViewController+3DTouch.swift"; sourceTree = "<group>"; };
@@ -748,6 +750,7 @@
 				3F1EE5942219FD1A00F6E6E2 /* MovieRefresher.swift */,
 				3F83BE971FF3BF7000E584E9 /* Segue.swift */,
 				3F02493A2388782300BA545C /* ShortcutItemRefresher.swift */,
+				3F9FACF323A8290000D93464 /* SpotlightIndexing.swift */,
 				3FFEC6CC236DCF91005E7EED /* Storyboard.swift */,
 				3FDEE3ED22A3CD1700CFB2C7 /* UsernameAlert.swift */,
 			);
@@ -1228,6 +1231,7 @@
 			files = (
 				4EB512042268B1FD00CBDC7E /* SelectionReducer.swift in Sources */,
 				3FF790E620DE274A007B7D37 /* Instantiable.swift in Sources */,
+				3F9FACF423A8290000D93464 /* SpotlightIndexing.swift in Sources */,
 				3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */,
 				3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */,
 				3F3BCAAD22D210AA005BEF12 /* StoredMovieIDs.swift in Sources */,
