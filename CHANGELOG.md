@@ -3,14 +3,19 @@
 # Upcoming Release
 
 ## New
-* Display Genre in MovieDetail
-* Add Spotlight Search for own Movies
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.17.0
+
+## New
+* Display Genre in MovieDetail
+* Add Spotlight Search for own Movies
 
 # 1.16.0
 
