@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.18.1
+
+## Fixed
+* Fix Shortcut Action when settings tab was selected
+
 # 1.18.0
 
 ## New
