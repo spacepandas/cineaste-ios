@@ -12,4 +12,5 @@ enum ShortcutIdentifier: String {
     case startMovieNight
     case watchlist
     case seen
+    case discover
 }

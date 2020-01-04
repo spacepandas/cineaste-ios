@@ -35,6 +35,14 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
+            <key>UIApplicationShortcutItemType</key>
+            <string>discover</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeSearch</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Discover</string>
+		</dict>
+		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>movieNight</string>
 			<key>UIApplicationShortcutItemTitle</key>

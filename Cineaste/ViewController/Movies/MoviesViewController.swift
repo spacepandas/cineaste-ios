@@ -97,7 +97,7 @@ class MoviesViewController: UITableViewController {
 
     // MARK: - Action
 
-    @IBAction func addMovieButtonTouched(_ sender: Any) {
+    @IBAction func addMovieButtonTouched() {
         performSegue(withIdentifier: Segue.showSearchFromMovieList.rawValue, sender: nil)
     }
 

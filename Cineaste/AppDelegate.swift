@@ -71,6 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 else { return false }
 
             moviesVC.movieNightButtonTouched()
+        case .discover:
+            guard let moviesVC = tabBarVC.selectedViewController?
+                .children.first as? MoviesViewController
+                else { return false }
+
+            moviesVC.addMovieButtonTouched()
         }
 
         return true

@@ -8,6 +8,7 @@
 
 //Shortcut Identifier
 StartMovieNightTitle = "Start movie night";
+Discover = "Discover movies";
 
 //Permission
 NSMicrophoneUsageDescription = "The microphone can be used in addition to Wifi and Bluetooth, to discover nearby devices faster and more reliable";

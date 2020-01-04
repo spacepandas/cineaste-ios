@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Add "Discover Movies" Shortcut on AppIcon to quicker search for currently popular movies
 
 ## Fixed
 * 
