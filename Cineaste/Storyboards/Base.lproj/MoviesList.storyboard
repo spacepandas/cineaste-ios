@@ -271,7 +271,7 @@
                                             <rect key="frame" x="135.5" y="62" width="46" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
-                                                <action selector="addMovieButtonTouched:" destination="Uku-M8-iEE" eventType="touchUpInside" id="b3T-g8-are"/>
+                                                <action selector="addMovieButtonTouched" destination="Uku-M8-iEE" eventType="touchUpInside" id="chZ-WW-Fi0"/>
                                             </connections>
                                         </button>
                                     </subviews>
