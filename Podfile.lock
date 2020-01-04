@@ -21,7 +21,7 @@ PODS:
   - ReSwiftThunk/Core (1.2.0):
     - ReSwift (~> 5.0)
   - SnapshotTesting (1.7.0)
-  - SwiftLint (0.38.0)
+  - SwiftLint (0.38.1)
 
 DEPENDENCIES:
   - Kingfisher
@@ -54,7 +54,7 @@ SPEC CHECKSUMS:
   ReSwift: 628f1a9b3ee52e3b3ca2a644435472fd77afafe1
   ReSwiftThunk: 23c8ea9092d9dc94b72005f19352dbd37fa42533
   SnapshotTesting: 273b614fcc60fac7d9f613f6648afa91a7da36be
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  SwiftLint: 0aeb99ca7ccfc222ef93e2560a35e669f5465e6c
 
 PODFILE CHECKSUM: 63c5347dc001ae7bf34c449280f27aa809ebce44
 
