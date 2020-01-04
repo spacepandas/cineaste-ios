@@ -66,12 +66,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .seen:
             tabBarVC.selectedIndex = 1
         case .startMovieNight:
+            tabBarVC.selectedIndex = 0
             guard let moviesVC = tabBarVC.selectedViewController?
                 .children.first as? MoviesViewController
                 else { return false }
 
             moviesVC.movieNightButtonTouched()
         case .discover:
+            tabBarVC.selectedIndex = 0
             guard let moviesVC = tabBarVC.selectedViewController?
                 .children.first as? MoviesViewController
                 else { return false }
