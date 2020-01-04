@@ -3,10 +3,18 @@
 # Upcoming Release
 
 ## New
-* Add "Discover Movies" Shortcut on AppIcon to quicker search for currently popular movies
+* 
 
 ## Fixed
 * 
+
+## Improved
+* 
+
+# 1.18.0
+
+## New
+* Add "Discover Movies" Shortcut on AppIcon to quicker search for currently popular movies
 
 ## Improved
 * Rename Placeholder for Search Textfield in Watchlist and History

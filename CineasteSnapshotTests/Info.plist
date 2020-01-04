@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.17.0</string>
+	<string>1.18.0</string>
 	<key>CFBundleVersion</key>
-	<string>566</string>
+	<string>571</string>
 	<key>NSPrincipalClass</key>
 	<string>CineasteSnapshotTests.XCTestObserver</string>
 </dict>
