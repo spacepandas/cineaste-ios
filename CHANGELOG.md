@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Rename Placeholder for Search Textfield in Watchlist and History
 
 # 1.17.0
 

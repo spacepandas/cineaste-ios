@@ -23,9 +23,7 @@ class MoviesViewController: UITableViewController {
         didSet {
             guard oldValue != category else { return }
 
-            title = category.title
-            emptyListLabel.text = String.title(for: category)
-
+            updateUI(for: category)
             movies = movies.filter { $0.watched == category.watched }
         }
     }
@@ -50,7 +48,6 @@ class MoviesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = category.title
         view.backgroundColor = UIColor.cineListBackground
 
         startMovieNightButton.accessibilityLabel = .startMovieNight
@@ -59,6 +56,8 @@ class MoviesViewController: UITableViewController {
         addMovieButton.accessibilityIdentifier = "AddMovie.Button"
 
         registerForPreviewing(with: self, sourceView: tableView)
+
+        updateUI(for: category)
 
         configureTableView()
         configureSearchController()
@@ -168,6 +167,14 @@ class MoviesViewController: UITableViewController {
     }
 
     // MARK: - Custom functions
+
+    private func updateUI(for category: MovieListCategory) {
+        title = category.title
+        emptyListLabel.text = String.title(for: category)
+        resultSearchController.searchBar.placeholder = .searchInCategoryPlaceholder
+            + " "
+            + category.title
+    }
 
     func showEmptyStateIfNeeded(_ showEmptyState: Bool) {
         DispatchQueue.main.async {

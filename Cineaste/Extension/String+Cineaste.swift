@@ -50,6 +50,7 @@ extension String {
         }
     }
 
+    static let searchInCategoryPlaceholder = NSLocalizedString("searchIn", comment: "Placeholder for search textField in MoviesList")
     static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
     static let onDate = NSLocalizedString("onDate", comment: "on a date")
 
