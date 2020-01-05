@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Display cached poster instead of placeholder image
 
 # 1.18.1
 
