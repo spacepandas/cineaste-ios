@@ -59,12 +59,11 @@ class MovieDetailViewController: UIViewController {
 
             updateUI(for: movie)
 
-            if !detailsLoaded {
+            if !movie.hasAlreadyLoadedDetails {
                 loadDetails(for: movie)
             }
         }
     }
-    private var detailsLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,8 +207,7 @@ class MovieDetailViewController: UIViewController {
             guard case let .success(detailedMovie) = result else { return }
 
             DispatchQueue.main.async {
-                self.detailsLoaded = true
-                self.movie = detailedMovie
+                store.dispatch(SelectionAction.select(movie: detailedMovie))
             }
         }
     }
@@ -317,7 +315,6 @@ extension MovieDetailViewController: StoreSubscriber {
             selectedMovie = oldMovie
         } else {
             selectedMovie = Movie(id: state.movieId)
-            detailsLoaded = false
         }
 
         movie = selectedMovie

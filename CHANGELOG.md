@@ -6,7 +6,7 @@
 * 
 
 ## Fixed
-* 
+* Save selected movie with updated information from network to not load information from the network again when a back navigation was triggered but not completed. 
 
 ## Improved
 * Display cached poster instead of placeholder image

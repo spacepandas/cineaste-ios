@@ -81,8 +81,16 @@ extension Movie: Codable {
     }
 }
 
+extension Movie: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 extension Movie {
-    // This is only for creating a movie to use it with the webservice
+
+    ///  This is for creating a movie to use it with the webservice
+    /// - Parameter id: movie id
     init(id: Int64) {
         self.id = id
         title = ""
@@ -95,6 +103,8 @@ extension Movie {
         genres = []
     }
 
+    /// Create a movie with the information from nearby movie
+    /// - Parameter nearbyMovie: The movie which was received from nearby
     init(with nearbyMovie: NearbyMovie) {
         id = nearbyMovie.id
         title = nearbyMovie.title
@@ -107,27 +117,9 @@ extension Movie {
         popularity = 0
         genres = []
     }
-}
 
-extension Movie: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
-extension Movie {
-    var currentWatchState: WatchState {
-        let state: WatchState
-        if let watched = watched {
-            state = watched ? .seen : .watchlist
-        } else {
-            state = .undefined
-        }
-        return state
-    }
-}
-
-extension Movie {
+    /// Update the information of a movie
+    /// - Parameter movie: a new movie with update information
     mutating func update(withNew movie: Movie) {
         self = Movie(
             id: movie.id,
@@ -143,5 +135,21 @@ extension Movie {
             watchedDate: watchedDate,
             popularity: movie.popularity
         )
+    }
+
+    /// The current watch state for a movie, computed with the watched property
+    var currentWatchState: WatchState {
+        let state: WatchState
+        if let watched = watched {
+            state = watched ? .seen : .watchlist
+        } else {
+            state = .undefined
+        }
+        return state
+    }
+
+    /// To indicate whether detail information are already loaded from network
+    var hasAlreadyLoadedDetails: Bool {
+        return runtime != nil
     }
 }
