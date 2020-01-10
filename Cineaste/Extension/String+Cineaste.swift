@@ -71,7 +71,7 @@ extension String {
     }
 
     static func voting(for vote: String) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
+        String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
     }
 
     // MARK: SETTINGS VIEWCONTROLLER ELEMENTS
@@ -111,12 +111,12 @@ extension String {
 
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
+        String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
     }
 
     // MARK: MOVIENIGHT
     static func matches(for number: Int, amountOfPeople: Int) -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%d of %d", comment: "Number of matches description"), number, amountOfPeople)
+        String.localizedStringWithFormat(NSLocalizedString("%d of %d", comment: "Number of matches description"), number, amountOfPeople)
     }
 
     static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")

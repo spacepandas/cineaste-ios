@@ -127,6 +127,6 @@ extension SettingsViewController: UITextFieldDelegate {
 }
 
 extension SettingsViewController: Instantiable {
-    static var storyboard: Storyboard { return .settings }
-    static var storyboardID: String? { return "SettingsViewController" }
+    static var storyboard: Storyboard { .settings }
+    static var storyboardID: String? { "SettingsViewController" }
 }

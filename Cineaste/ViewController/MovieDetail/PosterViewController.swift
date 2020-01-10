@@ -192,13 +192,13 @@ class PosterViewController: UIViewController {
 
 extension PosterViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
+        imageView
     }
 }
 
 extension PosterViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        true
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -212,6 +212,6 @@ extension PosterViewController: UIGestureRecognizerDelegate {
 }
 
 extension PosterViewController: Instantiable {
-    static var storyboard: Storyboard { return .movieDetail }
-    static var storyboardID: String? { return "PosterViewController" }
+    static var storyboard: Storyboard { .movieDetail }
+    static var storyboardID: String? { "PosterViewController" }
 }

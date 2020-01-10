@@ -77,6 +77,6 @@ extension SettingsDetailViewController: UITextViewDelegate {
 }
 
 extension SettingsDetailViewController: Instantiable {
-    static var storyboard: Storyboard { return .settings }
-    static var storyboardID: String? { return "ImprintViewController" }
+    static var storyboard: Storyboard { .settings }
+    static var storyboardID: String? { "ImprintViewController" }
 }

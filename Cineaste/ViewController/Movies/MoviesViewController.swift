@@ -91,7 +91,7 @@ class MoviesViewController: UITableViewController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        .lightContent
     }
 
     // MARK: - Action
@@ -208,7 +208,7 @@ extension MoviesViewController: StoreSubscriber {
     }
 
     private static func select(state: AppState) -> State {
-        return .init(movies: state.movies)
+        .init(movies: state.movies)
     }
 
     func newState(state: State) {
@@ -229,6 +229,6 @@ extension MoviesViewController: StoreSubscriber {
 // MARK: - Instantiable
 
 extension MoviesViewController: Instantiable {
-    static var storyboard: Storyboard { return .movieList }
-    static var storyboardID: String? { return "MoviesViewController" }
+    static var storyboard: Storyboard { .movieList }
+    static var storyboardID: String? { "MoviesViewController" }
 }

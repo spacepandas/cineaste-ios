@@ -47,8 +47,7 @@ enum SortDescriptor {
 
 private extension SortDescriptor {
     static func combine<Value>(sortDescriptors: [SortDescriptor<Value>])
-        -> SortDescriptor<Value> {
-        return { lhs, rhs in
+        -> SortDescriptor<Value> { { lhs, rhs in
             for isOrderedBefore in sortDescriptors {
                 if isOrderedBefore(lhs, rhs) { return true }
                 if isOrderedBefore(rhs, lhs) { return false }

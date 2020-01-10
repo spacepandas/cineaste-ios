@@ -68,6 +68,6 @@ extension MoviesTabBarController: UITabBarControllerDelegate {
 }
 
 extension MoviesTabBarController: Instantiable {
-    static var storyboard: Storyboard { return .main }
-    static var storyboardID: String? { return "MoviesTabBarController" }
+    static var storyboard: Storyboard { .main }
+    static var storyboardID: String? { "MoviesTabBarController" }
 }

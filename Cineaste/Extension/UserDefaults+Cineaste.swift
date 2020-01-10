@@ -17,19 +17,19 @@ extension UserDefaults {
 
     /// The last version an appstore review has promted
     var lastVersionPromptedForReview: String? {
-        get { return string(forKey: lastVersionPromptedForReviewKey) }
+        get { string(forKey: lastVersionPromptedForReviewKey) }
         set { set(newValue, forKey: lastVersionPromptedForReviewKey) }
     }
 
     /// The counter how often it could be asked for an appstore review
     var processCompletedCount: Int {
-        get { return integer(forKey: processCompletedCountKey) }
+        get { integer(forKey: processCompletedCountKey) }
         set { set(newValue, forKey: processCompletedCountKey) }
     }
 
     /// The number of times that the "Swipe Action" hint of the movie cells has been shown
     var swipeActionHintShowCount: Int {
-        get { return integer(forKey: swipeActionHintShowCountKey) }
+        get { integer(forKey: swipeActionHintShowCountKey) }
         set { set(newValue, forKey: swipeActionHintShowCountKey) }
     }
 

@@ -17,14 +17,14 @@ extension UIFont {
     }
 
     func bold() -> UIFont {
-        return withTraits(traits: .traitBold)
+        withTraits(traits: .traitBold)
     }
 
     func condensed() -> UIFont {
-        return withTraits(traits: .traitCondensed)
+        withTraits(traits: .traitCondensed)
     }
 
     func italic() -> UIFont {
-        return withTraits(traits: .traitItalic)
+        withTraits(traits: .traitItalic)
     }
 }
