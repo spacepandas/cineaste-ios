@@ -49,4 +49,6 @@ jobs:
       run: pod install --repo-update
 
     - name: Run Swiftlint
-      run: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
+      run: |
+        Pods/SwiftLint/swiftlint autocorrect
+        Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
