@@ -14,7 +14,7 @@ protocol Instantiable: AnyObject {
 }
 
 extension Instantiable {
-    static var storyboardID: String? { return nil }
+    static var storyboardID: String? { nil }
 
     static func instantiate() -> Self {
         let sb = storyboard.load()

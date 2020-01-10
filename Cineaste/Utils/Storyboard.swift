@@ -19,6 +19,6 @@ enum Storyboard: String {
 
 extension Storyboard {
     func load() -> UIStoryboard {
-        return UIStoryboard(name: self.rawValue, bundle: .main)
+        UIStoryboard(name: self.rawValue, bundle: .main)
     }
 }

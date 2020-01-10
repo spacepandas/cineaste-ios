@@ -38,7 +38,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
 
 extension SearchMoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesWithWatchStates.count
+        moviesWithWatchStates.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

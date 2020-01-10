@@ -381,6 +381,6 @@ extension MovieNightViewController: StoreSubscriber {
 }
 
 extension MovieNightViewController: Instantiable {
-    static var storyboard: Storyboard { return .movieNight }
-    static var storyboardID: String? { return "MovieNightViewController" }
+    static var storyboard: Storyboard { .movieNight }
+    static var storyboardID: String? { "MovieNightViewController" }
 }

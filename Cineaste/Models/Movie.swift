@@ -150,6 +150,6 @@ extension Movie {
 
     /// To indicate whether detail information are already loaded from network
     var hasAlreadyLoadedDetails: Bool {
-        return runtime != nil
+        runtime != nil
     }
 }

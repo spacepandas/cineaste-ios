@@ -10,6 +10,6 @@ import Foundation
 
 extension IndexPath {
     func isLast(of numberOfElements: Int) -> Bool {
-        return row == numberOfElements - 1
+        row == numberOfElements - 1
     }
 }

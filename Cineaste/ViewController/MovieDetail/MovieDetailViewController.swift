@@ -323,6 +323,6 @@ extension MovieDetailViewController: StoreSubscriber {
 }
 
 extension MovieDetailViewController: Instantiable {
-    static var storyboard: Storyboard { return .movieDetail }
-    static var storyboardID: String? { return "MovieDetailViewController" }
+    static var storyboard: Storyboard { .movieDetail }
+    static var storyboardID: String? { "MovieDetailViewController" }
 }

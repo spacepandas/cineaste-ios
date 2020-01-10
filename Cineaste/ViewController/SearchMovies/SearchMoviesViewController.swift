@@ -40,7 +40,7 @@ class SearchMoviesViewController: UIViewController {
     }
 
     var moviesWithoutWatchState: [Movie] {
-        return moviesWithWatchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
+        moviesWithWatchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
     }
 
     var moviesFromNetworking: Set<Movie> = [] {
@@ -102,7 +102,7 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Navigation
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        .lightContent
     }
 
     // MARK: - Actions
@@ -188,7 +188,7 @@ extension SearchMoviesViewController: StoreSubscriber {
     }
 
     private static func select(state: AppState) -> State {
-        return .init(storedIDs: state.storedIDs)
+        .init(storedIDs: state.storedIDs)
     }
 
     func newState(state: State) {
@@ -197,6 +197,6 @@ extension SearchMoviesViewController: StoreSubscriber {
 }
 
 extension SearchMoviesViewController: Instantiable {
-    static var storyboard: Storyboard { return .search }
-    static var storyboardID: String? { return "SearchMoviesViewController" }
+    static var storyboard: Storyboard { .search }
+    static var storyboardID: String? { "SearchMoviesViewController" }
 }

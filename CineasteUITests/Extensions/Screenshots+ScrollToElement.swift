@@ -18,12 +18,12 @@ extension XCUIApplication {
     }
 
     var screenTopCoordinate: XCUICoordinate {
-        return windows.firstMatch
+        windows.firstMatch
             .coordinate(withNormalizedOffset: Offset.top)
     }
 
     private var screenBottomCoordinate: XCUICoordinate {
-        return windows.firstMatch
+        windows.firstMatch
             .coordinate(withNormalizedOffset: Offset.bottom)
     }
 

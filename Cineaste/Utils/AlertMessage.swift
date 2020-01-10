@@ -46,7 +46,7 @@ class Alert: AlertMessage {
     )
 
     static func loadingData(with error: Error) -> AlertMessage {
-        return AlertMessage(
+        AlertMessage(
             title: .errorTitle,
             message: .loadingDataErrorMessage + "\n\n" + error.localizedDescription,
             action: .okAction
@@ -54,7 +54,7 @@ class Alert: AlertMessage {
     }
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
-        return AlertMessage(
+        AlertMessage(
             title: .infoTitle,
             message: .importSucceededMessage(with: counter),
             action: .okAction

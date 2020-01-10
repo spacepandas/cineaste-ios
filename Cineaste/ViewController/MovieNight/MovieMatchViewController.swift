@@ -153,6 +153,6 @@ extension MovieMatchViewController: StoreSubscriber {
 }
 
 extension MovieMatchViewController: Instantiable {
-    static var storyboard: Storyboard { return .movieNight }
-    static var storyboardID: String? { return "MovieMatchViewController" }
+    static var storyboard: Storyboard { .movieNight }
+    static var storyboardID: String? { "MovieMatchViewController" }
 }
