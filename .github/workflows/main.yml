@@ -1,0 +1,52 @@
+name: CI
+
+on: [push]
+
+jobs:
+  unit_tests:
+    name: Unit Tests
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install Gem Dependencies
+      run: bundle install
+        
+    - name: Install CocoaPods Dependencies
+      run: pod install --repo-update
+
+    - name: Run UnitTests
+      run: bundle exec fastlane test
+
+  snapshot_tests:
+    name: Snapshot Tests
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install Gem Dependencies
+      run: bundle install
+
+    - name: Install CocoaPods Dependencies
+      run: pod install --repo-update
+
+    - name: Run SnapshotTests
+      run: bundle exec fastlane snapshot_test
+
+  swiftlint:
+    name: Swiftlint
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install CocoaPods Dependencies
+      run: pod install --repo-update
+
+    - name: Run Swiftlint
+      run: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
