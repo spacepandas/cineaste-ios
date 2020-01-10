@@ -903,6 +903,7 @@
 				3FF7912420DE274A007B7D37 /* Resources */,
 				CD74012A51FF7EC5301BEC5B /* [CP] Embed Pods Frameworks */,
 				A3F66B6DF3E1EF7D11DFD176 /* [CP] Copy Pods Resources */,
+				3F9C0A1B23C92ECA00CDB993 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -1035,6 +1036,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "NEARBY_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :NEARBY_KEY' Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist)\"\nMOVIEDB_KEY=\"$(/usr/libexec/PlistBuddy -c 'Print :MOVIEDB_KEY' Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist)\"\nif [[ -z \"$NEARBY_KEY\" ]]; then\necho \"Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a NEARBY_KEY to apikey.plist\"\nfi\nif [[ -z \"$MOVIEDB_KEY\" ]]; then\necho \"Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist\":1: warning: \"Add a MOVIEDB_KEY to apikey.plist\"\nfi\nexit 0\n";
+		};
+		3F9C0A1B23C92ECA00CDB993 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml\n";
 		};
 		6FC38B6DE4FFCA0B830AEDA5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
