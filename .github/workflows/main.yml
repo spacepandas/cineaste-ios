@@ -3,71 +3,35 @@ name: CI
 on: [push]
 
 jobs:
-  dependencies:
-    name: Set Up Dependencies
-    runs-on: macOS-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Cache Ruby Gems
-      uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-
-    - name: Cache Cocoapods
-      uses: actions/cache@v1
-      with:
-        path: Pods
-        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-pods-
-
-    - name: Install Gem Dependencies
-      run: |
-        bundle config path vendor/bundle
-        bundle install
-        
-    - name: Install CocoaPods Dependencies
-      run: pod install --repo-update
-
-
   unit_tests:
-    needs: dependencies
     name: Unit Tests
     runs-on: macOS-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    - name: Dependencies
+      uses: ./.github/actions/dependencies
 
     - name: Run UnitTests
       run: bundle exec fastlane test
 
   snapshot_tests:
-    needs: dependencies
     name: Snapshot Tests
     runs-on: macOS-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    - name: Dependencies
+      uses: ./.github/actions/dependencies
 
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
 
   swiftlint:
-    needs: dependencies
     name: Swiftlint
     runs-on: macOS-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    - name: Dependencies
+      uses: ./.github/actions/dependencies
 
     - name: Run Swiftlint
       run: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
