@@ -42,6 +42,9 @@ jobs:
     runs-on: macOS-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
     - name: Run UnitTests
       run: bundle exec fastlane test
 
@@ -51,6 +54,9 @@ jobs:
     runs-on: macOS-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
 
@@ -60,5 +66,8 @@ jobs:
     runs-on: macOS-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
     - name: Run Swiftlint
       run: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
