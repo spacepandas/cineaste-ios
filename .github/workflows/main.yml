@@ -43,16 +43,8 @@ jobs:
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
 
-  swiftlint:
-    name: Swiftlint
-    runs-on: macOS-latest
-
+  lint:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Install CocoaPods Dependencies
-      run: pod install --repo-update
-
-    - name: Run Swiftlint
-      run: Pods/SwiftLint/swiftlint lint --config .swiftlint.yml
+    - uses: actions/checkout@v1
+    - uses: norio-nomura/action-swiftlint@3.0.1
