@@ -48,3 +48,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: norio-nomura/action-swiftlint@3.0.1
+      with:
+        args: --strict
