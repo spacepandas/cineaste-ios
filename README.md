@@ -4,7 +4,7 @@
 
 # Cineaste App (iOS)
 
-[![Build Status](https://travis-ci.com/spacepandas/cineaste-ios.svg?branch=master)](https://travis-ci.org/spacepandas/cineaste-ios.svg?branch=master)
+[![Build Status](https://github.com/spacepandas/cineaste-ios/workflows/CI/badge.svg)](https://github.com/spacepandas/cineaste-ios/workflows/CI/badge.svg)
 [![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
 [![platform](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)
