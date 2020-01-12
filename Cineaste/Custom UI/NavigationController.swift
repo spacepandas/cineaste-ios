@@ -24,7 +24,7 @@ class NavigationController: UINavigationController {
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.cineNavBarTitle
         ]
-        let largeTitleTextAttributes: [NSAttributedString.Key: Any] = [
+        let largeTitleTextAttributes:[NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.cineNavBarTitle
         ]
 
