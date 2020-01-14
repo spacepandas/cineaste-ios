@@ -46,7 +46,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: norio-nomura/action-swiftlint@3.0.1
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Run SwiftLint Checks
+      uses: norio-nomura/action-swiftlint@3.0.1
       with:
         args: --strict
