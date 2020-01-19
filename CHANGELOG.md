@@ -6,6 +6,14 @@
 * 
 
 ## Fixed
+* 
+
+## Improved
+* 
+
+# 1.18.2
+
+## Fixed
 * Save selected movie with updated information from network to not load information from the network again when a back navigation was triggered but not completed. 
 
 ## Improved
