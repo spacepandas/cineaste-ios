@@ -37,6 +37,20 @@ jobs:
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
 
+  ui_tests:
+    name: UI Tests
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install Gem Dependencies
+      run: bundle install
+
+    - name: Run UITests
+      run: bundle exec fastlane ui_test
+
   lint:
     runs-on: ubuntu-latest
     steps:
