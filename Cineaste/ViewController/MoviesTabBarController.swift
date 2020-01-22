@@ -37,6 +37,15 @@ class MoviesTabBarController: UITabBarController {
         seenVC.tabBarItem.accessibilityIdentifier = "SeenTab"
         let seenVCWithNavi = NavigationController(rootViewController: seenVC)
 
+        let searchVC = SearchMoviesViewController.instantiate()
+        searchVC.tabBarItem = UITabBarItem(
+            title: String.searchTitle,
+            image: UIImage.searchIcon,
+            tag: 2
+        )
+        searchVC.tabBarItem.accessibilityIdentifier = "SearchTab"
+        let searchVCWithNavi = NavigationController(rootViewController: searchVC)
+
         let settingsVC = SettingsViewController.instantiate()
         settingsVC.tabBarItem = UITabBarItem(
             title: String.moreTitle,
@@ -46,7 +55,12 @@ class MoviesTabBarController: UITabBarController {
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = NavigationController(rootViewController: settingsVC)
 
-        viewControllers = [watchlistVCWithNavi, seenVCWithNavi, settingsVCWithNavi]
+        viewControllers = [
+            watchlistVCWithNavi,
+            seenVCWithNavi,
+            searchVCWithNavi,
+            settingsVCWithNavi
+        ]
     }
 }
 
@@ -58,12 +72,29 @@ extension MoviesTabBarController: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard lastViewController == viewController,
-            let navi = viewController as? UINavigationController,
-            let tvc = navi.topViewController as? UITableViewController,
-            !tvc.tableView.visibleCells.isEmpty
+            let navi = viewController as? UINavigationController
             else { return }
 
-        tvc.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        var possibleTableView: UITableView?
+        if let topVC = navi.topViewController as? MoviesViewController {
+            possibleTableView = topVC.tableView
+        } else if let topVC = navi.topViewController as? SearchMoviesViewController {
+            possibleTableView = topVC.tableView
+        } else if let topVC = navi.topViewController as? SettingsViewController {
+            possibleTableView = topVC.tableView
+        } else if let topVC = navi.topViewController as? UITableViewController {
+            possibleTableView = topVC.tableView
+        }
+
+        guard let tableView = possibleTableView,
+            !tableView.visibleCells.isEmpty
+            else { return }
+
+        tableView.scrollToRow(
+            at: IndexPath(row: 0, section: 0),
+            at: .top,
+            animated: true
+        )
     }
 }
 

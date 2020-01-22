@@ -17,7 +17,6 @@ class MoviesViewController: UITableViewController {
     @IBOutlet private var emptyViewStackView: UIStackView!
 
     @IBOutlet private weak var startMovieNightButton: UIBarButtonItem!
-    @IBOutlet private weak var addMovieButton: UIBarButtonItem!
 
     var category: MovieListCategory = .watchlist {
         didSet {
@@ -52,8 +51,6 @@ class MoviesViewController: UITableViewController {
 
         startMovieNightButton.accessibilityLabel = .startMovieNight
         startMovieNightButton.accessibilityIdentifier = "StartMovieNight.Button"
-        addMovieButton.accessibilityLabel = .addMovieTitle
-        addMovieButton.accessibilityIdentifier = "AddMovie.Button"
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -97,7 +94,7 @@ class MoviesViewController: UITableViewController {
     // MARK: - Action
 
     @IBAction func addMovieButtonTouched() {
-        performSegue(withIdentifier: Segue.showSearchFromMovieList.rawValue, sender: nil)
+        tabBarController?.selectedIndex = 2
     }
 
     @IBAction func movieNightButtonTouched() {
@@ -162,7 +159,7 @@ class MoviesViewController: UITableViewController {
         empyListTitle.text = .noContentTitle
         emptyListAddMovieButton.backgroundColor = .cineButton
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
-        emptyListAddMovieButton.setTitle(.addMovieTitle, for: .normal)
+        emptyListAddMovieButton.setTitle(.discoverMovieTitle, for: .normal)
         emptyViewStackView.setCustomSpacing(30, after: emptyListLabel)
     }
 

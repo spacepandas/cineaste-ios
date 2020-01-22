@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Move Search into own Tab
 
 # 1.18.2
 

@@ -38,6 +38,7 @@ extension String {
     static let watchlist = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
     static let seen = NSLocalizedString("history", comment: "Title for seen movie list")
     static let movieNightTitle = NSLocalizedString("movieNight", comment: "Title for movie night viewController")
+    static let searchTitle = NSLocalizedString("search", comment: "Title for search")
     static let moreTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
 
     // MARK: MOVIES VIEWCONTROLLER
@@ -55,7 +56,7 @@ extension String {
     static let onDate = NSLocalizedString("onDate", comment: "on a date")
 
     // MARK: SEARCH VIEWCONTROLLER
-    static let addMovieTitle = NSLocalizedString("searchMovieTitle", comment: "Title for search")
+    static let discoverMovieTitle = NSLocalizedString("discoverMovieTitle", comment: "Title for search")
     static let soonReleaseInformation = NSLocalizedString("soonRelease", comment: "Information about release")
     static let soonReleaseInformationLong = NSLocalizedString("soonReleaseLong", comment: "Information about release long")
 

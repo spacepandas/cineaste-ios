@@ -57,7 +57,7 @@ class ScreenshotsUITests: XCTestCase {
         let backButton = app.navigationBars.buttons.element(boundBy: 0).firstMatch
 
         XCTContext.runActivity(named: "Search for Movies") { _ in
-            app.navigationBars.element(boundBy: 0).buttons["AddMovie.Button"].firstMatch.tap()
+            app.tabBars.buttons["SearchTab"].firstMatch.tap()
 
             let firstCellInSearch = app.tables["Search.TableView"].cells.element(boundBy: 0).firstMatch
             let exists = NSPredicate(format: "exists == true")
@@ -95,10 +95,10 @@ class ScreenshotsUITests: XCTestCase {
 
         XCTContext.runActivity(named: "See Search with marked Movies") { _ in
             namedSnapshot("02_search")
-            backButton.tap()
         }
 
         XCTContext.runActivity(named: "See Watchlist") { _ in
+            app.tabBars.buttons["WatchlistTab"].firstMatch.tap()
             XCTAssertEqual(app.cells.count, 1)
             namedSnapshot("03_watchlist")
 

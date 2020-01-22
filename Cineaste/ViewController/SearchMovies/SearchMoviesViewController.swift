@@ -114,7 +114,7 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Configuration
 
     private func configureElements() {
-        title = String.addMovieTitle
+        title = String.discoverMovieTitle
 
         view.backgroundColor = UIColor.cineListBackground
 

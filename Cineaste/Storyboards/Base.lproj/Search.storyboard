@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -142,13 +142,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SfP-XK-Fda"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2jo-I8-t8K">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mVy-OV-6Ms">
-                            <connections>
-                                <action selector="doneButtonTapped:" destination="C9O-eg-KSE" id="vbj-gH-sTC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="2jo-I8-t8K"/>
                     <connections>
                         <outlet property="loadingIndicatorView" destination="MUX-60-4Ps" id="AaX-NJ-c4e"/>
                         <outlet property="tableView" destination="Ghd-3W-lPW" id="qW8-zi-GQg"/>
