@@ -15,4 +15,5 @@ extension UIImage {
     static let watchlistBadgeIcon = #imageLiteral(resourceName: "watchlist-badge")
     static let seenIcon = #imageLiteral(resourceName: "seen")
     static let moreIcon = #imageLiteral(resourceName: "more")
+    static let searchIcon = #imageLiteral(resourceName: "search")
 }

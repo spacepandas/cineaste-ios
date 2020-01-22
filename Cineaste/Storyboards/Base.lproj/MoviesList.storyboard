@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFK-3i-bNg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -16,7 +16,7 @@
                 <viewControllerPlaceholder storyboardName="MovieNight" referencedIdentifier="MovieNightNavigationController" id="3Be-Vi-pta" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9Z-qH-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3146" y="-1149"/>
+            <point key="canvasLocation" x="3146" y="-1225"/>
         </scene>
         <!--Movies View Controller-->
         <scene sceneID="U0f-9k-F14">
@@ -218,21 +218,13 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="fun-hr-r8S">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="TBD-6U-fPP">
-                                <connections>
-                                    <action selector="addMovieButtonTouched" destination="Uku-M8-iEE" id="b3Q-Tt-RCL"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="movieNight" id="zmW-ZQ-pyd">
-                                <connections>
-                                    <action selector="movieNightButtonTouched" destination="Uku-M8-iEE" id="uf8-ij-JI8"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="movieNight" id="zmW-ZQ-pyd">
+                            <connections>
+                                <action selector="movieNightButtonTouched" destination="Uku-M8-iEE" id="uf8-ij-JI8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addMovieButton" destination="TBD-6U-fPP" id="7bc-IZ-bEe"/>
                         <outlet property="emptyListAddMovieButton" destination="rdZ-uo-jTo" id="dWK-Ku-MSZ"/>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
@@ -241,7 +233,6 @@
                         <outlet property="startMovieNightButton" destination="zmW-ZQ-pyd" id="M4t-Vb-bEi"/>
                         <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="STR-IZ-FeX"/>
                         <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="4q7-oo-2Gh"/>
-                        <segue destination="mxJ-DZ-Bxk" kind="presentation" identifier="ShowSearchFromMovieList" id="Z8j-WG-aq2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cC7-zL-WSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,21 +287,13 @@
             </objects>
             <point key="canvasLocation" x="2357.5999999999999" y="-1160.8695652173915"/>
         </scene>
-        <!--Search-->
-        <scene sceneID="XPJ-25-x5q">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1GA-UZ-zcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="Search" id="mxJ-DZ-Bxk" sceneMemberID="viewController"/>
-            </objects>
-            <point key="canvasLocation" x="3036" y="-1288"/>
-        </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="d7s-4Y-ji8">
             <objects>
                 <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="NMk-QO-vK8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWO-6d-qnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3145" y="-1019"/>
+            <point key="canvasLocation" x="3145" y="-1096"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9oY-FA-Dha">

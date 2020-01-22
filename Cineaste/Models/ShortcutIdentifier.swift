@@ -28,12 +28,7 @@ enum ShortcutIdentifier: String {
 
             moviesVC.movieNightButtonTouched()
         case .discover:
-            tabBarVC.selectedIndex = 0
-            guard let moviesVC = tabBarVC.selectedViewController?
-                .children.first as? MoviesViewController
-                else { return false }
-
-            moviesVC.addMovieButtonTouched()
+            tabBarVC.selectedIndex = 2
         }
 
         return true
