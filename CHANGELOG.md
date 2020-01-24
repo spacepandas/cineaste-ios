@@ -9,6 +9,11 @@
 * 
 
 ## Improved
+* 
+
+# 1.19.0
+
+## Improved
 * Move Search into own Tab
 
 # 1.18.2
