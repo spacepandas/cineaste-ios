@@ -14,8 +14,8 @@ extension UIImage {
     static let watchlistBadgeIcon = #imageLiteral(resourceName: "watchlist-badge")
     static var watchlistIcon = image(systemName: "star.fill", fallback: #imageLiteral(resourceName: "watchlist"))
     static var seenIcon = image(systemName: "checkmark", fallback: #imageLiteral(resourceName: "seen"))
-    static var moreIcon = image(systemName: "ellipsis", fallback: #imageLiteral(resourceName: "more"))
     static var searchIcon = image(systemName: "magnifyingglass", fallback: #imageLiteral(resourceName: "search"))
+    static var moreIcon = image(systemName: "ellipsis", fallback: #imageLiteral(resourceName: "more"))
 }
 
 /// Creates an image object containing a system symbol image, if available
