@@ -41,9 +41,6 @@
                <Test
                   Identifier = "AppLaunchPerformanceUITests">
                </Test>
-               <Test
-                  Identifier = "MonkeyTests">
-               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>

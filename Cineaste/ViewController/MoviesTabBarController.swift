@@ -50,7 +50,7 @@ class MoviesTabBarController: UITabBarController {
         settingsVC.tabBarItem = UITabBarItem(
             title: String.moreTitle,
             image: UIImage.moreIcon,
-            tag: 2
+            tag: 3
         )
         settingsVC.tabBarItem.accessibilityIdentifier = "SettingsTab"
         let settingsVCWithNavi = NavigationController(rootViewController: settingsVC)
