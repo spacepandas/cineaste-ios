@@ -12,12 +12,6 @@ import SnapshotTesting
 
 class SettingsViewControllerSnapshotTests: XCTestCase {
 
-    override class func setUp() {
-        super.setUp()
-
-        UserDefaults.standard.username = "Simulator"
-    }
-
     func testGeneralAppearance() {
         // Given
         let viewController = SettingsViewController.instantiate()

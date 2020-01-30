@@ -6,6 +6,8 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
+import Foundation
+
 enum TextViewType {
     case imprint
     case licence
@@ -34,10 +36,6 @@ enum TextViewType {
                 ContentBlock(
                     title: String.helpPandasTitle,
                     paragraph: String.littlePandasDescription
-                ),
-                ContentBlock(
-                    title: String.icons8Title,
-                    paragraph: String.icons8Description
                 ),
                 ContentBlock(
                     title: String.movieDBTitle,

@@ -11,17 +11,6 @@ import UIKit
 enum ApiKeyStore {
     static let theMovieDbKey = getValue(forKey: "MOVIEDB_KEY")
 
-    #if DEBUG && targetEnvironment(simulator)
-
-    /// When using the simulator, the API key from Google Nearby
-    /// results in crashing the application. Only in DEBUG mode,
-    /// we can use an empy String to simulate the feature.
-    static let nearbyKey = ""
-
-    #else
-    static let nearbyKey = getValue(forKey: "NEARBY_KEY")
-    #endif
-
     private static func getValue(forKey key: String) -> String {
         guard let data = NSDataAsset(name: "ApiKeys")?.data,
             let plist = try? PropertyListSerialization

@@ -11,7 +11,6 @@ import Foundation
 private let lastVersionPromptedForReviewKey = "cineaste-lastVersionPromtedForReview"
 private let processCompletedCountKey = "cineaste-processCompletedCount"
 private let swipeActionHintShowCountKey = "cineaste-swipeActionHintShowCount"
-private let usernameKey = "cineaste-username"
 
 extension UserDefaults {
 
@@ -31,15 +30,6 @@ extension UserDefaults {
     var swipeActionHintShowCount: Int {
         get { integer(forKey: swipeActionHintShowCountKey) }
         set { set(newValue, forKey: swipeActionHintShowCountKey) }
-    }
-
-    /// The name of the user
-    var username: String? {
-        get {
-            let username = string(forKey: usernameKey) ?? ""
-            return username.isEmpty ? nil : username
-        }
-        set { set(newValue, forKey: usernameKey) }
     }
 
 }

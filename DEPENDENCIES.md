@@ -8,11 +8,6 @@ Use this file to track all dependencies required by this project.
 - Enforce Swift style and conventions
 - License: [MIT](https://github.com/realm/SwiftLint/blob/master/LICENSE)
 
-### NearbyMessages
-- For communication with nearby devices, 
-neccesary for detecting devices with the Cineaste Android App
-- License: [Custom](https://cocoapods.org/pods/NearbyMessages)
-
 ### Kingfisher
 - Added because of issues with asynchronous loading of images
 - License: [MIT](https://github.com/onevcat/Kingfisher/blob/master/LICENSE)

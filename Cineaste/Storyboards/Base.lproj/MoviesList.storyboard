@@ -10,14 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MovieNightNavigationController-->
-        <scene sceneID="dw6-Qv-Hsd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MovieNight" referencedIdentifier="MovieNightNavigationController" id="3Be-Vi-pta" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d9Z-qH-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3146" y="-1225"/>
-        </scene>
         <!--Movies View Controller-->
         <scene sceneID="U0f-9k-F14">
             <objects>
@@ -217,21 +209,13 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" id="fun-hr-r8S">
-                        <barButtonItem key="rightBarButtonItem" image="movieNight" id="zmW-ZQ-pyd">
-                            <connections>
-                                <action selector="movieNightButtonTouched" destination="Uku-M8-iEE" id="uf8-ij-JI8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="fun-hr-r8S"/>
                     <connections>
                         <outlet property="emptyListAddMovieButton" destination="rdZ-uo-jTo" id="dWK-Ku-MSZ"/>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
                         <outlet property="emptyViewStackView" destination="aWh-Vg-TKc" id="Te2-An-8zx"/>
                         <outlet property="empyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
-                        <outlet property="startMovieNightButton" destination="zmW-ZQ-pyd" id="M4t-Vb-bEi"/>
-                        <segue destination="3Be-Vi-pta" kind="presentation" identifier="ShowMovieNightSegue" id="STR-IZ-FeX"/>
                         <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="4q7-oo-2Gh"/>
                     </connections>
                 </tableViewController>
@@ -293,7 +277,7 @@
                 <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="NMk-QO-vK8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWO-6d-qnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3145" y="-1096"/>
+            <point key="canvasLocation" x="3141" y="-1161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9oY-FA-Dha">
@@ -316,7 +300,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="movieNight" width="23" height="23"/>
         <namedColor name="separator">
             <color red="0.91764705882352937" green="0.33725490196078434" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

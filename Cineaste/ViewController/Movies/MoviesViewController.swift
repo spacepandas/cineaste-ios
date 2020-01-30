@@ -16,8 +16,6 @@ class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyListAddMovieButton: UIButton!
     @IBOutlet private var emptyViewStackView: UIStackView!
 
-    @IBOutlet private weak var startMovieNightButton: UIBarButtonItem!
-
     var category: MovieListCategory = .watchlist {
         didSet {
             guard oldValue != category else { return }
@@ -48,9 +46,6 @@ class MoviesViewController: UITableViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.cineListBackground
-
-        startMovieNightButton.accessibilityLabel = .startMovieNight
-        startMovieNightButton.accessibilityIdentifier = "StartMovieNight.Button"
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -95,20 +90,6 @@ class MoviesViewController: UITableViewController {
 
     @IBAction func addMovieButtonTouched() {
         tabBarController?.selectedIndex = 2
-    }
-
-    @IBAction func movieNightButtonTouched() {
-        if UserDefaults.standard.username == nil {
-            let alert = UsernameAlert.askForUsernameAlertController(presenter: self, onSave: {
-                self.performSegue(
-                    withIdentifier: Segue.showMovieNight.rawValue,
-                    sender: nil
-                )
-            }, onCancel: nil) // swiftlint:disable:this multiline_arguments_brackets
-            present(alert, animated: true)
-        } else {
-            performSegue(withIdentifier: Segue.showMovieNight.rawValue, sender: nil)
-        }
     }
 
     @objc
@@ -178,24 +159,6 @@ class MoviesViewController: UITableViewController {
             self.tableView.backgroundView?.alpha = showEmptyState ? 1 : 0
             self.tableView.backgroundView?.isHidden = !showEmptyState
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension MoviesViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-
-        let entryLength = text.count + string.count - range.length
-        UsernameAlert.saveAction?.isEnabled = entryLength > 0
-
-        return true
-    }
-
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        UsernameAlert.saveAction?.isEnabled = false
-        return true
     }
 }
 

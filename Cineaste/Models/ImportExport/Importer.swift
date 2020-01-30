@@ -6,6 +6,8 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
+import Foundation
+
 enum ImportError: Error {
     case noDataAtPath
     case parsingJsonToImportExport

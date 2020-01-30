@@ -7,12 +7,4 @@
 */
 
 //Shortcut Identifier
-StartMovieNightTitle = "Filmnacht starten";
 Discover = "Entdecke Filme";
-
-//Permissions
-NSMicrophoneUsageDescription = "Das Mikrofon kann ergänzend zum WLAN und Bluetooth benutzt werden, um Geräte in deiner Nähe schneller und zuverlässiger zu finden";
-NSBluetoothPeripheralUsageDescription = "Beim Starten einer Filmnacht wird Bluetooth dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-NSBluetoothAlwaysUsageDescription = "Beim Starten einer Filmnacht wird Bluetooth dafür benutzt, Geräte in deiner Nähe zu finden, mit denen du deine Filmlisten vergleichen kannst";
-NSLocationAlwaysUsageDescription = "Mit der Freigabe deines Standorts können Geräte in deiner Nähe gefunden werden, mit denen du deine Filmlisten vergleichen kannst";
-NSLocationAlwaysAndWhenInUseUsageDescription = "Mit der Freigabe deines Standorts können Geräte in deiner Nähe gefunden werden, mit denen du deine Filmlisten vergleichen kannst";

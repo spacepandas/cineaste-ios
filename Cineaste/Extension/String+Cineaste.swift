@@ -30,14 +30,12 @@ extension String {
     static let deleteMovie = NSLocalizedString("delete.width", comment: "Title for delete movie button").forWidth
     static let deleteAction = NSLocalizedString("delete", comment: "Title for delete swipe action")
     static let deleteActionLong = NSLocalizedString("deleteFromList", comment: "Title for delete action")
-    static let startMovieNight = NSLocalizedString("startMovieNight", comment: "Title for the start movienight button")
     static let chooseMovie = NSLocalizedString("chooseMovie", comment: "Title for choose movie button")
     static let moreInformation = NSLocalizedString("moreInformation", comment: "Title for the more information button")
 
     // MARK: VIEWCONTROLLER TITLE
     static let watchlist = NSLocalizedString("watchlist", comment: "Title for want to see movie list")
     static let seen = NSLocalizedString("history", comment: "Title for seen movie list")
-    static let movieNightTitle = NSLocalizedString("movieNight", comment: "Title for movie night viewController")
     static let searchTitle = NSLocalizedString("search", comment: "Title for search")
     static let moreTitle = NSLocalizedString("settings", comment: "Title for settings viewController")
 
@@ -107,25 +105,10 @@ extension String {
     static let helpPandasTitle = NSLocalizedString("helpPandas", comment: "Title for helpPandas")
     static let littlePandasDescription = NSLocalizedString("helpPandasContent", comment: "Description for helpPandas")
 
-    static let icons8Title = NSLocalizedString("icons8", comment: "Title for icons8")
-    static let icons8Description = NSLocalizedString("icons8link", comment: "Description for icons8")
-
     // MARK: SHORTCUT
     static func movies(for counter: Int) -> String {
         String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
     }
-
-    // MARK: MOVIENIGHT
-    static func matches(for number: Int, amountOfPeople: Int) -> String {
-        String.localizedStringWithFormat(NSLocalizedString("%d of %d", comment: "Number of matches description"), number, amountOfPeople)
-    }
-
-    static let resultsForMovieNight = NSLocalizedString("results", comment: "Results after search for movie night")
-    static let allResultsForMovieNight = NSLocalizedString("results all together", comment: "All results for movie night")
-    static let enableNearby = NSLocalizedString("enable nearby", comment: "Title for enable nearby button")
-    static let nearbyUsage = NSLocalizedString("nearbyUsage", comment: "Description for usage of nearby")
-    static let nearbyPermissionDenied = NSLocalizedString("nearbyPermissionDenied", comment: "Description for denied nearby permission")
-    static let nearbyLink = NSLocalizedString("nearbyLink", comment: "Nearby link")
 
     // MARK: Empty state
     static let unknownVoteAverage = "-"
@@ -136,11 +119,6 @@ extension String {
 
     // error
     static let loadingDataErrorMessage = NSLocalizedString("loadingDataError", comment: "Message for loading data error alert")
-
-    // enter username for movie night
-    static let username = NSLocalizedString("username", comment: "Enter username title")
-    static let insertUsernameDescription = NSLocalizedString("explainMovieNight", comment: "Explain movie night description")
-    static let changeUsernameDescription = NSLocalizedString("changeUsername", comment: "Change username description")
 
     // import
     static func importSucceededMessage(with counter: Int) -> String {

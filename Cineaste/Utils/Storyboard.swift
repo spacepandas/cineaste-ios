@@ -14,7 +14,6 @@ enum Storyboard: String {
     case search = "Search"
     case movieDetail = "MovieDetail"
     case settings = "Settings"
-    case movieNight = "MovieNight"
 }
 
 extension Storyboard {
