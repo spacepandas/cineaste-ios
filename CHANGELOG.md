@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Remove Google Nearby and the Movie Night Feature
 
 ## Fixed
 * 
