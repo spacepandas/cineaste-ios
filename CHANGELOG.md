@@ -11,11 +11,6 @@
 ## Improved
 * Fix Size of WatchState Badge to be proportional to Width
 
-# Test-Tag
-
-## New
-* Create GitHub Release with GitHub Action
-
 # 1.20.0
 
 ## New
