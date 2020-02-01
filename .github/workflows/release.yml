@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Get the Version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+    - name: Read CHANGELOG
+      id: changelog
+      run: |
+        content=$(./get-changelog-for-version.sh ${{ steps.get_version.outputs.VERSION }})
+        echo $content
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}" 
+        echo "::set-output name=CONTENT::$content"
+
+    - name: Create GitHub Release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        body: |
+          ${{ steps.changelog.outputs.CONTENT }}
