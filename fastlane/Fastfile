@@ -151,7 +151,10 @@ desc 'Build and upload the release app to TestFlight'
 lane :beta do 
   buildApp
 
+  changelog = sh("cd .. && ./get-changelog-for-version.sh #{$version_number_to_set}")
+
   upload_to_testflight(
+    changelog: changelog,
     distribute_external: true,
     groups: 'Spacepandas',
     ipa: "#{Target_Folder_Name}/#{$ipaName}.ipa",
