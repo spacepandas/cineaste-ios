@@ -3,10 +3,18 @@
 # Upcoming Release
 
 ## New
-* Remove Google Nearby and the Movie Night Feature
+* 
 
 ## Fixed
 * 
+
+## Improved
+* 
+
+# 1.20.0
+
+## New
+* Remove Google Nearby and the Movie Night Feature 
 
 ## Improved
 * Extract DataSource in SearchViewController
