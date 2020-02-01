@@ -9,6 +9,11 @@
 * 
 
 ## Improved
+* 
+
+# 1.20.1
+
+## Improved
 * Fix Size of WatchState Badge to be proportional to Width
 
 # 1.20.0
