@@ -132,8 +132,8 @@ lane :build do
   buildApp
 end
 
-desc 'Build and upload the release app to TestFlight'
-lane :beta do 
+desc 'Update build + version number, commit changes and tag with version'
+lane :release do 
   increment_build_number(
     build_number: $build_number_to_set
   )
@@ -142,6 +142,13 @@ lane :beta do
     version_number: $version_number_to_set
   )
 
+  sh("git commit -a -m \"Release version #{$version_number_to_set}\"")
+
+  add_git_tag(tag: $version_number_to_set)
+end
+
+desc 'Build and upload the release app to TestFlight'
+lane :beta do 
   buildApp
 
   upload_to_testflight(
@@ -151,8 +158,4 @@ lane :beta do
     notify_external_testers: true,
     username: 'tech@spacepandas.de'
   )
-
-  sh("git commit -a -m \"Release version #{$version_number_to_set}\"")
-
-  add_git_tag(tag: $version_number_to_set)
 end
