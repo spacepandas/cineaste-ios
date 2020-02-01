@@ -14,6 +14,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - name: Read CHANGELOG
+      id: changelog
+      run: |
+        echo "::set-output name=body::$(./get-changelog-for-version.sh ${{ github.ref }})"
+
     - name: Create GitHub Release
       uses: actions/create-release@master
       env:
@@ -21,6 +26,6 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: ${{ github.ref }}
-        body: ./get-changelog-for-version.sh ${{ github.ref }}
+        body: ${{ steps.changelog.outputs.body }}
         draft: false
         prerelease: false
