@@ -21,7 +21,12 @@ jobs:
     - name: Read CHANGELOG
       id: changelog
       run: |
-        echo "::set-output name=CONTENT::$(./get-changelog-for-version.sh ${{ steps.get_version.outputs.VERSION }})"
+        content=$(./get-changelog-for-version.sh ${{ steps.get_version.outputs.VERSION }})
+        echo $content
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}" 
+        echo "::set-output name=CONTENT::$content"
 
     - name: Create GitHub Release
       uses: actions/create-release@master
