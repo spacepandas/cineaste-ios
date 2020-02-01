@@ -21,7 +21,7 @@ jobs:
     - name: Read CHANGELOG
       id: changelog
       run: |
-        echo ::set-output name=body::$(./get-changelog-for-version.sh ${{ steps.get_version.outputs.VERSION }})
+        echo "::set-output name=body::$(./get-changelog-for-version.sh ${{ steps.get_version.outputs.VERSION }})"
 
     - name: Create GitHub Release
       uses: actions/create-release@master
