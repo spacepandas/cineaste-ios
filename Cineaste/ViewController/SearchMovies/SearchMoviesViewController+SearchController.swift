@@ -24,6 +24,18 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
     }
 }
 
+extension SearchMoviesViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        dataSource.mode = .manualSearch
+        tableView.reloadData()
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        dataSource.mode = .discover
+        tableView.reloadData()
+    }
+}
+
 extension SearchMoviesViewController: UISearchResultsUpdating {
     internal func updateSearchResults(for searchController: UISearchController) {
         searchDelayTimer?.invalidate()

@@ -140,6 +140,8 @@ class SearchMoviesViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
 
         definesPresentationContext = true
+
+        resultSearchController.searchBar.searchTextField.delegate = self
     }
 
     // MARK: - Custom functions
