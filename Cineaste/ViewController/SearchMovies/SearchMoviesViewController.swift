@@ -24,38 +24,35 @@ class SearchMoviesViewController: UIViewController {
         didSet {
             guard oldValue != storedIDs else { return }
 
-            moviesWithWatchStates = updateMoviesWithWatchState(
+            movies = updateMoviesWithWatchState(
                 with: storedIDs,
                 moviesFromNetworking: moviesFromNetworking
             )
         }
     }
 
-    var moviesWithWatchStates: [Movie: WatchState] = [:] {
-        didSet {
-            guard oldValue != moviesWithWatchStates else { return }
+    let dataSource = SearchMovieDataSource()
 
+    var movies: [Movie] = [] {
+        didSet {
+            guard oldValue != movies else { return }
+
+            dataSource.movies = movies
             updateUI()
         }
-    }
-
-    var moviesWithoutWatchState: [Movie] {
-        moviesWithWatchStates.keys.sorted(by: SortDescriptor.sortByPopularity)
     }
 
     var moviesFromNetworking: Set<Movie> = [] {
         didSet {
             guard oldValue != moviesFromNetworking else { return }
 
-            moviesWithWatchStates = updateMoviesWithWatchState(
+            movies = updateMoviesWithWatchState(
                 with: storedIDs,
                 moviesFromNetworking: moviesFromNetworking
             )
         }
     }
 
-    var currentPage: Int?
-    var totalResults: Int?
     var isLoadingNextPage = false
     var searchDelayTimer: Timer?
 
@@ -125,7 +122,7 @@ class SearchMoviesViewController: UIViewController {
     }
 
     private func configureTableViewController() {
-        tableView.dataSource = self
+        tableView.dataSource = dataSource
         tableView.prefetchDataSource = self
         tableView.delegate = self
 
@@ -147,32 +144,32 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Custom functions
 
-    func updateMoviesWithWatchState(with storedIDs: StoredMovieIDs, moviesFromNetworking: Set<Movie>) -> [Movie: WatchState] {
-        var movies: [Movie: WatchState] = [:]
+    func updateMoviesWithWatchState(with storedIDs: StoredMovieIDs, moviesFromNetworking: Set<Movie>) -> [Movie] {
 
-        for movie in moviesFromNetworking {
+        moviesFromNetworking.map { movie in
+            var movie = movie
             if storedIDs.watchListMovieIDs.contains(movie.id) {
-                movies[movie] = .watchlist
+                movie.watched = false
             } else if storedIDs.seenMovieIDs.contains(movie.id) {
-                movies[movie] = .seen
+                movie.watched = true
             } else {
-                movies[movie] = .undefined
+                movie.watched = nil
             }
+            return movie
         }
-
-        return movies
+        .sorted(by: SortDescriptor.sortByPopularity)
     }
 
     func updateUI() {
         tableView.reloadData()
 
-        if moviesWithWatchStates.isEmpty {
+        if movies.isEmpty {
             tableView.tableFooterView = UIView()
         }
     }
 
     func scrollToTopCell(withAnimation: Bool) {
-        guard !moviesWithWatchStates.isEmpty else { return }
+        guard !movies.isEmpty else { return }
 
         tableView.scrollToRow(
             at: IndexPath(row: 0, section: 0),

@@ -12,8 +12,8 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else { return }
 
-        currentPage = nil
-        totalResults = nil
+        dataSource.currentPage = nil
+        dataSource.totalResults = nil
 
         loadMovies { [weak self] movies in
             DispatchQueue.main.async {

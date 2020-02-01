@@ -22,13 +22,11 @@ class SearchMoviesViewControllerTests: XCTestCase {
         )
 
         var networkingMovie = movieToTest
-        networkingMovie.watched = nil
+        networkingMovie.watched = false
         networkingMovie.watchedDate = nil
         let networkingMovies: Set<Movie> = [networkingMovie]
 
-        let expectedMoviesWithWatchStates = [
-            networkingMovie: WatchState.watchlist
-        ]
+        let expectedMovies = [networkingMovie]
 
         // When
         let moviesWithWatchStates = viewController.updateMoviesWithWatchState(
@@ -37,7 +35,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         )
 
         // Then
-        XCTAssertEqual(moviesWithWatchStates, expectedMoviesWithWatchStates)
+        XCTAssertEqual(moviesWithWatchStates, expectedMovies)
     }
 
     func testMoviesWithWatchStatesShouldBeConfiguredCorrectlyForUndefined() {
@@ -55,9 +53,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         networkingMovie.watchedDate = nil
         let networkingMovies: Set<Movie> = [networkingMovie]
 
-        let expectedMoviesWithWatchStates = [
-            networkingMovie: WatchState.undefined
-        ]
+        let expectedMovies = [networkingMovie]
 
         // When
         let moviesWithWatchStates = viewController.updateMoviesWithWatchState(
@@ -66,7 +62,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         )
 
         // Then
-        XCTAssertEqual(moviesWithWatchStates, expectedMoviesWithWatchStates)
+        XCTAssertEqual(moviesWithWatchStates, expectedMovies)
     }
 
     func testMoviesWithWatchStatesShouldBeConfiguredCorrectlyForSeen() {
@@ -80,13 +76,11 @@ class SearchMoviesViewControllerTests: XCTestCase {
         )
 
         var networkingMovie = movieToTest
-        networkingMovie.watched = nil
-        networkingMovie.watchedDate = nil
+        networkingMovie.watched = true
+        networkingMovie.watchedDate = Date(timeIntervalSince1970: 4)
         let networkingMovies: Set<Movie> = [networkingMovie]
 
-        let expectedMoviesWithWatchStates = [
-            networkingMovie: WatchState.seen
-        ]
+        let expectedMovies = [networkingMovie]
 
         // When
         let moviesWithWatchStates = viewController.updateMoviesWithWatchState(
@@ -95,7 +89,7 @@ class SearchMoviesViewControllerTests: XCTestCase {
         )
 
         // Then
-        XCTAssertEqual(moviesWithWatchStates, expectedMoviesWithWatchStates)
+        XCTAssertEqual(moviesWithWatchStates, expectedMovies)
     }
 
 }

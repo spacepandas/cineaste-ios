@@ -26,7 +26,7 @@ class SearchMoviesCell: UITableViewCell {
         cellBackgroundView.slideIn(from: .trailing)
     }
 
-    func configure(with movie: Movie, state: WatchState) {
+    func configure(with movie: Movie) {
         cellBackgroundView.backgroundColor = .cineCellBackground
         swipeHintView.backgroundColor = SwipeAction.moveToWatchlist.backgroundColor
         poster.accessibilityIgnoresInvertColors = true
@@ -42,7 +42,7 @@ class SearchMoviesCell: UITableViewCell {
             + movie.formattedVoteAverage
             + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
-        switch state {
+        switch movie.currentWatchState {
         case .undefined:
             stateImageView.isHidden = true
         case .seen:
@@ -53,15 +53,15 @@ class SearchMoviesCell: UITableViewCell {
             stateImageView.image = UIImage.watchlistBadgeIcon
         }
 
-        applyAccessibility(for: movie, with: state)
+        applyAccessibility(for: movie)
     }
 
-    private func applyAccessibility(for movie: Movie, with state: WatchState) {
+    private func applyAccessibility(for movie: Movie) {
         isAccessibilityElement = true
 
         accessibilityLabel = movie.title
 
-        if let state = String.state(for: state) {
+        if let state = String.state(for: movie.currentWatchState) {
             accessibilityLabel?.append(", \(state)")
         }
 

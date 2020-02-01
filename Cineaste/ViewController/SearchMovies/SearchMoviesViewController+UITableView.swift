@@ -10,11 +10,11 @@ import UIKit
 
 extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        guard indexPaths.first(where: { $0.isLast(of: moviesWithWatchStates.count) }) != nil,
-            let total = totalResults
+        guard indexPaths.first(where: { $0.isLast(of: movies.count) }) != nil,
+            let total = dataSource.totalResults
             else { return }
 
-        if total > moviesWithWatchStates.count && !isLoadingNextPage {
+        if total > movies.count && !isLoadingNextPage {
             tableView.tableFooterView = loadingIndicatorView
             isLoadingNextPage = true
 
@@ -30,30 +30,8 @@ extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
 
 extension SearchMoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedMovie = moviesWithoutWatchState[indexPath.row]
+        let selectedMovie = movies[indexPath.row]
         store.dispatch(SelectionAction.select(movie: selectedMovie))
         perform(segue: .showMovieDetail, sender: self)
-    }
-}
-
-extension SearchMoviesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        moviesWithWatchStates.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
-
-        let movie = moviesWithoutWatchState[indexPath.row]
-        let currentState = moviesWithWatchStates[movie] ?? .undefined
-
-        cell.configure(with: moviesWithoutWatchState[indexPath.row], state: currentState)
-
-        if let numberOfMovies = totalResults,
-            indexPath.isLast(of: numberOfMovies) {
-            tableView.tableFooterView = UIView()
-        }
-
-        return cell
     }
 }

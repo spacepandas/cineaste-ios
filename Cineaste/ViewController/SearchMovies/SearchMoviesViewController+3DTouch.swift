@@ -17,7 +17,7 @@ extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
 
         previewingContext.sourceRect = cell.frame
 
-        store.dispatch(SelectionAction.select(movie: moviesWithoutWatchState[path.row]))
+        store.dispatch(SelectionAction.select(movie: movies[path.row]))
         return MovieDetailViewController.instantiate()
     }
 
@@ -36,7 +36,7 @@ extension SearchMoviesViewController {
         guard let indexPath = configuration.identifier as? IndexPath
             else { return }
         let id = indexPath.row
-        let movie = moviesWithoutWatchState[id]
+        let movie = movies[id]
 
         animator.addCompletion {
             store.dispatch(SelectionAction.select(movie: movie))
@@ -47,7 +47,7 @@ extension SearchMoviesViewController {
     }
 
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let movie = moviesWithoutWatchState[indexPath.row]
+        let movie = movies[indexPath.row]
 
         let configuration = UIContextMenuConfiguration(
             identifier: indexPath as NSCopying,
@@ -57,8 +57,7 @@ extension SearchMoviesViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
-            let currentState = self.moviesWithWatchStates[movie] ?? .undefined
-            let actions = ContextMenu.actions(for: movie, watchState: currentState, presenter: self)
+            let actions = ContextMenu.actions(for: movie, presenter: self)
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             }
         )

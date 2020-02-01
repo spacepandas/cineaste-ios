@@ -61,7 +61,6 @@ extension MoviesViewController {
             }, actionProvider: { _ in
                 let actions = ContextMenu.actions(
                     for: movie,
-                    watchState: movie.currentWatchState,
                     presenter: self
                 )
             return UIMenu(title: "", image: nil, identifier: nil, children: actions)

@@ -11,7 +11,7 @@ import UIKit
 extension SearchMoviesViewController {
     func loadMovies(forQuery query: String? = nil, nextPage: Bool = false, completion: @escaping (Set<Movie>) -> Void) {
         var pageToLoad = 1
-        if let page = currentPage, nextPage {
+        if let page = dataSource.currentPage, nextPage {
             pageToLoad = page + 1
         }
 
@@ -28,8 +28,8 @@ extension SearchMoviesViewController {
                 self.showAlert(withMessage: Alert.loadingData(with: error))
                 completion([])
             case .success(let result):
-                self.currentPage = result.page
-                self.totalResults = result.totalResults
+                self.dataSource.currentPage = result.page
+                self.dataSource.totalResults = result.totalResults
                 completion(result.results)
             }
         }

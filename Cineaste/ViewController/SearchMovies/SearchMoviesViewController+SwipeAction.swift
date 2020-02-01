@@ -10,15 +10,14 @@ import UIKit
 
 extension SearchMoviesViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = moviesWithoutWatchState[indexPath.row]
+        let movie = movies[indexPath.row]
 
         let seenAction = SwipeAction.moveToSeen.contextualAction(for: movie)
         let watchlistAction = SwipeAction.moveToWatchlist.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
-        let currentState = moviesWithWatchStates[movie] ?? .undefined
-        switch currentState {
+        switch movie.currentWatchState {
         case .undefined:
             actions = [watchlistAction, seenAction]
         case .seen:
@@ -31,13 +30,12 @@ extension SearchMoviesViewController {
     }
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let movie = moviesWithoutWatchState[indexPath.row]
+        let movie = movies[indexPath.row]
         let removeAction = SwipeAction.delete.contextualAction(for: movie)
 
         let actions: [UIContextualAction]
 
-        let currentState = moviesWithWatchStates[movie] ?? .undefined
-        if currentState == .undefined {
+        if movie.currentWatchState == .undefined {
             actions = []
         } else {
             actions = [removeAction]

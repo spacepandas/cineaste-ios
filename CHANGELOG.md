@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Extract DataSource in SearchViewController
 
 # 1.19.0
 
