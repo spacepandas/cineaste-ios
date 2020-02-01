@@ -109,7 +109,7 @@ class ScreenshotsUITests: XCTestCase {
         XCTContext.runActivity(named: "See More Content") { _ in
             let settingsTab = app.tabBars.buttons["SettingsTab"].firstMatch
             settingsTab.tap()
-            namedSnapshot("06_settings")
+            namedSnapshot("05_settings")
 
             let aboutTheApp = app.cells.element(boundBy: 0).firstMatch
             aboutTheApp.tap()
