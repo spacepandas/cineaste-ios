@@ -14,7 +14,7 @@
 # 1.20.0
 
 ## New
-* Remove Google Nearby and the Movie Night Feature 
+* Remove Google Nearby and the Movie Night Feature ([#137](https://github.com/spacepandas/cineaste-ios/pull/137))
 
 ## Improved
 * Extract DataSource in SearchViewController
@@ -22,7 +22,7 @@
 # 1.19.0
 
 ## Improved
-* Move Search into own Tab
+* Move Search into own Tab ([#134](https://github.com/spacepandas/cineaste-ios/pull/134))
 
 # 1.18.2
 
