@@ -38,7 +38,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="seen-badge" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fI-55Z">
-                                                            <rect key="frame" x="369" y="0.0" width="45" height="45"/>
+                                                            <rect key="frame" x="352" y="0.0" width="62" height="62"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
                                                             </constraints>
@@ -103,7 +103,7 @@
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="bottom" secondItem="thc-MB-8du" secondAttribute="bottom" id="Zfe-m3-Dqs"/>
                                                         <constraint firstItem="MJ6-6z-POh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="thc-MB-8du" secondAttribute="top" constant="5" id="fFE-oy-zby"/>
                                                         <constraint firstAttribute="bottom" secondItem="bg5-Zb-czx" secondAttribute="bottom" id="lJl-rf-ZMG"/>
-                                                        <constraint firstItem="upX-fI-55Z" firstAttribute="height" secondItem="thc-MB-8du" secondAttribute="height" multiplier="0.45" id="sb0-Mb-OUN"/>
+                                                        <constraint firstItem="upX-fI-55Z" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.15" id="sb0-Mb-OUN"/>
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="yzy-5D-vzy"/>
                                                         <constraint firstItem="bg5-Zb-czx" firstAttribute="leading" secondItem="zZg-aQ-7uo" secondAttribute="trailing" id="zW4-TJ-7uG"/>
                                                     </constraints>
