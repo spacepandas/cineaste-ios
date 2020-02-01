@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
     }
 
+    @available(*, deprecated, message: "Don't use Core Data")
     private func migrateCoreData() {
         let migrator = CoreDataMigrator()
         let movies = migrator.coreDataMovies

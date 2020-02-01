@@ -9,6 +9,7 @@
 import CoreData
 import UIKit
 
+@available(*, deprecated, message: "Don't use Core Data")
 struct CoreDataMigrator {
     private let container: NSPersistentContainer
 
@@ -47,6 +48,7 @@ private extension NSPersistentContainer {
     }(NSPersistentContainer(name: "Model"))
 }
 
+@available(*, deprecated, message: "Don't use Core Data")
 private extension Movie {
     init(storedMovie: StoredMovie) {
         self.init(
