@@ -44,8 +44,6 @@ A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/
 <dict>
 	<key>MOVIEDB_KEY</key>
 	<string>XXXX</string>
-	<key>NEARBY_KEY</key>
-	<string>XXXX</string>
 </dict>
 </plist>
 ```
