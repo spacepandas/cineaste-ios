@@ -103,21 +103,6 @@ extension Movie {
         genres = []
     }
 
-    /// Create a movie with the information from nearby movie
-    /// - Parameter nearbyMovie: The movie which was received from nearby
-    init(with nearbyMovie: NearbyMovie) {
-        id = nearbyMovie.id
-        title = nearbyMovie.title
-        voteAverage = nearbyMovie.voteAverage
-        voteCount = 0
-        posterPath = nearbyMovie.posterPath
-        overview = ""
-        runtime = nearbyMovie.runtime
-        releaseDate = nearbyMovie.releaseDate
-        popularity = 0
-        genres = []
-    }
-
     /// Update the information of a movie
     /// - Parameter movie: a new movie with update information
     mutating func update(withNew movie: Movie) {

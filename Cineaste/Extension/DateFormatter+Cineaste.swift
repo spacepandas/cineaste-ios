@@ -6,6 +6,8 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
+import Foundation
+
 extension DateFormatter {
     static let utcFormatter: DateFormatter = {
         let formatter = DateFormatter()

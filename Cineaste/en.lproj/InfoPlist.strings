@@ -7,12 +7,4 @@
 */
 
 //Shortcut Identifier
-StartMovieNightTitle = "Start movie night";
 Discover = "Discover movies";
-
-//Permission
-NSMicrophoneUsageDescription = "The microphone can be used in addition to Wifi and Bluetooth, to discover nearby devices faster and more reliable";
-NSBluetoothPeripheralUsageDescription = "When starting a movie night bluetooth will be used to discover nearby devices with which you can compare your movie lists";
-NSBluetoothAlwaysUsageDescription = "When starting a movie night bluetooth will be used to discover nearby devices with which you can compare your movie lists";
-NSLocationAlwaysUsageDescription = "The location will be used to discover nearby devices with which you can compare your movie lists";
-NSLocationAlwaysAndWhenInUseUsageDescription = "When starting a movie night the location will be used to discover nearby devices with which you can compare your movie lists";

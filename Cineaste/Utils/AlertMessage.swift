@@ -23,12 +23,6 @@ class AlertMessage {
 }
 
 class Alert: AlertMessage {
-    static let username = AlertMessage(
-        title: .username,
-        message: .insertUsernameDescription,
-        action: .saveAction,
-        cancel: .cancelAction
-    )
     static let importFailedInfo = AlertMessage(
         title: .errorTitle,
         message: .importFailedMessage,

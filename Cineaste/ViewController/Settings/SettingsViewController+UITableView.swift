@@ -35,14 +35,6 @@ extension SettingsViewController {
             guard let url = URL(string: UIApplication.openSettingsURLString)
                 else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(url, options: [:])
-        case .name:
-            let alert = UsernameAlert.askForUsernameAlertController(
-                presenter: self,
-                onSave: {
-                    self.reloadUsernameCell()
-                }
-            )
-            present(alert, animated: true)
         case .exportMovies:
             exportMovies(showUIOn: tableView.rectForRow(at: indexPath))
         case .importMovies:

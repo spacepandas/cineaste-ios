@@ -6,6 +6,8 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
+import Foundation
+
 enum MovieRefresher {
     static func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
         let group = DispatchGroup()

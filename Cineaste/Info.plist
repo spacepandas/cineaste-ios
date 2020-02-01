@@ -22,33 +22,15 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bluetooth</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>discover</string>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeSearch</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Discover</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>movieNight</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>StartMovieNightTitle</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>startMovieNight</string>
+			<string>discover</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>

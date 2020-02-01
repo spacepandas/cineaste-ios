@@ -31,6 +31,8 @@
            }
  */
 
+import Foundation
+
 struct LocalizedReleaseDate: Decodable, Equatable {
     var date: Date?
 

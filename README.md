@@ -12,19 +12,15 @@
 [![testflight](https://img.shields.io/badge/Join-TestFlight-blue.svg)](https://testflight.apple.com/join/sAfD3j8m)
 
 Cineaste App is an iOS application to manage movies you would like to see and movies you have seen.
-You can also start movie nights with your friends. There is no need to register or to add friends.
 
 ## Screenshots
 
-| Movie Detail      | Search      | Watchlist      | History   | Movie Night      |
-|:-----------------:|:-----------:|:--------------:|:---------:|:----------------:|
-| All the information you need | Discover new movies | Add movies you want to see to your watchlist | Remember movies you have seen | Find a movie for your movie night with your friends |
-| ![movie-detail][] | ![search][] | ![watchlist][] | ![seen][] | ![movie-night][] |
+| Movie Detail      | Search      | Watchlist      | History   | 
+|:-----------------:|:-----------:|:--------------:|:---------:|
+| All the information you need | Discover new movies | Add movies you want to see to your watchlist | Remember movies you have seen | 
+| ![movie-detail][] | ![search][] | ![watchlist][] | ![seen][] | 
 
 ## Dependencies
-
-You can start a movie night via [Nearby][nearbyLink]. Nearby searches for nearby devices and matches their watchlist with yours.
-As a result you can see which movie is the most interested one by you and your friends.
 
 We are using [theMovieDb][theMovieDb] to get access to the big movie data universe.
 
@@ -39,7 +35,7 @@ A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/
 
 0. Run `pod install` in cineaste-ios folder to install all used CocoaPods.
 1. Open `Cineaste.xcworkspace` in Xcode 11.
-2. Get a [theMovieDb][theMovieDb] key and a [Nearby][nearbyLink] key and add them to the ApiKeys data set in the asset catalog under the following path: `Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist`.
+2. Get a [theMovieDb][theMovieDb] key and add it to the ApiKeys data set in the asset catalog under the following path: `Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist`.
 
 ```xml 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -67,7 +63,6 @@ Yes! You can check out the [Android client](https://github.com/spacepandas/cinea
 
 Cineaste App is released under the **Apache License**. Please see the [LICENSE](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE) file for more information.
 
-[nearbyLink]: https://developers.google.com/nearby/messages/overview
 [theMovieDb]: https://www.themoviedb.org/
 [Kingfisher]: https://github.com/onevcat/Kingfisher
 [movie-detail]: /assets/iPhone%2011%20Pro-01_watchlist_detail_framed.png

@@ -15,11 +15,6 @@ class ScreenshotsUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
 
-        if let domain = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: domain)
-            UserDefaults.standard.synchronize()
-        }
-
         app.launchArguments += [
             "SKIP_ANIMATIONS",
             "UI_TEST"
@@ -38,16 +33,6 @@ class ScreenshotsUITests: XCTestCase {
         app.launch()
 
         resetMoviesIfNeeded()
-
-        addUIInterruptionMonitor(withDescription: "Allow bluetooth permissions") { alert in
-            if alert.label.contains("Nearby") {
-                alert.buttons["Allow"].tap()
-                return true
-            } else {
-                return false
-            }
-        }
-        app.tap()
     }
 
     func testScreenshots() {
@@ -119,44 +104,6 @@ class ScreenshotsUITests: XCTestCase {
             sleep(1)
             namedSnapshot("seen_detail")
             backButton.tap()
-        }
-
-        XCTContext.runActivity(named: "Start Movie Night") { _ in
-            app.navigationBars.buttons["StartMovieNight.Button"].firstMatch.tap()
-        }
-
-        XCTContext.runActivity(named: "Ask for Username") { _ in
-            let usernameAlert = app.alerts.element(boundBy: 0)
-            if usernameAlert.exists {
-                namedSnapshot("startMovieNight_usernameAlert")
-                let textField = usernameAlert.textFields.element(boundBy: 0)
-                    .firstMatch
-                textField.tap()
-                textField.typeText("Screenshots")
-                let saveButton = usernameAlert.buttons.element(boundBy: 1)
-                    .firstMatch
-                saveButton.tap()
-            }
-        }
-
-        XCTContext.runActivity(named: "Search for Nearby Friends") { _ in
-            namedSnapshot("startMovieNight_searching")
-
-            //use DEBUG triple tap to test nearby feature
-            app.tap()
-            app.tap()
-            app.tap()
-
-            namedSnapshot("05_startMovieNight_friendsFound")
-        }
-
-        XCTContext.runActivity(named: "See Movie Night Results") { _ in
-            let firstCell = app.cells.staticTexts["Simulator"]
-            firstCell.tap()
-
-            let startButton = app.buttons["Choose.Movie.Button"].firstMatch
-            startButton.tap()
-            namedSnapshot("startMovieNight_results")
         }
 
         XCTContext.runActivity(named: "See More Content") { _ in

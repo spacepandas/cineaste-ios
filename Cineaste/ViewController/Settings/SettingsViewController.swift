@@ -31,12 +31,6 @@ class SettingsViewController: UITableViewController {
         configureElements()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        reloadUsernameCell()
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -84,14 +78,6 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-    func reloadUsernameCell() {
-        UIView.performWithoutAnimation {
-            guard let rowForUsername = settings.firstIndex(of: SettingItem.name) else { return }
-            let indexPath = IndexPath(row: rowForUsername, section: 0)
-            tableView.reloadRows(at: [indexPath], with: .none)
-        }
-    }
-
     func importMovies() {
         let documentPickerVC = UIDocumentPickerViewController(
             documentTypes: [Constants.exportMoviesFileUTI],
@@ -110,19 +96,6 @@ extension SettingsViewController {
         docController = UIDocumentInteractionController(url: url)
         docController?.uti = Constants.exportMoviesFileUTI
         docController?.presentOptionsMenu(from: rect, in: view, animated: true)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension SettingsViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-
-        let entryLength = text.count + string.count - range.length
-        UsernameAlert.saveAction?.isEnabled = entryLength > 0
-
-        return true
     }
 }
 

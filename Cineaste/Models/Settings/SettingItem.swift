@@ -6,11 +6,12 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
+import Foundation
+
 enum SettingItem: CaseIterable {
     case about
     case licence
     case language
-    case name
     case exportMovies
     case importMovies
     case contact
@@ -24,12 +25,6 @@ enum SettingItem: CaseIterable {
             return .licenseTitle
         case .language:
             return .languageTitle
-        case .name:
-            if let name = UserDefaults.standard.username {
-                return .username + ": \(name)"
-            } else {
-                return .username
-            }
         case .exportMovies:
             return .exportTitle
         case .importMovies:
@@ -49,10 +44,6 @@ enum SettingItem: CaseIterable {
              .contact,
              .appStore:
             return nil
-        case .name:
-            return UserDefaults.standard.username != nil
-                ? .changeUsernameDescription
-                : .insertUsernameDescription
         case .exportMovies:
             return .exportDescription
         case .importMovies:
@@ -67,7 +58,6 @@ enum SettingItem: CaseIterable {
         case .licence:
             return .showTextViewFromSettings
         case .language,
-             .name,
              .exportMovies,
              .importMovies,
              .contact,
@@ -80,7 +70,6 @@ enum SettingItem: CaseIterable {
     static let allCasesForPreIOS13: [SettingItem] = [
         .about,
         .licence,
-        .name,
         .exportMovies,
         .importMovies,
         .contact,
