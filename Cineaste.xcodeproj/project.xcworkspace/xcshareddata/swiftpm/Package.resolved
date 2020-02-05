@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "44bfa76787a0f07e4d5ae3304e9d4f631fd519bd",
+          "version": "5.13.0"
+        }
+      },
+      {
+        "package": "ReSwift",
+        "repositoryURL": "https://github.com/ReSwift/ReSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "b92762b5aa85c5e94053d942fbd37124ee939e5b",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "ReSwift-Thunk",
+        "repositoryURL": "https://github.com/ReSwift/ReSwift-Thunk.git",
+        "state": {
+          "branch": null,
+          "revision": "52152497d43270f3914edfde59e9f43c8c996f6b",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
+          "version": "1.7.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
