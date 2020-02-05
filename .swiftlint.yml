@@ -50,9 +50,9 @@ opt_in_rules:
 
 # Exclude tests, pods and vendor sources
 excluded:
+  - build
   - CineasteUITests/SnapshotHelper.swift
-  - Pods
-  - Cineaste-Bridging-Header.h
+  - DerivedData
 
 # Configure warning/error levels
 file_length:
