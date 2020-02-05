@@ -19,9 +19,6 @@ jobs:
 
     - name: Install Gem Dependencies
       run: bundle install
-        
-    - name: Install CocoaPods Dependencies
-      run: pod install --repo-update
 
     - name: Run UnitTests
       run: bundle exec fastlane test
@@ -36,9 +33,6 @@ jobs:
 
     - name: Install Gem Dependencies
       run: bundle install
-
-    - name: Install CocoaPods Dependencies
-      run: pod install --repo-update
 
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
