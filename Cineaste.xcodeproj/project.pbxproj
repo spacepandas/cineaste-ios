@@ -779,6 +779,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4EA4610023EAF26F0014B543 /* PBXTargetDependency */,
 				3F450B3A236C6EF100A59F1E /* PBXTargetDependency */,
 			);
 			name = CineasteSnapshotTests;
@@ -820,6 +821,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				4EA460FE23EAF26A0014B543 /* PBXTargetDependency */,
+				4EA460FC23EAF2660014B543 /* PBXTargetDependency */,
+				4EA460FA23EAF2630014B543 /* PBXTargetDependency */,
 			);
 			name = "Cineaste App";
 			packageProductDependencies = (
@@ -975,7 +979,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect\n\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config .swiftlint.yml\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1155,6 +1159,22 @@
 			isa = PBXTargetDependency;
 			target = 3FF790E120DE274A007B7D37 /* Cineaste App */;
 			targetProxy = 3F7ABD5020F5C64E004B069E /* PBXContainerItemProxy */;
+		};
+		4EA460FA23EAF2630014B543 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4EA460F923EAF2630014B543 /* Kingfisher */;
+		};
+		4EA460FC23EAF2660014B543 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4EA460FB23EAF2660014B543 /* ReSwift */;
+		};
+		4EA460FE23EAF26A0014B543 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4EA460FD23EAF26A0014B543 /* ReSwift-Thunk */;
+		};
+		4EA4610023EAF26F0014B543 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4EA460FF23EAF26F0014B543 /* SnapshotTesting */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1629,6 +1649,26 @@
 			productName = "ReSwift-Thunk";
 		};
 		4EA460F723EAF1C30014B543 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA460F623EAF1C30014B543 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		4EA460F923EAF2630014B543 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA460ED23EAF0E50014B543 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		4EA460FB23EAF2660014B543 /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA460F023EAF15B0014B543 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
+		};
+		4EA460FD23EAF26A0014B543 /* ReSwift-Thunk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA460F323EAF1760014B543 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */;
+			productName = "ReSwift-Thunk";
+		};
+		4EA460FF23EAF26F0014B543 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EA460F623EAF1C30014B543 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
