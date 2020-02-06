@@ -23,6 +23,25 @@ jobs:
     - name: Run UnitTests
       run: bundle exec fastlane test
 
+  revert_later_license_plist:
+    name: Update License Plist
+    runs-on: macOS-latest
+
+    steps:
+    - name: Install LicensePlist
+      run: curl -fsSL https://raw.githubusercontent.com/mono0926/LicensePlist/master/install.sh | sh
+
+    - name: Update LicensePlist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: >
+        license-plist 
+        --output-path Cineaste/Settings.bundle
+        --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.swift
+        --prefix Acknowledgements
+        --single-page
+        --github-token $GITHUB_TOKEN
+
   snapshot_tests:
     name: Snapshot Tests
     runs-on: macOS-latest
