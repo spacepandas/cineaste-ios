@@ -53,6 +53,7 @@ excluded:
   - build
   - CineasteUITests/SnapshotHelper.swift
   - DerivedData
+  - .build
 
 # Configure warning/error levels
 file_length:
