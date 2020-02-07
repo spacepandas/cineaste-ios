@@ -2,11 +2,7 @@
 
 Use this file to track all dependencies required by this project.
 
-## Added via CocoaPods
-
-### SwiftLint
-- Enforce Swift style and conventions
-- License: [MIT](https://github.com/realm/SwiftLint/blob/master/LICENSE)
+## Added via Swift Package Manager
 
 ### Kingfisher
 - Added because of issues with asynchronous loading of images
