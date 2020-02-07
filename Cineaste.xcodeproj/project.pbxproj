@@ -814,6 +814,7 @@
 			buildPhases = (
 				3F5AF263218F80F8006717DC /* Check API Keys */,
 				3F9C0A1B23C92ECA00CDB993 /* Swift Lint */,
+				4E63652723ED62FD005CF68C /* Licenses Plist */,
 				3FF790E520DE274A007B7D37 /* Sources */,
 				3FF7912220DE274A007B7D37 /* Frameworks */,
 				3FF7912420DE274A007B7D37 /* Resources */,
@@ -980,6 +981,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		4E63652723ED62FD005CF68C /* Licenses Plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Licenses Plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which license-plist >/dev/null && [ \"${CONFIGURATION}\" = \"Release\" ]; then\n  license-plist \\\n        --output-path Cineaste/Settings.bundle \\\n        --package-path $PROJECT_FILE_PATH/project.xcworkspace/xcshareddata/swiftpm/Package.swift \\\n        --prefix Acknowledgements \\\n        --single-page\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
