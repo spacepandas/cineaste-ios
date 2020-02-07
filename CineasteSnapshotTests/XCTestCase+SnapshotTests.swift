@@ -7,6 +7,7 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
+import UIKit
 import SnapshotTesting
 
 /// Asserts that a given value matches a reference on disk.
