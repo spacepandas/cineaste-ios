@@ -123,7 +123,7 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simctl (1.6.7)
+    simctl (1.6.8)
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
@@ -162,4 +162,4 @@ DEPENDENCIES
   xcode-install
 
 BUNDLED WITH
-   2.1.3
+   2.1.4
