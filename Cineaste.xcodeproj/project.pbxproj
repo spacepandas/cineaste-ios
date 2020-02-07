@@ -613,7 +613,6 @@
 				3F450B35236C6EF100A59F1E /* CineasteSnapshotTests */,
 				3F2408F3203CB88E00EB9141 /* CineasteUITests */,
 				95AE259D1F9531E20067F5F5 /* Products */,
-				FAB85FBB5F009BF9B70EC21D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -738,13 +737,6 @@
 				95EFA4AF1FA13AAA004F1F94 /* Resource.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		FAB85FBB5F009BF9B70EC21D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
