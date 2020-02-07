@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-license-plist() {
+update-license-plist() {
     if which license-plist >/dev/null; then
         license-plist \
             --output-path Cineaste/Settings.bundle \
@@ -16,4 +16,4 @@ license-plist() {
 
 bundle update
 bundle exec fastlane snapshot update --force
-license-plist
+update-license-plist 
