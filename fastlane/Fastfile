@@ -90,19 +90,6 @@ lane :screenshots do
   )
 end
 
-desc 'Make screenshots in English on iPhone 8'
-lane :screenshots_limited do
-  capture_ios_screenshots(
-    app_identifier: AppIdentifier,
-    configuration: 'Debug',
-    devices: [ Test_Device ],
-    languages: [ Test_Language ],
-    output_directory: "#{Target_Folder_Name}/screenshots",
-    scheme: Scheme_UITests,
-    stop_after_first_error: true
-  )
-end
-
 desc 'Frame Screenshots for README'
 lane :frame do
   capture_ios_screenshots(
