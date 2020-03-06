@@ -26,6 +26,7 @@ enum Webservice {
     }
 
     @discardableResult
+    // swiftlint:disable:next attributes
     static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A, Error>) -> Void) -> URLSessionTask? {
         guard let resource = resource else {
             completion(.failure(NetworkError.emptyResource))
