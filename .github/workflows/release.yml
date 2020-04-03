@@ -5,6 +5,9 @@ on:
     tags:
     - '*'
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_11.4.app/Contents/Developer
+
 jobs:
   release:
     name: Create GitHub Release

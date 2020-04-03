@@ -30,10 +30,6 @@ $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 skip_docs
 
-before_all do
-  xcversion(version: "11.3.1")
-end 
-
 desc 'Runs all unit tests'
 lane :test do
   run_tests(
