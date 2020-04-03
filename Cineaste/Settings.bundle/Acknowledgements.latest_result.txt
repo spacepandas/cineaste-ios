@@ -1,4 +1,4 @@
-name: Kingfisher, nameSpecified: , owner: onevcat, version: 5.13.2
+name: Kingfisher, nameSpecified: , owner: onevcat, version: 5.13.3
 
 name: ReSwift, nameSpecified: , owner: ReSwift, version: 5.0.0
 
