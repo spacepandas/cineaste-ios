@@ -614,7 +614,10 @@
 				3F2408F3203CB88E00EB9141 /* CineasteUITests */,
 				95AE259D1F9531E20067F5F5 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		95AE259D1F9531E20067F5F5 /* Products */ = {
 			isa = PBXGroup;
