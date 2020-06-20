@@ -94,6 +94,7 @@
 		3FF3E960249E687600CA472F /* SearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E95F249E687600CA472F /* SearchAction.swift */; };
 		3FF3E962249E692000CA472F /* SearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E961249E691F00CA472F /* SearchReducer.swift */; };
 		3FF3E964249E6A8E00CA472F /* SearchReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E963249E6A8E00CA472F /* SearchReducerTests.swift */; };
+		3FF3E966249E6CCD00CA472F /* SearchThunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E965249E6CCD00CA472F /* SearchThunks.swift */; };
 		3FF790E620DE274A007B7D37 /* Instantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE771FF39DFC00E584E9 /* Instantiable.swift */; };
 		3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD886451FF2C46400A86ACF /* Appearance.swift */; };
 		3FF790E820DE274A007B7D37 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Constants.swift */; };
@@ -121,7 +122,6 @@
 		3FF7910B20DE274A007B7D37 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD4FF8220B74C6500538BA3 /* PosterViewController.swift */; };
 		3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F29E920B1C4AB00A9282B /* UITableView+GenericDequeue.swift */; };
 		3FF7910F20DE274A007B7D37 /* WatchlistMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1292F91FD7CC1100ED5593 /* WatchlistMovieCell.swift */; };
-		3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */; };
 		3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E8B761FABC6F50004E8C3 /* SearchMoviesViewController.swift */; };
 		3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE259F1F9531E20067F5F5 /* AppDelegate.swift */; };
 		3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB14532025B80F0063E980 /* AlertMessage.swift */; };
@@ -299,7 +299,6 @@
 		3FD4FF8220B74C6500538BA3 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		3FD6AA7920BA986900B72ABC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+UITableView.swift"; sourceTree = "<group>"; };
-		3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+Webservice.swift"; sourceTree = "<group>"; };
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		3FDB14532025B80F0063E980 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		3FDEF4742103368300955129 /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
@@ -320,6 +319,7 @@
 		3FF3E95F249E687600CA472F /* SearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAction.swift; sourceTree = "<group>"; };
 		3FF3E961249E691F00CA472F /* SearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReducer.swift; sourceTree = "<group>"; };
 		3FF3E963249E6A8E00CA472F /* SearchReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReducerTests.swift; sourceTree = "<group>"; };
+		3FF3E965249E6CCD00CA472F /* SearchThunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThunks.swift; sourceTree = "<group>"; };
 		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF7F1E123894A8E00EC44DD /* SearchMoviesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerTests.swift; sourceTree = "<group>"; };
 		3FFEC6CC236DCF91005E7EED /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -574,6 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC1AA6D2385DFA400E24C16 /* MovieThunks.swift */,
+				3FF3E965249E6CCD00CA472F /* SearchThunks.swift */,
 			);
 			path = Thunks;
 			sourceTree = "<group>";
@@ -613,7 +614,6 @@
 				3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */,
 				6409298F22DBAB0C0011AB96 /* SearchMoviesViewController+SwipeHint.swift */,
 				3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */,
-				3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */,
 				3F7D1D5023D4AEB400BA530F /* SearchTokenCell.swift */,
 				4E903D95249E5DE600EAA4E6 /* SearchSection.swift */,
 			);
@@ -1123,7 +1123,7 @@
 				3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */,
 				3FF7910F20DE274A007B7D37 /* WatchlistMovieCell.swift in Sources */,
 				3FF798422205A9830055CCBB /* SettingItem.swift in Sources */,
-				3FF7911120DE274A007B7D37 /* SearchMoviesViewController+Webservice.swift in Sources */,
+				3FF3E966249E6CCD00CA472F /* SearchThunks.swift in Sources */,
 				3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */,
 				3FF095CF2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */,
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,

@@ -7,10 +7,16 @@
 //
 
 import ReSwift
+import Foundation
 
 enum SearchAction: Action {
     case updateSearchQuery(query: String)
     case selectGenre(genre: Genre)
     case deselectGenre(genre: Genre)
+    case showNextPage
+    case setInitialSearchResult(result: [Movie])
+    case updateSearchResult(result: [Movie])
+    case updateTotalResults(Int)
+    case updateNetworkRequest(URLSessionTask?)
     case resetSearch
 }

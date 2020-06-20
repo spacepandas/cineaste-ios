@@ -7,6 +7,7 @@
 //
 
 import ReSwift
+import Foundation
 
 struct AppState: StateType, Equatable {
     var movies: Set<Movie> = []
@@ -28,7 +29,29 @@ struct SelectedMovieState: Equatable {
 
 struct SearchState: Equatable {
     var selectedGenres: [Genre] = []
-    var searchQuery: String?
+    var searchQuery: String = ""
+    var currentPage: Int = 1 {
+        didSet { print("page", currentPage) }
+    }
+    var initialSearchResult: [Movie] = []
+    var searchResult: [Movie] = []
+    var totalResults: Int?
+    weak var currentRequest: URLSessionTask?
 
-    var searchResult: Set<Movie> = []
+    var isLoading: Bool {
+        currentRequest != nil
+    }
+
+    var hasLoadedAllMovies: Bool {
+        guard let totalResults = totalResults else { return false }
+        return moviesToDisplay.count >= totalResults
+    }
+
+    var moviesToDisplay: [Movie] {
+        isInitialSearch ? initialSearchResult : searchResult
+    }
+
+    var isInitialSearch: Bool {
+        searchQuery.isEmpty && selectedGenres.isEmpty
+    }
 }

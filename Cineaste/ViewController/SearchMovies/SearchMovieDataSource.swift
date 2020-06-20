@@ -17,8 +17,6 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
 
     var mode: Mode = .discover
     var movies: [Movie] = []
-    var currentPage: Int?
-    var totalResults: Int?
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard #available(iOS 13, *),
@@ -66,11 +64,6 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
             let movie = movies[indexPath.row]
 
             cell.configure(with: movie)
-
-            if let numberOfMovies = totalResults,
-                indexPath.isLast(of: numberOfMovies) {
-                tableView.tableFooterView = UIView()
-            }
 
             return cell
         case (.manualSearch, .tokens?):

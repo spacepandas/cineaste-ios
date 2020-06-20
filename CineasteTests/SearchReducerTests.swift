@@ -9,6 +9,7 @@
 import XCTest
 @testable import Cineaste_App
 
+//TODO: add more tests for SearchReducer
 class SearchReducerTests: XCTestCase {
 
     func testUpdateSearchQueryActionShouldUpdateSearchQuery() {
@@ -26,7 +27,7 @@ class SearchReducerTests: XCTestCase {
         XCTAssertEqual(state, expectedState)
     }
 
-    func testSelectGenreActionShouldAppendGenre() {
+    func testSelectGenreActionShouldAppendGenreAndResetQuery() {
         // Given
         let genre = Genre(id: 0, name: "Horror")
         let action = SearchAction.selectGenre(genre: genre)
@@ -35,7 +36,7 @@ class SearchReducerTests: XCTestCase {
         )
 
         // When
-        let state = searchReducer(action: action, state: SearchState())
+        let state = searchReducer(action: action, state: SearchState(searchQuery: "Hor"))
 
         // Then
         XCTAssertEqual(state, expectedState)

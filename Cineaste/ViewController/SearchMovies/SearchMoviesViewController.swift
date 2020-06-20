@@ -20,17 +20,6 @@ class SearchMoviesViewController: UIViewController {
         return resultSearchController
     }()
 
-    private var storedIDs = StoredMovieIDs(watchListMovieIDs: [], seenMovieIDs: []) {
-        didSet {
-            guard oldValue != storedIDs else { return }
-
-            movies = updateMoviesWithWatchState(
-                with: storedIDs,
-                moviesFromNetworking: moviesFromNetworking
-            )
-        }
-    }
-
     let dataSource = SearchMovieDataSource()
 
     var movies: [Movie] = [] {
@@ -38,18 +27,7 @@ class SearchMoviesViewController: UIViewController {
             guard oldValue != movies else { return }
 
             dataSource.movies = movies
-            updateUI()
-        }
-    }
-
-    var moviesFromNetworking: Set<Movie> = [] {
-        didSet {
-            guard oldValue != moviesFromNetworking else { return }
-
-            movies = updateMoviesWithWatchState(
-                with: storedIDs,
-                moviesFromNetworking: moviesFromNetworking
-            )
+            tableView.reloadData()
         }
     }
 
@@ -63,11 +41,7 @@ class SearchMoviesViewController: UIViewController {
         configureTableViewController()
         configureSearchController()
 
-        loadMovies { [weak self] movies in
-            DispatchQueue.main.async {
-                self?.moviesFromNetworking = movies
-            }
-        }
+        store.dispatch(fetchSearchResults)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -148,30 +122,6 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Custom functions
 
-    func updateMoviesWithWatchState(with storedIDs: StoredMovieIDs, moviesFromNetworking: Set<Movie>) -> [Movie] {
-
-        moviesFromNetworking.map { movie in
-            var movie = movie
-            if storedIDs.watchListMovieIDs.contains(movie.id) {
-                movie.watched = false
-            } else if storedIDs.seenMovieIDs.contains(movie.id) {
-                movie.watched = true
-            } else {
-                movie.watched = nil
-            }
-            return movie
-        }
-        .sorted(by: SortDescriptor.sortByPopularity)
-    }
-
-    func updateUI() {
-        tableView.reloadData()
-
-        if movies.isEmpty {
-            tableView.tableFooterView = UIView()
-        }
-    }
-
     func scrollToTopCell(withAnimation: Bool) {
         guard !movies.isEmpty else { return }
 
@@ -185,15 +135,24 @@ class SearchMoviesViewController: UIViewController {
 
 extension SearchMoviesViewController: StoreSubscriber {
     struct State: Equatable {
-        let storedIDs: StoredMovieIDs
+        let movies: [Movie]
+        let isLoading: Bool
     }
 
     private static func select(state: AppState) -> State {
-        .init(storedIDs: state.storedIDs)
+        .init(
+            movies: state.searchState.moviesToDisplay,
+            isLoading: state.searchState.isLoading
+        )
     }
 
     func newState(state: State) {
-        storedIDs = state.storedIDs
+        movies = state.movies
+        if state.isLoading {
+            tableView.tableFooterView = loadingIndicatorView
+        } else {
+            tableView.tableFooterView = UIView()
+        }
     }
 }
 
