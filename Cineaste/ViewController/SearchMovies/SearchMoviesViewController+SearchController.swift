@@ -26,7 +26,11 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
 
 extension SearchMoviesViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        dataSource.mode = .manualSearch
+        if #available(iOS 13, *) {
+            dataSource.mode = .manualSearch
+        } else {
+            dataSource.mode = .discover
+        }
         tableView.reloadData()
     }
 

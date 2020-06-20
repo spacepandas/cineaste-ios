@@ -11,6 +11,7 @@ import UIKit
 class SearchMovieDataSource: NSObject, UITableViewDataSource {
     enum Mode {
         case discover
+        @available (iOS 13, *)
         case manualSearch
     }
 
@@ -20,7 +21,9 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
     var totalResults: Int?
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard mode == .manualSearch else { return nil }
+        guard #available(iOS 13, *),
+            mode == .manualSearch
+            else { return nil }
 
         switch SearchSection(rawValue: section) {
         case .tokens?:

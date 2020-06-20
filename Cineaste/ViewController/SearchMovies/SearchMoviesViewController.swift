@@ -141,7 +141,9 @@ class SearchMoviesViewController: UIViewController {
 
         definesPresentationContext = true
 
-        resultSearchController.searchBar.searchTextField.delegate = self
+        if #available(iOS 13.0, *) {
+            resultSearchController.searchBar.searchTextField.delegate = self
+        }
     }
 
     // MARK: - Custom functions
