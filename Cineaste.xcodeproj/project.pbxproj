@@ -91,6 +91,9 @@
 		3FF095D22103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */; };
 		3FF095D5210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095D3210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift */; };
 		3FF0A2F821D3C2BD00BF9E83 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */; };
+		3FF3E960249E687600CA472F /* SearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E95F249E687600CA472F /* SearchAction.swift */; };
+		3FF3E962249E692000CA472F /* SearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E961249E691F00CA472F /* SearchReducer.swift */; };
+		3FF3E964249E6A8E00CA472F /* SearchReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3E963249E6A8E00CA472F /* SearchReducerTests.swift */; };
 		3FF790E620DE274A007B7D37 /* Instantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83BE771FF39DFC00E584E9 /* Instantiable.swift */; };
 		3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD886451FF2C46400A86ACF /* Appearance.swift */; };
 		3FF790E820DE274A007B7D37 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Constants.swift */; };
@@ -314,6 +317,9 @@
 		3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		3FF095D3210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+UIDocumentPicker.swift"; sourceTree = "<group>"; };
 		3FF0A2F721D3C2BD00BF9E83 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
+		3FF3E95F249E687600CA472F /* SearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAction.swift; sourceTree = "<group>"; };
+		3FF3E961249E691F00CA472F /* SearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReducer.swift; sourceTree = "<group>"; };
+		3FF3E963249E6A8E00CA472F /* SearchReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReducerTests.swift; sourceTree = "<group>"; };
 		3FF7913720DE274A007B7D37 /* Cineaste App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF7F1E123894A8E00EC44DD /* SearchMoviesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerTests.swift; sourceTree = "<group>"; };
 		3FFEC6CC236DCF91005E7EED /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -484,10 +490,11 @@
 				3F229213225A41F6001D4358 /* MovieReducerTests.swift */,
 				3F8644B21FFA96370046114A /* MoviesViewControllerTests.swift */,
 				3F02493C238893C100BA545C /* MovieTests.swift */,
-				3F4701C5238C8312006C1577 /* PagedMovieResultTests.swift */,
 				3FC1AA6F2385E23B00E24C16 /* MovieThunksTests.swift */,
+				3F4701C5238C8312006C1577 /* PagedMovieResultTests.swift */,
 				4ED2FC822266F586007BDE06 /* PersistenceTests.swift */,
 				3FF7F1E123894A8E00EC44DD /* SearchMoviesViewControllerTests.swift */,
+				3FF3E963249E6A8E00CA472F /* SearchReducerTests.swift */,
 				4E779FC022690151007B278D /* SelectionReducerTests.swift */,
 				4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */,
 				3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */,
@@ -558,6 +565,7 @@
 				4EB512012268B07600CBDC7E /* AppReducer.swift */,
 				3F22920F225A3CDE001D4358 /* MovieReducer.swift */,
 				4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */,
+				3FF3E961249E691F00CA472F /* SearchReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -575,6 +583,7 @@
 			children = (
 				3F22920D225A3C4B001D4358 /* MovieAction.swift */,
 				3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */,
+				3FF3E95F249E687600CA472F /* SearchAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1034,6 +1043,7 @@
 				3F701B40218640F80033562B /* MoviesViewControllerTests.swift in Sources */,
 				3F187F8F22632DC000B7A9CF /* Movie+Testing.swift in Sources */,
 				3FF7F1E223894A8E00EC44DD /* SearchMoviesViewControllerTests.swift in Sources */,
+				3FF3E964249E6A8E00CA472F /* SearchReducerTests.swift in Sources */,
 				4ED2FC832266F586007BDE06 /* PersistenceTests.swift in Sources */,
 				3F229214225A41F6001D4358 /* MovieReducerTests.swift in Sources */,
 				3F1F419E2381499800B1C0FD /* LocalizedReleaseDateTests.swift in Sources */,
@@ -1053,6 +1063,7 @@
 				3FF790E820DE274A007B7D37 /* Constants.swift in Sources */,
 				3FC1AA6E2385DFA400E24C16 /* MovieThunks.swift in Sources */,
 				3FA6C9D920F7DCEC0050368E /* CustomSafariViewController.swift in Sources */,
+				3FF3E960249E687600CA472F /* SearchAction.swift in Sources */,
 				3FF790E920DE274A007B7D37 /* PagedMovieResult.swift in Sources */,
 				3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */,
 				3F3E6BE9222B0C5500F317E8 /* SearchMoviesCell.swift in Sources */,
@@ -1089,6 +1100,7 @@
 				3FBD9F71222C7A6200DD9248 /* WatchState.swift in Sources */,
 				3FF798432205A9870055CCBB /* TextViewType.swift in Sources */,
 				3F80F27222359E5C007E03C5 /* UIView+SlideIn.swift in Sources */,
+				3FF3E962249E692000CA472F /* SearchReducer.swift in Sources */,
 				3FF790FF20DE274A007B7D37 /* Resource.swift in Sources */,
 				3FF7910020DE274A007B7D37 /* ApiKeyStore.swift in Sources */,
 				3F8065BC238AE3220087D6EA /* DateFormatter+Cineaste.swift in Sources */,

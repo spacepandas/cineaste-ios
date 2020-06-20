@@ -19,8 +19,16 @@ struct AppState: StateType, Equatable {
     }
 
     var selectedMovieState = SelectedMovieState()
+    var searchState = SearchState()
 }
 
 struct SelectedMovieState: Equatable {
     var movie: Movie?
+}
+
+struct SearchState: Equatable {
+    var selectedGenres: [Genre] = []
+    var searchQuery: String?
+
+    var searchResult: Set<Movie> = []
 }
