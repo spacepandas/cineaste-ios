@@ -22,10 +22,10 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard mode == .manualSearch else { return nil }
 
-        switch section {
-        case .tokens:
+        switch SearchSection(rawValue: section) {
+        case .tokens?:
             return "Genres"
-        case .movies:
+        case .movies?:
             return "Movies"
         default:
             return nil
@@ -42,11 +42,11 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (mode, section) {
+        switch (mode, SearchSection(rawValue: section)) {
         case (.discover, _),
-             (.manualSearch, .movies):
+             (.manualSearch, .movies?):
             return movies.count
-        case (.manualSearch, .tokens):
+        case (.manualSearch, .tokens?):
             return 1
         default:
             return 0
@@ -55,9 +55,9 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch (mode, indexPath.section) {
+        switch (mode, SearchSection(rawValue: indexPath.section)) {
         case (.discover, _),
-             (.manualSearch, .movies):
+             (.manualSearch, .movies?):
             let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
             let movie = movies[indexPath.row]
@@ -70,7 +70,7 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
             }
 
             return cell
-        case (.manualSearch, .tokens):
+        case (.manualSearch, .tokens?):
             let cell: SearchTokenCell = tableView.dequeueCell(identifier: SearchTokenCell.identifier)
             cell.configure()
             return cell
@@ -79,9 +79,4 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
         }
 
     }
-}
-
-private extension Int {
-    static let tokens = 0
-    static let movies = 1
 }

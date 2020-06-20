@@ -146,6 +146,7 @@
 		3FFEC6CD236DCF91005E7EED /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEC6CC236DCF91005E7EED /* Storyboard.swift */; };
 		4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */; };
 		4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E779FC022690151007B278D /* SelectionReducerTests.swift */; };
+		4E903D96249E5DE600EAA4E6 /* SearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E903D95249E5DE600EAA4E6 /* SearchSection.swift */; };
 		4EA460EF23EAF0E50014B543 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460EE23EAF0E50014B543 /* Kingfisher */; };
 		4EA460F223EAF15B0014B543 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460F123EAF15B0014B543 /* ReSwift */; };
 		4EA460F523EAF1760014B543 /* ReSwift-Thunk in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460F423EAF1760014B543 /* ReSwift-Thunk */; };
@@ -318,6 +319,7 @@
 		3FFEC6CC236DCF91005E7EED /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceSubscriber.swift; sourceTree = "<group>"; };
 		4E779FC022690151007B278D /* SelectionReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionReducerTests.swift; sourceTree = "<group>"; };
+		4E903D95249E5DE600EAA4E6 /* SearchSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSection.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* SeparatorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorViewTests.swift; sourceTree = "<group>"; };
 		4EB512012268B07600CBDC7E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionReducer.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */,
 				3FD722CD20264BF80046DEAC /* SearchMoviesViewController+Webservice.swift */,
 				3F7D1D5023D4AEB400BA530F /* SearchTokenCell.swift */,
+				4E903D95249E5DE600EAA4E6 /* SearchSection.swift */,
 			);
 			path = SearchMovies;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				3FF790F320DE274A007B7D37 /* StoredMovie.swift in Sources */,
 				3F1EE5952219FD1B00F6E6E2 /* MovieRefresher.swift in Sources */,
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
+				4E903D96249E5DE600EAA4E6 /* SearchSection.swift in Sources */,
 				3F22920C225A3B5C001D4358 /* AppState.swift in Sources */,
 				3F187F952263491500B7A9CF /* SortDescriptor.swift in Sources */,
 				3F36F5D2238A8CCE00267280 /* UserDefaults+Cineaste.swift in Sources */,
