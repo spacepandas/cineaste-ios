@@ -19,17 +19,20 @@ func searchReducer(action: Action, state: SearchState?) -> SearchState {
         state.currentPage = 1
         state.totalResults = nil
         state.currentRequest?.cancel()
+        state.searchResult = []
     case .selectGenre(let genre):
         state.selectedGenres.append(genre)
         state.searchQuery = ""
         state.currentPage = 1
         state.totalResults = nil
         state.currentRequest?.cancel()
+        state.searchResult = []
     case .deselectGenre(let genre):
         state.selectedGenres = state.selectedGenres.filter { $0 != genre }
         state.currentPage = 1
         state.totalResults = nil
         state.currentRequest?.cancel()
+        state.searchResult = []
     case .showNextPage:
         if !state.hasLoadedAllMovies {
             state.currentPage += 1
