@@ -4,8 +4,8 @@ name: ReSwift, nameSpecified: , owner: ReSwift, version: 5.0.0
 
 name: ReSwift-Thunk, nameSpecified: , owner: ReSwift, version: 1.2.0
 
-name: swift-snapshot-testing, nameSpecified: , owner: pointfreeco, version: 1.7.2
+name: swift-snapshot-testing, nameSpecified: , owner: pointfreeco, version: 1.8.1
 
 add-version-numbers: false
 
-LicensePlist Version: 2.14.0
+LicensePlist Version: 2.15.0
