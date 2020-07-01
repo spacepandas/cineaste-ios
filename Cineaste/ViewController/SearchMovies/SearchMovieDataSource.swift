@@ -9,10 +9,7 @@
 import UIKit
 
 class SearchMovieDataSource: NSObject, UITableViewDataSource {
-
     var movies: [Movie] = []
-    var currentPage: Int?
-    var totalResults: Int?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
@@ -22,13 +19,7 @@ class SearchMovieDataSource: NSObject, UITableViewDataSource {
         let cell: SearchMoviesCell = tableView.dequeueCell(identifier: SearchMoviesCell.identifier)
 
         let movie = movies[indexPath.row]
-
         cell.configure(with: movie)
-
-        if let numberOfMovies = totalResults,
-            indexPath.isLast(of: numberOfMovies) {
-            tableView.tableFooterView = UIView()
-        }
 
         return cell
     }
