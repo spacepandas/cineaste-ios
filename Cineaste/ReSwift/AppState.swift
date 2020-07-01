@@ -30,9 +30,7 @@ struct SelectedMovieState: Equatable {
 struct SearchState: Equatable {
     var selectedGenres: [Genre] = []
     var searchQuery: String = ""
-    var currentPage: Int = 1 {
-        didSet { print("page", currentPage) }
-    }
+    var currentPage: Int = 1
     var initialSearchResult: [Movie] = []
     var searchResult: [Movie] = []
     var totalResults: Int?

@@ -8,31 +8,33 @@
 
 import ReSwift
 
+// swiftlint:disable:next cyclomatic_complexity
 func searchReducer(action: Action, state: SearchState?) -> SearchState {
     var state = state ?? SearchState()
 
-    guard let action = action as? SearchAction else { return state }
+    guard let action = action as? SearchAction
+        else { return state }
 
     switch action {
     case .updateSearchQuery(let query):
         state.searchQuery = query
         state.currentPage = 1
+        state.searchResult = []
         state.totalResults = nil
         state.currentRequest?.cancel()
-        state.searchResult = []
     case .selectGenre(let genre):
         state.selectedGenres.append(genre)
         state.searchQuery = ""
         state.currentPage = 1
+        state.searchResult = []
         state.totalResults = nil
         state.currentRequest?.cancel()
-        state.searchResult = []
     case .deselectGenre(let genre):
         state.selectedGenres = state.selectedGenres.filter { $0 != genre }
         state.currentPage = 1
+        state.searchResult = []
         state.totalResults = nil
         state.currentRequest?.cancel()
-        state.searchResult = []
     case .showNextPage:
         if !state.hasLoadedAllMovies {
             state.currentPage += 1

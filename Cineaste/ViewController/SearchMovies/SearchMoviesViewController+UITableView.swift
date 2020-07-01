@@ -10,9 +10,8 @@ import UIKit
 
 extension SearchMoviesViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        guard indexPaths.contains(where: { $0.row >= movies.count - 1 }) else { return }
-        print("prefetching...", indexPaths.map(\.row))
-
+        guard indexPaths.contains(where: { $0.row >= movies.count - 1 })
+            else { return }
         store.dispatch(fetchSearchResults)
     }
 }

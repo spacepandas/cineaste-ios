@@ -148,11 +148,10 @@ extension SearchMoviesViewController: StoreSubscriber {
 
     func newState(state: State) {
         movies = state.movies
-        if state.isLoading {
-            tableView.tableFooterView = loadingIndicatorView
-        } else {
-            tableView.tableFooterView = UIView()
-        }
+
+        tableView.tableFooterView = state.isLoading
+            ? loadingIndicatorView
+            : UIView()
     }
 }
 
