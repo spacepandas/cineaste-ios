@@ -7,7 +7,7 @@
 [![Build Status](https://github.com/spacepandas/cineaste-ios/workflows/CI/badge.svg)](https://github.com/spacepandas/cineaste-ios/workflows/CI/badge.svg)
 [![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)](https://swift.org)
 [![license](https://img.shields.io/badge/license-Apache-lightgrey.svg)](https://github.com/spacepandas/cineaste-ios/blob/master/LICENSE)
-[![platform](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_11+-lightgrey.svg)
+[![platform](https://img.shields.io/badge/platform-iOS_12+-lightgrey.svg)](https://img.shields.io/badge/platform-iOS_12+-lightgrey.svg)
 [![languages](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)
 [![testflight](https://img.shields.io/badge/Join-TestFlight-blue.svg)](https://testflight.apple.com/join/sAfD3j8m)
 
@@ -33,7 +33,7 @@ A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/
 
 ### How to build
 
-1. Open `Cineaste.xcodeproj` in Xcode 11.4.
+1. Open `Cineaste.xcodeproj` in Xcode 11.
 2. Get a [theMovieDb][theMovieDb] key and add it to the ApiKeys data set in the asset catalog under the following path: `Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist`.
 
 ```xml 
