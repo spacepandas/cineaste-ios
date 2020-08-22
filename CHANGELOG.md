@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.21.0
+
+## New
+* Drop Support for iOS 11
+
 # 1.20.1
 
 ## Improved
