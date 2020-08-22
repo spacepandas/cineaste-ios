@@ -39,6 +39,8 @@ func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
                 dispatch(MovieAction.update(movie: updatedMovie))
             }
         }
+
+        AppStoreReview.requestReview()
     }
 }
 
