@@ -15,14 +15,14 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
     func testGeneralAppearance() {
         // Given
-        let viewController = MovieDetailViewController.instantiate()
-
-        // When
         var state = AppState()
         let movie = Movie.testingWithoutPosterPath
         state.movies = [movie]
         state.selectedMovieState.movie = movie
         store = Store(reducer: appReducer, state: state)
+
+        // When
+        let viewController = MovieDetailViewController.instantiate()
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
@@ -31,14 +31,14 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
     func testWatchlistMovieAppearance() {
         // Given
-        let viewController = MovieDetailViewController.instantiate()
-
-        // When
         var state = AppState()
         let movie = Movie.testingWatchlistWithoutPosterPath
         state.movies = [movie]
         state.selectedMovieState.movie = movie
         store = Store(reducer: appReducer, state: state)
+
+        // When
+        let viewController = MovieDetailViewController.instantiate()
 
         // Then
         let navigationController = NavigationController(rootViewController: viewController)
