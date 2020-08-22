@@ -25,15 +25,8 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         assertThemedNavigationSnapshot(matching: navigationController)
     }
 
-    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/125
-    func disabledtestGeneralAppearanceForWatchlist() {
+    func testGeneralAppearanceForWatchlist() {
         // Given
-        let viewController = MoviesViewController.instantiate()
-        let navigationController = NavigationController(rootViewController: viewController)
-
-        // When
-        viewController.category = .watchlist
-
         var state = AppState()
         state.movies = [
             Movie.testingWatchlistWithoutPosterPath,
@@ -41,24 +34,29 @@ class MoviesViewControllerSnapshotTests: XCTestCase {
         ]
         store = Store(reducer: appReducer, state: state)
 
-        // Then
-        assertThemedNavigationSnapshot(matching: navigationController)
-    }
-
-    // issue reported: https://github.com/spacepandas/cineaste-ios/issues/125
-    func disabledtestGeneralAppearanceForHistory() {
-        // Given
         let viewController = MoviesViewController.instantiate()
         let navigationController = NavigationController(rootViewController: viewController)
 
         // When
-        viewController.category = .seen
+        viewController.category = .watchlist
 
+        // Then
+        assertThemedNavigationSnapshot(matching: navigationController)
+    }
+
+    func testGeneralAppearanceForHistory() {
+        // Given
         var state = AppState()
         state.movies = [
             Movie.testingSeenWithoutPosterPath
         ]
         store = Store(reducer: appReducer, state: state)
+
+        let viewController = MoviesViewController.instantiate()
+        let navigationController = NavigationController(rootViewController: viewController)
+
+        // When
+        viewController.category = .seen
 
         // Then
         assertThemedNavigationSnapshot(matching: navigationController)

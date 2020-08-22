@@ -71,6 +71,8 @@
 		3FBD9F71222C7A6200DD9248 /* WatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD9F70222C7A6200DD9248 /* WatchState.swift */; };
 		3FBDB30021D4F35D00CBE341 /* FailingImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FB21D4F35C00CBE341 /* FailingImport.json */; };
 		3FBDB30121D4F35D00CBE341 /* Import.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FC21D4F35C00CBE341 /* Import.json */; };
+		3FBF411D24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF411C24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift */; };
+		3FBF411F24F175F3005433CC /* SeenMovieCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF411E24F175F3005433CC /* SeenMovieCellSnapshotTests.swift */; };
 		3FC1AA6E2385DFA400E24C16 /* MovieThunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1AA6D2385DFA400E24C16 /* MovieThunks.swift */; };
 		3FC1AA702385E23B00E24C16 /* MovieThunksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1AA6F2385E23B00E24C16 /* MovieThunksTests.swift */; };
 		3FC1AA752385E4EA00E24C16 /* SelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */; };
@@ -281,6 +283,8 @@
 		3FBD9F70222C7A6200DD9248 /* WatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchState.swift; sourceTree = "<group>"; };
 		3FBDB2FB21D4F35C00CBE341 /* FailingImport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FailingImport.json; sourceTree = "<group>"; };
 		3FBDB2FC21D4F35C00CBE341 /* Import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Import.json; sourceTree = "<group>"; };
+		3FBF411C24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistMovieCellSnapshotTests.swift; sourceTree = "<group>"; };
+		3FBF411E24F175F3005433CC /* SeenMovieCellSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMovieCellSnapshotTests.swift; sourceTree = "<group>"; };
 		3FC1AA6D2385DFA400E24C16 /* MovieThunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieThunks.swift; sourceTree = "<group>"; };
 		3FC1AA6F2385E23B00E24C16 /* MovieThunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieThunksTests.swift; sourceTree = "<group>"; };
 		3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionAction.swift; sourceTree = "<group>"; };
@@ -434,8 +438,10 @@
 				3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */,
 				3F0349032383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift */,
 				3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */,
+				3FBF411E24F175F3005433CC /* SeenMovieCellSnapshotTests.swift */,
 				3F450B41236C761800A59F1E /* SettingsDetailViewControllerSnapshotTests.swift */,
 				3F450B36236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift */,
+				3FBF411C24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift */,
 				3F450B3E236C6F3500A59F1E /* XCTestCase+SnapshotTests.swift */,
 			);
 			path = CineasteSnapshotTests;
@@ -999,6 +1005,7 @@
 			files = (
 				3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */,
 				3F4701C9238C8541006C1577 /* PagedMovieResult+Testing.swift in Sources */,
+				3FBF411D24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift in Sources */,
 				3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */,
 				3F32C1F82375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift in Sources */,
 				3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */,
@@ -1006,6 +1013,7 @@
 				3F0349042383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift in Sources */,
 				3F450B3F236C6F3500A59F1E /* XCTestCase+SnapshotTests.swift in Sources */,
 				3F450B37236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift in Sources */,
+				3FBF411F24F175F3005433CC /* SeenMovieCellSnapshotTests.swift in Sources */,
 				3F544E402381F36E00B26071 /* XCTestCase+WaitForQueue.swift in Sources */,
 				3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */,
 				3F450B42236C761800A59F1E /* SettingsDetailViewControllerSnapshotTests.swift in Sources */,

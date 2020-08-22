@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSX-mg-rcN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -154,14 +154,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-Zu-dfX">
-                            <rect key="frame" x="177.5" y="30" width="20" height="0.0"/>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-Zu-dfX">
+                            <rect key="frame" x="177.5" y="20" width="20" height="20"/>
+                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="7FF-lZ-CXt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RFB-Zu-dfX" secondAttribute="top" constant="8" id="Fui-2k-8q1"/>
                         <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerX" secondItem="MUX-60-4Ps" secondAttribute="centerX" id="S0c-vC-OKE"/>
                         <constraint firstItem="RFB-Zu-dfX" firstAttribute="centerY" secondItem="MUX-60-4Ps" secondAttribute="centerY" id="XfZ-Uj-S5m"/>
-                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="top" secondItem="7FF-lZ-CXt" secondAttribute="top" priority="999" constant="10" id="fGd-Sj-8Zm"/>
+                        <constraint firstItem="RFB-Zu-dfX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7FF-lZ-CXt" secondAttribute="leading" constant="8" id="zPR-7X-aYX"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="7FF-lZ-CXt"/>
                 </view>

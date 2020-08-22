@@ -13,8 +13,13 @@ import SnapshotTesting
 
 class SearchMoviesViewControllerSnapshotTests: XCTestCase {
 
-    func testLoadingAppearance() {
+    func testLoadingAppearance() throws {
         // Given
+        var state = AppState()
+        let url = try XCTUnwrap(URL(string: "test"))
+        let task = URLSession(configuration: .default).dataTask(with: url)
+        state.searchState.currentRequest = task
+        store = Store(reducer: appReducer, state: state)
         let viewController = SearchMoviesViewController.instantiate()
 
         // Then
