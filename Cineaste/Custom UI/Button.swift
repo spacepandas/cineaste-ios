@@ -24,35 +24,6 @@ class Button: UIButton {
     }
 }
 
-class ActionButton: Button {
-    override func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title?.uppercased(), for: state)
-    }
-
-    override func setup() {
-        setTitleColor(UIColor.cineButtonDark, for: .normal)
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(setBoldSymbolicTrait),
-            name: UIContentSizeCategory.didChangeNotification,
-            object: nil
-        )
-
-        // Fix layout issues when using dynamic size, related to #80
-        // https://github.com/spacepandas/cineaste-ios/issues/80
-//        titleLabel?.adjustsFontForContentSizeCategory = true
-//        titleLabel?.numberOfLines = 0
-//        titleLabel?.lineBreakMode = .byWordWrapping
-//        titleLabel?.textAlignment = .left
-
-        titleLabel?.adjustsFontSizeToFitWidth = true
-        titleLabel?.minimumScaleFactor = 0.2
-
-        setBoldSymbolicTrait()
-    }
-}
-
 class LinkButton: Button {
     override func setTitle(_ title: String?, for state: UIControl.State) {
         guard let title = title else { return }
