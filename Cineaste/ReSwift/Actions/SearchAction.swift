@@ -16,6 +16,7 @@ enum SearchAction: Action {
     case showNextPage
     case setInitialSearchResult(result: [Movie])
     case updateSearchResult(result: [Movie])
+    case updateMarkedMovie(movie: Movie)
     case updateTotalResults(Int)
     case updateNetworkRequest(URLSessionTask?)
     case resetSearch

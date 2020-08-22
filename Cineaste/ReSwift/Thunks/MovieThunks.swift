@@ -28,6 +28,9 @@ func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
             dispatch(MovieAction.update(movie: updatedMovie))
         }
 
+        // Update Movie UI in Search
+        dispatch(SearchAction.updateMarkedMovie(movie: updatedMovie))
+
         Webservice.load(resource: movie.get) { result in
             guard case let .success(detailedMovie) = result else { return }
 
@@ -42,6 +45,13 @@ func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
 func deleteMovie(_ movie: Movie) -> Thunk<AppState> {
     Thunk { dispatch, _ in
         dispatch(MovieAction.delete(movie: movie))
+
+        // Update Movie UI in Search
+        var updatedMovie = movie
+        updatedMovie.watched = nil
+        updatedMovie.watchedDate = nil
+        dispatch(SearchAction.updateMarkedMovie(movie: updatedMovie))
+
         SpotlightIndexing.deindexItem(movie)
     }
 }

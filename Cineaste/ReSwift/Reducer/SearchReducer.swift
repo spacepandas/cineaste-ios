@@ -39,6 +39,13 @@ func searchReducer(action: Action, state: SearchState?) -> SearchState {
         if !state.hasLoadedAllMovies {
             state.currentPage += 1
         }
+    case .updateMarkedMovie(let movie):
+        if let index = state.searchResult.firstIndex(where: { $0.id == movie.id }) {
+            state.searchResult[index] = movie
+        }
+        if let index = state.initialSearchResult.firstIndex(where: { $0.id == movie.id }) {
+            state.initialSearchResult[index] = movie
+        }
     case .updateSearchResult(let result):
         state.searchResult += result
     case .updateTotalResults(let totalResults):
