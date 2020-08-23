@@ -137,4 +137,13 @@ extension Movie {
     var hasAlreadyLoadedDetails: Bool {
         runtime != nil
     }
+
+    static func posterUrl(from posterPath: String, for size: Constants.PosterSize) -> URL {
+        let urlAsString = "\(size.address)\(posterPath)?api_key=\(ApiKeyStore.theMovieDbKey)"
+        guard let url = URL(string: urlAsString) else {
+            fatalError("Could not create url for poster download")
+        }
+        return url
+    }
+
 }

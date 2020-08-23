@@ -7,11 +7,16 @@
 //
 
 import Foundation
+import WidgetKit
 
 enum Persistence {
     static func saveMovies(_ movies: Set<Movie>) throws {
         let data = try JSONEncoder.tmdbEncoder.encode(movies)
         try data.write(to: movieUrl)
+
+        // make Movies available for Widgets
+        try data.write(to: storeUrl)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     static func loadMovies() -> Set<Movie> {
@@ -30,6 +35,8 @@ enum Persistence {
 
 private extension Persistence {
     static let movieUrl = FileManager.default.documentsDirectory
+        .appendingPathComponent("movies.json")
+    static let storeUrl = AppGroup.widget.containerURL
         .appendingPathComponent("movies.json")
     static let exportMovieUrl = FileManager.default.cachesDirectory
         .appendingPathComponent("cineaste-\(Date().formattedForRequest).json")

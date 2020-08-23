@@ -57,15 +57,6 @@ extension Movie {
             }
         }
     }
-
-    static func posterUrl(from posterPath: String, for size: Constants.PosterSize) -> URL {
-        let urlAsString = "\(size.address)\(posterPath)?api_key=\(apiKey)"
-        guard let url = URL(string: urlAsString) else {
-            fatalError("Could not create url for poster download")
-        }
-        return url
-    }
-
     var get: Resource<Movie> {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
