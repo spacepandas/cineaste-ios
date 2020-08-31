@@ -114,6 +114,16 @@
 		3FD67ED424F2CED0007D3766 /* Keys.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F712535224C066B00B6B100 /* Keys.xcassets */; };
 		3FDEF4762103368300955129 /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF4742103368300955129 /* DebugPrint.swift */; };
 		3FEC13E12391C16A0078637B /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC13E02391C16A0078637B /* KeyedDecodingContainerProtocol+Decoding.swift */; };
+		3FEE6D9B24FD778200818241 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
+		3FEE6D9C24FD78FF00818241 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
+		3FEE6D9D24FD796E00818241 /* WatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD9F70222C7A6200DD9248 /* WatchState.swift */; };
+		3FEE6D9E24FD799500818241 /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC13E02391C16A0078637B /* KeyedDecodingContainerProtocol+Decoding.swift */; };
+		3FEE6DA024FD79A800818241 /* DateFormatter+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8065BB238AE3220087D6EA /* DateFormatter+Cineaste.swift */; };
+		3FEE6DA124FD79AD00818241 /* ApiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */; };
+		3FEE6DA224FD79BD00818241 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Constants.swift */; };
+		3FEE6DA324FD79CC00818241 /* String+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9806372055250F00B92A27 /* String+Cineaste.swift */; };
+		3FEE6DA424FD79D400818241 /* MovieListCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B57719201E2C75007BD9F0 /* MovieListCategory.swift */; };
+		3FEE6DA524FD79E500818241 /* String+VariantFittingPresentationWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */; };
 		3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */; };
 		3FEEE8E9222BE94C00EB1649 /* UIFont+SymbolicTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */; };
 		3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */; };
@@ -1257,8 +1267,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEE6DA024FD79A800818241 /* DateFormatter+Cineaste.swift in Sources */,
 				3F508CFC24FD6E84008A7DCB /* DynamicMovieSelection.intentdefinition in Sources */,
+				3FEE6D9B24FD778200818241 /* AppGroup.swift in Sources */,
+				3FEE6DA124FD79AD00818241 /* ApiKeyStore.swift in Sources */,
+				3FEE6D9E24FD799500818241 /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */,
+				3FEE6D9C24FD78FF00818241 /* Movie.swift in Sources */,
+				3FEE6DA324FD79CC00818241 /* String+Cineaste.swift in Sources */,
+				3FEE6D9D24FD796E00818241 /* WatchState.swift in Sources */,
 				3F508CE024FD6E2A008A7DCB /* IntentHandler.swift in Sources */,
+				3FEE6DA224FD79BD00818241 /* Constants.swift in Sources */,
+				3FEE6DA424FD79D400818241 /* MovieListCategory.swift in Sources */,
+				3FEE6DA524FD79E500818241 /* String+VariantFittingPresentationWidth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1678,7 +1698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = SelectMovieIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1686,7 +1706,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.spacepandas.ios.cineaste.SelectMovieIntent;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.spacepandas.ios.cineaste-dev.SelectMovieIntent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1704,7 +1724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SelectMovieIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

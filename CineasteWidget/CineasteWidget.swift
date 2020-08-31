@@ -10,7 +10,10 @@ import WidgetKit
 import SwiftUI
 
 //swiftlint:disable void_return
-struct Provider: TimelineProvider {
+struct Provider: IntentTimelineProvider {
+
+    typealias Intent = DynamicMovieSelectionIntent
+
     let storeUrl = AppGroup.widget.containerURL
         .appendingPathComponent("movies.json")
 
@@ -20,38 +23,42 @@ struct Provider: TimelineProvider {
         .previewData
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         var entry: SimpleEntry
         let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
-        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData) {
-            entry = SimpleEntry(date: Date(), movies: decodedData)
+        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData),
+           let id = configuration.movie?.identifier,
+           let movie = decodedData.first(where: { $0.id == Int(id) ?? 0 }) {
+            entry = SimpleEntry(date: Date(), movie: movie)
         } else {
             entry = .previewData
         }
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         var entry: SimpleEntry
         let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
-        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData) {
-            entry = SimpleEntry(date: Date(), movies: decodedData)
+        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData),
+           let id = configuration.movie?.identifier,
+           let movie = decodedData.first(where: { $0.id == Int(id) ?? 0 }) {
+            entry = SimpleEntry(date: Date(), movie: movie)
         } else {
             entry = .previewData
         }
 
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
+    let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let movies: [Movie]
+    let movie: Movie
 
     static let previewData = SimpleEntry(
         date: Date(),
-        movies: [.testSeen, .testSeen, .testSeen]
+        movie: .testSeen
     )
 }
 

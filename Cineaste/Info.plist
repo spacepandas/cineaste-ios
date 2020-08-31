@@ -26,6 +26,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>DynamicMovieSelectionIntent</string>
+	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

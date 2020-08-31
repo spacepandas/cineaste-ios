@@ -20,19 +20,19 @@ struct WidgetView: View {
     var body: some View {
         switch family {
         case .systemSmall:
-            MovieDescriptionView(movie: entry.movies[0])
+            MovieDescriptionView(movie: entry.movie)
                 .padding(.all)
         case .systemMedium:
             HStack {
                 ForEach(0..<2) { index in
-                    MovieDescriptionView(movie: entry.movies[index])
+                    MovieDescriptionView(movie: entry.movie)
                 }
             }
             .padding(.all)
         case .systemLarge:
             VStack(alignment: .leading) {
                 ForEach(0..<3) { index in
-                    MovieView(movie: entry.movies[index])
+                    MovieView(movie: entry.movie)
                 }
             }
             .padding(.all)
