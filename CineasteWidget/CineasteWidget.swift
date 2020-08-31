@@ -14,6 +14,8 @@ struct Provider: TimelineProvider {
     let storeUrl = AppGroup.widget.containerURL
         .appendingPathComponent("movies.json")
 
+    public typealias Entry = SimpleEntry
+
     func placeholder(in context: Context) -> SimpleEntry {
         .previewData
     }
@@ -58,10 +60,7 @@ struct CineasteWidget: Widget {
     let kind: String = "CineasteWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(
-            kind: kind,
-            provider: Provider()
-        ) { entry in
+        IntentConfiguration(kind: kind, intent: DynamicMovieSelectionIntent.self, provider: Provider()) { entry in
             WidgetView(entry: entry)
         }
         .configurationDisplayName("My Widget")

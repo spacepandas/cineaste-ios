@@ -20,10 +20,23 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.widgetkit-extension</string>
-	</dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>IntentsRestrictedWhileLocked</key>
+            <array/>
+            <key>IntentsRestrictedWhileProtectedDataUnavailable</key>
+            <array/>
+            <key>IntentsSupported</key>
+            <array>
+                <string>DynamicMovieSelectionIntent</string>
+            </array>
+        </dict>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.intents-service</string>
+        <key>NSExtensionPrincipalClass</key>
+        <string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
+    </dict>
 </dict>
 </plist>

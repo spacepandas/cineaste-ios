@@ -52,7 +52,12 @@
 		3F492E8D24F25EF200016B2A /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC13E02391C16A0078637B /* KeyedDecodingContainerProtocol+Decoding.swift */; };
 		3F492E8E24F25EFC00016B2A /* DateFormatter+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8065BB238AE3220087D6EA /* DateFormatter+Cineaste.swift */; };
 		3F4C9660232E1FB8002692D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4C965F232E1FB8002692D0 /* Colors.xcassets */; };
+		3F4DCA1924FD66A500F73181 /* DynamicMovieSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */; };
+		3F4DCA1A24FD68C900F73181 /* DynamicMovieSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */; };
 		3F4F4D552233D3C40093CDEF /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F4D542233D3C40093CDEF /* SwipeAction.swift */; };
+		3F508CE024FD6E2A008A7DCB /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */; };
+		3F508CF524FD6E2A008A7DCB /* SelectMovieIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F508CDD24FD6E2A008A7DCB /* SelectMovieIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F508CFC24FD6E84008A7DCB /* DynamicMovieSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */; };
 		3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */; };
 		3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */; };
 		3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */; };
@@ -206,6 +211,13 @@
 			remoteGlobalIDString = 3F492E6B24F250C900016B2A;
 			remoteInfo = CineasteWidgetExtension;
 		};
+		3F508CF324FD6E2A008A7DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95AE25941F9531E20067F5F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F508CDC24FD6E2A008A7DCB;
+			remoteInfo = SelectMovieIntent;
+		};
 		3F701B36218640EE0033562B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 95AE25941F9531E20067F5F5 /* Project object */;
@@ -229,6 +241,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				3F508CF524FD6E2A008A7DCB /* SelectMovieIntent.appex in Embed App Extensions */,
 				3F492E7A24F250C900016B2A /* CineasteWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -293,7 +306,12 @@
 		3F492E8624F2590600016B2A /* Cineaste AppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cineaste AppRelease.entitlements"; sourceTree = "<group>"; };
 		3F492E8724F25C8500016B2A /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3F4C965F232E1FB8002692D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DynamicMovieSelection.intentdefinition; sourceTree = "<group>"; };
 		3F4F4D542233D3C40093CDEF /* SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAction.swift; sourceTree = "<group>"; };
+		3F508CDD24FD6E2A008A7DCB /* SelectMovieIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SelectMovieIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		3F508CE124FD6E2A008A7DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F508CE724FD6E2A008A7DCB /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBarControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
@@ -358,6 +376,8 @@
 		3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Loading.swift"; sourceTree = "<group>"; };
 		3FD6AA7920BA986900B72ABC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+UITableView.swift"; sourceTree = "<group>"; };
+		3FD7424624FD757400221F46 /* SelectMovieIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectMovieIntent.entitlements; sourceTree = "<group>"; };
+		3FD7424724FD75BB00221F46 /* CineasteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CineasteWidgetExtension.entitlements; sourceTree = "<group>"; };
 		3FD886451FF2C46400A86ACF /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		3FDB14532025B80F0063E980 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		3FDEF4742103368300955129 /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
@@ -435,6 +455,13 @@
 				3FD67ECE24F27F3E007D3766 /* KingfisherSwiftUI in Frameworks */,
 				3F492E7124F250C900016B2A /* SwiftUI.framework in Frameworks */,
 				3F492E6F24F250C900016B2A /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F508CDA24FD6E2A008A7DCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +550,7 @@
 			children = (
 				3F492E6E24F250C900016B2A /* WidgetKit.framework */,
 				3F492E7024F250C900016B2A /* SwiftUI.framework */,
+				3F508CE724FD6E2A008A7DCB /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -536,8 +564,19 @@
 				3F492E8224F256CF00016B2A /* WidgetData.swift */,
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
 				3F492E7724F250C900016B2A /* Info.plist */,
+				3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */,
 			);
 			path = CineasteWidget;
+			sourceTree = "<group>";
+		};
+		3F508CDE24FD6E2A008A7DCB /* SelectMovieIntent */ = {
+			isa = PBXGroup;
+			children = (
+				3FD7424624FD757400221F46 /* SelectMovieIntent.entitlements */,
+				3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */,
+				3F508CE124FD6E2A008A7DCB /* Info.plist */,
+			);
+			path = SelectMovieIntent;
 			sourceTree = "<group>";
 		};
 		3F50A41D21D3A44B00DB259E /* ImportExport */ = {
@@ -710,6 +749,7 @@
 		95AE25931F9531E20067F5F5 = {
 			isa = PBXGroup;
 			children = (
+				3FD7424724FD75BB00221F46 /* CineasteWidgetExtension.entitlements */,
 				3F492E8624F2590600016B2A /* Cineaste AppRelease.entitlements */,
 				3F492E8524F2588C00016B2A /* Cineaste App.entitlements */,
 				95AE259E1F9531E20067F5F5 /* Cineaste */,
@@ -717,6 +757,7 @@
 				3F450B35236C6EF100A59F1E /* CineasteSnapshotTests */,
 				3F2408F3203CB88E00EB9141 /* CineasteUITests */,
 				3F492E7224F250C900016B2A /* CineasteWidget */,
+				3F508CDE24FD6E2A008A7DCB /* SelectMovieIntent */,
 				3F492E6D24F250C900016B2A /* Frameworks */,
 				95AE259D1F9531E20067F5F5 /* Products */,
 			);
@@ -733,6 +774,7 @@
 				3F701B31218640EE0033562B /* CineasteTests.xctest */,
 				3F450B34236C6EF100A59F1E /* CineasteSnapshotTests.xctest */,
 				3F492E6C24F250C900016B2A /* CineasteWidgetExtension.appex */,
+				3F508CDD24FD6E2A008A7DCB /* SelectMovieIntent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -913,6 +955,23 @@
 			productReference = 3F492E6C24F250C900016B2A /* CineasteWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		3F508CDC24FD6E2A008A7DCB /* SelectMovieIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F508CFB24FD6E2A008A7DCB /* Build configuration list for PBXNativeTarget "SelectMovieIntent" */;
+			buildPhases = (
+				3F508CD924FD6E2A008A7DCB /* Sources */,
+				3F508CDA24FD6E2A008A7DCB /* Frameworks */,
+				3F508CDB24FD6E2A008A7DCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SelectMovieIntent;
+			productName = SelectMovieIntent;
+			productReference = 3F508CDD24FD6E2A008A7DCB /* SelectMovieIntent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3F701B30218640EE0033562B /* CineasteTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F701B38218640EE0033562B /* Build configuration list for PBXNativeTarget "CineasteTests" */;
@@ -949,6 +1008,7 @@
 				4EA460FC23EAF2660014B543 /* PBXTargetDependency */,
 				4EA460FA23EAF2630014B543 /* PBXTargetDependency */,
 				3F492E7924F250C900016B2A /* PBXTargetDependency */,
+				3F508CF424FD6E2A008A7DCB /* PBXTargetDependency */,
 			);
 			name = "Cineaste App";
 			packageProductDependencies = (
@@ -966,7 +1026,7 @@
 		95AE25941F9531E20067F5F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = spacepandas.de;
 				TargetAttributes = {
@@ -983,6 +1043,9 @@
 					};
 					3F492E6B24F250C900016B2A = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					3F508CDC24FD6E2A008A7DCB = {
+						CreatedOnToolsVersion = 11.6;
 					};
 					3F701B30218640EE0033562B = {
 						CreatedOnToolsVersion = 10.0;
@@ -1021,6 +1084,7 @@
 				3F2408F1203CB88E00EB9141 /* CineasteUITests */,
 				3F450B33236C6EF100A59F1E /* CineasteSnapshotTests */,
 				3F492E6B24F250C900016B2A /* CineasteWidgetExtension */,
+				3F508CDC24FD6E2A008A7DCB /* SelectMovieIntent */,
 			);
 		};
 /* End PBXProject section */
@@ -1048,6 +1112,13 @@
 				3F9D708424F278A10045CC66 /* Assets.xcassets in Resources */,
 				3F492E7624F250C900016B2A /* Assets.xcassets in Resources */,
 				3FD67ED424F2CED0007D3766 /* Keys.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F508CDB24FD6E2A008A7DCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1173,11 +1244,21 @@
 				3F492E7424F250C900016B2A /* CineasteWidget.swift in Sources */,
 				3F492E8C24F25EE100016B2A /* WatchState.swift in Sources */,
 				3FD67ED324F28011007D3766 /* ApiKeyStore.swift in Sources */,
+				3F4DCA1924FD66A500F73181 /* DynamicMovieSelection.intentdefinition in Sources */,
 				3FD67ECB24F27EC4007D3766 /* Image+Loading.swift in Sources */,
 				3F5C07F924F2645800BC889E /* AppGroup.swift in Sources */,
 				3F5C07FD24F2668200BC889E /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3F5C080024F266B500BC889E /* MovieListCategory.swift in Sources */,
 				3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F508CD924FD6E2A008A7DCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F508CFC24FD6E84008A7DCB /* DynamicMovieSelection.intentdefinition in Sources */,
+				3F508CE024FD6E2A008A7DCB /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,6 +1305,7 @@
 				3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */,
 				3F3E6BE9222B0C5500F317E8 /* SearchMoviesCell.swift in Sources */,
 				3FF790EB20DE274A007B7D37 /* UIImage+Cineaste.swift in Sources */,
+				3F4DCA1A24FD68C900F73181 /* DynamicMovieSelection.intentdefinition in Sources */,
 				3FF790EC20DE274A007B7D37 /* MoviesTabBarController.swift in Sources */,
 				3F7ABD5620F5C71E004B069E /* String+Locale.swift in Sources */,
 				3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */,
@@ -1324,6 +1406,11 @@
 			isa = PBXTargetDependency;
 			target = 3F492E6B24F250C900016B2A /* CineasteWidgetExtension */;
 			targetProxy = 3F492E7824F250C900016B2A /* PBXContainerItemProxy */;
+		};
+		3F508CF424FD6E2A008A7DCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F508CDC24FD6E2A008A7DCB /* SelectMovieIntent */;
+			targetProxy = 3F508CF324FD6E2A008A7DCB /* PBXContainerItemProxy */;
 		};
 		3F701B37218640EE0033562B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1527,6 +1614,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = CineasteWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1557,6 +1645,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = CineasteWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1572,6 +1661,57 @@
 				MARKETING_VERSION = 1.21.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.spacepandas.ios.cineaste.CineasteWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3F508CF624FD6E2A008A7DCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = SelectMovieIntent/SelectMovieIntent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
+				INFOPLIST_FILE = SelectMovieIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.spacepandas.ios.cineaste.SelectMovieIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F508CF724FD6E2A008A7DCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = SelectMovieIntent/SelectMovieIntent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SelectMovieIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.spacepandas.ios.cineaste.SelectMovieIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1811,6 +1951,15 @@
 			buildConfigurations = (
 				3F492E7C24F250C900016B2A /* Debug */,
 				3F492E7D24F250C900016B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F508CFB24FD6E2A008A7DCB /* Build configuration list for PBXNativeTarget "SelectMovieIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F508CF624FD6E2A008A7DCB /* Debug */,
+				3F508CF724FD6E2A008A7DCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

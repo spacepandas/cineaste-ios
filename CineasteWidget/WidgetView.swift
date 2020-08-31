@@ -55,6 +55,9 @@ struct MovieView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
+                    .onSuccess { result in
+                        print(result)
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } else {

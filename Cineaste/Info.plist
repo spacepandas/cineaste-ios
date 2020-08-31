@@ -18,6 +18,10 @@
 	<string>1.21.0</string>
 	<key>CFBundleVersion</key>
 	<string>634</string>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>DynamicMovieSelectionIntent</string>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
