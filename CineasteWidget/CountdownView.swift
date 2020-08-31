@@ -21,9 +21,15 @@ struct CountdownView: View {
 
     var body: some View {
         VStack {
-            Image(uiImage: image)
-                .resizable()
-                .clipped()
+            Color.clear
+                .border(Color.black, width: 1)
+                .overlay(
+                    Image(uiImage: image)
+//                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .border(Color.orange, width: 1)
+                )
             Text(movie.title)
             Text("In Theaters")
             Text(difference)
