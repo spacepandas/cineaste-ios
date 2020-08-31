@@ -18,7 +18,7 @@ extension Movie {
         // swiftlint:disable:next line_length
         overview: "Follow Alex Honnold as he attempts to become the first person to ever free solo climb Yosemite's 3,000 foot high El Capitan wall. With no ropes or safety gear, this would arguably be the greatest feat in rock climbing history.",
         runtime: 100,
-        releaseDate: Date(timeIntervalSince1970: 1_539_302_400),
+        releaseDate: Date() + 24 * 60 * 60 + 1,
         genres: [
             Genre(id: 99, name: "Documentary")
         ],
