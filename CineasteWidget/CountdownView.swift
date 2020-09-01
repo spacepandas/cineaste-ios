@@ -21,20 +21,19 @@ struct CountdownView: View {
 
     var body: some View {
         VStack {
-            Color.clear
-                .border(Color.black, width: 1)
-                .overlay(
-                    Image(uiImage: image)
-//                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipped()
-                        .border(Color.orange, width: 1)
-                )
+            GeometryReader { proxy in
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .clipped()
+            }
             Text(movie.title)
             Text("In Theaters")
+                .font(.caption)
             Text(difference)
                 .multilineTextAlignment(.center)
-                .font(.title)
+                .font(.title2)
         }
     }
 }
