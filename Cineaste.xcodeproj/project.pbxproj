@@ -106,7 +106,6 @@
 		3FC1AA752385E4EA00E24C16 /* SelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */; };
 		3FCD90752381625500E0C9FD /* __Snapshots__ in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD90742381625500E0C9FD /* __Snapshots__ */; };
 		3FCFB10F21D676DC006E2F91 /* AndroidExport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB10E21D676DB006E2F91 /* AndroidExport.json */; };
-		3FD67ECB24F27EC4007D3766 /* Image+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */; };
 		3FD67ECE24F27F3E007D3766 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3FD67ECD24F27F3E007D3766 /* KingfisherSwiftUI */; };
 		3FD67ED024F27F3E007D3766 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3FD67ECF24F27F3E007D3766 /* Kingfisher */; };
 		3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Constants.swift */; };
@@ -387,7 +386,6 @@
 		3FD37A4D2083714400D683E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FD37A4E2083715C00D683E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FD4FF8220B74C6500538BA3 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
-		3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Loading.swift"; sourceTree = "<group>"; };
 		3FD6AA7920BA986900B72ABC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3FD722CB20264B720046DEAC /* SearchMoviesViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3FD7424624FD757400221F46 /* SelectMovieIntentExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectMovieIntentExtension.entitlements; sourceTree = "<group>"; };
@@ -579,7 +577,6 @@
 				3F492E7724F250C900016B2A /* Info.plist */,
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
-				3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				3F492E7F24F2555C00016B2A /* WidgetView.swift */,
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
@@ -1265,7 +1262,6 @@
 				3F492E8C24F25EE100016B2A /* WatchState.swift in Sources */,
 				3FD67ED324F28011007D3766 /* ApiKeyStore.swift in Sources */,
 				3F4DCA1924FD66A500F73181 /* DynamicMovieSelection.intentdefinition in Sources */,
-				3FD67ECB24F27EC4007D3766 /* Image+Loading.swift in Sources */,
 				3F5C07F924F2645800BC889E /* AppGroup.swift in Sources */,
 				3F5C07FD24F2668200BC889E /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3F5C080024F266B500BC889E /* MovieListCategory.swift in Sources */,
