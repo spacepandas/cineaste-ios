@@ -44,8 +44,8 @@
 		3F492E7624F250C900016B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F492E7524F250C900016B2A /* Assets.xcassets */; };
 		3F492E7A24F250C900016B2A /* CineasteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F492E6C24F250C900016B2A /* CineasteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F492E8124F2555C00016B2A /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E7F24F2555C00016B2A /* WidgetView.swift */; };
-		3F492E8324F256CF00016B2A /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* WidgetData.swift */; };
-		3F492E8424F256CF00016B2A /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* WidgetData.swift */; };
+		3F492E8324F256CF00016B2A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* Movie+Testing.swift */; };
+		3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* Movie+Testing.swift */; };
 		3F492E8824F25C8500016B2A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
 		3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
 		3F492E8C24F25EE100016B2A /* WatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD9F70222C7A6200DD9248 /* WatchState.swift */; };
@@ -315,7 +315,7 @@
 		3F492E7524F250C900016B2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F492E7724F250C900016B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F492E7F24F2555C00016B2A /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
-		3F492E8224F256CF00016B2A /* WidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetData.swift; sourceTree = "<group>"; };
+		3F492E8224F256CF00016B2A /* Movie+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Testing.swift"; sourceTree = "<group>"; };
 		3F492E8524F2588C00016B2A /* Cineaste App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cineaste App.entitlements"; sourceTree = "<group>"; };
 		3F492E8624F2590600016B2A /* Cineaste AppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cineaste AppRelease.entitlements"; sourceTree = "<group>"; };
 		3F492E8724F25C8500016B2A /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -579,7 +579,7 @@
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				3F492E7F24F2555C00016B2A /* WidgetView.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
-				3F492E8224F256CF00016B2A /* WidgetData.swift */,
+				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
 				3F492E7724F250C900016B2A /* Info.plist */,
 				3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */,
@@ -1256,7 +1256,7 @@
 				3F492E8E24F25EFC00016B2A /* DateFormatter+Cineaste.swift in Sources */,
 				3F492E8124F2555C00016B2A /* WidgetView.swift in Sources */,
 				3F5C07FF24F266A800BC889E /* Int16+Formatter.swift in Sources */,
-				3F492E8424F256CF00016B2A /* WidgetData.swift in Sources */,
+				3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */,
 				3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */,
 				3F492E8D24F25EF200016B2A /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */,
 				3F9D708324F2787B0045CC66 /* UIImage+Cineaste.swift in Sources */,
@@ -1354,7 +1354,7 @@
 				3F229210225A3CDE001D4358 /* MovieReducer.swift in Sources */,
 				3F22920E225A3C4B001D4358 /* MovieAction.swift in Sources */,
 				3FF790F820DE274A007B7D37 /* Segue.swift in Sources */,
-				3F492E8324F256CF00016B2A /* WidgetData.swift in Sources */,
+				3F492E8324F256CF00016B2A /* Movie+Testing.swift in Sources */,
 				4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */,
 				3FF095C02103227F00ADFB86 /* MoviesViewController+UITableView.swift in Sources */,
 				3FF095C32103236400ADFB86 /* UIView+BlurEffect.swift in Sources */,

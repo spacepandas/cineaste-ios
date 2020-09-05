@@ -1,5 +1,5 @@
 //
-//  WidgetData.swift
+//  Movie+Testing.swift
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 23.08.20.
