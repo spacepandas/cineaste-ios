@@ -20,74 +20,63 @@ struct Provider: IntentTimelineProvider {
         .previewData
     }
 
-    func image(forKey key: String, completion: @escaping (SwiftUI.Image) -> Void) {
-        if cache.isCached(forKey: key) {
-            cache.retrieveImage(forKey: key) { result in
+    func image(forMovie movie: Movie, completion: @escaping (SwiftUI.Image) -> Void) {
+        let placeholder = Image(uiImage: .posterPlaceholder)
+        guard let posterPath = movie.posterPath else { return completion(placeholder) }
+
+        let cacheKey = Movie.posterUrl(from: posterPath, for: .original)
+            .absoluteString
+
+        if cache.isCached(forKey: cacheKey) {
+            cache.retrieveImage(forKey: cacheKey) { result in
                 switch result {
                 case .success(let value):
                     completion(Image(uiImage: value.image ?? .posterPlaceholder))
                 case .failure:
-                    completion(Image(uiImage: .posterPlaceholder))
+                    completion(placeholder)
                 }
             }
+        } else {
+            let url = Movie.posterUrl(from: posterPath, for: .original)
+            ImageDownloader.default.downloadImage(with: url, options: [.targetCache(cache)], completionHandler: { result in
+                switch result {
+                case .success(let value):
+                    completion(Image(uiImage: value.image))
+                case .failure:
+                    completion(placeholder)
+                }
+            })
         }
     }
 
     func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
-        if let movie = movie(for: configuration) {
-            if let posterPath = movie.posterPath {
+        guard let movie = movie(for: configuration) else {
+            return completion(.previewData)
+        }
 
-                let cacheKey = Movie.posterUrl(from: posterPath, for: .original)
-                    .absoluteString
-                image(forKey: cacheKey) { image in
-                    let entry = CountdownEntry(
-                        date: Date(),
-                        movie: movie,
-                        image: image
-                    )
-                    completion(entry)
-                }
-            } else {
-                let entry = CountdownEntry(
-                    date: Date(),
-                    movie: movie,
-                    image: Image(uiImage: .posterPlaceholder)
-                )
-                completion(entry)
-            }
-        } else {
-            completion(.previewData)
+        image(forMovie: movie) { image in
+            let entry = CountdownEntry(
+                date: Date(),
+                movie: movie,
+                image: image
+            )
+            completion(entry)
         }
     }
 
     func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
-        if let movie = movie(for: configuration) {
-            if let posterPath = movie.posterPath {
-
-                let cacheKey = Movie.posterUrl(from: posterPath, for: .original)
-                    .absoluteString
-                image(forKey: cacheKey) { image in
-                    let entry = CountdownEntry(
-                        date: Date(),
-                        movie: movie,
-                        image: image
-                    )
-
-                    let timeline = Timeline(entries: [entry], policy: .atEnd)
-                    completion(timeline)
-                }
-            } else {
-                let entry = CountdownEntry(
-                    date: Date(),
-                    movie: movie,
-                    image: Image(uiImage: .posterPlaceholder)
-                )
-
-                let timeline = Timeline(entries: [entry], policy: .atEnd)
-                completion(timeline)
-            }
-        } else {
+        guard let movie = movie(for: configuration) else {
             let timeline = Timeline(entries: [CountdownEntry.previewData], policy: .atEnd)
+            return completion(timeline)
+        }
+
+        image(forMovie: movie) { image in
+            let entry = CountdownEntry(
+                date: Date(),
+                movie: movie,
+                image: image
+            )
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
             completion(timeline)
         }
     }
