@@ -10,13 +10,8 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: IntentTimelineProvider {
-
+    typealias Entry = SimpleEntry
     typealias Intent = DynamicMovieSelectionIntent
-
-    let storeUrl = AppGroup.widget.containerURL
-        .appendingPathComponent("movies.json")
-
-    public typealias Entry = SimpleEntry
 
     func placeholder(in context: Context) -> SimpleEntry {
         .previewData
@@ -24,10 +19,7 @@ struct Provider: IntentTimelineProvider {
 
     func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         var entry: SimpleEntry
-        let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
-        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData),
-           let id = configuration.movie?.identifier,
-           let movie = decodedData.first(where: { $0.id == Int(id) ?? 0 }) {
+        if let movie = movie(for: configuration) {
             entry = SimpleEntry(date: Date(), movie: movie)
         } else {
             entry = .previewData
@@ -37,17 +29,27 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         var entry: SimpleEntry
-        let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
-        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData),
-           let id = configuration.movie?.identifier,
-           let movie = decodedData.first(where: { $0.id == Int(id) ?? 0 }) {
+        if let movie = movie(for: configuration) {
             entry = SimpleEntry(date: Date(), movie: movie)
         } else {
             entry = .previewData
         }
 
-    let timeline = Timeline(entries: [entry], policy: .atEnd)
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
+    }
+
+    private func movie(for configuration: DynamicMovieSelectionIntent) -> Movie? {
+        let storeUrl = AppGroup.widget.containerURL
+            .appendingPathComponent("movies.json")
+        let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
+        if let movies = try? JSONDecoder().decode([Movie].self, from: moviesData),
+           let selectedMovieId = configuration.movie?.identifier,
+           let movie = movies.first(where: { $0.id == Int(selectedMovieId) ?? 0 }) {
+            return movie
+        } else {
+            return nil
+        }
     }
 }
 
@@ -66,7 +68,11 @@ struct CineasteWidget: Widget {
     let kind: String = "CineasteWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DynamicMovieSelectionIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(
+            kind: kind,
+            intent: DynamicMovieSelectionIntent.self,
+            provider: Provider()
+        ) { entry in
             WidgetView(entry: entry)
         }
         .configurationDisplayName("My Widget")
