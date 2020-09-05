@@ -9,7 +9,6 @@
 import WidgetKit
 import SwiftUI
 
-//swiftlint:disable void_return
 struct Provider: IntentTimelineProvider {
 
     typealias Intent = DynamicMovieSelectionIntent

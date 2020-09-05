@@ -57,6 +57,7 @@ extension Movie {
             }
         }
     }
+
     var get: Resource<Movie> {
         let urlAsString = "\(Constants.Backend.url)/movie/\(id)" +
             "?language=\(String.languageFormattedForTMDb)" +
