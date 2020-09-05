@@ -9,6 +9,8 @@
 import UIKit
 import Kingfisher
 
+private let cache = try! ImageCache(name: "de.cineaste.poster", cacheDirectoryURL: AppGroup.widget.containerURL)
+
 extension UIImageView {
     func loadingImage(from posterPath: String?, in size: Constants.PosterSize) {
         guard let posterPath = posterPath else {
@@ -30,8 +32,6 @@ extension UIImageView {
 
         var cachedPoster: UIImage?
 
-        let cache = ImageCache.default
-
         // if another poster is already in cache, use this as placeholderImage
         if cache.isCached(forKey: cacheKey) {
             cache.retrieveImage(forKey: cacheKey) { result in
@@ -41,6 +41,6 @@ extension UIImageView {
         }
 
         let posterUrl = Movie.posterUrl(from: posterPath, for: size)
-        kf.setImage(with: posterUrl, placeholder: cachedPoster ?? UIImage.posterPlaceholder)
+        kf.setImage(with: posterUrl, placeholder: cachedPoster ?? UIImage.posterPlaceholder, options: [.targetCache(cache)])
     }
 }

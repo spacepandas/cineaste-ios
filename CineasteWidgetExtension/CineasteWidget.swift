@@ -8,6 +8,9 @@
 
 import WidgetKit
 import SwiftUI
+import Kingfisher
+
+private let cache = try! ImageCache(name: "de.cineaste.poster", cacheDirectoryURL: AppGroup.widget.containerURL)
 
 struct Provider: IntentTimelineProvider {
     typealias Entry = CountdownEntry
@@ -17,36 +20,76 @@ struct Provider: IntentTimelineProvider {
         .previewData
     }
 
-    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
-        var entry: CountdownEntry
-        if let movie = movie(for: configuration) {
-            entry = CountdownEntry(
-                date: Date(),
-                movie: movie,
-                // TODO: load poster
-                image: Image(uiImage: .posterPlaceholder)
-            )
-        } else {
-            entry = .previewData
+    func image(forKey key: String, completion: @escaping (SwiftUI.Image) -> Void) {
+        if cache.isCached(forKey: key) {
+            cache.retrieveImage(forKey: key) { result in
+                switch result {
+                case .success(let value):
+                    completion(Image(uiImage: value.image ?? .posterPlaceholder))
+                case .failure:
+                    completion(Image(uiImage: .posterPlaceholder))
+                }
+            }
         }
-        completion(entry)
+    }
+
+    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
+        if let movie = movie(for: configuration) {
+            if let posterPath = movie.posterPath {
+
+                let cacheKey = Movie.posterUrl(from: posterPath, for: .original)
+                    .absoluteString
+                image(forKey: cacheKey) { image in
+                    let entry = CountdownEntry(
+                        date: Date(),
+                        movie: movie,
+                        image: image
+                    )
+                    completion(entry)
+                }
+            } else {
+                let entry = CountdownEntry(
+                    date: Date(),
+                    movie: movie,
+                    image: Image(uiImage: .posterPlaceholder)
+                )
+                completion(entry)
+            }
+        } else {
+            completion(.previewData)
+        }
     }
 
     func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
-        var entry: CountdownEntry
         if let movie = movie(for: configuration) {
-            entry = CountdownEntry(
-                date: Date(),
-                movie: movie,
-                // TODO: load poster
-                image: Image(uiImage: .posterPlaceholder)
-            )
-        } else {
-            entry = .previewData
-        }
+            if let posterPath = movie.posterPath {
 
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
-        completion(timeline)
+                let cacheKey = Movie.posterUrl(from: posterPath, for: .original)
+                    .absoluteString
+                image(forKey: cacheKey) { image in
+                    let entry = CountdownEntry(
+                        date: Date(),
+                        movie: movie,
+                        image: image
+                    )
+
+                    let timeline = Timeline(entries: [entry], policy: .atEnd)
+                    completion(timeline)
+                }
+            } else {
+                let entry = CountdownEntry(
+                    date: Date(),
+                    movie: movie,
+                    image: Image(uiImage: .posterPlaceholder)
+                )
+
+                let timeline = Timeline(entries: [entry], policy: .atEnd)
+                completion(timeline)
+            }
+        } else {
+            let timeline = Timeline(entries: [CountdownEntry.previewData], policy: .atEnd)
+            completion(timeline)
+        }
     }
 
     private func movie(for configuration: DynamicMovieSelectionIntent) -> Movie? {
