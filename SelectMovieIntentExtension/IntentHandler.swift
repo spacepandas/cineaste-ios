@@ -12,22 +12,19 @@ import Foundation
 @available(iOSApplicationExtension 14.0, *)
 class IntentHandler: INExtension, DynamicMovieSelectionIntentHandling {
 
-    let storeUrl = AppGroup.widget.containerURL
-        .appendingPathComponent("movies.json")
-
     func provideMovieOptionsCollection(for intent: DynamicMovieSelectionIntent, with completion: @escaping (INObjectCollection<MovieIntent>?, Error?) -> Void) {
 
+        let storeUrl = AppGroup.widget.containerURL
+            .appendingPathComponent("movies.json")
         let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
-        if let decodedData = try? JSONDecoder().decode([Movie].self, from: moviesData) {
-
-            let movieIntents = decodedData.map { MovieIntent(identifier: "\($0.id)", display: $0.title) }
+        if let movies = try? JSONDecoder().decode([Movie].self, from: moviesData) {
+            let movieIntents = movies
+                .map { MovieIntent(identifier: "\($0.id)", display: $0.title) }
             let collection = INObjectCollection(items: movieIntents)
-
             completion(collection, nil)
         } else {
             completion(nil, nil)
         }
-
     }
 
     override func handler(for intent: INIntent) -> Any {
