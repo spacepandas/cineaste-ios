@@ -20,7 +20,12 @@ struct Provider: IntentTimelineProvider {
     func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         var entry: SimpleEntry
         if let movie = movie(for: configuration) {
-            entry = SimpleEntry(date: Date(), movie: movie)
+            entry = SimpleEntry(
+                date: Date(),
+                movie: movie,
+                // TODO: load poster
+                image: Image(uiImage: .posterPlaceholder)
+            )
         } else {
             entry = .previewData
         }
@@ -30,7 +35,12 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         var entry: SimpleEntry
         if let movie = movie(for: configuration) {
-            entry = SimpleEntry(date: Date(), movie: movie)
+            entry = SimpleEntry(
+                date: Date(),
+                movie: movie,
+                // TODO: load poster
+                image: Image(uiImage: .posterPlaceholder)
+            )
         } else {
             entry = .previewData
         }
@@ -56,10 +66,12 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let movie: Movie
+    let image: Image
 
     static let previewData = SimpleEntry(
         date: Date(),
-        movie: .testSeen
+        movie: .testSeen,
+        image: Image(uiImage: .posterPlaceholder)
     )
 }
 
@@ -73,11 +85,11 @@ struct CineasteWidget: Widget {
             intent: DynamicMovieSelectionIntent.self,
             provider: Provider()
         ) { entry in
-            WidgetView(entry: entry)
+            CountdownView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-        .supportedFamilies([.systemLarge, .systemMedium, .systemSmall])
+        .configurationDisplayName("Show Countdown")
+        .description("Count days until your favorite movie is in theaters")
+        .supportedFamilies([.systemSmall])
     }
 }
 

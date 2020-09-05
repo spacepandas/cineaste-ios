@@ -10,6 +10,7 @@ import WidgetKit
 import SwiftUI
 import KingfisherSwiftUI
 
+//TODO: delete?
 //swiftlint:disable let_var_whitespace
 struct WidgetView: View {
     var entry: SimpleEntry
