@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */; };
 		3F02493B2388782300BA545C /* ShortcutItemRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02493A2388782300BA545C /* ShortcutItemRefresher.swift */; };
 		3F02493D238893C100BA545C /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02493C238893C100BA545C /* MovieTests.swift */; };
 		3F0349042383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0349032383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift */; };
@@ -44,7 +45,6 @@
 		3F492E7624F250C900016B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F492E7524F250C900016B2A /* Assets.xcassets */; };
 		3F492E7A24F250C900016B2A /* CineasteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F492E6C24F250C900016B2A /* CineasteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F492E8124F2555C00016B2A /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E7F24F2555C00016B2A /* WidgetView.swift */; };
-		3F492E8324F256CF00016B2A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* Movie+Testing.swift */; };
 		3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* Movie+Testing.swift */; };
 		3F492E8824F25C8500016B2A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
 		3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
@@ -261,6 +261,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEntry.swift; sourceTree = "<group>"; };
 		3F004D5925038081007CFDF1 /* SelectMovieIntentExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectMovieIntentExtensionRelease.entitlements; sourceTree = "<group>"; };
 		3F004D5B25038167007CFDF1 /* CineasteWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CineasteWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		3F0178F820CD26DC00600DB4 /* String+VariantFittingPresentationWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+VariantFittingPresentationWidth.swift"; sourceTree = "<group>"; };
@@ -577,6 +578,7 @@
 				3F492E7724F250C900016B2A /* Info.plist */,
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
+				1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				3F492E7F24F2555C00016B2A /* WidgetView.swift */,
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
@@ -1264,6 +1266,7 @@
 				3F5C07F924F2645800BC889E /* AppGroup.swift in Sources */,
 				3F5C07FD24F2668200BC889E /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3F5C080024F266B500BC889E /* MovieListCategory.swift in Sources */,
+				1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */,
 				3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1349,7 +1352,6 @@
 				3F229210225A3CDE001D4358 /* MovieReducer.swift in Sources */,
 				3F22920E225A3C4B001D4358 /* MovieAction.swift in Sources */,
 				3FF790F820DE274A007B7D37 /* Segue.swift in Sources */,
-				3F492E8324F256CF00016B2A /* Movie+Testing.swift in Sources */,
 				4ED2FC812266F353007BDE06 /* Persistence.swift in Sources */,
 				3FF095C02103227F00ADFB86 /* MoviesViewController+UITableView.swift in Sources */,
 				3FF095C32103236400ADFB86 /* UIView+BlurEffect.swift in Sources */,

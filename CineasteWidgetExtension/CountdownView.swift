@@ -9,36 +9,51 @@
 import SwiftUI
 import WidgetKit
 
-struct CountdownView: View {
-    var entry: SimpleEntry
+struct CountdownView: SwiftUI.View {
+    var entry: CountdownEntry
 
     var difference: String {
-        let formatter = RelativeDateTimeFormatter()
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .weekOfMonth]
         formatter.unitsStyle = .full
-        return formatter.localizedString(for: entry.movie.releaseDate ?? Date(), relativeTo: Date())
+        formatter.maximumUnitCount = 1
+        formatter.collapsesLargestUnit = true
+        let releaseDate = entry.movie.releaseDate ?? Date()
+        let formattedReleaseDate = formatter.string(from: Date(), to: releaseDate + 24 * 60 * 60) ?? ""
+
+        return formattedReleaseDate
     }
 
-    var body: some View {
-        VStack {
+    var body: some SwiftUI.View {
+        ZStack(alignment: .bottomLeading) {
             GeometryReader { proxy in
                 entry.image
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: proxy.size.width, height: proxy.size.height)
-                    .clipped()
+                    .blur(radius: 3.0)
+                Color.white
+                    .opacity(0.5)
+                HStack(alignment: .bottom, spacing: 0) {
+                    Text(difference.split(separator: " ").first ?? "")
+                        .font(.system(size: 500))
+                        .minimumScaleFactor(0.01)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: proxy.size.width * 0.4, height: proxy.size.height)
+                        .border(Color.white)
+                    VStack {
+                        Text(difference.split(separator: " ").last?.uppercased() ?? "")
+                        Text(entry.movie.title)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .border(Color.black)
+                }
             }
-            Text(entry.movie.title)
-            Text("In Theaters")
-                .font(.caption)
-            Text(difference)
-                .multilineTextAlignment(.center)
-                .font(.title2)
+            .border(Color.orange)
         }
     }
 }
 
 struct CountdownView_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some SwiftUI.View {
         CountdownView(entry: .previewData)
             .previewContext(
                 WidgetPreviewContext(family: .systemSmall)

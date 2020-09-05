@@ -13,7 +13,7 @@ import KingfisherSwiftUI
 //TODO: delete?
 //swiftlint:disable let_var_whitespace
 struct WidgetView: View {
-    var entry: SimpleEntry
+    var entry: CountdownEntry
 
     @Environment(\.widgetFamily) var family
 

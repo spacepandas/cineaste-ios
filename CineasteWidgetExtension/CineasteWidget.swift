@@ -10,17 +10,17 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: IntentTimelineProvider {
-    typealias Entry = SimpleEntry
+    typealias Entry = CountdownEntry
     typealias Intent = DynamicMovieSelectionIntent
 
-    func placeholder(in context: Context) -> SimpleEntry {
+    func placeholder(in context: Context) -> CountdownEntry {
         .previewData
     }
 
-    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        var entry: SimpleEntry
+    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
+        var entry: CountdownEntry
         if let movie = movie(for: configuration) {
-            entry = SimpleEntry(
+            entry = CountdownEntry(
                 date: Date(),
                 movie: movie,
                 // TODO: load poster
@@ -32,10 +32,10 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
-        var entry: SimpleEntry
+    func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
+        var entry: CountdownEntry
         if let movie = movie(for: configuration) {
-            entry = SimpleEntry(
+            entry = CountdownEntry(
                 date: Date(),
                 movie: movie,
                 // TODO: load poster
@@ -61,18 +61,6 @@ struct Provider: IntentTimelineProvider {
             return nil
         }
     }
-}
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let movie: Movie
-    let image: Image
-
-    static let previewData = SimpleEntry(
-        date: Date(),
-        movie: .testSeen,
-        image: Image(uiImage: .posterPlaceholder)
-    )
 }
 
 @main
