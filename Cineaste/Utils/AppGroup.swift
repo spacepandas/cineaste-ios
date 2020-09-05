@@ -10,8 +10,11 @@ import Foundation
 
 // swiftlint:disable force_unwrapping
 public enum AppGroup: String {
-    //TODO: configure correctly for debug and release
+    #if DEBUG
     case widget = "group.de.spacepandas.ios.cineaste-dev"
+    #else
+    case widget = "group.de.spacepandas.ios.cineaste"
+    #endif
 
     public var containerURL: URL {
         FileManager.default.containerURL(
