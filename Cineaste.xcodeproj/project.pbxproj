@@ -816,7 +816,6 @@
 				3F1DA161209C64D900AC4D09 /* Settings.bundle */,
 				3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */,
 				3F01791020CD32C500600DB4 /* Localizable.strings */,
-				3F492E8724F25C8500016B2A /* AppGroup.swift */,
 			);
 			path = Cineaste;
 			sourceTree = "<group>";
@@ -835,6 +834,7 @@
 			children = (
 				3FDB14532025B80F0063E980 /* AlertMessage.swift */,
 				95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */,
+				3F492E8724F25C8500016B2A /* AppGroup.swift */,
 				3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */,
 				953182F6203E17AF00A331A0 /* Constants.swift */,
 				3FDEF4742103368300955129 /* DebugPrint.swift */,
