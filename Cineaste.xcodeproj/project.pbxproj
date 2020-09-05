@@ -575,14 +575,14 @@
 			children = (
 				3FD7424724FD75BB00221F46 /* CineasteWidgetExtension.entitlements */,
 				3F004D5B25038167007CFDF1 /* CineasteWidgetExtensionRelease.entitlements */,
-				3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */,
-				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
-				3F492E7F24F2555C00016B2A /* WidgetView.swift */,
-				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
-				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
-				3F492E7524F250C900016B2A /* Assets.xcassets */,
-				3F492E7724F250C900016B2A /* Info.plist */,
 				3F4DCA1824FD66A500F73181 /* DynamicMovieSelection.intentdefinition */,
+				3F492E7724F250C900016B2A /* Info.plist */,
+				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
+				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
+				3FD67ECA24F27EC4007D3766 /* Image+Loading.swift */,
+				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
+				3F492E7F24F2555C00016B2A /* WidgetView.swift */,
+				3F492E7524F250C900016B2A /* Assets.xcassets */,
 			);
 			path = CineasteWidgetExtension;
 			sourceTree = "<group>";
@@ -592,8 +592,8 @@
 			children = (
 				3FD7424624FD757400221F46 /* SelectMovieIntentExtension.entitlements */,
 				3F004D5925038081007CFDF1 /* SelectMovieIntentExtensionRelease.entitlements */,
-				3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */,
 				3F508CE124FD6E2A008A7DCB /* Info.plist */,
+				3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */,
 			);
 			path = SelectMovieIntentExtension;
 			sourceTree = "<group>";
