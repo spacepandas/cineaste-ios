@@ -9,8 +9,17 @@
 import SwiftUI
 import WidgetKit
 
+private struct TextHeightPreference: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
 struct CountdownView: SwiftUI.View {
     var entry: CountdownEntry
+    @State private var textHeight: CGFloat = 0
 
     var difference: String {
         let formatter = DateComponentsFormatter()
@@ -29,9 +38,11 @@ struct CountdownView: SwiftUI.View {
             GeometryReader { proxy in
                 entry.image
                     .resizable()
-                    .blur(radius: 3.0)
+                    .blur(radius: 1.5)
                 Color.white
-                    .opacity(0.5)
+                    .opacity(0.75)
+                    .offset(y: proxy.size.height - textHeight)
+                    .frame(width: proxy.size.width, height: textHeight)
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(difference.split(separator: " ").first ?? "")
                         .font(.system(size: 500))
@@ -43,9 +54,16 @@ struct CountdownView: SwiftUI.View {
                         Text(difference.split(separator: " ").last?.uppercased() ?? "")
                         Text(entry.movie.title)
                             .multilineTextAlignment(.leading)
+                            .background(GeometryReader { proxy in
+                                Color.clear
+                                    .preference(key: TextHeightPreference.self, value: proxy.size.height)
+                            })
                     }
                     .border(Color.black)
                 }
+            }
+            .onPreferenceChange(TextHeightPreference.self) {
+                textHeight = $0
             }
             .border(Color.orange)
         }
