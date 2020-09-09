@@ -34,39 +34,59 @@ struct CountdownView: SwiftUI.View {
     }
 
     var body: some SwiftUI.View {
-        ZStack(alignment: .bottomLeading) {
-            GeometryReader { proxy in
+        GeometryReader { proxy in
+            ZStack(alignment: .bottom) {
                 entry.image
                     .resizable()
-                    .blur(radius: 1.5)
+                    .aspectRatio(contentMode: .fill)
+                    .blur(radius: 1)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+
                 Color.white
                     .opacity(0.75)
-                    .offset(y: proxy.size.height - textHeight)
-                    .frame(width: proxy.size.width, height: textHeight)
+                    .frame(height: textHeight)
+
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text(difference.split(separator: " ").first ?? "")
-                        .font(.system(size: 500))
+                    Text(difference.split(separator: " ")[0])
+                        .font(Font.custom("Noteworthy", fixedSize: 500))
+                        .bold()
                         .minimumScaleFactor(0.01)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: proxy.size.width * 0.4, height: proxy.size.height)
-                        .border(Color.white)
-                    VStack {
-                        Text(difference.split(separator: " ").last?.uppercased() ?? "")
+                        .frame(width: proxy.size.width * 0.4)
+                    VStack(alignment: .leading) {
+                        Text(difference.split(separator: " ")[1].uppercased())
+                            .font(Font.custom("Noteworthy", fixedSize: 24))
+                            .bold()
+                            .minimumScaleFactor(0.01)
+                            .lineLimit(1)
                         Text(entry.movie.title)
+                            .font(Font.custom("Noteworthy", fixedSize: 15))
+                            .bold()
+                            .minimumScaleFactor(0.01)
+                            .lineLimit(2)
                             .multilineTextAlignment(.leading)
-                            .background(GeometryReader { proxy in
-                                Color.clear
-                                    .preference(key: TextHeightPreference.self, value: proxy.size.height)
+                            .padding([.bottom, .trailing], 7)
+                            .background(GeometryReader {
+                                Color.clear.preference(key: TextHeightPreference.self, value: $0.size.height)
                             })
                     }
-                    .border(Color.black)
                 }
+                .outlined(1.2)
             }
-            .onPreferenceChange(TextHeightPreference.self) {
-                textHeight = $0
-            }
-            .border(Color.orange)
         }
+        .onPreferenceChange(TextHeightPreference.self) {
+            textHeight = $0
+        }
+    }
+}
+
+extension View {
+    func outlined(_ radius: CGFloat) -> some View {
+        self
+            .shadow(color: .white, radius: 0, x: -radius, y: -radius)
+            .shadow(color: .white, radius: 0, x: radius, y: radius)
+            .shadow(color: .white, radius: 0, x: -radius, y: radius)
+            .shadow(color: .white, radius: 0, x: radius, y: -radius)
     }
 }
 
