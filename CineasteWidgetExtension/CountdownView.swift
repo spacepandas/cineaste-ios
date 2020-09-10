@@ -53,12 +53,14 @@ struct CountdownView: SwiftUI.View {
                         .minimumScaleFactor(0.01)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: proxy.size.width * 0.4)
+                        .outlined(1.2)
                     VStack(alignment: .leading) {
                         Text(difference.split(separator: " ")[1].uppercased())
                             .font(Font.custom("Noteworthy", fixedSize: 24))
                             .bold()
                             .minimumScaleFactor(0.01)
                             .lineLimit(1)
+                            .outlined(1.2)
                         Text(entry.movie.title)
                             .font(Font.custom("Noteworthy", fixedSize: 15))
                             .bold()
@@ -71,7 +73,6 @@ struct CountdownView: SwiftUI.View {
                             })
                     }
                 }
-                .outlined(1.2)
             }
         }
         .onPreferenceChange(TextHeightPreference.self) {
