@@ -19,6 +19,7 @@ class IntentHandler: INExtension, DynamicMovieSelectionIntentHandling {
         let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
         if let movies = try? JSONDecoder().decode([Movie].self, from: moviesData) {
             let movieIntents = movies
+                .filter(\.isUpcoming)
                 .map { MovieIntent(identifier: "\($0.id)", display: $0.title) }
             let collection = INObjectCollection(items: movieIntents)
             completion(collection, nil)
@@ -29,5 +30,14 @@ class IntentHandler: INExtension, DynamicMovieSelectionIntentHandling {
 
     override func handler(for intent: INIntent) -> Any {
         self
+    }
+}
+
+private extension Movie {
+    /// `true` if the movie's release date is in the future
+    var isUpcoming: Bool {
+        guard let releaseDate = releaseDate else { return false }
+
+        return releaseDate > Date()
     }
 }
