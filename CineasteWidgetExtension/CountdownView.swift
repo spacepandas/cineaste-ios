@@ -78,6 +78,7 @@ struct CountdownView: SwiftUI.View {
         .onPreferenceChange(TextHeightPreference.self) {
             textHeight = $0
         }
+        .widgetURL(URL(string: "widget-deeplink://\(entry.movie.id)")!)
     }
 }
 
