@@ -1,6 +1,6 @@
 //
 //  CineasteWidget.swift
-//  CineasteWidget
+//  MovieReleaseWidgetExtension
 //
 //  Created by Felizia Bernutz on 23.08.20.
 //  Copyright © 2020 spacepandas.de. All rights reserved.

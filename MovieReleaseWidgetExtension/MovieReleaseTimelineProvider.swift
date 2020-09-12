@@ -1,6 +1,6 @@
 //
 //  MovieReleaseTimelineProvider.swift
-//  CineasteWidgetExtension
+//  MovieReleaseWidgetExtension
 //
 //  Created by Xaver Lohmüller on 12.09.20.
 //  Copyright © 2020 spacepandas.de. All rights reserved.
