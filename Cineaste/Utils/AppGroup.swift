@@ -11,7 +11,7 @@ import Foundation
 // swiftlint:disable force_unwrapping
 public enum AppGroup: String {
     #if DEBUG
-    case widget = "group.de.spacepandas.ios.cineaste-dev"
+    case widget = "group.de.spacepandas.ios.cineaste-development"
     #else
     case widget = "group.de.spacepandas.ios.cineaste"
     #endif
