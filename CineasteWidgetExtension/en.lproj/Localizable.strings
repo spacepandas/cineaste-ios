@@ -1,0 +1,11 @@
+/* 
+  MovieReleaseWidget.strings
+  Cineaste
+
+  Created by Xaver Lohmüller on 12.09.20.
+  Copyright © 2020 spacepandas.de. All rights reserved.
+*/
+
+"movie_release_widget_show_countdown" = "Show Countdown";
+"movie_release_widget_countdown_description" = "Count days until your favorite movie is in theaters";
+"movie_release_widget_is_released" = "is in theaters now";

@@ -41,7 +41,7 @@ struct AlreadyReleasedView: View {
                         .minimumScaleFactor(0.01)
                         .lineLimit(2)
                         .outlined(1.2)
-                    Text("Is in theaters now")
+                    Text("movie_release_widget_is_released")
                         .font(Font.custom("Noteworthy", fixedSize: 15))
                         .bold()
                         .minimumScaleFactor(0.01)

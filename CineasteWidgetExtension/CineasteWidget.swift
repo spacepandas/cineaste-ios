@@ -27,8 +27,8 @@ struct CineasteWidget: Widget {
                 }
             }
         }
-        .configurationDisplayName("Show Countdown")
-        .description("Count days until your favorite movie is in theaters")
+        .configurationDisplayName("movie_release_widget_show_countdown")
+        .description("movie_release_widget_countdown_description")
         .supportedFamilies([.systemSmall])
     }
 }
