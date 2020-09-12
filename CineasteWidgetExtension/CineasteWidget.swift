@@ -19,7 +19,13 @@ struct CineasteWidget: Widget {
             intent: DynamicMovieSelectionIntent.self,
             provider: MovieReleaseTimelineProvider()
         ) { entry in
-            CountdownView(entry: entry)
+            Group {
+                if entry.movie.releaseDate! > Date() {
+                    CountdownView(entry: entry)
+                } else {
+                    AlreadyReleasedView(entry: entry)
+                }
+            }
         }
         .configurationDisplayName("Show Countdown")
         .description("Count days until your favorite movie is in theaters")
