@@ -12,6 +12,7 @@
 		1A654DDD250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */; };
 		1A654DDF250CA28100D3D1C3 /* AlreadyReleasedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDE250CA28100D3D1C3 /* AlreadyReleasedView.swift */; };
 		1A654DE2250CA8D200D3D1C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A654DE4250CA8D200D3D1C3 /* Localizable.strings */; };
+		1A654DE7250CAD3200D3D1C3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1A654DE6250CAD3200D3D1C3 /* Kingfisher */; };
 		3F02493B2388782300BA545C /* ShortcutItemRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02493A2388782300BA545C /* ShortcutItemRefresher.swift */; };
 		3F02493D238893C100BA545C /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02493C238893C100BA545C /* MovieTests.swift */; };
 		3F0349042383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0349032383446D00F56DCF /* SearchMoviesCellSnapshotTests.swift */; };
@@ -109,7 +110,6 @@
 		3FC1AA752385E4EA00E24C16 /* SelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1AA742385E4EA00E24C16 /* SelectionAction.swift */; };
 		3FCD90752381625500E0C9FD /* __Snapshots__ in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD90742381625500E0C9FD /* __Snapshots__ */; };
 		3FCFB10F21D676DC006E2F91 /* AndroidExport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FCFB10E21D676DB006E2F91 /* AndroidExport.json */; };
-		3FD67ECE24F27F3E007D3766 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3FD67ECD24F27F3E007D3766 /* KingfisherSwiftUI */; };
 		3FD67ED024F27F3E007D3766 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3FD67ECF24F27F3E007D3766 /* Kingfisher */; };
 		3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953182F6203E17AF00A331A0 /* Constants.swift */; };
 		3FD67ED324F28011007D3766 /* ApiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */; };
@@ -473,7 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FD67ECE24F27F3E007D3766 /* KingfisherSwiftUI in Frameworks */,
+				1A654DE7250CAD3200D3D1C3 /* Kingfisher in Frameworks */,
 				3F492E7124F250C900016B2A /* SwiftUI.framework in Frameworks */,
 				3F492E6F24F250C900016B2A /* WidgetKit.framework in Frameworks */,
 			);
@@ -976,7 +976,7 @@
 			);
 			name = MovieReleaseWidgetExtension;
 			packageProductDependencies = (
-				3FD67ECD24F27F3E007D3766 /* KingfisherSwiftUI */,
+				1A654DE6250CAD3200D3D1C3 /* Kingfisher */,
 			);
 			productName = CineasteWidgetExtension;
 			productReference = 3F492E6C24F250C900016B2A /* MovieReleaseWidgetExtension.appex */;
@@ -2092,10 +2092,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3FD67ECD24F27F3E007D3766 /* KingfisherSwiftUI */ = {
+		1A654DE6250CAD3200D3D1C3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3FD67ECC24F27F3E007D3766 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = KingfisherSwiftUI;
+			productName = Kingfisher;
 		};
 		3FD67ECF24F27F3E007D3766 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
