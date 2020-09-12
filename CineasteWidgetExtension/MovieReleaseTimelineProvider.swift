@@ -1,0 +1,63 @@
+//
+//  MovieReleaseTimelineProvider.swift
+//  CineasteWidgetExtension
+//
+//  Created by Xaver Lohmüller on 12.09.20.
+//  Copyright © 2020 spacepandas.de. All rights reserved.
+//
+
+import WidgetKit
+
+struct MovieReleaseTimelineProvider: IntentTimelineProvider {
+    typealias Entry = CountdownEntry
+    typealias Intent = DynamicMovieSelectionIntent
+
+    func placeholder(in context: Context) -> CountdownEntry {
+        .previewData
+    }
+
+    func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
+        guard let movie = movie(for: configuration) else {
+            return completion(.previewData)
+        }
+
+        movie.loadImage { image in
+            let entry = CountdownEntry(
+                date: Date(),
+                movie: movie,
+                image: image
+            )
+            completion(entry)
+        }
+    }
+
+    func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
+        guard let movie = movie(for: configuration) else {
+            let timeline = Timeline(entries: [CountdownEntry.previewData], policy: .atEnd)
+            return completion(timeline)
+        }
+
+        movie.loadImage { image in
+            let entry = CountdownEntry(
+                date: Date(),
+                movie: movie,
+                image: image
+            )
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            completion(timeline)
+        }
+    }
+
+    private func movie(for configuration: DynamicMovieSelectionIntent) -> Movie? {
+        let storeUrl = AppGroup.widget.containerURL
+            .appendingPathComponent("movies.json")
+        let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data()
+        if let movies = try? JSONDecoder().decode([Movie].self, from: moviesData),
+           let selectedMovieId = configuration.movie?.identifier,
+           let movie = movies.first(where: { $0.id == Int(selectedMovieId) ?? 0 }) {
+            return movie
+        } else {
+            return nil
+        }
+    }
+}
