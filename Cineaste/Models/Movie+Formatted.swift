@@ -46,14 +46,6 @@ extension Movie {
         return "\(runtime?.formatted ?? String.unknownRuntime) min"
     }
 
-    var soonAvailable: Bool {
-        guard let release = releaseDate, release > Date() else {
-            return false
-        }
-
-        return true
-    }
-
     var formattedWatchedDate: String? {
         guard let watchedDate = watchedDate else {
             return nil
