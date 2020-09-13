@@ -19,7 +19,11 @@ private struct TextHeightPreference: PreferenceKey {
 
 struct AlreadyReleasedView: View {
     var entry: CountdownEntry
-    @State private var textHeight: CGFloat = 0
+    @Environment(\.colorScheme) var colorScheme
+    private var outlineRadius: CGFloat {
+        colorScheme == .dark ? 0.6 : 1.2
+    }
+    @State private var textHeight: CGFloat = 45
 
     var body: some View {
         GeometryReader { proxy in
@@ -30,7 +34,7 @@ struct AlreadyReleasedView: View {
                     .blur(radius: 1)
                     .frame(width: proxy.size.width, height: proxy.size.height)
 
-                Color.white
+                Color.background
                     .opacity(0.75)
                     .frame(height: textHeight)
 
@@ -40,7 +44,7 @@ struct AlreadyReleasedView: View {
                         .bold()
                         .minimumScaleFactor(0.01)
                         .lineLimit(2)
-                        .outlined(1.2)
+                        .outlined(radius: outlineRadius)
                     Text("movie_release_widget_is_released")
                         .font(Font.custom("Noteworthy", fixedSize: 15))
                         .bold()
@@ -63,9 +67,16 @@ struct AlreadyReleasedView: View {
 
 struct AlreadyReleasedView_Previews: PreviewProvider {
     static var previews: some View {
-        AlreadyReleasedView(entry: .previewData)
-            .previewContext(
-                WidgetPreviewContext(family: .systemSmall)
-            )
+        Group {
+            AlreadyReleasedView(entry: .previewData)
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
+                )
+            AlreadyReleasedView(entry: .previewData)
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
+                )
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

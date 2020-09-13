@@ -19,7 +19,11 @@ private struct TextHeightPreference: PreferenceKey {
 
 struct CountdownView: SwiftUI.View {
     var entry: CountdownEntry
-    @State private var textHeight: CGFloat = 0
+    @Environment(\.colorScheme) var colorScheme
+    private var outlineRadius: CGFloat {
+        colorScheme == .dark ? 0.6 : 1.2
+    }
+    @State private var textHeight: CGFloat = 45
 
     var difference: String {
         let formatter = DateComponentsFormatter()
@@ -42,7 +46,7 @@ struct CountdownView: SwiftUI.View {
                     .blur(radius: 1)
                     .frame(width: proxy.size.width, height: proxy.size.height)
 
-                Color.white
+                Color.background
                     .opacity(0.75)
                     .frame(height: textHeight)
 
@@ -53,14 +57,14 @@ struct CountdownView: SwiftUI.View {
                         .minimumScaleFactor(0.01)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: proxy.size.width * 0.4)
-                        .outlined(1.2)
+                        .outlined(radius: outlineRadius)
                     VStack(alignment: .leading) {
                         Text(difference.split(separator: " ")[1].uppercased())
                             .font(Font.custom("Noteworthy", fixedSize: 24))
                             .bold()
                             .minimumScaleFactor(0.01)
                             .lineLimit(1)
-                            .outlined(1.2)
+                            .outlined(radius: outlineRadius)
                         Text(entry.movie.title)
                             .font(Font.custom("Noteworthy", fixedSize: 15))
                             .bold()
@@ -82,21 +86,18 @@ struct CountdownView: SwiftUI.View {
     }
 }
 
-extension View {
-    func outlined(_ radius: CGFloat) -> some View {
-        self
-            .shadow(color: .white, radius: 0, x: -radius, y: -radius)
-            .shadow(color: .white, radius: 0, x: radius, y: radius)
-            .shadow(color: .white, radius: 0, x: -radius, y: radius)
-            .shadow(color: .white, radius: 0, x: radius, y: -radius)
-    }
-}
-
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
-        CountdownView(entry: .previewData)
-            .previewContext(
-                WidgetPreviewContext(family: .systemSmall)
-            )
+        Group {
+            CountdownView(entry: .previewData)
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
+                )
+            CountdownView(entry: .previewData)
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
+                )
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

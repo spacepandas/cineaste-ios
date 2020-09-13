@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */; };
+		1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A450FFC250E1F230094B1B1 /* View+Outlining.swift */; };
 		1A654DDB250CA17200D3D1C3 /* Movie+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */; };
 		1A654DDD250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */; };
 		1A654DDF250CA28100D3D1C3 /* AlreadyReleasedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDE250CA28100D3D1C3 /* AlreadyReleasedView.swift */; };
@@ -265,6 +266,7 @@
 
 /* Begin PBXFileReference section */
 		1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEntry.swift; sourceTree = "<group>"; };
+		1A450FFC250E1F230094B1B1 /* View+Outlining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Outlining.swift"; sourceTree = "<group>"; };
 		1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+ImageLoading.swift"; sourceTree = "<group>"; };
 		1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReleaseTimelineProvider.swift; sourceTree = "<group>"; };
 		1A654DDE250CA28100D3D1C3 /* AlreadyReleasedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyReleasedView.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
+				1A450FFC250E1F230094B1B1 /* View+Outlining.swift */,
 				1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */,
@@ -1280,6 +1283,7 @@
 				3F5C07FD24F2668200BC889E /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3F5C080024F266B500BC889E /* MovieListCategory.swift in Sources */,
 				1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */,
+				1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */,
 				3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
