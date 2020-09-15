@@ -16,7 +16,9 @@ enum Persistence {
 
         // make Movies available for Widgets
         try data.write(to: storeUrl)
-        WidgetCenter.shared.reloadAllTimelines()
+        if #available(iOS 14, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 
     static func loadMovies() -> Set<Movie> {
