@@ -17,19 +17,26 @@ struct CineasteWidget: Widget {
         IntentConfiguration(
             kind: kind,
             intent: DynamicMovieSelectionIntent.self,
-            provider: MovieReleaseTimelineProvider()
-        ) { entry in
-            Group {
-                if entry.movie.releaseDate! > Date() {
-                    CountdownView(entry: entry)
-                } else {
-                    AlreadyReleasedView(entry: entry)
-                }
-            }
-        }
+            provider: MovieReleaseTimelineProvider(),
+            content: makeView)
         .configurationDisplayName("movie_release_widget_show_countdown")
         .description("movie_release_widget_countdown_description")
         .supportedFamilies([.systemSmall])
+    }
+
+    private func makeView(for entry: CountdownEntry) -> some View {
+        Group {
+            switch entry.content {
+            case .empty:
+                Color.red
+            case let .movie(movie, image):
+                if movie.releaseDate! > Date() {
+                    CountdownView(movie: movie, image: image)
+                } else {
+                    AlreadyReleasedView(movie: movie, image: image)
+                }
+            }
+        }
     }
 }
 

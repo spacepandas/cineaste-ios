@@ -10,13 +10,21 @@ import WidgetKit
 import SwiftUI
 
 struct CountdownEntry: TimelineEntry {
+
+    enum Content {
+        case empty
+        case movie(movie: Movie, image: Image)
+    }
+
     let date: Date
-    let movie: Movie
-    let image: Image
+    let content: Content
+
+    static var empty: CountdownEntry {
+        CountdownEntry(date: Date(), content: .empty)
+    }
 
     static let previewData = CountdownEntry(
         date: Date(),
-        movie: .testSeen,
-        image: Image(uiImage: .posterPlaceholder)
+        content: .movie(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
     )
 }

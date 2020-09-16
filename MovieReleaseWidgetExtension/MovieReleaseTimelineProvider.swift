@@ -24,8 +24,7 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
         movie.loadImage { image in
             let entry = CountdownEntry(
                 date: Date(),
-                movie: movie,
-                image: image
+                content: .movie(movie: movie, image: image)
             )
             completion(entry)
         }
@@ -33,15 +32,14 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
 
     func getTimeline(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
         guard let movie = movie(for: configuration) else {
-            let timeline = Timeline<CountdownEntry>(entries: [], policy: .atEnd)
+            let timeline = Timeline<CountdownEntry>(entries: [.empty], policy: .atEnd)
             return completion(timeline)
         }
 
         movie.loadImage { image in
             let entry = CountdownEntry(
                 date: Date(),
-                movie: movie,
-                image: image
+                content: .movie(movie: movie, image: image)
             )
             let timeline = Timeline(entries: [entry], policy: .atEnd)
             completion(timeline)

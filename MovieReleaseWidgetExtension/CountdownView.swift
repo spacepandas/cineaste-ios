@@ -18,7 +18,9 @@ private struct TextHeightPreference: PreferenceKey {
 }
 
 struct CountdownView: SwiftUI.View {
-    var entry: CountdownEntry
+    let movie: Movie
+    let image: Image
+
     @Environment(\.colorScheme) var colorScheme
     private var outlineRadius: CGFloat {
         colorScheme == .dark ? 0.6 : 1.2
@@ -31,7 +33,7 @@ struct CountdownView: SwiftUI.View {
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
         formatter.collapsesLargestUnit = true
-        let releaseDate = entry.movie.releaseDate ?? Date()
+        let releaseDate = movie.releaseDate ?? Date()
         let formattedReleaseDate = formatter.string(from: Date(), to: releaseDate + 24 * 60 * 60) ?? ""
 
         return formattedReleaseDate
@@ -40,7 +42,7 @@ struct CountdownView: SwiftUI.View {
     var body: some SwiftUI.View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
-                entry.image
+                image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .blur(radius: 1)
@@ -65,7 +67,7 @@ struct CountdownView: SwiftUI.View {
                             .minimumScaleFactor(0.01)
                             .lineLimit(1)
                             .outlined(radius: outlineRadius)
-                        Text(entry.movie.title)
+                        Text(movie.title)
                             .font(Font.custom("Noteworthy", fixedSize: 15))
                             .bold()
                             .minimumScaleFactor(0.01)
@@ -82,18 +84,18 @@ struct CountdownView: SwiftUI.View {
         .onPreferenceChange(TextHeightPreference.self) {
             textHeight = $0
         }
-        .widgetURL(URL(string: "widget-deeplink://\(entry.movie.id)")!)
+        .widgetURL(URL(string: "widget-deeplink://\(movie.id)")!)
     }
 }
 
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
         Group {
-            CountdownView(entry: .previewData)
+            CountdownView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
-            CountdownView(entry: .previewData)
+            CountdownView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )

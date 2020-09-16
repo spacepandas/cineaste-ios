@@ -18,7 +18,9 @@ private struct TextHeightPreference: PreferenceKey {
 }
 
 struct AlreadyReleasedView: View {
-    var entry: CountdownEntry
+    let movie: Movie
+    let image: Image
+
     @Environment(\.colorScheme) var colorScheme
     private var outlineRadius: CGFloat {
         colorScheme == .dark ? 0.6 : 1.2
@@ -28,7 +30,7 @@ struct AlreadyReleasedView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
-                entry.image
+                image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .blur(radius: 1)
@@ -39,7 +41,7 @@ struct AlreadyReleasedView: View {
                     .frame(height: textHeight)
 
                 VStack(alignment: .leading) {
-                    Text(entry.movie.title)
+                    Text(movie.title)
                         .font(Font.custom("Noteworthy", fixedSize: 24))
                         .bold()
                         .minimumScaleFactor(0.01)
@@ -61,18 +63,18 @@ struct AlreadyReleasedView: View {
                 textHeight = $0
             }
         }
-        .widgetURL(URL(string: "widget-deeplink://\(entry.movie.id)")!)
+        .widgetURL(URL(string: "widget-deeplink://\(movie.id)")!)
     }
 }
 
 struct AlreadyReleasedView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AlreadyReleasedView(entry: .previewData)
+            AlreadyReleasedView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
-            AlreadyReleasedView(entry: .previewData)
+            AlreadyReleasedView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
