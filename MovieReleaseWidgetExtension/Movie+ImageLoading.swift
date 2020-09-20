@@ -11,7 +11,7 @@ import Kingfisher
 
 // swiftlint:disable trailing_closure multiline_arguments_brackets
 
-private let cache = try! ImageCache(name: "de.cineaste.poster", cacheDirectoryURL: AppGroup.widget.containerURL)
+private let cache = AppGroup.imageCache
 
 extension Movie {
     func loadImage(completion: @escaping (SwiftUI.Image) -> Void) {

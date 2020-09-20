@@ -20,7 +20,7 @@ struct EmptyStateView: View {
                 .font(Font.custom("Noteworthy", fixedSize: 24))
                 .minimumScaleFactor(0.01)
         }.padding()
-        .widgetURL(URL(string: "widget-deeplink://search")!)
+        .widgetURL(WidgetURL.search)
     }
 }
 

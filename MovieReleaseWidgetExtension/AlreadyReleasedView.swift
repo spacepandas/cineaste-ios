@@ -65,7 +65,7 @@ struct AlreadyReleasedView: View {
                 textHeight = $0
             }
         }
-        .widgetURL(URL(string: "widget-deeplink://\(movie.id)")!)
+        .widgetURL(WidgetURL.deepLink(for: movie.id))
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-private let cache = try! ImageCache(name: "de.cineaste.poster", cacheDirectoryURL: AppGroup.widget.containerURL)
+private let cache = AppGroup.imageCache
 
 extension UIImageView {
     func loadingImage(from posterPath: String?, in size: Constants.PosterSize) {

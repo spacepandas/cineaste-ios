@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A3110F02517B36C00F05C16 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */; };
+		1A3111082517FE7000F05C16 /* WidgetURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3111072517FE7000F05C16 /* WidgetURL.swift */; };
+		1A3111162517FFDA00F05C16 /* AppGroup+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3111152517FFDA00F05C16 /* AppGroup+Kingfisher.swift */; };
+		1A31111D2518003000F05C16 /* AppGroup+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3111152517FFDA00F05C16 /* AppGroup+Kingfisher.swift */; };
 		1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */; };
 		1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A450FFC250E1F230094B1B1 /* View+Outlining.swift */; };
 		1A654DDB250CA17200D3D1C3 /* Movie+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */; };
@@ -269,6 +272,8 @@
 
 /* Begin PBXFileReference section */
 		1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		1A3111072517FE7000F05C16 /* WidgetURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetURL.swift; sourceTree = "<group>"; };
+		1A3111152517FFDA00F05C16 /* AppGroup+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppGroup+Kingfisher.swift"; sourceTree = "<group>"; };
 		1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEntry.swift; sourceTree = "<group>"; };
 		1A450FFC250E1F230094B1B1 /* View+Outlining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Outlining.swift"; sourceTree = "<group>"; };
 		1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+ImageLoading.swift"; sourceTree = "<group>"; };
@@ -594,6 +599,7 @@
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
+				1A3111072517FE7000F05C16 /* WidgetURL.swift */,
 				1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */,
 				1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
@@ -857,6 +863,7 @@
 				3FDB14532025B80F0063E980 /* AlertMessage.swift */,
 				95D32F631F9AA2EA00497ED2 /* ApiKeyStore.swift */,
 				3F492E8724F25C8500016B2A /* AppGroup.swift */,
+				1A3111152517FFDA00F05C16 /* AppGroup+Kingfisher.swift */,
 				3F630C6222AEA32E0070A4B6 /* AppStoreReview.swift */,
 				953182F6203E17AF00A331A0 /* Constants.swift */,
 				3FDEF4742103368300955129 /* DebugPrint.swift */,
@@ -1274,6 +1281,7 @@
 				3F5C07FC24F2667300BC889E /* Date+Formatter.swift in Sources */,
 				3FEE6DA724FD7EF800818241 /* CountdownView.swift in Sources */,
 				3F492E8E24F25EFC00016B2A /* DateFormatter+Cineaste.swift in Sources */,
+				1A3111162517FFDA00F05C16 /* AppGroup+Kingfisher.swift in Sources */,
 				3F5C07FF24F266A800BC889E /* Int16+Formatter.swift in Sources */,
 				1A654DDD250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift in Sources */,
 				1A654DDB250CA17200D3D1C3 /* Movie+ImageLoading.swift in Sources */,
@@ -1291,6 +1299,7 @@
 				3F5C07FD24F2668200BC889E /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3F5C080024F266B500BC889E /* MovieListCategory.swift in Sources */,
 				1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */,
+				1A3111082517FE7000F05C16 /* WidgetURL.swift in Sources */,
 				1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */,
 				3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */,
 			);
@@ -1371,6 +1380,7 @@
 				3FF790F420DE274A007B7D37 /* Int16+Formatter.swift in Sources */,
 				3F492E8824F25C8500016B2A /* AppGroup.swift in Sources */,
 				3F22920C225A3B5C001D4358 /* AppState.swift in Sources */,
+				1A31111D2518003000F05C16 /* AppGroup+Kingfisher.swift in Sources */,
 				3F187F952263491500B7A9CF /* SortDescriptor.swift in Sources */,
 				3F36F5D2238A8CCE00267280 /* UserDefaults+Cineaste.swift in Sources */,
 				3FF790F620DE274A007B7D37 /* NavigationController.swift in Sources */,
