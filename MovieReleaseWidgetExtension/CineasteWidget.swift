@@ -28,7 +28,7 @@ struct CineasteWidget: Widget {
         Group {
             switch entry.content {
             case .empty:
-                Color.red
+                EmptyStateView()
             case let .movie(movie, image):
                 if movie.releaseDate! > Date() {
                     CountdownView(movie: movie, image: image)

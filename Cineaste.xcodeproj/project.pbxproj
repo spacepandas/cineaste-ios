@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3110F02517B36C00F05C16 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */; };
 		1A35890F2503D1AA00A9B197 /* CountdownEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */; };
 		1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A450FFC250E1F230094B1B1 /* View+Outlining.swift */; };
 		1A654DDB250CA17200D3D1C3 /* Movie+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */; };
@@ -267,6 +268,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEntry.swift; sourceTree = "<group>"; };
 		1A450FFC250E1F230094B1B1 /* View+Outlining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Outlining.swift"; sourceTree = "<group>"; };
 		1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+ImageLoading.swift"; sourceTree = "<group>"; };
@@ -592,10 +594,11 @@
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */,
 				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
-				1A450FFC250E1F230094B1B1 /* View+Outlining.swift */,
+				1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */,
 				1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */,
+				1A450FFC250E1F230094B1B1 /* View+Outlining.swift */,
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
 				1A654DE4250CA8D200D3D1C3 /* Localizable.strings */,
 			);
@@ -1277,6 +1280,7 @@
 				3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */,
 				3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */,
 				3F492E8D24F25EF200016B2A /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */,
+				1A3110F02517B36C00F05C16 /* EmptyStateView.swift in Sources */,
 				3F9D708324F2787B0045CC66 /* UIImage+Cineaste.swift in Sources */,
 				3F5C07FB24F2666500BC889E /* String+Cineaste.swift in Sources */,
 				3F492E7424F250C900016B2A /* CineasteWidget.swift in Sources */,
