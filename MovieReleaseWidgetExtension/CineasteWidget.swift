@@ -18,7 +18,8 @@ struct CineasteWidget: Widget {
             kind: kind,
             intent: DynamicMovieSelectionIntent.self,
             provider: MovieReleaseTimelineProvider(),
-            content: makeView)
+            content: makeView
+        )
         .configurationDisplayName("movie_release_widget_show_countdown")
         .description("movie_release_widget_countdown_description")
         .supportedFamilies([.systemSmall])
@@ -30,7 +31,7 @@ struct CineasteWidget: Widget {
             case .empty:
                 EmptyStateView()
             case let .movie(movie, image):
-                if movie.releaseDate! > Date() {
+                if let releaseDate = movie.releaseDate, releaseDate > Date() {
                     CountdownView(movie: movie, image: image)
                 } else {
                     AlreadyReleasedView(movie: movie, image: image)

@@ -9,6 +9,8 @@
 import SwiftUI
 import WidgetKit
 
+// swiftlint:disable closure_body_length multiline_arguments_brackets
+
 private struct TextHeightPreference: PreferenceKey {
     static var defaultValue: CGFloat = 0
 

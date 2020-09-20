@@ -8,7 +8,7 @@
 
 import Foundation
 
-// swiftlint:disable force_unwrapping
+// swiftlint:disable force_unwrapping duplicate_enum_cases
 public enum AppGroup: String {
     #if DEBUG
     case widget = "group.de.spacepandas.ios.cineaste-development"

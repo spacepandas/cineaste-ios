@@ -41,6 +41,10 @@ extension UIImageView {
         }
 
         let posterUrl = Movie.posterUrl(from: posterPath, for: size)
-        kf.setImage(with: posterUrl, placeholder: cachedPoster ?? UIImage.posterPlaceholder, options: [.targetCache(cache)])
+        kf.setImage(
+            with: posterUrl,
+            placeholder: cachedPoster ?? UIImage.posterPlaceholder,
+            options: [.targetCache(cache)]
+        )
     }
 }
