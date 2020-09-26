@@ -81,11 +81,11 @@ struct AlreadyReleasedView: View {
 struct AlreadyReleasedView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AlreadyReleasedView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
+            AlreadyReleasedView(movie: .testMovie, image: Image(uiImage: .posterPlaceholderWidget))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
-            AlreadyReleasedView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
+            AlreadyReleasedView(movie: .testMovie, image: Image(uiImage: .posterPlaceholderWidget))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )

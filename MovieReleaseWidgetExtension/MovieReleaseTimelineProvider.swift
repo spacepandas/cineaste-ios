@@ -13,12 +13,12 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
     typealias Intent = DynamicMovieSelectionIntent
 
     func placeholder(in context: Context) -> CountdownEntry {
-        .empty
+        .previewData
     }
 
     func getSnapshot(for configuration: DynamicMovieSelectionIntent, in context: Context, completion: @escaping (CountdownEntry) -> Void) {
         guard let movie = movie(for: configuration) else {
-            return completion(.empty)
+            return completion(.previewData)
         }
 
         movie.loadImage { image in

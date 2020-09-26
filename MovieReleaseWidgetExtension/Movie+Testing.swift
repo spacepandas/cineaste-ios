@@ -9,14 +9,13 @@
 import Foundation
 
 extension Movie {
-    static let testSeen = Movie(
-        id: 515_042,
-        title: "Free Solo",
+    static let testMovie = Movie(
+        id: 1,
+        title: "The New Movie",
         voteAverage: 8,
         voteCount: 499,
         posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg",
-        // swiftlint:disable:next line_length
-        overview: "Follow Alex Honnold as he attempts to become the first person to ever free solo climb Yosemite's 3,000 foot high El Capitan wall. With no ropes or safety gear, this would arguably be the greatest feat in rock climbing history.",
+        overview: "",
         runtime: 100,
         releaseDate: Date() + 6 * 24 * 60 * 60,
         genres: [

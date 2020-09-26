@@ -25,6 +25,9 @@ struct CountdownEntry: TimelineEntry {
 
     static let previewData = CountdownEntry(
         date: Date(),
-        content: .movie(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
+        content: .movie(
+            movie: .testMovie,
+            image: Image(uiImage: .posterPlaceholderWidget)
+        )
     )
 }

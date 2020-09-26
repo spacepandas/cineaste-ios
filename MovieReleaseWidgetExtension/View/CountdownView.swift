@@ -103,11 +103,11 @@ struct CountdownView: SwiftUI.View {
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
         Group {
-            CountdownView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
+            CountdownView(movie: .testMovie, image: Image(uiImage: .posterPlaceholderWidget))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
-            CountdownView(movie: .testSeen, image: Image(uiImage: .posterPlaceholder))
+            CountdownView(movie: .testMovie, image: Image(uiImage: .posterPlaceholderWidget))
                 .previewContext(
                     WidgetPreviewContext(family: .systemSmall)
                 )
