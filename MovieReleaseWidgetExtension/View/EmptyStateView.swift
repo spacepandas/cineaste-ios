@@ -20,15 +20,23 @@ struct EmptyStateView: View {
                 .font(Font.custom("Noteworthy", fixedSize: 24))
                 .minimumScaleFactor(0.01)
         }.padding()
+        .background(Color.background)
         .widgetURL(WidgetURL.search)
     }
 }
 
 struct EmptyStateView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyStateView()
-            .previewContext(
-                WidgetPreviewContext(family: .systemSmall)
+        Group {
+            EmptyStateView()
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
             )
+            EmptyStateView()
+                .previewContext(
+                    WidgetPreviewContext(family: .systemSmall)
+                )
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
