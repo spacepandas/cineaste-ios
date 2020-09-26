@@ -9,3 +9,7 @@
 "movie_release_widget_show_countdown" = "Countdown anzeigen";
 "movie_release_widget_countdown_description" = "Zähle die Tage bis der Film ins Kino kommt";
 "movie_release_widget_is_released" = "Jetzt im Kino";
+"movie_release_widget_upcoming_accessibility_format" = "%@ erscheint in %@";
+"movie_release_widget_released_accessibility_format" = "%@ ist erschienen";
+"movie_release_widget_no_upcoming_movies" = "Keine demnächst erscheinenden Filme in der Watchlist";
+"movie_release_widget_search_and_add_movie" = "Suche nach Filmen und füge sie der Watchlist hinzu";

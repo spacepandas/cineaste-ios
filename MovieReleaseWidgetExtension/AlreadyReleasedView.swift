@@ -29,6 +29,11 @@ struct AlreadyReleasedView: View {
     }
     @State private var textHeight: CGFloat = 45
 
+    var accessibilityHint: String {
+        let format = NSLocalizedString("movie_release_widget_released_accessibility_format", comment: "")
+        return String(format: format, movie.title)
+    }
+
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
@@ -37,6 +42,8 @@ struct AlreadyReleasedView: View {
                     .aspectRatio(contentMode: .fill)
                     .blur(radius: 1)
                     .frame(width: proxy.size.width, height: proxy.size.height)
+                    .accessibilityRemoveTraits(.isImage)
+                    .accessibility(hint: Text(accessibilityHint))
 
                 Color.background
                     .opacity(0.75)
@@ -49,6 +56,7 @@ struct AlreadyReleasedView: View {
                         .minimumScaleFactor(0.01)
                         .lineLimit(2)
                         .outlined(radius: outlineRadius)
+                        .accessibility(hidden: true)
                     Text("movie_release_widget_is_released")
                         .font(Font.custom("Noteworthy", fixedSize: 15))
                         .bold()
@@ -59,6 +67,7 @@ struct AlreadyReleasedView: View {
                         .background(GeometryReader {
                             Color.clear.preference(key: TextHeightPreference.self, value: $0.size.height)
                         })
+                        .accessibility(hidden: true)
                 }.padding(.horizontal)
             }
             .onPreferenceChange(TextHeightPreference.self) {

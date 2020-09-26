@@ -41,6 +41,11 @@ struct CountdownView: SwiftUI.View {
         return formattedReleaseDate
     }
 
+    var accessibilityHint: String {
+        let format = NSLocalizedString("movie_release_widget_upcoming_accessibility_format", comment: "")
+        return String(format: format, movie.title, difference)
+    }
+
     var body: some SwiftUI.View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
@@ -49,6 +54,8 @@ struct CountdownView: SwiftUI.View {
                     .aspectRatio(contentMode: .fill)
                     .blur(radius: 1)
                     .frame(width: proxy.size.width, height: proxy.size.height)
+                    .accessibilityRemoveTraits(.isImage)
+                    .accessibility(hint: Text(accessibilityHint))
 
                 Color.background
                     .opacity(0.75)
@@ -62,6 +69,7 @@ struct CountdownView: SwiftUI.View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: proxy.size.width * 0.4)
                         .outlined(radius: outlineRadius)
+                        .accessibility(hidden: true)
                     VStack(alignment: .leading) {
                         Text(difference.split(separator: " ")[1].uppercased())
                             .font(Font.custom("Noteworthy", fixedSize: 24))
@@ -69,6 +77,7 @@ struct CountdownView: SwiftUI.View {
                             .minimumScaleFactor(0.01)
                             .lineLimit(1)
                             .outlined(radius: outlineRadius)
+                            .accessibility(hidden: true)
                         Text(movie.title)
                             .font(Font.custom("Noteworthy", fixedSize: 15))
                             .bold()
@@ -79,6 +88,7 @@ struct CountdownView: SwiftUI.View {
                             .background(GeometryReader {
                                 Color.clear.preference(key: TextHeightPreference.self, value: $0.size.height)
                             })
+                            .accessibility(hidden: true)
                     }
                 }
             }

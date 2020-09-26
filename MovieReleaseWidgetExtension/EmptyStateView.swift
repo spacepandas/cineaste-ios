@@ -12,11 +12,11 @@ import WidgetKit
 struct EmptyStateView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("No upcoming movies in your Watchlist")
+            Text("movie_release_widget_no_upcoming_movies")
                 .font(Font.custom("Noteworthy", fixedSize: 24))
                 .bold()
                 .minimumScaleFactor(0.01)
-            Text("Search for a movie and add it to your Watchlist")
+            Text("movie_release_widget_search_and_add_movie")
                 .font(Font.custom("Noteworthy", fixedSize: 24))
                 .minimumScaleFactor(0.01)
         }.padding()
