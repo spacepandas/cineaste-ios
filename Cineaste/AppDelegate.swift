@@ -26,6 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        guard url.scheme == "widget-deeplink", let host = url.host else { return false }
+
+        if host == "search" {
+            navigateToSearch()
+        } else {
+            navigateToDetail(with: host)
+        }
+        return true
+    }
+
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -127,5 +138,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         moviesVC.navigationController?.presentedViewController?.dismiss(animated: false)
         moviesVC.navigationController?.popToRootViewController(animated: false)
         moviesVC.navigationController?.pushViewController(detailVC, animated: false)
+    }
+
+    private func navigateToSearch() {
+        guard let tabBarVC = window?.rootViewController as? MoviesTabBarController
+            else { return }
+
+        tabBarVC.selectedIndex = 2
     }
 }
