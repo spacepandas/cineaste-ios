@@ -50,7 +50,7 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
         let storeUrl = AppGroup.widget.containerURL
             .appendingPathComponent("movies.json")
 
-        guard let moviesData = (try? Data(contentsOf: storeUrl)) ?? Data(),
+        guard let moviesData = try? Data(contentsOf: storeUrl),
               let movies = try? JSONDecoder().decode([Movie].self, from: moviesData)
                 else { return nil }
 
