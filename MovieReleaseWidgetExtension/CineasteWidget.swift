@@ -31,7 +31,7 @@ struct CineasteWidget: Widget {
             case .empty:
                 EmptyStateView()
             case let .movie(movie, image):
-                if let releaseDate = movie.releaseDate, releaseDate > Date() {
+                if movie.soonAvailable {
                     CountdownView(movie: movie, image: image)
                 } else {
                     AlreadyReleasedView(movie: movie, image: image)
