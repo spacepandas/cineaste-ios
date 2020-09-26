@@ -15,9 +15,9 @@ jobs:
 
     steps:
     - name: Set Xcode Version
-      uses: maxim-lobanov/setup-xcode@1.0
+      uses: maxim-lobanov/setup-xcode@v1.1
       with:
-        xcode-version: 11.6
+        xcode-version: 12
 
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,9 +34,9 @@ jobs:
 
     steps:
     - name: Set Xcode Version
-      uses: maxim-lobanov/setup-xcode@1.0
+      uses: maxim-lobanov/setup-xcode@v1.1
       with:
-        xcode-version: 11.6
+        xcode-version: 12
 
     - name: Checkout
       uses: actions/checkout@v2
