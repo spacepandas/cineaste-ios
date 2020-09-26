@@ -520,6 +520,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A6B684D251F6CA100028D01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A654DDE250CA28100D3D1C3 /* AlreadyReleasedView.swift */,
+				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
+				1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3F059D481FF3FA9C00D5576B /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,12 +607,10 @@
 				3F004D5B25038167007CFDF1 /* MovieReleaseWidgetExtensionRelease.entitlements */,
 				1A6B67D8251F5CC600028D01 /* DynamicMovieSelection.intentdefinition */,
 				3F492E7724F250C900016B2A /* Info.plist */,
-				1A654DDE250CA28100D3D1C3 /* AlreadyReleasedView.swift */,
+				1A6B684D251F6CA100028D01 /* View */,
 				3F492E7324F250C900016B2A /* CineasteWidget.swift */,
 				1A35890E2503D1AA00A9B197 /* CountdownEntry.swift */,
-				3FEE6DA624FD7EF800818241 /* CountdownView.swift */,
 				1A3111072517FE7000F05C16 /* WidgetURL.swift */,
-				1A3110EF2517B36C00F05C16 /* EmptyStateView.swift */,
 				1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				1A654DDC250CA1B100D3D1C3 /* MovieReleaseTimelineProvider.swift */,
