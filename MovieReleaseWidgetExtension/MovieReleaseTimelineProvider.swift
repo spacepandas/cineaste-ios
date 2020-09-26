@@ -57,7 +57,7 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
         if let selectedMovieId = configuration.movie?.identifier {
             return movies.first { $0.id == Int(selectedMovieId) ?? 0 }
         } else {
-            return movies.first(where: \.soonAvailable)
+            return movies.first { $0.currentWatchState == .watchlist && $0.soonAvailable }
         }
     }
 }

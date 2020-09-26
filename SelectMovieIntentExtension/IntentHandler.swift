@@ -20,6 +20,7 @@ class IntentHandler: INExtension, DynamicMovieSelectionIntentHandling {
         if let movies = try? JSONDecoder().decode([Movie].self, from: moviesData) {
             let movieIntents = movies
                 .filter(\.soonAvailable)
+                .filter { $0.currentWatchState == .watchlist }
                 .map { MovieIntent(identifier: "\($0.id)", display: $0.title) }
             let collection = INObjectCollection(items: movieIntents)
             completion(collection, nil)
