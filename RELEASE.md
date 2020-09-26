@@ -1,7 +1,7 @@
 # How to Release?
 
 * Add new version in `CHANGELOG.md` with keywords `New, Fixed, Improved`
-* Update version number in `Fastfile` 
+* Update version number in `Fastfile`
 * Run `bundle exec fastlane release` which will automatically...
     * set version and build number
     * commit the changes

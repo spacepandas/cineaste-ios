@@ -3,13 +3,18 @@
 # Upcoming Release
 
 ## New
-* Add Countdown Widget for unreleased movies from your watchlist (only for iOS 14)
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.22.0
+
+## New
+* Add Countdown Widget for unreleased movies from your watchlist (only for iOS 14)
 
 # 1.21.0
 
