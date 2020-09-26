@@ -20,7 +20,7 @@ struct CineasteWidget: Widget {
             provider: MovieReleaseTimelineProvider(),
             content: makeView
         )
-        .configurationDisplayName("movie_release_widget_show_countdown")
+        .configurationDisplayName("movie_release_widget_countdown")
         .description("movie_release_widget_countdown_description")
         .supportedFamilies([.systemSmall])
     }
