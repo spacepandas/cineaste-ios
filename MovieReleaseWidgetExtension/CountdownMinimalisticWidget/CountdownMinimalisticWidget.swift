@@ -1,17 +1,16 @@
 //
-//  CineasteWidget.swift
+//  CountdownMinimalisticWidget.swift
 //  MovieReleaseWidgetExtension
 //
-//  Created by Felizia Bernutz on 23.08.20.
+//  Created by Felizia Bernutz on 04.10.20.
 //  Copyright © 2020 spacepandas.de. All rights reserved.
 //
 
 import WidgetKit
 import SwiftUI
 
-@main
-struct CineasteWidget: Widget {
-    let kind: String = "CineasteWidget"
+struct CountdownMinimalisticWidget: Widget {
+    let kind: String = "CountdownMinimalisticWidget"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(
@@ -29,23 +28,14 @@ struct CineasteWidget: Widget {
         Group {
             switch entry.content {
             case .empty:
-                EmptyStateView()
+                EmptyStateMinimalisticView()
             case let .movie(movie, image):
                 if movie.soonAvailable {
-                    CountdownView(movie: movie, image: image)
+                    CountdownMinimalisticView(movie: movie, image: image)
                 } else {
-                    AlreadyReleasedView(movie: movie, image: image)
+                    AlreadyReleasedMinimalisticView(movie: movie, image: image)
                 }
             }
         }
     }
 }
-
-//struct CineasteWidget_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WidgetView(entry: .previewData)
-//        .previewContext(
-//            WidgetPreviewContext(family: .systemSmall)
-//        )
-//    }
-//}
