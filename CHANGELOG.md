@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* New Minimalistic Countdown Widget Design (only for iOS 14)
 
 ## Fixed
 * 
