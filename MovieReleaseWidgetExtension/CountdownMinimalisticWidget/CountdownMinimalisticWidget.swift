@@ -19,7 +19,7 @@ struct CountdownMinimalisticWidget: Widget {
             provider: MovieReleaseTimelineProvider(),
             content: makeView
         )
-        .configurationDisplayName("movie_release_widget_countdown")
+        .configurationDisplayName("movie_release_widget_countdown_minimalistic")
         .description("movie_release_widget_countdown_description")
         .supportedFamilies([.systemSmall])
     }
