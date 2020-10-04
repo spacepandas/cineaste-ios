@@ -21,27 +21,12 @@ struct AlreadyReleasedMinimalisticView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .accessibilityRemoveTraits(.isImage)
-                .accessibility(hint: Text(accessibilityHint))
-
-            VStack(alignment: .leading) {
-                Text(movie.title)
-                    .bold()
-                    .lineLimit(2)
-                    .accessibility(hidden: true)
-                Text("movie_release_widget_is_released")
-                    .bold()
-                    .minimumScaleFactor(0.01)
-                    .lineLimit(1)
-                    .multilineTextAlignment(.leading)
-                    .padding([.bottom, .trailing], 7)
-                    .accessibility(hidden: true)
-            }.padding(.horizontal)
-        }
+        PosterWithDescriptionView(
+            title: movie.title,
+            description: "movie_release_widget_is_released",
+            image: image,
+            accessibilityHint: accessibilityHint
+        )
         .widgetURL(WidgetURL.deepLink(for: movie.id))
     }
 }

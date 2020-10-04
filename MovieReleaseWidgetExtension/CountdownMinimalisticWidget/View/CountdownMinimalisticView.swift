@@ -15,53 +15,18 @@ struct CountdownMinimalisticView: SwiftUI.View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    var difference: String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .weekOfMonth]
-        formatter.unitsStyle = .full
-        formatter.maximumUnitCount = 1
-        formatter.collapsesLargestUnit = true
-        let releaseDate = movie.releaseDate ?? Date()
-        let formattedReleaseDate = formatter.string(from: Date(), to: releaseDate + 24 * 60 * 60) ?? ""
-
-        return formattedReleaseDate
-    }
-
     var accessibilityHint: String {
         let format = NSLocalizedString("movie_release_widget_upcoming_accessibility_format", comment: "")
-        return String(format: format, movie.title, difference)
+        return String(format: format, movie.title, movie.difference)
     }
 
     var body: some SwiftUI.View {
-        ZStack(alignment: .bottom) {
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .accessibilityRemoveTraits(.isImage)
-                .accessibility(hint: Text(accessibilityHint))
-
-            HStack(alignment: .bottom, spacing: 0) {
-                Text(difference.split(separator: " ")[0])
-                    .bold()
-                    .minimumScaleFactor(0.01)
-                    .aspectRatio(contentMode: .fit)
-                    .accessibility(hidden: true)
-                VStack(alignment: .leading) {
-                    Text(difference.split(separator: " ")[1].uppercased())
-                        .bold()
-                        .minimumScaleFactor(0.01)
-                        .lineLimit(1)
-                        .accessibility(hidden: true)
-                    Text(movie.title)
-                        .bold()
-                        .minimumScaleFactor(0.01)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                        .padding([.bottom, .trailing], 7)
-                        .accessibility(hidden: true)
-                }
-            }
-        }
+        PosterWithDescriptionView(
+            title: movie.difference,
+            description: movie.title,
+            image: image,
+            accessibilityHint: accessibilityHint
+        )
         .widgetURL(WidgetURL.deepLink(for: movie.id))
     }
 }

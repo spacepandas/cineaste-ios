@@ -13,9 +13,10 @@ struct EmptyStateMinimalisticView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("movie_release_widget_no_upcoming_movies")
-                .bold()
+                .font(.headline)
                 .minimumScaleFactor(0.01)
             Text("movie_release_widget_search_and_add_movie")
+                .font(.body)
                 .minimumScaleFactor(0.01)
         }.padding()
         .background(Color.background)
