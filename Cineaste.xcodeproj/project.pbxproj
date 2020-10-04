@@ -328,6 +328,8 @@
 		3F2627F8252A11AA00A1EFD9 /* CountdownMinimalisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownMinimalisticView.swift; sourceTree = "<group>"; };
 		3F2627F9252A11AA00A1EFD9 /* EmptyStateMinimalisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateMinimalisticView.swift; sourceTree = "<group>"; };
 		3F2627FA252A11AA00A1EFD9 /* AlreadyReleasedMinimalisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyReleasedMinimalisticView.swift; sourceTree = "<group>"; };
+		3F262835252A1E6F00A1EFD9 /* Movie+DifferenceReleaseDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+DifferenceReleaseDate.swift"; sourceTree = "<group>"; };
+		3F262843252A1FE100A1EFD9 /* PosterWithDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterWithDescriptionView.swift; sourceTree = "<group>"; };
 		3F32C1F72375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F32C1FA23754B65005C713A /* XCTestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestObserver.swift; sourceTree = "<group>"; };
 		3F36F5D1238A8CCE00267280 /* UserDefaults+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Cineaste.swift"; path = "Cineaste/Extension/UserDefaults+Cineaste.swift"; sourceTree = SOURCE_ROOT; };
@@ -616,6 +618,7 @@
 				3F2627FA252A11AA00A1EFD9 /* AlreadyReleasedMinimalisticView.swift */,
 				3F2627F8252A11AA00A1EFD9 /* CountdownMinimalisticView.swift */,
 				3F2627F9252A11AA00A1EFD9 /* EmptyStateMinimalisticView.swift */,
+				3F262843252A1FE100A1EFD9 /* PosterWithDescriptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1375,6 +1378,7 @@
 				1A3111082517FE7000F05C16 /* WidgetURL.swift in Sources */,
 				1A450FFD250E1F230094B1B1 /* View+Outlining.swift in Sources */,
 				3FD67ED224F27FCE007D3766 /* Constants.swift in Sources */,
+				3F262844252A1FE100A1EFD9 /* PosterWithDescriptionView.swift in Sources */,
 				3F2627C8252A107000A1EFD9 /* CineasteWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
