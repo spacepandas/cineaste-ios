@@ -46,7 +46,7 @@ struct PosterWithDescriptionView: View {
                 }
                 .padding([.leading, .bottom], 12)
                 .padding([.top, .trailing], 4)
-                .background(Color.background.opacity(0.6))
+                .background(Color.background.opacity(0.8))
             }
         }
     }
