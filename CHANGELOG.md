@@ -3,13 +3,18 @@
 # Upcoming Release
 
 ## New
-* New Minimalistic Countdown Widget Design (only for iOS 14)
+* 
 
 ## Fixed
 * 
 
 ## Improved
 * 
+
+# 1.23.0
+
+## New
+* Add new Minimalistic Countdown Widget Design (only for iOS 14)
 
 # 1.22.0
 

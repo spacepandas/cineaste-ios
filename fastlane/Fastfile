@@ -24,7 +24,7 @@ Test_Languages = [
   'de-DE'
 ]
 
-$version_number_to_set = '1.22.0'
+$version_number_to_set = '1.23.0'
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
