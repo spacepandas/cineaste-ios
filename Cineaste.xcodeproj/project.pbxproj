@@ -45,6 +45,8 @@
 		3F2627FB252A11AA00A1EFD9 /* AlreadyReleasedMinimalisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2627FA252A11AA00A1EFD9 /* AlreadyReleasedMinimalisticView.swift */; };
 		3F2627FC252A11AA00A1EFD9 /* EmptyStateMinimalisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2627F9252A11AA00A1EFD9 /* EmptyStateMinimalisticView.swift */; };
 		3F2627FD252A11AA00A1EFD9 /* CountdownMinimalisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2627F8252A11AA00A1EFD9 /* CountdownMinimalisticView.swift */; };
+		3F262836252A1E6F00A1EFD9 /* Movie+DifferenceReleaseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F262835252A1E6F00A1EFD9 /* Movie+DifferenceReleaseDate.swift */; };
+		3F262844252A1FE100A1EFD9 /* PosterWithDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F262843252A1FE100A1EFD9 /* PosterWithDescriptionView.swift */; };
 		3F32C1F82375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32C1F72375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift */; };
 		3F32C1F9237548EA005C713A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F187F8E22632DC000B7A9CF /* Movie+Testing.swift */; };
 		3F32C1FB23754B66005C713A /* XCTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32C1FA23754B65005C713A /* XCTestObserver.swift */; };
@@ -581,6 +583,7 @@
 		3F2627DB252A10D800A1EFD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3F262835252A1E6F00A1EFD9 /* Movie+DifferenceReleaseDate.swift */,
 				1A654DDA250CA17200D3D1C3 /* Movie+ImageLoading.swift */,
 				3F492E8224F256CF00016B2A /* Movie+Testing.swift */,
 				1A450FFC250E1F230094B1B1 /* View+Outlining.swift */,
@@ -1352,6 +1355,7 @@
 				1A654DDB250CA17200D3D1C3 /* Movie+ImageLoading.swift in Sources */,
 				3F2627FD252A11AA00A1EFD9 /* CountdownMinimalisticView.swift in Sources */,
 				3F2627FB252A11AA00A1EFD9 /* AlreadyReleasedMinimalisticView.swift in Sources */,
+				3F262836252A1E6F00A1EFD9 /* Movie+DifferenceReleaseDate.swift in Sources */,
 				3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */,
 				3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */,
 				3F492E8D24F25EF200016B2A /* KeyedDecodingContainerProtocol+Decoding.swift in Sources */,
