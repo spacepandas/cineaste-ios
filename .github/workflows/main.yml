@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Set Xcode Version
-      uses: maxim-lobanov/setup-xcode@v1.1
+      uses: maxim-lobanov/setup-xcode@v1.2.1
       with:
         xcode-version: '12.1'
 
@@ -34,7 +34,7 @@ jobs:
 
     steps:
     - name: Set Xcode Version
-      uses: maxim-lobanov/setup-xcode@v1.1
+      uses: maxim-lobanov/setup-xcode@v1.2.1
       with:
         xcode-version: '12.1'
 
