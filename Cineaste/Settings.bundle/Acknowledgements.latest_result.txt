@@ -1,4 +1,4 @@
-name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 5.15.5
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 5.15.7
 
 name: ReSwift, nameSpecified: ReSwift, owner: ReSwift, version: 5.0.0
 
@@ -8,4 +8,4 @@ name: swift-snapshot-testing, nameSpecified: SnapshotTesting, owner: pointfreeco
 
 add-version-numbers: false
 
-LicensePlist Version: 2.16.0
+LicensePlist Version: 3.0.4
