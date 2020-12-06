@@ -39,12 +39,21 @@ enum Constants {
     }
 
     static var versionNumberInformation: String {
-        guard
-            let version = Bundle.main
+        let defaultVersion = "0.0.0 (0)"
+
+        // do not modify version number in tests
+        #if DEBUG
+        if ProcessInfo().environment["XCTestConfigurationFilePath"] != nil {
+            return defaultVersion
+        }
+        #endif
+
+        guard let version = Bundle.main
                 .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-            let build = Bundle.main
+              let build = Bundle.main
                 .object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
-            else { return "" }
-        return "\(String.versionText): \(version) (\(build))"
+        else { return defaultVersion }
+
+        return "\(version) (\(build))"
     }
 }
