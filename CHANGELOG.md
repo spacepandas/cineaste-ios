@@ -11,6 +11,21 @@
 ## Improved
 * 
 
+# 1.23.0
+
+## New
+* Add new Minimalistic Countdown Widget Design (only for iOS 14)
+
+# 1.22.0
+
+## New
+* Add Countdown Widget for unreleased movies from your watchlist (only for iOS 14)
+
+# 1.21.0
+
+## New
+* Drop Support for iOS 11
+
 # 1.20.1
 
 ## Improved

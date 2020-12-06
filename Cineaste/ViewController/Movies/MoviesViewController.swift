@@ -153,13 +153,6 @@ class MoviesViewController: UITableViewController {
             + " "
             + category.title
     }
-
-    func showEmptyStateIfNeeded(_ showEmptyState: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.backgroundView?.alpha = showEmptyState ? 1 : 0
-            self.tableView.backgroundView?.isHidden = !showEmptyState
-        }
-    }
 }
 
 extension MoviesViewController: StoreSubscriber {
@@ -182,7 +175,10 @@ extension MoviesViewController: StoreSubscriber {
 
         movies = sortedMovies
         filteredMovies = sortedMovies
-        showEmptyStateIfNeeded(sortedMovies.isEmpty)
+
+        tableView.backgroundView = sortedMovies.isEmpty
+            ? self.emptyView
+            : nil
     }
 }
 

@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController {
         tableView.backgroundColor = UIColor.cineListBackground
         tableView.tableFooterView = footerView
 
-        versionInfo.text = Constants.versionNumberInformation
+        versionInfo.text = "\(String.versionText): \(Constants.versionNumberInformation)"
         versionInfo.textColor = .cineFooter
     }
 }

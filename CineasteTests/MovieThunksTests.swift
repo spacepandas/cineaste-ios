@@ -25,6 +25,7 @@ class MovieThunksTests: XCTestCase {
         updatedMovie.watched = true
         updatedMovie.watchedDate = Date()
         let expectedAction = MovieAction.update(movie: updatedMovie)
+        let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
         var actions: [Action] = []
         store.dispatchFunction = { XCTFail("\($0)") }
 
@@ -32,10 +33,14 @@ class MovieThunksTests: XCTestCase {
         thunk.body({ actions.append($0) }, { appState })
 
         // Then
-        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(actions.count, 2)
         XCTAssertEqual(
             String(describing: actions[0]),
             String(describing: expectedAction)
+        )
+        XCTAssertEqual(
+            String(describing: actions[1]),
+            String(describing: expectedAction2)
         )
     }
 
@@ -50,6 +55,7 @@ class MovieThunksTests: XCTestCase {
         var updatedMovie = movieToUpdate
         updatedMovie.watched = false
         let expectedAction = MovieAction.update(movie: updatedMovie)
+        let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
         var actions: [Action] = []
         store.dispatchFunction = { XCTFail("\($0)") }
 
@@ -57,10 +63,14 @@ class MovieThunksTests: XCTestCase {
         thunk.body({ actions.append($0) }, { appState })
 
         // Then
-        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(actions.count, 2)
         XCTAssertEqual(
             String(describing: actions[0]),
             String(describing: expectedAction)
+        )
+        XCTAssertEqual(
+            String(describing: actions[1]),
+            String(describing: expectedAction2)
         )
     }
 
@@ -73,6 +83,7 @@ class MovieThunksTests: XCTestCase {
         updatedMovie.watched = true
         updatedMovie.watchedDate = Date()
         let expectedAction = MovieAction.add(movie: updatedMovie)
+        let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
         var actions: [Action] = []
         store.dispatchFunction = { XCTFail("\($0)") }
 
@@ -80,10 +91,14 @@ class MovieThunksTests: XCTestCase {
         thunk.body({ actions.append($0) }, { AppState() })
 
         // Then
-        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(actions.count, 2)
         XCTAssertEqual(
             String(describing: actions[0]),
             String(describing: expectedAction)
+        )
+        XCTAssertEqual(
+            String(describing: actions[1]),
+            String(describing: expectedAction2)
         )
     }
 
@@ -96,6 +111,11 @@ class MovieThunksTests: XCTestCase {
         appState.movies = [movieToDelete]
 
         let expectedAction = MovieAction.delete(movie: movieToDelete)
+        var updatedMovie = movieToDelete
+        updatedMovie.watched = nil
+        updatedMovie.watchedDate = nil
+        let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
+
         var actions: [Action] = []
         store.dispatchFunction = { XCTFail("\($0)") }
 
@@ -103,10 +123,14 @@ class MovieThunksTests: XCTestCase {
         thunk.body({ actions.append($0) }, { appState })
 
         // Then
-        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(actions.count, 2)
         XCTAssertEqual(
             String(describing: actions[0]),
             String(describing: expectedAction)
+        )
+        XCTAssertEqual(
+            String(describing: actions[1]),
+            String(describing: expectedAction2)
         )
     }
 }

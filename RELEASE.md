@@ -1,10 +1,10 @@
 # How to Release?
 
 * Add new version in `CHANGELOG.md` with keywords `New, Fixed, Improved`
-* Update version number in `Fastfile` 
+* Update version number in `Fastfile`
 * Run `bundle exec fastlane release` which will automatically...
     * set version and build number
-    * commit the changes 
+    * commit the changes
     * tag the commit with version number
 * Push latest commit with tag to origin which will automatically...
     * trigger GitHub Actions to create a GitHub release with changelog

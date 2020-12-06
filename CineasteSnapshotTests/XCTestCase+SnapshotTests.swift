@@ -33,6 +33,7 @@ func assertThemedNavigationSnapshot(
     testName: String = #function,
     line: UInt = #line
     ) {
+    enforceSnapshotDevice()
 
     for theme in themes {
         value.overrideUserInterfaceStyle = theme
@@ -75,6 +76,7 @@ func assertThemedViewSnapshot(
     testName: String = #function,
     line: UInt = #line
     ) {
+    enforceSnapshotDevice()
 
     for theme in themes {
         value.overrideUserInterfaceStyle = theme
@@ -89,6 +91,15 @@ func assertThemedViewSnapshot(
             testName: testName,
             line: line
         )
+    }
+}
+
+private func enforceSnapshotDevice() {
+    let is2xDevice = UIScreen.main.scale == 2
+    let isVersion14 = ProcessInfo().operatingSystemVersion.majorVersion == 14
+
+    guard is2xDevice, isVersion14 else {
+        fatalError("Running device should have @2x screen scale and iOS14.")
     }
 }
 

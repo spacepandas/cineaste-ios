@@ -14,6 +14,5 @@ final class PersistenceSubscriber: StoreSubscriber {
 
         SpotlightIndexing.indexItems(movies)
         ShortcutItemRefresher.refreshShortcutItems(for: movies)
-        AppStoreReview.requestReview()
     }
 }

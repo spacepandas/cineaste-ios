@@ -94,7 +94,7 @@ class PosterViewController: UIViewController {
                     self.backgroundView.alpha = 0
                 }, completion: { _ in
                     self.dismiss(animated: false)
-                }) // swiftlint:disable:this multiline_arguments_brackets
+                })
             } else {
                 guard let position = originalPosition else { return }
 

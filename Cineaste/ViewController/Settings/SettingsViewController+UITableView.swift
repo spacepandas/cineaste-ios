@@ -50,7 +50,7 @@ extension SettingsViewController {
                 if MFMailComposeViewController.canSendMail() {
                     let mailComposeVC = MFMailComposeViewController()
                     mailComposeVC.mailComposeDelegate = self
-                    mailComposeVC.setSubject("Cineaste iOS || \(Constants.versionNumberInformation)")
+                    mailComposeVC.setSubject("Cineaste iOS || \(String.versionText): \(Constants.versionNumberInformation)")
                     mailComposeVC.setToRecipients([Constants.emailAddress])
 
                     self.present(mailComposeVC, animated: true)

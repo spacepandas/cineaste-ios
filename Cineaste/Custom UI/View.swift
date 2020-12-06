@@ -229,9 +229,7 @@ class VoteView: View {
 
     @objc
     func setBorderWidth() {
-        DispatchQueue.main.async {
-            self.layer.borderWidth = UIFontMetrics.default.scaledValue(for: 1)
-        }
+        layer.borderWidth = UIFontMetrics.default.scaledValue(for: 1)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

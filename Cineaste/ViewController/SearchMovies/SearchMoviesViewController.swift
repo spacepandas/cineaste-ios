@@ -119,18 +119,6 @@ class SearchMoviesViewController: UIViewController {
             resultSearchController.searchBar.searchTextField.delegate = self
         }
     }
-
-    // MARK: - Custom functions
-
-    func scrollToTopCell(withAnimation: Bool) {
-        guard !movies.isEmpty else { return }
-
-        tableView.scrollToRow(
-            at: IndexPath(row: 0, section: 0),
-            at: .top,
-            animated: withAnimation
-        )
-    }
 }
 
 extension SearchMoviesViewController: StoreSubscriber {
