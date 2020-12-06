@@ -1111,6 +1111,7 @@
 			buildPhases = (
 				3F5AF263218F80F8006717DC /* Check API Keys */,
 				3F9C0A1B23C92ECA00CDB993 /* Swift Lint */,
+				3F48A7A3257CDFD900956F2E /* Generate Settings.bundle */,
 				3FF790E520DE274A007B7D37 /* Sources */,
 				3FF7912220DE274A007B7D37 /* Frameworks */,
 				3FF7912420DE274A007B7D37 /* Resources */,
@@ -1271,6 +1272,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F48A7A3257CDFD900956F2E /* Generate Settings.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Settings.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which license-plist >/dev/null; then\n  license-plist \\\n    --output-path Cineaste/Settings.bundle \\\n    --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.swift \\\n    --prefix Acknowledgements \\\n    --single-page \\\n    --force\nelse\n  echo \"warning: LicensePlist not installed, download from https://github.com/mono0926/LicensePlist\"\nfi\n";
+		};
 		3F5AF263218F80F8006717DC /* Check API Keys */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
