@@ -4,7 +4,7 @@ name: ReSwift, nameSpecified: ReSwift, owner: ReSwift, version: 5.0.0
 
 name: ReSwift-Thunk, nameSpecified: ReSwift-Thunk, owner: ReSwift, version: 1.2.0
 
-name: swift-snapshot-testing, nameSpecified: SnapshotTesting, owner: pointfreeco, version: 1.8.1
+name: swift-snapshot-testing, nameSpecified: SnapshotTesting, owner: pointfreeco, version: 1.8.2
 
 add-version-numbers: false
 
