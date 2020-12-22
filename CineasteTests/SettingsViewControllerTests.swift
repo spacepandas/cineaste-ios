@@ -13,15 +13,15 @@ class SettingsViewControllerTests: XCTestCase {
     let settingsVC = SettingsViewController.instantiate()
 
     func testSelectRowShouldSetCorrectSelectedSetting() {
-        //nothing selected
+        // nothing selected
         XCTAssertNil(settingsVC.selectedSetting)
 
-        //select first row
+        // select first row
         let firstPath = IndexPath(row: 0, section: 0)
         settingsVC.tableView.delegate?.tableView!(settingsVC.tableView, didSelectRowAt: firstPath)
         XCTAssert(settingsVC.selectedSetting == settingsVC.settings[firstPath.row])
 
-        //select second row
+        // select second row
         let secondPath = IndexPath(row: 1, section: 0)
         settingsVC.tableView.delegate?.tableView!(settingsVC.tableView, didSelectRowAt: secondPath)
         XCTAssert(settingsVC.selectedSetting == settingsVC.settings[secondPath.row])

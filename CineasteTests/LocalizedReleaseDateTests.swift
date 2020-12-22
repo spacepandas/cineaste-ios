@@ -15,7 +15,7 @@ class LocalizedReleaseDateTests: XCTestCase {
         // Given
         XCTAssertEqual(Locale.current.regionCode, "US")
 
-        //1974-11-14
+        // 1974-11-14
         let expectedDate = Date(timeIntervalSince1970: 153_619_200)
 
         let jsonData = """

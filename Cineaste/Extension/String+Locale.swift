@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    //e.g. "DE"
+    // e.g. "DE"
     static var regionIso31661: String {
         if let regionCode = Locale.current.regionCode {
             return regionCode
@@ -24,7 +24,7 @@ extension String {
         return locale
     }
 
-    //e.g. "de"
+    // e.g. "de"
     static var languageIso6391: String {
         if let languageCode = Locale.current.languageCode {
             return languageCode
@@ -39,7 +39,7 @@ extension String {
         return locale
     }
 
-    //e.g. "de-DE
+    // e.g. "de-DE
     static var languageFormattedForTMDb: String {
         Locale.current.identifier
             .replacingOccurrences(of: "_", with: "-")

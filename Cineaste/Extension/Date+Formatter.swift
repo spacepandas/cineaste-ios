@@ -38,7 +38,7 @@ extension Date {
     }
 
     var formattedForJson: String {
-        //important to have locale as "en_US_POSIX" for export and import
+        // important to have locale as "en_US_POSIX" for export and import
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
