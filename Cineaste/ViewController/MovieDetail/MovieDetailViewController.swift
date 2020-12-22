@@ -15,15 +15,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var contentStackView: UIStackView!
     @IBOutlet private weak var moreInformationStackView: UIStackView!
 
-    @IBOutlet private weak var posterImageView: UIImageView! {
-        didSet {
-            DispatchQueue.main.async {
-                self.updatePosterHeight()
-            }
-        }
-    }
-
-    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+    @IBOutlet private weak var posterImageView: UIImageView!
 
     @IBOutlet private weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
@@ -237,13 +229,6 @@ class MovieDetailViewController: UIViewController {
         votingLabel.text = movie.formattedVoteAverage
         descriptionTextView.text = movie.overview
         posterImageView.loadingImage(from: movie.posterPath, in: .original)
-    }
-
-    private func updatePosterHeight() {
-        guard let poster = posterImageView.image else { return }
-
-        let aspectRatio = poster.size.height / poster.size.width
-        posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
     }
 
     // MARK: 3D Actions

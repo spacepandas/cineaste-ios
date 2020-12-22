@@ -21,41 +21,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="974"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="422.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="953.5"/>
                                         <subviews>
                                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82I-FK-pt6">
-                                                <rect key="frame" x="0.0" y="0.0" width="768" height="83.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="768" height="614.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_poster" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-SV-Cq1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="768" height="167"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="167" id="pfa-lB-wsn"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="768" height="614.5"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="centerY" secondItem="82I-FK-pt6" secondAttribute="centerY" id="8qF-37-n9l"/>
+                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="top" secondItem="82I-FK-pt6" secondAttribute="top" id="Axv-VK-RvL"/>
                                                     <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="F4g-Gz-JRF"/>
-                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="82I-FK-pt6" secondAttribute="height" multiplier="8:5" id="NtD-NO-EwD"/>
-                                                    <constraint firstAttribute="bottom" secondItem="CXV-SV-Cq1" secondAttribute="bottom" id="WPg-ex-mgp"/>
-                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="82I-FK-pt6" secondAttribute="height" multiplier="2" id="uuT-T6-REV"/>
-                                                    <constraint firstItem="CXV-SV-Cq1" firstAttribute="top" secondItem="82I-FK-pt6" secondAttribute="top" id="wrL-tw-nQs"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CXV-SV-Cq1" secondAttribute="bottom" id="XYB-SX-0oq"/>
                                                     <constraint firstItem="CXV-SV-Cq1" firstAttribute="leading" secondItem="82I-FK-pt6" secondAttribute="leading" id="znq-Yp-WYK"/>
                                                 </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="NtD-NO-EwD"/>
-                                                        <exclude reference="uuT-T6-REV"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <mask key="constraints">
-                                                        <exclude reference="NtD-NO-EwD"/>
-                                                        <include reference="uuT-T6-REV"/>
-                                                    </mask>
-                                                </variation>
                                             </scrollView>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I40-Pc-bfk" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="33.5" width="768" height="50"/>
+                                                <rect key="frame" x="0.0" y="564.5" width="768" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle" translatesAutoresizingMaskIntoConstraints="NO" id="vGg-FL-9Xo">
                                                         <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
@@ -78,7 +62,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="83.5" width="768" height="339"/>
+                                                <rect key="frame" x="0.0" y="614.5" width="768" height="339"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
                                                         <rect key="frame" x="20" y="20" width="728" height="299"/>
@@ -156,7 +140,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9X-DY-NTW" userLabel="GuidelineView">
-                                                <rect key="frame" x="614.5" y="83.5" width="153.5" height="0.0"/>
+                                                <rect key="frame" x="614.5" y="614.5" width="153.5" height="0.0"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                 </accessibility>
@@ -165,7 +149,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdq-Gq-LIm" customClass="ShadowView" customModule="Cineaste_App" customModuleProvider="target">
-                                                <rect key="frame" x="582.5" y="33.5" width="64" height="64"/>
+                                                <rect key="frame" x="582.5" y="564.5" width="64" height="64"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBZ-3T-p4o" customClass="VoteCircleView" customModule="Cineaste_App" customModuleProvider="target">
                                                         <rect key="frame" x="4" y="4" width="56" height="56"/>
@@ -224,8 +208,8 @@
                                             <constraint firstItem="9Av-nK-1kN" firstAttribute="bottom" secondItem="D9X-DY-NTW" secondAttribute="bottom" id="5J9-xe-tdT"/>
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" id="Aqa-og-AF6"/>
                                             <constraint firstAttribute="trailing" secondItem="cDP-XA-M1C" secondAttribute="trailing" id="CAP-l1-494"/>
+                                            <constraint firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="bottom" id="Cwc-Fq-YsT"/>
                                             <constraint firstItem="I40-Pc-bfk" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="Hcg-Vd-gik"/>
-                                            <constraint firstAttribute="bottom" secondItem="cDP-XA-M1C" secondAttribute="bottom" id="JYo-8D-mWc"/>
                                             <constraint firstItem="I40-Pc-bfk" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="OJX-kY-zx7"/>
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="width" secondItem="Omu-gQ-AJU" secondAttribute="width" multiplier="0.2" id="T8q-ye-OoZ"/>
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="leading" secondItem="Bdq-Gq-LIm" secondAttribute="centerX" id="WTb-zP-lRG"/>
@@ -278,6 +262,7 @@
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="pJx-0l-1Fj"/>
+                            <constraint firstItem="82I-FK-pt6" firstAttribute="height" secondItem="Hvt-Pf-hic" secondAttribute="height" multiplier="0.6" id="ycP-eh-jjJ"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="zG8-Sd-FDc"/>
                         </constraints>
                     </view>
@@ -293,7 +278,6 @@
                         <outlet property="moreInformationButton" destination="M6U-dL-Xho" id="NeM-qE-MWU"/>
                         <outlet property="moreInformationStackView" destination="EZK-mi-hDX" id="5jH-Rq-Cgt"/>
                         <outlet property="movieStateSegmentedControl" destination="8ZH-5d-sun" id="dv1-SZ-5DP"/>
-                        <outlet property="posterHeight" destination="pfa-lB-wsn" id="Zit-yK-Qah"/>
                         <outlet property="posterImageView" destination="CXV-SV-Cq1" id="kd4-D0-Q2D"/>
                         <outlet property="releaseDateAndRuntimeLabel" destination="BDx-pl-gqc" id="KxI-aF-E6L"/>
                         <outlet property="titleLabel" destination="qT7-RW-EIo" id="2gO-KI-Y91"/>
