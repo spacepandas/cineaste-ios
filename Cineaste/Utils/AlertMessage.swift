@@ -8,21 +8,14 @@
 
 import UIKit
 
-class AlertMessage {
+struct AlertMessage {
     var title: String
     var message: String
     var action: String
     var cancel: String?
-
-    init(title: String, message: String, action: String, cancel: String? = nil) {
-        self.title = title
-        self.message = message
-        self.action = action
-        self.cancel = cancel
-    }
 }
 
-class Alert: AlertMessage {
+enum Alert {
     static let importFailedInfo = AlertMessage(
         title: .errorTitle,
         message: .importFailedMessage,
@@ -33,19 +26,6 @@ class Alert: AlertMessage {
         message: .exportFailedMessage,
         action: .okAction
     )
-    static let noEmailClient = AlertMessage(
-        title: .infoTitle,
-        message: .noEmailClientMessage,
-        action: .okAction
-    )
-
-    static func loadingData(with error: Error) -> AlertMessage {
-        AlertMessage(
-            title: .errorTitle,
-            message: .loadingDataErrorMessage + "\n\n" + error.localizedDescription,
-            action: .okAction
-        )
-    }
 
     static func importSucceededInfo(with counter: Int) -> AlertMessage {
         AlertMessage(
