@@ -112,6 +112,7 @@ class MovieDetailViewController: UIViewController {
         guard let movie = movie else { return }
 
         store.dispatch(deleteMovie(movie))
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction func shareMovie() {
