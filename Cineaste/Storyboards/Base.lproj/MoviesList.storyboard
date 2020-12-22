@@ -238,9 +238,9 @@
                     <connections>
                         <outlet property="emptyListAddMovieButton" destination="rdZ-uo-jTo" id="dWK-Ku-MSZ"/>
                         <outlet property="emptyListLabel" destination="bGK-kG-Gg1" id="hVw-jR-prZ"/>
+                        <outlet property="emptyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
                         <outlet property="emptyView" destination="lwS-UM-Evo" id="zUm-ms-xjT"/>
                         <outlet property="emptyViewStackView" destination="aWh-Vg-TKc" id="Te2-An-8zx"/>
-                        <outlet property="empyListTitle" destination="gJB-VM-6sj" id="FEf-Bo-jLm"/>
                         <segue destination="NMk-QO-vK8" kind="show" identifier="ShowMovieDetailSegue" id="4q7-oo-2Gh"/>
                     </connections>
                 </tableViewController>
