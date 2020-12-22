@@ -115,10 +115,10 @@ class MovieDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func shareMovie() {
+    @IBAction func shareMovie(_ sender: UIBarButtonItem) {
         guard let movie = movie else { return }
 
-        share(movie: movie)
+        share(movie: movie, onBarButtonItem: sender)
     }
 
     // MARK: - Navigation

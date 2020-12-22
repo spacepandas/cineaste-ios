@@ -9,7 +9,32 @@
 import UIKit
 
 extension UIViewController {
-    func share(movie: Movie) {
+    func share(movie: Movie, onBarButtonItem barButtonItem: UIBarButtonItem) {
+        let activityController = sharingActivityViewController(for: movie)
+        activityController.popoverPresentationController?.barButtonItem = barButtonItem
+
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+    }
+
+    func share(movie: Movie, onSourceView sourceView: UIView) {
+        let activityController = sharingActivityViewController(for: movie)
+
+        activityController.popoverPresentationController?.sourceView = sourceView
+        activityController.popoverPresentationController?.sourceRect = CGRect(
+            x: sourceView.bounds.midX,
+            y: sourceView.bounds.midY,
+            width: 0,
+            height: 0
+        )
+
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+    }
+
+    private func sharingActivityViewController(for movie: Movie) -> UIActivityViewController {
         var items = [Any]()
 
         items.append(movie.title)
@@ -18,13 +43,9 @@ extension UIViewController {
             items.append(url)
         }
 
-        let activityController = UIActivityViewController(
+        return UIActivityViewController(
             activityItems: items,
             applicationActivities: nil
         )
-
-        DispatchQueue.main.async {
-            self.present(activityController, animated: true)
-        }
     }
 }

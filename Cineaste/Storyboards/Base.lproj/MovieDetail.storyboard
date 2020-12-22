@@ -262,7 +262,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="C09-bA-4Zs"/>
                                     <barButtonItem systemItem="action" id="hyd-RZ-KdO">
                                         <connections>
-                                            <action selector="shareMovie" destination="H5Q-aj-Qxh" id="IFz-7m-wHa"/>
+                                            <action selector="shareMovie:" destination="H5Q-aj-Qxh" id="wDr-7x-kno"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
