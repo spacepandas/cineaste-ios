@@ -257,16 +257,16 @@
                         <viewLayoutGuide key="safeArea" id="C1U-CL-dSb"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="C1U-CL-dSb" firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
+                            <constraint firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="ZuN-8j-AgR" secondAttribute="bottom" id="ZgR-yL-GXk"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Hvt-Pf-hic" secondAttribute="height" id="auU-go-b2o"/>
                             <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="Hvt-Pf-hic" secondAttribute="height" multiplier="0.6" id="eiZ-CU-ezX"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="gkH-6H-peu"/>
-                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="jGQ-wv-mAI"/>
+                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="Hvt-Pf-hic" secondAttribute="leading" id="jGQ-wv-mAI"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
-                            <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="pJx-0l-1Fj"/>
-                            <constraint firstItem="ZuN-8j-AgR" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="zG8-Sd-FDc"/>
+                            <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="Hvt-Pf-hic" secondAttribute="leading" id="pJx-0l-1Fj"/>
+                            <constraint firstAttribute="trailing" secondItem="ZuN-8j-AgR" secondAttribute="trailing" id="zmI-kb-Bnd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I07-cP-vJB"/>
