@@ -177,7 +177,7 @@ extension MoviesViewController: StoreSubscriber {
         filteredMovies = sortedMovies
 
         tableView.backgroundView = sortedMovies.isEmpty
-            ? self.emptyView
+            ? emptyView
             : nil
     }
 }
