@@ -3,7 +3,7 @@ fastlane_version '2.0.0'
 ProjectName = 'Cineaste'
 AppIdentifier = 'de.spacepandas.ios.cineaste'
 Target_Folder_Name = 'build' 
-DerivedDataPath = 'DerivedData'
+DerivedDataPath = 'build/DerivedData'
 
 Scheme = 'Cineaste App'
 Scheme_UnitTests = 'UnitTests'
