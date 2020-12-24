@@ -3,11 +3,19 @@
 # Upcoming Release
 
 ## New
-* Add Support for Landscape Device Rotation on iPhone
-* Add very basic Support for iPad devices
+* 
 
 ## Fixed
 * 
+
+## Improved
+* 
+
+# 1.24.0
+
+## New
+* Add Support for Landscape Device Rotation on iPhone
+* Add very basic Support for iPad devices
 
 ## Improved
 * Automatically navigate back when a movie is deleted from the detail view
