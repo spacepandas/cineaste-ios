@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="974"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-gQ-AJU">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="953.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                         <subviews>
                                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82I-FK-pt6">
                                                 <rect key="frame" x="0.0" y="0.0" width="768" height="614.5"/>
@@ -62,10 +62,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
-                                                <rect key="frame" x="0.0" y="614.5" width="768" height="339"/>
+                                                <rect key="frame" x="0.0" y="614.5" width="768" height="409.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
-                                                        <rect key="frame" x="20" y="20" width="728" height="299"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
+                                                        <rect key="frame" x="20" y="20" width="728" height="369.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-vC-dyb">
                                                                 <rect key="frame" x="0.0" y="0.0" width="230" height="69.5"/>
@@ -93,7 +93,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-mi-hDX">
                                                                 <rect key="frame" x="0.0" y="85.5" width="127" height="50.5"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
                                                                         <state key="normal" title="detail.trailerButton"/>
                                                                         <connections>
@@ -108,7 +108,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8ZH-5d-sun">
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8ZH-5d-sun">
                                                                 <rect key="frame" x="0.0" y="152" width="728" height="32"/>
                                                                 <segments>
                                                                     <segment title="First"/>
@@ -119,7 +119,7 @@
                                                                 </connections>
                                                             </segmentedControl>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="199" width="728" height="100"/>
+                                                                <rect key="frame" x="0.0" y="199" width="728" height="170.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -133,7 +133,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="7En-Dr-R7L"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fS9-v7-x6n" secondAttribute="bottom" constant="20" id="7En-Dr-R7L"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fS9-v7-x6n" secondAttribute="bottom" priority="750" constant="20" id="HFr-cr-0NG"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="20" symbolic="YES" id="HPY-9S-e33"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Ocw-Y9-jRG"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" id="efa-Jc-AJF"/>
@@ -209,7 +210,7 @@
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="bottom" secondItem="vGg-FL-9Xo" secondAttribute="bottom" id="Aqa-og-AF6"/>
                                             <constraint firstAttribute="trailing" secondItem="cDP-XA-M1C" secondAttribute="trailing" id="CAP-l1-494"/>
                                             <constraint firstItem="I40-Pc-bfk" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="Hcg-Vd-gik"/>
-                                            <constraint firstItem="I40-Pc-bfk" firstAttribute="bottom" secondItem="82I-FK-pt6" secondAttribute="bottom" id="OJX-kY-zx7"/>
+                                            <constraint firstItem="I40-Pc-bfk" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="82I-FK-pt6" secondAttribute="bottom" id="OJX-kY-zx7"/>
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="width" secondItem="Omu-gQ-AJU" secondAttribute="width" multiplier="0.2" id="T8q-ye-OoZ"/>
                                             <constraint firstItem="D9X-DY-NTW" firstAttribute="leading" secondItem="Bdq-Gq-LIm" secondAttribute="centerX" id="WTb-zP-lRG"/>
                                             <constraint firstItem="cDP-XA-M1C" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="XOT-HB-cSg"/>
@@ -219,6 +220,7 @@
                                             <constraint firstAttribute="trailing" secondItem="I40-Pc-bfk" secondAttribute="trailing" id="oUP-10-aGF"/>
                                             <constraint firstAttribute="trailing" secondItem="D9X-DY-NTW" secondAttribute="trailing" id="pkL-fa-vxz"/>
                                             <constraint firstAttribute="trailing" secondItem="82I-FK-pt6" secondAttribute="trailing" id="qO6-CS-KJi"/>
+                                            <constraint firstItem="82I-FK-pt6" firstAttribute="bottom" secondItem="I40-Pc-bfk" secondAttribute="bottom" priority="750" id="qjj-gd-jBm"/>
                                             <constraint firstAttribute="trailing" secondItem="CXV-SV-Cq1" secondAttribute="trailing" id="qyY-0O-4aa"/>
                                             <constraint firstItem="82I-FK-pt6" firstAttribute="leading" secondItem="Omu-gQ-AJU" secondAttribute="leading" id="tC7-Ix-750"/>
                                             <constraint firstItem="82I-FK-pt6" firstAttribute="top" secondItem="Omu-gQ-AJU" secondAttribute="top" id="wIu-tL-FkF"/>
@@ -257,6 +259,7 @@
                         <constraints>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="ZuN-8j-AgR" secondAttribute="bottom" id="ZgR-yL-GXk"/>
+                            <constraint firstItem="Omu-gQ-AJU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Hvt-Pf-hic" secondAttribute="height" id="auU-go-b2o"/>
                             <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="Hvt-Pf-hic" secondAttribute="height" multiplier="0.6" id="eiZ-CU-ezX"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="width" secondItem="Hvt-Pf-hic" secondAttribute="width" id="gkH-6H-peu"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" id="jGQ-wv-mAI"/>
