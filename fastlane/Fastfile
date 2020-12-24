@@ -72,6 +72,7 @@ lane :screenshots do
     devices: Test_Devices,
     languages: Test_Languages, 
     output_directory: "#{Target_Folder_Name}/screenshots",
+    override_status_bar: true,
     scheme: Scheme_UITests,
     stop_after_first_error: true,
     test_without_building: true
@@ -93,6 +94,7 @@ lane :frame do
     devices: [ "iPhone 11 Pro" ],
     languages: [ "en_US" ],
     output_directory: "#{Target_Folder_Name}/assets",
+    override_status_bar: true,
     scheme: Scheme_UITests,
     skip_open_summary: true,
     stop_after_first_error: true
