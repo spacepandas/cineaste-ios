@@ -4,7 +4,7 @@
 
 ## New
 * Add Support for Landscape Device Rotation on iPhone
-* Add Support for iPad devices
+* Add very basic Support for iPad devices
 
 ## Fixed
 * 
