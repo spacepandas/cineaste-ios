@@ -3,7 +3,8 @@
 # Upcoming Release
 
 ## New
-* 
+* Add Support for Landscape Device Rotation on iPhone
+* Add Support for iPad devices
 
 ## Fixed
 * 
