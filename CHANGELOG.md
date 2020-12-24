@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Automatically navigate back when a movie is deleted from the detail view
 
 # 1.23.0
 
