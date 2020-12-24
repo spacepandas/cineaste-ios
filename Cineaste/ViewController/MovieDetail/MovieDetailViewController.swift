@@ -15,15 +15,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var contentStackView: UIStackView!
     @IBOutlet private weak var moreInformationStackView: UIStackView!
 
-    @IBOutlet private weak var posterImageView: UIImageView! {
-        didSet {
-            DispatchQueue.main.async {
-                self.updatePosterHeight()
-            }
-        }
-    }
-
-    @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+    @IBOutlet private weak var posterImageView: UIImageView!
 
     @IBOutlet private weak var triangleImageView: UIImageView!
     @IBOutlet private weak var votingLabel: UILabel!
@@ -115,10 +107,10 @@ class MovieDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func shareMovie() {
+    @IBAction func shareMovie(_ sender: UIBarButtonItem) {
         guard let movie = movie else { return }
 
-        share(movie: movie)
+        share(movie: movie, onBarButtonItem: sender)
     }
 
     // MARK: - Navigation
@@ -239,13 +231,6 @@ class MovieDetailViewController: UIViewController {
         posterImageView.loadingImage(from: movie.posterPath, in: .original)
     }
 
-    private func updatePosterHeight() {
-        guard let poster = posterImageView.image else { return }
-
-        let aspectRatio = poster.size.height / poster.size.width
-        posterHeight.constant = aspectRatio * UIScreen.main.bounds.width
-    }
-
     // MARK: 3D Actions
 
     override var previewActionItems: [UIPreviewActionItem] {
@@ -275,6 +260,11 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         let detailRatio = detailScrollView.frame.height / detailScrollView.contentSize.height
 
         let offset = percentage * outerMaxOffset * detailRatio
+
+        // hide content in `detailScrollView` when scroll view bounces at bottom,
+        // needed to hide poster which is larger than content
+        detailScrollView.clipsToBounds = outerMaxOffset <= offset
+
         if offset < 0 {
             detailScrollView.contentOffset.y = -scrollView.contentOffset.y
         } else {

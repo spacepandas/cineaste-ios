@@ -11,7 +11,7 @@ import ReSwift
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
-    @IBOutlet private weak var empyListTitle: UILabel!
+    @IBOutlet private weak var emptyListTitle: UILabel!
     @IBOutlet private weak var emptyListLabel: UILabel!
     @IBOutlet private weak var emptyListAddMovieButton: UIButton!
     @IBOutlet private var emptyViewStackView: UIStackView!
@@ -136,8 +136,8 @@ class MoviesViewController: UITableViewController {
     private func configureEmptyState() {
         emptyListLabel.textColor = .cineEmptyListDescription
         emptyListLabel.text = String.title(for: category)
-        empyListTitle.textColor = .cineEmptyListDescription
-        empyListTitle.text = .noContentTitle
+        emptyListTitle.textColor = .cineEmptyListDescription
+        emptyListTitle.text = .noContentTitle
         emptyListAddMovieButton.backgroundColor = .cineButton
         emptyListAddMovieButton.setTitleColor(.white, for: .normal)
         emptyListAddMovieButton.setTitle(.discoverMovieTitle, for: .normal)
@@ -177,7 +177,7 @@ extension MoviesViewController: StoreSubscriber {
         filteredMovies = sortedMovies
 
         tableView.backgroundView = sortedMovies.isEmpty
-            ? self.emptyView
+            ? emptyView
             : nil
     }
 }

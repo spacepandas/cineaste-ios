@@ -9,7 +9,7 @@
 import UIKit
 
 enum ContextMenu {
-    case share(Movie, viewController: UIViewController)
+    case share(Movie, presenter: UIViewController, sourceView: UIView)
     case delete(Movie)
     case moveToWatchlist(Movie)
     case moveToSeen(Movie)
@@ -17,13 +17,13 @@ enum ContextMenu {
     @available(iOS 13.0, *)
     var action: UIAction {
         switch self {
-        case .share(let movie, let presenter):
+        case .share(let movie, let presenter, let sourceView):
             return UIAction(
                 title: "Share",
                 image: UIImage(systemName: "square.and.arrow.up"),
                 identifier: UIAction.Identifier(rawValue: "share")
             ) { _ in
-                presenter.share(movie: movie)
+                presenter.share(movie: movie, onSourceView: sourceView)
             }
         case .delete(let movie):
             return UIAction(
@@ -54,12 +54,16 @@ enum ContextMenu {
     }
 
     @available(iOS 13.0, *)
-    static func actions(for movie: Movie, presenter: UIViewController? = nil) -> [UIAction] {
+    static func actions(for movie: Movie, presenter: UIViewController, sourceView: UIView) -> [UIAction] {
         var actions: [UIAction] = []
 
-        if let presenter = presenter {
-            actions.append(ContextMenu.share(movie, viewController: presenter).action)
-        }
+        actions.append(
+            ContextMenu.share(
+                movie,
+                presenter: presenter,
+                sourceView: sourceView
+            ).action
+        )
 
         switch movie.currentWatchState {
         case .undefined:

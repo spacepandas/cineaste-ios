@@ -26,6 +26,12 @@ class SeenMovieCell: UITableViewCell {
 
         watchedDateLabel.text = movie.formattedWatchedDate
 
+        if #available(iOS 14.0, *) {
+            backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        selectionStyle = .none
+
         applyAccessibility(for: movie)
     }
 

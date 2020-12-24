@@ -59,11 +59,13 @@ extension MoviesViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
+                let cell = tableView.cellForRow(at: indexPath) ?? UITableViewCell()
                 let actions = ContextMenu.actions(
                     for: movie,
-                    presenter: self
+                    presenter: self,
+                    sourceView: cell.contentView
                 )
-            return UIMenu(title: "", image: nil, identifier: nil, children: actions)
+                return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             }
         )
 

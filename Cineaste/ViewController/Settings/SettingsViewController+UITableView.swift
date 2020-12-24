@@ -79,6 +79,17 @@ extension SettingsViewController {
             let cancel = UIAlertAction(title: .cancelAction, style: .cancel)
             actionSheet.addAction(cancel)
 
+            // to display action sheet correctly on iPad
+            if let cell = tableView.cellForRow(at: indexPath) {
+                actionSheet.popoverPresentationController?.sourceView = cell
+                actionSheet.popoverPresentationController?.sourceRect = CGRect(
+                    x: cell.bounds.midX,
+                    y: cell.bounds.midY,
+                    width: 0,
+                    height: 0
+                )
+            }
+
             present(actionSheet, animated: true)
         case .appStore:
             AppStoreReview.openWriteReviewURL()

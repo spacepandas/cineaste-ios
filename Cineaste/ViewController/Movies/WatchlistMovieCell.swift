@@ -34,6 +34,12 @@ class WatchlistMovieCell: UITableViewCell {
         voteView.content = movie.formattedVoteAverage
             + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
+        if #available(iOS 14.0, *) {
+            backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        selectionStyle = .none
+
         applyAccessibility(for: movie)
     }
 
