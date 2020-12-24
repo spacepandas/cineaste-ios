@@ -137,7 +137,6 @@
                                                     <constraint firstAttribute="bottom" secondItem="fS9-v7-x6n" secondAttribute="bottom" priority="750" constant="20" id="HFr-cr-0NG"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="top" secondItem="cDP-XA-M1C" secondAttribute="top" constant="20" symbolic="YES" id="HPY-9S-e33"/>
                                                     <constraint firstItem="fS9-v7-x6n" firstAttribute="centerX" secondItem="cDP-XA-M1C" secondAttribute="centerX" id="Ocw-Y9-jRG"/>
-                                                    <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="cDP-XA-M1C" secondAttribute="leading" constant="20" id="efa-Jc-AJF"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9X-DY-NTW" userLabel="GuidelineView">
@@ -258,6 +257,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="drp-du-gIo" secondAttribute="trailing" id="9Lr-wo-VFs"/>
+                            <constraint firstItem="fS9-v7-x6n" firstAttribute="leading" secondItem="C1U-CL-dSb" secondAttribute="leading" constant="20" id="Cwk-k9-Gw7"/>
                             <constraint firstItem="C1U-CL-dSb" firstAttribute="bottom" secondItem="ZuN-8j-AgR" secondAttribute="bottom" id="ZgR-yL-GXk"/>
                             <constraint firstItem="Omu-gQ-AJU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Hvt-Pf-hic" secondAttribute="height" id="auU-go-b2o"/>
                             <constraint firstItem="CXV-SV-Cq1" firstAttribute="height" secondItem="Hvt-Pf-hic" secondAttribute="height" multiplier="0.6" id="eiZ-CU-ezX"/>
@@ -265,6 +265,7 @@
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="leading" secondItem="Hvt-Pf-hic" secondAttribute="leading" id="jGQ-wv-mAI"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="top" secondItem="C1U-CL-dSb" secondAttribute="top" id="klb-kM-gnp"/>
                             <constraint firstItem="ZuN-8j-AgR" firstAttribute="top" secondItem="drp-du-gIo" secondAttribute="bottom" id="m07-ll-cIC"/>
+                            <constraint firstItem="C1U-CL-dSb" firstAttribute="trailing" secondItem="fS9-v7-x6n" secondAttribute="trailing" constant="20" id="mwq-ai-PZM"/>
                             <constraint firstItem="drp-du-gIo" firstAttribute="leading" secondItem="Hvt-Pf-hic" secondAttribute="leading" id="pJx-0l-1Fj"/>
                             <constraint firstAttribute="trailing" secondItem="ZuN-8j-AgR" secondAttribute="trailing" id="zmI-kb-Bnd"/>
                         </constraints>

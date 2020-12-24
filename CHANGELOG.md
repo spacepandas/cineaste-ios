@@ -6,7 +6,7 @@
 * 
 
 ## Fixed
-* 
+* Respect Safe Area in Movie Detail and Landscape Mode on iPhones with Notch
 
 ## Improved
 * 

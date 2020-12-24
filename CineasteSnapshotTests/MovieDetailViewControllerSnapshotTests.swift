@@ -53,5 +53,6 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
         // Then
         assertThemedViewSnapshot(matching: viewController.view)
+        assertThemedLandscapeViewControllerSnapshot(matching: viewController)
     }
 }
