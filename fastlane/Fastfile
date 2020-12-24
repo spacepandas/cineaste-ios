@@ -13,10 +13,9 @@ Scheme_UITests = 'UITests'
 Test_Device = 'iPhone 8'
 Test_Devices = [
   'iPhone SE',
-  'iPhone 8',
   'iPhone 8 Plus',
   'iPhone 11 Pro',
-  'iPhone 11 Pro Max'
+  'iPad Pro (9.7-inch)'
 ]
 Test_Language = 'en-US'
 Test_Languages = [
