@@ -260,6 +260,11 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         let detailRatio = detailScrollView.frame.height / detailScrollView.contentSize.height
 
         let offset = percentage * outerMaxOffset * detailRatio
+
+        // hide content in `detailScrollView` when scroll view bounces at bottom,
+        // needed to hide poster which is larger than content
+        detailScrollView.clipsToBounds = outerMaxOffset <= offset
+
         if offset < 0 {
             detailScrollView.contentOffset.y = -scrollView.contentOffset.y
         } else {
