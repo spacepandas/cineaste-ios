@@ -39,13 +39,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="768" height="100"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="seen-badge" translatesAutoresizingMaskIntoConstraints="NO" id="upX-fI-55Z">
-                                                            <rect key="frame" x="699" y="0.0" width="69" height="69"/>
+                                                            <rect key="frame" x="653" y="0.0" width="115" height="115"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="upX-fI-55Z" secondAttribute="height" id="2Eh-pd-gKz"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-6z-POh">
-                                                            <rect key="frame" x="140" y="5" width="588" height="90"/>
+                                                            <rect key="frame" x="194" y="5" width="534" height="90"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="search.releaseDate" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-WH-u9P" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="146.5" height="20.5"/>
@@ -78,13 +78,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zZg-aQ-7uo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="115" height="100"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="zZg-aQ-7uo" secondAttribute="height" multiplier="0.7" priority="999" id="mii-Yc-fTi"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg5-Zb-czx" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                            <rect key="frame" x="115" y="0.0" width="5" height="100"/>
+                                                            <rect key="frame" x="169" y="0.0" width="5" height="100"/>
                                                             <color key="backgroundColor" name="separator"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="5" id="1b0-An-ztY"/>
@@ -96,7 +96,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="upX-fI-55Z" secondAttribute="trailing" id="6Ca-jz-n1E"/>
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.22" id="7sr-Gn-Esr"/>
                                                         <constraint firstItem="MJ6-6z-POh" firstAttribute="leading" secondItem="bg5-Zb-czx" secondAttribute="trailing" constant="20" id="9kf-Mg-1sn"/>
-                                                        <constraint firstItem="upX-fI-55Z" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.09" id="H4c-LH-OhW"/>
                                                         <constraint firstItem="bg5-Zb-czx" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="NKj-DT-WNi"/>
                                                         <constraint firstItem="upX-fI-55Z" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="ORp-xc-cD2"/>
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="leading" secondItem="thc-MB-8du" secondAttribute="leading" id="RUO-a6-LER"/>
@@ -105,25 +104,10 @@
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="bottom" secondItem="thc-MB-8du" secondAttribute="bottom" id="Zfe-m3-Dqs"/>
                                                         <constraint firstItem="MJ6-6z-POh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="thc-MB-8du" secondAttribute="top" constant="5" id="fFE-oy-zby"/>
                                                         <constraint firstAttribute="bottom" secondItem="bg5-Zb-czx" secondAttribute="bottom" id="lJl-rf-ZMG"/>
-                                                        <constraint firstItem="zZg-aQ-7uo" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.15" id="nFx-tp-CxI"/>
                                                         <constraint firstItem="upX-fI-55Z" firstAttribute="width" secondItem="thc-MB-8du" secondAttribute="width" multiplier="0.15" id="sb0-Mb-OUN"/>
                                                         <constraint firstItem="zZg-aQ-7uo" firstAttribute="top" secondItem="thc-MB-8du" secondAttribute="top" id="yzy-5D-vzy"/>
                                                         <constraint firstItem="bg5-Zb-czx" firstAttribute="leading" secondItem="zZg-aQ-7uo" secondAttribute="trailing" id="zW4-TJ-7uG"/>
                                                     </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="nFx-tp-CxI"/>
-                                                            <exclude reference="H4c-LH-OhW"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <mask key="constraints">
-                                                            <exclude reference="7sr-Gn-Esr"/>
-                                                            <include reference="nFx-tp-CxI"/>
-                                                            <include reference="H4c-LH-OhW"/>
-                                                            <exclude reference="sb0-Mb-OUN"/>
-                                                        </mask>
-                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -141,8 +125,10 @@
                                             <outlet property="detailLabel" destination="3wf-WH-u9P" id="CHy-bg-r8H"/>
                                             <outlet property="placeholderView" destination="kdq-BS-9up" id="08w-u9-y0a"/>
                                             <outlet property="poster" destination="zZg-aQ-7uo" id="89O-4d-cOY"/>
+                                            <outlet property="posterWidth" destination="7sr-Gn-Esr" id="XPN-ge-DvL"/>
                                             <outlet property="soonHint" destination="HXP-vX-B0r" id="Tg5-f1-Is5"/>
                                             <outlet property="stateImageView" destination="upX-fI-55Z" id="x9m-hW-8Oq"/>
+                                            <outlet property="stateImageWidth" destination="sb0-Mb-OUN" id="zas-ne-HDr"/>
                                             <outlet property="swipeHintView" destination="h0d-Qe-vDf" id="EYm-dq-HGL"/>
                                             <outlet property="title" destination="AYE-99-Bh1" id="Z9y-W7-ZXm"/>
                                         </connections>

@@ -37,7 +37,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="120"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="D4O-sx-IJ1">
-                                                    <rect key="frame" x="140" y="8" width="608" height="104"/>
+                                                    <rect key="frame" x="194" y="8" width="554" height="104"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="watchlist.releaseAndRuntime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-GG-yAO" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="220" height="20.5"/>
@@ -70,13 +70,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-Z0-7D4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="169" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="3f3-Z0-7D4" secondAttribute="height" multiplier="0.7" priority="999" id="eyC-zC-Brq"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krj-Xu-Ja7" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="115" y="0.0" width="5" height="120"/>
+                                                    <rect key="frame" x="169" y="0.0" width="5" height="120"/>
                                                     <color key="backgroundColor" name="separator"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="8cB-Wz-rUf"/>
@@ -95,20 +95,8 @@
                                                 <constraint firstItem="Krj-Xu-Ja7" firstAttribute="top" secondItem="zEp-L3-aTQ" secondAttribute="top" id="gH3-Gk-6Bv"/>
                                                 <constraint firstItem="3f3-Z0-7D4" firstAttribute="bottom" secondItem="zEp-L3-aTQ" secondAttribute="bottom" id="kul-yX-Baw"/>
                                                 <constraint firstItem="3f3-Z0-7D4" firstAttribute="top" secondItem="zEp-L3-aTQ" secondAttribute="top" id="nEW-Mt-NWr"/>
-                                                <constraint firstItem="3f3-Z0-7D4" firstAttribute="width" secondItem="zEp-L3-aTQ" secondAttribute="width" multiplier="0.15" id="wR7-B6-kcM"/>
                                                 <constraint firstItem="D4O-sx-IJ1" firstAttribute="leading" secondItem="Krj-Xu-Ja7" secondAttribute="trailing" constant="20" id="waK-7A-aZD"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="wR7-B6-kcM"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="6DD-Nf-oCb"/>
-                                                    <include reference="wR7-B6-kcM"/>
-                                                </mask>
-                                            </variation>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -124,6 +112,7 @@
                                 <connections>
                                     <outlet property="background" destination="zEp-L3-aTQ" id="6IU-Ci-SHa"/>
                                     <outlet property="poster" destination="3f3-Z0-7D4" id="v2r-3t-UXU"/>
+                                    <outlet property="posterWidth" destination="6DD-Nf-oCb" id="RUb-GR-XtC"/>
                                     <outlet property="releaseAndRuntimeLabel" destination="Gqs-GG-yAO" id="R9j-Na-KNS"/>
                                     <outlet property="title" destination="TaQ-oj-JrC" id="zHd-f7-gHs"/>
                                     <outlet property="voteView" destination="bb3-sK-hhJ" id="eCa-3o-TZS"/>
@@ -146,7 +135,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="100"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="5Xq-mD-TxO">
-                                                    <rect key="frame" x="140" y="27.5" width="608" height="45"/>
+                                                    <rect key="frame" x="194" y="27.5" width="554" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="seen.date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E1-HW-nl1" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="20.5"/>
@@ -169,13 +158,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rt5-PR-Cjl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="169" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="rt5-PR-Cjl" secondAttribute="height" multiplier="0.7" priority="999" id="7fk-tD-CQF"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAr-CO-u39" customClass="SeparatorView" customModule="Cineaste_App" customModuleProvider="target">
-                                                    <rect key="frame" x="115" y="0.0" width="5" height="100"/>
+                                                    <rect key="frame" x="169" y="0.0" width="5" height="100"/>
                                                     <color key="backgroundColor" name="separator"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="JKd-DD-kvy"/>
@@ -185,7 +174,6 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="rt5-PR-Cjl" firstAttribute="bottom" secondItem="xAG-UI-3Kr" secondAttribute="bottom" id="0G9-pj-pHG"/>
-                                                <constraint firstItem="rt5-PR-Cjl" firstAttribute="width" secondItem="xAG-UI-3Kr" secondAttribute="width" multiplier="0.15" id="ABW-gZ-zZX"/>
                                                 <constraint firstItem="rt5-PR-Cjl" firstAttribute="leading" secondItem="xAG-UI-3Kr" secondAttribute="leading" id="DDz-EM-rqF"/>
                                                 <constraint firstItem="CAr-CO-u39" firstAttribute="leading" secondItem="rt5-PR-Cjl" secondAttribute="trailing" id="HB6-gR-TFI"/>
                                                 <constraint firstItem="5Xq-mD-TxO" firstAttribute="leading" secondItem="CAr-CO-u39" secondAttribute="trailing" constant="20" id="M6M-bT-Jx7"/>
@@ -197,17 +185,6 @@
                                                 <constraint firstItem="rt5-PR-Cjl" firstAttribute="top" secondItem="xAG-UI-3Kr" secondAttribute="top" id="pe4-Ot-OKN"/>
                                                 <constraint firstAttribute="trailing" secondItem="5Xq-mD-TxO" secondAttribute="trailing" constant="20" symbolic="YES" id="tI5-YE-zof"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="ABW-gZ-zZX"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <mask key="constraints">
-                                                    <include reference="ABW-gZ-zZX"/>
-                                                    <exclude reference="ntw-Rl-YF2"/>
-                                                </mask>
-                                            </variation>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -223,6 +200,7 @@
                                 <connections>
                                     <outlet property="background" destination="xAG-UI-3Kr" id="56g-aC-Sh9"/>
                                     <outlet property="poster" destination="rt5-PR-Cjl" id="ZBw-j9-i0m"/>
+                                    <outlet property="posterWidth" destination="ntw-Rl-YF2" id="2Fi-eR-ZBs"/>
                                     <outlet property="title" destination="osR-E3-RkD" id="hqJ-WN-ElQ"/>
                                     <outlet property="watchedDateLabel" destination="0E1-HW-nl1" id="fpq-dU-fmk"/>
                                 </connections>
