@@ -7,6 +7,7 @@
 
 ## Fixed
 * Respect Safe Area in Movie Detail and Landscape Mode on iPhones with Notch
+* Fix Parallax Effect in Movie Detail for iPhones in Portrait Mode
 
 ## Improved
 * 
