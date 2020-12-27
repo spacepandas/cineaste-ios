@@ -27,9 +27,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="537.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_poster" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-SV-Cq1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="167"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="167" id="pfa-lB-wsn"/>
+                                                            <constraint firstAttribute="height" constant="550" id="pfa-lB-wsn"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
