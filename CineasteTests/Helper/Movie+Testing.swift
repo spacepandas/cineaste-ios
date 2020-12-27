@@ -28,21 +28,7 @@ extension Movie {
     )
 
     static let testingWithoutPosterPath: Movie = {
-        let original = Movie.testing
-        return Movie(
-            id: original.id,
-            title: original.title,
-            voteAverage: original.voteAverage,
-            voteCount: original.voteAverage,
-            posterPath: nil,
-            overview: original.overview,
-            runtime: original.runtime,
-            releaseDate: original.releaseDate,
-            genres: original.genres,
-            watched: original.watched,
-            watchedDate: original.watchedDate,
-            popularity: original.popularity
-        )
+        Movie(withOutPoster: Movie.testing)
     }()
 
     static let testingWatchlist = Movie(
@@ -67,21 +53,7 @@ extension Movie {
     )
 
     static let testingWatchlistWithoutPosterPath: Movie = {
-        let original = Movie.testingWatchlist
-        return Movie(
-            id: original.id,
-            title: original.title,
-            voteAverage: original.voteAverage,
-            voteCount: original.voteAverage,
-            posterPath: nil,
-            overview: original.overview,
-            runtime: original.runtime,
-            releaseDate: original.releaseDate,
-            genres: original.genres,
-            watched: original.watched,
-            watchedDate: original.watchedDate,
-            popularity: original.popularity
-        )
+        Movie(withOutPoster: Movie.testingWatchlist)
     }()
 
     static let testingWatchlist2 = Movie(
@@ -100,21 +72,7 @@ extension Movie {
     )
 
     static let testingWatchlist2WithoutPosterPath: Movie = {
-        let original = Movie.testingWatchlist2
-        return Movie(
-            id: original.id,
-            title: original.title,
-            voteAverage: original.voteAverage,
-            voteCount: original.voteAverage,
-            posterPath: nil,
-            overview: original.overview,
-            runtime: original.runtime,
-            releaseDate: original.releaseDate,
-            genres: original.genres,
-            watched: original.watched,
-            watchedDate: original.watchedDate,
-            popularity: original.popularity
-        )
+        Movie(withOutPoster: Movie.testingWatchlist2)
     }()
 
     static let testingSeen = Movie(
@@ -138,8 +96,13 @@ extension Movie {
     )
 
     static let testingSeenWithoutPosterPath: Movie = {
-        let original = Movie.testingSeen
-        return Movie(
+        Movie(withOutPoster: Movie.testingSeen)
+    }()
+}
+
+private extension Movie {
+    init(withOutPoster original: Movie) {
+        self = Movie(
             id: original.id,
             title: original.title,
             voteAverage: original.voteAverage,
@@ -153,5 +116,5 @@ extension Movie {
             watchedDate: original.watchedDate,
             popularity: original.popularity
         )
-    }()
+    }
 }
