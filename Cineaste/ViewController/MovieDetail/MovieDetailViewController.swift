@@ -278,7 +278,7 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 
         // hide content in `detailScrollView` when scroll view bounces at bottom,
         // to hide poster which is larger than content
-        detailScrollView.clipsToBounds = outerMaxOffset <= offset
+        detailScrollView.clipsToBounds = outerMaxOffset <= scrollView.contentOffset.y
 
         // do not scroll further poster height
         let scrolledOutOfPoster = (detailScrollView.frame.height + offset)
