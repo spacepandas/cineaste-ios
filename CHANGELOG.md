@@ -7,6 +7,7 @@
 
 ## Fixed
 * Fix Translation in CountdownMinimalisticWidget when Movie is released
+* Prevent Poster to be visible underneath the content in MovieDetail, when Poster is larger than content on iPad in Portrait Mode
 
 ## Improved
 
