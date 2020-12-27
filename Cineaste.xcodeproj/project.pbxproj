@@ -603,7 +603,6 @@
 			isa = PBXGroup;
 			children = (
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
-				1A6B67D8251F5CC600028D01 /* DynamicMovieSelection.intentdefinition */,
 				1A654DE4250CA8D200D3D1C3 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -919,6 +918,7 @@
 				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				3F492E8624F2590600016B2A /* Cineaste AppRelease.entitlements */,
 				3F492E8524F2588C00016B2A /* Cineaste App.entitlements */,
+				1A6B67D8251F5CC600028D01 /* DynamicMovieSelection.intentdefinition */,
 				3F98063F20556EA700B92A27 /* InfoPlist.strings */,
 				3F1DA161209C64D900AC4D09 /* Settings.bundle */,
 				3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */,
