@@ -27,7 +27,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
             x: viewController.view.frame.minX,
             y: viewController.view.frame.minY,
             width: viewController.view.frame.width,
-            height: 1_200
+            height: 900
         )
 
         // Then
@@ -48,7 +48,7 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
             x: viewController.view.frame.minX,
             y: viewController.view.frame.minY,
             width: viewController.view.frame.width,
-            height: 1_300
+            height: 900
         )
 
         // Then
