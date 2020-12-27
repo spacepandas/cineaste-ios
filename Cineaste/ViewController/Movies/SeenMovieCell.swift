@@ -54,12 +54,9 @@ class SeenMovieCell: UITableViewCell {
     private func updatePosterWidthIfNeeded() {
         guard let window = UIApplication.shared.keyWindow else { return }
 
-        let newConstraint = posterWidth.constraintWithMultiplier(
-            window.sizeCategory.relativePosterSize
+        posterWidth = updateMultiplierOfConstraint(
+            posterWidth,
+            newMultiplier: window.sizeCategory.relativePosterSize
         )
-        removeConstraint(posterWidth)
-        addConstraint(newConstraint)
-        layoutIfNeeded()
-        posterWidth = newConstraint
     }
 }

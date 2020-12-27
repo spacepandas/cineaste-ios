@@ -83,8 +83,8 @@
 		3F544E3F2381F36900B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
 		3F544E402381F36E00B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
 		3F5A90A325973D7200AF9D5D /* UIWindow+SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */; };
-		3F5A90BD259749E900AF9D5D /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90BC259749E900AF9D5D /* NSLayoutConstraint+Multiplier.swift */; };
 		3F5A90CB25974D7C00AF9D5D /* SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90CA25974D7C00AF9D5D /* SizeCategory.swift */; };
+		3F5A90EB25989CF400AF9D5D /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */; };
 		3F5C07F924F2645800BC889E /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
 		3F5C07FB24F2666500BC889E /* String+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9806372055250F00B92A27 /* String+Cineaste.swift */; };
 		3F5C07FC24F2667300BC889E /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
@@ -370,8 +370,8 @@
 		3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+WaitForQueue.swift"; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+SizeCategory.swift"; sourceTree = "<group>"; };
-		3F5A90BC259749E900AF9D5D /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Multiplier.swift"; sourceTree = "<group>"; };
 		3F5A90CA25974D7C00AF9D5D /* SizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCategory.swift; sourceTree = "<group>"; };
+		3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3F5E0D90203090C300E091BE /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -778,7 +778,6 @@
 				3F8065BB238AE3220087D6EA /* DateFormatter+Cineaste.swift */,
 				3FAA3BBB20826B1D00726DE2 /* Int16+Formatter.swift */,
 				3FEC13E02391C16A0078637B /* KeyedDecodingContainerProtocol+Decoding.swift */,
-				3F5A90BC259749E900AF9D5D /* NSLayoutConstraint+Multiplier.swift */,
 				3F9806372055250F00B92A27 /* String+Cineaste.swift */,
 				3F3BC2601FF40387000C7EC7 /* String+DateFormatter.swift */,
 				3F941B6C20F527E5008A4407 /* String+Locale.swift */,
@@ -793,6 +792,7 @@
 				3F75665B2381737E007E2DE8 /* UIViewController+ShareMovie.swift */,
 				3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */,
 				3F36F5D1238A8CCE00267280 /* UserDefaults+Cineaste.swift */,
+				3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1466,7 +1466,6 @@
 				3F9FACF423A8290000D93464 /* SpotlightIndexing.swift in Sources */,
 				3FF790E720DE274A007B7D37 /* Appearance.swift in Sources */,
 				3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */,
-				3F5A90BD259749E900AF9D5D /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				3F3BCAAD22D210AA005BEF12 /* StoredMovieIDs.swift in Sources */,
 				3FF790E820DE274A007B7D37 /* Constants.swift in Sources */,
 				3FC1AA6E2385DFA400E24C16 /* MovieThunks.swift in Sources */,
@@ -1547,6 +1546,7 @@
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
 				3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */,
+				3F5A90EB25989CF400AF9D5D /* UIView+Constraints.swift in Sources */,
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,
 				3F630C6322AEA32E0070A4B6 /* AppStoreReview.swift in Sources */,

@@ -90,24 +90,18 @@ class SearchMoviesCell: UITableViewCell {
     private func updatePosterWidthIfNeeded() {
         guard let window = UIApplication.shared.keyWindow else { return }
 
-        let newConstraint = posterWidth.constraintWithMultiplier(
-            window.sizeCategory.relativePosterSize
+        posterWidth = updateMultiplierOfConstraint(
+            posterWidth,
+            newMultiplier: window.sizeCategory.relativePosterSize
         )
-        removeConstraint(posterWidth)
-        addConstraint(newConstraint)
-        layoutIfNeeded()
-        posterWidth = newConstraint
     }
 
     private func updateStateImageWidthIfNeeded() {
         guard let window = UIApplication.shared.keyWindow else { return }
 
-        let newConstraint = stateImageWidth.constraintWithMultiplier(
-            window.sizeCategory.relativeWatchStateImageSize
+        stateImageWidth = updateMultiplierOfConstraint(
+            stateImageWidth,
+            newMultiplier: window.sizeCategory.relativeWatchStateImageSize
         )
-        removeConstraint(stateImageWidth)
-        addConstraint(newConstraint)
-        layoutIfNeeded()
-        stateImageWidth = newConstraint
     }
 }
