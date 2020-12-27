@@ -6,11 +6,15 @@
 * 
 
 ## Fixed
-* Respect Safe Area in Movie Detail and Landscape Mode on iPhones with Notch
-* Fix Parallax Effect in Movie Detail for iPhones in Portrait Mode
+* 
 
 ## Improved
-* 
+
+# 1.24.1
+
+## Fixed
+* Respect Safe Area in Movie Detail and Landscape Mode on iPhones with Notch
+* Fix Parallax Effect in Movie Detail for iPhones in Portrait Mode
 
 # 1.24.0
 
