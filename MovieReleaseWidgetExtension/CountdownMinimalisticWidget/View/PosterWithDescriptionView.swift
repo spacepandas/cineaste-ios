@@ -13,7 +13,7 @@ import WidgetKit
 
 struct PosterWithDescriptionView: View {
     let title: String
-    let description: String
+    let description: LocalizedStringKey
     let image: Image
     let accessibilityHint: String
 
@@ -57,7 +57,7 @@ struct PosterWithDescriptionView_Previews: PreviewProvider {
         Group {
             PosterWithDescriptionView(
                 title: Movie.testMovie.title,
-                description: Movie.testMovie.difference,
+                description: "movie_release_widget_is_released",
                 image: Image(uiImage: .posterPlaceholderWidget),
                 accessibilityHint: "a11y"
             )
@@ -66,7 +66,7 @@ struct PosterWithDescriptionView_Previews: PreviewProvider {
             )
             PosterWithDescriptionView(
                 title: Movie.testMovie.title,
-                description: Movie.testMovie.difference,
+                description: LocalizedStringKey(Movie.testMovie.difference),
                 image: Image(uiImage: .posterPlaceholderWidget),
                 accessibilityHint: "a11y"
             )

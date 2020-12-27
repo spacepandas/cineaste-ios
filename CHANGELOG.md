@@ -6,7 +6,7 @@
 * 
 
 ## Fixed
-* 
+* Fix Translation in CountdownMinimalisticWidget when Movie is released
 
 ## Improved
 
