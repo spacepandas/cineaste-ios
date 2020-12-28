@@ -152,6 +152,7 @@
 		3FEE6DA924FD837E00818241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* Assets.xcassets */; };
 		3FEEE8E7222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */; };
 		3FEEE8E9222BE94C00EB1649 /* UIFont+SymbolicTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */; };
+		3FF0735B2599F8DC003F1C15 /* MovieSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0735A2599F8DC003F1C15 /* MovieSnapshotTests.swift */; };
 		3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */; };
 		3FF095BC2103222700ADFB86 /* UIColor+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */; };
 		3FF095BD2103223200ADFB86 /* SearchMoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF095B7210321D300ADFB86 /* SearchMoviesViewController+3DTouch.swift */; };
@@ -451,6 +452,7 @@
 		3FEEE8E6222BBC6A00EB1649 /* SearchMoviesViewController+SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SwipeAction.swift"; sourceTree = "<group>"; };
 		3FEEE8E8222BE94C00EB1649 /* UIFont+SymbolicTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+SymbolicTraits.swift"; sourceTree = "<group>"; };
 		3FEF5C482030B28100EFCAA2 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		3FF0735A2599F8DC003F1C15 /* MovieSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSnapshotTests.swift; sourceTree = "<group>"; };
 		3FF095B521031EC700ADFB86 /* UIColor+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cineaste.swift"; sourceTree = "<group>"; };
 		3FF095B7210321D300ADFB86 /* SearchMoviesViewController+3DTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+3DTouch.swift"; sourceTree = "<group>"; };
 		3FF095B9210321F500ADFB86 /* SearchMoviesViewController+SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMoviesViewController+SearchController.swift"; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				3F450B36236C6EF100A59F1E /* SettingsViewControllerSnapshotTests.swift */,
 				3FBF411C24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift */,
 				3F450B3E236C6F3500A59F1E /* XCTestCase+SnapshotTests.swift */,
+				3FF0735A2599F8DC003F1C15 /* MovieSnapshotTests.swift */,
 			);
 			path = CineasteSnapshotTests;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 			files = (
 				3F32C1FC23754B66005C713A /* XCTestObserver.swift in Sources */,
 				3F4701C9238C8541006C1577 /* PagedMovieResult+Testing.swift in Sources */,
+				3FF0735B2599F8DC003F1C15 /* MovieSnapshotTests.swift in Sources */,
 				3FBF411D24F17514005433CC /* WatchlistMovieCellSnapshotTests.swift in Sources */,
 				3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */,
 				3F32C1F82375479D005C713A /* MovieDetailViewControllerSnapshotTests.swift in Sources */,

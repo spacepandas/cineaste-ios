@@ -39,8 +39,8 @@ extension Movie {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString = "\(Constants.Backend.url)/discover/movie" +
-            "?api_key=\(apiKey)" +
-            "&language=\(String.languageFormattedForTMDb)" +
+            "?language=\(String.languageFormattedForTMDb)" +
+            "&api_key=\(apiKey)" +
             "&region=\(String.regionIso31661)" +
             "&release_date.gte=\(oneMonthInPast.formattedForRequest)" +
             "&release_date.lte=\(oneMonthInFuture.formattedForRequest)" +

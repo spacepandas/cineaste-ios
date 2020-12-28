@@ -1,0 +1,2 @@
+curl \
+	"https://api.themoviedb.org/3/movie/515042?language=en&region=en&api_key=xxx&append_to_response=release_dates"

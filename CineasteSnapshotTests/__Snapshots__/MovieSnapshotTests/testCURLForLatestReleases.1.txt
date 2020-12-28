@@ -1,0 +1,2 @@
+curl \
+	"https://api.themoviedb.org/3/discover/movie?language=en&api_key=xxx&region=en&release_date.gte=2020-11-28&release_date.lte=2021-01-27&with_release_type=3&page=0"
