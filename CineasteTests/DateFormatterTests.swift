@@ -28,6 +28,8 @@ class DateFormatterTests: XCTestCase {
         ]
 
         // Then
+        XCTAssertEqual(Locale.current.identifier, "en_US")
+        XCTAssertEqual(Calendar.current.timeZone, TimeZone(identifier: "Europe/Berlin"))
         for (expected, actual) in pairs {
             XCTAssertEqual(expected, actual)
         }
