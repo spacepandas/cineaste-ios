@@ -114,6 +114,10 @@ class SearchMoviesViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
 
         definesPresentationContext = true
+
+        if #available(iOS 13.0, *) {
+            resultSearchController.searchBar.searchTextField.delegate = self
+        }
     }
 }
 

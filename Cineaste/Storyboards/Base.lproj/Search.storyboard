@@ -133,6 +133,41 @@
                                             <outlet property="title" destination="AYE-99-Bh1" id="Z9y-W7-ZXm"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTokenCell" id="siu-ys-alf" customClass="SearchTokenCell" customModule="Cineaste_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="145"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="siu-ys-alf" id="SM0-PY-tUJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRJ-zl-ued">
+                                                    <rect key="frame" x="102" y="20" width="292" height="105"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-rw-5fJ">
+                                                    <rect key="frame" x="32" y="52.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Gye-5T-gTc"/>
+                                                        <constraint firstAttribute="width" secondItem="xqS-rw-5fJ" secondAttribute="height" id="wWh-lB-khI"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BRJ-zl-ued" firstAttribute="top" secondItem="SM0-PY-tUJ" secondAttribute="top" constant="20" symbolic="YES" id="Cgh-Fz-T5l"/>
+                                                <constraint firstAttribute="trailing" secondItem="BRJ-zl-ued" secondAttribute="trailing" constant="20" symbolic="YES" id="HC2-ZJ-aiy"/>
+                                                <constraint firstItem="xqS-rw-5fJ" firstAttribute="leading" secondItem="SM0-PY-tUJ" secondAttribute="leading" constant="32" id="IKJ-BR-zej"/>
+                                                <constraint firstItem="xqS-rw-5fJ" firstAttribute="centerY" secondItem="SM0-PY-tUJ" secondAttribute="centerY" id="UGL-GQ-kwI"/>
+                                                <constraint firstAttribute="bottom" secondItem="BRJ-zl-ued" secondAttribute="bottom" constant="20" symbolic="YES" id="WvH-FX-eTI"/>
+                                                <constraint firstItem="BRJ-zl-ued" firstAttribute="leading" secondItem="xqS-rw-5fJ" secondAttribute="trailing" constant="30" id="ltz-nj-Ids"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="BRJ-zl-ued" id="lKx-Fb-qbA"/>
+                                            <outlet property="tokenIcon" destination="xqS-rw-5fJ" id="qMR-nM-bvj"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -171,7 +206,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="4876" y="5.8470764617691158"/>
+            <point key="canvasLocation" x="4875.36231884058" y="5.3571428571428568"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nqO-6w-fBm">
