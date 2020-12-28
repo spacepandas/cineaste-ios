@@ -126,22 +126,10 @@ class PosterViewController: UIViewController {
         toolbarBackgroundView.backgroundColor = .cineToolBarBackground
         toolbarBackgroundView.addBlurEffect(with: .dark)
 
-        if let posterPath = posterPath {
-            blurredBackgroundImage.kf.setImage(
-                with: Movie.posterUrl(
-                    from: posterPath,
-                    for: .original
-                )
-            )
-            imageView.kf.setImage(
-                with: Movie.posterUrl(
-                    from: posterPath,
-                    for: .original
-                )
-            )
-        }
+        blurredBackgroundImage.loadingImage(from: posterPath, in: .original)
         blurredBackgroundImage.addBlurEffect(with: .dark)
 
+        imageView.loadingImage(from: posterPath, in: .original)
         imageView.accessibilityIgnoresInvertColors = true
         imageView.isUserInteractionEnabled = true
 
