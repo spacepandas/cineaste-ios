@@ -9,6 +9,9 @@
 import UIKit
 
 extension String {
+
+    /// Returns a date if the string is valid ISO8601 formatted,
+    /// returns nil if the string is not valid
     var dateFromISO8601String: Date? {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [

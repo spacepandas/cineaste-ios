@@ -14,13 +14,13 @@ private let swipeActionHintShowCountKey = "cineaste-swipeActionHintShowCount"
 
 extension UserDefaults {
 
-    /// The last version an appstore review has promted
+    /// The last version an AppStore review has prompted
     var lastVersionPromptedForReview: String? {
         get { string(forKey: lastVersionPromptedForReviewKey) }
         set { set(newValue, forKey: lastVersionPromptedForReviewKey) }
     }
 
-    /// The counter how often it could be asked for an appstore review
+    /// The counter how often it could be asked for an AppStore review
     var processCompletedCount: Int {
         get { integer(forKey: processCompletedCountKey) }
         set { set(newValue, forKey: processCompletedCountKey) }

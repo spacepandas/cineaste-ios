@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+
     /// This presents an `UIActivityViewController` to share a movie.
     /// - Parameters:
     ///   - movie: The movie which should be shared.

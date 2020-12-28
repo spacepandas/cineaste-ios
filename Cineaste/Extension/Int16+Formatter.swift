@@ -9,6 +9,8 @@
 import Foundation
 
 extension Int16 {
+
+    /// A formatted String without digits
     var formatted: String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none

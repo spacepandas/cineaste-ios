@@ -12,6 +12,22 @@ import Kingfisher
 private let cache = AppGroup.imageCache
 
 extension UIImageView {
+
+    /// This loads an image from a poster path in a specific size. If the
+    /// poster path is nil, a placeholder image is set.
+    ///
+    /// To display that a poster is downloading, the UI is updated:
+    /// - During download times an activity indicator is shown over the
+    /// placeholder image.
+    /// - If a smaller image is already in cache, the smaller image will be
+    /// presented during the download.
+    ///
+    /// App Widgets can use the cache for the images as well, so the images
+    /// don't have to be downloaded again.
+    ///
+    /// - Parameters:
+    ///   - posterPath: The path to where to download the poster
+    ///   - size: The size in which the image should be downloaded
     func loadingImage(from posterPath: String?, in size: Constants.PosterSize) {
         guard let posterPath = posterPath else {
             image = UIImage.posterPlaceholder

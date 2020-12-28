@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView {
+
     /// "Modify" the multiplier of a `NSLayoutConstraint`.
     ///
     /// As the multiplier of a constraint is read only, we have to create a

@@ -11,6 +11,50 @@ import XCTest
 
 class MovieTests: XCTestCase {
 
+    func testDetailsShouldBeCorrectlyFormatted() {
+        // Given
+        let movie = Movie.testing
+
+        // Then
+        XCTAssertEqual("8.0", movie.formattedVoteAverage)
+        XCTAssertEqual("Oct 12, 2018", movie.formattedReleaseDate)
+        XCTAssertEqual("2018", movie.formattedRelativeReleaseInformation)
+        XCTAssertEqual("100 min", movie.formattedRuntime)
+        XCTAssertNil(movie.formattedWatchedDate)
+        XCTAssertEqual("Documentary", movie.formattedGenres)
+        XCTAssertFalse(movie.soonAvailable)
+    }
+
+    func testDetailsShouldReturnPlaceholder() {
+        // Given
+        let movie = Movie(id: 1)
+
+        // Then
+        XCTAssertEqual("-", movie.formattedVoteAverage)
+        XCTAssertEqual("Unknown release date", movie.formattedReleaseDate)
+        XCTAssertEqual("Unknown release date", movie.formattedRelativeReleaseInformation)
+        XCTAssertEqual("- min", movie.formattedRuntime)
+        XCTAssertNil(movie.formattedWatchedDate)
+        XCTAssertEqual("", movie.formattedGenres)
+        XCTAssertFalse(movie.soonAvailable)
+    }
+
+    func testWatchedDateForSeenMovieShouldBeCorrectlyFormatted() {
+        // Given
+        let movie = Movie.testingSeen
+
+        // Then
+        XCTAssertEqual("Added on November 17, 2017 at 9:49 PM", movie.formattedWatchedDate)
+    }
+
+    func testSoonAvailableShouldReturnTrue() {
+        // Given
+        let movie = Movie.testingReleaseIn2050
+
+        // Then
+        XCTAssertTrue(movie.soonAvailable)
+    }
+
     func testDecodingFromNetwork() throws {
         // Given
         let expectedMovie = Movie.testing

@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    // e.g. "DE"
+    /// Returns the current region in ISO 3166-1 Format. E.g when current locale is "en_US", it returns "US".
     static var regionIso31661: String {
         if let regionCode = Locale.current.regionCode {
             return regionCode
@@ -24,7 +24,7 @@ extension String {
         return locale
     }
 
-    // e.g. "de"
+    /// Returns the current language in ISO 6391 Format. E.g when current locale is "en_US", it returns "en".
     static var languageIso6391: String {
         if let languageCode = Locale.current.languageCode {
             return languageCode
@@ -39,7 +39,7 @@ extension String {
         return locale
     }
 
-    // e.g. "de-DE
+    /// Returns the current language in ISO 6391 Format. E.g when current locale is "en_US", it returns "en-US".
     static var languageFormattedForTMDb: String {
         Locale.current.identifier
             .replacingOccurrences(of: "_", with: "-")

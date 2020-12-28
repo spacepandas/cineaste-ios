@@ -98,6 +98,21 @@ extension Movie {
     static let testingSeenWithoutPosterPath: Movie = {
         Movie(withOutPoster: Movie.testingSeen)
     }()
+
+    static let testingReleaseIn2050 = Movie(
+        id: 4,
+        title: "Zurück in die Zukunft 5",
+        voteAverage: 0,
+        voteCount: 0,
+        posterPath: nil,
+        overview: "",
+        runtime: 132,
+        releaseDate: Date(timeIntervalSince1970: 2_552_083_200),
+        genres: [],
+        watched: false,
+        watchedDate: nil,
+        popularity: 448
+    )
 }
 
 private extension Movie {

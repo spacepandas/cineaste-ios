@@ -9,6 +9,7 @@
 import Foundation
 
 extension DateFormatter {
+    /// A DateFormatter to format dates in format `yyyy-MM-dd` and in UTC time zone
     static let utcFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -16,6 +17,7 @@ extension DateFormatter {
         return formatter
     }()
 
+    /// A DateFormatter to format dates in format of import and export movies
     static let importFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")

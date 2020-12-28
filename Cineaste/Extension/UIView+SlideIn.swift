@@ -14,6 +14,13 @@ extension UIView {
         case trailing
     }
 
+    /// Animates a view which slides in from a side.
+    ///
+    /// This is used to make a user aware that swipe actions are available.
+    ///
+    /// - Parameters:
+    ///   - side: The side from where the view should slide in
+    ///   - completion: An optional completion which runs after the animation is completed
     func slideIn(from side: Side, completion: (() -> Void)? = nil) {
         let distance: CGFloat
         switch side {

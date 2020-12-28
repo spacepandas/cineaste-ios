@@ -9,6 +9,9 @@
 import UIKit
 
 extension UIView {
+
+    /// Adds a blur effect to the complete size of the current view.
+    /// - Parameter style: The Style of the blur effect
     func addBlurEffect(with style: UIBlurEffect.Style) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
