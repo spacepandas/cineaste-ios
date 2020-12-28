@@ -16,6 +16,7 @@ import Foundation
 struct World {
     var date = { Date() }
     var locale: Locale = .current
+    var timeZone: TimeZone = .current
 }
 
 // swiftlint:disable identifier_name

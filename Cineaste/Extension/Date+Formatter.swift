@@ -29,6 +29,7 @@ extension Date {
     /// This formatter will produce something like this: "December 28, 2020 at 10:49 AM.".
     var formattedWithTime: String {
         let formatter = DateFormatter()
+        formatter.timeZone = Current.timeZone
         formatter.locale = Current.locale
         formatter.dateStyle = .long
         formatter.timeStyle = .short
@@ -49,6 +50,7 @@ extension Date {
         // important to have locale as "en_US_POSIX" for export and import
         formatter.locale = Locale(identifier: "en_US_POSIX")
 
+        formatter.timeZone = Current.timeZone
         formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
         return formatter.string(from: self)
     }
