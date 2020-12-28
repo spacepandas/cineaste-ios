@@ -17,7 +17,7 @@ extension Movie {
         posterPath: "/v4QfYZMACODlWul9doN9RxE99ag.jpg",
         overview: "",
         runtime: 100,
-        releaseDate: Date() + 6 * 24 * 60 * 60,
+        releaseDate: Current.date() + 6 * 24 * 60 * 60,
         genres: [
             Genre(id: 99, name: "Documentary")
         ],

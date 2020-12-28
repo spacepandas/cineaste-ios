@@ -10,7 +10,7 @@ import Foundation
 
 extension Movie {
     var soonAvailable: Bool {
-        guard let release = releaseDate, release > Date() else {
+        guard let release = releaseDate, release > Current.date() else {
             return false
         }
 

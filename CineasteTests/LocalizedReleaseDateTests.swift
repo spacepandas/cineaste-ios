@@ -13,7 +13,7 @@ class LocalizedReleaseDateTests: XCTestCase {
 
     func testDecoding() throws {
         // Given
-        XCTAssertEqual(Locale.current.regionCode, "US")
+        Current.locale = Locale(identifier: "en-US")
 
         // 1974-11-14
         let expectedDate = Date(timeIntervalSince1970: 153_619_200)

@@ -11,11 +11,11 @@ import Foundation
 extension String {
     /// Returns the current region in ISO 3166-1 Format. E.g when current locale is "en_US", it returns "US".
     static var regionIso31661: String {
-        if let regionCode = Locale.current.regionCode {
+        if let regionCode = Current.locale.regionCode {
             return regionCode
         }
 
-        var locale = Locale.current.identifier
+        var locale = Current.locale.identifier
         locale = locale.replacingOccurrences(of: "-", with: "_")
 
         if let dotRange = locale.range(of: "_") {
@@ -26,11 +26,11 @@ extension String {
 
     /// Returns the current language in ISO 6391 Format. E.g when current locale is "en_US", it returns "en".
     static var languageIso6391: String {
-        if let languageCode = Locale.current.languageCode {
+        if let languageCode = Current.locale.languageCode {
             return languageCode
         }
 
-        var locale = Locale.current.identifier
+        var locale = Current.locale.identifier
         locale = locale.replacingOccurrences(of: "-", with: "_")
 
         if let dotRange = locale.range(of: "_") {
@@ -41,7 +41,7 @@ extension String {
 
     /// Returns the current language in ISO 6391 Format. E.g when current locale is "en_US", it returns "en-US".
     static var languageFormattedForTMDb: String {
-        Locale.current.identifier
+        Current.locale.identifier
             .replacingOccurrences(of: "_", with: "-")
     }
 }

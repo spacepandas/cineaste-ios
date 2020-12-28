@@ -23,7 +23,7 @@ class MovieThunksTests: XCTestCase {
 
         var updatedMovie = movieToUpdate
         updatedMovie.watched = true
-        updatedMovie.watchedDate = Date()
+        updatedMovie.watchedDate = Current.date()
         let expectedAction = MovieAction.update(movie: updatedMovie)
         let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
         var actions: [Action] = []
@@ -81,7 +81,7 @@ class MovieThunksTests: XCTestCase {
 
         var updatedMovie = movieToAdd
         updatedMovie.watched = true
-        updatedMovie.watchedDate = Date()
+        updatedMovie.watchedDate = Current.date()
         let expectedAction = MovieAction.add(movie: updatedMovie)
         let expectedAction2 = SearchAction.updateMarkedMovie(movie: updatedMovie)
         var actions: [Action] = []

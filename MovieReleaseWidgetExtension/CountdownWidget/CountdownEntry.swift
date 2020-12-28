@@ -20,11 +20,11 @@ struct CountdownEntry: TimelineEntry {
     let content: Content
 
     static var empty: CountdownEntry {
-        CountdownEntry(date: Date(), content: .empty)
+        CountdownEntry(date: Current.date(), content: .empty)
     }
 
     static let previewData = CountdownEntry(
-        date: Date(),
+        date: Current.date(),
         content: .movie(
             movie: .testMovie,
             image: Image(uiImage: .posterPlaceholderWidget)

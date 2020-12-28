@@ -41,7 +41,7 @@ private extension Persistence {
     static let storeUrl = AppGroup.widget.containerURL
         .appendingPathComponent("movies.json")
     static let exportMovieUrl = FileManager.default.cachesDirectory
-        .appendingPathComponent("cineaste-\(Date().formattedForRequest).json")
+        .appendingPathComponent("cineaste-\(Current.date().formattedForRequest).json")
 }
 
 private extension FileManager {

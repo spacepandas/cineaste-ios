@@ -122,6 +122,9 @@
 		3FA48FA320FA856E002F7665 /* MoviesViewController+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA120FA856E002F7665 /* MoviesViewController+SearchController.swift */; };
 		3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA48FA420FA859E002F7665 /* MoviesViewController+3DTouch.swift */; };
 		3FA6C9D920F7DCEC0050368E /* CustomSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6C9D720F7B5990050368E /* CustomSafariViewController.swift */; };
+		3FAE6DDA259A144D00B13A0A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE6DD9259A144D00B13A0A /* World.swift */; };
+		3FAE6DE1259A14B700B13A0A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE6DD9259A144D00B13A0A /* World.swift */; };
+		3FAE6DE8259A14B800B13A0A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE6DD9259A144D00B13A0A /* World.swift */; };
 		3FBD9F71222C7A6200DD9248 /* WatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD9F70222C7A6200DD9248 /* WatchState.swift */; };
 		3FBDB30021D4F35D00CBE341 /* FailingImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FB21D4F35C00CBE341 /* FailingImport.json */; };
 		3FBDB30121D4F35D00CBE341 /* Import.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDB2FC21D4F35C00CBE341 /* Import.json */; };
@@ -423,6 +426,7 @@
 		3FA808D0200285590036357B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3FAA3BBB20826B1D00726DE2 /* Int16+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Formatter.swift"; sourceTree = "<group>"; };
 		3FAAD61920A6E5EE001A19D2 /* SeenMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenMovieCell.swift; sourceTree = "<group>"; };
+		3FAE6DD9259A144D00B13A0A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Formatter.swift"; path = "Cineaste/Extension/Date+Formatter.swift"; sourceTree = SOURCE_ROOT; };
 		3FBD9F70222C7A6200DD9248 /* WatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchState.swift; sourceTree = "<group>"; };
 		3FBDB2FB21D4F35C00CBE341 /* FailingImport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FailingImport.json; sourceTree = "<group>"; };
@@ -919,6 +923,7 @@
 			isa = PBXGroup;
 			children = (
 				95AE259F1F9531E20067F5F5 /* AppDelegate.swift */,
+				3FAE6DD9259A144D00B13A0A /* World.swift */,
 				3FC1AA712385E4BD00E24C16 /* ReSwift */,
 				95D32F621F9AA2D100497ED2 /* Utils */,
 				95DC32021F97E0FB0014E3EA /* Networking */,
@@ -1412,6 +1417,7 @@
 				3F2627EA252A115E00A1EFD9 /* CountdownMinimalisticWidget.swift in Sources */,
 				1A3110F02517B36C00F05C16 /* EmptyStateView.swift in Sources */,
 				3F9D708324F2787B0045CC66 /* UIImage+Cineaste.swift in Sources */,
+				3FAE6DE1259A14B700B13A0A /* World.swift in Sources */,
 				3F5C07FB24F2666500BC889E /* String+Cineaste.swift in Sources */,
 				3F492E7424F250C900016B2A /* CountdownWidget.swift in Sources */,
 				3F492E8C24F25EE100016B2A /* WatchState.swift in Sources */,
@@ -1446,6 +1452,7 @@
 				3F508CE024FD6E2A008A7DCB /* IntentHandler.swift in Sources */,
 				3FEE6DA224FD79BD00818241 /* Constants.swift in Sources */,
 				3FEE6DA424FD79D400818241 /* MovieListCategory.swift in Sources */,
+				3FAE6DE8259A14B800B13A0A /* World.swift in Sources */,
 				3FEE6DA524FD79E500818241 /* String+VariantFittingPresentationWidth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1538,6 +1545,7 @@
 				3F8065BC238AE3220087D6EA /* DateFormatter+Cineaste.swift in Sources */,
 				3F187F9222633E5400B7A9CF /* PreviewAction.swift in Sources */,
 				3F5A90CB25974D7C00AF9D5D /* SizeCategory.swift in Sources */,
+				3FAE6DDA259A144D00B13A0A /* World.swift in Sources */,
 				3F5A90A325973D7200AF9D5D /* UIWindow+SizeCategory.swift in Sources */,
 				3FF095D5210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift in Sources */,
 				3FF7910220DE274A007B7D37 /* SettingsCell.swift in Sources */,

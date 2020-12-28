@@ -14,6 +14,7 @@ class MovieSnapshotTests: XCTestCase {
 
     func testCURLForSearch() throws {
         // Given
+        Current.date = { Date(timeIntervalSince1970: 1_609_162_343) }
         let resource = Movie.search(withQuery: "", page: 0)
 
         // When

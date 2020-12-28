@@ -13,7 +13,7 @@ class DateFormatterTests: XCTestCase {
 
     func testDatesShouldBeFormattedCorrectly() {
         // Given
-        // Locale is set in UnitTests scheme
+        Current.locale = Locale(identifier: "en-US")
 
         // 2020-12-28 09:49:53
         let testDate = Date(timeIntervalSince1970: 1_609_148_993)
@@ -28,8 +28,6 @@ class DateFormatterTests: XCTestCase {
         ]
 
         // Then
-        XCTAssertEqual(Locale.current.identifier, "en_US")
-        XCTAssertEqual(Calendar.current.timeZone, TimeZone(identifier: "Europe/Berlin"))
         for (expected, actual) in pairs {
             XCTAssertEqual(expected, actual)
         }
