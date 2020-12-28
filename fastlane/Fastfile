@@ -3,7 +3,7 @@ fastlane_version '2.0.0'
 ProjectName = 'Cineaste'
 AppIdentifier = 'de.spacepandas.ios.cineaste'
 Target_Folder_Name = 'build' 
-DerivedDataPath = 'DerivedData'
+DerivedDataPath = 'build/DerivedData'
 
 Scheme = 'Cineaste App'
 Scheme_UnitTests = 'UnitTests'
@@ -13,10 +13,9 @@ Scheme_UITests = 'UITests'
 Test_Device = 'iPhone 8'
 Test_Devices = [
   'iPhone SE',
-  'iPhone 8',
   'iPhone 8 Plus',
   'iPhone 11 Pro',
-  'iPhone 11 Pro Max'
+  'iPad Pro (9.7-inch)'
 ]
 Test_Language = 'en-US'
 Test_Languages = [
@@ -24,7 +23,7 @@ Test_Languages = [
   'de-DE'
 ]
 
-$version_number_to_set = '1.23.0'
+$version_number_to_set = '1.24.2'
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
@@ -73,6 +72,7 @@ lane :screenshots do
     devices: Test_Devices,
     languages: Test_Languages, 
     output_directory: "#{Target_Folder_Name}/screenshots",
+    override_status_bar: true,
     scheme: Scheme_UITests,
     stop_after_first_error: true,
     test_without_building: true
@@ -94,6 +94,7 @@ lane :frame do
     devices: [ "iPhone 11 Pro" ],
     languages: [ "en_US" ],
     output_directory: "#{Target_Folder_Name}/assets",
+    override_status_bar: true,
     scheme: Scheme_UITests,
     skip_open_summary: true,
     stop_after_first_error: true

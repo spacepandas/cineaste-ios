@@ -11,6 +11,27 @@
 ## Improved
 * 
 
+# 1.24.2
+
+## Fixed
+* Fix Translation in CountdownMinimalisticWidget when Movie is released
+* Prevent Poster to be visible underneath the content in MovieDetail, when Poster is larger than content on iPad in Portrait Mode
+
+# 1.24.1
+
+## Fixed
+* Respect Safe Area in Movie Detail and Landscape Mode on iPhones with Notch
+* Fix Parallax Effect in Movie Detail for iPhones in Portrait Mode
+
+# 1.24.0
+
+## New
+* Add Support for Landscape Device Rotation on iPhone
+* Add very basic Support for iPad devices
+
+## Improved
+* Automatically navigate back when a movie is deleted from the detail view
+
 # 1.23.0
 
 ## New

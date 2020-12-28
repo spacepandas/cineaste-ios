@@ -23,10 +23,15 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
         // When
         let viewController = MovieDetailViewController.instantiate()
+        viewController.view.frame = CGRect(
+            x: viewController.view.frame.minX,
+            y: viewController.view.frame.minY,
+            width: viewController.view.frame.width,
+            height: 900
+        )
 
         // Then
-        let navigationController = NavigationController(rootViewController: viewController)
-        assertThemedNavigationSnapshot(matching: navigationController)
+        assertThemedViewSnapshot(matching: viewController.view)
     }
 
     func testWatchlistMovieAppearance() {
@@ -39,9 +44,15 @@ class MovieDetailViewControllerSnapshotTests: XCTestCase {
 
         // When
         let viewController = MovieDetailViewController.instantiate()
+        viewController.view.frame = CGRect(
+            x: viewController.view.frame.minX,
+            y: viewController.view.frame.minY,
+            width: viewController.view.frame.width,
+            height: 900
+        )
 
         // Then
-        let navigationController = NavigationController(rootViewController: viewController)
-        assertThemedNavigationSnapshot(matching: navigationController)
+        assertThemedViewSnapshot(matching: viewController.view)
+        assertThemedLandscapeViewControllerSnapshot(matching: viewController)
     }
 }

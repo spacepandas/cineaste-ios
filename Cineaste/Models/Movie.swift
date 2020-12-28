@@ -18,7 +18,7 @@ struct Movie: Equatable {
     let runtime: Int16?
     var releaseDate: Date?
     let genres: [Genre]
-    //swiftlint:disable:next discouraged_optional_boolean
+    // swiftlint:disable:next discouraged_optional_boolean
     var watched: Bool?
     var watchedDate: Date?
     var listPosition: Int?

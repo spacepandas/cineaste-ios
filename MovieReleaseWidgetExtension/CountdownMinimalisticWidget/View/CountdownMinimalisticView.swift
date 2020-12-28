@@ -23,7 +23,7 @@ struct CountdownMinimalisticView: SwiftUI.View {
     var body: some SwiftUI.View {
         PosterWithDescriptionView(
             title: movie.difference,
-            description: movie.title,
+            description: LocalizedStringKey(movie.title),
             image: image,
             accessibilityHint: accessibilityHint
         )

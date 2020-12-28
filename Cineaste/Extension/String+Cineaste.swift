@@ -8,7 +8,7 @@
 
 import Foundation
 
-//swiftlint:disable line_length
+// swiftlint:disable line_length
 extension String {
     // MARK: DEFAULT
     static let okAction = NSLocalizedString("ok", comment: "Title for ok action")
@@ -117,9 +117,6 @@ extension String {
 
     // MARK: Alert messages
 
-    // error
-    static let loadingDataErrorMessage = NSLocalizedString("loadingDataError", comment: "Message for loading data error alert")
-
     // import
     static func importSucceededMessage(with counter: Int) -> String {
         let movies = String.localizedStringWithFormat(NSLocalizedString("%d movie(s)", comment: "Movie(s)"), counter)
@@ -132,9 +129,7 @@ extension String {
     // export
     static let exportFailedMessage = NSLocalizedString("exportFailed", comment: "Message for export failed alert")
 
-    static let noEmailClientMessage = NSLocalizedString("noEmailClient", comment: "Message for no email client alert")
-
     // refresh movie data
     static let refreshMovieData = NSLocalizedString("refresh movie data", comment: "Message for refreshing movie data with pull to refresh")
 }
-//swiftlint:enable line_length
+// swiftlint:enable line_length

@@ -57,8 +57,13 @@ extension SearchMoviesViewController {
                 detailVC.hidesBottomBarWhenPushed = true
                 return detailVC
             }, actionProvider: { _ in
-            let actions = ContextMenu.actions(for: movie, presenter: self)
-            return UIMenu(title: "", image: nil, identifier: nil, children: actions)
+                let cell = tableView.cellForRow(at: indexPath) ?? UITableViewCell()
+                let actions = ContextMenu.actions(
+                    for: movie,
+                    presenter: self,
+                    sourceView: cell.contentView
+                )
+                return UIMenu(title: "", image: nil, identifier: nil, children: actions)
             }
         )
 

@@ -19,6 +19,8 @@ class SearchMoviesCell: UITableViewCell {
     @IBOutlet weak var soonHint: HintView!
     @IBOutlet weak var cellBackgroundView: UIView!
     @IBOutlet weak var swipeHintView: UIView!
+    @IBOutlet weak var posterWidth: NSLayoutConstraint!
+    @IBOutlet weak var stateImageWidth: NSLayoutConstraint!
 
     // MARK: - Actions
 
@@ -53,7 +55,15 @@ class SearchMoviesCell: UITableViewCell {
             stateImageView.image = UIImage.watchlistBadgeIcon
         }
 
+        updatePosterWidthIfNeeded()
+        updateStateImageWidthIfNeeded()
+
         applyAccessibility(for: movie)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        updatePosterWidthIfNeeded()
+        updateStateImageWidthIfNeeded()
     }
 
     private func applyAccessibility(for movie: Movie) {
@@ -75,5 +85,23 @@ class SearchMoviesCell: UITableViewCell {
             : ""
         )
         accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
+    }
+
+    private func updatePosterWidthIfNeeded() {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        posterWidth = updateMultiplierOfConstraint(
+            posterWidth,
+            newMultiplier: window.sizeCategory.relativePosterSize
+        )
+    }
+
+    private func updateStateImageWidthIfNeeded() {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        stateImageWidth = updateMultiplierOfConstraint(
+            stateImageWidth,
+            newMultiplier: window.sizeCategory.relativeWatchStateImageSize
+        )
     }
 }

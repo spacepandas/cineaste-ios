@@ -17,6 +17,7 @@ class WatchlistMovieCell: UITableViewCell {
     @IBOutlet weak var releaseAndRuntimeLabel: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var voteView: VoteView!
+    @IBOutlet weak var posterWidth: NSLayoutConstraint!
 
     func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
@@ -34,7 +35,19 @@ class WatchlistMovieCell: UITableViewCell {
         voteView.content = movie.formattedVoteAverage
             + "\(nonbreakingSpace)/\(nonbreakingSpace)10"
 
+        if #available(iOS 14.0, *) {
+            backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        selectionStyle = .none
+
+        updatePosterWidthIfNeeded()
+
         applyAccessibility(for: movie)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        updatePosterWidthIfNeeded()
     }
 
     private func applyAccessibility(for movie: Movie) {
@@ -46,5 +59,14 @@ class WatchlistMovieCell: UITableViewCell {
         accessibilityLabel?.append(", \(voting)")
         accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
         accessibilityLabel?.append(", \(movie.formattedRuntime)")
+    }
+
+    private func updatePosterWidthIfNeeded() {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        posterWidth = updateMultiplierOfConstraint(
+            posterWidth,
+            newMultiplier: window.sizeCategory.relativePosterSize
+        )
     }
 }

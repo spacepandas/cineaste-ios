@@ -94,6 +94,35 @@ func assertThemedViewSnapshot(
     }
 }
 
+/// Asserts that a given value matches a reference on disk.
+/// This overload makes two snapshots with "Light" and "Dark" user interface style in a UIViewController on a iPhoneX device (with safe areas).
+///
+/// - Parameters:
+///
+///   - themes: An array of UIUserInterfaceStyle you want to test.
+///   - value: A value to compare against a reference.
+func assertThemedLandscapeViewControllerSnapshot(
+    for themes: [UIUserInterfaceStyle] = [.light, .dark],
+    matching value: UIViewController
+) {
+    enforceSnapshotDevice()
+
+    for theme in themes {
+        value.view.overrideUserInterfaceStyle = theme
+
+        assertSnapshot(
+            matching: value,
+            as: .image(on: .iPhoneX(.landscape), precision: 0.99),
+            named: "landscape-\(theme.displayName)",
+            record: false,
+            timeout: 5,
+            file: #file,
+            testName: #function,
+            line: #line
+        )
+    }
+}
+
 private func enforceSnapshotDevice() {
     let is2xDevice = UIScreen.main.scale == 2
     let isVersion14 = ProcessInfo().operatingSystemVersion.majorVersion == 14

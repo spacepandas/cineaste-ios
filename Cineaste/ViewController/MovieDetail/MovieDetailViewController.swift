@@ -112,12 +112,13 @@ class MovieDetailViewController: UIViewController {
         guard let movie = movie else { return }
 
         store.dispatch(deleteMovie(movie))
+        navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func shareMovie() {
+    @IBAction func shareMovie(_ sender: UIBarButtonItem) {
         guard let movie = movie else { return }
 
-        share(movie: movie)
+        share(movie: movie, onBarButtonItem: sender)
     }
 
     // MARK: - Navigation
@@ -274,6 +275,16 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         let detailRatio = detailScrollView.frame.height / detailScrollView.contentSize.height
 
         let offset = percentage * outerMaxOffset * detailRatio
+
+        // hide content in `detailScrollView` when scroll view bounces at bottom,
+        // to hide poster which is larger than content
+        detailScrollView.clipsToBounds = outerMaxOffset <= scrollView.contentOffset.y
+
+        // do not scroll further poster height
+        let scrolledOutOfPoster = (detailScrollView.frame.height + offset)
+            >= posterHeight.constant
+        guard !scrolledOutOfPoster else { return }
+
         if offset < 0 {
             detailScrollView.contentOffset.y = -scrollView.contentOffset.y
         } else {

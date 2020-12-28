@@ -83,6 +83,9 @@
 		3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */; };
 		3F544E3F2381F36900B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
 		3F544E402381F36E00B26071 /* XCTestCase+WaitForQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */; };
+		3F5A90A325973D7200AF9D5D /* UIWindow+SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */; };
+		3F5A90CB25974D7C00AF9D5D /* SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90CA25974D7C00AF9D5D /* SizeCategory.swift */; };
+		3F5A90EB25989CF400AF9D5D /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */; };
 		3F5C07F924F2645800BC889E /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
 		3F5C07FB24F2666500BC889E /* String+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9806372055250F00B92A27 /* String+Cineaste.swift */; };
 		3F5C07FC24F2667300BC889E /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD8F911FF3FC5B00AD5F02 /* Date+Formatter.swift */; };
@@ -368,6 +371,9 @@
 		3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		3F544E3E2381F36900B26071 /* XCTestCase+WaitForQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+WaitForQueue.swift"; sourceTree = "<group>"; };
 		3F585B96203B5A58002F6E07 /* SettingsDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+SizeCategory.swift"; sourceTree = "<group>"; };
+		3F5A90CA25974D7C00AF9D5D /* SizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCategory.swift; sourceTree = "<group>"; };
+		3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		3F5E0D8B20308FF700E091BE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F5E0D8E2030905B00E091BE /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3F5E0D90203090C300E091BE /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -601,7 +607,6 @@
 			isa = PBXGroup;
 			children = (
 				3F492E7524F250C900016B2A /* Assets.xcassets */,
-				1A6B67D8251F5CC600028D01 /* DynamicMovieSelection.intentdefinition */,
 				1A654DE4250CA8D200D3D1C3 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -788,7 +793,9 @@
 				3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */,
 				3F80F27122359E5C007E03C5 /* UIView+SlideIn.swift */,
 				3F75665B2381737E007E2DE8 /* UIViewController+ShareMovie.swift */,
+				3F5A90A225973D7200AF9D5D /* UIWindow+SizeCategory.swift */,
 				3F36F5D1238A8CCE00267280 /* UserDefaults+Cineaste.swift */,
+				3F5A90EA25989CF400AF9D5D /* UIView+Constraints.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -917,6 +924,7 @@
 				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				3F492E8624F2590600016B2A /* Cineaste AppRelease.entitlements */,
 				3F492E8524F2588C00016B2A /* Cineaste App.entitlements */,
+				1A6B67D8251F5CC600028D01 /* DynamicMovieSelection.intentdefinition */,
 				3F98063F20556EA700B92A27 /* InfoPlist.strings */,
 				3F1DA161209C64D900AC4D09 /* Settings.bundle */,
 				3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */,
@@ -987,12 +995,13 @@
 				3F3BCAAE22D213BC005BEF12 /* LocalizedReleaseDate.swift */,
 				95DC320C1F97E5150014E3EA /* Movie.swift */,
 				3F941B7620F5295D008A4407 /* Movie+Formatted.swift */,
-				1ADF82CC250E2C8C00B062CF /* Movie+ReleaseDate.swift */,
 				3F941B7020F528BA008A4407 /* Movie+Networking.swift */,
+				1ADF82CC250E2C8C00B062CF /* Movie+ReleaseDate.swift */,
 				95B57719201E2C75007BD9F0 /* MovieListCategory.swift */,
 				95F0DBC81F9D2CF9004681C7 /* PagedMovieResult.swift */,
 				3F187F9022633E5000B7A9CF /* PreviewAction.swift */,
 				3F98063920554AE300B92A27 /* ShortcutIdentifier.swift */,
+				3F5A90CA25974D7C00AF9D5D /* SizeCategory.swift */,
 				3F187F93226348FE00B7A9CF /* SortDescriptor.swift */,
 				9552262C1FAFB5D300323982 /* StoredMovie.swift */,
 				3F3BCAAC22D210AA005BEF12 /* StoredMovieIDs.swift */,
@@ -1330,7 +1339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n  if which swiftlint >/dev/null; then\n     swiftlint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nelse \n    echo \"Info: As we’re building for Release, no Swiftlint Check is running.\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n  if which swiftlint >/dev/null; then\n     swiftlint autocorrect\n     swiftlint lint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nelse \n    echo \"Info: As we’re building for Release, no SwiftLint Check is running.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1511,6 +1520,8 @@
 				3FF7910020DE274A007B7D37 /* ApiKeyStore.swift in Sources */,
 				3F8065BC238AE3220087D6EA /* DateFormatter+Cineaste.swift in Sources */,
 				3F187F9222633E5400B7A9CF /* PreviewAction.swift in Sources */,
+				3F5A90CB25974D7C00AF9D5D /* SizeCategory.swift in Sources */,
+				3F5A90A325973D7200AF9D5D /* UIWindow+SizeCategory.swift in Sources */,
 				3FF095D5210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift in Sources */,
 				3FF7910220DE274A007B7D37 /* SettingsCell.swift in Sources */,
 				3FF7910420DE274A007B7D37 /* SettingsDetailViewController.swift in Sources */,
@@ -1543,6 +1554,7 @@
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
 				3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */,
+				3F5A90EB25989CF400AF9D5D /* UIView+Constraints.swift in Sources */,
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,
 				3F630C6322AEA32E0070A4B6 /* AppStoreReview.swift in Sources */,
@@ -1806,7 +1818,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = MovieReleaseWidgetExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1838,7 +1850,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = MovieReleaseWidgetExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1866,7 +1878,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = SelectMovieIntentExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1894,7 +1906,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = SelectMovieIntentExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1966,7 +1978,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1978,6 +1990,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1991,7 +2004,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 647;
+				CURRENT_PROJECT_VERSION = 679;
 				DEVELOPMENT_TEAM = 8BRH3DQ7CT;
 				INFOPLIST_FILE = Cineaste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2002,6 +2015,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -15,6 +15,7 @@ class SeenMovieCell: UITableViewCell {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var watchedDateLabel: UILabel!
+    @IBOutlet weak var posterWidth: NSLayoutConstraint!
 
     func configure(with movie: Movie) {
         background.backgroundColor = .cineCellBackground
@@ -26,7 +27,18 @@ class SeenMovieCell: UITableViewCell {
 
         watchedDateLabel.text = movie.formattedWatchedDate
 
+        if #available(iOS 14.0, *) {
+            backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        selectionStyle = .none
+        updatePosterWidthIfNeeded()
+
         applyAccessibility(for: movie)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        updatePosterWidthIfNeeded()
     }
 
     private func applyAccessibility(for movie: Movie) {
@@ -37,5 +49,14 @@ class SeenMovieCell: UITableViewCell {
         if let watchedDate = movie.formattedWatchedDate {
             accessibilityLabel?.append(", \(watchedDate)")
         }
+    }
+
+    private func updatePosterWidthIfNeeded() {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        posterWidth = updateMultiplierOfConstraint(
+            posterWidth,
+            newMultiplier: window.sizeCategory.relativePosterSize
+        )
     }
 }
