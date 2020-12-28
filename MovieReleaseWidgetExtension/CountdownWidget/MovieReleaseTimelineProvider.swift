@@ -23,7 +23,7 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
 
         movie.loadImage { image in
             let entry = CountdownEntry(
-                date: Date(),
+                date: Current.date(),
                 content: .movie(movie: movie, image: image)
             )
             completion(entry)
@@ -38,7 +38,7 @@ struct MovieReleaseTimelineProvider: IntentTimelineProvider {
 
         movie.loadImage { image in
             let entry = CountdownEntry(
-                date: Date(),
+                date: Current.date(),
                 content: .movie(movie: movie, image: image)
             )
             let timeline = Timeline(entries: [entry], policy: .atEnd)

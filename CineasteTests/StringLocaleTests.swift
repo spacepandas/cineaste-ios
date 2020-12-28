@@ -13,6 +13,7 @@ class StringLocaleTests: XCTestCase {
 
     func testRegionIso31661ShouldReturnRegion() {
         // Given
+        Current.locale = Locale(identifier: "en-US")
         let expected = "US"
 
         // When
@@ -24,6 +25,7 @@ class StringLocaleTests: XCTestCase {
 
     func testLanguageIso6391ShouldReturnLanguage() {
         // Given
+        Current.locale = Locale(identifier: "en-US")
         let expected = "en"
 
         // When
@@ -35,6 +37,7 @@ class StringLocaleTests: XCTestCase {
 
     func testLanguageFormattedForTMDbShouldReturnLanguageInCorrectFormat() {
         // Given
+        Current.locale = Locale(identifier: "en-US")
         let expected = "en-US"
 
         // When

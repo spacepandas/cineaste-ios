@@ -16,7 +16,7 @@ func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
 
         if watched {
             updatedMovie.watched = true
-            updatedMovie.watchedDate = Date()
+            updatedMovie.watchedDate = Current.date()
         } else {
             updatedMovie.watched = false
         }

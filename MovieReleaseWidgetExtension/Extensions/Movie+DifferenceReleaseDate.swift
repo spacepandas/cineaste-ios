@@ -16,8 +16,8 @@ extension Movie {
         formatter.maximumUnitCount = 1
         formatter.collapsesLargestUnit = true
         let formattedReleaseDate = formatter.string(
-            from: Date(),
-            to: (releaseDate ?? Date()) + 24 * 60 * 60
+            from: Current.date(),
+            to: (releaseDate ?? Current.date()) + 24 * 60 * 60
         ) ?? ""
 
         return formattedReleaseDate

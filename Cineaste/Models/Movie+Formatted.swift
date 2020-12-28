@@ -30,7 +30,7 @@ extension Movie {
             return String.unknownReleaseDate
         }
 
-        let isCurrentYear = release.formattedOnlyYear == Date().formattedOnlyYear
+        let isCurrentYear = release.formattedOnlyYear == Current.date().formattedOnlyYear
         if isCurrentYear {
             return release.formatted
         } else {

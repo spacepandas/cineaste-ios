@@ -41,6 +41,8 @@ class MovieTests: XCTestCase {
 
     func testWatchedDateForSeenMovieShouldBeCorrectlyFormatted() {
         // Given
+        // swiftlint:disable:next force_unwrapping
+        Current.timeZone = TimeZone(abbreviation: "CET")!
         let movie = Movie.testingSeen
 
         // Then

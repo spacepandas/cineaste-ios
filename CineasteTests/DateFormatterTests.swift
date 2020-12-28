@@ -13,7 +13,9 @@ class DateFormatterTests: XCTestCase {
 
     func testDatesShouldBeFormattedCorrectly() {
         // Given
-        // Locale is set in UnitTests scheme
+        Current.locale = Locale(identifier: "en-US")
+        // swiftlint:disable:next force_unwrapping
+        Current.timeZone = TimeZone(abbreviation: "CET")!
 
         // 2020-12-28 09:49:53
         let testDate = Date(timeIntervalSince1970: 1_609_148_993)
@@ -24,7 +26,7 @@ class DateFormatterTests: XCTestCase {
             ("2020", testDate.formattedOnlyYear),
             ("December 28, 2020 at 10:49 AM", testDate.formattedWithTime),
             ("2020-12-28", testDate.formattedForRequest),
-            ("Dec 28, 2020 10:49:53", testDate.formattedForJson)
+            ("Dec 28, 2020 09:49:53", testDate.formattedForJson)
         ]
 
         // Then
