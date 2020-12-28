@@ -20,8 +20,13 @@ extension DateFormatter {
     /// A DateFormatter to format dates in format of import and export movies
     static let importFormatter: DateFormatter = {
         let formatter = DateFormatter()
+
+        // important for export and import to set
+        // - locale to "en_US_POSIX"
+        // - timeZone to UTC
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(abbreviation: "UTC")
+
         formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
         return formatter
     }()

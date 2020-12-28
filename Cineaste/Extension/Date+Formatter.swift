@@ -45,13 +45,6 @@ extension Date {
 
     /// This formatter will produce something like this: "Dec 28, 2020 10:49:53".
     var formattedForJson: String {
-        let formatter = DateFormatter()
-
-        // important to have locale as "en_US_POSIX" for export and import
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-
-        formatter.timeZone = Current.timeZone
-        formatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
-        return formatter.string(from: self)
+        DateFormatter.importFormatter.string(from: self)
     }
 }
