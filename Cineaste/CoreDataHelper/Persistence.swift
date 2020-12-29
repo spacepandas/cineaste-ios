@@ -14,9 +14,9 @@ enum Persistence {
         let data = try JSONEncoder.tmdbEncoder.encode(movies)
         try data.write(to: movieUrl)
 
-        // make Movies available for Widgets
-        try data.write(to: storeUrl)
         if #available(iOS 14, *) {
+            // make Movies available for Widgets
+            try data.write(to: storeUrl)
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

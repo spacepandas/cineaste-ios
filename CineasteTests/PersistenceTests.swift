@@ -11,20 +11,41 @@ import XCTest
 
 class PersistenceTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        try! cleanup()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        try cleanup()
     }
 
-    override func tearDown() {
-        try! cleanup()
-        super.tearDown()
+    override func tearDownWithError() throws {
+        try cleanup()
+        try super.tearDownWithError()
     }
 
     func testStoringMoviesShouldWriteJSONToTheDocumentsDirectory() throws {
         // Given
         let fileManager = FileManager.default
         let jsonUrl = fileManager.documentsDirectory.appendingPathComponent("movies.json")
+        XCTAssertFalse(fileManager.fileExists(atPath: jsonUrl.path))
+        let movies: Set<Movie> = [Movie(id: 1)]
+
+        // When
+        try Persistence.saveMovies(movies)
+
+        // Then
+        XCTAssert(fileManager.fileExists(atPath: jsonUrl.path))
+    }
+
+    func testStoringMoviesShouldWriteJSONToAppGroup() throws {
+        let iOS14 = OperatingSystemVersion(majorVersion: 14, minorVersion: 0, patchVersion: 0)
+        try XCTSkipUnless(
+            ProcessInfo().isOperatingSystemAtLeast(iOS14),
+            "Movies should only be stored in AppGroup with iOS 14 or later."
+        )
+
+        // Given
+        let fileManager = FileManager.default
+        let appGroup = AppGroup.widget.containerURL
+        let jsonUrl = appGroup.appendingPathComponent("movies.json")
         XCTAssertFalse(fileManager.fileExists(atPath: jsonUrl.path))
         let movies: Set<Movie> = [Movie(id: 1)]
 
@@ -72,6 +93,10 @@ class PersistenceTests: XCTestCase {
         }
         for content in try fileManager.contentsOfDirectory(atPath: fileManager.cachesDirectory.path) {
             let url = fileManager.cachesDirectory.appendingPathComponent(content)
+            try fileManager.removeItem(at: url)
+        }
+        for content in try fileManager.contentsOfDirectory(atPath: AppGroup.widget.containerURL.path) {
+            let url = AppGroup.widget.containerURL.appendingPathComponent(content)
             try fileManager.removeItem(at: url)
         }
     }
