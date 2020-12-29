@@ -16,7 +16,7 @@ class MovieSnapshotTests: XCTestCase {
         // Given
         Current.date = { Date(timeIntervalSince1970: 1_609_162_343) }
         Current.locale = Locale(identifier: "en-US")
-        let resource = Movie.search(withQuery: "", page: 0)
+        let resource = Movie.search(withQuery: "query", page: 0)
 
         // When
         let request = try XCTUnwrap(resource.request)
