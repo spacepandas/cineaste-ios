@@ -36,8 +36,8 @@ extension Movie {
     }
 
     static func latestReleases(page: Int) -> Resource<PagedMovieResult> {
-        let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
-        let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
+        let oneMonthInPast = Current.date() + -60 * 60 * 24 * 30
+        let oneMonthInFuture = Current.date() + 60 * 60 * 24 * 30
         let urlAsString = "\(Constants.Backend.url)/discover/movie" +
             "?language=\(String.languageFormattedForTMDb)" +
             "&api_key=\(apiKey)" +

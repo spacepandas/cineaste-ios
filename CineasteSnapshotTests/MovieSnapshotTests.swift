@@ -14,7 +14,6 @@ class MovieSnapshotTests: XCTestCase {
 
     func testCURLForSearch() throws {
         // Given
-        Current.date = { Date(timeIntervalSince1970: 1_609_162_343) }
         Current.locale = Locale(identifier: "en-US")
         let resource = Movie.search(withQuery: "query", page: 0)
 
@@ -27,6 +26,7 @@ class MovieSnapshotTests: XCTestCase {
 
     func testCURLForLatestReleases() throws {
         // Given
+        Current.date = { Date(timeIntervalSince1970: 1_609_162_343) }
         Current.locale = Locale(identifier: "en-US")
         let resource = Movie.latestReleases(page: 0)
 
