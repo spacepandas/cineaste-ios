@@ -44,11 +44,18 @@ class ImporterTests: XCTestCase {
                 actions.append(action)
             }
         }
+        let exp = XCTestExpectation(description: "Waiting for movies to import")
 
         // When
-        XCTAssertThrowsError(try Importer.importMovies(from: urlToFailingImport))
+        var error: ImportError?
+        Importer.importMovies(from: urlToFailingImport) { result in
+            error = result.error
+            exp.fulfill()
+        }
 
         // Then
+        wait(for: [exp], timeout: 5)
+        XCTAssertNotNil(error)
         XCTAssertEqual(actions.count, 0)
     }
 }
@@ -68,11 +75,17 @@ extension ImporterTests {
                 actions.append(action)
             }
         }
+        let exp = XCTestExpectation(description: "Waiting for movies to import")
 
         // When
-        let amountOfImportedMovies = try Importer.importMovies(from: urlToImport)
+        var amountOfImportedMovies: Int?
+        Importer.importMovies(from: urlToImport) { result in
+            amountOfImportedMovies = result.value!
+            exp.fulfill()
+        }
 
         // Then
+        wait(for: [exp], timeout: 5)
         XCTAssertEqual(amountOfImportedMovies, expectedNumberOfMovies)
         XCTAssertEqual(actions.count, expectedNumberOfMovies * 2)
 
@@ -89,6 +102,26 @@ extension ImporterTests {
             XCTAssert(
                 String(describing: action).starts(with: beginningOfAction)
             )
+        }
+    }
+}
+
+extension Result {
+    var value: Success? {
+        switch self {
+        case .success(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+
+    var error: Failure? {
+        switch self {
+        case .failure(let error):
+            return error
+        default:
+            return nil
         }
     }
 }

@@ -14,13 +14,19 @@ enum ImportError: Error {
 }
 
 enum Importer {
-    static func importMovies(from url: URL) throws -> Int {
+    static func importMovies(from url: URL, completion: @escaping ((Result<Int, ImportError>) -> Void)) {
         guard let data = try? Data(contentsOf: url, options: [])
-            else { throw ImportError.noDataAtPath }
+        else {
+            completion(.failure(ImportError.noDataAtPath))
+            return
+        }
 
         guard let importExportObject = try? JSONDecoder()
-            .decode(ImportExportObject.self, from: data)
-            else { throw ImportError.parsingJsonToImportExport }
+                .decode(ImportExportObject.self, from: data)
+        else {
+            completion(.failure(ImportError.parsingJsonToImportExport))
+            return
+        }
 
         let moviesToImport = importExportObject.movies
         for movie in moviesToImport {
@@ -28,8 +34,8 @@ enum Importer {
         }
 
         // update all imported movies
-        MovieRefresher.refresh(movies: Array(moviesToImport))
-
-        return moviesToImport.count
+        MovieRefresher.refresh(movies: Array(moviesToImport)) {
+            completion(.success(moviesToImport.count))
+        }
     }
 }
