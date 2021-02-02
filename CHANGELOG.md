@@ -10,6 +10,7 @@
 
 ## Improved
 * Refresh all Movies after Import to make sure all posters are visible
+* Improve width of text in Detail and More to make the text more readable on large devices
 
 # 1.24.2
 

@@ -67,11 +67,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-XA-M1C">
                                                 <rect key="frame" x="0.0" y="537.5" width="414" height="422.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-v7-x6n">
                                                         <rect key="frame" x="20" y="20" width="374" height="382.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-vC-dyb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="230" height="69.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="69.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.releaseDateAndRuntime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-pl-gqc" customClass="DescriptionLabel" customModule="Cineaste_App" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="230" height="20.5"/>
@@ -93,10 +93,10 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-mi-hDX">
-                                                                <rect key="frame" x="0.0" y="85.5" width="127" height="50.5"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-mi-hDX">
+                                                                <rect key="frame" x="0.0" y="85.5" width="374" height="50.5"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-dL-Xho" customClass="LinkButton" customModule="Cineaste_App" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
                                                                         <state key="normal" title="detail.trailerButton"/>
                                                                         <connections>
@@ -104,7 +104,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail.buttonInfo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqk-di-L0I" customClass="FootnoteLabel" customModule="Cineaste_App" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="30" width="127" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="30" width="125" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -122,16 +122,14 @@
                                                                 </connections>
                                                             </segmentedControl>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2y-N4-pSw" customClass="DescriptionTextView" customModule="Cineaste_App" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="199" width="372.5" height="183.5"/>
+                                                                <rect key="frame" x="0.0" y="199" width="374" height="183.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="8ZH-5d-sun" firstAttribute="width" secondItem="fS9-v7-x6n" secondAttribute="width" id="G8e-gx-cWZ"/>
-                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
