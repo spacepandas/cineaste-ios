@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Refresh all Movies after Import to make sure all posters are visible
 
 # 1.24.2
 

@@ -73,7 +73,22 @@ extension ImporterTests {
         let amountOfImportedMovies = try Importer.importMovies(from: urlToImport)
 
         // Then
-        XCTAssertEqual(actions.count, expectedNumberOfMovies)
         XCTAssertEqual(amountOfImportedMovies, expectedNumberOfMovies)
+        XCTAssertEqual(actions.count, expectedNumberOfMovies * 2)
+
+        // because it's irrelevant what movie is included in the action,
+        // we just check the start of the string which describes the action
+        for (index, action) in actions.enumerated() {
+
+            // the first half of actions is a "add movie action",
+            // the second half is a "update movie action"
+            let beginningOfAction = index < actions.count / 2
+                ? "add(movie: Cineaste_App.Movie("
+                : "update(movie: Cineaste_App.Movie("
+
+            XCTAssert(
+                String(describing: action).starts(with: beginningOfAction)
+            )
+        }
     }
 }

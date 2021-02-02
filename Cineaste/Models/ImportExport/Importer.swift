@@ -22,10 +22,14 @@ enum Importer {
             .decode(ImportExportObject.self, from: data)
             else { throw ImportError.parsingJsonToImportExport }
 
-        for movie in importExportObject.movies {
+        let moviesToImport = importExportObject.movies
+        for movie in moviesToImport {
             store.dispatch(MovieAction.add(movie: movie))
         }
 
-        return importExportObject.movies.count
+        // update all imported movies
+        MovieRefresher.refresh(movies: Array(moviesToImport))
+
+        return moviesToImport.count
     }
 }
