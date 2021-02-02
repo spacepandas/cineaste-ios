@@ -3,10 +3,18 @@
 # Upcoming Release
 
 ## New
-* Show App Version in Settings App
+* 
 
 ## Fixed
 * 
+
+## Improved
+* 
+
+# 1.24.3
+
+## New
+* Show App Version in Settings App
 
 ## Improved
 * Refresh all Movies after Import to make sure all posters are visible
