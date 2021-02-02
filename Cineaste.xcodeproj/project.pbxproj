@@ -1146,10 +1146,11 @@
 			buildPhases = (
 				3F5AF263218F80F8006717DC /* Check API Keys */,
 				3F9C0A1B23C92ECA00CDB993 /* Swift Lint */,
-				3F48A7A3257CDFD900956F2E /* Generate Settings.bundle */,
 				3FF790E520DE274A007B7D37 /* Sources */,
 				3FF7912220DE274A007B7D37 /* Frameworks */,
 				3FF7912420DE274A007B7D37 /* Resources */,
+				3F31164B25C5CC980045FCCF /* Set version number in Settings.bundle */,
+				3F48A7A3257CDFD900956F2E /* Update Acknowledgements in Settings.bundle */,
 				3F492E7B24F250C900016B2A /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -1307,7 +1308,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F48A7A3257CDFD900956F2E /* Generate Settings.bundle */ = {
+		3F31164B25C5CC980045FCCF /* Set version number in Settings.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1316,7 +1317,25 @@
 			);
 			inputPaths = (
 			);
-			name = "Generate Settings.bundle";
+			name = "Set version number in Settings.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nvalue=\"$version ($build)\"\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:0:DefaultValue $value\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n";
+		};
+		3F48A7A3257CDFD900956F2E /* Update Acknowledgements in Settings.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Acknowledgements in Settings.bundle";
 			outputFileListPaths = (
 			);
 			outputPaths = (

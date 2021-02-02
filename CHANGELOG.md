@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Show App Version in Settings App
 
 ## Fixed
 * 
