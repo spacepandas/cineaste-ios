@@ -47,7 +47,15 @@ extension SettingsViewController {
             )
 
             let email = UIAlertAction(title: "\(String.emailTo) \(Constants.emailAddress)", style: .default) { _ in
-                if MFMailComposeViewController.canSendMail() {
+
+                if #available(iOS 14.0, *),
+                   let url = URL(string: "mailto:\(Constants.emailAddress)"),
+                   UIApplication.shared.canOpenURL(url) {
+                    /// this respects iOS 14 default mail app settings
+                    /// and opens the default app
+                    UIApplication.shared.open(url, options: [.universalLinksOnly: false])
+                } else if MFMailComposeViewController.canSendMail() {
+                    /// this opens the "Mail" app, if an account is configured
                     let mailComposeVC = MFMailComposeViewController()
                     mailComposeVC.mailComposeDelegate = self
                     mailComposeVC.setSubject("Cineaste iOS || \(String.versionText): \(Constants.versionNumberInformation)")
@@ -55,6 +63,8 @@ extension SettingsViewController {
 
                     self.present(mailComposeVC, animated: true)
                 } else {
+                    /// this copies the email address to pasteboard
+                    /// and user can decide what to do
                     let pasteBoard = UIPasteboard.general
                     pasteBoard.string = Constants.emailAddress
 

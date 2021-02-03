@@ -10,6 +10,7 @@
 
 ## Improved
 * Show Progress in Alert during Import
+* Respect default Mail app of user to send mail (only >iOS 14)
 
 # 1.24.3
 
