@@ -9,7 +9,7 @@
 import Foundation
 
 enum MovieRefresher {
-    static func refresh(movies: [Movie], completionHandler: (() -> Void)? = nil) {
+    static func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
         let group = DispatchGroup()
 
         for movieToUpdate in movies {
@@ -31,7 +31,7 @@ enum MovieRefresher {
 
         group.wait()
         DispatchQueue.main.async {
-            completionHandler?()
+            completionHandler()
         }
     }
 }
