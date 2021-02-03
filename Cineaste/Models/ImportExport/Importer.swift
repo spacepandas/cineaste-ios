@@ -33,7 +33,7 @@ enum Importer {
             store.dispatch(MovieAction.add(movie: movie))
         }
 
-        // update all imported movies
+        // update all imported movies asynchronously
         MovieRefresher.refresh(movies: Array(moviesToImport)) {
             completion(.success(moviesToImport.count))
         }
