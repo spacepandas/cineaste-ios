@@ -124,6 +124,11 @@ extension String {
         return movies + " " + importString
     }
 
+    static func importProgressMessage(with progressDescription: String) -> String {
+        let importString = NSLocalizedString("importProgress", comment: "Message for movie import succeeded alert")
+        return progressDescription + " " + importString
+    }
+
     static let importFailedMessage = NSLocalizedString("importFailed", comment: "Message for import failed alert")
 
     // export

@@ -13,8 +13,13 @@ enum ImportError: Error {
     case parsingJsonToImportExport
 }
 
+struct ImportResult {
+    let progress: NSNumber
+    let numberOfMovies: Int
+}
+
 enum Importer {
-    static func importMovies(from url: URL, completion: @escaping ((Result<Int, ImportError>) -> Void)) {
+    static func importMovies(from url: URL, completion: @escaping ((Result<ImportResult, ImportError>) -> Void)) {
         guard let data = try? Data(contentsOf: url, options: [])
         else {
             completion(.failure(ImportError.noDataAtPath))
@@ -33,9 +38,9 @@ enum Importer {
             store.dispatch(MovieAction.add(movie: movie))
         }
 
-        // update all imported movies asynchronously
-        MovieRefresher.refresh(movies: Array(moviesToImport)) {
-            completion(.success(moviesToImport.count))
+        MovieRefresher.refresh(movies: Array(moviesToImport)) { progress in
+            let result = ImportResult(progress: progress, numberOfMovies: moviesToImport.count)
+            completion(.success(result))
         }
     }
 }

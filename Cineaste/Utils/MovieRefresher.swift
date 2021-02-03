@@ -9,29 +9,24 @@
 import Foundation
 
 enum MovieRefresher {
-    static func refresh(movies: [Movie], completionHandler: @escaping () -> Void) {
-        let group = DispatchGroup()
-
-        for movieToUpdate in movies {
-            group.enter()
+    static func refresh(movies: [Movie], completionHandler: @escaping (_ progress: NSNumber) -> Void) {
+        for (index, movieToUpdate) in movies.enumerated() {
             let networkMovie = Movie(id: movieToUpdate.id)
 
             Webservice.load(resource: networkMovie.get) { result in
-                switch result {
-                case .success(let movie):
-                    var updatedMovie = movieToUpdate
-                    updatedMovie.update(withNew: movie)
-                    store.dispatch(MovieAction.update(movie: updatedMovie))
-                    group.leave()
-                case .failure:
-                    group.leave()
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let movie):
+                        var updatedMovie = movieToUpdate
+                        updatedMovie.update(withNew: movie)
+                        store.dispatch(MovieAction.update(movie: updatedMovie))
+                    case .failure:
+                        break
+                    }
+                    let progress = NSNumber(value: Double(index + 1) / Double(movies.count))
+                    completionHandler(progress)
                 }
             }
-        }
-
-        group.wait()
-        DispatchQueue.main.async {
-            completionHandler()
         }
     }
 }

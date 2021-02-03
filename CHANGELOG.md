@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Show Progress in Alert during Import
 
 # 1.24.3
 

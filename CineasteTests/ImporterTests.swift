@@ -74,7 +74,7 @@ extension ImporterTests {
         // When
         var amountOfImportedMovies: Int?
         Importer.importMovies(from: urlToImport) { result in
-            amountOfImportedMovies = result.value
+            amountOfImportedMovies = result.value?.numberOfMovies
             exp.fulfill()
         }
 
