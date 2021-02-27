@@ -33,7 +33,7 @@ A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/
 
 ### How to build
 
-1. Open `Cineaste.xcodeproj` in Xcode 11.
+1. Open `Cineaste.xcodeproj` in Xcode.
 2. Get a [theMovieDb][theMovieDb] key and add it to the ApiKeys data set in the asset catalog under the following path: `Cineaste/Keys.xcassets/ApiKeys.dataset/apikey.plist`.
 
 ```xml 
