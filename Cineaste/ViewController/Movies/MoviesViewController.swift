@@ -96,7 +96,7 @@ class MoviesViewController: UITableViewController {
     func refreshMovies() {
         MovieRefresher.refresh(movies: movies) { progress in
             if progress == 1 {
-            	self.tableView.refreshControl?.endRefreshing()
+                self.tableView.refreshControl?.endRefreshing()
             }
         }
     }
