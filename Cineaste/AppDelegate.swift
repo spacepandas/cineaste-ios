@@ -98,6 +98,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if arguments.contains("SKIP_ANIMATIONS") {
             UIView.setAnimationsEnabled(false)
         }
+
+        if arguments.contains("UI_TEST_DARK_MODE"),
+           #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .dark
+        }
+
         #endif
     }
 
