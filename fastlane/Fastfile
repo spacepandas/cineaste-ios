@@ -12,10 +12,13 @@ Scheme_UITests = 'UITests'
 
 Test_Device = 'iPhone 8'
 Test_Devices = [
-  'iPhone SE',
+  'iPhone SE (2nd generation)',
   'iPhone 8 Plus',
   'iPhone 11 Pro',
-  'iPad Pro (9.7-inch)'
+  'iPhone 11 Pro Max',
+  'iPad Pro (9.7-inch)',
+  'iPad Pro (11-inch) (2nd generation)',
+  'iPad Pro (12.9-inch) (4th generation)'
 ]
 Test_Language = 'en-US'
 Test_Languages = [
@@ -29,7 +32,7 @@ $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
 skip_docs
 
-desc 'Runs all unit tests'
+desc 'Run all unit tests'
 lane :test do
   run_tests(
     code_coverage: true,
@@ -38,7 +41,7 @@ lane :test do
   )
 end
 
-desc 'Runs all snapshot tests'
+desc 'Run all snapshot tests'
 lane :snapshot_test do
   run_tests(
     device: Test_Device,
@@ -46,7 +49,7 @@ lane :snapshot_test do
   )
 end
 
-desc 'Runs all UI tests'
+desc 'Run all UI tests'
 lane :ui_test do
   run_tests(
     device: Test_Device,
@@ -54,20 +57,19 @@ lane :ui_test do
   )
 end
 
-desc 'Make screenshots of app'
+desc 'Make screenshots of app for AppStore Connect'
 lane :screenshots do
   run_tests(
     clean: true,
     build_for_testing: true,
     derived_data_path: DerivedDataPath,
-    scheme: Scheme
+    scheme: Scheme_UITests
   )
 
   capture_ios_screenshots(
     app_identifier: AppIdentifier,
     clear_previous_screenshots: true,
     configuration: 'Debug',
-    dark_mode: false,
     derived_data_path: DerivedDataPath,
     devices: Test_Devices,
     languages: Test_Languages, 
@@ -86,23 +88,23 @@ lane :screenshots do
   )
 end
 
-desc 'Frame Screenshots for README'
-lane :frame do
-  capture_ios_screenshots(
-    app_identifier: AppIdentifier,
-    configuration: 'Debug',
-    devices: [ "iPhone 11 Pro" ],
-    languages: [ "en_US" ],
-    output_directory: "#{Target_Folder_Name}/assets",
-    override_status_bar: true,
-    scheme: Scheme_UITests,
-    skip_open_summary: true,
-    stop_after_first_error: true
-  )
-  frame_screenshots(
-    path: "#{Target_Folder_Name}/assets"
-  )
-end
+# desc 'Make framed screenshots for one device'
+# lane :frame do
+#   capture_ios_screenshots(
+#     app_identifier: AppIdentifier,
+#     configuration: 'Debug',
+#     devices: Test_Devices,
+#     languages: [ Test_Language ],
+#     output_directory: "#{Target_Folder_Name}/assets",
+#     override_status_bar: true,
+#     scheme: Scheme_UITests,
+#     skip_open_summary: true,
+#     stop_after_first_error: true
+#   )
+#   frame_screenshots(
+#     path: "#{Target_Folder_Name}/assets"
+#   )
+# end
 
 def buildApp
   time_string = Time.new.strftime('%Y.%m.%d')
