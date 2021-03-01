@@ -1,4 +1,4 @@
-<p align="center"><a href="https://itunes.apple.com/us/app/cineaste-app/id1402748020"><img src="assets/logo.png" width="250" /></a></p>
+<p align="center"><a href="https://itunes.apple.com/us/app/cineaste-app/id1402748020"><img alt='Cineaste App Logo' src="assets/logo.png" width="250" /></a></p>
 
 <p align="center"><a href="https://itunes.apple.com/us/app/cineaste-app/id1402748020"><img alt='Download on the App Store' src="https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg" width="150" /></a></p>
 
@@ -18,7 +18,7 @@ Cineaste App is an iOS application to add movies to your watchlist, remember mov
 - Use in Dark or Light Mode
 - Support for many Accessibility Features, like Voice Over, Dynamic Type, Increase Contrast
 
-![presentation][]
+!["A collage of different screens of the app representing different features"][presentation]
 
 ## Dependencies
 
@@ -62,4 +62,4 @@ Cineaste App is released under the **Apache License**. Please see the [LICENSE](
 
 [theMovieDb]: https://www.themoviedb.org/
 [Kingfisher]: https://github.com/onevcat/Kingfisher
-[presentation]: /assets/presentation.jpg
+[presentation]: /assets/presentation.jpg "App Presentation"
