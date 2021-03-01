@@ -11,14 +11,14 @@
 [![languages](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)](https://img.shields.io/badge/languages-en,_de-lightgrey.svg)
 [![testflight](https://img.shields.io/badge/Join-TestFlight-blue.svg)](https://testflight.apple.com/join/sAfD3j8m)
 
-Cineaste App is an iOS application to manage movies you would like to see and movies you have seen.
+Cineaste App is an iOS application to add movies to your watchlist, remember movies you have seen and discover new movies you find interesting.
 
-## Screenshots
+![presentation][]
 
-| Movie Detail      | Search      | Watchlist      | History   |
-|:-----------------:|:-----------:|:--------------:|:---------:|
-| All the information you need | Discover new movies | Add movies you want to see to your watchlist | Remember movies you have seen |
-| ![movie-detail][] | ![search][] | ![watchlist][] | ![seen][] |
+- Support for all device sizes and device rotation
+- Add Countdown Widgets to your home screen
+- Use in Dark or Light Mode
+- Support for many Accessibility Features, like Voice Over, Dynamic Type, Increase Contrast
 
 ## Dependencies
 
@@ -62,8 +62,4 @@ Cineaste App is released under the **Apache License**. Please see the [LICENSE](
 
 [theMovieDb]: https://www.themoviedb.org/
 [Kingfisher]: https://github.com/onevcat/Kingfisher
-[movie-detail]: /assets/iPhone%2011%20Pro-01_watchlist_detail_framed.png
-[search]: /assets/iPhone%2011%20Pro-02_search_framed.png
-[watchlist]: /assets/iPhone%2011%20Pro-03_watchlist_framed.png
-[seen]: /assets/iPhone%2011%20Pro-04_seenList_framed.png
-[movie-night]: /assets/iPhone%2011%20Pro-05_startMovieNight_friendsFound_framed.png
+[presentation]: /assets/presentation.jpg
