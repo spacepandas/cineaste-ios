@@ -13,12 +13,12 @@
 
 Cineaste App is an iOS application to add movies to your watchlist, remember movies you have seen and discover new movies you find interesting.
 
-![presentation][]
-
 - Support for all device sizes and device rotation
 - Add Countdown Widgets to your home screen
 - Use in Dark or Light Mode
 - Support for many Accessibility Features, like Voice Over, Dynamic Type, Increase Contrast
+
+![presentation][]
 
 ## Dependencies
 
