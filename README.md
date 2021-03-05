@@ -24,7 +24,22 @@ Cineaste App is an iOS application to add movies to your watchlist, remember mov
 
 We are using [theMovieDb][theMovieDb] to get access to the big movie data universe.
 
-A list of all dependencies can be found in [DEPENDENCIES.md](https://github.com/spacepandas/cineaste-ios/blob/master/DEPENDENCIES.md).
+The following Apple Frameworks are used:
+
+- CoreData (only for migrating core data to json persistence)
+- CoreSpotlight and MobileCoreServices (to open movies from spotlight search)
+- Dispatch (to use GCD)
+- Foundation 
+- Intents (to make home screen widgets configurable)
+- MessageUI (to send feedback mails)
+- SwiftUI
+- StoreKit (to ask for AppStore reviews)
+- SafariServices (to show SFSafariVC)
+- UIKit
+- WidgetKit (to implement home screen widgets)
+- XCTest
+
+A list of all third party dependencies can be found in [DEPENDENCIES.md](https://github.com/spacepandas/cineaste-ios/blob/master/DEPENDENCIES.md).
 
 ## Contribute
 
