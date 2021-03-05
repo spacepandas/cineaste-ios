@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 extension String {
     /// Returns the current region in ISO 3166-1 Format. E.g when current locale is "en_US", it returns "US".
     static var regionIso31661: String {

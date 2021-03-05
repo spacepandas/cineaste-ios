@@ -7,7 +7,6 @@
 //
 
 import Intents
-import Foundation
 
 @available(iOSApplicationExtension 14.0, *)
 class IntentHandler: INExtension, DynamicMovieSelectionIntentHandling {

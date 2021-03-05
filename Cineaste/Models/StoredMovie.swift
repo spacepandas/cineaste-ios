@@ -6,7 +6,6 @@
 //  Copyright © 2017 notimeforthat.org. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
 @available(*, deprecated, message: "Don't use Core Data")

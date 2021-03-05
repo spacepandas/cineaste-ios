@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class SettingsDetailViewController: UIViewController {
     @IBOutlet weak var settingsDetailTextView: DescriptionTextView!

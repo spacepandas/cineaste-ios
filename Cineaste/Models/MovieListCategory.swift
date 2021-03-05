@@ -6,7 +6,7 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum MovieListCategory: String {
     case watchlist

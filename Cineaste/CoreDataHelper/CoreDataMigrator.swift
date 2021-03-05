@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import UIKit
 
 @available(*, deprecated, message: "Don't use Core Data")
 struct CoreDataMigrator {

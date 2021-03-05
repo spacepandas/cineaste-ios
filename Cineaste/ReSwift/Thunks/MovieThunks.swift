@@ -6,7 +6,7 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
-import Foundation
+import Dispatch
 import ReSwift_Thunk
 
 func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {

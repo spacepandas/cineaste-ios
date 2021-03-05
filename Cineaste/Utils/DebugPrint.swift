@@ -6,8 +6,6 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
-import Foundation
-
 func releasePrint(_ object: Any) {
     Swift.print(object)
 }

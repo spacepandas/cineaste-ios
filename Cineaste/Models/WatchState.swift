@@ -6,8 +6,6 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
-import UIKit
-
 enum WatchState {
     case undefined
     case seen

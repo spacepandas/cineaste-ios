@@ -6,7 +6,7 @@
 //  Copyright notimeforthat.org. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct Movie: Equatable {
     let id: Int64

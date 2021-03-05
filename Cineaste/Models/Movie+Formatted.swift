@@ -6,8 +6,6 @@
 //  Copyright © 2018 notimeforthat.org. All rights reserved.
 //
 
-import Foundation
-
 extension Movie {
     var formattedVoteAverage: String {
         guard voteCount != 0 && voteAverage != 0 else {

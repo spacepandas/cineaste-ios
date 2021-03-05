@@ -6,7 +6,6 @@
 //  Copyright © 2020 spacepandas.de. All rights reserved.
 //
 
-import Foundation
 import Kingfisher
 
 extension AppGroup {

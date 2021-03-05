@@ -8,7 +8,6 @@
 
 import UIKit
 import ReSwift
-import SafariServices
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var detailScrollView: UIScrollView!

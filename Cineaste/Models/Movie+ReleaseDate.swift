@@ -6,8 +6,6 @@
 //  Copyright © 2020 spacepandas.de. All rights reserved.
 //
 
-import Foundation
-
 extension Movie {
     var soonAvailable: Bool {
         guard let release = releaseDate, release > Current.date() else {

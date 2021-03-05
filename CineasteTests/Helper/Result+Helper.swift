@@ -6,8 +6,6 @@
 //  Copyright © 2021 spacepandas.de. All rights reserved.
 //
 
-import Foundation
-
 extension Result {
     var value: Success? {
         switch self {
