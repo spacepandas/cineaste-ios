@@ -6,6 +6,7 @@
 //  Copyright © 2019 spacepandas.de. All rights reserved.
 //
 
+import Foundation
 @testable import Cineaste_App
 
 extension Movie {
