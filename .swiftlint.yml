@@ -47,6 +47,7 @@ opt_in_rules:
   - multiline_literal_brackets
   - multiline_parameters_brackets
   - multiline_arguments_brackets
+  - unused_import
 
 disabled_rules:
   - implicit_getter

@@ -6,7 +6,6 @@
 //  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
-import Foundation
 import MessageUI
 
 extension SettingsViewController: MFMailComposeViewControllerDelegate {
