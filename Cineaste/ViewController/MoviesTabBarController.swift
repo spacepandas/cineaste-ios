@@ -15,6 +15,53 @@ class MoviesTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 13.0, *) {
+            // TabBarItem configuration for iOS 13+
+            let tabBarItemAppearance = UITabBarItemAppearance()
+            tabBarItemAppearance.selected.titleTextAttributes = [
+                .foregroundColor: UIColor.cineTabBarSelected
+            ]
+            tabBarItemAppearance.selected.iconColor = .cineTabBarSelected
+            tabBarItemAppearance.normal.titleTextAttributes = [
+                .foregroundColor: UIColor.cineTabBarNormal
+            ]
+            tabBarItemAppearance.normal.iconColor = .cineTabBarNormal
+
+            // TabBar configuration for iOS 13+
+            let appearance = UITabBarAppearance()
+            appearance.backgroundColor = .cineTabBar
+            appearance.inlineLayoutAppearance = tabBarItemAppearance
+            appearance.stackedLayoutAppearance = tabBarItemAppearance
+            appearance.compactInlineLayoutAppearance = tabBarItemAppearance
+            tabBar.standardAppearance = appearance
+
+//            if #available(iOS 15.0, *) {
+//                tabBar.scrollEdgeAppearance = appearance
+//            }
+        } else {
+            // TabBarItem configuration for iOS 12
+            let tabBarItem = UITabBarItem.appearance()
+            tabBarItem.setTitleTextAttributes(
+                [
+                    .foregroundColor: UIColor.cineTabBarSelected
+                ],
+                for: .selected
+            )
+            tabBarItem.setTitleTextAttributes(
+                [
+                    .foregroundColor: UIColor.cineTabBarNormal
+                ],
+                for: .normal
+            )
+
+            // TabBar configuration for iOS 12
+            let tabBar = UITabBar.appearance()
+            tabBar.isTranslucent = false
+            tabBar.tintColor = .cineTabBarSelected
+            tabBar.barTintColor = .cineTabBar
+            tabBar.unselectedItemTintColor = .cineTabBarNormal
+        }
+
         delegate = self
 
         let watchlistVC = MoviesViewController.instantiate()
