@@ -45,6 +45,9 @@ class MoviesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        edgesForExtendedLayout = .top
+        extendedLayoutIncludesOpaqueBars = true
+
         view.backgroundColor = UIColor.cineListBackground
 
         registerForPreviewing(with: self, sourceView: tableView)
