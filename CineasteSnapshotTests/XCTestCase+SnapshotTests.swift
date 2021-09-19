@@ -125,10 +125,10 @@ func assertThemedLandscapeViewControllerSnapshot(
 
 private func enforceSnapshotDevice() {
     let is2xDevice = UIScreen.main.scale == 2
-    let isVersion14 = ProcessInfo().operatingSystemVersion.majorVersion == 14
+    let isVersion15 = ProcessInfo().operatingSystemVersion.majorVersion == 15
 
-    guard is2xDevice, isVersion14 else {
-        fatalError("Running device should have @2x screen scale and iOS14.")
+    guard is2xDevice, isVersion15 else {
+        fatalError("Running device should have @2x screen scale (like iPhone 8) and iOS15.")
     }
 }
 

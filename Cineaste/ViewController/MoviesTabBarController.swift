@@ -35,9 +35,9 @@ class MoviesTabBarController: UITabBarController {
             appearance.compactInlineLayoutAppearance = tabBarItemAppearance
             tabBar.standardAppearance = appearance
 
-//            if #available(iOS 15.0, *) {
-//                tabBar.scrollEdgeAppearance = appearance
-//            }
+            if #available(iOS 15.0, *) {
+                tabBar.scrollEdgeAppearance = appearance
+            }
         } else {
             // TabBarItem configuration for iOS 12
             let tabBarItem = UITabBarItem.appearance()
