@@ -9,8 +9,14 @@
 * 
 
 ## Improved
+* 
+
+# 1.25.0
+
+## Improved
 * Show Progress in Alert during Import
 * Respect default Mail app of user to send mail (only >iOS 14)
+* Prepare App for iOS 15 (Fix TabBar Styling and Launch Screen Styling)
 
 # 1.24.3
 
