@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KcC-HO-gni">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,24 +12,34 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-N8-1DR">
-                                <rect key="frame" x="0.0" y="641" width="375" height="83"/>
+                                <rect key="frame" x="0.0" y="729" width="375" height="83"/>
                                 <items/>
                                 <color key="tintColor" name="tabBarSelected"/>
                                 <color key="barTintColor" name="tabBar"/>
                             </tabBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyp-JU-UeU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                                <color key="backgroundColor" name="navBar"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="EXc-PM-7kA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="listBackground"/>
                         <constraints>
                             <constraint firstItem="DXo-N8-1DR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="LwQ-Zc-nce"/>
+                            <constraint firstItem="xyp-JU-UeU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MVY-MM-Spx"/>
                             <constraint firstAttribute="bottom" secondItem="DXo-N8-1DR" secondAttribute="bottom" id="VWy-T5-uRd"/>
+                            <constraint firstAttribute="trailing" secondItem="xyp-JU-UeU" secondAttribute="trailing" id="dPi-52-c8h"/>
                             <constraint firstAttribute="trailing" secondItem="DXo-N8-1DR" secondAttribute="trailing" id="j4K-AH-aJx"/>
+                            <constraint firstItem="xyp-JU-UeU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="vCu-Ov-hKg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7ml-tE-vPp"/>
@@ -37,26 +47,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1933.5999999999999" y="374.6305418719212"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="yzb-IC-Aqm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KcC-HO-gni" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="DAI-h8-rlK">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="navBar"/>
-                        <color key="barTintColor" name="navBar"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="01J-lp-oVM" kind="relationship" relationship="rootViewController" id="tee-BT-pnp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Lz-YD-DTe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="991.20000000000005" y="374.6305418719212"/>
         </scene>
     </scenes>
     <resources>
