@@ -57,58 +57,6 @@ class PosterViewController: UIViewController {
         )
     }
 
-    @objc
-    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        guard scrollView.zoomScale == 1 else { return }
-
-        let translation = recognizer.translation(in: imageView)
-
-        switch recognizer.state {
-        case .began:
-            originalPosition = imageView.center
-        case .changed:
-            imageView.frame.origin = CGPoint(x: 0, y: translation.y)
-
-            let halfImageHeight = imageView.bounds.height / 2
-            let alpha = abs(halfImageHeight - imageView.center.y) / halfImageHeight
-            blurredBackgroundImage.alpha = 1 - alpha
-            backgroundView.alpha = 1 - alpha
-        case .ended:
-            let minimumVelocity = 1_500 as CGFloat
-            let minimumScreenRatio = 0.1 as CGFloat
-            let animationDuration = 0.2
-
-            let velocity = recognizer.velocity(in: imageView)
-
-            let isFastEnoughToDismiss = velocity.y > minimumVelocity
-            let isMovedEnoughToDismiss =
-                abs(translation.y) > view.frame.size.height * minimumScreenRatio
-
-            if isFastEnoughToDismiss || isMovedEnoughToDismiss {
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.imageView.frame.origin = CGPoint(
-                        x: self.imageView.frame.origin.x,
-                        y: self.imageView.frame.size.height
-                    )
-                    self.blurredBackgroundImage.alpha = 0
-                    self.backgroundView.alpha = 0
-                }, completion: { _ in
-                    self.dismiss(animated: false)
-                })
-            } else {
-                guard let position = originalPosition else { return }
-
-                UIView.animate(withDuration: animationDuration) {
-                    self.imageView.center = position
-                    self.blurredBackgroundImage.alpha = 1
-                    self.backgroundView.alpha = 1
-                }
-            }
-        default:
-            break
-        }
-    }
-
     // MARK: Custom Functions
 
     private func configureElements() {
@@ -154,16 +102,6 @@ class PosterViewController: UIViewController {
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.delegate = self
         scrollView.addGestureRecognizer(doubleTapGestureRecognizer)
-
-        if #available(iOS 13.0, *) {} else {
-            let panGestureRecognizer = UIPanGestureRecognizer(
-                target: self,
-                action: #selector(handlePanGesture(recognizer:))
-            )
-            panGestureRecognizer.maximumNumberOfTouches = 1
-            panGestureRecognizer.delegate = self
-            scrollView.addGestureRecognizer(panGestureRecognizer)
-        }
     }
 
     private func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {

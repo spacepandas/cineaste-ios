@@ -3,7 +3,7 @@
 # Upcoming Release
 
 ## New
-* 
+* Drop support for iOS 12
 
 ## Fixed
 * 

@@ -8,29 +8,6 @@
 
 import UIKit
 
-extension SearchMoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-
-        guard let path = tableView.indexPathForRow(at: location),
-            let cell = tableView.cellForRow(at: path)
-            else { return nil }
-
-        previewingContext.sourceRect = cell.frame
-
-        store.dispatch(SelectionAction.select(movie: movies[path.row]))
-        return MovieDetailViewController.instantiate()
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-
-        navigationController?.pushViewController(
-            viewControllerToCommit,
-            animated: true
-        )
-    }
-}
-
-@available(iOS 13.0, *)
 extension SearchMoviesViewController {
     func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         guard let indexPath = configuration.identifier as? IndexPath

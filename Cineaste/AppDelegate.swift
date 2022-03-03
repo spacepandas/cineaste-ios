@@ -99,8 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIView.setAnimationsEnabled(false)
         }
 
-        if arguments.contains("UI_TEST_DARK_MODE"),
-           #available(iOS 13.0, *) {
+        if arguments.contains("UI_TEST_DARK_MODE") {
             window?.overrideUserInterfaceStyle = .dark
         }
 

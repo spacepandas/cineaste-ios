@@ -8,24 +8,42 @@
 
 import UIKit
 
-extension MoviesViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+extension MoviesViewController {
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let indexPath = configuration.identifier as? IndexPath
+        else { return }
+        let id = indexPath.row
+        let movie = filteredMovies[id]
 
-        guard let path = tableView.indexPathForRow(at: location),
-            let cell = tableView.cellForRow(at: path)
-            else { return nil }
-
-        previewingContext.sourceRect = cell.frame
-
-        store.dispatch(SelectionAction.select(movie: filteredMovies[path.row]))
-        return MovieDetailViewController.instantiate()
+        animator.addCompletion {
+            store.dispatch(SelectionAction.select(movie: movie))
+            let detailVC = MovieDetailViewController.instantiate()
+            detailVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let movie = filteredMovies[indexPath.row]
 
-        navigationController?.pushViewController(
-            viewControllerToCommit,
-            animated: true
+        let configuration = UIContextMenuConfiguration(
+            identifier: indexPath as NSCopying,
+            previewProvider: {
+                store.dispatch(SelectionAction.select(movie: movie))
+                let detailVC = MovieDetailViewController.instantiate()
+                detailVC.hidesBottomBarWhenPushed = true
+                return detailVC
+            }, actionProvider: { _ in
+                let cell = tableView.cellForRow(at: indexPath) ?? UITableViewCell()
+                let actions = ContextMenu.actions(
+                    for: movie,
+                    presenter: self,
+                    sourceView: cell.contentView
+                )
+                return UIMenu(title: "", image: nil, identifier: nil, children: actions)
+            }
         )
+
+        return configuration
     }
 }

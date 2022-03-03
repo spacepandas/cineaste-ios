@@ -91,8 +91,6 @@ class SearchMoviesViewController: UIViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.accessibilityIdentifier = "Search.NavigationBar"
-
-        registerForPreviewing(with: self, sourceView: tableView)
     }
 
     private func configureTableViewController() {

@@ -28,21 +28,16 @@ class NavigationController: UINavigationController {
             .foregroundColor: UIColor.cineNavBarTitle
         ]
 
-        if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithDefaultBackground()
-            navBarAppearance.backgroundColor = .cineNavBar
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithDefaultBackground()
+        navBarAppearance.backgroundColor = .cineNavBar
 
-            navBarAppearance.titleTextAttributes = titleTextAttributes
-            navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes
+        navBarAppearance.titleTextAttributes = titleTextAttributes
+        navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes
 
-            navigationBar.standardAppearance = navBarAppearance
-            navigationBar.compactAppearance = navBarAppearance
-            navigationBar.scrollEdgeAppearance = navBarAppearance
-        } else {
-            navigationBar.titleTextAttributes = titleTextAttributes
-            navigationBar.largeTitleTextAttributes = largeTitleTextAttributes
-        }
+        navigationBar.standardAppearance = navBarAppearance
+        navigationBar.compactAppearance = navBarAppearance
+        navigationBar.scrollEdgeAppearance = navBarAppearance
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

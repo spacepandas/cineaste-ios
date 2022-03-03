@@ -63,14 +63,4 @@ enum SettingItem: CaseIterable {
             return nil
         }
     }
-
-    // Setting "Change Language" is not available pre iOS 13
-    static let allCasesForPreIOS13: [SettingItem] = [
-        .about,
-        .licence,
-        .exportMovies,
-        .importMovies,
-        .contact,
-        .appStore
-    ]
 }

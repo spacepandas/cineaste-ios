@@ -14,7 +14,6 @@ enum ContextMenu {
     case moveToWatchlist(Movie)
     case moveToSeen(Movie)
 
-    @available(iOS 13.0, *)
     var action: UIAction {
         switch self {
         case .share(let movie, let presenter, let sourceView):
@@ -53,7 +52,6 @@ enum ContextMenu {
         }
     }
 
-    @available(iOS 13.0, *)
     static func actions(for movie: Movie, presenter: UIViewController, sourceView: UIView) -> [UIAction] {
         var actions: [UIAction] = []
 

@@ -8,7 +8,6 @@
 
 import XCTest
 
-@available(iOS 13.0, *)
 class AppLaunchPerformanceUITests: XCTestCase {
 
     override func setUp() {

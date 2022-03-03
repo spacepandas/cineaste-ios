@@ -50,8 +50,6 @@ class MoviesViewController: UITableViewController {
 
         view.backgroundColor = UIColor.cineListBackground
 
-        registerForPreviewing(with: self, sourceView: tableView)
-
         updateUI(for: category)
 
         configureTableView()

@@ -13,12 +13,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet private weak var versionInfo: UILabel!
 
     var settings: [SettingItem] {
-        if #available(iOS 13.0, *) {
-            return SettingItem.allCases
-        } else {
-            // Setting "Change Language" is not available pre iOS 13
-            return SettingItem.allCasesForPreIOS13
-        }
+        SettingItem.allCases
     }
 
     var selectedSetting: SettingItem?

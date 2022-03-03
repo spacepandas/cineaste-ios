@@ -120,7 +120,7 @@ class HintView: View {
     override func setup() {
         clipsToBounds = true
 
-        backgroundColor = UIColor.groupTableViewBackground
+        backgroundColor = UIColor.systemGroupedBackground
 
         layer.cornerRadius = 2
 
