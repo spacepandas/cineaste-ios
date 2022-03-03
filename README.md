@@ -26,7 +26,6 @@ We are using [theMovieDb][theMovieDb] to get access to the big movie data univer
 
 The following Apple Frameworks are used:
 
-- CoreData (only for migrating core data to json persistence)
 - CoreSpotlight and MobileCoreServices (to open movies from spotlight search)
 - Dispatch (to use GCD)
 - Foundation 

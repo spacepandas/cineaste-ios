@@ -19,11 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 
-        // IMPORTANT: Call this before the ReSwift Store is initialized
-        // (before ReSwiftInit is dispatched)
-        migrateCoreData()
-
-        return true
+        true
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -104,17 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         #endif
-    }
-
-    @available(*, deprecated, message: "Don't use Core Data")
-    private func migrateCoreData() {
-        let migrator = CoreDataMigrator()
-        let movies = migrator.coreDataMovies
-
-        guard !movies.isEmpty else { return }
-
-        try? Persistence.saveMovies(movies)
-        try? migrator.clearCoreData()
     }
 
     private func navigateToDetail(with id: String) {

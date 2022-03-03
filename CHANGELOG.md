@@ -9,7 +9,7 @@
 * 
 
 ## Improved
-* 
+* Remove CoreData
 
 # 1.25.0
 
