@@ -19,7 +19,7 @@ class SearchReducerTests: XCTestCase {
             currentPage: 3,
             searchResult: [Movie.testing],
             totalResults: 10,
-            currentRequest: URLSessionTask()
+            currentRequest: nil
         )
         let expectedState = SearchState(
             searchQuery: query
@@ -41,7 +41,7 @@ class SearchReducerTests: XCTestCase {
             currentPage: 3,
             searchResult: [Movie.testing],
             totalResults: 10,
-            currentRequest: URLSessionTask()
+            currentRequest: nil
         )
         let expectedState = SearchState(
             selectedGenres: [genre]
@@ -63,7 +63,7 @@ class SearchReducerTests: XCTestCase {
             currentPage: 3,
             searchResult: [Movie.testing],
             totalResults: 10,
-            currentRequest: URLSessionTask()
+            currentRequest: nil
         )
         let expectedState = SearchState()
 
@@ -194,7 +194,7 @@ class SearchReducerTests: XCTestCase {
             initialSearchResult: [Movie.testingWatchlist2],
             searchResult: [Movie.testing],
             totalResults: 10,
-            currentRequest: URLSessionTask()
+            currentRequest: nil
         )
         let expectedState = SearchState(initialSearchResult: [Movie.testingWatchlist2])
 

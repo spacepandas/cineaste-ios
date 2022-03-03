@@ -3,10 +3,18 @@
 # Upcoming Release
 
 ## New
-* Drop support for iOS 12
+* 
 
 ## Fixed
 * 
+
+## Improved
+* 
+
+# 1.26.0
+
+## New
+* Drop support for iOS 12
 
 ## Improved
 * Remove CoreData
