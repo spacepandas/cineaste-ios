@@ -7,7 +7,7 @@
 //
 
 import Dispatch
-import ReSwift_Thunk
+import ReSwiftThunk
 
 func markMovie(_ movie: Movie, watched: Bool) -> Thunk<AppState> {
     Thunk { dispatch, getState in

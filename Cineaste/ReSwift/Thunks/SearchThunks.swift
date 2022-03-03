@@ -7,7 +7,7 @@
 //
 
 import Dispatch
-import ReSwift_Thunk
+import ReSwiftThunk
 
 // swiftlint:disable:next closure_body_length
 let fetchSearchResults = Thunk<AppState> { dispatch, getState in

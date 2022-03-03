@@ -227,7 +227,6 @@
 		4E20FD25226851D3006EB4B8 /* PersistenceSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20FD24226851D3006EB4B8 /* PersistenceSubscriber.swift */; };
 		4E779FC122690151007B278D /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E779FC022690151007B278D /* SelectionReducerTests.swift */; };
 		4EA460F223EAF15B0014B543 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460F123EAF15B0014B543 /* ReSwift */; };
-		4EA460F523EAF1760014B543 /* ReSwift-Thunk in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460F423EAF1760014B543 /* ReSwift-Thunk */; };
 		4EA460F823EAF1C30014B543 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA460F723EAF1C30014B543 /* SnapshotTesting */; };
 		4EB512022268B07600CBDC7E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512012268B07600CBDC7E /* AppReducer.swift */; };
 		4EB512042268B1FD00CBDC7E /* SelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB512032268B1FD00CBDC7E /* SelectionReducer.swift */; };
@@ -238,6 +237,7 @@
 		4ED2FC832266F586007BDE06 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2FC822266F586007BDE06 /* PersistenceTests.swift */; };
 		4ED734FD218A335500D36421 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* Assets.xcassets */; };
 		6409299022DBAB0C0011AB96 /* SearchMoviesViewController+SwipeHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409298F22DBAB0C0011AB96 /* SearchMoviesViewController+SwipeHint.swift */; };
+		B5251E6127D1595F0014B5C9 /* ReSwiftThunk in Frameworks */ = {isa = PBXBuildFile; productRef = B5251E6027D1595F0014B5C9 /* ReSwiftThunk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -557,7 +557,7 @@
 			files = (
 				3FD67ED024F27F3E007D3766 /* Kingfisher in Frameworks */,
 				4EA460F223EAF15B0014B543 /* ReSwift in Frameworks */,
-				4EA460F523EAF1760014B543 /* ReSwift-Thunk in Frameworks */,
+				B5251E6127D1595F0014B5C9 /* ReSwiftThunk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,8 +1174,8 @@
 			name = "Cineaste App";
 			packageProductDependencies = (
 				4EA460F123EAF15B0014B543 /* ReSwift */,
-				4EA460F423EAF1760014B543 /* ReSwift-Thunk */,
 				3FD67ECF24F27F3E007D3766 /* Kingfisher */,
+				B5251E6027D1595F0014B5C9 /* ReSwiftThunk */,
 			);
 			productName = Cineaste;
 			productReference = 3FF7913720DE274A007B7D37 /* Cineaste App.app */;
@@ -1231,9 +1231,9 @@
 			mainGroup = 95AE25931F9531E20067F5F5;
 			packageReferences = (
 				4EA460F023EAF15B0014B543 /* XCRemoteSwiftPackageReference "ReSwift" */,
-				4EA460F323EAF1760014B543 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */,
 				4EA460F623EAF1C30014B543 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				3FD67ECC24F27F3E007D3766 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B5251E5F27D1595F0014B5C9 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */,
 			);
 			productRefGroup = 95AE259D1F9531E20067F5F5 /* Products */;
 			projectDirPath = "";
@@ -2268,7 +2268,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.15.0;
+				minimumVersion = 7.2.0;
 			};
 		};
 		4EA460ED23EAF0E50014B543 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -2284,7 +2284,7 @@
 			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 6.1.0;
 			};
 		};
 		4EA460F323EAF1760014B543 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */ = {
@@ -2292,7 +2292,7 @@
 			repositoryURL = "https://github.com/ReSwift/ReSwift-Thunk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				minimumVersion = 2.0.1;
 			};
 		};
 		4EA460F623EAF1C30014B543 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
@@ -2300,7 +2300,15 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.1;
+				minimumVersion = 1.9.0;
+			};
+		};
+		B5251E5F27D1595F0014B5C9 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:ReSwift/ReSwift-Thunk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -2320,11 +2328,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EA460F023EAF15B0014B543 /* XCRemoteSwiftPackageReference "ReSwift" */;
 			productName = ReSwift;
-		};
-		4EA460F423EAF1760014B543 /* ReSwift-Thunk */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4EA460F323EAF1760014B543 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */;
-			productName = "ReSwift-Thunk";
 		};
 		4EA460F723EAF1C30014B543 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2350,6 +2353,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EA460F623EAF1C30014B543 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		B5251E6027D1595F0014B5C9 /* ReSwiftThunk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5251E5F27D1595F0014B5C9 /* XCRemoteSwiftPackageReference "ReSwift-Thunk" */;
+			productName = ReSwiftThunk;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -9,7 +9,7 @@
 import ReSwift
 import Foundation
 
-struct AppState: StateType, Equatable {
+struct AppState: Equatable {
     var movies: Set<Movie> = []
 
     var storedIDs: StoredMovieIDs {

@@ -7,7 +7,7 @@
 //
 
 import ReSwift
-import ReSwift_Thunk
+import ReSwiftThunk
 
 #if DEBUG
 var store = Store(

@@ -8,7 +8,7 @@
 
 import XCTest
 import ReSwift
-@testable import ReSwift_Thunk
+@testable import ReSwiftThunk
 @testable import Cineaste_App
 
 class MovieThunksTests: XCTestCase {
