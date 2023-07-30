@@ -9,8 +9,6 @@
 import SwiftUI
 import Kingfisher
 
-// swiftlint:disable trailing_closure multiline_arguments_brackets
-
 private let cache = AppGroup.imageCache
 
 extension Movie {
@@ -31,18 +29,19 @@ extension Movie {
                 }
             }
         } else {
+            // swiftlint:disable:next trailing_closure
             ImageDownloader.default.downloadImage(
                 with: url,
                 options: [.targetCache(cache)],
                 completionHandler: { result in
-
                     switch result {
                     case .success(let value):
                         completion(Image(uiImage: value.image))
                     case .failure:
                         completion(placeholder)
                     }
-                })
+                }
+            )
         }
     }
 }

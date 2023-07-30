@@ -62,3 +62,4 @@ extension UIColor {
     static let cineUsageActive = UIColor(named: "usageActive")!
     static let cineUsageInactive = UIColor(named: "usageInactive")!
 }
+// swiftlint:enable force_unwrapping

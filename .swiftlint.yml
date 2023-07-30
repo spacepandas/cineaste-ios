@@ -21,7 +21,6 @@ opt_in_rules:
   - number_separator
   - nimble_operator
   - implicitly_unwrapped_optional
-  - attributes
   - first_where
   - multiline_parameters
   - multiline_arguments
@@ -35,19 +34,17 @@ opt_in_rules:
   - convenience_type
   - redundant_set_access_control
   - multiline_function_chains
-  - anyobject_protocol
   - toggle_bool
   - identical_operands
   - collection_alignment
   - static_operator
   - legacy_random
   - closure_body_length
-  - inert_defer
   - last_where
   - multiline_literal_brackets
   - multiline_parameters_brackets
   - multiline_arguments_brackets
-  - unused_import
+  - weak_delegate
 
 disabled_rules:
   - implicit_getter

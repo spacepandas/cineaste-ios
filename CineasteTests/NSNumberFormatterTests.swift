@@ -14,7 +14,7 @@ class NSNumberFormatterTests: XCTestCase {
     func testFormattedForPercentageShouldFormatNSNumberCorrectly() {
         // Given
         Current.locale = Locale(identifier: "en-US")
-        let number: NSNumber = 0.123_1
+        let number: NSNumber = 0.1231
         let expected = "12%"
 
         // When

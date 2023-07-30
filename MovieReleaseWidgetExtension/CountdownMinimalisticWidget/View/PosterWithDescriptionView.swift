@@ -9,8 +9,6 @@
 import SwiftUI
 import WidgetKit
 
-// swiftlint:disable closure_body_length
-
 struct PosterWithDescriptionView: View {
     let title: String
     let description: LocalizedStringKey

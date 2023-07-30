@@ -9,8 +9,6 @@
 import SwiftUI
 import WidgetKit
 
-// swiftlint:disable closure_body_length multiline_arguments_brackets
-
 private struct TextHeightPreference: PreferenceKey {
     static var defaultValue: CGFloat = 0
 
@@ -35,7 +33,9 @@ struct CountdownView: SwiftUI.View {
     }
 
     var body: some SwiftUI.View {
+        // swiftlint:disable:next closure_body_length
         GeometryReader { proxy in
+            // swiftlint:disable:next closure_body_length
             ZStack(alignment: .bottom) {
                 image
                     .resizable()

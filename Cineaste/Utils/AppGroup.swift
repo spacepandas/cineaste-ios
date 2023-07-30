@@ -8,7 +8,6 @@
 
 import Foundation
 
-// swiftlint:disable force_unwrapping duplicate_enum_cases
 public enum AppGroup: String {
     #if DEBUG
     case widget = "group.de.spacepandas.ios.cineaste-development"
@@ -19,6 +18,6 @@ public enum AppGroup: String {
     public var containerURL: URL {
         FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: self.rawValue
-        )!
+        )! // swiftlint:disable:this force_unwrapping
     }
 }
