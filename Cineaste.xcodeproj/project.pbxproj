@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,7 +72,7 @@
 		3F492E7124F250C900016B2A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F492E7024F250C900016B2A /* SwiftUI.framework */; };
 		3F492E7424F250C900016B2A /* CountdownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E7324F250C900016B2A /* CountdownWidget.swift */; };
 		3F492E7624F250C900016B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F492E7524F250C900016B2A /* Assets.xcassets */; };
-		3F492E7A24F250C900016B2A /* MovieReleaseWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F492E6C24F250C900016B2A /* MovieReleaseWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F492E7A24F250C900016B2A /* MovieReleaseWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F492E6C24F250C900016B2A /* MovieReleaseWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F492E8424F256CF00016B2A /* Movie+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8224F256CF00016B2A /* Movie+Testing.swift */; };
 		3F492E8824F25C8500016B2A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F492E8724F25C8500016B2A /* AppGroup.swift */; };
 		3F492E8A24F25E9C00016B2A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC320C1F97E5150014E3EA /* Movie.swift */; };
@@ -82,7 +82,7 @@
 		3F4C9660232E1FB8002692D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4C965F232E1FB8002692D0 /* Colors.xcassets */; };
 		3F4F4D552233D3C40093CDEF /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F4D542233D3C40093CDEF /* SwipeAction.swift */; };
 		3F508CE024FD6E2A008A7DCB /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F508CDF24FD6E2A008A7DCB /* IntentHandler.swift */; };
-		3F508CF524FD6E2A008A7DCB /* SelectMovieIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F508CDD24FD6E2A008A7DCB /* SelectMovieIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F508CF524FD6E2A008A7DCB /* SelectMovieIntentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F508CDD24FD6E2A008A7DCB /* SelectMovieIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F544E392381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E382381E2B300B26071 /* MoviesViewControllerSnapshotTests.swift */; };
 		3F544E3B2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3A2381EC1D00B26071 /* MoviesTabBarControllerSnapshotTests.swift */; };
 		3F544E3D2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F544E3C2381EDC700B26071 /* SearchMoviesViewControllerSnapshotTests.swift */; };
@@ -275,16 +275,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3F492E7B24F250C900016B2A /* Embed App Extensions */ = {
+		3F492E7B24F250C900016B2A /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3F508CF524FD6E2A008A7DCB /* SelectMovieIntentExtension.appex in Embed App Extensions */,
-				3F492E7A24F250C900016B2A /* MovieReleaseWidgetExtension.appex in Embed App Extensions */,
+				3F508CF524FD6E2A008A7DCB /* SelectMovieIntentExtension.appex in Embed Foundation Extensions */,
+				3F492E7A24F250C900016B2A /* MovieReleaseWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1148,7 +1148,7 @@
 				3FF7912420DE274A007B7D37 /* Resources */,
 				3F31164B25C5CC980045FCCF /* Set version number in Settings.bundle */,
 				3F48A7A3257CDFD900956F2E /* Update Acknowledgements in Settings.bundle */,
-				3F492E7B24F250C900016B2A /* Embed App Extensions */,
+				3F492E7B24F250C900016B2A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1175,8 +1175,9 @@
 		95AE25941F9531E20067F5F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = spacepandas.de;
 				TargetAttributes = {
 					3F2408F1203CB88E00EB9141 = {
@@ -1307,6 +1308,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3F31164B25C5CC980045FCCF /* Set version number in Settings.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1325,6 +1327,7 @@
 		};
 		3F48A7A3257CDFD900956F2E /* Update Acknowledgements in Settings.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1343,6 +1346,7 @@
 		};
 		3F5AF263218F80F8006717DC /* Check API Keys */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1361,6 +1365,7 @@
 		};
 		3F9C0A1B23C92ECA00CDB993 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
