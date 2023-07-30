@@ -1342,7 +1342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which license-plist >/dev/null; then\n  license-plist \\\n    --output-path Cineaste/Settings.bundle \\\n    --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.swift \\\n    --prefix Acknowledgements \\\n    --single-page \\\n    --force\nelse\n  echo \"warning: LicensePlist not installed, download from https://github.com/mono0926/LicensePlist\"\nfi\n";
+			shellScript = "if which license-plist >/dev/null; then\n  license-plist \\\n    --output-path Cineaste/Settings.bundle \\\n    --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved \\\n    --prefix Acknowledgements \\\n    --single-page\nelse\n  echo \"warning: LicensePlist not installed, download from https://github.com/mono0926/LicensePlist\"\nfi\n";
 		};
 		3F5AF263218F80F8006717DC /* Check API Keys */ = {
 			isa = PBXShellScriptBuildPhase;
