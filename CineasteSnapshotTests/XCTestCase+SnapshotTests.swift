@@ -40,7 +40,7 @@ func assertThemedNavigationSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(precision: 0.99),
+            as: .image(),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
@@ -83,7 +83,7 @@ func assertThemedViewSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(precision: 0.99, size: size),
+            as: .image(size: size),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
@@ -112,7 +112,7 @@ func assertThemedLandscapeViewControllerSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(on: .iPhoneX(.landscape), precision: 0.99),
+            as: .image(on: .iPhoneSe(.landscape)),
             named: "landscape-\(theme.displayName)",
             record: false,
             timeout: 5,
@@ -125,10 +125,10 @@ func assertThemedLandscapeViewControllerSnapshot(
 
 private func enforceSnapshotDevice() {
     let is2xDevice = UIScreen.main.scale == 2
-    let isVersion15 = ProcessInfo().operatingSystemVersion.majorVersion == 15
+    let isVersion17 = ProcessInfo().operatingSystemVersion.majorVersion == 17
 
-    guard is2xDevice, isVersion15 else {
-        fatalError("Running device should have @2x screen scale (like iPhone 8) and iOS15.")
+    guard is2xDevice, isVersion17 else {
+        fatalError("Running device should have @2x screen scale (like iPhone SE) and iOS17.")
     }
 }
 
