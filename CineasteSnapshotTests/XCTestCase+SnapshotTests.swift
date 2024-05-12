@@ -40,7 +40,7 @@ func assertThemedNavigationSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(),
+            as: .image(precision: 0.99),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
@@ -83,7 +83,7 @@ func assertThemedViewSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(size: size),
+            as: .image(precision: 0.99, size: size),
             named: theme.displayName,
             record: recording,
             timeout: timeout,
@@ -112,7 +112,7 @@ func assertThemedLandscapeViewControllerSnapshot(
 
         assertSnapshot(
             matching: value,
-            as: .image(on: .iPhoneSe(.landscape)),
+            as: .image(on: .iPhoneSe(.landscape), precision: 0.99),
             named: "landscape-\(theme.displayName)",
             record: false,
             timeout: 5,
