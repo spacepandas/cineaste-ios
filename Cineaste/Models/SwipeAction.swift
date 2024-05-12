@@ -16,7 +16,8 @@ enum SwipeAction {
     func contextualAction(for movie: Movie) -> UIContextualAction {
         let action = UIContextualAction(
             style: .normal,
-            title: title) { _, _, success in
+            title: title
+        ) { _, _, success in
                 switch self {
                 case .delete:
                     store.dispatch(deleteMovie(movie))

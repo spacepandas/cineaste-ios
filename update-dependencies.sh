@@ -2,7 +2,7 @@
 
 update-license-plist() {
     if brew ls --versions "license-plist" >/dev/null; then
-        HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade "license-plist"
+        HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade licenseplist
     else
         echo "warning: LicensePlist not installed, download from https://github.com/mono0926/LicensePlist"
         exit -1
@@ -13,7 +13,7 @@ generate-new-license-plist() {
     if which license-plist >/dev/null; then
         license-plist \
             --output-path Cineaste/Settings.bundle \
-            --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.swift \
+            --package-path Cineaste.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved \
             --prefix Acknowledgements \
             --single-page \
             --force

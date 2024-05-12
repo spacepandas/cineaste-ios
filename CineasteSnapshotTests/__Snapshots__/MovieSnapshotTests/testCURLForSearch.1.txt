@@ -1,2 +1,2 @@
 curl \
-	"https://api.themoviedb.org/3/search/movie?language=en-US&api_key=xxx&query=query&region=US&with_release_type=3&page=0"
+	"https://api.themoviedb.org/3/search/movie?api_key=xxx&language=en-US&page=0&query=query&region=US&with_release_type=3"

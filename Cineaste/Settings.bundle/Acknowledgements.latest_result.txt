@@ -1,11 +1,23 @@
-name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.2.0
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.11.0, source: https://github.com/onevcat/Kingfisher
 
-name: ReSwift, nameSpecified: ReSwift, owner: ReSwift, version: 6.1.0
+name: ReSwift, nameSpecified: ReSwift, owner: ReSwift, version: 6.1.1, source: https://github.com/ReSwift/ReSwift
 
-name: ReSwift-Thunk, nameSpecified: ReSwiftThunk, owner: ReSwift, version: 2.0.1
+name: ReSwift-Thunk, nameSpecified: ReSwiftThunk, owner: ReSwift, version: 2.0.1, source: https://github.com/ReSwift/ReSwift-Thunk
 
-name: swift-snapshot-testing, nameSpecified: SnapshotTesting, owner: pointfreeco, version: 1.9.0
+name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: pointfreeco, version: 1.16.0, source: https://github.com/pointfreeco/swift-snapshot-testing
+
+name: swift-syntax, nameSpecified: swift-syntax, owner: apple, version: 510.0.2, source: https://github.com/apple/swift-syntax
+
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.11.0, source: https://github.com/onevcat/Kingfisher
+
+name: ReSwift, nameSpecified: ReSwift, owner: ReSwift, version: 6.1.1, source: https://github.com/ReSwift/ReSwift
+
+name: ReSwift-Thunk, nameSpecified: ReSwiftThunk, owner: ReSwift, version: 2.0.1, source: https://github.com/ReSwift/ReSwift-Thunk
+
+name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: pointfreeco, version: 1.16.0, source: https://github.com/pointfreeco/swift-snapshot-testing
+
+name: swift-syntax, nameSpecified: swift-syntax, owner: apple, version: 510.0.2, source: https://github.com/apple/swift-syntax
 
 add-version-numbers: false
 
-LicensePlist Version: 3.0.7
+LicensePlist Version: 3.24.10

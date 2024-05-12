@@ -16,15 +16,6 @@ enum NetworkError: Error {
 }
 
 enum Webservice {
-    static var numberOfRequests = 0 {
-        didSet {
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible =
-                    numberOfRequests > 0
-            }
-        }
-    }
-
     @discardableResult
     static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A, Error>) -> Void) -> URLSessionTask? {
         guard let resource = resource else {
@@ -38,11 +29,7 @@ enum Webservice {
         var request = URLRequest(url: url)
         request.httpMethod = resource.method.rawValue
 
-        numberOfRequests += 1
-
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            numberOfRequests -= 1
-
             guard error == nil, let data = data else {
                 // swiftlint:disable:next force_unwrapping
                 completion(.failure(error!))

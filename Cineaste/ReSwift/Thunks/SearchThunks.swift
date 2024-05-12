@@ -9,7 +9,6 @@
 import Dispatch
 import ReSwiftThunk
 
-// swiftlint:disable:next closure_body_length
 let fetchSearchResults = Thunk<AppState> { dispatch, getState in
     guard let state = getState()?.searchState,
         !state.hasLoadedAllMovies,

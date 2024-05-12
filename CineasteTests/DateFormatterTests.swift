@@ -24,7 +24,7 @@ class DateFormatterTests: XCTestCase {
         let pairs: [(String, String)] = [
             ("Dec 28, 2020", testDate.formatted),
             ("2020", testDate.formattedOnlyYear),
-            ("December 28, 2020 at 10:49 AM", testDate.formattedWithTime),
+            ("December 28, 2020 at 10:49 AM", testDate.formattedWithTime),
             ("2020-12-28", testDate.formattedForRequest),
             ("Dec 28, 2020 09:49:53", testDate.formattedForJson)
         ]

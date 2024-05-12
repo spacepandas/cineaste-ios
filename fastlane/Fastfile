@@ -10,9 +10,9 @@ Scheme_UnitTests = 'UnitTests'
 Scheme_SnapshotTests = 'SnapshotTests'
 Scheme_UITests = 'UITests'
 
-Test_Device = 'iPhone 8'
+Test_Device = 'iPhone SE (3rd generation) (17.0)'
 Test_Devices = [
-  'iPhone SE (2nd generation)',
+  'iPhone SE (3rd generation) (17.0',
   'iPhone 8 Plus',
   'iPhone 11 Pro',
   'iPhone 11 Pro Max',

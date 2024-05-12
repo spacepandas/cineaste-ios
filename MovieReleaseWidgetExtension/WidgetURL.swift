@@ -9,7 +9,6 @@
 import Foundation
 
 // swiftlint:disable force_unwrapping
-
 enum WidgetURL {
     static func deepLink(for movieID: Int64) -> URL {
         URL(string: "widget-deeplink://\(movieID)")!
@@ -17,3 +16,4 @@ enum WidgetURL {
 
     static let search = URL(string: "widget-deeplink://search")!
 }
+// swiftlint:enable force_unwrapping

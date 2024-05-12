@@ -9,8 +9,6 @@
 import SwiftUI
 import WidgetKit
 
-// swiftlint:disable closure_body_length multiline_arguments_brackets
-
 private struct TextHeightPreference: PreferenceKey {
     static var defaultValue: CGFloat = 0
 
@@ -35,6 +33,7 @@ struct AlreadyReleasedView: View {
     }
 
     var body: some View {
+        // swiftlint:disable:next closure_body_length
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
                 image

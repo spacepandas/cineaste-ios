@@ -42,7 +42,8 @@ extension UIViewController {
         let alert = UIAlertController(message)
         let action = UIAlertAction(
             title: message.action,
-            style: .default) { _ in
+            style: .default
+        ) { _ in
                 defaultActionHandler?()
         }
         alert.addAction(action)
@@ -50,7 +51,8 @@ extension UIViewController {
         if let cancelTitle = message.cancel {
             let action = UIAlertAction(
                 title: cancelTitle,
-                style: .cancel) { _ in
+                style: .cancel
+            ) { _ in
                     cancelActionHandler?()
             }
             alert.addAction(action)

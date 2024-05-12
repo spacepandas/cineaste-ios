@@ -25,3 +25,4 @@ var Current = World()
 #else
 let Current = World()
 #endif
+// swiftlint:enable identifier_name

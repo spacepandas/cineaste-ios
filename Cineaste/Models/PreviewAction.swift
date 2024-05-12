@@ -16,7 +16,8 @@ enum PreviewAction {
     func previewAction(for movie: Movie) -> UIPreviewAction {
         let action = UIPreviewAction(
             title: title,
-            style: style) { _, _ -> Void in
+            style: style
+        ) { _, _ -> Void in
                 switch self {
                 case .delete:
                     store.dispatch(deleteMovie(movie))
