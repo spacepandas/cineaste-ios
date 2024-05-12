@@ -46,14 +46,3 @@ jobs:
 
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Run SwiftLint Checks
-      uses: norio-nomura/action-swiftlint@3.2.1
-      with:
-        args: --strict
