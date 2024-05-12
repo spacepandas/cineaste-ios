@@ -46,7 +46,7 @@ class MovieTests: XCTestCase {
         let movie = Movie.testingSeen
 
         // Then
-        XCTAssertEqual("Added on November 17, 2017 at 9:49 PM", movie.formattedWatchedDate)
+        XCTAssertEqual("Added on November 17, 2017 at 9:49 PM", movie.formattedWatchedDate)
     }
 
     func testSoonAvailableShouldReturnTrue() {
