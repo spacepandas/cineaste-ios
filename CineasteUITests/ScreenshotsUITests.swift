@@ -29,7 +29,9 @@ class ScreenshotsUITests: XCTestCase {
             //            "UICTContentSizeCategoryL"
         ]
 
-        setupSnapshot(app, waitForAnimations: false)
+        Task {
+            await setupSnapshot(self.app, waitForAnimations: true)
+        }
     }
 
     func testScreenshots() {
@@ -179,16 +181,18 @@ extension ScreenshotsUITests {
     }
 
     private func namedSnapshot(_ name: String) {
-        var snapshotName = name
+        Task {
+            var snapshotName = name
 
-        if app.launchArguments.contains("UICTContentSizeCategoryAccessibilityL") {
-            snapshotName += "_a11y"
+            if app.launchArguments.contains("UICTContentSizeCategoryAccessibilityL") {
+                snapshotName += "_a11y"
+            }
+
+            if app.launchArguments.contains("UI_TEST_DARK_MODE") {
+                snapshotName += "_dark"
+            }
+
+            await snapshot(snapshotName, timeWaitingForIdle: 0)
         }
-
-        if app.launchArguments.contains("UI_TEST_DARK_MODE") {
-            snapshotName += "_dark"
-        }
-
-        snapshot(snapshotName, timeWaitingForIdle: 0)
     }
 }
