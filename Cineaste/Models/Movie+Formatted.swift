@@ -37,11 +37,17 @@ extension Movie {
     }
 
     var formattedRuntime: String {
-        guard runtime != 0 else {
+        guard let runtime else {
             return "\(String.unknownRuntime) min"
         }
 
-        return "\(runtime?.formatted ?? String.unknownRuntime) min"
+        if #available(iOS 16.0, *) {
+            let duration = Duration.seconds(runtime * 60)
+            let format = duration.formatted(.units(allowed: [.minutes], width: .abbreviated))
+            return format
+        } else {
+            return "\(runtime.formatted ?? String.unknownRuntime) min"
+        }
     }
 
     var formattedWatchedDate: String? {
