@@ -66,7 +66,7 @@ extension Movie {
     }
 
     var formattedRuntime: String {
-        guard let runtime else {
+        guard let runtime, runtime != 0 else {
             return "\(String.unknownRuntime) min"
         }
 
