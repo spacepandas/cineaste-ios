@@ -222,18 +222,35 @@ class MovieDetailViewController: UIViewController {
             else { return }
 
         titleLabel.text = movie.title
+        titleLabel.accessibilityTraits.insert(.header)
+
         releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
             + " ∙ "
+            + movie.formattedRuntime
+        releaseDateAndRuntimeLabel.accessibilityLabel = movie.accessibilityFormattedReleaseDate
+            + ", "
             + movie.formattedRuntime
 
         if !movie.formattedGenres.isEmpty {
             genreLabel.isHidden = false
             genreLabel.text = movie.formattedGenres
+            genreLabel.accessibilityLabel = String.genreAccessibilityLabel
+            genreLabel.accessibilityValue = movie.formattedGenres
         } else {
             genreLabel.isHidden = true
         }
 
+        moreInformationStackView.isAccessibilityElement = true
+        moreInformationStackView.accessibilityTraits.insert(.link)
+        moreInformationStackView.accessibilityLabel = [
+            moreInformationButton.accessibilityLabel,
+            buttonInfoLabel.text
+        ]
+            .compactMap { $0 }
+            .joined(separator: " ")
+
         votingLabel.text = movie.formattedVoteAverage
+        votingLabel.accessibilityLabel = String.votingAccessibilityLabel(for: movie.formattedVoteAverage)
         descriptionTextView.text = movie.overview
         posterImageView.loadingImage(from: movie.posterPath, in: .original)
     }

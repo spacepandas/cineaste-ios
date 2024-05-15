@@ -52,6 +52,10 @@ extension String {
     static let searchInCategoryPlaceholder = NSLocalizedString("searchIn", comment: "Placeholder for search textField in MoviesList")
     static let noContentTitle = NSLocalizedString("noContent", comment: "Title for no content")
     static let onDate = NSLocalizedString("onDate", comment: "on a date")
+    static let genreAccessibilityLabel = NSLocalizedString("genre", comment: "Genre for a movie")
+    static let releasedOnDateAccessibilityLabel = NSLocalizedString("releasedOnDateVoiceOver", comment: "Movie released on dates")
+    static let releasedInYearAccessibilityLabel = NSLocalizedString("releasedInYearVoiceOver", comment: "Movie released in year")
+    static let releaseOnDateAccessibilityLabel = NSLocalizedString("releaseOnDateVoiceOver", comment: "Release date accessibility label for a movie")
 
     // MARK: SEARCH VIEWCONTROLLER
     static let discoverMovieTitle = NSLocalizedString("discoverMovieTitle", comment: "Title for search")
@@ -69,7 +73,7 @@ extension String {
         }
     }
 
-    static func voting(for vote: String) -> String {
+    static func votingAccessibilityLabel(for vote: String) -> String {
         String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
     }
 

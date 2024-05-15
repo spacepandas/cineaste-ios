@@ -23,6 +23,14 @@ extension Movie {
         return release.formatted
     }
 
+    var accessibilityFormattedReleaseDate: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        return String.releasedOnDateAccessibilityLabel + " " + release.formatted
+    }
+
     var formattedRelativeReleaseInformation: String {
         guard let release = releaseDate else {
             return String.unknownReleaseDate
@@ -36,12 +44,39 @@ extension Movie {
         }
     }
 
+    // swiftlint:disable:next identifier_name
+    var accessibilityFormattedRelativeReleaseInformation: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        let isCurrentYear = release.formattedOnlyYear == Current.date().formattedOnlyYear
+        if isCurrentYear {
+            if soonAvailable {
+                // Release on May 4, 2030
+                return String.releaseOnDateAccessibilityLabel + " " + release.formatted
+            } else {
+                // Released on May 4, 2023
+                return String.releasedOnDateAccessibilityLabel + " " + release.formatted
+            }
+        } else {
+            // Released in 2024
+            return String.releasedInYearAccessibilityLabel + " " + release.formattedOnlyYear
+        }
+    }
+
     var formattedRuntime: String {
-        guard runtime != 0 else {
+        guard let runtime, runtime != 0 else {
             return "\(String.unknownRuntime) min"
         }
 
-        return "\(runtime?.formatted ?? String.unknownRuntime) min"
+        if #available(iOS 16.0, *) {
+            let duration = Duration.seconds(runtime * 60)
+            let format = duration.formatted(.units(allowed: [.minutes], width: .abbreviated))
+            return format
+        } else {
+            return "\(runtime.formatted ?? String.unknownRuntime) min"
+        }
     }
 
     var formattedWatchedDate: String? {

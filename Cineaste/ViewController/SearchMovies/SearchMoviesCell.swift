@@ -68,23 +68,24 @@ class SearchMoviesCell: UITableViewCell {
 
     private func applyAccessibility(for movie: Movie) {
         isAccessibilityElement = true
+        accessibilityTraits.insert(.button)
 
         accessibilityLabel = movie.title
 
-        if let state = String.state(for: movie.currentWatchState) {
-            accessibilityLabel?.append(", \(state)")
-        }
-
-        let voting = String.voting(for: movie.formattedVoteAverage)
-        accessibilityLabel?.append(", \(voting)")
-
         let isSoonAvailable = !soonHint.isHidden
-        accessibilityLabel?.append(
+        let value = [
+            String.state(for: movie.currentWatchState),
+            String.votingAccessibilityLabel(for: movie.formattedVoteAverage),
             isSoonAvailable
-            ? ", \(String.soonReleaseInformationLong)"
-            : ""
-        )
-        accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
+                ? String.soonReleaseInformationLong
+                : "",
+            movie.accessibilityFormattedRelativeReleaseInformation
+        ]
+            .compactMap { $0 }
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
+
+        accessibilityValue = value
     }
 
     private func updatePosterWidthIfNeeded() {

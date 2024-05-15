@@ -28,6 +28,7 @@ class SettingsCell: UITableViewCell {
         } else {
             descriptionLabel.isHidden = true
         }
+        accessibilityTraits.insert(.button)
     }
 
 }
