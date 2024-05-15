@@ -10,15 +10,15 @@ Scheme_UnitTests = 'UnitTests'
 Scheme_SnapshotTests = 'SnapshotTests'
 Scheme_UITests = 'UITests'
 
-Test_Device = 'iPhone SE (3rd generation) (17.0)'
+Test_Device = 'iPhone SE (3rd generation)'
 Test_Devices = [
-  'iPhone SE (3rd generation) (17.0',
-  'iPhone 8 Plus',
-  'iPhone 11 Pro',
-  'iPhone 11 Pro Max',
-  'iPad Pro (9.7-inch)',
-  'iPad Pro (11-inch) (2nd generation)',
-  'iPad Pro (12.9-inch) (4th generation)'
+  'iPhone SE (3rd generation)',
+  'iPhone 15',
+  'iPhone 15 Plus',
+  'iPhone 15 Pro Max',
+  'iPad mini (6th generation)',
+  'iPad Pro (11-inch) (4th generation)',
+  'iPad Pro (12.9-inch) (6th generation)'
 ]
 Test_Language = 'en-US'
 Test_Languages = [
@@ -26,7 +26,7 @@ Test_Languages = [
   'de-DE'
 ]
 
-$version_number_to_set = '1.26.0'
+$version_number_to_set = '1.27.0'
 $build_number_to_set = number_of_commits.to_s
 $ipaName = "#{ProjectName}-#{$version_number_to_set}-#{$build_number_to_set}"
 
@@ -78,7 +78,7 @@ lane :screenshots do
     scheme: Scheme_UITests,
     stop_after_first_error: true,
     test_without_building: true
-    
+
 # Enable the following launch arguments to test dynamic type 
 # , launch_arguments: [
 #   "-UIPreferredContentSizeCategoryName UICTContentSizeCategoryAccessibilityL",

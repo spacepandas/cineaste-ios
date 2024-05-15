@@ -11,6 +11,11 @@
 ## Improved
 * 
 
+# 1.27.0
+
+## Improved
+* VoiceOver and Voice Control experience
+
 # 1.26.0
 
 ## New

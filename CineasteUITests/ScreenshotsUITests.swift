@@ -182,17 +182,20 @@ extension ScreenshotsUITests {
 
     private func namedSnapshot(_ name: String) {
         Task {
-            var snapshotName = name
-
-            if app.launchArguments.contains("UICTContentSizeCategoryAccessibilityL") {
-                snapshotName += "_a11y"
-            }
-
-            if app.launchArguments.contains("UI_TEST_DARK_MODE") {
-                snapshotName += "_dark"
-            }
-
-            await snapshot(snapshotName, timeWaitingForIdle: 0)
+            await snapshot(snapshotName(for: name), timeWaitingForIdle: 0)
         }
+    }
+
+    private func snapshotName(for name: String) -> String {
+        var snapshotName = name
+
+        if app.launchArguments.contains("UICTContentSizeCategoryAccessibilityL") {
+            snapshotName += "_a11y"
+        }
+
+        if app.launchArguments.contains("UI_TEST_DARK_MODE") {
+            snapshotName += "_dark"
+        }
+        return snapshotName
     }
 }
