@@ -23,6 +23,14 @@ extension Movie {
         return release.formatted
     }
 
+    var accessibilityFormattedReleaseDate: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        return String.releasedOnDateAccessibilityLabel + " " + formattedReleaseDate
+    }
+
     var formattedRelativeReleaseInformation: String {
         guard let release = releaseDate else {
             return String.unknownReleaseDate
@@ -33,6 +41,27 @@ extension Movie {
             return release.formatted
         } else {
             return release.formattedOnlyYear
+        }
+    }
+
+    // swiftlint:disable:next identifier_name
+    var accessibilityFormattedRelativeReleaseInformation: String {
+        guard let release = releaseDate else {
+            return String.unknownReleaseDate
+        }
+
+        let isCurrentYear = release.formattedOnlyYear == Current.date().formattedOnlyYear
+        if isCurrentYear {
+            if soonAvailable {
+                // Release on May 4, 2030
+                return String.releaseOnDateAccessibilityLabel + " " + release.formatted
+            } else {
+                // Released on May 4, 2023
+                return String.releasedOnDateAccessibilityLabel + " " + release.formatted
+            }
+        } else {
+            // Released in 2024
+            return String.releasedInYearAccessibilityLabel + " " + release.formattedOnlyYear
         }
     }
 
