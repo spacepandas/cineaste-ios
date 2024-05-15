@@ -56,10 +56,15 @@ class WatchlistMovieCell: UITableViewCell {
 
         accessibilityLabel = movie.title
 
-        let voting = String.voting(for: movie.formattedVoteAverage)
-        accessibilityLabel?.append(", \(voting)")
-        accessibilityLabel?.append(", \(movie.formattedRelativeReleaseInformation)")
-        accessibilityLabel?.append(", \(movie.formattedRuntime)")
+        let value = [
+            String.votingAccessibilityLabel(for: movie.formattedVoteAverage),
+            movie.accessibilityFormattedRelativeReleaseInformation,
+            movie.formattedRuntime
+        ]
+            .compactMap { $0 }
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
+        accessibilityValue = value
     }
 
     private func updatePosterWidthIfNeeded() {

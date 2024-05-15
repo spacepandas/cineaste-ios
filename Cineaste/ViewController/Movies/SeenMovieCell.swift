@@ -48,7 +48,7 @@ class SeenMovieCell: UITableViewCell {
         accessibilityLabel = movie.title
 
         if let watchedDate = movie.formattedWatchedDate {
-            accessibilityLabel?.append(", \(watchedDate)")
+            accessibilityValue = watchedDate
         }
     }
 

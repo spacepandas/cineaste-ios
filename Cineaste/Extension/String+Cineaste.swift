@@ -73,7 +73,7 @@ extension String {
         }
     }
 
-    static func voting(for vote: String) -> String {
+    static func votingAccessibilityLabel(for vote: String) -> String {
         String.localizedStringWithFormat(NSLocalizedString("%@ of 10", comment: "Voting description"), vote)
     }
 

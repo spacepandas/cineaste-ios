@@ -227,9 +227,7 @@ class MovieDetailViewController: UIViewController {
         releaseDateAndRuntimeLabel.text = movie.formattedReleaseDate
             + " ∙ "
             + movie.formattedRuntime
-        releaseDateAndRuntimeLabel.accessibilityLabel = String.releasedOnDateAccessibilityLabel
-            + " "
-            + movie.formattedReleaseDate
+        releaseDateAndRuntimeLabel.accessibilityLabel = movie.accessibilityFormattedReleaseDate
             + ", "
             + movie.formattedRuntime
 
@@ -252,7 +250,7 @@ class MovieDetailViewController: UIViewController {
             .joined(separator: " ")
 
         votingLabel.text = movie.formattedVoteAverage
-        votingLabel.accessibilityLabel = String.voting(for: movie.formattedVoteAverage)
+        votingLabel.accessibilityLabel = String.votingAccessibilityLabel(for: movie.formattedVoteAverage)
         descriptionTextView.text = movie.overview
         posterImageView.loadingImage(from: movie.posterPath, in: .original)
     }
