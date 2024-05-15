@@ -29,6 +29,8 @@ class LinkButton: Button {
         guard let title = title else { return }
 
         super.setTitle("▶︎ " + title, for: state)
+
+        accessibilityLabel = title.replacingOccurrences(of: "▶︎ ", with: "")
     }
 
     override func setup() {
