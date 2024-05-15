@@ -68,6 +68,7 @@ class SearchMoviesCell: UITableViewCell {
 
     private func applyAccessibility(for movie: Movie) {
         isAccessibilityElement = true
+        accessibilityTraits.insert(.button)
 
         accessibilityLabel = movie.title
 
