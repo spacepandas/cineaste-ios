@@ -28,7 +28,7 @@ extension Movie {
             return String.unknownReleaseDate
         }
 
-        return String.releasedOnDateAccessibilityLabel + " " + formattedReleaseDate
+        return String.releasedOnDateAccessibilityLabel + " " + release.formatted
     }
 
     var formattedRelativeReleaseInformation: String {
