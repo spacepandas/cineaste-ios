@@ -20,7 +20,7 @@ jobs:
         xcode-version: '15.2'
 
     - name: Checkout
-      uses: actions/checkout@v4.0.0
+      uses: actions/checkout@v4.1.7
 
     - name: Install Gem Dependencies
       run: bundle install
@@ -39,7 +39,7 @@ jobs:
         xcode-version: '15.2'
 
     - name: Checkout
-      uses: actions/checkout@v4.0.0
+      uses: actions/checkout@v4.1.7
 
     - name: Install Gem Dependencies
       run: bundle install
