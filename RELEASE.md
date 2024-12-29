@@ -12,6 +12,7 @@
 ## TestFlight
 
 * Run `bundle exec fastlane beta`
+    * If this fails for whatever reason, fall back to archive and distribute through Xcode
 
 ## AppStore
 

@@ -10,15 +10,16 @@ Scheme_UnitTests = 'UnitTests'
 Scheme_SnapshotTests = 'SnapshotTests'
 Scheme_UITests = 'UITests'
 
-Test_Device = 'iPhone SE (3rd generation)'
+Test_Device = 'iPhone SE (3rd generation)' # 4.7"
+
+# see https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications 
 Test_Devices = [
-  'iPhone SE (3rd generation)',
-  'iPhone 15',
-  'iPhone 15 Plus',
-  'iPhone 15 Pro Max',
-  'iPad mini (6th generation)',
-  'iPad Pro (11-inch) (4th generation)',
-  'iPad Pro (12.9-inch) (6th generation)'
+  'iPhone SE (3rd generation)', # 4.7"
+  'iPhone 8 Plus', # 5.5" (required)
+  'iPhone 11 Pro Max', # 6.5" (required)
+  'iPhone 15 Pro Max', # 6.7"
+  'iPad Pro (11-inch) (4th generation)', # 11"
+  'iPad Pro (12.9-inch) (6th generation)' # 12.9" and 13" (both required)
 ]
 Test_Language = 'en-US'
 Test_Languages = [
