@@ -26,7 +26,6 @@ import SnapshotTesting
 func assertThemedNavigationSnapshot(
     for themes: [UIUserInterfaceStyle] = [.light, .dark],
     matching value: UINavigationController,
-    named name: String? = nil,
     record recording: Bool = false,
     timeout: TimeInterval = 5,
     file: StaticString = #file,
@@ -69,7 +68,6 @@ func assertThemedViewSnapshot(
     for themes: [UIUserInterfaceStyle] = [.light, .dark],
     matching value: UIView,
     with size: CGSize? = nil,
-    named name: String? = nil,
     record recording: Bool = false,
     timeout: TimeInterval = 5,
     file: StaticString = #file,
@@ -95,7 +93,7 @@ func assertThemedViewSnapshot(
 }
 
 /// Asserts that a given value matches a reference on disk.
-/// This overload makes two snapshots with "Light" and "Dark" user interface style in a UIViewController on a iPhoneX device (with safe areas).
+/// This overload makes two snapshots with "Light" and "Dark" user interface style in a UIViewController on a iPhoneSE device.
 ///
 /// - Parameters:
 ///
@@ -103,7 +101,12 @@ func assertThemedViewSnapshot(
 ///   - value: A value to compare against a reference.
 func assertThemedLandscapeViewControllerSnapshot(
     for themes: [UIUserInterfaceStyle] = [.light, .dark],
-    matching value: UIViewController
+    matching value: UIViewController,
+    record recording: Bool = false,
+    timeout: TimeInterval = 5,
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line
 ) {
     enforceSnapshotDevice()
 
@@ -114,21 +117,21 @@ func assertThemedLandscapeViewControllerSnapshot(
             matching: value,
             as: .image(on: .iPhoneSe(.landscape), precision: 0.99),
             named: "landscape-\(theme.displayName)",
-            record: false,
-            timeout: 5,
-            file: #file,
-            testName: #function,
-            line: #line
+            record: recording,
+            timeout: timeout,
+            file: file,
+            testName: testName,
+            line: line
         )
     }
 }
 
 private func enforceSnapshotDevice() {
     let is2xDevice = UIScreen.main.scale == 2
-    let isVersion17 = ProcessInfo().operatingSystemVersion.majorVersion == 17
+    let isVersion18 = ProcessInfo().operatingSystemVersion.majorVersion == 18
 
-    guard is2xDevice, isVersion17 else {
-        fatalError("Running device should have @2x screen scale (like iPhone SE) and iOS17.")
+    guard is2xDevice, isVersion18 else {
+        fatalError("Running device should have @2x screen scale (like iPhone SE) and iOS18.")
     }
 }
 

@@ -28,13 +28,11 @@ class ScreenshotsUITests: XCTestCase {
             //            "-UIPreferredContentSizeCategoryName",
             //            "UICTContentSizeCategoryL"
         ]
-
-        Task {
-            await setupSnapshot(self.app, waitForAnimations: true)
-        }
     }
 
+    @MainActor
     func testScreenshots() {
+        setupSnapshot(app, waitForAnimations: true)
         app.launch()
 
         resetMoviesIfNeeded()
@@ -106,10 +104,12 @@ class ScreenshotsUITests: XCTestCase {
         }
     }
 
+    @MainActor
     func testScreenshotsOfSearchWithDarkMode() {
         app.launchArguments += [
             "UI_TEST_DARK_MODE"
         ]
+        setupSnapshot(app, waitForAnimations: true)
         app.launch()
 
         screenshotSearchWithMarkers()
@@ -180,10 +180,8 @@ extension ScreenshotsUITests {
         }
     }
 
-    private func namedSnapshot(_ name: String) {
-        Task {
-            await snapshot(snapshotName(for: name), timeWaitingForIdle: 0)
-        }
+    @MainActor private func namedSnapshot(_ name: String) {
+        snapshot(snapshotName(for: name), timeWaitingForIdle: 0)
     }
 
     private func snapshotName(for name: String) -> String {
