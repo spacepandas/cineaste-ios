@@ -19,14 +19,14 @@ jobs:
       with:
         xcode-version: '16.1'
 
+    - name: Checkout
+      uses: actions/checkout@v4.1.7
+
     - name: Set Ruby Version
       uses: ruby/setup-ruby@v1.206.0
       with:
         ruby-version: '3.0.0'
         bundler-cache: true
-
-    - name: Checkout
-      uses: actions/checkout@v4.1.7
 
     - name: Run UnitTests
       run: bundle exec fastlane test
@@ -41,14 +41,14 @@ jobs:
       with:
         xcode-version: '16.1'
 
+    - name: Checkout
+      uses: actions/checkout@v4.1.7
+
     - name: Set Ruby Version
       uses: ruby/setup-ruby@v1.206.0
       with:
         ruby-version: '3.0.0'
         bundler-cache: true
-
-    - name: Checkout
-      uses: actions/checkout@v4.1.7
 
     - name: Run SnapshotTests
       run: bundle exec fastlane snapshot_test
